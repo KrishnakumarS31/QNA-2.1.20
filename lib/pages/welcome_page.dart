@@ -158,8 +158,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           width: 1, // the thickness
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
-                                      minimumSize:
-                                      Size(localWidth * 0.1,localWidth * 0.04),
+                                      minimumSize: const Size(144, 48),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -190,8 +189,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           width: 1, // the thickness
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
-                                      minimumSize:
-                                      Size(localWidth * 0.1,localWidth * 0.04),
+                                      minimumSize: const Size(144, 48),
                                       shape:
                                       RoundedRectangleBorder(
                                         borderRadius:

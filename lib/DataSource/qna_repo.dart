@@ -142,20 +142,6 @@ class QnaRepo {
 
   static Future<ResponseEntity> updatePassword(
       String oldPassword, String newPassword, int userId,BuildContext context,UserDetails userDetails) async {
-    if(oldPassword.isEmpty || newPassword.isEmpty) {
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title: 'Incorrect Password',
-            content:
-            'Your Password has not been changed',
-            button: "Retry",
-          ),
-        ),
-      );
-    }
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity responses =
     ResponseEntity(code: 0, message: 'Incorrect OTP');

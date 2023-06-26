@@ -84,7 +84,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                   extendBodyBehindAppBar: true,
                   appBar:AppBar(
                     iconTheme: IconThemeData(
-                        color: Colors.black,
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                         size: height * 0.05
                     ),
                     elevation: 0,
@@ -191,7 +191,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.017),
+                                                          fontSize: height * 0.025)
                                                     ),
                                                     hintText:
                                                     AppLocalizations.of(context)!
@@ -242,7 +242,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.017),
+                                                            fontSize: height * 0.025),
                                                       ),
                                                       helperStyle:TextStyle(
                                                           color: const Color.fromRGBO(
@@ -335,10 +335,12 @@ class TeacherLoginState extends State<TeacherLogin> {
                             SizedBox(height: height * 0.03),
                             Center(
                                 child:IconButton(
+                                    iconSize: height * 0.06,
                                   icon: Icon(Icons.arrow_circle_right,
-                                    size: height * 0.04,
-                                    color: const Color.fromRGBO(
-                                        82, 165, 160, 1),
+                                    color:
+                                    ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
+                                        ?  const Color.fromRGBO(82, 165, 160, 1)
+                                        :  const Color.fromRGBO(153, 153, 153, 0.5),
                                   ),
                                   onPressed: () async {
                                     bool valid = formKey.currentState!.validate();
@@ -536,7 +538,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                   extendBodyBehindAppBar: true,
                   appBar:AppBar(
                     iconTheme: IconThemeData(
-                        color: Colors.black,
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                         size: height * 0.05
                     ),
                     elevation: 0,
@@ -696,7 +698,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.025),
+                                                            fontSize: height * 0.03),
                                                       ),
                                                       helperStyle:TextStyle(
                                                           color: const Color.fromRGBO(
@@ -785,10 +787,12 @@ class TeacherLoginState extends State<TeacherLogin> {
                             SizedBox(height: height * 0.03),
                             Center(
                                 child:IconButton(
+                                    iconSize: height * 0.06,
                                     icon: Icon(Icons.arrow_circle_right,
-                                      size: height * 0.04,
-                                      color: const Color.fromRGBO(
-                                          82, 165, 160, 1),
+                                      color:
+                                      ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
+                                          ?  const Color.fromRGBO(82, 165, 160, 1)
+                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
                                     ),
                                     onPressed: () async {
                                       bool valid = formKey.currentState!.validate();
@@ -986,7 +990,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                   extendBodyBehindAppBar: true,
                   appBar:AppBar(
                     iconTheme: IconThemeData(
-                        color: Colors.black,
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                         size: height * 0.05
                     ),
                     elevation: 0,
@@ -1093,7 +1097,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.017),
+                                                          fontSize: height * 0.02),
                                                     ),
                                                     hintText:
                                                     AppLocalizations.of(context)!
@@ -1144,7 +1148,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.017),
+                                                            fontSize: height * 0.02),
                                                       ),
                                                       helperStyle:TextStyle(
                                                           color: const Color.fromRGBO(
@@ -1237,10 +1241,12 @@ class TeacherLoginState extends State<TeacherLogin> {
                             SizedBox(height: height * 0.03),
                             Center(
                                 child:IconButton(
+                                    iconSize: height * 0.06,
                                     icon: Icon(Icons.arrow_circle_right,
-                                      size: height * 0.04,
-                                      color: const Color.fromRGBO(
-                                          82, 165, 160, 1),
+                                      color:
+                                      ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
+                                          ?  const Color.fromRGBO(82, 165, 160, 1)
+                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
                                     ),
                                     onPressed: () async {
                                       bool valid = formKey.currentState!.validate();

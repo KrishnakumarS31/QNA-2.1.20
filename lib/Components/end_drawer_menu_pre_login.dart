@@ -70,7 +70,6 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           color: textColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          
                           fontSize: 16),
                     ),
                     onTap: () async {

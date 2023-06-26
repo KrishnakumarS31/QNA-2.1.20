@@ -31,6 +31,8 @@ class EndDrawerMenuStudent extends StatefulWidget {
 
 class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   int userId = 0;
+  String name = '';
+  String email = '';
   UserDetails userDetails = UserDetails();
   @override
   void initState() {
@@ -40,162 +42,220 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   }
 
   getData() async {
-    SharedPreferences loginData = await SharedPreferences.getInstance();
     setState(() {
       userDetails = Provider.of<LanguageChangeProvider>(context, listen: false)
           .userDetails;
-      userId = loginData.getInt("userId")!;
+      name = userDetails.firstName!;
+      email = userDetails.email!;
+      userId = userDetails.userId!;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
-    //double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       return Drawer(
+        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
         child: Column(
           children: [
             constraints.maxWidth <= 960 && constraints.maxWidth >=500
                 ? Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ],
-                    )),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: localHeight * 0.050),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          height: localHeight / 6,
-                          child: Row(children: [
-                            const SizedBox(width: 10),
-                            CircleAvatar(
-                              backgroundColor:
-                                  const Color.fromRGBO(0, 106, 100, 0),
-                              child: Image.asset(
-                                "assets/images/ProfilePic_Avatar.png",
-                              ),
+              decoration: const BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1)
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: localHeight * 0.050),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    height: localHeight / 10,
+                    child: Row(
+                        children: [
+                          SizedBox(width: width * 0.03),
+                          CircleAvatar(
+                            radius: MediaQuery.of(context).size.width * 0.1,
+                            backgroundColor:
+                            const Color.fromRGBO(0, 106, 100, 0),
+                            child: Image.asset(
+                              "assets/images/ProfilePic_Avatar.png",
                             ),
-                            const SizedBox(width: 20),
-                            Text(
-                              widget.userName!,
-                              style: const TextStyle(
-                                  color: Color.fromRGBO(255, 255, 255, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16),
-                            ),
-                          ]),
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  AppLocalizations.of(context)!.student,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(221, 221, 221, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
+                          ),
+                          const SizedBox(width: 20),
+                          Text(
+                            name,
+                            style: TextStyle(
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                fontSize: width * 0.06),
+                          ),
+                        ]),
+                  ),
+                  Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.student,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
 
-                                      fontSize: 12),
-                                )),
-                            Container(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  widget.email!,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(221, 221, 221, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12),
-                                )),
-                          ],
-                        ),
-                        SizedBox(height: localHeight * 0.020),
-                        //    )
-                      ],
-                    ),
-                  )
+                            fontSize: width * 0.04),
+                      )),
+                  // Column(
+                  //   children: [
+                  //     Container(
+                  //         padding: const EdgeInsets.only(left: 15),
+                  //         child: Text(
+                  //           AppLocalizations.of(context)!.student,
+                  //           style: TextStyle(
+                  //               color: const Color.fromRGBO(153, 153, 153, 1),
+                  //               fontFamily: 'Inter',
+                  //               fontWeight: FontWeight.w500,
+                  //
+                  //               fontSize: width * 0.04),
+                  //         )),
+                  //     // Container(
+                  //     //     padding: const EdgeInsets.only(left: 15),
+                  //     //     child: Text(
+                  //     //       email,
+                  //     //       style: const TextStyle(
+                  //     //           color: Color.fromRGBO(221, 221, 221, 1),
+                  //     //           fontFamily: 'Inter',
+                  //     //           fontWeight: FontWeight.w500,
+                  //     //           fontSize: 12),
+                  //     //     )),
+                  //   ],
+                  // ),
+                  SizedBox(height: localHeight * 0.020),
+                  //    )
+                ],
+              ),
+            )
                 : constraints.maxWidth > 960
             ? Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ],
-                    )),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: localHeight * 0.1),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          height: localHeight / 6,
-                          child: Row(children: [
-                            const SizedBox(width: 40),
-                            CircleAvatar(
-                              backgroundColor:
-                                  const Color.fromRGBO(0, 106, 100, 0),
-                              child: Image.asset(
-                                "assets/images/ProfilePic_Avatar.png",
-                              ),
+              decoration: const BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1)
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: localHeight * 0.050),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    height: localHeight / 10,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const SizedBox(width: 20),
+                          CircleAvatar(
+                            radius: MediaQuery.of(context).size.width * 0.02,
+                            backgroundColor:
+                            const Color.fromRGBO(0, 106, 100, 0),
+                            child: Image.asset(
+                              "assets/images/ProfilePic_Avatar.png",
                             ),
-                            const SizedBox(width: 20),
-                            Text(
-                              widget.userName!,
-                              style: const TextStyle(
-                                  color: Color.fromRGBO(255, 255, 255, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16),
-                            ),
-                          ]),
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            name,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20),
+                          ),
+                        ]),
+                  ),
+                  Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.student,
+                        style: const TextStyle(
+                            color: Color.fromRGBO(153, 153, 153, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+
+                            fontSize: 16),
+                      )),
+                  SizedBox(height: localHeight * 0.020),
+                  //    )
+                ],
+              ),
+            )
+            : Container(
+              decoration: const BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1)
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: localHeight * 0.050),
+                  Container(
+                    alignment: Alignment.topLeft,
+                    height: localHeight / 10,
+                    child: Row(
+                        children: [
+                          SizedBox(width: width * 0.03),
+                      CircleAvatar(
+                        radius: MediaQuery.of(context).size.width * 0.1,
+                        backgroundColor:
+                        const Color.fromRGBO(0, 106, 100, 0),
+                        child: Image.asset(
+                          "assets/images/ProfilePic_Avatar.png",
                         ),
-                        Column(
-                          children: [
-                            Container(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  AppLocalizations.of(context)!.student,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(221, 221, 221, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      
-                                      fontSize: 12),
-                                )),
-                            Container(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  widget.email!,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(221, 221, 221, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      
-                                      fontSize: 12),
-                                )),
-                          ],
-                        ),
-                        SizedBox(height: localHeight * 0.020),
-                        //    )
-                      ],
-                    ),
-                  )
-            : Container(),
+                      ),
+                      const SizedBox(width: 20),
+                      Text(
+                        name,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600,
+                            fontSize: width * 0.06),
+                      ),
+                    ]),
+                  ),
+                  Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.student,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+
+                            fontSize: width * 0.04),
+                      )),
+                  // Column(
+                  //   children: [
+                  //     Container(
+                  //         padding: const EdgeInsets.only(left: 15),
+                  //         child: Text(
+                  //           AppLocalizations.of(context)!.student,
+                  //           style: TextStyle(
+                  //               color: const Color.fromRGBO(153, 153, 153, 1),
+                  //               fontFamily: 'Inter',
+                  //               fontWeight: FontWeight.w500,
+                  //
+                  //               fontSize: width * 0.04),
+                  //         )),
+                  //     // Container(
+                  //     //     padding: const EdgeInsets.only(left: 15),
+                  //     //     child: Text(
+                  //     //       email,
+                  //     //       style: const TextStyle(
+                  //     //           color: Color.fromRGBO(221, 221, 221, 1),
+                  //     //           fontFamily: 'Inter',
+                  //     //           fontWeight: FontWeight.w500,
+                  //     //           fontSize: 12),
+                  //     //     )),
+                  //   ],
+                  // ),
+                  SizedBox(height: localHeight * 0.020),
+                  //    )
+                ],
+              ),
+            ),
             Flexible(
               child: ListView(
                 children: [
@@ -204,22 +264,16 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                           color: Color.fromRGBO(141, 167, 167, 1)),
                       title: Text(
                         AppLocalizations.of(context)!.user_profile,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
+                        style: TextStyle(
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
-                                fontSize: 16)),
+                                fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         UserDataModel userDataModel =
                             await QnaService.getUserDataService(
-                                widget.userId, userDetails);
+                                userId, userDetails);
                         Navigator.push(
                           context,
                           PageTransition(
@@ -239,18 +293,15 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () {
                         Navigator.push(
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
                             child: ResetPasswordStudent(
-                              userId: widget.userId!,
+                              userId: userId,
                             ),
                           ),
                         );
@@ -264,11 +315,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -290,11 +338,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -316,11 +361,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -340,11 +382,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -363,11 +402,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -385,18 +421,12 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                           color: Color.fromRGBO(141, 167, 167, 1)),
                       title: Text(
                         AppLocalizations.of(context)!.about_us,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
+                        style: TextStyle(
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
-                                fontSize: 16)),
+                                fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -415,11 +445,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             color: textColor,
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
-                            
                             fontSize: 16),
                       ),
-                      trailing: const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
                       onTap: () async {
                         Navigator.push(
                           context,
@@ -441,7 +468,6 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                           color: Color.fromRGBO(226, 68, 0, 1),
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          
                           fontSize: 16),
                     ),
                     onTap: () async {
@@ -476,8 +502,9 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ]),
-                                content: const Text(
-                                    "Are you sure you want to logout ?"),
+                                content: Text(
+                                    AppLocalizations.of(context)!.want_to_logout),
+                                  //"Are you sure you want to logout ?"),
                                 actions: <Widget>[
                                   const SizedBox(width: 30),
                                   ElevatedButton(

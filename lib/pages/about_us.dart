@@ -45,7 +45,7 @@ class AboutUsState extends State<AboutUs> {
               icon: const Icon(
                 Icons.chevron_left,
                 size: 40.0,
-                color: const Color.fromRGBO(28, 78, 80, 1),
+                color: Color.fromRGBO(28, 78, 80, 1),
               ),
               onPressed: () {
                 Navigator.of(context).pop();

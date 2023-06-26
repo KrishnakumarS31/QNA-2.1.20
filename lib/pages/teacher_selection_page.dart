@@ -46,203 +46,358 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > webWidth) {
-        return Center(
-              child: SizedBox(
-                  width: webWidth,
-                  child: WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              elevation: 0,
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.transparent,
-            ),
-            endDrawer: const EndDrawerMenuTeacher(),
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: height * 0.3625,
-                      width: webWidth,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1)
-                          ],
-                        ),
-                        borderRadius: BorderRadius.vertical(
-                            bottom: Radius.elliptical(webWidth, height * 0.40)),
+          if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    extendBodyBehindAppBar: true,
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          size: height * 0.05
                       ),
-                      child: Column(
-                        children: [
-                          SizedBox(height: height * 0.07),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Container(
-                              padding: const EdgeInsets.all(0.0),
-                              height: height * 0.28,
-                              width: width * 0.33,
-                              child: Image.asset(
-                                  "assets/images/qna_logo.png"),
-                            ),
-                          ),
-                        ],
-                      ),
+                      elevation: 0,
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Colors.transparent,
                     ),
-                    SizedBox(height: height * 0.03),
-                    Text(
-                      AppLocalizations.of(context)!.welcome,
-                      style: TextStyle(
-                        fontSize: height * 0.05,
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.015),
-                    Text(
-                      widget.userData.data!.firstName.toString(),
-                      style: TextStyle(
-                        fontSize: height * 0.04,
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.037),
-                    Text(
-                      AppLocalizations.of(context)!.prepare_caps,
-                      // 'PREPARE',
-                      style: TextStyle(
-                        fontSize: height * 0.018,
-                        color: const Color.fromRGBO(209, 209, 209, 1),
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.015,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: const Size(280, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
-                        ),
-                      ),
-                      onPressed: () async {
-                        Provider.of<QuestionPrepareProviderFinal>(context,
-                                listen: false)
-                            .reSetQuestionList();
-                        Navigator.pushNamed(context, '/teacherQuestionBank');
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.qn_button,
-                        //AppLocalizations.of(context)!.qn_button,
-                                          //'Questions',
-                        style: TextStyle(
-                            fontSize: height * 0.032,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.0375),
-                    Text(
-                      AppLocalizations.of(context)!.view_edit_del,
-                      //'VIEW/EDIT/PREPARE',
-                      style: TextStyle(
-                        fontSize: height * 0.018,
-                        color: const Color.fromRGBO(209, 209, 209, 1),
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.015,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: const Size(280, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                    endDrawer: const EndDrawerMenuTeacher(),
+                    backgroundColor: Colors.white,
+                    body: SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child:
+                      Container(
+                        padding:EdgeInsets.only(left: height * 0.1,right: height * 0.1),
+                        child:
+                        Center(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(height: height * 0.15),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children:[
+                                      SizedBox(width: width * 0.1),
+                                      Text(
+                                        AppLocalizations.of(context)!.welcome,
+                                        style: TextStyle(
+                                          fontSize: height * 0.035,
+                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
+                                    ]),
+                                SizedBox(height: height * 0.015),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children:[
+                                      SizedBox(width: width * 0.1),
+                                      Text(
+                                        widget.userData.data!.firstName.toString(),
+                                        style: TextStyle(
+                                          fontSize: height * 0.04,
+                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ]),
+                                SizedBox(height: height * 0.16),
+                                ElevatedButton(
+                                  style:
+                                  ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                    ),
+                                    minimumSize:const Size(181, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          39),
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    Provider.of<QuestionPrepareProviderFinal>(context,
+                                        listen: false)
+                                        .reSetQuestionList();
+                                    Navigator.pushNamed(context, '/teacherQuestionBank');
+                                  },
+                                  child: Text(
+                                      AppLocalizations.of(context)!.qn_bank,
+                                      //'Questions',
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight
+                                              .w500,
+                                          fontSize:
+                                          height *
+                                              0.03,
+                                          color: const Color.fromRGBO(82, 165, 160, 1))
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.05,
+                                ),
+                                ElevatedButton(
+                                  style:
+                                  ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                    ),
+                                    minimumSize:const Size(181, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          39),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
 
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.assessment_button,
-                        //'Assessments',
-                        style: TextStyle(
-                            fontSize: height * 0.032,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600),
+                                  },
+                                  child: Text(
+                                      AppLocalizations.of(context)!.assessment_button,
+                                      //'Assessments',
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight
+                                              .w500,
+                                          fontSize:
+                                          height *
+                                              0.03,
+                                          color: const Color.fromRGBO(82, 165, 160, 1))
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.05,
+                                ),
+                                ElevatedButton(
+                                  style:
+                                  ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                    ),
+                                    minimumSize:const Size(181, 58),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          39),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: TeacherResultLanding(
+                                            userId: userId,
+                                            advisorName: widget.userData.data!.firstName),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                      AppLocalizations.of(context)!.results_button,
+                                      //'Results',
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight
+                                              .w500,
+                                          fontSize:
+                                          height *
+                                              0.03,
+                                          color: const Color.fromRGBO(82, 165, 160, 1))
+                                  ),
+                                ),
+                              ])),
+                    ))));
+          }
+          else if(constraints.maxWidth > 960) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    extendBodyBehindAppBar: true,
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          size: height * 0.05
                       ),
+                      elevation: 0,
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Colors.transparent,
                     ),
-                    SizedBox(height: height * 0.0375),
-                    Text(
-                      AppLocalizations.of(context)!.view_caps,
-                      //'VIEW',
-                      style: TextStyle(
-                        fontSize: height * 0.018,
-                        color: const Color.fromRGBO(209, 209, 209, 1),
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.015,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: const Size(280, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherResultLanding(
-                                userId: userId,
-                                advisorName: widget.userData.data!.firstName),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.results_button,
-                        //'Results',
-                        style: TextStyle(
-                            fontSize: height * 0.032,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.025,
-                    ),
-                  ]),
-            )))));}
+                    endDrawer: const EndDrawerMenuTeacher(),
+                    backgroundColor: Colors.white,
+                    body: SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child:
+                      Container(
+                          padding:EdgeInsets.only(left: height * 0.5,right: height * 0.5),
+                          child:
+                          Center(
+          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(height: height * 0.15),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children:[
+                                      SizedBox(width: width * 0.1),
+                                      Text(
+                                        AppLocalizations.of(context)!.welcome,
+                                        style: TextStyle(
+                                          fontSize: height * 0.035,
+                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      )
+                                    ]),
+                                SizedBox(height: height * 0.015),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children:[
+                                      SizedBox(width: width * 0.1),
+                                      Text(
+                                        widget.userData.data!.firstName.toString(),
+                                        style: TextStyle(
+                                          fontSize: height * 0.04,
+                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ]),
+                                SizedBox(height: height * 0.16),
+                                ElevatedButton(
+                                  style:
+                                  ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                    ),
+                                    minimumSize:const Size(181, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          39),
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    Provider.of<QuestionPrepareProviderFinal>(context,
+                                        listen: false)
+                                        .reSetQuestionList();
+                                    Navigator.pushNamed(context, '/teacherQuestionBank');
+                                  },
+                                  child: Text(
+                                      AppLocalizations.of(context)!.qn_bank,
+                                      //'Questions',
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight
+                                              .w500,
+                                          fontSize:
+                                          height *
+                                              0.03,
+                                          color: const Color.fromRGBO(82, 165, 160, 1))
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.05,
+                                ),
+                                ElevatedButton(
+                                  style:
+                                  ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                    ),
+                                    minimumSize:const Size(181, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          39),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+
+                                  },
+                                  child: Text(
+                                      AppLocalizations.of(context)!.assessment_button,
+                                      //'Assessments',
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight
+                                              .w500,
+                                          fontSize:
+                                          height *
+                                              0.03,
+                                          color: const Color.fromRGBO(82, 165, 160, 1))
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.05,
+                                ),
+                                ElevatedButton(
+                                  style:
+                                  ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                    ),
+                                    minimumSize:const Size(181, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          39),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: TeacherResultLanding(
+                                            userId: userId,
+                                            advisorName: widget.userData.data!.firstName),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                      AppLocalizations.of(context)!.results_button,
+                                      //'Results',
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight
+                                              .w500,
+                                          fontSize:
+                                          height *
+                                              0.03,
+                                          color: const Color.fromRGBO(82, 165, 160, 1))
+                                  ),
+                                ),
+                              ])),
+                    ))));
+          }
       else{
       return WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
+                iconTheme: IconThemeData(
+                    color: const Color.fromRGBO(28, 78, 80, 1),
+                    size: height * 0.05
+                ),
                 elevation: 0,
                 automaticallyImplyLeading: false,
                 backgroundColor: Colors.transparent,
@@ -251,80 +406,55 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
               backgroundColor: Colors.white,
               body: SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
+                child:
+                Center(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: height * 0.3625,
-                        width: width,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color.fromRGBO(0, 106, 100, 1),
-                              Color.fromRGBO(82, 165, 160, 1)
-                            ],
-                          ),
-                          borderRadius: BorderRadius.vertical(
-                              bottom: Radius.elliptical(width, height * 0.40)),
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(height: height * 0.07),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                padding: const EdgeInsets.all(0.0),
-                                height: height * 0.28,
-                                width: width * 0.33,
-                                child: Image.asset(
-                                    "assets/images/qna_logo.png"),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: height * 0.03),
+                      SizedBox(height: height * 0.15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children:[
+                          SizedBox(width: width * 0.1),
                       Text(
                         AppLocalizations.of(context)!.welcome,
                         style: TextStyle(
                           fontSize: height * 0.035,
-                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          color: const Color.fromRGBO(82, 165, 160, 1),
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
                         ),
-                      ),
+                      )
+                          ]),
                       SizedBox(height: height * 0.015),
-                      Text(
-                        widget.userData.data!.firstName.toString(),
-                        style: TextStyle(
-                          fontSize: height * 0.04,
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      SizedBox(height: height * 0.037),
-                      Text(
-                        AppLocalizations.of(context)!.prepare_caps,
-                        // 'PREPARE',
-                        style: TextStyle(
-                          fontSize: height * 0.018,
-                          color: const Color.fromRGBO(209, 209, 209, 1),
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: height * 0.015,
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children:[
+                            SizedBox(width: width * 0.1),
+                            Text(
+                              widget.userData.data!.firstName.toString(),
+                              style: TextStyle(
+                                fontSize: height * 0.04,
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ]),
+                      SizedBox(height: height * 0.16),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                          minimumSize: const Size(280, 48),
+                        style:
+                        ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          side: const BorderSide(
+                              width: 1, // the thickness
+                              color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                          ),
+                          minimumSize:const Size(181, 48),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(39),
+                            borderRadius:
+                            BorderRadius.circular(
+                                39),
                           ),
                         ),
                         onPressed: () async {
@@ -334,35 +464,34 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                           Navigator.pushNamed(context, '/teacherQuestionBank');
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.qn_button,
-                          //AppLocalizations.of(context)!.qn_button,
+                          AppLocalizations.of(context)!.qn_bank,
                           //'Questions',
-                          style: TextStyle(
-                              fontSize: height * 0.032,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      SizedBox(height: height * 0.0375),
-                      Text(
-                        AppLocalizations.of(context)!.view_edit_del,
-                        //'VIEW/EDIT/PREPARE',
-                        style: TextStyle(
-                          fontSize: height * 0.018,
-                          color: const Color.fromRGBO(209, 209, 209, 1),
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight
+                                    .w500,
+                                fontSize:
+                                height *
+                                    0.03,
+                                color: const Color.fromRGBO(82, 165, 160, 1))
                         ),
                       ),
                       SizedBox(
-                        height: height * 0.015,
+                        height: height * 0.05,
                       ),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                          minimumSize: const Size(280, 48),
+                        style:
+                        ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          side: const BorderSide(
+                              width: 1, // the thickness
+                              color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                          ),
+                          minimumSize:const Size(181, 48),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(39),
+                            borderRadius:
+                            BorderRadius.circular(
+                                39),
                           ),
                         ),
                         onPressed: () {
@@ -372,32 +501,32 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         child: Text(
                           AppLocalizations.of(context)!.assessment_button,
                           //'Assessments',
-                          style: TextStyle(
-                              fontSize: height * 0.032,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                      SizedBox(height: height * 0.0375),
-                      Text(
-                        AppLocalizations.of(context)!.view_caps,
-                        //'VIEW',
-                        style: TextStyle(
-                          fontSize: height * 0.018,
-                          color: const Color.fromRGBO(209, 209, 209, 1),
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight
+                                    .w500,
+                                fontSize:
+                                height *
+                                    0.03,
+                                color: const Color.fromRGBO(82, 165, 160, 1))
                         ),
                       ),
                       SizedBox(
-                        height: height * 0.015,
+                        height: height * 0.05,
                       ),
                       ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                          minimumSize: const Size(280, 48),
+                        style:
+                        ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          side: const BorderSide(
+                              width: 1, // the thickness
+                              color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                          ),
+                          minimumSize:const Size(181, 48),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(39),
+                            borderRadius:
+                            BorderRadius.circular(
+                                39),
                           ),
                         ),
                         onPressed: () {
@@ -414,16 +543,17 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         child: Text(
                           AppLocalizations.of(context)!.results_button,
                           //'Results',
-                          style: TextStyle(
-                              fontSize: height * 0.032,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight
+                                    .w500,
+                                fontSize:
+                                height *
+                                    0.03,
+                                color: const Color.fromRGBO(82, 165, 160, 1))
                         ),
                       ),
-                      SizedBox(
-                        height: height * 0.025,
-                      ),
-                    ]),
+                    ])),
               )));
         }});
   }

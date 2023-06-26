@@ -49,12 +49,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print("HEIGHT OF THE DEVICE");
-    print(height * 0.02);
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
-          print("INSIDE TAB");
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -91,24 +88,23 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     iconTheme: IconThemeData(color: Colors.black,size: width * 0.08),
                   ),
                   endDrawer: Drawer(
+                    backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     child: Column
                       (
                       children:
                       [
-                        Container(decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft,end: Alignment.bottomRight,colors: [Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ],
-                        )
+                        Container(decoration: const BoxDecoration(
+                          color: Color.fromRGBO(255, 255, 255, 1),
                         ),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              //SizedBox(height: height * 0.050),
-                              SizedBox(
-                                height: height / 6,
+                              SizedBox(height: height * 0.050),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                height: height / 10,
                                 child: Row(
                                     children: [
-                                      SizedBox(width: width * 0.015),
+                                      SizedBox(width: width * 0.03),
                                       CircleAvatar(
                                         backgroundColor:
                                         const Color.fromRGBO(0, 106, 100, 0),
@@ -120,34 +116,24 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       SizedBox(width: width * 0.03),
                                       Text(
                                         widget.name,
-                                        style: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyLarge
-                                            ?.merge(const TextStyle(
-                                            color: Color.fromRGBO(255, 255, 255, 1),
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-
-                                            fontSize: 16)),
+                                            fontSize: width * 0.04),
                                       ),
                                     ]),
                               ),
                               //const SizedBox(height: 0.022),
-                              Column(
-                                children: [
-                                  Container(
-                                      padding: EdgeInsets.only(left: width * 0.09),
-                                      child: Text(
-                                        AppLocalizations.of(context)!.student,
-                                        style: const TextStyle(
-                                            color: Color.fromRGBO(221, 221, 221, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w500,
-
-                                            fontSize: 12),
-                                      )),
-                                ],
-                              ),
+                              Center(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.student,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(153, 153, 153, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: width * 0.025),
+                                  )),
                               //    )
                             ],
                           ),
@@ -155,6 +141,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                         Flexible(
                           child: ListView(
                             children: [
+                              const Divider(
+                                thickness: 2,
+                              ),
                               ListTile(
                                   leading: const Icon(Icons.translate,
                                       color: Color.fromRGBO(141, 167, 167, 1)),
@@ -164,11 +153,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
                                         fontSize: 16),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -193,8 +179,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                                         fontSize: 16),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -218,8 +202,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                                         fontSize: 16),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -239,11 +221,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
                                         fontSize: 16),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -261,18 +240,12 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       color: Color.fromRGBO(141, 167, 167, 1)),
                                   title: Text(
                                     AppLocalizations.of(context)!.about_us,
-                                    style: Theme.of(context)
-                                        .primaryTextTheme
-                                        .bodyLarge
-                                        ?.merge(TextStyle(
+                                    style: TextStyle(
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
-                                        fontSize: 16)),
+                                        fontSize: 16),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -291,11 +264,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
                                         fontSize: 16),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -313,11 +283,10 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     color: Color.fromRGBO(141, 167, 167, 1)),
                                 title: Text(
                                   AppLocalizations.of(context)!.logout,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(226, 68, 0, 1),
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(226, 68, 0, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-
                                       fontSize: 16),
                                 ),
                                 onTap: () async {
@@ -441,7 +410,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   child: Text(
                                     AppLocalizations.of(context)!.welcome,
                                     style: TextStyle(
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.035),
@@ -598,8 +567,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                   );
                                                                 }
                                                               },
-                                                              color:  Color.fromRGBO(82, 165, 160, 1),
-                                                              icon: Icon(Icons.search_rounded),),
+                                                              color:  const Color.fromRGBO(82, 165, 160, 1),
+                                                              icon: const Icon(Icons.search_rounded),),
                                                           ),
                                                           // prefixIcon:
                                                           // const Icon(
@@ -622,7 +591,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       width: width * 0.79,
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Color.fromRGBO(82, 165, 160, 0.2)
+                                            color: const Color.fromRGBO(82, 165, 160, 0.2)
                                         ),
                                       ),
                                       child: Column(
@@ -888,12 +857,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                                   ),
                                 )
-                                    : SizedBox(),
+                                    : const SizedBox(),
                               ])))));
         }
         else if(constraints.maxWidth > 960)
           {
-            print("INSIDE WEB");
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -930,63 +898,52 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                       iconTheme: const IconThemeData(color: Colors.black,size: 40.0),
                     ),
                     endDrawer: Drawer(
+                      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                       child: Column
                         (
                         children:
                         [
-                          Container(decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft,end: Alignment.bottomRight,colors: [Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ],
-                          )
+                          Container(decoration: const BoxDecoration(
+                            color: Color.fromRGBO(255, 255, 255, 1),
                           ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                //SizedBox(height: height * 0.050),
-                                SizedBox(
-                                  height: height / 6,
+                                SizedBox(height: height * 0.050),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  height: height / 10,
                                   child: Row(
-                                      children: [
-                                        SizedBox(width: width * 0.015),
+                                    mainAxisAlignment: MainAxisAlignment.start,                                          children: [
+                                        const SizedBox(width: 5),
                                         CircleAvatar(
                                           backgroundColor:
                                           const Color.fromRGBO(0, 106, 100, 0),
-                                          radius: MediaQuery.of(context).size.width * 0.05,
+                                          radius: 30,
                                           child: Image.asset(
                                             "assets/images/ProfilePic_Avatar.png",
                                           ),
                                         ),
-                                        SizedBox(width: width * 0.03),
+                                    const SizedBox(width: 5),
                                         Text(
                                           widget.name,
-                                          style: Theme.of(context)
-                                              .primaryTextTheme
-                                              .bodyLarge
-                                              ?.merge(const TextStyle(
-                                              color: Color.fromRGBO(255, 255, 255, 1),
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(82, 165, 160, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
-
-                                              fontSize: 16)),
+                                              fontSize: width * 0.02),
                                         ),
                                       ]),
                                 ),
                                 //const SizedBox(height: 0.022),
-                                Column(
-                                  children: [
-                                    Container(
-                                        padding: EdgeInsets.only(left: width * 0.09),
-                                        child: Text(
-                                          AppLocalizations.of(context)!.student,
-                                          style: const TextStyle(
-                                              color: Color.fromRGBO(221, 221, 221, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w500,
-
-                                              fontSize: 12),
-                                        )),
-                                  ],
-                                ),
+                                Center(
+                                child: Text(
+                                  AppLocalizations.of(context)!.student,
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(153, 153, 153, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: width * 0.015),
+                                )),
                                 //    )
                               ],
                             ),
@@ -994,6 +951,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           Flexible(
                             child: ListView(
                               children: [
+                                const Divider(
+                                  thickness: 2,
+                                ),
                                 ListTile(
                                     leading: const Icon(Icons.translate,
                                         color: Color.fromRGBO(141, 167, 167, 1)),
@@ -1003,11 +963,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-
                                           fontSize: 16),
                                     ),
-                                    trailing: const Icon(Icons.navigate_next,
-                                        color: Color.fromRGBO(153, 153, 153, 1)),
                                     onTap: () async {
                                       Navigator.push(
                                         context,
@@ -1032,8 +989,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                                           fontSize: 16),
                                     ),
-                                    trailing: const Icon(Icons.navigate_next,
-                                        color: Color.fromRGBO(153, 153, 153, 1)),
                                     onTap: () async {
                                       Navigator.push(
                                         context,
@@ -1057,8 +1012,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                                           fontSize: 16),
                                     ),
-                                    trailing: const Icon(Icons.navigate_next,
-                                        color: Color.fromRGBO(153, 153, 153, 1)),
                                     onTap: () async {
                                       Navigator.push(
                                         context,
@@ -1078,11 +1031,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-
                                           fontSize: 16),
                                     ),
-                                    trailing: const Icon(Icons.navigate_next,
-                                        color: Color.fromRGBO(153, 153, 153, 1)),
                                     onTap: () async {
                                       Navigator.push(
                                         context,
@@ -1100,18 +1050,12 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: Color.fromRGBO(141, 167, 167, 1)),
                                     title: Text(
                                       AppLocalizations.of(context)!.about_us,
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyLarge
-                                          ?.merge(TextStyle(
+                                      style: TextStyle(
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-
-                                          fontSize: 16)),
+                                          fontSize: 16),
                                     ),
-                                    trailing: const Icon(Icons.navigate_next,
-                                        color: Color.fromRGBO(153, 153, 153, 1)),
                                     onTap: () async {
                                       Navigator.push(
                                         context,
@@ -1130,11 +1074,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-
                                           fontSize: 16),
                                     ),
-                                    trailing: const Icon(Icons.navigate_next,
-                                        color: Color.fromRGBO(153, 153, 153, 1)),
                                     onTap: () async {
                                       Navigator.push(
                                         context,
@@ -1152,11 +1093,10 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       color: Color.fromRGBO(141, 167, 167, 1)),
                                   title: Text(
                                     AppLocalizations.of(context)!.logout,
-                                    style: const TextStyle(
-                                        color: Color.fromRGBO(226, 68, 0, 1),
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(226, 68, 0, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
                                         fontSize: 16),
                                   ),
                                   onTap: () async {
@@ -1280,7 +1220,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     child: Text(
                                       AppLocalizations.of(context)!.welcome,
                                       style: TextStyle(
-                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                          color: const Color.fromRGBO(82, 165, 160, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: height * 0.035),
@@ -1362,7 +1302,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           keyboardType: TextInputType.text,
                                                           decoration: InputDecoration(
                                                             helperStyle: TextStyle(
-                                                                color: Color.fromRGBO(
+                                                                color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight: FontWeight.w400,
@@ -1430,8 +1370,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                   );
                                                                 }
                                                               },
-                                                                color:  Color.fromRGBO(82, 165, 160, 1),
-                                                                icon: Icon(Icons.search_rounded),),
+                                                                color:  const Color.fromRGBO(82, 165, 160, 1),
+                                                                icon: const Icon(Icons.search_rounded),),
                                                             ),
                                                             // prefixIcon:
                                                             // const Icon(
@@ -1454,7 +1394,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         width: width * 0.48,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Color.fromRGBO(82, 165, 160, 0.2)
+                                              color: const Color.fromRGBO(82, 165, 160, 0.2)
                                           ),
                                         ),
                                         child: Column(
@@ -1720,11 +1660,10 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                                     ),
                                   )
-                                      : SizedBox(),
+                                      : const SizedBox(),
                                 ])))));
           }
         else {
-          print("INSIDE MOBILE");
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -1761,28 +1700,27 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     iconTheme: IconThemeData(color: Colors.black,size: width * 0.08),
                   ),
                   endDrawer: Drawer(
+                    backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                     child: Column
                       (
                       children:
                       [
-                        Container(decoration: const BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft,end: Alignment.bottomRight,colors: [Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ],
-                        )
+                        Container(decoration: const BoxDecoration(
+                            color: Color.fromRGBO(255, 255, 255, 1),
                         ),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              //SizedBox(height: height * 0.050),
-                              SizedBox(
-                                height: height / 6,
+                              SizedBox(height: height * 0.050),
+                              Container(
+                                alignment: Alignment.topLeft,
+                                height: height / 10,
                                 child: Row(
                                     children: [
-                                      SizedBox(width: width * 0.015),
+                                      SizedBox(width: width * 0.03),
                                       CircleAvatar(
                                         backgroundColor:
                                         const Color.fromRGBO(0, 106, 100, 0),
-                                        radius: MediaQuery.of(context).size.width * 0.05,
+                                        radius: MediaQuery.of(context).size.width * 0.1,
                                         child: Image.asset(
                                           "assets/images/ProfilePic_Avatar.png",
                                         ),
@@ -1790,32 +1728,24 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       SizedBox(width: width * 0.03),
                                       Text(
                                         widget.name,
-                                        style: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyLarge
-                                            ?.merge(const TextStyle(
-                                            color: Color.fromRGBO(255, 255, 255, 1),
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 16)),
+                                            fontSize: width * 0.06),
                                       ),
                                     ]),
                               ),
                               //const SizedBox(height: 0.022),
-                              Column(
-                                children: [
-                                  Container(
-                                      padding: EdgeInsets.only(left: width * 0.09),
+                                  Center(
                                       child: Text(
                                         AppLocalizations.of(context)!.student,
-                                        style: const TextStyle(
-                                            color: Color.fromRGBO(221, 221, 221, 1),
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(153, 153, 153, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 12),
+                                            fontSize: width * 0.04),
                                       )),
-                                ],
-                              ),
                               //    )
                             ],
                           ),
@@ -1823,6 +1753,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                         Flexible(
                           child: ListView(
                             children: [
+                              const Divider(
+                                thickness: 2,
+                              ),
                               ListTile(
                                   leading: const Icon(Icons.translate,
                                       color: Color.fromRGBO(141, 167, 167, 1)),
@@ -1832,10 +1765,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 16),
+                                        fontSize: width * 0.05),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -1858,10 +1789,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
 
-                                        fontSize: 16),
+                                        fontSize: width * 0.05),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -1883,10 +1812,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
 
-                                        fontSize: 16),
+                                        fontSize: width * 0.05),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -1906,11 +1833,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
-                                        fontSize: 16),
+                                        fontSize: width * 0.05),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -1928,18 +1852,12 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       color: Color.fromRGBO(141, 167, 167, 1)),
                                   title: Text(
                                     AppLocalizations.of(context)!.about_us,
-                                    style: Theme.of(context)
-                                        .primaryTextTheme
-                                        .bodyLarge
-                                        ?.merge(TextStyle(
+                                    style: TextStyle(
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
-                                        fontSize: 16)),
+                                        fontSize: width * 0.05),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -1958,11 +1876,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
-                                        fontSize: 16),
+                                        fontSize: width * 0.05),
                                   ),
-                                  trailing: const Icon(Icons.navigate_next,
-                                      color: Color.fromRGBO(153, 153, 153, 1)),
                                   onTap: () async {
                                     Navigator.push(
                                       context,
@@ -1980,12 +1895,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     color: Color.fromRGBO(141, 167, 167, 1)),
                                 title: Text(
                                   AppLocalizations.of(context)!.logout,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(226, 68, 0, 1),
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(226, 68, 0, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
+                                      fontSize: width * 0.05),
                                 ),
                                 onTap: () async {
                                   showDialog(
@@ -2108,7 +2022,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               child: Text(
                                 AppLocalizations.of(context)!.welcome,
                                 style: TextStyle(
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
                                     fontSize: height * 0.035),
@@ -2265,8 +2179,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                             );
                                                           }
                                                           },
-                                                          color:  Color.fromRGBO(82, 165, 160, 1),
-                                                          icon: Icon(Icons.search_rounded),),
+                                                          color:  const Color.fromRGBO(82, 165, 160, 1),
+                                                          icon: const Icon(Icons.search_rounded),),
                                                       ),
                                                       // prefixIcon:
                                                       // const Icon(
@@ -2289,7 +2203,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                             width: width * 0.79,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                color: Color.fromRGBO(82, 165, 160, 0.2)
+                                color: const Color.fromRGBO(82, 165, 160, 0.2)
                               ),
                             ),
                             child: Column(
@@ -2555,7 +2469,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
 
                           ),
                         )
-                        : SizedBox(),
+                        : const SizedBox(),
                       ])))));
         }
       },

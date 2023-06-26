@@ -260,6 +260,7 @@ class MyRoutes{
             userId: arguments[6],
             isMember: arguments[7],
             assessmentHeaders: arguments[8],
+            myDuration: arguments[9],
         ),settings: settings);
       }
 

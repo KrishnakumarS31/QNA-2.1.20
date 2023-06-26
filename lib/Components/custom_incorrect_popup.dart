@@ -45,8 +45,8 @@ class _CustomDialogState extends State<CustomDialog> {
             ],
           ),
           margin: const EdgeInsets.all(5.0),
-          height: height * 0.2,
-          width: width * 0.56,
+          height: height * 0.25,
+          width: width * 0.4,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -86,21 +86,19 @@ class _CustomDialogState extends State<CustomDialog> {
               ),
               Text(
                 widget.content,
-                style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                    const TextStyle(
-                        color: Color.fromRGBO(51, 51, 51, 1),
+                style:TextStyle(
+                        color: const Color.fromRGBO(51, 51, 51, 1),
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
-                        fontSize: 15)),
+                        fontSize: 20),
               ),
               Text(
                 widget.subContent??'',
-                style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                    const TextStyle(
+                style: TextStyle(
                         color: Color.fromRGBO(51, 51, 51, 1),
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
-                        fontSize: 15)),
+                        fontSize: 18),
               ),
               TextButton(
                 onPressed: () {
@@ -117,7 +115,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   widget.button,
                   style: TextStyle(
                       color: const Color.fromRGBO(48, 145, 139, 1),
-                      fontSize: height * 0.02,
+                      fontSize: 18,
                       fontWeight: FontWeight.w500),
                   // style: GoogleFonts.poppins(
                   //     fontSize: localHeight * 0.02),
@@ -126,39 +124,8 @@ class _CustomDialogState extends State<CustomDialog> {
             ],
           ),
         ),
-        // Positioned(
-        //     top: height * 0.365,
-        //     left: width * 0.10,
-        //     child: CircleAvatar(
-        //       backgroundColor: Colors.transparent,
-        //       radius: height * 0.045,
-        //       child: Container(
-        //         decoration: const BoxDecoration(
-        //           shape: BoxShape.circle,
-        //           color: Color.fromRGBO(226, 68, 0, 1),
-        //         ),
-        //         height: height * 0.10,
-        //         width: width * 0.10,
-        //         child: const Icon(
-        //           Icons.info_outline_rounded,
-        //           color: Color.fromRGBO(255, 255, 255, 1),
-        //         ),
-        //       ),
-        //     ))
       ]),
     );
   }
 }
 
-// class CustomPopup{
-//
-//   static customDialog(BuildContext context) async {
-//     double width = MediaQuery.of(context).size.width;
-//     double height = MediaQuery.of(context).size.height;
-//     return Container(
-//       height: height * 0.03,
-//       width: width * 0.06,
-//       color:  Colors.amberAccent,
-//     );
-//   }
-// }

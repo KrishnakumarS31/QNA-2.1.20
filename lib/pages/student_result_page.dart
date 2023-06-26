@@ -63,12 +63,6 @@ class StudentResultPageState extends State<StudentResultPage> {
     super.initState();
     userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     values = widget.questions;
-    print("INSIDE INIT");
-    print(widget.assessmentHeaders.getAssessmentModelClass);
-    print("IS WIDGET MEMBER INIT");
-    print(widget.isMember);
-    print("DATE");
-    print(widget.date);
   }
 
   @override
@@ -85,345 +79,9 @@ class StudentResultPageState extends State<StudentResultPage> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
-          print("INSIDE TAB");
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
-                endDrawer: Drawer(
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1),
-                              ],
-                            )),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: localHeight * 0.050),
-                            Container(
-                              alignment: Alignment.center,
-                              height: localHeight / 6,
-                              child: Row(children: [
-                                CircleAvatar(
-                                  backgroundColor:
-                                  const Color.fromRGBO(0, 106, 100, 0),
-                                  radius: MediaQuery.of(context).size.width * 0.15,
-                                  child: Image.asset(
-                                    "assets/images/ProfilePic_Avatar.png",
-                                  ),
-                                ),
-                                const SizedBox(height: 2.0),
-                                Text(
-                                  widget.userName,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(const TextStyle(
-                                      color: Color.fromRGBO(255, 255, 255, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-
-                                      fontSize: 16)),
-                                ),
-                              ]),
-                            ),
-                            // const SizedBox(height: 0.022),
-                            Column(
-                              children: [
-                                Container(
-                                    padding: EdgeInsets.only(left: localWidth * 0.09),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.student,
-                                      style: const TextStyle(
-                                          color: Color.fromRGBO(221, 221, 221, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-
-                                          fontSize: 12),
-                                    )),
-                              ],
-                            ),
-                            //    )
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        child: ListView(
-                          children: [
-                            ListTile(
-                                leading: const Icon(Icons.translate,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.language,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const SettingsLanguages(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                                leading: const Icon(Icons.verified_user_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.privacy_and_terms,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const PrivacyPolicyHamburger(
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.library_books_sharp,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.terms_of_services,
-                                  //'Terms of Services',
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const TermsOfServiceHamburger(
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.note_alt_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.cookie_policy,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const CookiePolicy(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                                leading: const Icon(Icons.perm_contact_calendar_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.about_us,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16)),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const AboutUs(),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.help_outline,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.help,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const HelpPageHamburger(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.power_settings_new,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(226, 68, 0, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-
-                                    fontSize: 16),
-                              ),
-                              onTap: () async {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    insetPadding: EdgeInsets.only(
-                                        left: localWidth * 0.13, right: localWidth * 0.13),
-                                    title: Row(children: [
-                                      SizedBox(width: localHeight * 0.030),
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        height: localHeight * 0.1,
-                                        width: localWidth * 0.1,
-                                        child: const Icon(
-                                          Icons.info_outline_rounded,
-                                          color: Color.fromRGBO(255, 255, 255, 1),
-                                        ),
-                                      ),
-                                      SizedBox(width: localHeight * 0.015),
-                                      Text(
-                                        AppLocalizations.of(context)!.confirm,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize: localHeight * 0.024,
-                                            color: const Color.fromRGBO(0, 106, 100, 1),
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ]),
-                                    content:
-                                    const Text("Are you sure you want to logout ?"),
-                                    actions: <Widget>[
-                                      SizedBox(width: localWidth * 0.020),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                          const Color.fromRGBO(255, 255, 255, 1),
-                                          minimumSize: const Size(90, 30),
-                                          side: const BorderSide(
-                                            width: 1.5,
-                                            color: Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                        ),
-                                        child: Text(AppLocalizations.of(context)!.no,
-                                            style: TextStyle(
-                                                fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.018,
-                                                color:
-                                                const Color.fromRGBO(82, 165, 160, 1),
-                                                fontWeight: FontWeight.w500)),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      SizedBox(width: localWidth * 0.005),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                            const Color.fromRGBO(82, 165, 160, 1),
-                                            minimumSize: const Size(90, 30),
-                                          ),
-                                          child: Text(AppLocalizations.of(context)!.yes,
-                                              style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: localHeight * 0.018,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500)),
-                                          onPressed: () async {
-                                            SharedPreferences preferences =
-                                            await SharedPreferences.getInstance();
-                                            await preferences.clear();
-                                            if(context.mounted) {
-                                              Navigator.pushNamed(
-                                                  context, '/');
-                                            }
-                                          }),
-                                      SizedBox(width: localHeight * 0.030),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                            SizedBox(height: localHeight * 0.03),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                "${AppLocalizations.of(context)!.version}: $version",
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(180, 180, 180, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-
-                                    fontSize: 16),
-                              ),
-                            ),
-                            SizedBox(height: localHeight * 0.03),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 appBar: AppBar(
                   backgroundColor: Colors.white,
                   automaticallyImplyLeading: false,
@@ -443,7 +101,11 @@ class StudentResultPageState extends State<StudentResultPage> {
                 ),
                 // body: Stack(
                 //   children: [
-                body: Column(
+                body:
+                Container(
+                  padding:EdgeInsets.only(left: localWidth * 0.025,right: localWidth * 0.025),
+                  child:
+                Column(
                   children: [
                     Padding(
                       padding: EdgeInsets.only(bottom: localHeight * 0.0050),
@@ -455,7 +117,23 @@ class StudentResultPageState extends State<StudentResultPage> {
                             child: Card(
                               elevation: 12,
                               child: Column(children: [
-                                SizedBox(height: localHeight * 0.03),
+                                SizedBox(height: localHeight * 0.005),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children:[
+                                      Text(
+                                          "${widget.questions.data!.assessmentType}" == "practice"
+                                              ? "Practice"
+                                              : '',
+                                          //"Practice",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(255, 153, 0, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.025)),
+                                      SizedBox(width: localWidth * 0.02)
+                                    ]
+                                ),
                                 Text(widget.userName,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(28, 78, 80, 1),
@@ -495,8 +173,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left:localWidth * 0.06),
-                                              child: Icon(Icons.timer,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                              child: Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             ),
+                                            const SizedBox(width:5),
                                             SizedBox(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
@@ -520,7 +199,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            SizedBox(width:0.1),
+                                            const SizedBox(width:10),
                                             Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
@@ -991,7 +670,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                     ),
 
                   ],
-                ),
+                )),
 
                 //   ],
                 // ),
@@ -1001,341 +680,6 @@ class StudentResultPageState extends State<StudentResultPage> {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
-                endDrawer: Drawer(
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1),
-                              ],
-                            )),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: localHeight * 0.050),
-                            Container(
-                              alignment: Alignment.center,
-                              height: localHeight / 6,
-                              child: Row(children: [
-                                CircleAvatar(
-                                  backgroundColor:
-                                  const Color.fromRGBO(0, 106, 100, 0),
-                                  radius: MediaQuery.of(context).size.width * 0.15,
-                                  child: Image.asset(
-                                    "assets/images/ProfilePic_Avatar.png",
-                                  ),
-                                ),
-                                const SizedBox(height: 2.0),
-                                Text(
-                                  widget.userName,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(const TextStyle(
-                                      color: Color.fromRGBO(255, 255, 255, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-
-                                      fontSize: 16)),
-                                ),
-                              ]),
-                            ),
-                            // const SizedBox(height: 0.022),
-                            Column(
-                              children: [
-                                Container(
-                                    padding: EdgeInsets.only(left: localWidth * 0.09),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.student,
-                                      style: const TextStyle(
-                                          color: Color.fromRGBO(221, 221, 221, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-
-                                          fontSize: 12),
-                                    )),
-                              ],
-                            ),
-                            //    )
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        child: ListView(
-                          children: [
-                            ListTile(
-                                leading: const Icon(Icons.translate,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.language,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const SettingsLanguages(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                                leading: const Icon(Icons.verified_user_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.privacy_and_terms,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const PrivacyPolicyHamburger(
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.library_books_sharp,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.terms_of_services,
-                                  //'Terms of Services',
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const TermsOfServiceHamburger(
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.note_alt_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.cookie_policy,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const CookiePolicy(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                                leading: const Icon(Icons.perm_contact_calendar_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.about_us,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16)),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const AboutUs(),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.help_outline,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.help,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const HelpPageHamburger(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.power_settings_new,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(226, 68, 0, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-
-                                    fontSize: 16),
-                              ),
-                              onTap: () async {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    insetPadding: EdgeInsets.only(
-                                        left: localWidth * 0.13, right: localWidth * 0.13),
-                                    title: Row(children: [
-                                      SizedBox(width: localHeight * 0.030),
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        height: localHeight * 0.1,
-                                        width: localWidth * 0.1,
-                                        child: const Icon(
-                                          Icons.info_outline_rounded,
-                                          color: Color.fromRGBO(255, 255, 255, 1),
-                                        ),
-                                      ),
-                                      SizedBox(width: localHeight * 0.015),
-                                      Text(
-                                        AppLocalizations.of(context)!.confirm,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize: localHeight * 0.024,
-                                            color: const Color.fromRGBO(0, 106, 100, 1),
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ]),
-                                    content:
-                                    const Text("Are you sure you want to logout ?"),
-                                    actions: <Widget>[
-                                      SizedBox(width: localWidth * 0.020),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                          const Color.fromRGBO(255, 255, 255, 1),
-                                          minimumSize: const Size(90, 30),
-                                          side: const BorderSide(
-                                            width: 1.5,
-                                            color: Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                        ),
-                                        child: Text(AppLocalizations.of(context)!.no,
-                                            style: TextStyle(
-                                                fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.018,
-                                                color:
-                                                const Color.fromRGBO(82, 165, 160, 1),
-                                                fontWeight: FontWeight.w500)),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      SizedBox(width: localWidth * 0.005),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                            const Color.fromRGBO(82, 165, 160, 1),
-                                            minimumSize: const Size(90, 30),
-                                          ),
-                                          child: Text(AppLocalizations.of(context)!.yes,
-                                              style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: localHeight * 0.018,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500)),
-                                          onPressed: () async {
-                                            SharedPreferences preferences =
-                                            await SharedPreferences.getInstance();
-                                            await preferences.clear();
-                                            if(context.mounted) {
-                                              Navigator.pushNamed(
-                                                  context, '/');
-                                            }
-                                          }),
-                                      SizedBox(width: localHeight * 0.030),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                            SizedBox(height: localHeight * 0.03),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                "${AppLocalizations.of(context)!.version}: $version",
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(180, 180, 180, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-
-                                    fontSize: 16),
-                              ),
-                            ),
-                            SizedBox(height: localHeight * 0.03),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 appBar: AppBar(
                   backgroundColor: Colors.white,
                   automaticallyImplyLeading: false,
@@ -1353,8 +697,6 @@ class StudentResultPageState extends State<StudentResultPage> {
                   ),
 
                 ),
-                // body: Stack(
-                //   children: [
                 body: Column(
                   children: [
                     Padding(
@@ -1367,7 +709,24 @@ class StudentResultPageState extends State<StudentResultPage> {
                             child: Card(
                               elevation: 12,
                               child: Column(children: [
-                                SizedBox(height: localHeight * 0.03),
+                                SizedBox(height: localHeight * 0.005),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children:[
+                                      Text(
+                                          "${widget.questions.data!.assessmentType}" == "practice"
+                                              ? "Practice"
+                                              : '',
+                                          //"Practice",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(255, 153, 0, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.025)),
+                                      SizedBox(width: localWidth * 0.02)
+                                    ]
+                                ),
+                                SizedBox(height: localHeight * 0.02),
                                 Text(widget.userName,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1916,344 +1275,13 @@ class StudentResultPageState extends State<StudentResultPage> {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
-                endDrawer: Drawer(
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1),
-                              ],
-                            )),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(height: localHeight * 0.050),
-                            Container(
-                              alignment: Alignment.center,
-                              height: localHeight / 6,
-                              child: Row(children: [
-                                CircleAvatar(
-                                  backgroundColor:
-                                  const Color.fromRGBO(0, 106, 100, 0),
-                                  radius: MediaQuery.of(context).size.width * 0.15,
-                                  child: Image.asset(
-                                    "assets/images/ProfilePic_Avatar.png",
-                                  ),
-                                ),
-                                const SizedBox(height: 2.0),
-                                Text(
-                                  widget.userName,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(const TextStyle(
-                                      color: Color.fromRGBO(255, 255, 255, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-
-                                      fontSize: 16)),
-                                ),
-                              ]),
-                            ),
-                            // const SizedBox(height: 0.022),
-                            Column(
-                              children: [
-                                Container(
-                                    padding: EdgeInsets.only(left: localWidth * 0.09),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.student,
-                                      style: const TextStyle(
-                                          color: Color.fromRGBO(221, 221, 221, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-
-                                          fontSize: 12),
-                                    )),
-                              ],
-                            ),
-                            //    )
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                        child: ListView(
-                          children: [
-                            ListTile(
-                                leading: const Icon(Icons.translate,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.language,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const SettingsLanguages(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                                leading: const Icon(Icons.verified_user_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.privacy_and_terms,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const PrivacyPolicyHamburger(
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.library_books_sharp,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.terms_of_services,
-                                  //'Terms of Services',
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const TermsOfServiceHamburger(
-                                      ),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.note_alt_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.cookie_policy,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const CookiePolicy(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                                leading: const Icon(Icons.perm_contact_calendar_outlined,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.about_us,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16)),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const AboutUs(),
-                                    ),
-                                  );
-                                }),
-                            ListTile(
-                                leading: const Icon(Icons.help_outline,
-                                    color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(
-                                  AppLocalizations.of(context)!.help,
-                                  style: TextStyle(
-                                      color: textColor,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-
-                                      fontSize: 16),
-                                ),
-                                trailing: const Icon(Icons.navigate_next,
-                                    color: Color.fromRGBO(153, 153, 153, 1)),
-                                onTap: () async {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: const HelpPageHamburger(),
-                                    ),
-                                  );
-                                }),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                            ListTile(
-                              leading: const Icon(Icons.power_settings_new,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(226, 68, 0, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-
-                                    fontSize: 16),
-                              ),
-                              onTap: () async {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    insetPadding: EdgeInsets.only(
-                                        left: localWidth * 0.13, right: localWidth * 0.13),
-                                    title: Row(children: [
-                                      SizedBox(width: localHeight * 0.030),
-                                      Container(
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        height: localHeight * 0.1,
-                                        width: localWidth * 0.1,
-                                        child: const Icon(
-                                          Icons.info_outline_rounded,
-                                          color: Color.fromRGBO(255, 255, 255, 1),
-                                        ),
-                                      ),
-                                      SizedBox(width: localHeight * 0.015),
-                                      Text(
-                                        AppLocalizations.of(context)!.confirm,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize: localHeight * 0.024,
-                                            color: const Color.fromRGBO(0, 106, 100, 1),
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ]),
-                                    content:
-                                    const Text("Are you sure you want to logout ?"),
-                                    actions: <Widget>[
-                                      SizedBox(width: localWidth * 0.020),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor:
-                                          const Color.fromRGBO(255, 255, 255, 1),
-                                          minimumSize: const Size(90, 30),
-                                          side: const BorderSide(
-                                            width: 1.5,
-                                            color: Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                        ),
-                                        child: Text(AppLocalizations.of(context)!.no,
-                                            style: TextStyle(
-                                                fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.018,
-                                                color:
-                                                const Color.fromRGBO(82, 165, 160, 1),
-                                                fontWeight: FontWeight.w500)),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      SizedBox(width: localWidth * 0.005),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                            const Color.fromRGBO(82, 165, 160, 1),
-                                            minimumSize: const Size(90, 30),
-                                          ),
-                                          child: Text(AppLocalizations.of(context)!.yes,
-                                              style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: localHeight * 0.018,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500)),
-                                          onPressed: () async {
-                                            SharedPreferences preferences =
-                                            await SharedPreferences.getInstance();
-                                            await preferences.clear();
-                                            if(context.mounted) {
-                                              Navigator.pushNamed(
-                                                  context, '/');
-                                            }
-                                          }),
-                                      SizedBox(width: localHeight * 0.030),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                            SizedBox(height: localHeight * 0.03),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                "${AppLocalizations.of(context)!.version}: $version",
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(180, 180, 180, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-
-                                    fontSize: 16),
-                              ),
-                            ),
-                            SizedBox(height: localHeight * 0.03),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 appBar: AppBar(
                   backgroundColor: Colors.white,
                   automaticallyImplyLeading: false,
+                  iconTheme: IconThemeData(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      size: localHeight * 0.05
+                  ),
                   elevation: 0,
                   centerTitle: true,
                   title:    Text(
@@ -2270,19 +1298,41 @@ class StudentResultPageState extends State<StudentResultPage> {
                 ),
                 // body: Stack(
                 //   children: [
-                body: Column(
+                body:
+                Container(
+                padding:EdgeInsets.only(left: localWidth * 0.025,right: localWidth * 0.025),
+        child:
+        Column(
                   children: [
                     Padding(
                       padding: EdgeInsets.only(bottom: localHeight * 0.0050),
                       child: Column(
                         children: [
+                          SizedBox(height: localHeight * 0.015),
                           SizedBox(
                             height: localHeight * 0.62,
                             width: localWidth * 1.5,
                             child: Card(
                               elevation: 12,
                               child: Column(children: [
-                                SizedBox(height: localHeight * 0.03),
+                                SizedBox(height: localHeight * 0.005),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children:[
+                                      Text(
+                                          "${widget.questions.data!.assessmentType}" == "practice"
+                                          ? "Practice"
+                                          : '',
+                                          //"Practice",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(255, 153, 0, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.025)),
+                                      SizedBox(width: localWidth * 0.02)
+                                    ]
+                                ),
+                                SizedBox(height: localHeight * 0.02),
                                 Text(widget.userName,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(28, 78, 80, 1),
@@ -2321,6 +1371,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             Icon(Icons.timer,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:5),
                                             SizedBox(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
@@ -2344,7 +1395,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            SizedBox(width:0.1),
+                                            const SizedBox(width:5),
                                             Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
@@ -2817,7 +1868,7 @@ class StudentResultPageState extends State<StudentResultPage> {
 
                 //   ],
                 // ),
-              ));
+              )));
         }
       },
     );

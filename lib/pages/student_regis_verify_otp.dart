@@ -60,239 +60,412 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > webWidth) {
-        return Center(
-            child: SizedBox(
-            width: webWidth,
-            child: WillPopScope(
-          onWillPop: () async => false,
-          child: Scaffold(
+      if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
               resizeToAvoidBottomInset: false,
               backgroundColor: Colors.white,
               appBar: AppBar(
-                centerTitle: true,
-                title: const Text(
-                  "VERIFY OTP",
-                  style: TextStyle(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: 18.0,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,
                     size: 40.0,
-                    color: Colors.white,
+                    color: Color.fromRGBO(28, 78, 80, 1),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
-                flexibleSpace: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          end: Alignment.bottomRight,
-                          begin: Alignment.topLeft,
-                          colors: [
-                            Color.fromRGBO(82, 165, 160, 1),
-                            Color.fromRGBO(0, 106, 100, 1),
-                          ])),
-                ),
-              ),
-              body: Column(children: [
-                SizedBox(height: height * 0.04),
-                Form(
-                  key: formKey,
-                  child: SizedBox(
-                    height: height * 0.8,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: webWidth * 0.8,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  "CHECK YOUR EMAIL FOR OTP",
-                                  style: Theme
-                                      .of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(const TextStyle(
-                                      color: Color.fromRGBO(102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14)),
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * 0.0001,
-                              ),
-                              Align(
-                                  alignment: Alignment.center,
-                                  child: TextFormField(
-                                    keyboardType: TextInputType.text,
-                                    controller: otpController,
-                                    decoration: const InputDecoration(
-                                      helperStyle: TextStyle(
-                                          color:
-                                          Color.fromRGBO(102, 102, 102, 0.3),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 16),
-                                      hintText: "Enter OTP",
-                                    ),
-                                    validator: (value) {
-                                      if (value!.isEmpty ||
-                                          !RegExp(r'^\d+$').hasMatch(value)) {
-                                        return "Incorrect OTP";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                  )),
-                              SizedBox(height: height * 0.04),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    Icons.circle,
-                                    color: Color.fromRGBO(141, 167, 167, 1),
-                                    size: 6,
-                                  ),
-                                  const SizedBox(
-                                    width: 4,
-                                  ),
-                                  const Text("The OTP will be expired in",
-                                      style: TextStyle(
-                                          color: Color.fromRGBO(
-                                              153, 153, 153, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14)),
-                                  Text(" $minutes:$seconds",
-                                      style: const TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14)),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  const Icon(
-                                    Icons.circle,
-                                    color: Color.fromRGBO(141, 167, 167, 1),
-                                    size: 6,
-                                  ),
-                                  const SizedBox(
-                                    width: 4,
-                                  ),
-                                  const Text(
-                                    "Don't receive OTP?",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(153, 153, 153, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14),
-                                  ),
-                                  TextButton(
-                                      onPressed: enableResendButton ?
-                                          () async {
-                                        LoginModel response =
-                                        await QnaService.postUserDetailsService(
-                                            widget.student);
-                                        if (response.code == 200) {
-                                          if (context.mounted) {
-                                            showResendDialog(context);
-                                          }
-                                          // Navigator.push(
-                                          //   context,
-                                          //   PageTransition(
-                                          //       type: PageTransitionType.rightToLeft,
-                                          //       child: showAlertDialog(context)),
-                                          // );
-                                        }
-                                      }
-                                          : null
-                                      ,
-                                      child: Text("   Resend OTP",
-                                          style: TextStyle(
-                                              color: enableResendButton == false
-                                                  ? Colors.grey
-                                                  :
-                                              const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14)))
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Center(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: const Size(280, 48),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(39),
-                              ),
-                            ),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                otp = otpController.text;
-                                StaticResponse res =
-                                await QnaService.verifyOtp(
-                                    widget.student.email, otp);
-                                if (res.code == 200) {
-                                  if (context.mounted) {
-                                    showAlertDialog(context);
-                                  }
-                                } else {
-                                  if (context.mounted) {
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: CustomDialog(
-                                          title: 'Incorrect Otp',
-                                          content: 'Entered OTP does not match',
-                                          button:
-                                          AppLocalizations.of(context)!.retry,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                }
-                              }
-                            },
-                            child: Text(
-                              'Validate',
-                              style: TextStyle(
-                                  fontSize: height * 0.024,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                centerTitle: true,
+                title: Text(
+                  AppLocalizations.of(context)!.student_register,
+                  style: const TextStyle(
+                    color: Color.fromRGBO(28, 78, 80, 1),
+                    fontSize: 18.0,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(
-                  height: height * 0.01,
+                flexibleSpace: Container(
+                  color: Colors.white,
                 ),
-              ])))));
+              ),
+              body:
+              Column(
+                  children:[
+                    SizedBox(height: height * 0.1),
+                    Center(
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: kElevationToShadow[4],
+                            ),
+                            width: width * 0.9,
+                            child: Form(
+                              key: formKey,
+                              child: SizedBox(
+                                height: height * 0.3,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: width * 0.8,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          SizedBox(
+                                              height: height * 0.015),
+                                          Align(
+                                              alignment: Alignment.center,
+                                              child: TextFormField(
+                                                keyboardType: TextInputType.text,
+                                                controller: otpController,
+                                                decoration: InputDecoration(
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                  helperStyle: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height *
+                                                          0.016),
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                  label:
+                                                  Text("Verify OTP",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight
+                                                              .w600,
+                                                          fontSize: height *
+                                                              0.020)),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.018),
+                                                  hintText: AppLocalizations.of(
+                                                      context)!
+                                                      .enter_here,
+                                                  suffixIcon: IconButton(
+                                                    iconSize: height * 0.05,
+                                                    icon: Icon(Icons.arrow_circle_right,
+                                                      color:
+                                                      otpController.text.isNotEmpty
+                                                          ? const Color.fromRGBO(
+                                                          82, 165, 160, 1)
+                                                          : const Color.fromRGBO(153, 153, 153, 0.5),
+                                                    ),
+                                                    onPressed: () async {
+                                                      if (formKey.currentState!.validate()) {
+                                                        otp = otpController.text;
+                                                        StaticResponse res =
+                                                        await QnaService.verifyOtp(
+                                                            widget.student.email, otp);
+                                                        if (res.code == 200) {
+                                                          if (context.mounted) {
+                                                            showAlertDialog(context);
+                                                          }
+                                                        } else {
+                                                          if (context.mounted) {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
+                                                                type: PageTransitionType.rightToLeft,
+                                                                child: CustomDialog(
+                                                                  title: 'Incorrect Otp',
+                                                                  content: 'Entered OTP does not match',
+                                                                  button:
+                                                                  AppLocalizations.of(context)!.retry,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.isEmpty ||
+                                                      !RegExp(r'^\d+$').hasMatch(value)) {
+                                                    return "Incorrect OTP";
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                              )),
+                                          SizedBox(height: height * 0.04),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              const Text("OTP expires in \t",
+                                                  style: TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14)),
+                                              Text("$minutes:$seconds",
+                                                  style: TextStyle(
+                                                      color:
+                                                      enableResendButton
+                                                          ? const Color.fromRGBO(231, 48, 44, 1)
+                                                          : const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14)),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              TextButton(
+                                                  onPressed: enableResendButton ?
+                                                      () async {
+                                                    LoginModel response =
+                                                    await QnaService.postUserDetailsService(
+                                                        widget.student);
+                                                    if (response.code == 200) {
+                                                      if (context.mounted) {
+                                                        showResendDialog(context);
+                                                      }
+                                                    }
+                                                  }
+                                                      : null,
+                                                  child: Text("Resend OTP",
+                                                      style: TextStyle(
+                                                          color: enableResendButton
+                                                              ? const Color.fromRGBO(
+                                                              82, 165, 160, 1)
+                                                              : Colors.transparent,
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 14)))
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )))]),
+
+            ));
     }
+      else if(constraints.maxWidth > 960) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.chevron_left,
+                    size: 40.0,
+                    color: Color.fromRGBO(28, 78, 80, 1),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                centerTitle: true,
+                title: Text(
+                  AppLocalizations.of(context)!.student_register,
+                  style: const TextStyle(
+                    color: Color.fromRGBO(28, 78, 80, 1),
+                    fontSize: 18.0,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                flexibleSpace: Container(
+                  color: Colors.white,
+                ),
+              ),
+              body:
+              Column(
+                  children:[
+                    SizedBox(height: height * 0.1),
+                    Center(
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: kElevationToShadow[4],
+                            ),
+                            width: width * 0.6,
+                            child: Form(
+                              key: formKey,
+                              child: SizedBox(
+                                height: height * 0.35,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: width * 0.5,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          SizedBox(
+                                              height: height * 0.015),
+                                          Align(
+                                              alignment: Alignment.center,
+                                              child: TextFormField(
+                                                keyboardType: TextInputType.text,
+                                                controller: otpController,
+                                                decoration: InputDecoration(
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                  helperStyle: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height *
+                                                          0.016),
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                  label:
+                                                  Text("Verify OTP",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight
+                                                              .w600,
+                                                          fontSize: height *
+                                                              0.020)),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.018),
+                                                  hintText: AppLocalizations.of(
+                                                      context)!
+                                                      .enter_here,
+                                                  suffixIcon: IconButton(
+                                                    iconSize: height * 0.05,
+                                                    icon: Icon(Icons.arrow_circle_right,
+                                                      color:
+                                                      otpController.text.isNotEmpty
+                                                          ? const Color.fromRGBO(
+                                                          82, 165, 160, 1)
+                                                          : const Color.fromRGBO(153, 153, 153, 0.5),
+                                                    ),
+                                                    onPressed: () async {
+                                                      if (formKey.currentState!.validate()) {
+                                                        otp = otpController.text;
+                                                        StaticResponse res =
+                                                        await QnaService.verifyOtp(
+                                                            widget.student.email, otp);
+                                                        if (res.code == 200) {
+                                                          if (context.mounted) {
+                                                            showAlertDialog(context);
+                                                          }
+                                                        } else {
+                                                          if (context.mounted) {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
+                                                                type: PageTransitionType.rightToLeft,
+                                                                child: CustomDialog(
+                                                                  title: 'Incorrect Otp',
+                                                                  content: 'Entered OTP does not match',
+                                                                  button:
+                                                                  AppLocalizations.of(context)!.retry,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                        }
+                                                      }
+                                                    },
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.isEmpty ||
+                                                      !RegExp(r'^\d+$').hasMatch(value)) {
+                                                    return "Incorrect OTP";
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                              )),
+                                          SizedBox(height: height * 0.04),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              const Text("OTP expires in \t",
+                                                  style: TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14)),
+                                              Text("$minutes:$seconds",
+                                                  style: TextStyle(
+                                                      color:
+                                                      enableResendButton
+                                                          ? const Color.fromRGBO(231, 48, 44, 1)
+                                                          : const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14)),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              TextButton(
+                                                  onPressed: enableResendButton ?
+                                                      () async {
+                                                    LoginModel response =
+                                                    await QnaService.postUserDetailsService(
+                                                        widget.student);
+                                                    if (response.code == 200) {
+                                                      if (context.mounted) {
+                                                        showResendDialog(context);
+                                                      }
+                                                    }
+                                                  }
+                                                      : null,
+                                                  child: Text("Resend OTP",
+                                                      style: TextStyle(
+                                                          color: enableResendButton
+                                                              ? const Color.fromRGBO(
+                                                              82, 165, 160, 1)
+                                                              : Colors.transparent,
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 14)))
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )))]),
+
+            ));
+      }
       else{
         return WillPopScope(
             onWillPop: () async => false,
@@ -300,82 +473,132 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                 resizeToAvoidBottomInset: false,
                 backgroundColor: Colors.white,
                 appBar: AppBar(
-                  centerTitle: true,
-                  title: const Text(
-                    "VERIFY OTP",
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: 18.0,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.white,
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                   ),
+                  centerTitle: true,
+                  title: Text(
+                    AppLocalizations.of(context)!.student_register,
+                    style: const TextStyle(
+                      color: Color.fromRGBO(28, 78, 80, 1),
+                      fontSize: 18.0,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            end: Alignment.bottomRight,
-                            begin: Alignment.topLeft,
-                            colors: [
-                              Color.fromRGBO(82, 165, 160, 1),
-                              Color.fromRGBO(0, 106, 100, 1),
-                            ])),
+                    color: Colors.white,
                   ),
                 ),
-                body: Column(children: [
-                  SizedBox(height: height * 0.04),
-                  Form(
+                body:
+                Column(
+                    children:[
+                    SizedBox(height: height * 0.1),
+                Center(
+    child: Container(
+    decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(10),
+    boxShadow: kElevationToShadow[4],
+    ),
+    width: width * 0.9,
+    child: Form(
                     key: formKey,
                     child: SizedBox(
-                      height: height * 0.8,
+                      height: height * 0.3,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: width * 0.8,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    "CHECK YOUR EMAIL FOR OTP",
-                                    style: Theme
-                                        .of(context)
-                                        .primaryTextTheme
-                                        .bodyLarge
-                                        ?.merge(const TextStyle(
-                                        color: Color.fromRGBO(102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14)),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.0001,
-                                ),
+                              SizedBox(
+                              height: height * 0.015),
                                 Align(
                                     alignment: Alignment.center,
                                     child: TextFormField(
                                       keyboardType: TextInputType.text,
                                       controller: otpController,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
+                                        floatingLabelBehavior:
+                                        FloatingLabelBehavior.always,
                                         helperStyle: TextStyle(
                                             color:
-                                            Color.fromRGBO(102, 102, 102, 0.3),
+                                            const Color.fromRGBO(102, 102, 102, 0.3),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 16),
-                                        hintText: "Enter OTP",
+                                           fontSize: height *
+                                            0.016),
+                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                        label:
+                                        Text("Verify OTP",
+                                          style: TextStyle(
+                                              color: const Color
+                                                  .fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight
+                                                  .w600,
+                                              fontSize: height *
+                                                  0.020)),
+                                        hintStyle: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.3),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.018),
+                                        hintText: AppLocalizations.of(
+                                            context)!
+                                            .enter_here,
+                                        suffixIcon: IconButton(
+                                          iconSize: height * 0.05,
+                                          icon: Icon(Icons.arrow_circle_right,
+                                            color:
+                                            otpController.text.isNotEmpty
+                                            ? const Color.fromRGBO(
+                                                82, 165, 160, 1)
+                                                : const Color.fromRGBO(153, 153, 153, 0.5),
+                                          ),
+                                          onPressed: () async {
+                                            if (formKey.currentState!.validate()) {
+                                              otp = otpController.text;
+                                              StaticResponse res =
+                                              await QnaService.verifyOtp(
+                                                  widget.student.email, otp);
+                                              if (res.code == 200) {
+                                                if (context.mounted) {
+                                                  showAlertDialog(context);
+                                                }
+                                              } else {
+                                                if (context.mounted) {
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType.rightToLeft,
+                                                      child: CustomDialog(
+                                                        title: 'Incorrect Otp',
+                                                        content: 'Entered OTP does not match',
+                                                        button:
+                                                        AppLocalizations.of(context)!.retry,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              }
+                                            }
+                                          },
+                                        ),
                                       ),
                                       validator: (value) {
                                         if (value!.isEmpty ||
@@ -390,24 +613,20 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: Color.fromRGBO(141, 167, 167, 1),
-                                      size: 6,
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    const Text("The OTP will be expired in",
+                                    const Text("OTP expires in \t",
                                         style: TextStyle(
                                             color: Color.fromRGBO(
                                                 153, 153, 153, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14)),
-                                    Text(" $minutes:$seconds",
-                                        style: const TextStyle(
-                                            color: Colors.black,
+                                    Text("$minutes:$seconds",
+                                        style: TextStyle(
+                                            color:
+                                            enableResendButton
+                                                ? const Color.fromRGBO(231, 48, 44, 1)
+                                            : const Color.fromRGBO(
+                                                102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14)),
@@ -416,22 +635,6 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    const Icon(
-                                      Icons.circle,
-                                      color: Color.fromRGBO(141, 167, 167, 1),
-                                      size: 6,
-                                    ),
-                                    const SizedBox(
-                                      width: 4,
-                                    ),
-                                    const Text(
-                                      "Don't receive OTP?",
-                                      style: TextStyle(
-                                          color: Color.fromRGBO(153, 153, 153, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14),
-                                    ),
                                     TextButton(
                                         onPressed: enableResendButton ?
                                             () async {
@@ -442,23 +645,15 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                             if (context.mounted) {
                                               showResendDialog(context);
                                             }
-                                            // Navigator.push(
-                                            //   context,
-                                            //   PageTransition(
-                                            //       type: PageTransitionType.rightToLeft,
-                                            //       child: showAlertDialog(context)),
-                                            // );
                                           }
                                         }
-                                            : null
-                                        ,
-                                        child: Text("   Resend OTP",
+                                            : null,
+                                        child: Text("Resend OTP",
                                             style: TextStyle(
-                                                color: enableResendButton == false
-                                                    ? Colors.grey
-                                                    :
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
+                                                color: enableResendButton
+                                                    ? const Color.fromRGBO(
+                                                    82, 165, 160, 1)
+                                                    : Colors.transparent,
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14)))
@@ -467,61 +662,13 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                               ],
                             ),
                           ),
-                          Center(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
-                                minimumSize: const Size(280, 48),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(39),
-                                ),
-                              ),
-                              onPressed: () async {
-                                if (formKey.currentState!.validate()) {
-                                  otp = otpController.text;
-                                  StaticResponse res =
-                                  await QnaService.verifyOtp(
-                                      widget.student.email, otp);
-                                  if (res.code == 200) {
-                                    if (context.mounted) {
-                                      showAlertDialog(context);
-                                    }
-                                  } else {
-                                    if (context.mounted) {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: CustomDialog(
-                                            title: 'Incorrect Otp',
-                                            content: 'Entered OTP does not match',
-                                            button:
-                                            AppLocalizations.of(context)!.retry,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                }
-                              },
-                              child: Text(
-                                'Validate',
-                                style: TextStyle(
-                                    fontSize: height * 0.024,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                ])));
+                  )))]),
+
+        ));
+
       }
     }
     );}
@@ -541,8 +688,10 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
           SizedBox(
             width: height * 0.002,
           ),
-          const Text(
-            "Success!",
+          Text(
+            AppLocalizations.of(context)!
+                .success,
+            //"Success!",
             style: TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
@@ -564,8 +713,9 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
           ),
-          child: const Text(
-            "Ok",
+          child: Text(
+            AppLocalizations.of(context)!
+                .login_loginPage,
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Inter',

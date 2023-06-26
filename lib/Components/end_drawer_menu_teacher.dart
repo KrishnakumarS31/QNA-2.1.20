@@ -16,6 +16,8 @@ import '../pages/about_us.dart';
 import '../pages/help_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../DataSource/http_url.dart';
+import '../pages/change_email_teacher.dart';
+
 class EndDrawerMenuTeacher extends StatefulWidget {
   const EndDrawerMenuTeacher({Key? key,})
       : super(key: key);
@@ -48,76 +50,155 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    double localHeight = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return Drawer(
+            backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
             child: Column(
               children: [
-                Container(
+                constraints.maxWidth <= 960 && constraints.maxWidth >=500
+                    ? Container(
                   decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ],
-                      )),
+                      color: Color.fromRGBO(255, 255, 255, 1)
+                  ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: height * 0.050),
+                      SizedBox(height: localHeight * 0.050),
                       Container(
                         alignment: Alignment.topLeft,
-                        height: height / 6,
-                        child: Row(children: [
-                          const SizedBox(width: 10),
-                          CircleAvatar(
-                            backgroundColor:
-                            const Color.fromRGBO(0, 106, 100, 0),
-                            child: Image.asset(
-                              "assets/images/ProfilePic_Avatar.png",
-                            ),
-                          ),
-                          const SizedBox(width: 20),
-                          Text(
-                            name,
-                            style: const TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
+                        height: localHeight / 10,
+                        child: Row(
+                            children: [
+                              SizedBox(width: width * 0.03),
+                              CircleAvatar(
+                                radius: MediaQuery.of(context).size.width * 0.1,
+                                backgroundColor:
+                                const Color.fromRGBO(0, 106, 100, 0),
+                                child: Image.asset(
+                                  "assets/images/ProfilePic_Avatar.png",
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Text(
+                                name,
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: width * 0.06),
+                              ),
+                            ]),
+                      ),
+                      Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.teacher,
+                            style: TextStyle(
+                                color: const Color.fromRGBO(153, 153, 153, 1),
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16),
-                          ),
-                        ]),
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Text(
-                                AppLocalizations.of(context)!.teacher,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(221, 221, 221, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w500,
 
-                                    fontSize: 12),
-                              )),
-                          Container(
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Text(
-                                email,
+                                fontSize: width * 0.04),
+                          )),
+                      SizedBox(height: localHeight * 0.020),
+                      //    )
+                    ],
+                  ),
+                )
+                    : constraints.maxWidth > 960
+                    ? Container(
+                  decoration: const BoxDecoration(
+                      color: Color.fromRGBO(255, 255, 255, 1)
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: localHeight * 0.050),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        height: localHeight / 10,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const SizedBox(width: 20),
+                              CircleAvatar(
+                                radius: MediaQuery.of(context).size.width * 0.02,
+                                backgroundColor:
+                                const Color.fromRGBO(0, 106, 100, 0),
+                                child: Image.asset(
+                                  "assets/images/ProfilePic_Avatar.png",
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              Text(
+                                name,
                                 style: const TextStyle(
-                                    color: Color.fromRGBO(221, 221, 221, 1),
+                                    color: Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12),
-                              )),
-                        ],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20),
+                              ),
+                            ]),
                       ),
-                      SizedBox(height: height * 0.020),
+                      Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.teacher,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(153, 153, 153, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+
+                                fontSize: 16),
+                          )),
+                      SizedBox(height: localHeight * 0.020),
+                      //    )
+                    ],
+                  ),
+                )
+                    : Container(
+                  decoration: const BoxDecoration(
+                      color: Color.fromRGBO(255, 255, 255, 1)
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: localHeight * 0.050),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        height: localHeight / 10,
+                        child: Row(
+                            children: [
+                              SizedBox(width: width * 0.03),
+                              CircleAvatar(
+                                radius: MediaQuery.of(context).size.width * 0.1,
+                                backgroundColor:
+                                const Color.fromRGBO(0, 106, 100, 0),
+                                child: Image.asset(
+                                  "assets/images/ProfilePic_Avatar.png",
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                              Text(
+                                name,
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: width * 0.06),
+                              ),
+                            ]),
+                      ),
+                      Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.teacher,
+                            style: TextStyle(
+                                color: const Color.fromRGBO(153, 153, 153, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+
+                                fontSize: width * 0.04),
+                          )),
+                      SizedBox(height: localHeight * 0.020),
                       //    )
                     ],
                   ),
@@ -134,11 +215,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             UserDataModel userDataModel =
                             await QnaService.getUserDataService(userId,userDetails);
@@ -161,11 +239,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -175,29 +250,26 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               ),
                             );
                           }),
-                      // ListTile(
-                      //     leading: const Icon(Icons.mail_outline_sharp,
-                      //         color: Color.fromRGBO(141, 167, 167, 1)),
-                      //     title: Text(
-                      //       AppLocalizations.of(context)!.change_emailId,
-                      //       style: TextStyle(
-                      //           color: textColor,
-                      //           fontFamily: 'Inter',
-                      //           fontWeight: FontWeight.w500,
-                      //           
-                      //           fontSize: 16),
-                      //     ),
-                      //     trailing: const Icon(Icons.navigate_next,
-                      //         color: Color.fromRGBO(153, 153, 153, 1)),
-                      //     onTap: () {
-                      //       // Navigator.push(
-                      //       //   context,
-                      //       //   PageTransition(
-                      //       //     type: PageTransitionType.rightToLeft,
-                      //       //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
-                      //       //   ),
-                      //       // );
-                      //     }),
+                      ListTile(
+                          leading: const Icon(Icons.mail_outline_sharp,
+                              color: Color.fromRGBO(141, 167, 167, 1)),
+                          title: Text(
+                            AppLocalizations.of(context)!.change_emailId,
+                            style: TextStyle(
+                                color: textColor,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: ChangeEmailTeacher(userId: userId),
+                              ),
+                            );
+                          }),
                       const Divider(
                         thickness: 2,
                       ),
@@ -210,18 +282,14 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child:
-                                const SettingsLanguages(),
+                                child: const SettingsLanguages(),
                               ),
                             );
                           }),
@@ -237,18 +305,14 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: const PrivacyPolicyHamburger(
-                                ),
+                                child: const PrivacyPolicyHamburger(),
                               ),
                             );
                           }),
@@ -257,22 +321,19 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(141, 167, 167, 1)),
                           title: Text(
                             AppLocalizations.of(context)!.terms_of_services,
+                            //'Terms of Services',
                             style: TextStyle(
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: const TermsOfServiceHamburger(
-                                ),
+                                child: const TermsOfServiceHamburger(),
                               ),
                             );
                           }),
@@ -285,11 +346,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             Navigator.push(
                               context,
@@ -307,18 +365,12 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(141, 167, 167, 1)),
                           title: Text(
                             AppLocalizations.of(context)!.about_us,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyLarge
-                                ?.merge(TextStyle(
+                            style: TextStyle(
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
-                                fontSize: 16)),
+                                fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             Navigator.push(
                               context,
@@ -337,18 +389,14 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                
                                 fontSize: 16),
                           ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child:
-                                const HelpPageHamburger(),
+                                child: const HelpPageHamburger(),
                               ),
                             );
                           }),
@@ -364,7 +412,6 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(226, 68, 0, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
-                              
                               fontSize: 16),
                         ),
                         onTap: () async {
@@ -372,87 +419,93 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                             context: context,
                             builder: (context) =>
                                 AlertDialog(
-                              insetPadding: const EdgeInsets.only(
-                                  left: 25, right: 25),
-                              title: Row(
-                                  children: [
-                                    SizedBox(width: height * 0.030),
+                                  insetPadding: const EdgeInsets.only(
+                                      left: 25, right: 25),
+                                  title: Row(children: [
+                                    SizedBox(width: localHeight * 0.030),
                                     Container(
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      height: height * 0.1,
+                                      height: localHeight * 0.1,
                                       width: 40,
-                                      child: const Icon(Icons.info_outline_rounded,
+                                      child: const Icon(
+                                        Icons.info_outline_rounded,
                                         color: Color.fromRGBO(255, 255, 255, 1),
                                       ),
                                     ),
-                                    SizedBox(width: height * 0.015),
-                                    Text(AppLocalizations.of(context)!.confirm,
+                                    SizedBox(width: localHeight * 0.015),
+                                    Text(
+                                      AppLocalizations.of(context)!.confirm,
                                       style: TextStyle(
                                           fontFamily: 'Inter',
-                                          fontSize: height * 0.024,
-                                          color: const Color.fromRGBO(0, 106, 100, 1),
-                                          fontWeight: FontWeight.w700
-                                      ),),
-                                  ]
-                              ),
-                              content: const Text("Are you sure you want to logout ?"),
-                              actions: <Widget>[
-                                const SizedBox(width: 30),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                                    minimumSize: const Size(90, 30),
-                                    side: const BorderSide(
-                                      width: 1.5,
-                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                          fontSize: localHeight * 0.024,
+                                          color: const Color.fromRGBO(
+                                              0, 106, 100, 1),
+                                          fontWeight: FontWeight.w700),
                                     ),
-                                  ),
-                                  child: Text(AppLocalizations.of(context)!.no,
-                                      style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: height * 0.018,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
-                                          fontWeight: FontWeight.w500
-                                      )
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
+                                  ]),
+                                  content: Text(
+                                      AppLocalizations.of(context)!.want_to_logout),
+                                  //"Are you sure you want to logout ?"),
+                                  actions: <Widget>[
+                                    const SizedBox(width: 30),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromRGBO(
+                                            255, 255, 255, 1),
+                                        minimumSize: const Size(90, 30),
+                                        side: const BorderSide(
+                                          width: 1.5,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(context)!.no,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize: localHeight * 0.018,
+                                              color: const Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                              fontWeight: FontWeight.w500)),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    const SizedBox(width: 5),
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          minimumSize: const Size(90, 30),
+                                        ),
+                                        child: Text(
+                                            AppLocalizations.of(context)!.yes,
+                                            style: TextStyle(
+                                                fontFamily: 'Inter',
+                                                fontSize: localHeight * 0.018,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w500)),
+                                        onPressed: () async {
+                                          UserDetails userData = UserDetails();
+                                          Provider.of<LanguageChangeProvider>(
+                                              context,
+                                              listen: false)
+                                              .updateUserDetails(userData);
+                                          SharedPreferences preferences =
+                                          await SharedPreferences
+                                              .getInstance();
+                                          await preferences.clear();
+                                          Navigator.pushNamed(context, '/');
+                                        }),
+                                    SizedBox(width: localHeight * 0.030),
+                                  ],
                                 ),
-                                const SizedBox(width: 5),
-                                ElevatedButton(
-                                    style:
-                                    ElevatedButton.styleFrom(
-                                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                      minimumSize: const Size(90, 30),
-                                    ),
-                                    child: Text(AppLocalizations.of(context)!.yes,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize: height * 0.018,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500
-                                        )
-                                    ),
-                                    onPressed: () async {
-                                      UserDetails userData=UserDetails();
-                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userData);
-                                      SharedPreferences preferences =
-                                      await SharedPreferences.getInstance();
-                                      await preferences.clear();
-                                      Navigator.pushNamed(context, '/');
-                                    }
-                                ),
-                                SizedBox(width: height * 0.030),
-                              ],
-                            ),
                           );
                         },
                       ),
-                      SizedBox(height: height * 0.03),
+                      SizedBox(height: localHeight * 0.03),
                       Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -461,11 +514,11 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(180, 180, 180, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
-                              
+
                               fontSize: 16),
                         ),
                       ),
-                      SizedBox(height: height * 0.03),
+                      SizedBox(height: localHeight * 0.03),
                     ],
                   ),
                 ),
