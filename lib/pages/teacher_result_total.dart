@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Components/custom_result_total_card.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
+import '../Components/custom_card.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
@@ -15,20 +16,24 @@ class TeacherResultTotal extends StatefulWidget {
     required this.result,
     this.userId,
     this.advisorName,
+    this.advisorEmail,
   }) : super(key: key);
   final GetResultModel result;
   final int? userId;
   final String? advisorName;
-
+  final String? advisorEmail;
   @override
   TeacherResultTotalState createState() => TeacherResultTotalState();
 }
 
 class TeacherResultTotalState extends State<TeacherResultTotal> {
   IconData showIcon = Icons.expand_circle_down_outlined;
-
+  int resultStart=0;
+  int pageLimit = 1;
+  int resultLength=0;
   @override
   void initState() {
+    resultLength = widget.result.assessmentResults!.length >=10 ? 10: widget.result.assessmentResults!.length;
     super.initState();
   }
 
@@ -57,13 +62,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
     var end = DateTime.fromMicrosecondsSinceEpoch(
         widget.result.assessmentEndDate!);
     DateTime now = DateTime.now();
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > 960) {
         return
           Center(
             child: SizedBox(
-            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -71,95 +76,52 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                 endDrawer: const EndDrawerMenuTeacher(),
                 backgroundColor: Colors.white,
                 appBar: AppBar(
+                  iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: height * 0.05),
                   leading: IconButton(
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.white,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                   ),
                   toolbarHeight: height * 0.100,
+                  elevation: 0,
                   centerTitle: true,
-                  title: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.results_caps,
-                          //'RESULTS',
-                          style: TextStyle(
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.total_caps,
-                          //"TOTAL",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: height * 0.0225,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ]),
+                  title: Text(
+                    AppLocalizations.of(context)!.assessment_result,
+                    //'RESULTS',
+                    style: TextStyle(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontSize: height * 0.0175,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                   flexibleSpace: Container(
                     decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            end: Alignment.bottomCenter,
-                            begin: Alignment.topCenter,
-                            colors: [
-                              Color.fromRGBO(0, 106, 100, 1),
-                              Color.fromRGBO(82, 165, 160, 1),
-                            ])),
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   physics: const ClampingScrollPhysics(),
                   child: Padding(
-                    padding: EdgeInsets.only(
-                        top: height * 0.023,
-                        left: height * 0.023,
-                        right: height * 0.023),
+                    padding: EdgeInsets.only(bottom: height * 0.00500, left: height * 0.5,right: height * 0.5),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  widget.result.assessmentCode!,
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontSize: height * 0.025,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                              // Row(
-                              //   children: [
-                              //     const Icon(
-                              //       Icons.drafts_outlined,
-                              //       color: Color.fromRGBO(82, 165, 160, 1),
-                              //     ),
-                              //     SizedBox(
-                              //       width: width * 0.03,
-                              //     ),
-                              //     const Icon(
-                              //       Icons.print_outlined,
-                              //       color: Color.fromRGBO(82, 165, 160, 1),
-                              //     )
-                              //   ],
-                              // )
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(top:8.0,bottom:8.0),
+                            child: CustomCard(
+                              height: height,
+                              width: width,
+                              //subject: results[index].subject,
+                              result: widget.result,
+                              isShowTotal: true,
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.018,
@@ -168,11 +130,41 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                             clipBehavior: Clip.none,
                             children: [
                               showIcon == Icons.expand_circle_down_outlined
-                                  ? CustomCard1(
-                                height: height,
-                                width: webWidth,
-                                resultIndex: widget.result,
-                              )
+                                  ? Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: const Color.fromRGBO(153, 153, 153, 0.25),),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5)
+                                      )),
+                                  // height: height * 0.31,
+                                  child:Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          AppLocalizations.of(context)!.assessment_details,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(102, 102, 102, 1),
+                                              fontSize: height * 0.022,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        icon: Icon(
+                                          showIcon,
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          size: height * 0.04,
+                                        ),
+                                        onPressed: () {
+                                          changeIcon(showIcon);
+                                        },
+                                      ),
+                                    ],
+                                  ))
                                   : Container(
                                 decoration: BoxDecoration(
                                     border: Border.all(
@@ -180,708 +172,479 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                           233, 233, 233, 1),
                                     ),
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(20))),
-                                height: height * 0.6912,
+                                        Radius.circular(5))),
+                                height: height * 0.7812,
                                 child: Column(
                                   children: [
-                                    ListTile(
-                                      title: Text(
-                                        "${AppLocalizations.of(context)!
-                                            .sub_small} - ${widget.result
-                                            .subject}",
-//'Subject - ${widget.result.subject}',
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                28, 78, 80, 1),
-                                            fontSize: height * 0.0187,
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      trailing: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.end,
-                                        children: [
-                                          Icon(
-                                            Icons.circle,
-                                            color:
-                                            end.isBefore(now)
-                                                ? const Color.fromRGBO(
-                                                66, 194, 0, 1)
-                                                : d.isAfter(now)
-                                                ? const Color.fromRGBO(
-                                                179, 179, 179, 1)
-                                                : const Color.fromRGBO(
-                                                255, 157, 77, 1),
-                                            size: height * 0.03,
-                                          ),
-                                          Text(
-                                            (widget.result.assessmentResults !=
-                                                null &&
-                                                widget.result.assessmentResults
-                                                    ?.isEmpty == false)
-                                                ? convertDate(widget.result
-                                                .assessmentStartDate)
-                                                : " ",
-                                            style: TextStyle(
+                                    Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color.fromRGBO(153, 153, 153, 0.25),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)
+                                            )),
+                                        // height: height * 0.31,
+                                        child:Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                AppLocalizations.of(context)!.assessment_details,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                                    fontSize: height * 0.022,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w500),
+                                              ),
+                                            ),
+                                            IconButton(
+                                              icon: Icon(
+                                                showIcon,
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
-                                                fontSize: height * 0.013,
+                                                size: height * 0.04,
+                                              ),
+                                              onPressed: () {
+                                                changeIcon(showIcon);
+                                              },
+                                            ),
+                                          ],
+                                        )),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.time_limit,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
+                                          Text(
+                                            assessmentDuration != null
+                                                ? convertDuration(
+                                                assessmentDuration)
+                                                : "0",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(
-                                          right: webWidth * 0.02,
-                                          left: webWidth * 0.02),
-                                      child: Divider(),
-                                    ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          bottom: height * 0.015,
-                                          top: height * 0.002),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .advisor,
-                                              //'Advisor',
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      28, 78, 80, 1),
-                                                  fontSize: height * 0.0185,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w700),
-                                            ),
-                                            const SizedBox(
-                                              width: webWidth * 0.01,
-                                            ),
-                                            Text(
-                                              widget.advisorName!,
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontSize: height * 0.0175,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w500),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          bottom: height * 0.005),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "${AppLocalizations.of(context)!
-                                              .title} - ${widget.result.topic}",
-                                          //'Title - ${widget.result.topic}',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              fontSize: height * 0.0175,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          bottom: height * 0.005),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          '${AppLocalizations.of(context)!
-                                              .sub_topic_optional} ${widget
-                                              .result.subTopic}',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              fontSize: height * 0.0175,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          bottom: height * 0.004),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "${AppLocalizations.of(context)!
-                                              .degree_small} - ${widget.result
-                                              .studentClass}",
-                                          //'Class ${widget.result.studentClass}',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 1),
-                                              fontSize: height * 0.0175,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    ),
-                                    const Divider(),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: webWidth * 0.02,right: webWidth * 0.02),
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
                                         children: [
-                                          SizedBox(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  widget.result.assessmentType!,
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .category,
-                                                  //'Category',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
+                                          Text(
+                                            AppLocalizations.of(context)!.start_date_time,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
                                           ),
-                                          SizedBox(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${widget.result
-                                                      .totalQuestions!}",
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .total_small,
-                                                  //'Total',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .qn_button,
-                                                  //'Questions',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${widget.result.totalScore!}",
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .total_small,
-                                                  //'Total',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                                Text(
-                                                  "Marks",
-                                                  //'Marks',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    const Divider(),
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(left: webWidth * 0.03),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .schedule_small,
-                                          //'Schedule',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  28, 78, 80, 1),
-                                              fontSize: height * 0.017,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          top: height * 0.007),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .test_time_permitted,
-                                              //'Test max. Time permitted: ',
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontSize: height * 0.015,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w400),
-                                            ),
-                                            Text(
-                                              assessmentDuration != null
-                                                  ? convertDuration(
-                                                  assessmentDuration)
-                                                  : "0",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontSize: height * 0.015,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w600),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          top: height * 0.007),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .test_opening_time,
-                                              //'Test Opening Date & Time:',
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontSize: height * 0.015,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w400),
-                                            ),
-                                            Text(assessmentStartDate != null
+                                          Text(
+                                            assessmentStartDate != null
                                                 ? '${convertDate(
                                                 assessmentStartDate)}, ${convertTime(
                                                 assessmentStartDate)} IST'
                                                 : " ",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontSize: height * 0.015,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w600),
-                                            ),
-                                          ],
-                                        ),
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          top: height * 0.007),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .test_closing_time,
-                                              //'Test Closing Date & Time:',
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontSize: height * 0.015,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w400),
-                                            ),
-                                            Text(
-                                              assessmentEndDate != null
-                                                  ? '${convertDate(
-                                                  assessmentEndDate)}, ${convertTime(
-                                                  assessmentEndDate)} + " IST"'
-                                                  : " ",
-                                              //"$closingDate, $closingTime IST",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontSize: height * 0.015,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w600),
-                                            ),
-                                          ],
-                                        ),
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.end_date_time,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            assessmentEndDate != null
+                                                ? '${convertDate(
+                                                assessmentEndDate)}, ${convertTime(
+                                                assessmentEndDate)} IST'
+                                                : " ",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: height * 0.02,
+                                    const Divider(),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            "${AppLocalizations.of(context)!.category}: ",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            " ${widget.result.assessmentType}" ?? "",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          left: webWidth * 0.03,
-                                          bottom: height * 0.015,
-                                          top: height * 0.002),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .guest,
-                                              //'Guest',
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      28, 78, 80, 1),
-                                                  fontSize: height * 0.0185,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w700),
-                                            ),
-                                            SizedBox(
-                                              width: width * 0.01,
-                                            ),
-                                            Text(
-                                              widget.result
-                                                  .guestStudentAllowed ==
-                                                  true
-                                                  ? AppLocalizations.of(
-                                                  context)!.allowed
-                                              //Allowed"
-                                                  : AppLocalizations.of(
-                                                  context)!.not_allowed,
-                                              //"Not Allowed",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontSize: height * 0.0175,
-                                                  fontFamily: "Inter",
-                                                  fontWeight:
-                                                  FontWeight.w500),
-                                            ),
-                                          ],
-                                        ),
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.number_of_attempts,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            widget.result.totalAttempts != null ? "${widget.result.totalAttempts} " : "0",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    // Padding(
-                                    //   padding: EdgeInsets.only(
-                                    //       left: width * 0.03,
-                                    //       bottom: height * 0.015,
-                                    //       top: height * 0.002),
-                                    //   child: Align(
-                                    //     alignment: Alignment.centerLeft,
-                                    //     child: Row(
-                                    //       children: [
-                                    //         Text(
-                                    //           'URL: ',
-                                    //           style: TextStyle(
-                                    //               color: const Color.fromRGBO(
-                                    //                   102, 102, 102, 1),
-                                    //               fontSize: height * 0.015,
-                                    //               fontFamily: "Inter",
-                                    //               fontWeight:
-                                    //               FontWeight.w400),
-                                    //         ),
-                                    //         SizedBox(
-                                    //           width: width * 0.21,
-                                    //         ),
-                                    //         // Container(
-                                    //         //   height: height * 0.037,
-                                    //         //   width: width * 0.52,
-                                    //         //   alignment: Alignment.center,
-                                    //         //   child: Text(
-                                    //         //     widget.result.url!,
-                                    //         //     style: TextStyle(
-                                    //         //         color:
-                                    //         //         const Color.fromRGBO(
-                                    //         //             82, 165, 160, 1),
-                                    //         //         fontSize: height * 0.0175,
-                                    //         //         fontFamily: "Inter",
-                                    //         //         fontWeight:
-                                    //         //         FontWeight.w500),
-                                    //         //   ),
-                                    //         // ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // Padding(
-                                    //   padding: EdgeInsets.only(
-                                    //       left: width * 0.03,
-                                    //       bottom: height * 0.015,
-                                    //       top: height * 0.002),
-                                    //   child: Align(
-                                    //     alignment: Alignment.centerLeft,
-                                    //     child: Row(
-                                    //       children: [
-                                    //         Text(
-                                    //           'Android APP:',
-                                    //           style: TextStyle(
-                                    //               color: const Color.fromRGBO(
-                                    //                   102, 102, 102, 1),
-                                    //               fontSize: height * 0.015,
-                                    //               fontFamily: "Inter",
-                                    //               fontWeight:
-                                    //               FontWeight.w400),
-                                    //         ),
-                                    //         SizedBox(
-                                    //           width: width * 0.1,
-                                    //         ),
-                                    //         Container(
-                                    //           height: height * 0.037,
-                                    //           width: width * 0.52,
-                                    //           alignment: Alignment.center,
-                                    //           child: Text(
-                                    //             widget.result.androidUrl!,
-                                    //             style: TextStyle(
-                                    //                 color:
-                                    //                 const Color.fromRGBO(
-                                    //                     82, 165, 160, 1),
-                                    //                 fontSize: height * 0.0175,
-                                    //                 fontFamily: "Inter",
-                                    //                 fontWeight:
-                                    //                 FontWeight.w500),
-                                    //           ),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // Padding(
-                                    //   padding: EdgeInsets.only(
-                                    //       left: width * 0.03,
-                                    //       bottom: height * 0.015,
-                                    //       top: height * 0.002),
-                                    //   child: Align(
-                                    //     alignment: Alignment.centerLeft,
-                                    //     child: Row(
-                                    //       children: [
-                                    //         Text(
-                                    //           'IOS APP:',
-                                    //           style: TextStyle(
-                                    //               color: const Color.fromRGBO(
-                                    //                   102, 102, 102, 1),
-                                    //               fontSize: height * 0.015,
-                                    //               fontFamily: "Inter",
-                                    //               fontWeight:
-                                    //               FontWeight.w400),
-                                    //         ),
-                                    //         SizedBox(
-                                    //           width: width * 0.17,
-                                    //         ),
-                                    //         Container(
-                                    //           height: height * 0.037,
-                                    //           width: width * 0.52,
-                                    //           alignment: Alignment.center,
-                                    //           child: Text(
-                                    //             widget.result.iosUrl!,
-                                    //             style: TextStyle(
-                                    //                 color:
-                                    //                 const Color.fromRGBO(
-                                    //                     82, 165, 160, 1),
-                                    //                 fontSize: height * 0.0175,
-                                    //                 fontFamily: "Inter",
-                                    //                 fontWeight:
-                                    //                 FontWeight.w500),
-                                    //           ),
-                                    //         ),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.guest_students,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            widget.result.guestStudentAllowed == true
+                                                ? AppLocalizations.of(
+                                                context)!.allowed
+                                            //"Allowed"
+                                                : AppLocalizations.of(
+                                                context)!.not_allowed,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.answer_in_practice,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          const Text(
+                                            "-",
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.published_looq,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          const Text(
+                                            "-",
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.advisor_name,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            widget.advisorName ?? "",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.advisor_email,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            widget.advisorEmail??"",
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.whatsapp_link,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          Text(
+                                            widget.result.url ?? "" ,
+                                            style: const TextStyle(
+                                                color: Color.fromRGBO(102, 102, 102, 1),
+                                                // fontSize: widget.height * 0.013,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                              Positioned(
-                                top: showIcon ==
-                                    Icons.expand_circle_down_outlined
-                                    ? height * 0.158
-                                    : height * 0.661,
-                                right: webWidth * 0.07,
-                                child: IconButton(
-                                  icon: Icon(
-                                    showIcon,
-                                    color: const Color.fromRGBO(
-                                        82, 165, 160, 1),
-                                    size: height * 0.03,
-                                  ),
-                                  onPressed: () {
-                                    changeIcon(showIcon);
-                                  },
-                                ),
-                              )
                             ],
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-
-                              widget.result.assessmentResults!.length != null
-                                  ? "${AppLocalizations.of(context)!
-                                  .total_parti_list} (${widget.result
-                                  .assessmentResults!.length})"
-                              //'Total Participants List (${widget.result.assessmentResults!.length})'
-                                  : "${AppLocalizations.of(context)!
-                                  .total_parti_list} (0)",
-                              //'Total Participants List(0)'
-                              style: TextStyle(
-                                  fontSize: height * 0.0187,
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                AppLocalizations.of(context)!.total_parti_list,
+                                //'Total Participants List(0)'
+                                style: TextStyle(
+                                    fontSize: height * 0.022,
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w500),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            height: height * 0.004,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              AppLocalizations.of(context)!
-                                  .tap_to_student_details,
-                              //'Tap on respective student for details',
-                              style: TextStyle(
-                                  fontSize: height * 0.0125,
-                                  color: const Color.fromRGBO(148, 148, 148, 1),
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0,right :8),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                AppLocalizations.of(context)!
+                                    .tap_to_student_details,
+                                //'Tap on respective student for details',
+                                style: TextStyle(
+                                    fontSize: height * 0.015,
+                                    color: const Color.fromRGBO(148, 148, 148, 1),
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                physics: const ClampingScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: widget.result.assessmentResults!
-                                    .length,
-                                itemBuilder: (context, index) =>
-                                    Column(
-                                      children: [
-                                        MouseRegion(
-                                            cursor: SystemMouseCursors.click,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .rightToLeft,
-                                                    child: TeacherResultIndividualStudent(
-                                                      result: widget.result,
-                                                      comingFrom: "total",
-                                                      index: index,
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                              child: ResultTotalCard(
-                                                  height: height,
-                                                  width: webWidth,
-                                                  results: widget.result,
-                                                  index: index),
-                                            )),
-                                        SizedBox(
-                                          height: height * 0.02,
+                          for (int index=resultStart;index<resultLength;index++)
+                            Column(
+                              children: [
+                                MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType
+                                                .rightToLeft,
+                                            child: TeacherResultIndividualStudent(
+                                              result: widget.result,
+                                              comingFrom: "total",
+                                              index: index,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: ResultTotalCard(
+                                          height: height,
+                                          width: width,
+                                          results: widget.result,
+                                          index: index),
+                                    )),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                              ],
+                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Showing ${resultStart + 1} to ${resultStart+10 <widget.result.assessmentResults!.length ? resultStart+10:resultLength} of ${widget.result.assessmentResults?.length ?? 0}',
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: height * 0.02),
+                              ),
+                              Wrap(
+                                children: [
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (){
+                                          if(resultLength>10){
+                                            setState(() {
+                                              resultLength=widget.result.assessmentResults!.length-resultStart < 10 ? 10 :resultLength - 10;
+                                              resultStart=resultStart-10;
+                                            });}
+                                        },
+                                        child: Container(
+                                          height: height * 0.03,
+                                          width: width * 0.03,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Icon(
+                                            Icons.keyboard_double_arrow_left,
+                                            size: height * 0.015,
+                                            color: const Color.fromRGBO(28, 78, 80, 1),),
                                         ),
-                                      ],
-                                    ),
-                              )),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                        child: Container(
+                                          height: height * 0.03,
+                                          width: width * 0.03,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.016),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: (){
+                                          if(resultLength<widget.result.assessmentResults!.length){
+                                            setState(() {
+                                              resultLength=widget.result.assessmentResults!.length-resultStart > 0 ?widget.result.assessmentResults!.length-resultStart :resultLength;
+                                              resultStart=resultStart+10;
+                                            });
+                                          }
+                                        },
+                                        child: Container(
+                                          height: height * 0.03,
+                                          width: width * 0.03,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            size: height * 0.015,
+                                            color: const Color.fromRGBO(28, 78, 80, 1),),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                           SizedBox(
-                            height: height * 0.03,
-                          )
+                            height: height * 0.02,
+                          ),
                         ]),
                   ),
                 )))));
@@ -895,51 +658,33 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                   endDrawer: const EndDrawerMenuTeacher(),
                   backgroundColor: Colors.white,
                   appBar: AppBar(
+                    iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: height * 0.05),
                     leading: IconButton(
                       icon: const Icon(
                         Icons.chevron_left,
                         size: 40.0,
-                        color: Colors.white,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
                     ),
                     toolbarHeight: height * 0.100,
+                    elevation: 0,
                     centerTitle: true,
-                    title: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.results_caps,
-                            //'RESULTS',
-                            style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: height * 0.0175,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.total_caps,
-                            //"TOTAL",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: height * 0.0225,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ]),
+                    title: Text(
+                      AppLocalizations.of(context)!.assessment_result,
+                      //'RESULTS',
+                      style: TextStyle(
+                        color: const Color.fromRGBO(28, 78, 80, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                     flexibleSpace: Container(
                       decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              end: Alignment.bottomCenter,
-                              begin: Alignment.topCenter,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1),
-                              ])),
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   body: SingleChildScrollView(
@@ -953,37 +698,15 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    widget.result.assessmentCode!,
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(28, 78, 80, 1),
-                                      fontSize: height * 0.025,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                                // Row(
-                                //   children: [
-                                //     const Icon(
-                                //       Icons.drafts_outlined,
-                                //       color: Color.fromRGBO(82, 165, 160, 1),
-                                //     ),
-                                //     SizedBox(
-                                //       width: width * 0.03,
-                                //     ),
-                                //     const Icon(
-                                //       Icons.print_outlined,
-                                //       color: Color.fromRGBO(82, 165, 160, 1),
-                                //     )
-                                //   ],
-                                // )
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.only(top:8.0,bottom:8.0),
+                              child: CustomCard(
+                                height: height,
+                                width: width,
+                                //subject: results[index].subject,
+                                result: widget.result,
+                                isShowTotal: true,
+                              ),
                             ),
                             SizedBox(
                               height: height * 0.018,
@@ -992,11 +715,41 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                               clipBehavior: Clip.none,
                               children: [
                                 showIcon == Icons.expand_circle_down_outlined
-                                    ? CustomCard1(
-                                  height: height,
-                                  width: width,
-                                  resultIndex: widget.result,
-                                )
+                                    ? Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color.fromRGBO(153, 153, 153, 0.25),),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(5)
+                                        )),
+                                    // height: height * 0.31,
+                                    child:Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            AppLocalizations.of(context)!.assessment_details,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                                fontSize: height * 0.022,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          icon: Icon(
+                                            showIcon,
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            size: height * 0.04,
+                                          ),
+                                          onPressed: () {
+                                            changeIcon(showIcon);
+                                          },
+                                        ),
+                                      ],
+                                    ))
                                     : Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(
@@ -1004,726 +757,479 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                             233, 233, 233, 1),
                                       ),
                                       borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  height: height * 0.6912,
+                                          Radius.circular(5))),
+                                  height: height * 0.4812,
                                   child: Column(
                                     children: [
-                                      ListTile(
-                                        title: Text(
-                                          "${AppLocalizations.of(context)!
-                                              .sub_small} - ${widget.result
-                                              .subject}",
-//'Subject - ${widget.result.subject}',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  28, 78, 80, 1),
-                                              fontSize: height * 0.0187,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                        trailing: Column(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                          children: [
-                                            Icon(
-                                              Icons.circle,
-                                              color:
-                                              end.isBefore(now)
-                                                  ? const Color.fromRGBO(
-                                                  66, 194, 0, 1)
-                                                  : d.isAfter(now)
-                                                  ? const Color.fromRGBO(
-                                                  179, 179, 179, 1)
-                                                  : const Color.fromRGBO(
-                                                  255, 157, 77, 1),
-                                              size: height * 0.03,
-                                            ),
-                                            Text(
-                                              (widget.result.assessmentResults !=
-                                                  null &&
-                                                  widget.result.assessmentResults
-                                                      ?.isEmpty == false)
-                                                  ? convertDate(widget.result
-                                                  .assessmentStartDate)
-                                                  : " ",
-                                              style: TextStyle(
+                                      Container(
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: const Color.fromRGBO(153, 153, 153, 0.25),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)
+                                              )),
+                                          // height: height * 0.31,
+                                          child:Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  AppLocalizations.of(context)!.assessment_details,
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                                      fontSize: height * 0.022,
+                                                      fontFamily: "Inter",
+                                                      fontWeight: FontWeight.w500),
+                                                ),
+                                              ),
+                                              IconButton(
+                                                icon: Icon(
+                                                  showIcon,
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 1),
-                                                  fontSize: height * 0.015,
+                                                  size: height * 0.04,
+                                                ),
+                                                onPressed: () {
+                                                  changeIcon(showIcon);
+                                                },
+                                              ),
+                                            ],
+                                          )),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.time_limit,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              assessmentDuration != null
+                                                  ? convertDuration(
+                                                  assessmentDuration)
+                                                  : "0",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
                                             ),
                                           ],
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(
-                                            right: width * 0.02,
-                                            left: width * 0.02),
-                                        child: const Divider(),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .advisor,
-                                                //'Advisor',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        28, 78, 80, 1),
-                                                    fontSize: height * 0.0185,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w700),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.01,
-                                              ),
-                                              Text(
-                                                widget.advisorName!,
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.0175,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.005),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "${AppLocalizations.of(context)!
-                                                .title} - ${widget.result.topic}",
-                                            //'Title - ${widget.result.topic}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.005),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            '${AppLocalizations.of(context)!
-                                                .sub_topic_optional} ${widget
-                                                .result.subTopic}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.004),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "${AppLocalizations.of(context)!
-                                                .degree_small} - ${widget.result
-                                                .studentClass}",
-                                            //'Class ${widget.result.studentClass}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                      ),
-                                      const Divider(),
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            height: height * 0.103,
-                                            width: width * 0.31,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              //crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  widget.result.assessmentType!,
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .category,
-                                                  //'Category',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                              ],
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.start_date_time,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
                                             ),
-                                          ),
-                                          Container(
-                                            height: height * 0.103,
-                                            width: width * 0.306,
-                                            decoration: const BoxDecoration(
-                                              border: Border(
-                                                left: BorderSide(
-                                                    width: 1.0,
-                                                    color: Color.fromRGBO(
-                                                        232, 232, 232, 1)),
-                                                right: BorderSide(
-                                                    width: 1.0,
-                                                    color: Color.fromRGBO(
-                                                        232, 232, 232, 1)),
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              //crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${widget.result
-                                                      .totalQuestions!}",
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .total_small,
-                                                  //'Total',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .qn_button,
-                                                  //'Questions',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: height * 0.103,
-                                            width: width * 0.265,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${widget.result.totalScore!}",
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .total_small,
-                                                  //'Total',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .marks_small,
-                                                  //'Marks',
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      const Divider(),
-                                      Padding(
-                                        padding:
-                                        EdgeInsets.only(left: width * 0.03),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            AppLocalizations.of(context)!
-                                                .schedule_small,
-                                            //'Schedule',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    28, 78, 80, 1),
-                                                fontSize: height * 0.017,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            top: height * 0.007),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .test_time_permitted,
-                                                //'Test max. Time permitted: ',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                assessmentDuration != null
-                                                    ? convertDuration(
-                                                    assessmentDuration)
-                                                    : "0",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            top: height * 0.007),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .test_opening_time,
-                                                //'Test Opening Date & Time:',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(assessmentStartDate != null
+                                            Text(
+                                              assessmentStartDate != null
                                                   ? '${convertDate(
                                                   assessmentStartDate)}, ${convertTime(
                                                   assessmentStartDate)} IST'
                                                   : " ",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            top: height * 0.007),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .test_closing_time,
-                                                //'Test Closing Date & Time:',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                assessmentEndDate != null
-                                                    ? '${convertDate(
-                                                    assessmentEndDate)}, ${convertTime(
-                                                    assessmentEndDate)} + " IST"'
-                                                    : " ",
-                                                //"$closingDate, $closingTime IST",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.end_date_time,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              assessmentEndDate != null
+                                                  ? '${convertDate(
+                                                  assessmentEndDate)}, ${convertTime(
+                                                  assessmentEndDate)} IST'
+                                                  : " ",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: height * 0.02,
+                                      const Divider(),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "${AppLocalizations.of(context)!.category}: ",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              " ${widget.result.assessmentType}" ?? "",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .guest,
-                                                //'Guest',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        28, 78, 80, 1),
-                                                    fontSize: height * 0.0185,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w700),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.01,
-                                              ),
-                                              Text(
-                                                widget.result
-                                                    .guestStudentAllowed ==
-                                                    true
-                                                    ? AppLocalizations.of(
-                                                    context)!.allowed
-                                                //Allowed"
-                                                    : AppLocalizations.of(
-                                                    context)!.not_allowed,
-                                                //"Not Allowed",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.0175,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.number_of_attempts,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              widget.result.totalAttempts != null ? "${widget.result.totalAttempts} " : "0",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      // Padding(
-                                      //   padding: EdgeInsets.only(
-                                      //       left: width * 0.03,
-                                      //       bottom: height * 0.015,
-                                      //       top: height * 0.002),
-                                      //   child: Align(
-                                      //     alignment: Alignment.centerLeft,
-                                      //     child: Row(
-                                      //       children: [
-                                      //         Text(
-                                      //           'URL: ',
-                                      //           style: TextStyle(
-                                      //               color: const Color.fromRGBO(
-                                      //                   102, 102, 102, 1),
-                                      //               fontSize: height * 0.015,
-                                      //               fontFamily: "Inter",
-                                      //               fontWeight:
-                                      //               FontWeight.w400),
-                                      //         ),
-                                      //         SizedBox(
-                                      //           width: width * 0.21,
-                                      //         ),
-                                      //         // Container(
-                                      //         //   height: height * 0.037,
-                                      //         //   width: width * 0.52,
-                                      //         //   alignment: Alignment.center,
-                                      //         //   child: Text(
-                                      //         //     widget.result.url!,
-                                      //         //     style: TextStyle(
-                                      //         //         color:
-                                      //         //         const Color.fromRGBO(
-                                      //         //             82, 165, 160, 1),
-                                      //         //         fontSize: height * 0.0175,
-                                      //         //         fontFamily: "Inter",
-                                      //         //         fontWeight:
-                                      //         //         FontWeight.w500),
-                                      //         //   ),
-                                      //         // ),
-                                      //       ],
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // Padding(
-                                      //   padding: EdgeInsets.only(
-                                      //       left: width * 0.03,
-                                      //       bottom: height * 0.015,
-                                      //       top: height * 0.002),
-                                      //   child: Align(
-                                      //     alignment: Alignment.centerLeft,
-                                      //     child: Row(
-                                      //       children: [
-                                      //         Text(
-                                      //           'Android APP:',
-                                      //           style: TextStyle(
-                                      //               color: const Color.fromRGBO(
-                                      //                   102, 102, 102, 1),
-                                      //               fontSize: height * 0.015,
-                                      //               fontFamily: "Inter",
-                                      //               fontWeight:
-                                      //               FontWeight.w400),
-                                      //         ),
-                                      //         SizedBox(
-                                      //           width: width * 0.1,
-                                      //         ),
-                                      //         Container(
-                                      //           height: height * 0.037,
-                                      //           width: width * 0.52,
-                                      //           alignment: Alignment.center,
-                                      //           child: Text(
-                                      //             widget.result.androidUrl!,
-                                      //             style: TextStyle(
-                                      //                 color:
-                                      //                 const Color.fromRGBO(
-                                      //                     82, 165, 160, 1),
-                                      //                 fontSize: height * 0.0175,
-                                      //                 fontFamily: "Inter",
-                                      //                 fontWeight:
-                                      //                 FontWeight.w500),
-                                      //           ),
-                                      //         ),
-                                      //       ],
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                      // Padding(
-                                      //   padding: EdgeInsets.only(
-                                      //       left: width * 0.03,
-                                      //       bottom: height * 0.015,
-                                      //       top: height * 0.002),
-                                      //   child: Align(
-                                      //     alignment: Alignment.centerLeft,
-                                      //     child: Row(
-                                      //       children: [
-                                      //         Text(
-                                      //           'IOS APP:',
-                                      //           style: TextStyle(
-                                      //               color: const Color.fromRGBO(
-                                      //                   102, 102, 102, 1),
-                                      //               fontSize: height * 0.015,
-                                      //               fontFamily: "Inter",
-                                      //               fontWeight:
-                                      //               FontWeight.w400),
-                                      //         ),
-                                      //         SizedBox(
-                                      //           width: width * 0.17,
-                                      //         ),
-                                      //         Container(
-                                      //           height: height * 0.037,
-                                      //           width: width * 0.52,
-                                      //           alignment: Alignment.center,
-                                      //           child: Text(
-                                      //             widget.result.iosUrl!,
-                                      //             style: TextStyle(
-                                      //                 color:
-                                      //                 const Color.fromRGBO(
-                                      //                     82, 165, 160, 1),
-                                      //                 fontSize: height * 0.0175,
-                                      //                 fontFamily: "Inter",
-                                      //                 fontWeight:
-                                      //                 FontWeight.w500),
-                                      //           ),
-                                      //         ),
-                                      //       ],
-                                      //     ),
-                                      //   ),
-                                      // ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.guest_students,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              widget.result.guestStudentAllowed == true
+                                                  ? AppLocalizations.of(
+                                                  context)!.allowed
+                                              //"Allowed"
+                                                  : AppLocalizations.of(
+                                                  context)!.not_allowed,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.answer_in_practice,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            const Text(
+                                              "-",
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.published_looq,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            const Text(
+                                              "-",
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.advisor_name,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              widget.advisorName ?? "",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.advisor_email,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              widget.advisorEmail??"",
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.whatsapp_link,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            Text(
+                                              widget.result.url ?? "" ,
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                                  // fontSize: widget.height * 0.013,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                Positioned(
-                                  top: showIcon ==
-                                      Icons.expand_circle_down_outlined
-                                      ? height * 0.158
-                                      : height * 0.661,
-                                  right: width * 0.07,
-                                  child: IconButton(
-                                    icon: Icon(
-                                      showIcon,
-                                      color: const Color.fromRGBO(
-                                          82, 165, 160, 1),
-                                      size: height * 0.03,
-                                    ),
-                                    onPressed: () {
-                                      changeIcon(showIcon);
-                                    },
-                                  ),
-                                )
                               ],
                             ),
                             SizedBox(
                               height: height * 0.02,
                             ),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-
-                                widget.result.assessmentResults!.length != null
-                                    ? "${AppLocalizations.of(context)!
-                                    .total_parti_list} (${widget.result
-                                    .assessmentResults!.length})"
-                                //'Total Participants List (${widget.result.assessmentResults!.length})'
-                                    : "${AppLocalizations.of(context)!
-                                    .total_parti_list} (0)",
-                                //'Total Participants List(0)'
-                                style: TextStyle(
-                                    fontSize: height * 0.0187,
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w700),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                    AppLocalizations.of(context)!.total_parti_list,
+                                  //'Total Participants List(0)'
+                                  style: TextStyle(
+                                      fontSize: height * 0.022,
+                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
-                            SizedBox(
-                              height: height * 0.004,
-                            ),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                AppLocalizations.of(context)!
-                                    .tap_to_student_details,
-                                //'Tap on respective student for details',
-                                style: TextStyle(
-                                    fontSize: height * 0.0125,
-                                    color: const Color.fromRGBO(148, 148, 148, 1),
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right :8),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  AppLocalizations.of(context)!
+                                      .tap_to_student_details,
+                                  //'Tap on respective student for details',
+                                  style: TextStyle(
+                                      fontSize: height * 0.015,
+                                      color: const Color.fromRGBO(148, 148, 148, 1),
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: height * 0.02,
                             ),
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  physics: const ClampingScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: widget.result.assessmentResults!
-                                      .length,
-                                  itemBuilder: (context, index) =>
-                                      Column(
-                                        children: [
-                                          MouseRegion(
-                                              cursor: SystemMouseCursors.click,
-                                              child: GestureDetector(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .rightToLeft,
-                                                      child: TeacherResultIndividualStudent(
-                                                        result: widget.result,
-                                                        comingFrom: "total",
-                                                        index: index,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                                child: ResultTotalCard(
-                                                    height: height,
-                                                    width: width,
-                                                    results: widget.result,
-                                                    index: index),
-                                              )),
-                                          SizedBox(
-                                            height: height * 0.02,
+                            for (int index=resultStart;index<resultLength;index++)
+                              Column(
+                                children: [
+                                  MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: TeacherResultIndividualStudent(
+                                                result: widget.result,
+                                                comingFrom: "total",
+                                                index: index,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: ResultTotalCard(
+                                            height: height,
+                                            width: width,
+                                            results: widget.result,
+                                            index: index),
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                ],
+                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Showing ${resultStart + 1} to ${resultStart+10 <widget.result.assessmentResults!.length ? resultStart+10:resultLength} of ${widget.result.assessmentResults?.length ?? 0}',
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: height * 0.016),
+                                ),
+                                Wrap(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: (){
+                                            if(resultLength>10){
+                                            setState(() {
+                                                resultLength=widget.result.assessmentResults!.length-resultStart < 10 ? 10 :resultLength - 10;
+                                                resultStart=resultStart-10;
+                                            });}
+                                          },
+                                          child: Container(
+                                            height: height * 0.03,
+                                            width: width * 0.1,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            child: Icon(
+                                              Icons.keyboard_double_arrow_left,
+                                              size: height * 0.015,
+                                              color: const Color.fromRGBO(28, 78, 80, 1),),
                                           ),
-                                        ],
-                                      ),
-                                )),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                          child: Container(
+                                            height: height * 0.03,
+                                            width: width * 0.15,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: height * 0.016),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: (){
+                                            if(resultLength<widget.result.assessmentResults!.length){
+                                            setState(() {
+                                              resultLength=widget.result.assessmentResults!.length-resultStart > 0 ?widget.result.assessmentResults!.length-resultStart :resultLength;
+                                              resultStart=resultStart+10;
+                                            });
+                                            }
+                                          },
+                                          child: Container(
+                                            height: height * 0.03,
+                                            width: width * 0.1,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            child: Icon(
+                                              Icons.keyboard_double_arrow_right,
+                                              size: height * 0.015,
+                                              color: const Color.fromRGBO(28, 78, 80, 1),),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                             SizedBox(
-                              height: height * 0.03,
-                            )
+                              height: height * 0.02,
+                            ),
                           ]),
                     ),
                   )));

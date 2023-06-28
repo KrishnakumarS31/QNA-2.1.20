@@ -101,7 +101,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
               backgroundColor: Colors.white,
               body:
               Column(children: [
-                      SizedBox(height: localHeight * 0.01),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -109,8 +108,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                fontSize: localHeight * 0.02),
+                                fontWeight: FontWeight.w600,
+                                fontSize: localHeight * 0.025),
                           ),
                         ],
                       ),
@@ -184,12 +183,13 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   true
                                                   ? const Text("")
                                                   : Text(
-                                                  Provider
-                                                      .of<Questions>(context, listen: false)
-                                                      .totalQuestion['$index'][0].isEmpty?
-                                                  AppLocalizations.of(context)!.not_answered:
-                                                  AppLocalizations.of(context)!.incorrectly_answered,
+                                                  (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
+                                                      ? AppLocalizations.of(context)!.not_answered
                                                   //"Not answered",
+                                                      : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
+                                                 ?  AppLocalizations.of(context)!.incorrectly_answered
+                                                  : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(
@@ -355,7 +355,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           fontFamily: 'Inter',
                           fontSize:
                           localHeight *
-                              0.03,
+                              0.025,
                           fontWeight: FontWeight
                               .w600,
                           color: const Color.fromRGBO(82, 165, 160, 1))),
@@ -476,7 +476,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
               backgroundColor: Colors.white,
               body:
               Column(children: [
-                SizedBox(height: localHeight * 0.015),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -484,8 +483,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                          fontSize: localHeight * 0.02),
+                          fontWeight: FontWeight.w600,
+                          fontSize: localHeight * 0.025),
                     ),
                   ],
                 ),
@@ -559,27 +558,34 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 true
                                                 ? const Text("")
                                                 : Text(
-                                                Provider
-                                                    .of<Questions>(context, listen: false)
-                                                    .totalQuestion['$index'][0].isEmpty?
-                                                AppLocalizations.of(context)!.not_answered:
-                                                AppLocalizations.of(context)!.incorrectly_answered,
-                                                //"Not answered",
-                                                style: TextStyle(
-                                                    color: const Color
-                                                        .fromRGBO(
-                                                        238,
-                                                        71,
-                                                        0,
-                                                        1),
-                                                    fontFamily:
-                                                    'Inter',
-                                                    fontWeight:
-                                                    FontWeight
-                                                        .w600,
-                                                    fontSize:
-                                                    localHeight *
-                                                        0.014)),
+                                              (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
+                                                  ? AppLocalizations.of(context)!.not_answered
+                                              //"Not answered",
+                                                  : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
+                                                  ?  AppLocalizations.of(context)!.incorrectly_answered
+                                                  : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+                                                // Provider
+                                                //     .of<Questions>(context, listen: false)
+                                                //     .totalQuestion['$index'][0].isEmpty?
+                                                // AppLocalizations.of(context)!.not_answered:
+                                                // AppLocalizations.of(context)!.incorrectly_answered,
+                                                // //"Not answered",
+                                                // style: TextStyle(
+                                                //     color: const Color
+                                                //         .fromRGBO(
+                                                //         238,
+                                                //         71,
+                                                //         0,
+                                                //         1),
+                                                //     fontFamily:
+                                                //     'Inter',
+                                                //     fontWeight:
+                                                //     FontWeight
+                                                //         .w600,
+                                                //     fontSize:
+                                                //     localHeight *
+                                                //         0.014)
+                                            ),
                                           ]),
                                           SizedBox(
                                               height:
@@ -730,7 +736,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             fontFamily: 'Inter',
                             fontSize:
                             localHeight *
-                                0.03,
+                                0.025,
                             fontWeight: FontWeight
                                 .w600,
                             color: const Color.fromRGBO(82, 165, 160, 1))),
@@ -849,7 +855,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
               backgroundColor: Colors.white,
               body:
               Column(children: [
-                SizedBox(height: localHeight * 0.015),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -857,8 +862,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
-                          fontSize: localHeight * 0.02),
+                          fontWeight: FontWeight.w600,
+                          fontSize: localHeight * 0.025),
                     ),
                   ],
                 ),
@@ -932,11 +937,17 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 true
                                                 ? const Text("")
                                                 : Text(
-                                                Provider
-                                                    .of<Questions>(context, listen: false)
-                                                    .totalQuestion['$index'][0].isEmpty?
-                                                AppLocalizations.of(context)!.not_answered:
-                                                AppLocalizations.of(context)!.incorrectly_answered,
+                                                (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
+                                                    ? AppLocalizations.of(context)!.not_answered
+                                                //"Not answered",
+                                                    : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
+                                                    ?  AppLocalizations.of(context)!.incorrectly_answered
+                                                    : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+                                                // ("${values.data!.questions![index - 1].questionType}" == "MCQ" && Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
+                                                //     ?
+                                                // AppLocalizations.of(context)!.not_answered
+                                                //     :
+                                                // AppLocalizations.of(context)!.incorrectly_answered,
                                                 //"Not answered",
                                                 style: TextStyle(
                                                     color: const Color
@@ -1103,7 +1114,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             fontFamily: 'Inter',
                             fontSize:
                             localHeight *
-                                0.03,
+                                0.025,
                             fontWeight: FontWeight
                                 .w600,
                             color: const Color.fromRGBO(82, 165, 160, 1))),

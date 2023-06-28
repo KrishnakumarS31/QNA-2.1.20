@@ -5,8 +5,8 @@ import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../DataSource/http_url.dart';
-class StudentForgotPassword extends StatefulWidget {
-  const StudentForgotPassword(
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword(
       {Key? key,
         required this.email,
         required this.otp,
@@ -20,10 +20,10 @@ class StudentForgotPassword extends StatefulWidget {
 
 
   @override
-  StudentForgotPasswordState createState() => StudentForgotPasswordState();
+  ForgotPasswordState createState() => ForgotPasswordState();
 }
 
-class StudentForgotPasswordState extends State<StudentForgotPassword> {
+class ForgotPasswordState extends State<ForgotPassword> {
   final formKey = GlobalKey<FormState>();
   TextEditingController oldPassword = TextEditingController();
   TextEditingController newPassword = TextEditingController();

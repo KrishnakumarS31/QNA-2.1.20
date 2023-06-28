@@ -75,23 +75,23 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     height: localHeight / 10,
                     child: Row(
                         children: [
-                          SizedBox(width: width * 0.03),
+                          SizedBox(width: width * 0.015),
                           CircleAvatar(
-                            radius: MediaQuery.of(context).size.width * 0.1,
+                            radius: MediaQuery.of(context).size.width * 0.08,
                             backgroundColor:
                             const Color.fromRGBO(0, 106, 100, 0),
                             child: Image.asset(
                               "assets/images/ProfilePic_Avatar.png",
                             ),
                           ),
-                          const SizedBox(width: 20),
+                          // const SizedBox(width: 5),
                           Text(
                             name,
                             style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w600,
-                                fontSize: width * 0.06),
+                                fontSize: width * 0.04),
                           ),
                         ]),
                   ),
@@ -103,33 +103,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w500,
 
-                            fontSize: width * 0.04),
+                            fontSize: width * 0.03),
                       )),
-                  // Column(
-                  //   children: [
-                  //     Container(
-                  //         padding: const EdgeInsets.only(left: 15),
-                  //         child: Text(
-                  //           AppLocalizations.of(context)!.student,
-                  //           style: TextStyle(
-                  //               color: const Color.fromRGBO(153, 153, 153, 1),
-                  //               fontFamily: 'Inter',
-                  //               fontWeight: FontWeight.w500,
-                  //
-                  //               fontSize: width * 0.04),
-                  //         )),
-                  //     // Container(
-                  //     //     padding: const EdgeInsets.only(left: 15),
-                  //     //     child: Text(
-                  //     //       email,
-                  //     //       style: const TextStyle(
-                  //     //           color: Color.fromRGBO(221, 221, 221, 1),
-                  //     //           fontFamily: 'Inter',
-                  //     //           fontWeight: FontWeight.w500,
-                  //     //           fontSize: 12),
-                  //     //     )),
-                  //   ],
-                  // ),
                   SizedBox(height: localHeight * 0.020),
                   //    )
                 ],
@@ -196,23 +171,23 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     height: localHeight / 10,
                     child: Row(
                         children: [
-                          SizedBox(width: width * 0.03),
+                          SizedBox(width: width * 0.015),
                       CircleAvatar(
-                        radius: MediaQuery.of(context).size.width * 0.1,
+                        radius: MediaQuery.of(context).size.width * 0.08,
                         backgroundColor:
                         const Color.fromRGBO(0, 106, 100, 0),
                         child: Image.asset(
                           "assets/images/ProfilePic_Avatar.png",
                         ),
                       ),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 10),
                       Text(
                         name,
                         style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w600,
-                            fontSize: width * 0.06),
+                            fontSize: width * 0.05),
                       ),
                     ]),
                   ),

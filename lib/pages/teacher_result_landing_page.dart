@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Entity/Teacher/result_entity.dart';
 import 'package:qna_test/Pages/teacher_result_assessment.dart';
 import '../Components/custom_card.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -17,9 +18,11 @@ class TeacherResultLanding extends StatefulWidget {
     Key? key,
     required this.userId,
     this.advisorName,
+    this.advisorEmail
   }) : super(key: key);
   final int? userId;
   final String? advisorName;
+  final String? advisorEmail;
 
   @override
   TeacherResultLandingState createState() => TeacherResultLandingState();
@@ -32,346 +35,43 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   GetResultModel getResultModel = GetResultModel(guestStudentAllowed: false);
   List<GetResultModel> results = [];
   List<GetResultModel> allResults = [];
+  int totalCount=0;
   late List<AssessmentResults> inProgressResults;
   late List<AssessmentResults> submittedResults;
   late GetResultModel inProgress;
   late GetResultModel submitted;
   UserDetails userDetails=UserDetails();
+
+  int resultStart=0;
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 0)).then((_) {
-     if(MediaQuery.of(context).size.width > 500)
-       {
-         showModalBottomSheet(
-             constraints: BoxConstraints(
-               maxWidth: webWidth,
-             ),
-             shape: const RoundedRectangleBorder(
-               borderRadius: BorderRadius.only(
-                   topLeft: Radius.circular(25.0),
-                   topRight: Radius.circular(25.0)),
-             ),
-             context: context,
-             builder: (builder) {
-               return Container(
-                 decoration: BoxDecoration(
-                     border: Border.all(
-                       color: Colors.white,
-                     ),
-                     borderRadius: const BorderRadius.only(
-                         topLeft: Radius.circular(20),
-                         topRight: Radius.circular(20))),
-                 height: MediaQuery.of(context).copyWith().size.height * 0.245,
-                 child: Padding(
-                   padding: EdgeInsets.only(
-                       left: webWidth * 0.10),
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.center,
-                     children: [
-                       SizedBox(
-                         height:
-                         MediaQuery.of(context).copyWith().size.height * 0.026,
-                       ),
-                       Padding(
-                         padding: EdgeInsets.only(
-                             right: webWidth *
-                                 0.055),
-                         child: Align(
-                           alignment: Alignment.topRight,
-                           child: IconButton(
-                             icon: Icon(
-                               Icons.close,
-                               color: const Color.fromRGBO(82, 165, 160, 1),
-                               size: MediaQuery.of(context).copyWith().size.height * 0.05,
-                             ),
-                             onPressed: () {
-                               Navigator.of(context).pop();
-                             },
-                           ),
-                         ),
-                       ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Icon(
-                             Icons.circle,
-                             color: const Color.fromRGBO(66, 194, 0, 1),
-                             size: MediaQuery.of(context).copyWith().size.height *
-                                 0.02,
-                           ),
-                           Text(
-                             AppLocalizations.of(context)!.completed_tests,
-                             //"      Completed Tests",
-                             style: Theme.of(context)
-                                 .primaryTextTheme
-                                 .bodyLarge
-                                 ?.merge(TextStyle(
-                                 color: const Color.fromRGBO(51, 51, 51, 1),
-                                 fontFamily: 'Inter',
-                                 fontWeight: FontWeight.w400,
-                                 fontSize: MediaQuery.of(context)
-                                     .copyWith()
-                                     .size
-                                     .height *
-                                     0.016)),
-                           ),
-                           SizedBox(
-                             width: webWidth *
-                                 0.052,
-                           ),
-                         ],
-                       ),
-                       SizedBox(
-                         height:
-                         MediaQuery.of(context).copyWith().size.height * 0.026,
-                       ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Icon(
-                             Icons.circle,
-                             color: const Color.fromRGBO(255, 157, 77, 1),
-                             size: MediaQuery.of(context).copyWith().size.height *
-                                 0.02,
-                           ),
-                           Text(
-                             AppLocalizations.of(context)!.inprogress_results,
-                             //"      In Progress Tests",
-                             style: Theme.of(context)
-                                 .primaryTextTheme
-                                 .bodyLarge
-                                 ?.merge(TextStyle(
-                                 color: const Color.fromRGBO(51, 51, 51, 1),
-                                 fontFamily: 'Inter',
-                                 fontWeight: FontWeight.w400,
-                                 fontSize: MediaQuery.of(context)
-                                     .copyWith()
-                                     .size
-                                     .height *
-                                     0.016)),
-                           ),
-                           SizedBox(
-                             width: webWidth *
-                                 0.052,
-                           ),
-                         ],
-                       ),
-                       SizedBox(
-                         height:
-                         MediaQuery.of(context).copyWith().size.height * 0.026,
-                       ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Icon(
-                             Icons.circle,
-                             color: const Color.fromRGBO(179, 179, 179, 1),
-                             size: MediaQuery.of(context).copyWith().size.height *
-                                 0.02,
-                           ),
-                           Text(
-                             AppLocalizations.of(context)!.not_started_tests,
-                             //"      Not Started Tests",
-                             style: Theme.of(context)
-                                 .primaryTextTheme
-                                 .bodyLarge
-                                 ?.merge(TextStyle(
-                                 color: const Color.fromRGBO(51, 51, 51, 1),
-                                 fontFamily: 'Inter',
-                                 fontWeight: FontWeight.w400,
-                                 fontSize: MediaQuery.of(context)
-                                     .copyWith()
-                                     .size
-                                     .height *
-                                     0.016)),
-                           ),
-                           SizedBox(
-                             width: webWidth *
-                                 0.052,
-                           ),
-                         ],
-                       ),
-                     ],
-                   ),
-                 ),
-               );
-             });
-       }
-     else{
-       showModalBottomSheet(
-           constraints: BoxConstraints(
-             maxWidth:  MediaQuery.of(context).size.width > 500 ?  500.0 : MediaQuery.of(context).size.width,
-           ),
-           shape: const RoundedRectangleBorder(
-             borderRadius: BorderRadius.only(
-                 topLeft: Radius.circular(25.0),
-                 topRight: Radius.circular(25.0)),
-           ),
-           context: context,
-           builder: (builder) {
-             return Container(
-               decoration: BoxDecoration(
-                   border: Border.all(
-                     color: Colors.white,
-                   ),
-                   borderRadius: const BorderRadius.only(
-                       topLeft: Radius.circular(20),
-                       topRight: Radius.circular(20))),
-               height: MediaQuery.of(context).copyWith().size.height * 0.245,
-               child: Padding(
-                 padding: EdgeInsets.only(
-                     left: MediaQuery.of(context).copyWith().size.width * 0.10),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.center,
-                   children: [
-                     SizedBox(
-                       height:
-                       MediaQuery.of(context).copyWith().size.height * 0.026,
-                     ),
-                     Padding(
-                       padding: EdgeInsets.only(
-                           right: MediaQuery.of(context).copyWith().size.width *
-                               0.055),
-                       child: Align(
-                         alignment: Alignment.topRight,
-                         child: IconButton(
-                           icon: Icon(
-                             Icons.close,
-                             color: const Color.fromRGBO(82, 165, 160, 1),
-                             size: MediaQuery.of(context).copyWith().size.height * 0.05,
-                           ),
-                           onPressed: () {
-                             Navigator.of(context).pop();
-                           },
-                         ),
-                       ),
-                     ),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Icon(
-                           Icons.circle,
-                           color: const Color.fromRGBO(66, 194, 0, 1),
-                           size: MediaQuery.of(context).copyWith().size.height *
-                               0.02,
-                         ),
-                         Text(
-                           AppLocalizations.of(context)!.completed_tests,
-                           //"      Completed Tests",
-                           style: Theme.of(context)
-                               .primaryTextTheme
-                               .bodyLarge
-                               ?.merge(TextStyle(
-                               color: const Color.fromRGBO(51, 51, 51, 1),
-                               fontFamily: 'Inter',
-                               fontWeight: FontWeight.w400,
-                               fontSize: MediaQuery.of(context)
-                                   .copyWith()
-                                   .size
-                                   .height *
-                                   0.016)),
-                         ),
-                         SizedBox(
-                           width: MediaQuery.of(context).copyWith().size.width *
-                               0.052,
-                         ),
-                       ],
-                     ),
-                     SizedBox(
-                       height:
-                       MediaQuery.of(context).copyWith().size.height * 0.026,
-                     ),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Icon(
-                           Icons.circle,
-                           color: const Color.fromRGBO(255, 157, 77, 1),
-                           size: MediaQuery.of(context).copyWith().size.height *
-                               0.02,
-                         ),
-                         Text(
-                           AppLocalizations.of(context)!.inprogress_results,
-                           //"      In Progress Tests",
-                           style: Theme.of(context)
-                               .primaryTextTheme
-                               .bodyLarge
-                               ?.merge(TextStyle(
-                               color: const Color.fromRGBO(51, 51, 51, 1),
-                               fontFamily: 'Inter',
-                               fontWeight: FontWeight.w400,
-                               fontSize: MediaQuery.of(context)
-                                   .copyWith()
-                                   .size
-                                   .height *
-                                   0.016)),
-                         ),
-                         SizedBox(
-                           width: MediaQuery.of(context).copyWith().size.width *
-                               0.052,
-                         ),
-                       ],
-                     ),
-                     SizedBox(
-                       height:
-                       MediaQuery.of(context).copyWith().size.height * 0.026,
-                     ),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Icon(
-                           Icons.circle,
-                           color: const Color.fromRGBO(179, 179, 179, 1),
-                           size: MediaQuery.of(context).copyWith().size.height *
-                               0.02,
-                         ),
-                         Text(
-                           AppLocalizations.of(context)!.not_started_tests,
-                           //"      Not Started Tests",
-                           style: Theme.of(context)
-                               .primaryTextTheme
-                               .bodyLarge
-                               ?.merge(TextStyle(
-                               color: const Color.fromRGBO(51, 51, 51, 1),
-                               fontFamily: 'Inter',
-                               fontWeight: FontWeight.w400,
-                               fontSize: MediaQuery.of(context)
-                                   .copyWith()
-                                   .size
-                                   .height *
-                                   0.016)),
-                         ),
-                         SizedBox(
-                           width: MediaQuery.of(context).copyWith().size.width *
-                               0.052,
-                         ),
-                       ],
-                     ),
-                   ],
-                 ),
-               ),
-             );
-           });
-     }
-    }
-
-    );
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-    getData();
+    Future.delayed(Duration.zero, (){getData();});
   }
 
+
   Future<int> getData() async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
     ResponseEntity response =
-    await QnaService.getResultDataService(widget.userId, 5, pageLimit,userDetails);
+    await QnaService.getResultDataService(widget.userId, 10, pageLimit,userDetails);
     //widget.userId
     if(response.code == 200) {
-      allResults = List<GetResultModel>.from(
-          response.data.map((x) => GetResultModel.fromJson(x)));
+      Navigator.pop(context);
+      ResultsModelResponse resultsModelResponse=ResultsModelResponse.fromJson(response.data);
+      totalCount = resultsModelResponse.totalCount ?? 0;
+      allResults = resultsModelResponse.results!;
       setState(() {
-        results.addAll(allResults);
+        results=allResults;
         loading = false;
-        pageLimit++;
       });
     }
     else{
@@ -386,408 +86,927 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
-    return
-      Center(
-    child: SizedBox(
-          width: webWidth,
-      child: WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: Colors.white,
-            endDrawer: const EndDrawerMenuTeacher(),
-            appBar: AppBar(
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.chevron_left,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              toolbarHeight: height * 0.100,
-              centerTitle: true,
-              title: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.results_caps,
-                      //'RESULTS',
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.my_assessments,
-                      //"MY ASSESSMENTS",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.0225,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ]),
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        end: Alignment.bottomCenter,
-                        begin: Alignment.topCenter,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ])),
-              ),
-            ),
-            body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    top: height * 0.023,
-                    left: height * 0.023,
-                    right: height * 0.023),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                      SizedBox(
-                        height: height * 0.7,
-                        child:
-                        results.isEmpty
-                            ? Column(
-                              children: [
-                                SizedBox(height: height * 0.3,),
-                                Center(
-                                  child: Text(
-                          AppLocalizations.of(context)!.no_results_found,
-                          //'NO RESULTS FOUND',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.0175,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                                ),
-                              ],
-                            )
-                            : ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: results.length,
-                          itemBuilder: (context, index) => Column(
-                            children: [
-                              MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-                                      submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: TeacherResultAssessment(
-                                              inProgressResults: inProgressResults,
-                                              submittedResults: submittedResults,
-                                              result: results[index],
-                                              userId: widget.userId,
-                                              advisorName: widget.advisorName),
-                                        ),
-                                      );
-                                    },
-                                    child: CustomCard(
-                                        height: height,
-                                        width: webWidth,
-                                        //subject: results[index].subject,
-                                        result: results[index]
-                                    ),
-                                  )),
-                              SizedBox(
-                                height: height * 0.02,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      results.isEmpty?
-                      Align(
-                        alignment: Alignment.center,
-                        child:
-                        Wrap(
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Text(
-                                AppLocalizations.of(context)!.view_more,
-                                //'View More',
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontSize: height * 0.0187,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600)),
-                            Icon(Icons.keyboard_arrow_down,
-                              color: const Color.fromRGBO(141, 167, 167, 1),
-                              size: height * 0.034,),
-                          ],
-                        ),
-                      )
-                          :Align(
-                        alignment: Alignment.center,
-                        child:
-                        MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                                onTap: () async {
-                                  showDialog(
-                                      barrierDismissible: false,
-                                      context: context,
-                                      builder: (context) {
-                                        return const Center(
-                                            child: CircularProgressIndicator(
-                                              color: Color.fromRGBO(48, 145, 139, 1),
-                                            ));
-                                      });
-                                  int res= await getData();
-                                  if(res == 200){
+          if (constraints.maxWidth <= 960 && constraints.maxWidth >=500){
+            return
+              Center(
+                  child: SizedBox(
+                      child: WillPopScope(
+                          onWillPop: () async => false,
+                          child: Scaffold(
+                              resizeToAvoidBottomInset: true,
+                              backgroundColor: Colors.white,
+                              endDrawer: const EndDrawerMenuTeacher(),
+                              appBar: AppBar(
+                                elevation: 0,
+                                iconTheme: const IconThemeData(color: Color.fromRGBO(28, 78, 80, 1),size: 40),
+                                leading: IconButton(
+                                  icon: const Icon(
+                                    Icons.chevron_left,
+                                    size: 40.0,
+                                  ),
+                                  onPressed: () {
                                     Navigator.of(context).pop();
-                                  }
-                                },
-                                child: Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: [
-                                    Text(
-                                        AppLocalizations.of(context)!.view_more,
-                                      //'View More',
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                            fontSize: height * 0.0187,
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w600)),
-                                    Icon(Icons.keyboard_arrow_down,
-                                      color: const Color.fromRGBO(141, 167, 167, 1),
-                                      size: height * 0.034,),
-                                  ],
-                                )
-                            )),
-                      ),
-                      SizedBox(
-                        height: height * 0.02,
-                      ),
-                    ]),
-              ),
-            )))));
-  }
-  else {
-        return WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-                resizeToAvoidBottomInset: true,
-                backgroundColor: Colors.white,
-                endDrawer: const EndDrawerMenuTeacher(),
-                appBar: AppBar(
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.chevron_left,
-                      size: 40.0,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  toolbarHeight: height * 0.100,
-                  centerTitle: true,
-                  title: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.results_caps,
+                                  },
+                                ),
+                                toolbarHeight: height * 0.100,
+                                centerTitle: true,
+                                title: Text(
+                                  AppLocalizations.of(context)!.results_camelcase,
+                                  //'RESULTS',
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontSize: height * 0.0175,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                flexibleSpace: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              body: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      top: height * 0.023,
+                                      left: height * 0.013,
+                                      right: height * 0.013),
+                                  child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+
+                                        Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                              border: Border.all(
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1)),
+                                            ),
+                                            height: height * 0.8,
+                                            child:Column(children: [
+                                              Container(
+                                                  padding: const EdgeInsets.all(8),
+                                                  margin: const EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                        color: const Color.fromRGBO(
+                                                            82, 165, 160, 1)),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    children: [
+                                                      Container(
+                                                        padding: const EdgeInsets.all(2),
+                                                        decoration: BoxDecoration(
+                                                          borderRadius:
+                                                          const BorderRadius.all(
+                                                              Radius.circular(5)),
+                                                          border: Border.all(
+                                                              color: const Color.fromRGBO(
+                                                                  219, 35, 35, 1)),
+                                                        ),
+                                                        child: Row(children: [
+                                                          const Icon(
+                                                            Icons.circle,
+                                                            color: Color.fromRGBO(219, 35, 35, 1),
+                                                            // size: widget.height * 0.03,
+                                                          ),
+                                                          Text(
+                                                            AppLocalizations.of(context)!.live_caps,
+                                                            style: const TextStyle(
+                                                                color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                                // fontSize: widget.height * 0.013,
+                                                                fontFamily: "Inter",
+                                                                fontWeight: FontWeight.w400),
+                                                          ),
+                                                        ],),
+                                                      ),
+                                                      Container(
+                                                        padding: const EdgeInsets.all(2),
+                                                        child: Row(children: [
+                                                          const Icon(
+                                                            Icons.circle,
+                                                            color: Color.fromRGBO(42, 36, 186, 1),
+                                                            // size: widget.height * 0.03,
+                                                          ),
+                                                          Text(
+                                                            AppLocalizations.of(context)!.completed,
+                                                            style: const TextStyle(
+                                                                color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                                // fontSize: widget.height * 0.013,
+                                                                fontFamily: "Inter",
+                                                                fontWeight: FontWeight.w400),
+                                                          ),
+                                                        ],),
+                                                      ),
+                                                      Container(
+                                                        padding: const EdgeInsets.all(2),
+                                                        child: Row(children: [
+                                                          const Icon(
+                                                            Icons.circle,
+                                                            color: Color.fromRGBO(153, 153, 153, 1),
+                                                            // size: widget.height * 0.03,
+                                                          ),
+                                                          Text(
+                                                            AppLocalizations.of(context)!.yet_to_start,
+                                                            style: const TextStyle(
+                                                                color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                                // fontSize: widget.height * 0.013,
+                                                                fontFamily: "Inter",
+                                                                fontWeight: FontWeight.w400),
+                                                          ),
+                                                        ],),
+                                                      )
+                                                    ],
+                                                  )),
+                                              results.isEmpty
+                                                  ? Column(
+                                                children: [
+                                                  Center(
+                                                    child: Text(
+                                                      AppLocalizations.of(context)!.no_results_found,
+                                                      //'NO RESULTS FOUND',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                                        fontSize: height * 0.0175,
+                                                        fontFamily: "Inter",
+                                                        fontWeight: FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                                  : Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: SizedBox(
+                                                      height: height * 0.6,
+                                                      child: ListView.builder(
+                                                        scrollDirection: Axis.vertical,
+                                                        shrinkWrap: true,
+                                                        itemCount: results.length,
+                                                        itemBuilder: (context, index) => Column(
+                                                          children: [
+                                                            MouseRegion(
+                                                                cursor: SystemMouseCursors.click,
+                                                                child: GestureDetector(
+                                                                  onTap: () {
+                                                                    inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+                                                                    submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+                                                                    Navigator.push(
+                                                                      context,
+                                                                      PageTransition(
+                                                                        type: PageTransitionType.rightToLeft,
+                                                                        child: TeacherResultAssessment(
+                                                                            inProgressResults: inProgressResults,
+                                                                            submittedResults: submittedResults,
+                                                                            result: results[index],
+                                                                            userId: widget.userId,
+                                                                            advisorName: widget.advisorName,
+                                                                            advisorEmail:widget.advisorEmail),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                  child: Padding(
+                                                                    padding: const EdgeInsets.only(top:8.0,bottom:8.0),
+                                                                    child: CustomCard(
+                                                                        height: height,
+                                                                        width: width,
+
+                                                                        //subject: results[index].subject,
+                                                                        result: results[index]
+                                                                    ),
+                                                                  ),
+                                                                )),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                        'Showing ${resultStart + 1} to ${resultStart+10 <results.length?resultStart+10:results.length} of $totalCount',
+                                                        style: TextStyle(
+                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontSize: height * 0.016),
+                                                      ),
+                                                      Wrap(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              GestureDetector(
+                                                                onTap: (){
+                                                                  setState(() {
+                                                                    pageLimit--;
+                                                                    resultStart=resultStart-10;
+                                                                    // results.removeRange(results.length-10, results.length);
+                                                                  });
+                                                                  getData();
+                                                                  setState(() {
+
+                                                                  });
+                                                                },
+                                                                child: Container(
+                                                                  height: height * 0.03,
+                                                                  width: width * 0.1,
+                                                                  decoration: BoxDecoration(
+                                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                                    borderRadius: const BorderRadius.all(
+                                                                        Radius.circular(5)),
+                                                                  ),
+                                                                  child: Icon(
+                                                                    Icons.keyboard_double_arrow_left,
+                                                                    size: height * 0.015,
+                                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                                child: Container(
+                                                                  height: height * 0.03,
+                                                                  width: width * 0.15,
+                                                                  decoration: BoxDecoration(
+                                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                                    borderRadius: const BorderRadius.all(
+                                                                        Radius.circular(5)),
+                                                                  ),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                                                      style: TextStyle(
+                                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                          fontFamily: 'Inter',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: height * 0.016),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              GestureDetector(
+                                                                onTap: (){
+                                                                  setState(() {
+                                                                    resultStart=resultStart+10;
+                                                                    pageLimit++;
+                                                                  });
+                                                                  getData();
+                                                                },
+                                                                child: Container(
+                                                                  height: height * 0.03,
+                                                                  width: width * 0.1,
+                                                                  decoration: BoxDecoration(
+                                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                                    borderRadius: const BorderRadius.all(
+                                                                        Radius.circular(5)),
+                                                                  ),
+                                                                  child: Icon(
+                                                                    Icons.keyboard_double_arrow_right,
+                                                                    size: height * 0.015,
+                                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],)
+
+                                        ),
+
+                                      ]),
+                                ),
+                              )))));
+          }
+          else if (constraints.maxWidth > 960) {
+            return
+              WillPopScope(
+                  onWillPop: () async => false,
+                  child: Scaffold(
+                      resizeToAvoidBottomInset: true,
+                      backgroundColor: Colors.white,
+                      endDrawer: const EndDrawerMenuTeacher(),
+                      appBar: AppBar(
+                        iconTheme: const IconThemeData(color: Color.fromRGBO(28, 78, 80, 1),size: 40),
+                        elevation: 0,
+                        leading: IconButton(
+                          icon: const Icon(
+                            Icons.chevron_left,
+                            size: 40.0,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        toolbarHeight: height * 0.100,
+                        centerTitle: true,
+                        title: Text(
+                          AppLocalizations.of(context)!.results_camelcase,
                           //'RESULTS',
                           style: TextStyle(
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: height * 0.0175,
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0225,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.my_assessments,
-                          //"MY ASSESSMENTS",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: height * 0.0225,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
+                        flexibleSpace: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.white,
                           ),
                         ),
-                      ]),
-                  flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            end: Alignment.bottomCenter,
-                            begin: Alignment.topCenter,
-                            colors: [
-                              Color.fromRGBO(0, 106, 100, 1),
-                              Color.fromRGBO(82, 165, 160, 1),
-                            ])),
-                  ),
-                ),
-                body: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        top: height * 0.023,
-                        left: height * 0.023,
-                        right: height * 0.023),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          SizedBox(
-                            height: height * 0.7,
-                            child:
-                            results.isEmpty
-                                ? Column(
+                      ),
+                      body: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.00500, left: height * 0.5,right: height * 0.5),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(height: height * 0.3,),
-                                Center(
-                                  child: Text(
-                                    AppLocalizations.of(context)!.no_results_found,
-                                    //'NO RESULTS FOUND',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(28, 78, 80, 1),
-                                      fontSize: height * 0.0175,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                                : ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: results.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-                                          submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.rightToLeft,
-                                              child: TeacherResultAssessment(
-                                                  inProgressResults: inProgressResults,
-                                                  submittedResults: submittedResults,
-                                                  result: results[index],
-                                                  userId: widget.userId,
-                                                  advisorName: widget.advisorName),
-                                            ),
-                                          );
-                                        },
-                                        child: CustomCard(
-                                            height: height,
-                                            width: width,
-                                            //subject: results[index].subject,
-                                            result: results[index]
-                                        ),
-                                      )),
-                                  SizedBox(
-                                    height: height * 0.02,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
 
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          results.isEmpty?
-                          Align(
-                            alignment: Alignment.center,
-                            child:
-                            Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: [
-                                Text(
-                                    AppLocalizations.of(context)!.view_more,
-                                    //'View More',
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                        fontSize: height * 0.0187,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600)),
-                                Icon(Icons.keyboard_arrow_down,
-                                  color: const Color.fromRGBO(141, 167, 167, 1),
-                                  size: height * 0.034,),
-                              ],
-                            ),
-                          )
-                              :Align(
-                            alignment: Alignment.center,
-                            child:
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                    onTap: () async {
-                                      showDialog(
-                                          barrierDismissible: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return const Center(
-                                                child: CircularProgressIndicator(
-                                                  color: Color.fromRGBO(48, 145, 139, 1),
-                                                ));
-                                          });
-                                      int res= await getData();
-                                      if(res == 200){
-                                        Navigator.of(context).pop();
-                                      }
-                                    },
-                                    child: Wrap(
-                                      crossAxisAlignment: WrapCrossAlignment.center,
-                                      children: [
-                                        Text(
-                                            AppLocalizations.of(context)!.view_more,
-                                            //'View More',
-                                            style: TextStyle(
+                                Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      const BorderRadius.all(
+                                          Radius.circular(5)),
+                                      border: Border.all(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1)),
+                                    ),
+                                    height: height * 0.8,
+                                    child:Column(children: [
+                                      Container(
+                                          padding: const EdgeInsets.all(8),
+                                          margin: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                            const BorderRadius.all(
+                                                Radius.circular(5)),
+                                            border: Border.all(
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1)),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Container(
+                                                padding: const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(5)),
+                                                  border: Border.all(
+                                                      color: const Color.fromRGBO(
+                                                          219, 35, 35, 1)),
+                                                ),
+                                                child: Row(children: [
+                                                  const Icon(
+                                                    Icons.circle,
+                                                    color: Color.fromRGBO(219, 35, 35, 1),
+                                                    // size: widget.height * 0.03,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(context)!.live_caps,
+                                                    style: const TextStyle(
+                                                        color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                        // fontSize: widget.height * 0.013,
+                                                        fontFamily: "Inter",
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                ],),
+                                              ),
+                                              Container(
+                                                padding: const EdgeInsets.all(2),
+                                                child: Row(children: [
+                                                  const Icon(
+                                                    Icons.circle,
+                                                    color: Color.fromRGBO(42, 36, 186, 1),
+                                                    // size: widget.height * 0.03,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(context)!.completed,
+                                                    style: const TextStyle(
+                                                        color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                        // fontSize: widget.height * 0.013,
+                                                        fontFamily: "Inter",
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                ],),
+                                              ),
+                                              Container(
+                                                padding: const EdgeInsets.all(2),
+                                                child: Row(children: [
+                                                  const Icon(
+                                                    Icons.circle,
+                                                    color: Color.fromRGBO(153, 153, 153, 1),
+                                                    // size: widget.height * 0.03,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(context)!.yet_to_start,
+                                                    style: const TextStyle(
+                                                        color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                        // fontSize: widget.height * 0.013,
+                                                        fontFamily: "Inter",
+                                                        fontWeight: FontWeight.w400),
+                                                  ),
+                                                ],),
+                                              )
+                                            ],
+                                          )),
+                                      results.isEmpty
+                                          ? Column(
+                                        children: [
+                                          Center(
+                                            child: Text(
+                                              AppLocalizations.of(context)!.no_results_found,
+                                              //'NO RESULTS FOUND',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
                                                 color: const Color.fromRGBO(28, 78, 80, 1),
-                                                fontSize: height * 0.0187,
+                                                fontSize: height * 0.0175,
                                                 fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600)),
-                                        Icon(Icons.keyboard_arrow_down,
-                                          color: const Color.fromRGBO(141, 167, 167, 1),
-                                          size: height * 0.034,),
-                                      ],
-                                    )
-                                )),
-                          ),
-                          SizedBox(
-                            height: height * 0.02,
-                          ),
-                        ]),
-                  ),
-                )));
-  }
-  });}}
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                          : Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: SizedBox(
+                                                height: height * 0.53,
+                                                child: ListView.builder(
+                                                  scrollDirection: Axis.vertical,
+                                                  shrinkWrap: true,
+                                                  itemCount: results.length,
+                                                  itemBuilder: (context, index) => Column(
+                                                    children: [
+                                                      MouseRegion(
+                                                          cursor: SystemMouseCursors.click,
+                                                          child: GestureDetector(
+                                                            onTap: () {
+                                                              inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+                                                              submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+                                                              Navigator.push(
+                                                                context,
+                                                                PageTransition(
+                                                                  type: PageTransitionType.rightToLeft,
+                                                                  child: TeacherResultAssessment(
+                                                                      inProgressResults: inProgressResults,
+                                                                      submittedResults: submittedResults,
+                                                                      result: results[index],
+                                                                      userId: widget.userId,
+                                                                      advisorName: widget.advisorName,
+                                                                      advisorEmail:widget.advisorEmail),
+                                                                ),
+                                                              );
+                                                            },
+                                                            child: Padding(
+                                                              padding: const EdgeInsets.only(top:8.0,bottom:8.0),
+                                                              child: CustomCard(
+                                                                  height: height,
+                                                                  width: width,
+
+                                                                  //subject: results[index].subject,
+                                                                  result: results[index]
+                                                              ),
+                                                            ),
+                                                          )),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: height * 0.02,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Text(
+                                                  'Showing ${resultStart + 1} to ${resultStart+10 <results.length?resultStart+10:results.length} of $totalCount',
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: height * 0.02),
+                                                ),
+                                                Wrap(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: (){
+                                                            setState(() {
+                                                              pageLimit--;
+                                                              resultStart=resultStart-10;
+                                                              // results.removeRange(results.length-10, results.length);
+                                                            });
+                                                            getData();
+                                                            setState(() {
+
+                                                            });
+                                                          },
+                                                          child: Container(
+                                                            height: height * 0.03,
+                                                            width: width * 0.03,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                              borderRadius: const BorderRadius.all(
+                                                                  Radius.circular(5)),
+                                                            ),
+                                                            child: Icon(
+                                                              Icons.keyboard_double_arrow_left,
+                                                              size: height * 0.015,
+                                                              color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                          child: Container(
+                                                            height: height * 0.03,
+                                                            width: width * 0.03,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                              borderRadius: const BorderRadius.all(
+                                                                  Radius.circular(5)),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                                                style: TextStyle(
+                                                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.016),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                          onTap: (){
+                                                            setState(() {
+                                                              resultStart=resultStart+10;
+                                                              pageLimit++;
+                                                            });
+                                                            getData();
+                                                          },
+                                                          child: Container(
+                                                            height: height * 0.03,
+                                                            width: width * 0.03,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                              borderRadius: const BorderRadius.all(
+                                                                  Radius.circular(5)),
+                                                            ),
+                                                            child: Icon(
+                                                              Icons.keyboard_double_arrow_right,
+                                                              size: height * 0.015,
+                                                              color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],)
+
+                                ),
+                              ]),
+                        ),
+                      )));
+          }
+          else {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    resizeToAvoidBottomInset: true,
+                    backgroundColor: Colors.white,
+                    endDrawer: const EndDrawerMenuTeacher(),
+                    appBar: AppBar(
+                      elevation: 0,
+                      iconTheme: const IconThemeData(color: Color.fromRGBO(28, 78, 80, 1),size: 40),
+                      leading: IconButton(
+                        icon: const Icon(
+                          Icons.chevron_left,
+                          size: 40.0,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      toolbarHeight: height * 0.100,
+                      centerTitle: true,
+                      title: Text(
+                        AppLocalizations.of(context)!.results_camelcase,
+                        //'RESULTS',
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: height * 0.0175,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      flexibleSpace: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.013,
+                            right: height * 0.013),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  const BorderRadius.all(
+                                      Radius.circular(5)),
+                                  border: Border.all(
+                                      color: const Color.fromRGBO(
+                                          82, 165, 160, 1)),
+                                ),
+                                height: height * 0.8,
+                                child:Column(children: [
+                                  Container(
+                                      padding: const EdgeInsets.all(8),
+                                      margin: const EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                        const BorderRadius.all(
+                                            Radius.circular(5)),
+                                        border: Border.all(
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1)),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(2),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                              const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                              border: Border.all(
+                                                  color: const Color.fromRGBO(
+                                                      219, 35, 35, 1)),
+                                            ),
+                                            child: Row(children: [
+                                              const Icon(
+                                                Icons.circle,
+                                                color: Color.fromRGBO(219, 35, 35, 1),
+                                                // size: widget.height * 0.03,
+                                              ),
+                                              Text(
+                                                AppLocalizations.of(context)!.live_caps,
+                                                style: const TextStyle(
+                                                    color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                    // fontSize: widget.height * 0.013,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                            ],),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Row(children: [
+                                              const Icon(
+                                                Icons.circle,
+                                                color: Color.fromRGBO(42, 36, 186, 1),
+                                                // size: widget.height * 0.03,
+                                              ),
+                                              Text(
+                                                AppLocalizations.of(context)!.completed,
+                                                style: const TextStyle(
+                                                    color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                    // fontSize: widget.height * 0.013,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                            ],),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Row(children: [
+                                              const Icon(
+                                                Icons.circle,
+                                                color: Color.fromRGBO(153, 153, 153, 1),
+                                                // size: widget.height * 0.03,
+                                              ),
+                                              Text(
+                                                AppLocalizations.of(context)!.yet_to_start,
+                                                style: const TextStyle(
+                                                    color: Color.fromRGBO(102, 102, 102, 0.7),
+                                                    // fontSize: widget.height * 0.013,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                            ],),
+                                          )
+                                        ],
+                                      )),
+                                  results.isEmpty
+                                      ? Column(
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          AppLocalizations.of(context)!.no_results_found,
+                                          //'NO RESULTS FOUND',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: const Color.fromRGBO(28, 78, 80, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                      : Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: SizedBox(
+                                          height: height * 0.63,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.vertical,
+                                            shrinkWrap: true,
+                                            itemCount: results.length,
+                                            itemBuilder: (context, index) => Column(
+                                              children: [
+                                                MouseRegion(
+                                                    cursor: SystemMouseCursors.click,
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+                                                        submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+                                                        Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type: PageTransitionType.rightToLeft,
+                                                            child: TeacherResultAssessment(
+                                                                inProgressResults: inProgressResults,
+                                                                submittedResults: submittedResults,
+                                                                result: results[index],
+                                                                userId: widget.userId,
+                                                                advisorName: widget.advisorName,
+                                                                advisorEmail:widget.advisorEmail),
+                                                          ),
+                                                        );
+                                                      },
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.only(top:8.0,bottom:8.0),
+                                                        child: CustomCard(
+                                                            height: height,
+                                                            width: width,
+
+                                                            //subject: results[index].subject,
+                                                            result: results[index]
+                                                        ),
+                                                      ),
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Text(
+                                            'Showing ${resultStart + 1} to ${resultStart+10 <results.length?resultStart+10:results.length} of $totalCount',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016),
+                                          ),
+                                          Wrap(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        pageLimit--;
+                                                        resultStart=resultStart-10;
+                                                        // results.removeRange(results.length-10, results.length);
+                                                      });
+                                                      getData();
+                                                      setState(() {
+
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.1,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: const BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_left,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.15,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: const BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                                          style: TextStyle(
+                                                              color: const Color.fromRGBO(28, 78, 80, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.016),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        resultStart=resultStart+10;
+                                                        pageLimit++;
+                                                      });
+                                                      getData();
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.1,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: const BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_right,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],),
+
+                              ),
+                            ]),
+                      ),
+                    )));
+          }
+        });}}

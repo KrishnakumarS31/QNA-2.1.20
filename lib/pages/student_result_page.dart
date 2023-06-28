@@ -548,116 +548,116 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             ),
                                           ]),
                                           content: const Text(
-                                              "Are you sure you want to exit ?"),
+                                              "Are you sure you want to exit from this Assessment ?"),
                                           actions: <Widget>[
-                                            SizedBox(width: localWidth *
-                                                0.020),
-                                            ElevatedButton(
-                                              style: ElevatedButton
-                                                  .styleFrom(
-                                                backgroundColor:
-                                                const Color.fromRGBO(
-                                                    255, 255, 255, 1),
-                                                minimumSize: const Size(
-                                                    90, 30),
-                                                side: const BorderSide(
-                                                  width: 1.5,
-                                                  color: Color.fromRGBO(
-                                                      82, 165, 160, 1),
+                                            Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                              children:[
+                                                ElevatedButton(
+                                                  style: ElevatedButton
+                                                      .styleFrom(
+                                                    backgroundColor:
+                                                    const Color.fromRGBO(
+                                                        255, 255, 255, 1),
+                                                    minimumSize: const Size(
+                                                        90, 30),
+                                                    side: const BorderSide(
+                                                      width: 1.5,
+                                                      color: Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .no,
+                                                      style: TextStyle(
+                                                          fontFamily: 'Inter',
+                                                          fontSize:
+                                                          localHeight * 0.018,
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              82, 165, 160,
+                                                              1),
+                                                          fontWeight:
+                                                          FontWeight.w500)),
+                                                  onPressed: () {
+                                                    Navigator.of(context)
+                                                        .pop();
+                                                  },
                                                 ),
-                                              ),
-                                              child: Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .no,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize:
-                                                      localHeight * 0.018,
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          82, 165, 160,
-                                                          1),
-                                                      fontWeight:
-                                                      FontWeight.w500)),
-                                              onPressed: () {
-                                                Navigator.of(context)
-                                                    .pop();
-                                              },
+                                                SizedBox(width: localWidth * 0.05),
+                                                ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                      const Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      minimumSize: const Size(
+                                                          90, 30),
+                                                    ),
+                                                    child: Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .yes,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontSize:
+                                                            localHeight *
+                                                                0.018,
+                                                            color: Colors
+                                                                .white,
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                    onPressed: () async {
+                                                      Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return const Center(
+                                                                child:
+                                                                CircularProgressIndicator(
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                      48, 145,
+                                                                      139, 1),
+                                                                ));
+                                                          });
+                                                      // Navigator.pushNamed(
+                                                      //     context,
+                                                      //     '/studGuestAssessment',
+                                                      //     arguments: widget.userName);
+                                                      // Navigator.of(context)
+                                                      //     .pop();
+                                                      if(widget.isMember) {
+                                                        SharedPreferences loginData = await SharedPreferences.getInstance();
+                                                        UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+                                                        UserDataModel userDataModel =
+                                                        await QnaService
+                                                            .getUserDataService(userdata.userId,userdata);
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            '/studentAssessment',
+                                                            arguments: [userdata.email,userDataModel]);
+                                                      }
+                                                      else {
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            '/studGuestAssessment',
+                                                            arguments: widget.userName);
+                                                      }
+                                                      // Navigator.push(
+                                                      //   context,
+                                                      //   PageTransition(
+                                                      //     type: PageTransitionType
+                                                      //         .rightToLeft,
+                                                      //     child: StudentSelectionPage(
+                                                      //         ),
+                                                      //   ),
+                                                      // );
+                                                    }),
+                                              ]
                                             ),
-                                            SizedBox(width: localWidth *
-                                                0.005),
-                                            ElevatedButton(
-                                                style: ElevatedButton
-                                                    .styleFrom(
-                                                  backgroundColor:
-                                                  const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  minimumSize: const Size(
-                                                      90, 30),
-                                                ),
-                                                child: Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .yes,
-                                                    style: TextStyle(
-                                                        fontFamily: 'Inter',
-                                                        fontSize:
-                                                        localHeight *
-                                                            0.018,
-                                                        color: Colors
-                                                            .white,
-                                                        fontWeight:
-                                                        FontWeight.w500)),
-                                                onPressed: () async {
-                                                  Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return const Center(
-                                                            child:
-                                                            CircularProgressIndicator(
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                  48, 145,
-                                                                  139, 1),
-                                                            ));
-                                                      });
-                                                  // Navigator.pushNamed(
-                                                  //     context,
-                                                  //     '/studGuestAssessment',
-                                                  //     arguments: widget.userName);
-                                                  // Navigator.of(context)
-                                                  //     .pop();
-                                                  if(widget.isMember) {
-                                                    SharedPreferences loginData = await SharedPreferences.getInstance();
-                                                    UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                                    UserDataModel userDataModel =
-                                                    await QnaService
-                                                        .getUserDataService(userdata.userId,userdata);
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studentAssessment',
-                                                        arguments: [userdata.email,userDataModel]);
-                                                  }
-                                                  else {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studGuestAssessment',
-                                                        arguments: widget.userName);
-                                                  }
-                                                  // Navigator.push(
-                                                  //   context,
-                                                  //   PageTransition(
-                                                  //     type: PageTransitionType
-                                                  //         .rightToLeft,
-                                                  //     child: StudentSelectionPage(
-                                                  //         ),
-                                                  //   ),
-                                                  // );
-                                                }),
-                                            SizedBox(width: localHeight *
-                                                0.030),
                                           ],
                                         ),
                                   );
@@ -1143,116 +1143,116 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             ),
                                           ]),
                                           content: const Text(
-                                              "Are you sure you want to exit ?"),
+                                              "Are you sure you want to exit from this Assessment ?"),
                                           actions: <Widget>[
-                                            SizedBox(width: localWidth *
-                                                0.020),
-                                            ElevatedButton(
-                                              style: ElevatedButton
-                                                  .styleFrom(
-                                                backgroundColor:
-                                                const Color.fromRGBO(
-                                                    255, 255, 255, 1),
-                                                minimumSize: const Size(
-                                                    90, 30),
-                                                side: const BorderSide(
-                                                  width: 1.5,
-                                                  color: Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .no,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize:
-                                                      localHeight * 0.018,
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          82, 165, 160,
-                                                          1),
-                                                      fontWeight:
-                                                      FontWeight.w500)),
-                                              onPressed: () {
-                                                Navigator.of(context)
-                                                    .pop();
-                                              },
+                                            Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children:[
+                                                  ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                      const Color.fromRGBO(
+                                                          255, 255, 255, 1),
+                                                      minimumSize: const Size(
+                                                          90, 30),
+                                                      side: const BorderSide(
+                                                        width: 1.5,
+                                                        color: Color.fromRGBO(
+                                                            82, 165, 160, 1),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .no,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontSize:
+                                                            localHeight * 0.018,
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                82, 165, 160,
+                                                                1),
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                  SizedBox(width: localWidth * 0.05),
+                                                  ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        backgroundColor:
+                                                        const Color.fromRGBO(
+                                                            82, 165, 160, 1),
+                                                        minimumSize: const Size(
+                                                            90, 30),
+                                                      ),
+                                                      child: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .yes,
+                                                          style: TextStyle(
+                                                              fontFamily: 'Inter',
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018,
+                                                              color: Colors
+                                                                  .white,
+                                                              fontWeight:
+                                                              FontWeight.w500)),
+                                                      onPressed: () async {
+                                                        Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return const Center(
+                                                                  child:
+                                                                  CircularProgressIndicator(
+                                                                    color: Color
+                                                                        .fromRGBO(
+                                                                        48, 145,
+                                                                        139, 1),
+                                                                  ));
+                                                            });
+                                                        // Navigator.pushNamed(
+                                                        //     context,
+                                                        //     '/studGuestAssessment',
+                                                        //     arguments: widget.userName);
+                                                        // Navigator.of(context)
+                                                        //     .pop();
+                                                        if(widget.isMember) {
+                                                          SharedPreferences loginData = await SharedPreferences.getInstance();
+                                                          UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+                                                          UserDataModel userDataModel =
+                                                          await QnaService
+                                                              .getUserDataService(userdata.userId,userdata);
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/studentAssessment',
+                                                              arguments: [userdata.email,userDataModel]);
+                                                        }
+                                                        else {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/studGuestAssessment',
+                                                              arguments: widget.userName);
+                                                        }
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   PageTransition(
+                                                        //     type: PageTransitionType
+                                                        //         .rightToLeft,
+                                                        //     child: StudentSelectionPage(
+                                                        //         ),
+                                                        //   ),
+                                                        // );
+                                                      }),
+                                                ]
                                             ),
-                                            SizedBox(width: localWidth *
-                                                0.005),
-                                            ElevatedButton(
-                                                style: ElevatedButton
-                                                    .styleFrom(
-                                                  backgroundColor:
-                                                  const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  minimumSize: const Size(
-                                                      90, 30),
-                                                ),
-                                                child: Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .yes,
-                                                    style: TextStyle(
-                                                        fontFamily: 'Inter',
-                                                        fontSize:
-                                                        localHeight *
-                                                            0.018,
-                                                        color: Colors
-                                                            .white,
-                                                        fontWeight:
-                                                        FontWeight.w500)),
-                                                onPressed: () async {
-                                                  Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return const Center(
-                                                            child:
-                                                            CircularProgressIndicator(
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                  48, 145,
-                                                                  139, 1),
-                                                            ));
-                                                      });
-                                                  // Navigator.pushNamed(
-                                                  //     context,
-                                                  //     '/studGuestAssessment',
-                                                  //     arguments: widget.userName);
-                                                  // Navigator.of(context)
-                                                  //     .pop();
-                                                  if(widget.isMember) {
-                                                    SharedPreferences loginData = await SharedPreferences.getInstance();
-                                                    UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                                    UserDataModel userDataModel =
-                                                    await QnaService
-                                                        .getUserDataService(userdata.userId,userdata);
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studentAssessment',
-                                                        arguments: [userdata.email,userDataModel]);
-                                                  }
-                                                  else {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studGuestAssessment',
-                                                        arguments: widget.userName);
-                                                  }
-                                                  // Navigator.push(
-                                                  //   context,
-                                                  //   PageTransition(
-                                                  //     type: PageTransitionType
-                                                  //         .rightToLeft,
-                                                  //     child: StudentSelectionPage(
-                                                  //         ),
-                                                  //   ),
-                                                  // );
-                                                }),
-                                            SizedBox(width: localHeight *
-                                                0.030),
                                           ],
                                         ),
                                   );
@@ -1743,115 +1743,116 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             ),
                                           ]),
                                           content: const Text(
-                                              "Are you sure you want to exit ?"),
+                                              "Are you sure you want to exit from this Assessment ?"),
                                           actions: <Widget>[
-                                            SizedBox(width: localWidth *
-                                                0.020),
-                                            ElevatedButton(
-                                              style: ElevatedButton
-                                                  .styleFrom(
-                                                backgroundColor:
-                                                const Color.fromRGBO(
-                                                    255, 255, 255, 1),
-                                                minimumSize: const Size(
-                                                    90, 30),
-                                                side: const BorderSide(
-                                                  width: 1.5,
-                                                  color: Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .no,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize:
-                                                      localHeight * 0.018,
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          82, 165, 160,
-                                                          1),
-                                                      fontWeight:
-                                                      FontWeight.w500)),
-                                              onPressed: () {
-                                                Navigator.of(context)
-                                                    .pop();
-                                              },
+                                            Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children:[
+                                                  ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                      const Color.fromRGBO(
+                                                          255, 255, 255, 1),
+                                                      minimumSize: const Size(
+                                                          90, 30),
+                                                      side: const BorderSide(
+                                                        width: 1.5,
+                                                        color: Color.fromRGBO(
+                                                            82, 165, 160, 1),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .no,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontSize:
+                                                            localHeight * 0.018,
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                82, 165, 160,
+                                                                1),
+                                                            fontWeight:
+                                                            FontWeight.w500)),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  ),
+                                                  SizedBox(width: localWidth * 0.05),
+                                                  ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        backgroundColor:
+                                                        const Color.fromRGBO(
+                                                            82, 165, 160, 1),
+                                                        minimumSize: const Size(
+                                                            90, 30),
+                                                      ),
+                                                      child: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .yes,
+                                                          style: TextStyle(
+                                                              fontFamily: 'Inter',
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018,
+                                                              color: Colors
+                                                                  .white,
+                                                              fontWeight:
+                                                              FontWeight.w500)),
+                                                      onPressed: () async {
+                                                        Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
+                                                        showDialog(
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return const Center(
+                                                                  child:
+                                                                  CircularProgressIndicator(
+                                                                    color: Color
+                                                                        .fromRGBO(
+                                                                        48, 145,
+                                                                        139, 1),
+                                                                  ));
+                                                            });
+                                                        // Navigator.pushNamed(
+                                                        //     context,
+                                                        //     '/studGuestAssessment',
+                                                        //     arguments: widget.userName);
+                                                        // Navigator.of(context)
+                                                        //     .pop();
+                                                        if(widget.isMember) {
+                                                          SharedPreferences loginData = await SharedPreferences.getInstance();
+                                                          UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+                                                          UserDataModel userDataModel =
+                                                          await QnaService
+                                                              .getUserDataService(userdata.userId,userdata);
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/studentAssessment',
+                                                              arguments: [userdata.email,userDataModel]);
+                                                        }
+                                                        else {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/studGuestAssessment',
+                                                              arguments: widget.userName);
+                                                        }
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   PageTransition(
+                                                        //     type: PageTransitionType
+                                                        //         .rightToLeft,
+                                                        //     child: StudentSelectionPage(
+                                                        //         ),
+                                                        //   ),
+                                                        // );
+                                                      }),
+                                                ]
                                             ),
-                                            SizedBox(width: localWidth *
-                                                0.005),
-                                            ElevatedButton(
-                                                style: ElevatedButton
-                                                    .styleFrom(
-                                                  backgroundColor:
-                                                  const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  minimumSize: const Size(
-                                                      90, 30),
-                                                ),
-                                                child: Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .yes,
-                                                    style: TextStyle(
-                                                        fontFamily: 'Inter',
-                                                        fontSize:
-                                                        localHeight *
-                                                            0.018,
-                                                        color: Colors
-                                                            .white,
-                                                        fontWeight:
-                                                        FontWeight.w500)),
-                                                onPressed: () async {
-                                                  Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return const Center(
-                                                            child:
-                                                            CircularProgressIndicator(
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                  48, 145,
-                                                                  139, 1),
-                                                            ));
-                                                      });
-
-                                                  if(widget.isMember) {
-                                                    print("INSIDE IS WIDGET MEMBER");
-                                                    SharedPreferences loginData = await SharedPreferences.getInstance();
-                                                    UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                                    print(userdata.userId);
-                                                    print("BEFORE API CALL");
-                                                    print(userdata.userId);
-                                                    UserDataModel userDataModel =
-                                                    await QnaService
-                                                        .getUserDataService(userdata.userId,userdata);
-                                                    print(userDataModel!.data!.email);
-                                                    // Navigator.pushNamed(
-                                                    //     context,
-                                                    //     '/studentAssessment',
-                                                    //     arguments: [userDataModel,null,userdata.email]);
-                                                    //Navigator.of(context).pushNamedAndRemoveUntil('/studentAssessment', ModalRoute.withName('/studentMemberLoginPage'));
-                                                    Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => StudentAssessment(usedData : userDataModel)), ModalRoute.withName('/studentMemberLoginPage'));
-                                                  }
-                                                  else {
-                                                    Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => StudGuestAssessment(name : widget.userName)), ModalRoute.withName('/studentGuestLogin'));
-                                                  }
-                                                  // Navigator.push(
-                                                  //   context,
-                                                  //   PageTransition(
-                                                  //     type: PageTransitionType
-                                                  //         .rightToLeft,
-                                                  //     child: StudentSelectionPage(
-                                                  //         ),
-                                                  //   ),
-                                                  // );
-                                                }),
-                                            SizedBox(width: localHeight *
-                                                0.030),
                                           ],
                                         ),
                                   );

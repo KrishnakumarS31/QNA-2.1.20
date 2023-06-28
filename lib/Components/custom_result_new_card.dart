@@ -35,7 +35,7 @@ class ResultCardNew extends StatelessWidget {
               border: Border.all(
                 color: const Color.fromRGBO(233, 233, 233, 1),
               ),
-              borderRadius: const BorderRadius.all(Radius.circular(20))),
+              borderRadius: const BorderRadius.all(Radius.circular(10))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -46,7 +46,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                    name ?? " ",
+                    results.assessmentCode ?? " ",
                       style: TextStyle(
                           fontSize: height * 0.0187,
                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -95,8 +95,8 @@ class ResultCardNew extends StatelessWidget {
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 166, 0, 1),
                     borderRadius: const BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        bottomRight: Radius.circular(20))),
+                        topRight: Radius.circular(10),
+                        bottomRight: Radius.circular(10))),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

@@ -114,8 +114,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                               style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: localHeight * 0.02),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: localHeight * 0.025),
                             ),
                         ],
                       ),
@@ -337,8 +337,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                             style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                fontSize: localHeight * 0.02),
+                                fontWeight: FontWeight.w600,
+                                fontSize: localHeight * 0.025),
                           ),
                         ],
                       ),
@@ -560,8 +560,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                             style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                fontSize: localHeight * 0.02),
+                                fontWeight: FontWeight.w600,
+                                fontSize: localHeight * 0.025),
                           ),
                         ],
                       ),

@@ -197,7 +197,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                         type: PageTransitionType.rightToLeft,
                                         child: TeacherResultLanding(
                                             userId: userId,
-                                            advisorName: widget.userData.data!.firstName),
+                                            advisorName: widget.userData.data!.firstName,
+                                            advisorEmail: widget.userData.data!.email
+                                        ),
                                       ),
                                     );
                                   },
@@ -368,7 +370,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                         type: PageTransitionType.rightToLeft,
                                         child: TeacherResultLanding(
                                             userId: userId,
-                                            advisorName: widget.userData.data!.firstName),
+                                            advisorName: widget.userData.data!.firstName,
+                                            advisorEmail: widget.userData.data!.email
+                                        ),
                                       ),
                                     );
                                   },
@@ -536,7 +540,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                               type: PageTransitionType.rightToLeft,
                               child: TeacherResultLanding(
                                   userId: userId,
-                                  advisorName: widget.userData.data!.firstName),
+                                  advisorName: widget.userData.data!.firstName,
+                                  advisorEmail: widget.userData.data!.email),
                             ),
                           );
                         },

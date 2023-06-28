@@ -500,6 +500,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       Row(
                                                         children: [
                                                           Radio(
+                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                             value: "male",
                                                             groupValue: gender,
                                                             onChanged: (value) {
@@ -524,6 +525,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 localHeight * 0.016),
                                                           ),
                                                           Radio(
+                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                             value: "female",
                                                             groupValue: gender,
                                                             onChanged: (value) {
@@ -548,6 +550,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 localHeight * 0.016),
                                                           ),
                                                           Radio(
+                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                             value: "others",
                                                             groupValue: gender,
                                                             onChanged: (value) {
@@ -1094,6 +1097,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                         filterQuality: FilterQuality.high,
                                                         scale: 1.5,
                                                         child: Checkbox(
+                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                           shape: RoundedRectangleBorder(
                                                               borderRadius: BorderRadius
                                                                   .circular(1)),
@@ -1198,9 +1202,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               Center(
                                                 child: IconButton(
                                                   iconSize: localHeight * 0.06,
-                                                  icon: const Icon(Icons.arrow_circle_right,
-                                                    color: Color.fromRGBO(
-                                                        82, 165, 160, 1),
+                                                  icon: Icon(Icons.arrow_circle_right,
+                                                    color:
+                                                    (teacherFirstNameController.text.isNotEmpty && teacherLastNameController.text.isNotEmpty
+                                                        && teacherEmailController.text.isNotEmpty && teacherPasswordController.text.isNotEmpty
+                                                        && teacherconfirmPasswordController.text.isNotEmpty
+                                                        && teacherOrganisationNameController.text.isNotEmpty)
+                                                        ?  const Color.fromRGBO(82, 165, 160, 1)
+                                                        :  const Color.fromRGBO(153, 153, 153, 0.5),
                                                   ),
                                                   onPressed: () async {
                                                     bool valid = formKey
@@ -1517,6 +1526,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     Row(
                                                       children: [
                                                         Radio(
+                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                           value: "male",
                                                           groupValue: gender,
                                                           onChanged: (value) {
@@ -1541,6 +1551,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               localHeight * 0.016),
                                                         ),
                                                         Radio(
+                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                           value: "female",
                                                           groupValue: gender,
                                                           onChanged: (value) {
@@ -1565,6 +1576,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               localHeight * 0.016),
                                                         ),
                                                         Radio(
+                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                           value: "others",
                                                           groupValue: gender,
                                                           onChanged: (value) {
@@ -1658,7 +1670,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                  left: localWidth * 0.021,
+                                                  left: localWidth * 0.027,
                                                   child: Text(
                                                     AppLocalizations.of(
                                                         context)!
@@ -1752,7 +1764,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                  left: localWidth * 0.021,
+                                                  left: localWidth * 0.027,
                                                   child: Container(
                                                     color: Colors.white,
                                                     child: Text(
@@ -2086,6 +2098,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       filterQuality: FilterQuality.high,
                                                       scale: 1.5,
                                                       child: Checkbox(
+                                                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                         shape: RoundedRectangleBorder(
                                                             borderRadius: BorderRadius
                                                                 .circular(1)),
@@ -2190,9 +2203,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                             Center(
                                               child: IconButton(
                                                 iconSize: localHeight * 0.06,
-                                                icon: const Icon(Icons.arrow_circle_right,
-                                                  color: Color.fromRGBO(
-                                                      82, 165, 160, 1),
+                                                icon: Icon(Icons.arrow_circle_right,
+                                                  color:
+                                                  (teacherFirstNameController.text.isNotEmpty && teacherLastNameController.text.isNotEmpty
+                                                      && teacherEmailController.text.isNotEmpty && teacherPasswordController.text.isNotEmpty
+                                                      && teacherconfirmPasswordController.text.isNotEmpty
+                                                       && teacherOrganisationNameController.text.isNotEmpty)
+                                                      ?  const Color.fromRGBO(82, 165, 160, 1)
+                                                      :  const Color.fromRGBO(153, 153, 153, 0.5),
                                                 ),
                                                 onPressed: () async {
                                                   bool valid = formKey
@@ -2520,6 +2538,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               Row(
                                                 children: [
                                                   Radio(
+                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                     value: "male",
                                                     groupValue: gender,
                                                     onChanged: (value) {
@@ -2545,6 +2564,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             0.016),
                                                   ),
                                                   Radio(
+                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                     value: "female",
                                                     groupValue: gender,
                                                     onChanged: (value) {
@@ -2570,6 +2590,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             0.016),
                                                   ),
                                                   Radio(
+                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                     value: "others",
                                                     groupValue: gender,
                                                     onChanged: (value) {
@@ -3241,6 +3262,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     filterQuality: FilterQuality.high,
                                                     scale: 1.5,
                                                     child: Checkbox(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                       shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius
                                                               .circular(1)),
@@ -3345,10 +3367,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           Center(
                                             child: IconButton(
                                               iconSize: localHeight * 0.06,
-                                              icon: const Icon(
+                                              icon: Icon(
                                                 Icons.arrow_circle_right,
-                                                color: Color.fromRGBO(
-                                                    82, 165, 160, 1),
+                                                color:
+                                                (teacherFirstNameController.text.isNotEmpty && teacherLastNameController.text.isNotEmpty
+                                                    && teacherEmailController.text.isNotEmpty && teacherPasswordController.text.isNotEmpty
+                                                    && teacherconfirmPasswordController.text.isNotEmpty
+                                                    && teacherOrganisationNameController.text.isNotEmpty)
+                                                    ?  const Color.fromRGBO(82, 165, 160, 1)
+                                                    :  const Color.fromRGBO(153, 153, 153, 0.5),
                                               ),
                                               onPressed: () async {
                                                 bool valid = formKey

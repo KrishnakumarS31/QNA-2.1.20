@@ -5,6 +5,7 @@ import 'package:qna_test/Pages/welcome_page.dart';
 import 'package:qna_test/pages/about_us.dart';
 import 'package:qna_test/pages/change_email_student.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
+import 'package:qna_test/pages/forgot_password.dart';
 import 'package:qna_test/pages/help_page.dart';
 import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/student_assessment_questions.dart';
@@ -16,10 +17,21 @@ import 'package:qna_test/pages/student_result_page.dart';
 import 'package:qna_test/pages/student_revise_quest.dart';
 import 'package:qna_test/pages/student_search_library.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
+import 'package:qna_test/pages/teacher/assessment/create_new_question.dart';
+// import 'package:qna_test/pages/teacher/assessment/assessment_landing_page.dart';
+// import 'package:qna_test/pages/teacher/assessment/create_new_assessment.dart';
+import 'package:qna_test/pages/teacher/question/add_question.dart';
+import 'package:qna_test/pages/teacher/question/clone_my_question.dart';
+import 'package:qna_test/pages/teacher/question/edit_existing_question.dart';
+import 'package:qna_test/pages/teacher/question/edit_global_question_popup.dart';
+import 'package:qna_test/pages/teacher/question/edit_question_new_flow.dart';
+import 'package:qna_test/pages/teacher/question/inprogress_question_bank.dart';
+// import 'package:qna_test/pages/teacher/question/create_new_question.dart';
+import 'package:qna_test/pages/teacher/question/edit_question_popup.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
 import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import 'package:qna_test/pages/teacher_assess_looq_ques_preview.dart';
-import 'package:qna_test/pages/teacher_assessment_landing.dart';
+// import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_prepare_ques.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_ques_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_question_preview.dart';
@@ -53,7 +65,7 @@ import 'Pages/settings_languages.dart';
 import 'Pages/student_Advisor.dart';
 import 'Pages/student_answersheet.dart';
 import 'Pages/student_assessment_start.dart';
-import 'Pages/student_forgot_password.dart';
+// import 'Pages/student_forgot_password.dart';
 import 'Pages/student_guest_login_page.dart';
 import 'Pages/student_member_login_page.dart';
 import 'Pages/student_regis_verify_otp.dart';
@@ -71,11 +83,11 @@ import 'Pages/teacher_looq_question_edit.dart';
 import 'Pages/teacher_looq_search_question.dart';
 import 'Pages/teacher_prepare_qnBank.dart';
 import 'Pages/teacher_qn_preview.dart';
-import 'Pages/teacher_questionBank_page.dart';
 import 'Pages/teacher_registration_page.dart';
 import 'Pages/teacher_registration_verify_page.dart';
 import 'Pages/teacher_verify_page.dart';
 import 'Pages/verify_otp_page.dart';
+import 'pages/teacher/question/qusetions_landing_page.dart';
 
 class MyRoutes{
   static Route<dynamic> generateRoute(RouteSettings settings){
@@ -103,37 +115,36 @@ class MyRoutes{
       case '/teacherForgotPasswordEmail':
         return SlideRightRoute(widget: const TeacherForgotPasswordEmail(),settings: settings);
 
-      case '/teacherQuestionBank':
-        return SlideRightRoute(widget: const TeacherQuestionBank(),settings: settings);
 
-      case '/teacherAssessmentLanding':
-        return SlideRightRoute(widget: const TeacherAssessmentLanding(),settings: settings);
-
-      case '/teacherLooqQuestionBank':
-        {
-          final search = settings.arguments as String;
-          return SlideRightRoute(widget: TeacherLooqQuestionBank(search: search,),settings: settings);
-        }
-
-      case '/teacherPrepareQnBank':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherPrepareQnBank(assessment: arguments[0],assessmentStatus: arguments[1],),settings: settings);
-      }
-
-      case '/questionEdit':{
-        final question = settings.arguments as questions.Question;
-        return SlideRightRoute(widget: QuestionEdit(question: question,),settings: settings);
-      }
-
-      case '/teacherMyQuestionBank':{
-        final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherMyQuestionBank(assessment: assessment),settings: settings);
-      }
-
-      case '/teacherQuesDelete':{
-        final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherQuesDelete(quesNum: question[0], finalQuestion: question[1], assessment: question[2],),settings: settings);
-      }
+      //
+      // case '/teacherAssessmentLanding':
+      //   return SlideRightRoute(widget: const TeacherAssessmentLanding(),settings: settings);
+      //
+      // case '/teacherLooqQuestionBank':
+      //   {
+      //     final search = settings.arguments as String;
+      //     return SlideRightRoute(widget: TeacherLooqQuestionBank(search: search,),settings: settings);
+      //   }
+      //
+      // case '/teacherPrepareQnBank':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherPrepareQnBank(assessment: arguments[0],assessmentStatus: arguments[1],),settings: settings);
+      // }
+      //
+      // case '/questionEdit':{
+      //   final question = settings.arguments as questions.Question;
+      //   return SlideRightRoute(widget: QuestionEdit(question: question,),settings: settings);
+      // }
+      //
+      // case '/teacherMyQuestionBank':{
+      //   final assessment = settings.arguments as bool;
+      //   return SlideRightRoute(widget: TeacherMyQuestionBank(assessment: assessment),settings: settings);
+      // }
+      //
+      // case '/teacherQuesDelete':{
+      //   final question = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherQuesDelete(quesNum: question[0], finalQuestion: question[1], assessment: question[2],),settings: settings);
+      // }
 
       case '/teacherCreateAssessment':
         return SlideRightRoute(widget: const TeacherCreateAssessment(),settings: settings);
@@ -196,9 +207,9 @@ class MyRoutes{
         return SlideRightRoute(widget: StudentAssessment(usedData: arguments[0],assessment: arguments[1]),settings: settings);
       }
 
-      case '/studentForgotPassword':{
+      case '/ForgotPassword':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
+        return SlideRightRoute(widget: ForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
       }
 
       case '/studGuestAssessment':{
@@ -243,7 +254,7 @@ class MyRoutes{
           message: arguments[6],
           endTime: arguments[7],
           givenMark: arguments[8],
-            isMember: arguments[9],
+          isMember: arguments[9],
           assessmentHeaders: arguments[10],
         ),settings: settings);
       }
@@ -251,16 +262,16 @@ class MyRoutes{
       case '/studentReviseQuest':{
         final arguments = settings.arguments as List<dynamic>;
         return SlideRightRoute(widget: StudentReviseQuest(
-            questions: arguments[0],
-            userName: arguments[1],
-            assessmentID: arguments[2],
-            startTime: arguments[3],
-            assessmentCode: arguments[4],
-            submit: arguments[5],
-            userId: arguments[6],
-            isMember: arguments[7],
-            assessmentHeaders: arguments[8],
-            myDuration: arguments[9],
+          questions: arguments[0],
+          userName: arguments[1],
+          assessmentID: arguments[2],
+          startTime: arguments[3],
+          assessmentCode: arguments[4],
+          submit: arguments[5],
+          userId: arguments[6],
+          isMember: arguments[7],
+          assessmentHeaders: arguments[8],
+          myDuration: arguments[9],
         ),settings: settings);
       }
 
@@ -277,36 +288,36 @@ class MyRoutes{
         return SlideRightRoute(widget: TeacherActiveAssessment(assessment: arguments[0], assessmentType: arguments[1],),settings: settings);
       }
 
-      case '/teacherAddMyQuestionBankForAssessment':
-        {
-          final assessment = settings.arguments as bool;
-          return SlideRightRoute(widget: TeacherAddMyQuestionBankForAssessment(assessment: assessment,),settings: settings);
-        }
-      case '/teacherAddMyQuestionBank':
-        {
-          final assessment = settings.arguments as bool;
-          return SlideRightRoute(widget: TeacherAddMyQuestionBank(assessment: assessment,),settings: settings);
-        }
+      // case '/teacherAddMyQuestionBankForAssessment':
+      //   {
+      //     final assessment = settings.arguments as bool;
+      //     return SlideRightRoute(widget: TeacherAddMyQuestionBankForAssessment(assessment: assessment,),settings: settings);
+      //   }
+      // case '/teacherAddMyQuestionBank':
+      //   {
+      //     final assessment = settings.arguments as bool;
+      //     return SlideRightRoute(widget: TeacherAddMyQuestionBank(assessment: assessment,),settings: settings);
+      //   }
 
-      case '/teacherAssessLooqQuesPreview':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessLooqQuesPreview(assessment: arguments[0], finalQuestion: arguments[1],),settings: settings);
-      }
-
-      case '/teacherAssessmentLooqPrepareQues':{
-        final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherAssessmentLooqPrepareQues(assessment: assessment),settings: settings);
-      }
-
-      case '/teacherAssessmentLooqQuestionBank':{
-        final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherAssessmentLooqQuestionBank(assessment: assessment),settings: settings);
-      }
-
-      case '/teacherAssessmentQuestionBank':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessmentQuestionBank(assessment: arguments[0],searchText: arguments[1],assessmentType: arguments[2]),settings: settings);
-      }
+      // case '/teacherAssessLooqQuesPreview':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherAssessLooqQuesPreview(assessment: arguments[0], finalQuestion: arguments[1],),settings: settings);
+      // }
+      //
+      // case '/teacherAssessmentLooqPrepareQues':{
+      //   final assessment = settings.arguments as bool;
+      //   return SlideRightRoute(widget: TeacherAssessmentLooqPrepareQues(assessment: assessment),settings: settings);
+      // }
+      //
+      // case '/teacherAssessmentLooqQuestionBank':{
+      //   final assessment = settings.arguments as bool;
+      //   return SlideRightRoute(widget: TeacherAssessmentLooqQuestionBank(assessment: assessment),settings: settings);
+      // }
+      //
+      // case '/teacherAssessmentQuestionBank':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherAssessmentQuestionBank(assessment: arguments[0],searchText: arguments[1],assessmentType: arguments[2]),settings: settings);
+      // }
 
       case '/teacherAssessmentQuestionPreview':{
         final arguments = settings.arguments as List<dynamic>;
@@ -347,30 +358,30 @@ class MyRoutes{
       case '/teacherInactiveAssessment':
         return SlideRightRoute(widget: const TeacherInactiveAssessment(),settings: settings);
 
-      case '/teacherLooqClonePreview':{
-        final question = settings.arguments as questions.Question;
-        return SlideRightRoute(widget: TeacherLooqClonePreview(question: question,),settings: settings);
-      }
+      // case '/teacherLooqClonePreview':{
+      //   final question = settings.arguments as questions.Question;
+      //   return SlideRightRoute(widget: TeacherLooqClonePreview(question: question,),settings: settings);
+      // }
+      //
+      // case '/teacherLooqPreview':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherLooqPreview(question: arguments[0], editQuestionModel: arguments[1],),settings: settings);
+      // }
 
-      case '/teacherLooqPreview':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherLooqPreview(question: arguments[0], editQuestionModel: arguments[1],),settings: settings);
-      }
+      // case '/looqQuestionEdit':{
+      //   final question = settings.arguments as questions.Question;
+      //   return SlideRightRoute(widget: LooqQuestionEdit(question: question,),settings: settings);
+      // }
 
-      case '/looqQuestionEdit':{
-        final question = settings.arguments as questions.Question;
-        return SlideRightRoute(widget: LooqQuestionEdit(question: question,),settings: settings);
-      }
-
-      case '/preparePreviewQnBank':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: PreparePreviewQnBank(question: arguments[0],),settings: settings);
-      }
-
-      case '/teacherPrepareQuesForAssessment':{
-        final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherPrepareQuesForAssessment(assessment: assessment),settings: settings);
-      }
+      // case '/preparePreviewQnBank':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: PreparePreviewQnBank(question: arguments[0],),settings: settings);
+      // }
+      //
+      // case '/teacherPrepareQuesForAssessment':{
+      //   final assessment = settings.arguments as bool;
+      //   return SlideRightRoute(widget: TeacherPrepareQuesForAssessment(assessment: assessment),settings: settings);
+      // }
 
       case '/teacherPublishedAssessment':{
         final arguments = settings.arguments as List<dynamic>;
@@ -387,15 +398,15 @@ class MyRoutes{
         return SlideRightRoute(widget: TeacherQnPreviewAssessment(assessment: arguments[0],finalQuestion: arguments[1]),settings: settings);
       }
 
-      case '/teacherQuestionPreview':{
-        final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
-      }
+      // case '/teacherQuestionPreview':{
+      //   final question = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
+      // }
 
-      case '/teacherSubmittedQuestionPreview':{
-        final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherSubmittedQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
-      }
+      // case '/teacherSubmittedQuestionPreview':{
+      //   final question = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: TeacherSubmittedQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
+      // }
 
       case '/teacherRecentAssessment':
         {
@@ -433,6 +444,56 @@ class MyRoutes{
         final arguments = settings.arguments as List<dynamic>;
         return SlideRightRoute(widget: VerifyOtpPage(isFromStudent: arguments[0], email: arguments[1],),settings: settings);
       }
+
+      case '/teacherQuestionBank':
+        return SlideRightRoute(widget: const TeacherQuestionBank(),settings: settings);
+
+      case '/editQuestionPopUp':{
+        final question = settings.arguments as questions.Question;
+        return SlideRightRoute(widget: EditQuestionPopUp(question: question,),settings: settings);
+      }
+
+      case '/editGlobalQuestionPopUp':{
+        final question = settings.arguments as questions.Question;
+        return SlideRightRoute(widget: EditGlobalQuestionPopUp(question: question,),settings: settings);
+      }
+
+
+      case '/createNewQuestion':{
+        // final arguments = settings.arguments as List<dynamic>;
+        return SlideRightRoute(widget: const CreateNewQuestion(),settings: settings);
+      }
+
+      case '/inprogressQuestionBank':{
+        return SlideRightRoute(widget: InprogressQuestionBank(),settings: settings);
+      }
+
+      case '/addQuestion':{
+        return SlideRightRoute(widget: AddQuestion(),settings: settings);
+      }
+
+      case '/editQuestionNewFlow':{
+        final arguments = settings.arguments as int;
+        return SlideRightRoute(widget: EditQuestionNewFlow(questionIndex: arguments,),settings: settings);
+      }
+
+      case '/editExistingQuestion':{
+        final question = settings.arguments as questions.Question;
+        return SlideRightRoute(widget: EditExistingQuestion(question: question,),settings: settings);
+      }
+
+      case '/cloneMyQuestion':{
+        final question = settings.arguments as questions.Question;
+        return SlideRightRoute(widget: CloneMyQuestion(question: question,),settings: settings);
+      }
+
+      // case '/assessmentLandingPage':{
+      //   return SlideRightRoute(widget: AssessmentLandingPage(),settings: settings);
+      // }
+      //
+      // case '/createNewAssessment':{
+      //   return SlideRightRoute(widget: CreateNewAssessment(),settings: settings);
+      // }
 
 
     }

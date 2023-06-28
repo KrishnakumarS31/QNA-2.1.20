@@ -1,5 +1,33 @@
 import 'dart:convert';
 
+class ResultsModelResponse{
+  ResultsModelResponse({
+    this.totalCount,
+    this.results,
+  });
+  int? totalCount;
+  List<GetResultModel>? results;
+
+  factory ResultsModelResponse.fromJson(Map<String, dynamic> json) =>
+      ResultsModelResponse(
+        totalCount: json["total_count"],
+        results: List<GetResultModel>.from(
+            json["results"].map((x) => GetResultModel.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+    "total_count": totalCount,
+    "results": List<dynamic>.from(results!.map((x) => x.toJson())),
+  };
+
+  @override
+  String toString() {
+    return 'ResultsModelResponse{totalCount: $totalCount, results: $results}';
+  }
+}
+
+
+
 GetResultModel getResultModelFromJson(String str) =>
     GetResultModel.fromJson(json.decode(str));
 
@@ -17,8 +45,8 @@ class GetResultModel {
         this.assessmentDuration,
         this.subject,
         this.topic,
-        this.subTopic,
-        this.studentClass,
+        this.semester,
+        this.degree,
         this.attemptPercentage,
         this.assessmentResults,
         this.androidUrl,
@@ -36,8 +64,8 @@ class GetResultModel {
   int? assessmentDuration;
   String? subject;
   String? topic;
-  String? subTopic;
-  String? studentClass;
+  String? semester;
+  String? degree;
   int? attemptPercentage;
   String? url;
   String? androidUrl;
@@ -59,14 +87,14 @@ class GetResultModel {
     assessmentDuration: json["assessment_duration"] ?? " ",
     subject: json["subject"] ?? " ",
     topic: json["topic"] ?? " ",
-    subTopic: json["sub_topic"] ?? " ",
+    semester: json["sub_topic"] ?? " ",
     totalAttempts:json["total_attempts"] ?? 0,
     totalCompletedAttempts: json["total_completed_attempts"] ?? 0,
     totalInprogressAttempts: json["total_inprogress_attempts"] ?? 0,
     // url: json["url"] ?? " ",
     // androidUrl: json["android_app"] ?? " ",
     // iosUrl: json["ios_app"] ?? " ",
-    studentClass: json["class"] ?? " ",
+    degree: json["class"] ?? " ",
     attemptPercentage: json["attempt_percentage"] ?? 0,
     assessmentResults: json["assessment_results"] == null
         ? []
@@ -86,8 +114,8 @@ class GetResultModel {
     "assessment_startdate": assessmentStartDate,
     "subject": subject,
     "topic": topic,
-    "sub_topic": subTopic,
-    "class": studentClass,
+    "sub_topic": semester,
+    "class": degree,
     "attempt_percentage":attemptPercentage,
     "total_attempts":totalAttempts,
     "total_completed_attempts":totalCompletedAttempts,
@@ -96,12 +124,12 @@ class GetResultModel {
     // "android_app": androidUrl,
     // "ios_app": iosUrl,
     "assessment_results": assessmentResults,
-    "guest_student_allowed": guestStudentAllowed
+    "guest_student_allowed": guestStudentAllowed,
   };
 
   @override
   String toString() {
-    return 'GetResultModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, studentClass: $studentClass, attemptPercentage: $attemptPercentage, url: $url, androidUrl: $androidUrl, iosUrl: $iosUrl, guestStudentAllowed: $guestStudentAllowed, assessmentResults: $assessmentResults, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts}';
+    return 'GetResultModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $semester, studentClass: $degree, attemptPercentage: $attemptPercentage, url: $url, androidUrl: $androidUrl, iosUrl: $iosUrl, guestStudentAllowed: $guestStudentAllowed, assessmentResults: $assessmentResults, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts}';
   }
 }
 

@@ -83,7 +83,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                   automaticallyImplyLeading: false,
                   centerTitle: true,
                   title: Text(
-                    AppLocalizations.of(context)!.verify_otp,
+                    AppLocalizations.of(context)!.forgot_password_caps,
                     //"VERIFY OTP",
                     style: TextStyle(
                       color: Colors.black,
@@ -97,15 +97,15 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                   ),
                 ),
                 body: Column(children: [
-                  SizedBox(height: height * 0.07),
+                  SizedBox(height: height * 0.1),
                   Center(
-                      child:Container(
+                      child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: kElevationToShadow[4],
                           ),
-                          width: width * 0.5,
+                          width: width * 0.7,
                           child: Form(
                             key: formKey,
                             child: SizedBox(
@@ -122,7 +122,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                           height: height * 0.05,
                                         ),
                                         SizedBox(
-                                            width: width * 0.4,
+                                            width: width * 0.6,
                                             child:TextFormField(
                                               keyboardType: TextInputType.text,
                                               controller: otpController,
@@ -130,6 +130,9 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                 formKey.currentState!.validate();
                                               },
                                               decoration: InputDecoration(
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
                                                   label: Text(
                                                     AppLocalizations.of(context)!
                                                         .verify_otp,
@@ -149,10 +152,13 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16),
                                                   suffixIcon: IconButton(
-                                                    iconSize: height * 0.05,
-                                                    icon: const Icon(Icons.arrow_circle_right,
-                                                      color: Color.fromRGBO(
-                                                          82, 165, 160, 1),
+                                                    iconSize: height * 0.06,
+                                                    icon: Icon(Icons.arrow_circle_right,
+                                                      color:
+                                                      otpController.text.isNotEmpty
+                                                      ? const Color.fromRGBO(
+                                                          82, 165, 160, 1)
+                                                          : const Color.fromRGBO(153, 153, 153, 0.5),
                                                     ),
                                                     onPressed: () async {
                                                       if (formKey.currentState!.validate()) {
@@ -184,9 +190,15 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                       }
                                                     },
                                                   ),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.02),
                                                   hintText:
                                                   AppLocalizations.of(context)!
-                                                      .enter_otp
+                                                      .enter_here
                                                 //"Enter OTP",
                                               ),
                                               validator: (value) {
@@ -201,7 +213,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                 }
                                               },
                                             )),
-                                        SizedBox(height: height * 0.04),
+                                        SizedBox(height: height * 0.03),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
@@ -227,7 +239,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            SizedBox(width: width * 0.05),
+                                            SizedBox(width: width * 0.02),
                                             enableResendButton
                                                 ? TextButton(
                                                 onPressed: enableResendButton ?
@@ -290,7 +302,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                   automaticallyImplyLeading: false,
                   centerTitle: true,
                   title: Text(
-                    AppLocalizations.of(context)!.verify_otp,
+                    AppLocalizations.of(context)!.forgot_password_caps,
                     //"VERIFY OTP",
                     style: TextStyle(
                       color: Colors.black,
@@ -316,7 +328,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     child: Form(
                     key: formKey,
                     child: SizedBox(
-                      height: height * 0.3,
+                      height: height * 0.4,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -337,6 +349,9 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                         formKey.currentState!.validate();
                                       },
                                       decoration: InputDecoration(
+                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                          floatingLabelBehavior:
+                                          FloatingLabelBehavior.always,
                                         label: Text(
                                           AppLocalizations.of(context)!
                                               .verify_otp,
@@ -356,10 +371,13 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                               fontWeight: FontWeight.w400,
                                               fontSize: 16),
                                           suffixIcon: IconButton(
-                                            iconSize: height * 0.05,
-                                            icon: const Icon(Icons.arrow_circle_right,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
+                                            iconSize: height * 0.06,
+                                            icon: Icon(Icons.arrow_circle_right,
+                                              color:
+                                              otpController.text.isNotEmpty
+                                                  ? const Color.fromRGBO(
+                                                  82, 165, 160, 1)
+                                                  : const Color.fromRGBO(153, 153, 153, 0.5),
                                             ),
                                             onPressed: () async {
                                               if (formKey.currentState!.validate()) {
@@ -391,9 +409,15 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                               }
                                             },
                                           ),
+                                          hintStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.02),
                                           hintText:
                                           AppLocalizations.of(context)!
-                                              .enter_otp
+                                              .enter_here
                                         //"Enter OTP",
                                       ),
                                       validator: (value) {
@@ -408,7 +432,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                         }
                                       },
                                     )),
-                                SizedBox(height: height * 0.04),
+                                SizedBox(height: height * 0.03),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -434,7 +458,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SizedBox(width: width * 0.05),
+                                    SizedBox(width: width * 0.035),
                                     enableResendButton
                                     ? TextButton(
                                         onPressed: enableResendButton ?
@@ -497,7 +521,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                   automaticallyImplyLeading: false,
                   centerTitle: true,
                   title: Text(
-                    AppLocalizations.of(context)!.verify_otp,
+                    AppLocalizations.of(context)!.forgot_password_caps,
                     //"VERIFY OTP",
                     style: TextStyle(
                       color: Colors.black,
@@ -544,6 +568,9 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                 formKey.currentState!.validate();
                                               },
                                               decoration: InputDecoration(
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
                                                   label: Text(
                                                     AppLocalizations.of(context)!
                                                         .verify_otp,
@@ -563,10 +590,13 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: 16),
                                                   suffixIcon: IconButton(
-                                                    iconSize: height * 0.05,
-                                                    icon: const Icon(Icons.arrow_circle_right,
-                                                      color: Color.fromRGBO(
-                                                          82, 165, 160, 1),
+                                                    iconSize: height * 0.06,
+                                                    icon: Icon(Icons.arrow_circle_right,
+                                                      color:
+                                                      otpController.text.isNotEmpty
+                                                          ? const Color.fromRGBO(
+                                                          82, 165, 160, 1)
+                                                          : const Color.fromRGBO(153, 153, 153, 0.5),
                                                     ),
                                                     onPressed: () async {
                                                       if (formKey.currentState!.validate()) {
@@ -598,9 +628,15 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                       }
                                                     },
                                                   ),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.02),
                                                   hintText:
                                                   AppLocalizations.of(context)!
-                                                      .enter_otp
+                                                      .enter_here
                                                 //"Enter OTP",
                                               ),
                                               validator: (value) {
@@ -641,7 +677,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            SizedBox(width: width * 0.05),
+                                            SizedBox(width: width * 0.02),
                                             enableResendButton
                                                 ? TextButton(
                                                 onPressed: enableResendButton ?

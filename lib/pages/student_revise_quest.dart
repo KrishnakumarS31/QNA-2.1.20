@@ -1580,8 +1580,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     style: TextStyle(
                         fontFamily: 'Inter',
                         fontSize: localHeight * 0.024,
-                        // color: const Color.fromRGBO(
-                        //     0, 106, 100, 1),
+                        color: const Color.fromRGBO(0, 106, 100, 1),
                         fontWeight: FontWeight.w700),
                   ),
                 ]),
@@ -1784,20 +1783,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                       widget.assessmentHeaders
                                     ]);
                               }
-                              else {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: CustomDialog(
-                                      title: 'Answer not Submitted',
-                                      content: 'please enter the',
-                                      button: AppLocalizations.of(context)!
-                                          .retry,
-                                    ),
-                                  ),
-                                );
-                              }
                             }}
                       ),
                       ElevatedButton(
@@ -1997,22 +1982,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
             widget.isMember,
             widget.assessmentHeaders
           ]);
-    }
-    else {
-      if(context.mounted) {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: CustomDialog(
-              title: 'Answer not Submitted',
-              content: 'please enter the',
-              button: AppLocalizations.of(context)!
-                  .retry,
-            ),
-          ),
-        );
-      }
     }
   }
 

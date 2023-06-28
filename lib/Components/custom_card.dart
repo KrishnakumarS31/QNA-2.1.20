@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class CustomCard extends StatefulWidget {
-  const CustomCard({
+   CustomCard({
     Key? key,
     required this.height,
     required this.width,
     required this.result,
+    this.isShowTotal = false,
   }) : super(key: key);
-
+  bool isShowTotal;
   final double height;
   final double width;
   final GetResultModel result;
@@ -32,81 +33,81 @@ class _CustomCardState extends State<CustomCard> {
         widget.result.assessmentEndDate!);
     DateTime now = DateTime.now();
     return Container(
-      height: widget.height * 0.1825,
+      // height: widget.height * 0.11,
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: const Color.fromRGBO(28, 78, 80, 0.08),
+          color: const Color.fromRGBO(82, 165, 160, 0.07),
           border: Border.all(
-            color: const Color.fromRGBO(233, 233, 233, 1),
+            color: const Color.fromRGBO(82, 165, 160, 0.2),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
+          borderRadius: const BorderRadius.all(Radius.circular(5))),
       child: Column(
         children: [
-          ListTile(
-            title: Text(
-              "${AppLocalizations.of(context)!.sub_small} - ${widget.result.subject}",
+          Padding(
+          padding: EdgeInsets.only(
+          left: widget.width * 0.03, bottom: widget.height * 0.005),
+          child: Align(
+          alignment: Alignment.centerLeft,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+              Text(
+                "${widget.result.subject} | ${widget.result.topic}",
 //'Subject - ${widget.result.subject}',
-              style: TextStyle(
-                  color: const Color.fromRGBO(28, 78, 80, 1),
-                  fontSize: widget.height * 0.0187,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w700),
-            ),
-            trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Icon(
-                  Icons.circle,
-                  color:
-                  end.isBefore(now)
-                      ? const Color.fromRGBO(66, 194, 0, 1)
-                      : d.isAfter(now)
-                      ? const Color.fromRGBO(179, 179, 179, 1)
-                      : const Color.fromRGBO(255, 157, 77, 1),
-                  size: widget.height * 0.03,
-                ),
-                Text(
-                  startDate,
-                  style: TextStyle(
-                      color: const Color.fromRGBO(102, 102, 102, 0.7),
-                      fontSize: widget.height * 0.013,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                right: widget.width * 0.02, left: widget.width * 0.02),
-            child: const Divider(),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-                left: widget.width * 0.03, bottom: widget.height * 0.005),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "${AppLocalizations.of(context)!.title} - ${widget.result.topic}",
-                //'Title - ${widget.result.subject}',
                 style: TextStyle(
-                    color: const Color.fromRGBO(82, 165, 160, 1),
-                    fontSize: widget.height * 0.0175,
+                    color: const Color.fromRGBO(28, 78, 80, 1),
+                    fontSize: widget.height * 0.0187,
                     fontFamily: "Inter",
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w600),
               ),
-            ),
-          ),
+              d.isAfter(now)?
+              Container(
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  borderRadius:
+                  const BorderRadius.all(
+                      Radius.circular(5)),
+                  border: Border.all(
+                      color: const Color.fromRGBO(
+                          219, 35, 35, 1)),
+                ),
+                child: Row(children: [
+                  const Icon(
+                    Icons.circle,
+                    color: Color.fromRGBO(219, 35, 35, 1),
+                    // size: widget.height * 0.03,
+                  ),
+                  Text(
+                    AppLocalizations.of(context)!.live_caps,
+                    style: const TextStyle(
+                        color: Color.fromRGBO(102, 102, 102, 0.7),
+                        // fontSize: widget.height * 0.013,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],),
+              ): Icon(
+                Icons.circle,
+                color:
+                end.isBefore(now)
+                    ? const Color.fromRGBO(42, 36, 186, 1)
+                // : d.isAfter(now)
+                // ? const Color.fromRGBO(219, 35, 35, 1)
+                    : const Color.fromRGBO(153, 153, 153, 1),
+                size: widget.height * 0.03,
+              ),
+            ]),
+          )),
           Padding(
             padding: EdgeInsets.only(
                 left: widget.width * 0.03, bottom: widget.height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                '${AppLocalizations.of(context)!.sub_topic_optional} ${widget.result.subTopic}',
+                '${widget.result.degree} | ${widget.result.subject}',
                 //'Semester ${widget.result.subTopic}',
                 style: TextStyle(
-                    color: const Color.fromRGBO(82, 165, 160, 1),
+                    color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: widget.height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),
@@ -117,17 +118,67 @@ class _CustomCardState extends State<CustomCard> {
             padding: EdgeInsets.only(left: widget.width * 0.03),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                 "${AppLocalizations.of(context)!.degree_small} - ${widget.result.studentClass}",
-                                        //'Class ${widget.result.studentClass}',
-                style: TextStyle(
-                    color: const Color.fromRGBO(102, 102, 102, 1),
-                    fontSize: widget.height * 0.0175,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w500),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                         AppLocalizations.of(context)!.assessment_id_caps, //'Class ${widget.result.studentClass}',
+                        style: TextStyle(
+                            color: const Color.fromRGBO(102, 102, 102, 1),
+                            fontSize: widget.height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        widget.result.assessmentId.toString(), //'Class ${widget.result.studentClass}',
+                        style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: widget.height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    startDate,
+                    style: TextStyle(
+                        color: const Color.fromRGBO(28, 78, 80, 1),
+                        fontSize: widget.height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
               ),
             ),
           ),
+          widget.isShowTotal?
+          Container(
+            padding: EdgeInsets.only(left: widget.width * 0.03),
+            child: Column(children: [
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "${AppLocalizations.of(context)!.total_marks} ${widget.result.totalScore}", //'Class ${widget.result.studentClass}',
+                  style: TextStyle(
+                      color: const Color.fromRGBO(102, 102, 102, 1),
+                      fontSize: widget.height * 0.0175,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w500),
+                ),
+                Text(
+                  "${AppLocalizations.of(context)!.total_ques} ${widget.result.totalQuestions}", //'Class ${widget.result.studentClass}',
+                  style: TextStyle(
+                      color: const Color.fromRGBO(102, 102, 102, 1),
+                      fontSize: widget.height * 0.0175,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w500),
+                ),
+            ],)
+          ]),):Container()
         ],
       ),
     );

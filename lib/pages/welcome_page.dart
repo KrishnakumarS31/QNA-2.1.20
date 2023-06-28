@@ -93,7 +93,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
-                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.04),
+                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.05),
                     toolbarHeight: localHeight * 0.100,
                     title:
                     SizedBox(
@@ -318,7 +318,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
                     toolbarHeight: localHeight * 0.100,
-                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.04),
+                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.05),
                     title:
                     SizedBox(
                         height: localHeight * 0.08,
@@ -546,7 +546,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
                     toolbarHeight: localHeight * 0.100,
-                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.04),
+                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.05),
                     title:
                     SizedBox(
                         height: localHeight * 0.08,

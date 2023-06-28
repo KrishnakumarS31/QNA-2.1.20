@@ -14,7 +14,7 @@ import 'package:qna_test/Providers/create_assessment_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qna_test/Providers/edit_assessment_provider.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
-import '../Services/qna_service.dart';
+import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherAssessmentLanding extends StatefulWidget {

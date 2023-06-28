@@ -606,6 +606,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                     Row(
                                                               children: [
                                                                 Radio(
+                                                                  activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                   value: "male",
                                                                   groupValue: gender,
                                                                   onChanged: (value) {
@@ -630,6 +631,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       localHeight * 0.016),
                                                                 ),
                                                                 Radio(
+                                                                  activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                   value: "female",
                                                                   groupValue: gender,
                                                                   onChanged: (value) {
@@ -654,6 +656,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       localHeight * 0.016),
                                                                 ),
                                                                 Radio(
+                                                                  activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                   value: "others",
                                                                   groupValue: gender,
                                                                   onChanged: (value) {
@@ -1200,6 +1203,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           filterQuality: FilterQuality.high,
                                                           scale: 1.5,
                                                           child: Checkbox(
+                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                             shape: RoundedRectangleBorder(
                                                                 borderRadius: BorderRadius
                                                                     .circular(1)),
@@ -1304,9 +1308,14 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                 Center(
                                                   child: IconButton(
                                                     iconSize: localHeight * 0.06,
-                                                    icon: const Icon(Icons.arrow_circle_right,
-                                                      color: Color.fromRGBO(
-                                                          82, 165, 160, 1),
+                                                    icon: Icon(Icons.arrow_circle_right,
+                                                      color:
+                                                      (studentFirstNameController.text.isNotEmpty && studentLastNameController.text.isNotEmpty
+                                                          && studentconfirmPasswordController.text.isNotEmpty
+                                                          && studentEmailController.text.isNotEmpty && studentPasswordController.text.isNotEmpty
+                                                       && studentOrganisationNameController.text.isNotEmpty)
+                                                          ?  const Color.fromRGBO(82, 165, 160, 1)
+                                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
                                                     ),
                                                     onPressed: () async {
                                                       bool valid = formKey.currentState!.validate();
@@ -1602,6 +1611,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           Row(
                                                             children: [
                                                               Radio(
+                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                 value: "male",
                                                                 groupValue: gender,
                                                                 onChanged: (value) {
@@ -1626,6 +1636,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                     localHeight * 0.016),
                                                               ),
                                                               Radio(
+                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                 value: "female",
                                                                 groupValue: gender,
                                                                 onChanged: (value) {
@@ -1650,6 +1661,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                     localHeight * 0.016),
                                                               ),
                                                               Radio(
+                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                 value: "others",
                                                                 groupValue: gender,
                                                                 onChanged: (value) {
@@ -2171,6 +2183,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             filterQuality: FilterQuality.high,
                                                             scale: 1.5,
                                                             child: Checkbox(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                               shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius
                                                                       .circular(1)),
@@ -2275,9 +2288,13 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   Center(
                                                     child: IconButton(
                                                       iconSize: localHeight * 0.06,
-                                                      icon: const Icon(Icons.arrow_circle_right,
-                                                        color: Color.fromRGBO(
-                                                            82, 165, 160, 1),
+                                                      icon: Icon(Icons.arrow_circle_right,
+                                                        color:
+                                                        (studentFirstNameController.text.isNotEmpty && studentLastNameController.text.isNotEmpty
+                                                            && studentconfirmPasswordController.text.isNotEmpty && studentEmailController.text.isNotEmpty && studentPasswordController.text.isNotEmpty
+                                                             && studentOrganisationNameController.text.isNotEmpty)
+                                                            ?  const Color.fromRGBO(82, 165, 160, 1)
+                                                            :  const Color.fromRGBO(153, 153, 153, 0.5),
                                                       ),
                                                       onPressed: () async {
                                                         bool valid = formKey.currentState!.validate();
@@ -2682,6 +2699,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           Row(
                                                             children: [
                                                               Radio(
+                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                 value: "male",
                                                                 groupValue: gender,
                                                                 onChanged: (value) {
@@ -2706,6 +2724,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                     localHeight * 0.016),
                                                               ),
                                                               Radio(
+                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                 value: "female",
                                                                 groupValue: gender,
                                                                 onChanged: (value) {
@@ -2730,6 +2749,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                     localHeight * 0.016),
                                                               ),
                                                               Radio(
+                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                                 value: "others",
                                                                 groupValue: gender,
                                                                 onChanged: (value) {
@@ -3261,6 +3281,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             filterQuality: FilterQuality.high,
                                                             scale: 1.5,
                                                             child: Checkbox(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                               shape: RoundedRectangleBorder(
                                                                   borderRadius: BorderRadius
                                                                       .circular(1)),
@@ -3365,9 +3386,13 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   Center(
                                                     child: IconButton(
                                                       iconSize: localHeight * 0.06,
-                                                      icon: const Icon(Icons.arrow_circle_right,
-                                                        color: Color.fromRGBO(
-                                                            82, 165, 160, 1),
+                                                      icon: Icon(Icons.arrow_circle_right,
+                                                        color:
+                                                        (studentFirstNameController.text.isNotEmpty && studentLastNameController.text.isNotEmpty
+                                                            && studentconfirmPasswordController.text.isNotEmpty && studentEmailController.text.isNotEmpty && studentPasswordController.text.isNotEmpty
+                                                             && studentOrganisationNameController.text.isNotEmpty)
+                                                            ?  const Color.fromRGBO(82, 165, 160, 1)
+                                                            :  const Color.fromRGBO(153, 153, 153, 0.5),
                                                       ),
                                                       onPressed: () async {
                                                         bool valid = formKey.currentState!.validate();

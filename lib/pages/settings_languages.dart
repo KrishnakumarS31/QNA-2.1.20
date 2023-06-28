@@ -250,7 +250,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                                             : notSelectedColor,
                                                         fontSize: height * 0.0162,
                                                         fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
+                                                        fontWeight: FontWeight.w600,
                                                       ),
                                                     ),
                                                     selected == languages[j]
@@ -428,7 +428,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                                           : notSelectedColor,
                                                       fontSize: height * 0.0162,
                                                       fontFamily: "Inter",
-                                                      fontWeight: FontWeight.w700,
+                                                      fontWeight: FontWeight.w600,
                                                     ),
                                                   ),
                                                   selected == languages[j]
@@ -608,7 +608,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                                         : notSelectedColor,
                                                     fontSize: height * 0.0162,
                                                     fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w700,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                                 selected == languages[j]

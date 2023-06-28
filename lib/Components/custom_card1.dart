@@ -113,7 +113,7 @@ class CustomCard1 extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Semester(Section) ${resultIndex.subTopic}',
+                'Semester(Section) ${resultIndex.semester}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
@@ -127,7 +127,7 @@ class CustomCard1 extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Class ${resultIndex.studentClass}',
+                'Class ${resultIndex.degree}',
                 style: TextStyle(
                     color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: height * 0.0175,

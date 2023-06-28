@@ -188,8 +188,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
-                                        "ASSID${widget.assessmentId}",
+                                      Text(widget.assessmentId,
                                         style: const TextStyle(
                                           color: Color.fromRGBO(
                                               0, 106, 100, 1),
@@ -255,20 +254,16 @@ class StudQuestionState extends State<StudQuestion> {
                                         MainAxisAlignment.spaceBetween,
                                         children: [
                                           SizedBox(
-                                            height: height * 0.0625,
-                                            width: webWidth * 0.2277,
+                                            width: width * 0.18,
                                             child: Center(
                                               child: Text(
                                                 "${context.watch<QuestionNumProvider>().questionNum} of ${values.data!.questions!.length}",
-                                                style: Theme.of(context)
-                                                    .primaryTextTheme
-                                                    .bodyLarge
-                                                    ?.merge(TextStyle(
+                                                style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: height * 0.025)),
+                                                    fontSize: height * 0.025),
                                               ),
                                             ),
                                           ),
@@ -296,7 +291,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               color: Color.fromRGBO(28, 78, 80, 1),
                                             ),
                                             height: height * 0.0625,
-                                            width: webWidth * 0.2277,
+                                            width:  width * 0.18,
                                             child:
                                             Row(
                                               mainAxisAlignment:
@@ -371,16 +366,13 @@ class StudQuestionState extends State<StudQuestion> {
                                                   .questionNum -
                                                   1]
                                                   .question!,
-                                              style: Theme.of(context)
-                                                  .primaryTextTheme
-                                                  .bodyLarge
-                                                  ?.merge(TextStyle(
+                                              style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
                                                   fontFamily: 'Inter',
                                                   height: height * 0.0020,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.016)),
+                                                  fontSize: height * 0.016),
                                             ),
                                           ),
                                         ),
@@ -648,7 +640,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           },
                                           child: Container(
                                             height: height * 0.0475,
-                                            width: webWidth * 0.3,
+                                            width: width * 0.4,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                               const BorderRadius.all(
@@ -677,8 +669,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                           160,
                                                           1),
                                                       fontFamily: 'Inter',
-                                                      height:
-                                                      height * 0.0020,
+                                                      height: height * 0.0020,
                                                       fontWeight:
                                                       FontWeight.w500,
                                                       fontSize: height *
@@ -889,8 +880,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "ASSID${widget.assessmentId}",
+                                            Text(widget.assessmentId,
                                               style: const TextStyle(
                                                 color: Color.fromRGBO(
                                                     0, 106, 100, 1),
@@ -1599,8 +1589,7 @@ class StudQuestionState extends State<StudQuestion> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    "ASSID${widget.assessmentId}",
+                                  Text(widget.assessmentId,
                                     style: const TextStyle(
                                       color: Color.fromRGBO(
                                           0, 106, 100, 1),
@@ -1699,8 +1688,10 @@ class StudQuestionState extends State<StudQuestion> {
                                           QuestionNumProvider>()
                                           .questionNum -
                                           1]
-                                          .questionType == "Descriptive"?Container():
-                                      Container(
+                                          .questionType == "Descriptive"
+                                          ?
+                                      Container()
+                                          : Container(
                                         decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.only(
                                               topRight: Radius.circular(15),
@@ -2384,7 +2375,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                                 ? widget.height * 0.0262
                                 : widget.height * 0.0162,
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -2440,7 +2431,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                                           ? widget.height * 0.0262
                                           : widget.height * 0.0162,
                                       fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ),

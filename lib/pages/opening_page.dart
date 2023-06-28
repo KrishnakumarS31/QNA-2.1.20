@@ -9,6 +9,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../DataSource/app_user_repo.dart';
 import '../DataSource/http_url.dart';
 import '../Entity/app_user.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key, required this.setLocale}) : super(key: key);
@@ -29,15 +30,16 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child:
-          //StudentMemberLoginPage(setLocale: widget.setLocale)
-          const WelcomePage(),
-        ),
-      );
+      // Navigator.pushNamed(context, '/');
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child:
+      //     //StudentMemberLoginPage(setLocale: widget.setLocale)
+      //     const WelcomePage(),
+      //   ),
+      // );
     });
   }
 
@@ -56,40 +58,42 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    subscription.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return
             domainName == "https://sssuhe.qnatest.com"
-                ? EasySplashScreen(
-              logoWidth:
-              constraints.maxWidth > 700
-                  ? width * 0.1
-                  : width * 0.3,
-              logo: Image.asset(
-                  "assets/images/SSSUHE.png"),
+                ? AnimatedSplashScreen(
+              splash: "assets/images/SSSUHE.png",
+              nextScreen: const WelcomePage(),
+              splashIconSize: height * 0.4,
+              centered: true,
               backgroundColor: Colors.black,
-              showLoader: true,
-              loaderColor: const Color.fromRGBO(82, 165, 160, 1),
-              navigator: const WelcomePage(),
+              splashTransition: SplashTransition.fadeTransition,
             )
-                :   EasySplashScreen(
-              logoWidth:
-              constraints.maxWidth > 700
-                  ? width * 0.15
-                  : width * 0.7,
-              logo: Image.asset(
-                  "assets/images/qna_splash_screen.jpg"),
-              //backgroundColor: Colors.white,
-              showLoader: true,
-              loaderColor: const Color.fromRGBO(82, 165, 160, 1),
-              navigator: const WelcomePage(),
+              // logoWidth:
+              // constraints.maxWidth > 700
+              //     ? width * 0.1
+              //     : width * 0.3,
+              // logo: Image.asset(
+              //     "assets/images/SSSUHE.png"),
+              // backgroundColor: Colors.black,
+              // showLoader: true,
+              // loaderColor: const Color.fromRGBO(82, 165, 160, 1),
+              // navigator: const WelcomePage(),
+                : AnimatedSplashScreen(
+              splash: "assets/images/qna_splash_screen.jpg",
+              centered: true,
+              duration: 1,
+              splashIconSize: height,
+              nextScreen: const WelcomePage(),
+              splashTransition: SplashTransition.fadeTransition,
             );
         }
     );

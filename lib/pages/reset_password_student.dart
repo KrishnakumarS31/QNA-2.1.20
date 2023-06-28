@@ -122,7 +122,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
                                                   label: Text(AppLocalizations.of(
                                                       context)!
-                                                      .old_password_caps,
+                                                      .old_password,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -173,7 +173,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
                                                   label: Text(AppLocalizations.of(
                                                       context)!
-                                                      .new_password_caps,
+                                                      .new_password,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -218,7 +218,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
                                                   label: Text(AppLocalizations.of(
                                                       context)!
-                                                      .confirm_new_password_caps,
+                                                      .confirm_new_password,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -350,6 +350,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         Column(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            SizedBox(height: height * 0.05),
                                             Padding(
                                               padding: EdgeInsets.only(
                                                   left: height * 0.025,
@@ -366,7 +367,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
                                                   label: Text(AppLocalizations.of(
                                                       context)!
-                                                      .old_password_caps,
+                                                      .old_password,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -417,7 +418,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
                                                   label: Text(AppLocalizations.of(
                                                       context)!
-                                                      .new_password_caps,
+                                                      .new_password,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -462,7 +463,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
                                                   label: Text(AppLocalizations.of(
                                                       context)!
-                                                      .confirm_new_password_caps,
+                                                      .confirm_new_password,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -605,7 +606,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         labelStyle: Theme.of(context).textTheme.headlineSmall,
                                         label: Text(AppLocalizations.of(
                                                     context)!
-                                                    .old_password_caps,
+                                                    .old_password,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -656,7 +657,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         labelStyle: Theme.of(context).textTheme.headlineSmall,
                                         label: Text(AppLocalizations.of(
                                                     context)!
-                                                    .new_password_caps,
+                                                    .new_password,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -701,7 +702,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         labelStyle: Theme.of(context).textTheme.headlineSmall,
                                         label: Text(AppLocalizations.of(
                                                     context)!
-                                                    .confirm_new_password_caps,
+                                                    .confirm_new_password,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),

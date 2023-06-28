@@ -122,9 +122,11 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               fontSize: height * 0.016),
                                           suffixIcon: IconButton(
                                             iconSize: height * 0.05,
-                                            icon: const Icon(Icons.arrow_circle_right,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
+                                            icon: Icon(Icons.arrow_circle_right,
+                                              color:
+                                              (_controller.text.isNotEmpty)
+                                                  ? const Color.fromRGBO(82, 165, 160, 1)
+                                                  : const Color.fromRGBO(153, 153, 153, 0.5),
                                             ),
                                             onPressed: () async {
                                               bool valid = formKey.currentState!.validate();
@@ -277,9 +279,11 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               fontSize: height * 0.016),
                                           suffixIcon: IconButton(
                                             iconSize: height * 0.05,
-                                            icon: const Icon(Icons.arrow_circle_right,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
+                                            icon: Icon(Icons.arrow_circle_right,
+                                              color:
+                                              (_controller.text.isNotEmpty)
+                                                  ? const Color.fromRGBO(82, 165, 160, 1)
+                                                  : const Color.fromRGBO(153, 153, 153, 0.5),
                                             ),
                                             onPressed: () async {
                                               bool valid = formKey.currentState!.validate();
@@ -431,9 +435,11 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               fontSize: height * 0.016),
                                           suffixIcon: IconButton(
                                             iconSize: height * 0.05,
-                                            icon: const Icon(Icons.arrow_circle_right,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
+                                            icon: Icon(Icons.arrow_circle_right,
+                                              color:
+                                              (_controller.text.isNotEmpty)
+                                                  ? const Color.fromRGBO(82, 165, 160, 1)
+                                                  : const Color.fromRGBO(153, 153, 153, 0.5),
                                             ),
                                             onPressed: () async {
                                               bool valid = formKey.currentState!.validate();
@@ -500,18 +506,18 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
-    Widget okButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
-      ),
-      child: Text(
+    Widget okButton = TextButton(
+      child:
+      Center(
+        child:
+      Text(
         "Enter OTP",
         style: TextStyle(
-            color: Colors.white,
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
             fontSize: height * 0.018),
-      ),
+      )),
       onPressed: () {
 
         Navigator.pushNamed(context, '/verifyOtpPage',arguments: [widget.isFromStudent,_controller.text]);

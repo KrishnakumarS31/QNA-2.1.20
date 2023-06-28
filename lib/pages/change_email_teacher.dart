@@ -188,11 +188,10 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                           ),
                                         ),
                                         SizedBox(height: height * 0.04),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: height * 0.025,
-                                                right: height * 0.08),
-                                            child: Text(AppLocalizations.of(context)!.otp_sent_to_new,
+                                        Row(
+                                            children: [
+                                              SizedBox(width: width * 0.05),
+                                              Text(AppLocalizations.of(context)!.otp_sent_to_new,
                                                 //"OTP will be sent to new EMAIL ID",
                                                 style: const TextStyle(
                                                     color: Color.fromRGBO(
@@ -200,25 +199,23 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                                     fontFamily: 'Inter',
                                                     fontStyle: FontStyle.italic,
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: 14))),
+                                                    fontSize: 14))
+                            ]),
                                         SizedBox(height: height * 0.01),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: height * 0.025,
-                                              right: height * 0.1),
-                                          child: Text(
-                                              AppLocalizations.of(context)!.password_unchanged,
-                                              //"Password will remain unchanged.",
-                                              style: const TextStyle(
-                                                  color:
-                                                  Color.fromRGBO(
-                                                      153, 153, 153, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontStyle: FontStyle.italic,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14)),
-
-                                        )
+                                        Row(
+                                            children: [
+                                              SizedBox(width: width * 0.05),
+                                              Text(
+                                                  AppLocalizations.of(context)!.password_unchanged,
+                                                  //"Password will remain unchanged.",
+                                                  style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontStyle: FontStyle.italic,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14))
+                                            ]),
                                       ],
                                     ),
                                     Center(
@@ -269,7 +266,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                           },
                                         )),
                                     SizedBox(
-                                      height: height * 0.03,
+                                      height: height * 0.04,
                                     ),
                                   ],
                                 ),
@@ -425,37 +422,35 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                               ),
                                             ),
                                             SizedBox(height: height * 0.04),
-                                            Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: height * 0.025,
-                                                    right: height * 0.08),
-                                                child: Text(AppLocalizations.of(context)!.otp_sent_to_new,
-                                                    //"OTP will be sent to new EMAIL ID",
-                                                    style: const TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            153, 153, 153, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontStyle: FontStyle.italic,
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 14))),
+                                            Row(
+                                                children: [
+                                                  SizedBox(width: width * 0.02),
+                                                  Text(AppLocalizations.of(context)!.otp_sent_to_new,
+                                                      //"OTP will be sent to new EMAIL ID",
+                                                      style: const TextStyle(
+                                                          color: Color.fromRGBO(
+                                                              153, 153, 153, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontStyle: FontStyle.italic,
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 14))
+                                                ]),
                                             SizedBox(height: height * 0.01),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: height * 0.025,
-                                                  right: height * 0.1),
-                                              child: Text(
-                                                  AppLocalizations.of(context)!.password_unchanged,
-                                                  //"Password will remain unchanged.",
-                                                  style: const TextStyle(
-                                                      color:
-                                                      Color.fromRGBO(
-                                                          153, 153, 153, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontStyle: FontStyle.italic,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 14)),
-
-                                            )
+                                            Row(
+                                                children: [
+                                                  SizedBox(width: width * 0.02),
+                                                  Text(
+                                                      AppLocalizations.of(context)!.password_unchanged,
+                                                      //"Password will remain unchanged.",
+                                                      style: const TextStyle(
+                                                          color: Color.fromRGBO(
+                                                              153, 153, 153, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontStyle: FontStyle.italic,
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: 14))
+                                                ]),
+                                            SizedBox(height: height * 0.03),
                                           ],
                                         ),
                                         Center(
@@ -657,37 +652,35 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                           ),
                                         ),
                                         SizedBox(height: height * 0.04),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: height * 0.025,
-                                                right: height * 0.08),
-                                            child: Text(AppLocalizations.of(context)!.otp_sent_to_new,
-                                                //"OTP will be sent to new EMAIL ID",
-                                                style: const TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        153, 153, 153, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontStyle: FontStyle.italic,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 14))),
+                                        Row(
+                                            children: [
+                                              SizedBox(width: width * 0.05),
+                                              Text(AppLocalizations.of(context)!.otp_sent_to_new,
+                                                  //"OTP will be sent to new EMAIL ID",
+                                                  style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontStyle: FontStyle.italic,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14))
+                                            ]),
                                         SizedBox(height: height * 0.01),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: height * 0.025,
-                                              right: height * 0.1),
-                                          child: Text(
-                                              AppLocalizations.of(context)!.password_unchanged,
-                                              //"Password will remain unchanged.",
-                                              style: const TextStyle(
-                                                  color:
-                                                  Color.fromRGBO(
-                                                      153, 153, 153, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontStyle: FontStyle.italic,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14)),
-
-                                        )
+                                        Row(
+                                            children: [
+                                              SizedBox(width: width * 0.05),
+                                              Text(
+                                                  AppLocalizations.of(context)!.password_unchanged,
+                                                  //"Password will remain unchanged.",
+                                                  style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontStyle: FontStyle.italic,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14))
+                                            ]),
+                                        SizedBox(height: height * 0.03),
                                       ],
                                     ),
                                     Center(
