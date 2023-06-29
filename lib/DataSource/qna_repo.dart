@@ -255,6 +255,7 @@ class QnaRepo {
     };
     var request = http.Request('POST', Uri.parse(assessmentDomain));
     request.body = createAssessmentModelToJson(question);
+    debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -311,7 +312,11 @@ class QnaRepo {
       LoginModel loginModel =
       await logInUser(email!, pass!, userDetails.role);
       getAllAssessment(pageLimit, pageNumber, search,userDetails);
-    } else {}
+    } else {
+      String value = await response.stream.bytesToString();
+      print(value);
+      print(response.statusCode);
+    }
     return allAssessment;
   }
 
@@ -337,7 +342,11 @@ class QnaRepo {
       LoginModel loginModel =
       await logInUser(email!, pass!, userDetails.role);
       getAllQuestion(pageLimit, pageNumber, search,userDetails);
-    } else {}
+    } else {
+      String value = await response.stream.bytesToString();
+      print("-----------------------------------");
+      print(value);
+    }
     return responseEntity;
   }
 
@@ -394,7 +403,11 @@ class QnaRepo {
       LoginModel loginModel =
       await logInUser(email!, pass!, userDetails.role);
       editQuestionTeacher(question, questionId,userDetails);
-    } else {}
+    } else {
+      String temp = await response.stream.bytesToString();
+      print("------------------------------------------------------");
+      print(temp);
+    }
     return loginModel;
   }
 
@@ -446,17 +459,10 @@ class QnaRepo {
     int? assessmentStartDate = assessmentModel.assessmentStartdate;
     int? assessmentEndDate = assessmentModel.assessmentEnddate;
     int? assessmentDuration = assessmentModel.assessmentDuration;
-    print("ASSESSMENT DURATION");
-    print(assessmentDuration);
-    print("ASSESSMENT START DATE");
-    print(assessmentStartDate);
-    print("ASSESSMENT END DATE");
-    print(assessmentEndDate);
     assessment.advisorName=userDetails.firstName;
     assessment.advisorEmail=userDetails.email;
     request.body = assessmentSettingsToJson(assessment);
     String t="{\"assessment_type\": \"$assessmentType\", \"assessment_status\": \"$assessmentStatus\",\"assessment_settings\": ${request.body}, \"assessment_startdate\": $assessmentStartDate,\"assessment_enddate\": $assessmentEndDate,\"assessment_duration\": $assessmentDuration }";
-    print(t);
     request.body=t;
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -491,13 +497,11 @@ class QnaRepo {
     assessment.advisorEmail=userDetails.email;
     String h = assessmentSettingsToJson(assessment);
     String t="{\"assessment_type\": \"$assessmentType\", \"assessment_status\": \"$assessmentStatus\", \"assessment_settings\": $h }";
-    print(t);
     request.body=t;
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
-      print(temp);
       loginModel = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = userDetails.email;
@@ -557,8 +561,6 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> getAssessmentHeader(String assessmentCode) async {
-    print("ASSESSMENT CODE");
-    print(assessmentCode);
     ResponseEntity allAssessment = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var request = http.Request(
@@ -566,12 +568,9 @@ class QnaRepo {
         Uri.parse(
             '$domainName/api/v1/assessment-details?code=$assessmentCode'));
     http.StreamedResponse response = await request.send();
-    print("RESPONSE CODE");
-    print(response.statusCode);
       String value = await response.stream.bytesToString();
       allAssessment = responseEntityFromJson(value);
 
-    print(allAssessment);
     return allAssessment;
   }
 
@@ -613,8 +612,6 @@ class QnaRepo {
 
     http.StreamedResponse response = await request.send();
 
-    print("INSIDE RESPONSE CODE");
-    print(response.statusCode);
 
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();

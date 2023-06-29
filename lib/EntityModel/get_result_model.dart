@@ -212,6 +212,7 @@ class Questions {
         this.questionType,
         this.selectedChoices,
         this.descriptiveAnswers,
+        this.marks,
         this.status});
 
   String? question;
@@ -219,6 +220,7 @@ class Questions {
   List<dynamic>? selectedChoices;
   String? descriptiveAnswers;
   String? status;
+  int? marks;
 
   factory Questions.fromJson(Map<String, dynamic> json) => Questions(
     question: json["question"] ?? "",
@@ -226,6 +228,7 @@ class Questions {
     selectedChoices: json["selected_choices"] ?? [" "],
     descriptiveAnswers: json["descriptive_answer"] ?? "",
     status: json["status"] ?? "",
+    marks: json["marks"] ?? 0
   );
 
   Map<String, dynamic> toJson() => {
@@ -233,6 +236,7 @@ class Questions {
     "question_type": questionType,
     "selected_choices": selectedChoices,
     "descriptive_answer": descriptiveAnswers,
-    "status": status
+    "status": status,
+    "marks":marks
   };
 }

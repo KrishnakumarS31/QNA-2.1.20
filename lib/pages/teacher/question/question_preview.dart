@@ -28,6 +28,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
   @override
   void initState() {
     super.initState();
+    print("Appan Panna Thappula");
+    print(widget.finalQuestion.questionType);
     adviceController.text = widget.finalQuestion.advisorText!;
     urlController.text = widget.finalQuestion.advisorUrl!;
 

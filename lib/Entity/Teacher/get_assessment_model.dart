@@ -95,7 +95,7 @@ class GetAssessmentModel {
 
   @override
   String toString() {
-    return 'GetAssessmentModel{assessmentId: $assessmentId, assessmentType: $assessmentType, assessmentCode: $assessmentCode, totalScore: $totalScore, assessmentDuration: $assessmentDuration, assessmentStatus: $assessmentStatus, subject: $subject, topic: $topic, subTopic: $subTopic, getAssessmentModelClass: $getAssessmentModelClass, assessmentScoreMessage: $assessmentScoreMessage, assessmentSettings: $assessmentSettings, questions: $questions}';
+    return 'GetAssessmentModel{assessmentId: $assessmentId, assessmentType: $assessmentType, assessmentCode: $assessmentCode, totalScore: $totalScore, assessmentDuration: $assessmentDuration, assessmentStatus: $assessmentStatus, subject: $subject, topic: $topic, subTopic: $subTopic, getAssessmentModelClass: $getAssessmentModelClass, assessmentScoreMessage: $assessmentScoreMessage,\n assessmentSettings: $assessmentSettings,\n questions: $questions}';
   }
 }
 

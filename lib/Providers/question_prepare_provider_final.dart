@@ -17,8 +17,8 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteQuestionList(int id) {
-    _questionList.removeAt(id);
+  void deleteQuestionList(int index) {
+    _questionList.removeAt(index);
     notifyListeners();
   }
 

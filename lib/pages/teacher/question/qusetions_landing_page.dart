@@ -40,6 +40,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   bool onlyMyQuestion = true;
   bool myQuestion =true;
   int questionStart=0;
+  List<Question>? questions = [];
+  QuestionResponse? questionResponse;
   //-----------------------------------------------------
 
 
@@ -55,10 +57,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
     List<Question>? questions;
     if (responseEntity.code == 200) {
-      QuestionResponse questionResponse;
       questionResponse = QuestionResponse.fromJson(responseEntity.data);
       print(questionResponse);
-      questions = questionResponse.questions;
+      questions = questionResponse?.questions;
     }
     else{
       Navigator.push(
@@ -81,7 +82,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     }
     setState(() {
       questionList=[];
-      questionList = questions!;
+      questionList.addAll(questions!);
       pageNumber++;
       searchVal = search;
     });
@@ -91,7 +92,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   getData(String search) async {
     ResponseEntity responseEntity =
     await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    List<Question>? questions = [];
     if (responseEntity.code == 200) {
       QuestionResponse questionResponse;
       questionResponse = QuestionResponse.fromJson(responseEntity.data);
@@ -120,7 +120,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     setState(() {
       myQuestion=true;
       //questionList=[];
-      questionList = questions!;
+      questionList.addAll(questions!);
       pageNumber++;
       searchVal = search;
     });
@@ -131,10 +131,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     List<Question>? questions = [];
     ResponseEntity response =
     await QnaService.getSearchQuestion(10, 1, teacherQuestionBankSearchController.text,userDetails);
+    print("RESPONSE CODE");
+    print(response.code);
+
     if(response.code==200){
       QuestionResponse questionResponse;
       questionResponse = QuestionResponse.fromJson(response.data);
       questions = questionResponse.questions;
+      print("Questions");
+      print(questions);
     }
     else{
       Navigator.push(
@@ -165,17 +170,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     });
     //Navigator.of(context).pop();
   }
-
-  // getQuestionData() async {
-  //   ResponseEntity responseEntity =
-  //   await QnaService.getQuestionBankService(5, pageNumber, searchVal,userDetails);
-  //   List<Question> questions = List<Question>.from(
-  //       responseEntity.data.map((x) => Question.fromJson(x)));
-  //   setState(() {
-  //     questionList.addAll(questions);
-  //     pageNumber++;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -501,15 +495,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (Question i in questionList)
-                                    Question_Card(height: height, width: width,question: i,myQuestion: myQuestion),
+                                  for (int i=questionStart;i<questionList.length;i++)
+                                    Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(left:width *  0.02),
                                         child: Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionList.length}',
+                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(102, 102, 102, 0.3),
                                               fontFamily: 'Inter',
@@ -526,6 +520,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                 onTap: (){
                                                   if(questionList.length>11){
                                                     setState(() {
+                                                      pageNumber--;
                                                       questionStart=questionStart-10;
                                                       questionList.removeRange(questionList.length-10, questionList.length);
                                                     });
@@ -768,7 +763,11 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
                                 onTap: (){
+
                                   showModalBottomSheet(
+                                      constraints: BoxConstraints(
+                                          maxWidth: 600
+                                      ),
                                       shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(25.0),
@@ -960,15 +959,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    for (Question i in questionList)
-                                      Question_Card(height: height, width: width,question: i,myQuestion: myQuestion),
+                                    for (int i=questionStart;i<questionList.length;i++)
+                                      Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.only(left:height * 0.01),
                                           child: Text(
-                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionList.length}',
+                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(102, 102, 102, 0.3),
                                                 fontFamily: 'Inter',
@@ -983,6 +982,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                               children: [
                                                 GestureDetector(
                                                   onTap: (){
+                                                    print("INSIDE ONTAP FOR ARROW LEFT");
                                                     if(questionList.length>11){
                                                       setState(() {
                                                         questionStart=questionStart-10;
@@ -1343,6 +1343,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                           82, 165, 160, 1),
                                                     )),
                                                 onPressed: () {
+                                                  print("INSIDE ONPRESSED");
+                                                  print(onlyMyQuestion);
                                                   onlyMyQuestion?
                                                   getData(teacherQuestionBankSearchController.text):
                                                   searchGlobalQuestion();
@@ -1410,23 +1412,19 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (Question i in questionList)
-                                  Question_Card(height: height, width: width,question: i,myQuestion: myQuestion),
+                                  for (int i=questionStart;i<questionList.length;i++)
+                                    Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(left:width *  0.02),
-                                        child: Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionList.length}',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016),
-                                        ),
+                                      Text(
+                                        'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.016),
                                       ),
-                                      SizedBox(width: width * 0.25),
                                       Wrap(
                                         children: [
                                           Row(
@@ -1435,6 +1433,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                 onTap: (){
                                                   if(questionList.length>11){
                                                     setState(() {
+                                                      pageNumber--;
                                                       questionStart=questionStart-10;
                                                       questionList.removeRange(questionList.length-10, questionList.length);
                                                     });
@@ -1442,7 +1441,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                 },
                                                 child: Container(
                                                   height: height * 0.03,
-                                                  width: width * 0.09,
+                                                  width: width * 0.1,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     borderRadius: BorderRadius.all(
@@ -1458,7 +1457,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                 padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                 child: Container(
                                                   height: height * 0.03,
-                                                  width: width * 0.09,
+                                                  width: width * 0.15,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     borderRadius: BorderRadius.all(
@@ -1488,7 +1487,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                 },
                                                 child: Container(
                                                   height: height * 0.03,
-                                                  width: width * 0.09,
+                                                  width: width * 0.1,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     borderRadius: BorderRadius.all(
@@ -1504,7 +1503,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: height * 0.05,)
                                     ],
                                   ),
                                 ],

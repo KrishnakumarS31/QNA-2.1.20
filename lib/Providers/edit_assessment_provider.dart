@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart';
 
@@ -24,6 +25,14 @@ class EditAssessmentProvider extends ChangeNotifier {
     }
     int index = quesIds.indexOf(questionId);
     _assessment.questions!.removeAt(index);
+    notifyListeners();
+  }
+
+  void resetAssessment() {
+    AssessmentSettings settings=AssessmentSettings();
+    _assessment = GetAssessmentModel(
+        questions: [],assessmentSettings: settings);
+    _assessment.questions?.clear();
     notifyListeners();
   }
 }

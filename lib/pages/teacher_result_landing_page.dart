@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Entity/Teacher/result_entity.dart';
 import 'package:qna_test/Pages/teacher_result_assessment.dart';
 import '../Components/custom_card.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -12,7 +11,6 @@ import '../EntityModel/get_result_model.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/DataSource/http_url.dart';
 class TeacherResultLanding extends StatefulWidget {
   const TeacherResultLanding({
     Key? key,
@@ -173,16 +171,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                                   219, 35, 35, 1)),
                                                         ),
                                                         child: Row(children: [
-                                                          const Icon(
+                                                          Icon(
                                                             Icons.circle,
-                                                            color: Color.fromRGBO(219, 35, 35, 1),
-                                                            // size: widget.height * 0.03,
+                                                            color: const Color.fromRGBO(219, 35, 35, 1),
+                                                            size: height * 0.03,
                                                           ),
                                                           Text(
                                                             AppLocalizations.of(context)!.live_caps,
-                                                            style: const TextStyle(
-                                                                color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                                // fontSize: widget.height * 0.013,
+                                                            style: TextStyle(
+                                                                color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                                fontSize: height * 0.02,
                                                                 fontFamily: "Inter",
                                                                 fontWeight: FontWeight.w400),
                                                           ),
@@ -191,16 +189,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                       Container(
                                                         padding: const EdgeInsets.all(2),
                                                         child: Row(children: [
-                                                          const Icon(
+                                                          Icon(
                                                             Icons.circle,
-                                                            color: Color.fromRGBO(42, 36, 186, 1),
-                                                            // size: widget.height * 0.03,
+                                                            color: const Color.fromRGBO(42, 36, 186, 1),
+                                                            size: height * 0.03,
                                                           ),
                                                           Text(
                                                             AppLocalizations.of(context)!.completed,
-                                                            style: const TextStyle(
-                                                                color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                                // fontSize: widget.height * 0.013,
+                                                            style: TextStyle(
+                                                                color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                                fontSize: height * 0.02,
                                                                 fontFamily: "Inter",
                                                                 fontWeight: FontWeight.w400),
                                                           ),
@@ -209,16 +207,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                       Container(
                                                         padding: const EdgeInsets.all(2),
                                                         child: Row(children: [
-                                                          const Icon(
+                                                          Icon(
                                                             Icons.circle,
-                                                            color: Color.fromRGBO(153, 153, 153, 1),
-                                                            // size: widget.height * 0.03,
+                                                            color: const Color.fromRGBO(153, 153, 153, 1),
+                                                            size: height * 0.03,
                                                           ),
                                                           Text(
                                                             AppLocalizations.of(context)!.yet_to_start,
-                                                            style: const TextStyle(
-                                                                color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                                // fontSize: widget.height * 0.013,
+                                                            style: TextStyle(
+                                                                color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                                fontSize: height * 0.02,
                                                                 fontFamily: "Inter",
                                                                 fontWeight: FontWeight.w400),
                                                           ),
@@ -299,7 +297,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                     children: [
                                                       Text(
-                                                        'Showing ${resultStart + 1} to ${resultStart+10 <results.length?resultStart+10:results.length} of $totalCount',
+                                                        'Showing ${resultStart + 1} to ${resultStart+10 <totalCount?resultStart+10:totalCount} of $totalCount',
                                                         style: TextStyle(
                                                             color: const Color.fromRGBO(102, 102, 102, 0.3),
                                                             fontFamily: 'Inter',
@@ -312,15 +310,17 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                             children: [
                                                               GestureDetector(
                                                                 onTap: (){
-                                                                  setState(() {
-                                                                    pageLimit--;
-                                                                    resultStart=resultStart-10;
-                                                                    // results.removeRange(results.length-10, results.length);
-                                                                  });
-                                                                  getData();
-                                                                  setState(() {
+                                                                  if(pageLimit > 1){
+                                                                    setState(() {
+                                                                      pageLimit--;
+                                                                      resultStart=resultStart-10;
+                                                                      // results.removeRange(results.length-10, results.length);
+                                                                    });
+                                                                    getData();
+                                                                    setState(() {
 
-                                                                  });
+                                                                    });
+                                                                  }
                                                                 },
                                                                 child: Container(
                                                                   height: height * 0.03,
@@ -360,11 +360,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                               ),
                                                               GestureDetector(
                                                                 onTap: (){
-                                                                  setState(() {
-                                                                    resultStart=resultStart+10;
-                                                                    pageLimit++;
-                                                                  });
-                                                                  getData();
+                                                                  if(totalCount-resultStart > 10){
+                                                                    setState(() {
+                                                                      resultStart=resultStart+10;
+                                                                      pageLimit++;
+                                                                    });
+                                                                    getData();
+                                                                  }
                                                                 },
                                                                 child: Container(
                                                                   height: height * 0.03,
@@ -478,16 +480,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                           219, 35, 35, 1)),
                                                 ),
                                                 child: Row(children: [
-                                                  const Icon(
+                                                  Icon(
                                                     Icons.circle,
-                                                    color: Color.fromRGBO(219, 35, 35, 1),
-                                                    // size: widget.height * 0.03,
+                                                    color: const Color.fromRGBO(219, 35, 35, 1),
+                                                    size: height * 0.03,
                                                   ),
                                                   Text(
                                                     AppLocalizations.of(context)!.live_caps,
-                                                    style: const TextStyle(
-                                                        color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                        // fontSize: widget.height * 0.013,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                        fontSize: height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight: FontWeight.w400),
                                                   ),
@@ -496,16 +498,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                               Container(
                                                 padding: const EdgeInsets.all(2),
                                                 child: Row(children: [
-                                                  const Icon(
+                                                  Icon(
                                                     Icons.circle,
-                                                    color: Color.fromRGBO(42, 36, 186, 1),
-                                                    // size: widget.height * 0.03,
+                                                    color: const Color.fromRGBO(42, 36, 186, 1),
+                                                    size: height * 0.03,
                                                   ),
                                                   Text(
                                                     AppLocalizations.of(context)!.completed,
-                                                    style: const TextStyle(
-                                                        color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                        // fontSize: widget.height * 0.013,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                        fontSize: height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight: FontWeight.w400),
                                                   ),
@@ -514,16 +516,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                               Container(
                                                 padding: const EdgeInsets.all(2),
                                                 child: Row(children: [
-                                                  const Icon(
+                                                  Icon(
                                                     Icons.circle,
-                                                    color: Color.fromRGBO(153, 153, 153, 1),
-                                                    // size: widget.height * 0.03,
+                                                    color: const Color.fromRGBO(153, 153, 153, 1),
+                                                    size: height * 0.03,
                                                   ),
                                                   Text(
                                                     AppLocalizations.of(context)!.yet_to_start,
-                                                    style: const TextStyle(
-                                                        color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                        // fontSize: widget.height * 0.013,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                        fontSize:height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight: FontWeight.w400),
                                                   ),
@@ -606,7 +608,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Text(
-                                                  'Showing ${resultStart + 1} to ${resultStart+10 <results.length?resultStart+10:results.length} of $totalCount',
+                                                  'Showing ${resultStart + 1} to ${resultStart+10 <totalCount?resultStart+10:totalCount} of $totalCount',
                                                   style: TextStyle(
                                                       color: const Color.fromRGBO(102, 102, 102, 0.3),
                                                       fontFamily: 'Inter',
@@ -619,15 +621,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                       children: [
                                                         GestureDetector(
                                                           onTap: (){
-                                                            setState(() {
-                                                              pageLimit--;
-                                                              resultStart=resultStart-10;
-                                                              // results.removeRange(results.length-10, results.length);
-                                                            });
-                                                            getData();
-                                                            setState(() {
-
-                                                            });
+                                                            if(pageLimit > 1){
+                                                              setState(() {
+                                                                pageLimit--;
+                                                                resultStart=resultStart-10;
+                                                              });
+                                                              getData();
+                                                              setState(() {});
+                                                            }
                                                           },
                                                           child: Container(
                                                             height: height * 0.03,
@@ -667,11 +668,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         ),
                                                         GestureDetector(
                                                           onTap: (){
-                                                            setState(() {
-                                                              resultStart=resultStart+10;
-                                                              pageLimit++;
-                                                            });
-                                                            getData();
+                                                            if(totalCount-resultStart > 10){
+                                                              setState(() {
+                                                                resultStart=resultStart+10;
+                                                                pageLimit++;
+                                                              });
+                                                              getData();
+                                                            }
                                                           },
                                                           child: Container(
                                                             height: height * 0.03,
@@ -787,16 +790,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                       219, 35, 35, 1)),
                                             ),
                                             child: Row(children: [
-                                              const Icon(
+                                              Icon(
                                                 Icons.circle,
-                                                color: Color.fromRGBO(219, 35, 35, 1),
-                                                // size: widget.height * 0.03,
+                                                color: const Color.fromRGBO(219, 35, 35, 1),
+                                                size: height * 0.03,
                                               ),
                                               Text(
                                                 AppLocalizations.of(context)!.live_caps,
-                                                style: const TextStyle(
-                                                    color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                    // fontSize: widget.height * 0.013,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                    fontSize: height * 0.02,
                                                     fontFamily: "Inter",
                                                     fontWeight: FontWeight.w400),
                                               ),
@@ -805,16 +808,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                           Container(
                                             padding: const EdgeInsets.all(2),
                                             child: Row(children: [
-                                              const Icon(
+                                              Icon(
                                                 Icons.circle,
-                                                color: Color.fromRGBO(42, 36, 186, 1),
-                                                // size: widget.height * 0.03,
+                                                color: const Color.fromRGBO(42, 36, 186, 1),
+                                                size: height * 0.03,
                                               ),
                                               Text(
                                                 AppLocalizations.of(context)!.completed,
-                                                style: const TextStyle(
-                                                    color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                    // fontSize: widget.height * 0.013,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                    fontSize: height * 0.02,
                                                     fontFamily: "Inter",
                                                     fontWeight: FontWeight.w400),
                                               ),
@@ -823,16 +826,16 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                           Container(
                                             padding: const EdgeInsets.all(2),
                                             child: Row(children: [
-                                              const Icon(
+                                              Icon(
                                                 Icons.circle,
-                                                color: Color.fromRGBO(153, 153, 153, 1),
-                                                // size: widget.height * 0.03,
+                                                color: const Color.fromRGBO(153, 153, 153, 1),
+                                                size: height * 0.03,
                                               ),
                                               Text(
                                                 AppLocalizations.of(context)!.yet_to_start,
-                                                style: const TextStyle(
-                                                    color: Color.fromRGBO(102, 102, 102, 0.7),
-                                                    // fontSize: widget.height * 0.013,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 0.7),
+                                                    fontSize: height * 0.02,
                                                     fontFamily: "Inter",
                                                     fontWeight: FontWeight.w400),
                                               ),
@@ -913,7 +916,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Text(
-                                            'Showing ${resultStart + 1} to ${resultStart+10 <results.length?resultStart+10:results.length} of $totalCount',
+                                            'Showing ${resultStart + 1} to ${resultStart+10 <totalCount?resultStart+10:totalCount} of $totalCount',
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(102, 102, 102, 0.3),
                                                 fontFamily: 'Inter',
@@ -926,15 +929,15 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap: (){
-                                                      setState(() {
-                                                        pageLimit--;
-                                                        resultStart=resultStart-10;
-                                                        // results.removeRange(results.length-10, results.length);
-                                                      });
-                                                      getData();
-                                                      setState(() {
-
-                                                      });
+                                                      if(pageLimit > 1){
+                                                        setState(() {
+                                                          pageLimit--;
+                                                          resultStart=resultStart-10;
+                                                          // results.removeRange(results.length-10, results.length);
+                                                        });
+                                                        getData();
+                                                        setState(() {});
+                                                      }
                                                     },
                                                     child: Container(
                                                       height: height * 0.03,
@@ -974,11 +977,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                   ),
                                                   GestureDetector(
                                                     onTap: (){
-                                                      setState(() {
-                                                        resultStart=resultStart+10;
-                                                        pageLimit++;
-                                                      });
-                                                      getData();
+                                                      if(totalCount-resultStart > 10){
+                                                        setState(() {
+                                                          resultStart=resultStart+10;
+                                                          pageLimit++;
+                                                        });
+                                                        getData();
+                                                      }
                                                     },
                                                     child: Container(
                                                       height: height * 0.03,

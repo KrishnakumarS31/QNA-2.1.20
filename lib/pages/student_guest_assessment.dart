@@ -9,7 +9,7 @@ import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/pages/about_us.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
 import 'package:qna_test/pages/help_page.dart';
-import 'package:qna_test/pages/teacher/assessment/create_new_question.dart';
+import 'package:qna_test/pages/teacher/question/create_new_question.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/today_date.dart';
 import '../DataSource/http_url.dart';

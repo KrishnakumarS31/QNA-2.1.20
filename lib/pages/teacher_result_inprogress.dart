@@ -3,12 +3,10 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Components/custom_result_inProgress_card.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
 import '../Components/custom_card.dart';
-import '../Components/custom_card1.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherResultInProgress extends StatefulWidget {
   TeacherResultInProgress({
@@ -58,11 +56,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
     int? assessmentStartDate = widget.result.assessmentStartDate;
     int? assessmentEndDate = widget.result.assessmentEndDate;
     int? assessmentDuration = widget.result.assessmentDuration;
-    var d = DateTime.fromMicrosecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    var end = DateTime.fromMicrosecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    DateTime now = DateTime.now();
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -173,7 +166,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     ),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(5))),
-                                height: height * 0.7812,
+                                // height: height * 0.7812,
                                 child: Column(
                                   children: [
                                     Container(
@@ -305,7 +298,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            " ${widget.result.assessmentType}" ?? "",
+                                            " ${widget.result.assessmentType}",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -759,7 +752,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     ),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(5))),
-                                height: height * 0.4812,
+                                // height: height * 0.4812,
                                 child: Column(
                                   children: [
                                     Container(
@@ -891,7 +884,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            " ${widget.result.assessmentType}" ?? "",
+                                            " ${widget.result.assessmentType}",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,

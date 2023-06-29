@@ -55,17 +55,17 @@ String convertAttemptDuration(int? duration) {
   if (duration!< 60) {
     if (duration.toString().length == 1) {
       duration = duration == 0 ?  1 : duration;
-      assessmentDuration = "00:0$duration min";
+      assessmentDuration = "00h 0${duration}m";
     }
     else if (duration.toString().length == 2)
     {
-      assessmentDuration = "00:$duration min";
+      assessmentDuration = "00h ${duration}m";
     }
   }
 
   else if(duration == 60)
   {
-    assessmentDuration = "01:00 hr";
+    assessmentDuration = "01h 00m";
   }
 
   else if (duration> 60) {
@@ -83,17 +83,17 @@ String convertAttemptDuration(int? duration) {
       b= "0.${ch[1]}";
       c= double.parse(b);
       d = (c*60).toInt();
-      assessmentDuration = "$f:$d hrs";
+      assessmentDuration = "${f}h:${d}m";
     }
     else if(ch[1].length == 2) {
       b= ch[1];
       d= (int.parse(b)) * 60;
-      assessmentDuration = "$f:$d min";
+      assessmentDuration = "${f}h:${d}m";
     }}
 
     else if(ch.length ==1)
     {
-      assessmentDuration ="$f:00 hrs";
+      assessmentDuration ="${f}h:00m";
     }
 
   }

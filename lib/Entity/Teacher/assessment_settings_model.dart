@@ -63,6 +63,6 @@ class AssessmentSettings {
 
   @override
   String toString() {
-    return 'AssessmentSettings{allowedNumberOfTestRetries: $allowedNumberOfTestRetries, avalabilityForPractice: $avalabilityForPractice, numberOfDaysAfterTestAvailableForPractice: $numberOfDaysAfterTestAvailableForPractice, allowGuestStudent: $allowGuestStudent, showSolvedAnswerSheetInAdvisor: $showSolvedAnswerSheetInAdvisor, showAdvisorName: $showAdvisorName, showAdvisorEmail: $showAdvisorEmail, notAvailable: $notAvailable, showAnswerSheetDuringPractice: $showAnswerSheetDuringPractice}';
+    return 'AssessmentSettings{\n allowedNumberOfTestRetries: $allowedNumberOfTestRetries, avalabilityForPractice: $avalabilityForPractice, numberOfDaysAfterTestAvailableForPractice: $numberOfDaysAfterTestAvailableForPractice,\n  allowGuestStudent: $allowGuestStudent, showSolvedAnswerSheetInAdvisor: $showSolvedAnswerSheetInAdvisor,\n  showAdvisorName: $showAdvisorName, showAdvisorEmail: $showAdvisorEmail, notAvailable: $notAvailable,\n  showAnswerSheetDuringPractice: $showAnswerSheetDuringPractice}';
   }
 }

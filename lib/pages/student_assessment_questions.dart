@@ -52,8 +52,6 @@ class StudQuestionState extends State<StudQuestion> {
 
   @override
   void initState() {
-    print("INSIDE ASSESSMENT QUESTIONS WIDGET");
-    print(widget.isMember);
     setTime();
     values = widget.ques;
     context.read<Questions>().createQuesAns(values.data!.questions!.length);
@@ -146,7 +144,7 @@ class StudQuestionState extends State<StudQuestion> {
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
-    int i;
+
     selected = Provider.of<Questions>(context, listen: false).totalQuestion[
         '${context.watch<QuestionNumProvider>().questionNum}'][0];
     ansController.text = Provider.of<Questions>(context, listen: false)
@@ -576,12 +574,6 @@ class StudQuestionState extends State<StudQuestion> {
                                         cursor: SystemMouseCursors.click,
                                         child: GestureDetector(
                                           onTap: () {
-                                            print("INSIDE FIRST BUTTON ONPRESSED");
-                                            print( Provider.of<Questions>(context,
-                                                listen: false)
-                                                .totalQuestion[
-                                            '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                            [2]);
                                             if (Provider.of<Questions>(context,
                                                 listen: false)
                                                 .totalQuestion[
@@ -699,12 +691,6 @@ class StudQuestionState extends State<StudQuestion> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        print("INSIDE FIRST BUTTON ONPRESSED");
-                                        print( Provider.of<Questions>(context,
-                                            listen: false)
-                                            .totalQuestion[
-                                        '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                        [2]);
                                         if (Provider.of<Questions>(context,
                                             listen: false)
                                             .totalQuestion[
@@ -764,8 +750,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     )
                                         : ElevatedButton(
                                         onPressed: () {
-                                          print("Inside Second Button onpressed");
-                                          print(selected.isNotEmpty);
                                           //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
                                           //print(context.watch<QuestionNumProvider>().questionNum);
 
@@ -877,30 +861,14 @@ class StudQuestionState extends State<StudQuestion> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(widget.assessmentId,
-                                              style: const TextStyle(
-                                                color: Color.fromRGBO(
-                                                    0, 106, 100, 1),
-                                                fontSize: 25,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              values.data!.assessmentType=="practice"?
-                                              values.data!.assessmentType![0].toUpperCase()+values.data!.assessmentType!.substring(1):"",
-                                              style: const TextStyle(
-                                                color: Color.fromRGBO(
-                                                    255, 157, 77, 1),
-                                                fontSize: 25,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
+                                        Text(widget.assessmentId,
+                                          style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                0, 106, 100, 1),
+                                            fontSize: height * 0.0455,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w600,
+                                          ),
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(right: height * 0.025),
@@ -912,30 +880,27 @@ class StudQuestionState extends State<StudQuestion> {
                                                       color: Colors.black,
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w400,
-                                                      fontSize: height * 0.02)),
+                                                      fontSize: height * 0.032)),
                                             ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                    // Row(
-                                    //
-                                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    //   children: [
-                                    //     Text(
-                                    //       values.data!.assessmentType=="test"?
-                                    //       values.data!.assessmentType![0].toUpperCase()+values.data!.assessmentType!.substring(1):"",
-                                    //       style: const TextStyle(
-                                    //         color: Color.fromRGBO(
-                                    //             255, 157, 77, 1),
-                                    //         fontSize: 25,
-                                    //         fontFamily: "Inter",
-                                    //         fontWeight: FontWeight.w600,
-                                    //       ),
-                                    //     ),
-                                    //     const Text(""),
-                                    //   ],
-                                    // ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          values.data!.assessmentType=="practice"?
+                                          values.data!.assessmentType![0].toUpperCase()+values.data!.assessmentType!.substring(1):"",
+                                          style: const TextStyle(
+                                            color: Color.fromRGBO(
+                                                255, 157, 77, 1),
+                                            fontSize: 25,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1291,12 +1256,6 @@ class StudQuestionState extends State<StudQuestion> {
                                         cursor: SystemMouseCursors.click,
                                         child: GestureDetector(
                                           onTap: () {
-                                            print("INSIDE FIRST BUTTON ONPRESSED");
-                                            print( Provider.of<Questions>(context,
-                                                listen: false)
-                                                .totalQuestion[
-                                            '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                            [2]);
                                             if (Provider.of<Questions>(context,
                                                 listen: false)
                                                 .totalQuestion[
@@ -1416,12 +1375,6 @@ class StudQuestionState extends State<StudQuestion> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        print("INSIDE FIRST BUTTON ONPRESSED");
-                                        print( Provider.of<Questions>(context,
-                                            listen: false)
-                                            .totalQuestion[
-                                        '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                        [2]);
                                         if (Provider.of<Questions>(context,
                                             listen: false)
                                             .totalQuestion[
@@ -1481,8 +1434,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     )
                                         : ElevatedButton(
                                         onPressed: () {
-                                          print("Inside Second Button onpressed");
-                                          print(selected.isNotEmpty);
                                           //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
                                           //print(context.watch<QuestionNumProvider>().questionNum);
 
@@ -1661,15 +1612,12 @@ class StudQuestionState extends State<StudQuestion> {
                                         child: Center(
                                           child: Text(
                                             "${context.watch<QuestionNumProvider>().questionNum} of ${values.data!.questions!.length}",
-                                            style: Theme.of(context)
-                                                .primaryTextTheme
-                                                .bodyLarge
-                                                ?.merge(TextStyle(
+                                            style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: height * 0.025)),
+                                                    fontSize: height * 0.025),
                                           ),
                                         ),
                                       ),
@@ -1985,12 +1933,6 @@ class StudQuestionState extends State<StudQuestion> {
                                           cursor: SystemMouseCursors.click,
                                           child: GestureDetector(
                                             onTap: () {
-                                              print("INSIDE FIRST BUTTON ONPRESSED");
-                                              print( Provider.of<Questions>(context,
-                                                  listen: false)
-                                                  .totalQuestion[
-                                              '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                              [2]);
                                               if (Provider.of<Questions>(context,
                                                   listen: false)
                                                   .totalQuestion[
@@ -2111,12 +2053,6 @@ class StudQuestionState extends State<StudQuestion> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          print("INSIDE FIRST BUTTON ONPRESSED");
-                                          print( Provider.of<Questions>(context,
-                                              listen: false)
-                                              .totalQuestion[
-                                          '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                          [2]);
                                           if (Provider.of<Questions>(context,
                                                               listen: false)
                                                           .totalQuestion[
@@ -2177,8 +2113,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     :
                                 ElevatedButton(
                                     onPressed: () {
-                                      print("Inside Second Button onpressed");
-                                      print(selected.isNotEmpty);
                                       //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
                                       //print(context.watch<QuestionNumProvider>().questionNum);
 

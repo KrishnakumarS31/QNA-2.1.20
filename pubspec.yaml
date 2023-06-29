@@ -39,6 +39,8 @@ dependencies:
   flutter_svg: ^1.1.6
   url_launcher: ^6.1.10
   decorated_icon: ^1.2.1
+  animated_splash_screen: ^1.3.0
+  flutter_time_picker_spinner: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -68,7 +70,6 @@ dev_dependencies:
   dart_code_metrics: ^5.7.2
   easy_splash_screen: ^1.0.4
   responsive_builder:
-  animated_splash_screen: ^1.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

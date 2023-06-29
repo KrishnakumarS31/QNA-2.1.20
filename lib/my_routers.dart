@@ -5,7 +5,6 @@ import 'package:qna_test/Pages/welcome_page.dart';
 import 'package:qna_test/pages/about_us.dart';
 import 'package:qna_test/pages/change_email_student.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
-import 'package:qna_test/pages/forgot_password.dart';
 import 'package:qna_test/pages/help_page.dart';
 import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/student_assessment_questions.dart';
@@ -17,44 +16,49 @@ import 'package:qna_test/pages/student_result_page.dart';
 import 'package:qna_test/pages/student_revise_quest.dart';
 import 'package:qna_test/pages/student_search_library.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
-import 'package:qna_test/pages/teacher/assessment/create_new_question.dart';
-// import 'package:qna_test/pages/teacher/assessment/assessment_landing_page.dart';
-// import 'package:qna_test/pages/teacher/assessment/create_new_assessment.dart';
+import 'package:qna_test/pages/teacher/assessment/active_assessment_settings.dart';
+import 'package:qna_test/pages/teacher/assessment/add_question_active.dart';
+import 'package:qna_test/pages/assessment_landing_page.dart';
+import 'package:qna_test/pages/teacher/assessment/assessment_settings_page.dart';
+import 'package:qna_test/pages/teacher/assessment/assessment_test.dart';
+import 'package:qna_test/pages/teacher/assessment/clone_add_question.dart';
+import 'package:qna_test/pages/teacher/assessment/clone_assessment_landing.dart';
+import 'package:qna_test/pages/teacher/assessment/clone_review_question.dart';
+import 'package:qna_test/pages/teacher/assessment/create_new_assessment.dart';
+import 'package:qna_test/pages/teacher/assessment/draft_assessment_landing.dart';
+import 'package:qna_test/pages/teacher/assessment/draft_review.dart';
+import 'package:qna_test/pages/teacher/assessment/inactive_assessment_landing.dart';
+import 'package:qna_test/pages/teacher/assessment/inactive_assessment_settings.dart';
+import 'package:qna_test/pages/teacher/assessment/practice_add_questions.dart';
+import 'package:qna_test/pages/teacher/assessment/practice_assessment_landing.dart';
+import 'package:qna_test/pages/teacher/assessment/practice_assessment_settings.dart';
+import 'package:qna_test/pages/teacher/assessment/practice_review_cloned.dart';
+import 'package:qna_test/pages/teacher/assessment/published_assessment.dart';
+import 'package:qna_test/pages/teacher/assessment/review_cloned_assessment.dart';
+import 'package:qna_test/pages/teacher/assessment/review_questions.dart';
 import 'package:qna_test/pages/teacher/question/add_question.dart';
 import 'package:qna_test/pages/teacher/question/clone_my_question.dart';
 import 'package:qna_test/pages/teacher/question/edit_existing_question.dart';
 import 'package:qna_test/pages/teacher/question/edit_global_question_popup.dart';
 import 'package:qna_test/pages/teacher/question/edit_question_new_flow.dart';
 import 'package:qna_test/pages/teacher/question/inprogress_question_bank.dart';
-// import 'package:qna_test/pages/teacher/question/create_new_question.dart';
+import 'package:qna_test/pages/teacher/question/create_new_question.dart';
 import 'package:qna_test/pages/teacher/question/edit_question_popup.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
-import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
-import 'package:qna_test/pages/teacher_assess_looq_ques_preview.dart';
 // import 'package:qna_test/pages/teacher_assessment_landing.dart';
-import 'package:qna_test/pages/teacher_assessment_looq_prepare_ques.dart';
-import 'package:qna_test/pages/teacher_assessment_looq_ques_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_question_preview.dart';
-import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import 'package:qna_test/pages/teacher_assessment_searched.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
 import 'package:qna_test/pages/teacher_inactive_assessment.dart';
-import 'package:qna_test/pages/teacher_my_question_bank.dart';
-import 'package:qna_test/pages/teacher_prepare_preview_qnBank.dart';
-import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 import 'package:qna_test/pages/teacher_qn_preview_for_assessment.dart';
-import 'package:qna_test/pages/teacher_question_delete_page.dart';
-import 'package:qna_test/pages/teacher_question_edit.dart';
-import 'package:qna_test/pages/teacher_question_preview.dart';
 import 'package:qna_test/pages/teacher_question_preview_delete.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import 'package:qna_test/pages/teacher_selection_page.dart';
-import 'package:qna_test/pages/teacher_submitted_question_preview.dart';
 import 'package:qna_test/pages/teacher_user_profile.dart';
 import 'package:qna_test/pages/terms_of_services.dart';
 import 'EntityModel/student_registration_model.dart';
@@ -65,23 +69,17 @@ import 'Pages/settings_languages.dart';
 import 'Pages/student_Advisor.dart';
 import 'Pages/student_answersheet.dart';
 import 'Pages/student_assessment_start.dart';
-// import 'Pages/student_forgot_password.dart';
+import 'Pages/forgot_password.dart';
 import 'Pages/student_guest_login_page.dart';
 import 'Pages/student_member_login_page.dart';
 import 'Pages/student_regis_verify_otp.dart';
 import 'Pages/student_registration_page.dart';
 import 'Pages/student_selection_page.dart';
-import 'Pages/teacher_add_my_question_bank.dart';
 import 'Pages/teacher_assessment_settings_publish.dart';
 import 'Pages/teacher_create_assessment.dart';
 import 'Pages/teacher_forgot_password.dart';
 import 'Pages/teacher_forgot_password_email.dart';
 import 'Pages/teacher_login.dart';
-import 'Pages/teacher_looq_clone_preview.dart';
-import 'Pages/teacher_looq_preview.dart';
-import 'Pages/teacher_looq_question_edit.dart';
-import 'Pages/teacher_looq_search_question.dart';
-import 'Pages/teacher_prepare_qnBank.dart';
 import 'Pages/teacher_qn_preview.dart';
 import 'Pages/teacher_registration_page.dart';
 import 'Pages/teacher_registration_verify_page.dart';
@@ -116,7 +114,7 @@ class MyRoutes{
         return SlideRightRoute(widget: const TeacherForgotPasswordEmail(),settings: settings);
 
 
-      //
+
       // case '/teacherAssessmentLanding':
       //   return SlideRightRoute(widget: const TeacherAssessmentLanding(),settings: settings);
       //
@@ -298,7 +296,7 @@ class MyRoutes{
       //     final assessment = settings.arguments as bool;
       //     return SlideRightRoute(widget: TeacherAddMyQuestionBank(assessment: assessment,),settings: settings);
       //   }
-
+      //
       // case '/teacherAssessLooqQuesPreview':{
       //   final arguments = settings.arguments as List<dynamic>;
       //   return SlideRightRoute(widget: TeacherAssessLooqQuesPreview(assessment: arguments[0], finalQuestion: arguments[1],),settings: settings);
@@ -367,12 +365,12 @@ class MyRoutes{
       //   final arguments = settings.arguments as List<dynamic>;
       //   return SlideRightRoute(widget: TeacherLooqPreview(question: arguments[0], editQuestionModel: arguments[1],),settings: settings);
       // }
-
+      //
       // case '/looqQuestionEdit':{
       //   final question = settings.arguments as questions.Question;
       //   return SlideRightRoute(widget: LooqQuestionEdit(question: question,),settings: settings);
       // }
-
+      //
       // case '/preparePreviewQnBank':{
       //   final arguments = settings.arguments as List<dynamic>;
       //   return SlideRightRoute(widget: PreparePreviewQnBank(question: arguments[0],),settings: settings);
@@ -402,7 +400,7 @@ class MyRoutes{
       //   final question = settings.arguments as List<dynamic>;
       //   return SlideRightRoute(widget: TeacherQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
       // }
-
+      //
       // case '/teacherSubmittedQuestionPreview':{
       //   final question = settings.arguments as List<dynamic>;
       //   return SlideRightRoute(widget: TeacherSubmittedQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
@@ -469,7 +467,7 @@ class MyRoutes{
       }
 
       case '/addQuestion':{
-        return SlideRightRoute(widget: AddQuestion(),settings: settings);
+        return SlideRightRoute(widget: const AddQuestion(),settings: settings);
       }
 
       case '/editQuestionNewFlow':{
@@ -487,18 +485,84 @@ class MyRoutes{
         return SlideRightRoute(widget: CloneMyQuestion(question: question,),settings: settings);
       }
 
-      // case '/assessmentLandingPage':{
-      //   return SlideRightRoute(widget: AssessmentLandingPage(),settings: settings);
-      // }
-      //
-      // case '/createNewAssessment':{
-      //   return SlideRightRoute(widget: CreateNewAssessment(),settings: settings);
-      // }
+      case '/assessmentLandingPage':{
+        return SlideRightRoute(widget: const AssessmentLandingPage(),settings: settings);
+      }
+
+      case '/createNewAssessment':{
+        return SlideRightRoute(widget: CreateNewAssessment(),settings: settings);
+      }
+
+      case '/reviewQuestions':{
+        return SlideRightRoute(widget: ReviewQuestions(),settings: settings);
+      }
+
+      case '/assessmentSettingsPage':{
+        return SlideRightRoute(widget: AssessmentSettingsPage(),settings: settings);
+      }
+
+      case '/assessmentTest':{
+        return SlideRightRoute(widget: AssessmentTest(),settings: settings);
+      }
+
+      case '/reviewClonedAssessment':{
+        return SlideRightRoute(widget: ReviewClonedAssessment(),settings: settings);
+      }
+
+      case '/addQuestionActive':{
+        return SlideRightRoute(widget: AddQuestionActive(),settings: settings);
+      }
+
+      case '/practiceAssessmentLanding':{
+        return SlideRightRoute(widget: PracticeAssessmentLanding(),settings: settings);
+      }
+
+      case '/practiceAssessmentSettings':{
+        return SlideRightRoute(widget: PracticeAssessmentSettings(),settings: settings);
+      }
+
+      case '/practiceReviewCloned':{
+        return SlideRightRoute(widget: PracticeReviewCloned(),settings: settings);
+      }
+
+      case '/practiceAddQuestion':{
+        return SlideRightRoute(widget: PracticeAddQuestion(),settings: settings);
+      }
+
+      case '/draftAssessmentLanding':{
+        return SlideRightRoute(widget: DraftAssessmentLanding(),settings: settings);
+      }
+
+      case '/draftReview':{
+        return SlideRightRoute(widget: DraftReview(),settings: settings);
+      }
+
+      case '/activeAssessmentSettings':{
+        return SlideRightRoute(widget: ActiveAssessmentSettings(),settings: settings);
+      }
+
+      case '/inactiveAssessmentLanding':{
+        return SlideRightRoute(widget: InactiveAssessmentLanding(),settings: settings);
+      }
+
+      case '/inactiveAssessmentSettings':{
+        return SlideRightRoute(widget: InactiveAssessmentSettings(),settings: settings);
+      }
+      case '/cloneAssessmentLanding':{
+        return SlideRightRoute(widget: CloneAssessmentLanding(),settings: settings);
+      }
+      case '/cloneReviewQuestion':{
+        return SlideRightRoute(widget: CloneReviewQuestion(),settings: settings);
+      }
+      case '/cloneAddQuestion':{
+        return SlideRightRoute(widget: CloneAddQuestion(),settings: settings);
+      }
+      case '/publishedAssessment':{
+        return SlideRightRoute(widget: PublishedAssessment(),settings: settings);
+      }
 
 
     }
-    //Navigator.pushNamed(context, '/teacherQuestionPreviewDelete');
-    //Navigator.pushNamed(context, '/teacherAddMyQuestionBank',arguments: [widget.assessment,widget.assessmentStatus]);
 
     return MaterialPageRoute(builder: (context) => const Scaffold(
       body: Text('no route defined'),

@@ -26,8 +26,6 @@ class ResultTotalCard extends StatelessWidget {
     int? percent = condition ? results.assessmentResults![index].attemptPercent : 0;
     int? securedMark = condition ? results.assessmentResults![index].attemptScore : 0;
     int? totalMark = results.totalScore ?? 0;
-
-
       if (width > 960) {
       return Padding(
         padding: EdgeInsets.only(bottom: height * 0.015),

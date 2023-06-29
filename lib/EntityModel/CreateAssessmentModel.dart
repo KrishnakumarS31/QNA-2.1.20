@@ -70,7 +70,7 @@ class CreateAssessmentModel {
         createAssessmentModelClass: json["class"],
         assessmentSettings:
             AssessmentSettings.fromJson(json["assessment_settings"]),
-        questions: List<Question>.from(
+        questions: json["questions"]==null?null:List<Question>.from(
             json["questions"].map((x) => Question.fromJson(x))),
         removeQuestions: List<int>.from(json["remove_questions"].map((x) => x)),
         addQuestion: List<Questions.Question>.from(

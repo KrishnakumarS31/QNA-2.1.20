@@ -124,15 +124,7 @@ class _CustomCardState extends State<CustomCard> {
                   Row(
                     children: [
                       Text(
-                         AppLocalizations.of(context)!.assessment_id_caps, //'Class ${widget.result.studentClass}',
-                        style: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: widget.height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        widget.result.assessmentId.toString(), //'Class ${widget.result.studentClass}',
+                        widget.result.assessmentCode.toString(), //'Class ${widget.result.studentClass}',
                         style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: widget.height * 0.0175,

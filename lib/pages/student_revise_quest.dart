@@ -2,10 +2,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Entity/Teacher/get_assessment_header.dart';
-import '../Components/custom_incorrect_popup.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
@@ -51,7 +49,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   Timer? countdownTimer;
 
   getData(){
-    submit();
+    // submit();
   }
   setTime(){
     myDuration = widget.myDuration;
@@ -198,7 +196,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        print(constraints.maxWidth);
         if(constraints.maxWidth > 960) {
           return Center(
               child: SizedBox(
@@ -218,12 +215,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                "ASSID${widget.assessmentID}",
-                                style: const TextStyle(
-                                  color: Color.fromRGBO(
+                              Text(widget.assessmentID,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(
                                       0, 106, 100, 1),
-                                  fontSize: 25,
+                                  fontSize: localHeight * 0.0455,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -238,7 +234,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             color: Colors.black,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
-                                            fontSize: localHeight * 0.02)),
+                                            fontSize: localHeight * 0.032)),
                                   ],
                                 ),
                               ),
@@ -549,7 +545,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                   //     .toString()
                                                                   //     .length - 1))+96+1)}. ":""
                                                                   // }"
-                                                                  "${Provider
+                                                                  Provider
                                                                       .of<Questions>(
                                                                       context,
                                                                       listen: false)
@@ -561,7 +557,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                       listen: false)
                                                                       .totalQuestion['$index'][0]
                                                                       .toString()
-                                                                      .length - 1)}",
+                                                                      .length - 1),
                                                                   style:
                                                                   Provider
                                                                       .of<Questions>(
@@ -664,7 +660,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "ASSID${widget.assessmentID}",
+                                    widget.assessmentID,
                                     style: const TextStyle(
                                       color: Color.fromRGBO(
                                           0, 106, 100, 1),
@@ -678,7 +674,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     child: Row(
                                       children: [
                                         values.data!.assessmentType == "test" ?const Icon(Icons.timer_outlined,color: Color.fromRGBO(82, 165, 160, 1),):Container(),
-                                        Text(values.data!.assessmentType == "test" ? "${hours}:${minutes}:${seconds}" : "" ,
+                                        Text(values.data!.assessmentType == "test" ? "$hours:$minutes:$seconds" : "" ,
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontFamily: 'Inter',
@@ -998,7 +994,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                             //     .toString()
                                                                             //     .length - 1))+96+1)}. ":""
                                                                             // }"
-                                                                            "${Provider
+                                                                            Provider
                                                                                 .of<Questions>(
                                                                                 context,
                                                                                 listen: false)
@@ -1010,7 +1006,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                 listen: false)
                                                                                 .totalQuestion['$index'][0]
                                                                                 .toString()
-                                                                                .length - 1)}",
+                                                                                .length - 1),
                                                                             style:
                                                                             Provider
                                                                                 .of<Questions>(
@@ -1114,7 +1110,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "ASSID${widget.assessmentID}",
+                                  widget.assessmentID,
                                   style: const TextStyle(
                                     color: Color.fromRGBO(
                                         0, 106, 100, 1),
@@ -1128,7 +1124,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   child: Row(
                                     children: [
                                       values.data!.assessmentType == "test" ?const Icon(Icons.timer_outlined,color: Color.fromRGBO(82, 165, 160, 1),):Container(),
-                                      Text(values.data!.assessmentType == "test" ? "${hours}:${minutes}:${seconds}" : "" ,
+                                      Text(values.data!.assessmentType == "test" ? "$hours:$minutes:$seconds" : "" ,
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontFamily: 'Inter',
@@ -1448,7 +1444,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                         //     .toString()
                                                                         //     .length - 1))+96+1)}. ":""
                                                                         // }"
-                                                                            "${Provider
+                                                                            Provider
                                                                             .of<Questions>(
                                                                             context,
                                                                             listen: false)
@@ -1460,7 +1456,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                             listen: false)
                                                                             .totalQuestion['$index'][0]
                                                                             .toString()
-                                                                            .length - 1)}",
+                                                                            .length - 1),
                                                                         style:
                                                                         Provider
                                                                             .of<Questions>(
@@ -1689,33 +1685,36 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 if(selectedAns.isEmpty){
                                   quesResult.statusId = 5;
                                 }
-
-                                List<int> key = [];
-                                List<String> value = [];
-                                for (int s = 0; s <
-                                    values.data!.questions![j - 1].choices!.length; s++) {
-                                  key.add(values.data!.questions![j - 1].choices![s]
-                                      .choiceId!);
-                                  value.add(values.data!.questions![j - 1].choices![s]
-                                      .choiceText!);
-                                }
-                                for (int f = 0; f < selectedAns.length; f++) {
-                                  selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
-                                }
-                                quesResult.selectedQuestionChoice = selectedAnsId;
-
-                                if (listEquals(correctAns, selectedAns)) {
-                                  quesResult.statusId = 6;
-                                  quesResult.marks =
-                                      values.data!.questions![j - 1].questionMarks;
-                                  totalMark = totalMark +
-                                      values.data!.questions![j - 1].questionMarks!;
-                                  ansCorrect++;
-                                  givenMark = values.data!.totalScore;
-                                }
                                 else{
-                                  quesResult.statusId = 7;
+                                  List<int> key = [];
+                                  List<String> value = [];
+                                  for (int s = 0; s <
+                                      values.data!.questions![j - 1].choices!.length; s++) {
+                                    key.add(values.data!.questions![j - 1].choices![s]
+                                        .choiceId!);
+                                    value.add(values.data!.questions![j - 1].choices![s]
+                                        .choiceText!);
+                                  }
+                                  for (int f = 0; f < selectedAns.length; f++) {
+                                    selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+                                  }
+                                  quesResult.selectedQuestionChoice = selectedAnsId;
+
+                                  if (listEquals(correctAns, selectedAns)) {
+                                    quesResult.statusId = 6;
+                                    quesResult.marks =
+                                        values.data!.questions![j - 1].questionMarks;
+                                    totalMark = totalMark +
+                                        values.data!.questions![j - 1].questionMarks!;
+                                    ansCorrect++;
+                                    givenMark = values.data!.totalScore;
+                                  }
+                                  else{
+                                    quesResult.statusId = 7;
+                                  }
                                 }
+
+
                               }
                               assessment.assessmentResults.add(quesResult);
                             }
