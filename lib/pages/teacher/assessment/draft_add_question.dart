@@ -14,8 +14,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/today_date.dart';
 import '../../../DataSource/http_url.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as questionModel;
-class PracticeReviewCloned extends StatefulWidget {
-  PracticeReviewCloned({
+class DraftAddQuestion extends StatefulWidget {
+  DraftAddQuestion({
     Key? key,
   }) : super(key: key);
 
@@ -25,11 +25,11 @@ class PracticeReviewCloned extends StatefulWidget {
 
 
   @override
-  PracticeReviewClonedState createState() =>
-      PracticeReviewClonedState();
+  DraftAddQuestionState createState() =>
+      DraftAddQuestionState();
 }
 
-class PracticeReviewClonedState extends State<PracticeReviewCloned> {
+class DraftAddQuestionState extends State<DraftAddQuestion> {
   //List<Question> finalQuesList = [];
   UserDetails userDetails=UserDetails();
   final formKey = GlobalKey<FormState>();
@@ -40,104 +40,13 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
   CreateAssessmentModel assessment =CreateAssessmentModel(questions: []);
   TextEditingController questionSearchController = TextEditingController();
 
-  List<questionModel.Question> questionListBank = [];
   List<questionModel.Question> questionList = [];
   int pageNumber=1;
   int questionStart=0;
-  List<int> selectedQuesIndex=[];
+  List<int> selectedQuesId=[];
   List<questionModel.Question> selectedQuestion=[];
-  List<List<String>> temp = [];
-  int totalMark=0;
-
-
-  alertDialogDeleteQuestion(BuildContext context, double height,int index) {
-    Widget cancelButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.no,
-        // 'No',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-    Widget continueButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.yes,
-        //'Yes',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () async {
-        questionList.removeAt(index);
-        print(questionList.length);
-        setState(() {
-        });
-        Navigator.of(context).pop();
-      },
-    );
-    AlertDialog alert = AlertDialog(
-      title: Row(
-        children: [
-          const Icon(
-            Icons.info,
-            color: Color.fromRGBO(238, 71, 0, 1),
-          ),
-          Text(
-            AppLocalizations.of(context)!.confirm,
-            //'Confirm',
-            style: TextStyle(
-                fontSize: height * 0.02,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(0, 106, 100, 1),
-                fontWeight: FontWeight.w700),
-          ),
-        ],
-      ),
-      content: Text(
-        //AppLocalizations.of(context)!.want_to_del_qn,
-        'Are you sure you want to delete this Question?',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            fontWeight: FontWeight.w400),
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-
+  List<questionModel.Question> providerQuestionList=[];
+  String totalQuestionBank='';
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
@@ -183,6 +92,34 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
       onPressed: () async {
 
       },
+      // {
+      //   showDialog(
+      //       context: context,
+      //       builder: (context) {
+      //         return const Center(
+      //             child: CircularProgressIndicator(
+      //               color: Color.fromRGBO(48, 145, 139, 1),
+      //             ));
+      //       });
+      //
+      //   create_question_model.CreateQuestionModel createQuestionModel = create_question_model.CreateQuestionModel();
+      //   createQuestionModel.questions = finalQuesList;
+      //   createQuestionModel.authorId = userDetails.userId;
+      //   print("-------------------------------------------------------");
+      //   print(createQuestionModel);
+      //   ResponseEntity statusCode =
+      //   await QnaService.createQuestionTeacherService(createQuestionModel,userDetails);
+      //   Navigator.of(context).pop();
+      //   if (statusCode.code == 200) {
+      //     Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+      //     // Navigator.pushNamed(
+      //     //     context,
+      //     //     '/teacherMyQuestionBank',
+      //     //     arguments: widget.assessment
+      //     // );
+      //     //Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
+      //   }
+      // },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
@@ -218,17 +155,245 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
     );
   }
 
+  showDialogSave(BuildContext context, double height) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.no,
+        //'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () async {
+        assessment.userId=userDetails.userId;
+        assessment.totalQuestions=questionList.length;
+        assessment.assessmentType='practice';
+        assessment.assessmentStatus = 'inprogress';
+        assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
+        for(int i=0;i<questionList.length;i++){
+          Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+          assessment.questions?.add(tempQues);
+        }
+        assessment.totalScore=questionList.length;
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const Center(
+                  child:
+                  CircularProgressIndicator(
+                    color: Color.fromRGBO(
+                        48, 145, 139, 1),
+                  ));
+            });
+        ResponseEntity statusCode = ResponseEntity();
+        statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+        if (statusCode.code == 200) {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
+        }
+        else{
+          print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+          print(assessment);
+          print(statusCode.code);
+          print(statusCode.data);
+          print(statusCode.message);
+        }
+      },
+      // {
+      //   showDialog(
+      //       context: context,
+      //       builder: (context) {
+      //         return const Center(
+      //             child: CircularProgressIndicator(
+      //               color: Color.fromRGBO(48, 145, 139, 1),
+      //             ));
+      //       });
+      //
+      //   create_question_model.CreateQuestionModel createQuestionModel = create_question_model.CreateQuestionModel();
+      //   createQuestionModel.questions = finalQuesList;
+      //   createQuestionModel.authorId = userDetails.userId;
+      //   print("-------------------------------------------------------");
+      //   print(createQuestionModel);
+      //   ResponseEntity statusCode =
+      //   await QnaService.createQuestionTeacherService(createQuestionModel,userDetails);
+      //   Navigator.of(context).pop();
+      //   if (statusCode.code == 200) {
+      //     Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+      //     // Navigator.pushNamed(
+      //     //     context,
+      //     //     '/teacherMyQuestionBank',
+      //     //     arguments: widget.assessment
+      //     // );
+      //     //Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
+      //   }
+      // },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            AppLocalizations.of(context)!.confirm,
+            //'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+        'Do you want to save this assessment as a draft and create new questions?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  getQuestionData(String search) async {
+    ResponseEntity responseEntity =
+    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
+    List<questionModel.Question> questions = [];
+    if (responseEntity.code == 200) {
+      questions = List<questionModel.Question>.from(
+          responseEntity.data['questions'].map((x) => questionModel.Question.fromJson(x)));
+      totalQuestionBank=responseEntity.data['total_count'].toString();
+    }
+    else{
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title:
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content:
+            AppLocalizations.of(context)!.no_question_found,
+            //'No Questions Found.',
+            button:
+            AppLocalizations.of(context)!.retry,
+            //"Retry",
+          ),
+        ),
+      );
+    }
+    setState(() {
+      pageNumber++;
+      questionList.addAll(questions);
+      totalQuestionBank;
+      //pageNumber++;
+      //searchVal = search;
+    });
+    //Navigator.of(context).pop();
+  }
+
+  getInitData(String search) async {
+    ResponseEntity responseEntity =
+    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
+    List<questionModel.Question> questions = [];
+    if (responseEntity.code == 200) {
+      questions = List<questionModel.Question>.from(
+          responseEntity.data['questions'].map((x) => questionModel.Question.fromJson(x)));
+      totalQuestionBank=responseEntity.data['total_count'].toString();
+    }
+    else{
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title:
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content:
+            AppLocalizations.of(context)!.no_question_found,
+            //'No Questions Found.',
+            button:
+            AppLocalizations.of(context)!.retry,
+            //"Retry",
+          ),
+        ),
+      );
+    }
+    setState(() {
+      pageNumber++;
+      questionList.addAll(questions);
+      totalQuestionBank;
+
+    });
+    //Navigator.of(context).pop();
+  }
 
   @override
   void initState() {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-    assessment.questions=[];
-    questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
-    for(int i=0;i<questionList.length;i++){
-      selectedQuesIndex.add(i);
+
+    subjectController.text=assessment.subject!;
+    topicController.text=assessment.topic!;
+    degreeController.text=assessment.createAssessmentModelClass!;
+    semesterController.text=assessment.subTopic ?? '';
+    providerQuestionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+    for(questionModel.Question q in providerQuestionList){
+      selectedQuesId.add(q.questionId);
+      selectedQuestion.add(q);
     }
+    getInitData('');
   }
 
 
@@ -556,7 +721,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                           children: [
                             Text(
                               //AppLocalizations.of(context)!.my_qns,
-                              "Review Cloned Assessment",
+                              "Add Questions",
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.025,
@@ -680,7 +845,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
+                                                                  child: TextFormField(
                                                                     controller: subjectController,
                                                                     keyboardType: TextInputType.text,
                                                                     decoration: InputDecoration(
@@ -704,6 +869,20 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                       // border: OutlineInputBorder(
                                                                       //     borderRadius: BorderRadius.circular(15)),
                                                                     ),
+                                                                    validator: (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        return
+                                                                          'Enter Subject';
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onChanged: (value) {
+                                                                      formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                    },
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -726,7 +905,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
+                                                                  child: TextFormField(
                                                                     controller: topicController,
                                                                     keyboardType: TextInputType.text,
                                                                     decoration: InputDecoration(
@@ -750,6 +929,20 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                       // border: OutlineInputBorder(
                                                                       //     borderRadius: BorderRadius.circular(15)),
                                                                     ),
+                                                                    validator: (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        return
+                                                                          'Enter Topic';
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onChanged: (value) {
+                                                                      formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                    },
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -772,7 +965,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
+                                                                  child: TextFormField(
                                                                     controller: degreeController,
                                                                     keyboardType: TextInputType.text,
                                                                     decoration: InputDecoration(
@@ -796,6 +989,20 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                       // border: OutlineInputBorder(
                                                                       //     borderRadius: BorderRadius.circular(15)),
                                                                     ),
+                                                                    validator: (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        return
+                                                                          'Enter Degree';
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onChanged: (value) {
+                                                                      formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                    },
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -870,16 +1077,14 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                         .currentState!
                                                                         .validate();
                                                                     if (valid) {
-                                                                      // for(int i =0;i<finalQuesList.length;i++){
-                                                                      //   finalQuesList[i].subject=subjectController.text;
-                                                                      //   finalQuesList[i].topic=topicController.text;
-                                                                      //   finalQuesList[i].degreeStudent=degreeController.text;
-                                                                      //   finalQuesList[i].semester=semesterController.text;
-                                                                      //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(i,finalQuesList[i]);
-                                                                      //   setState(() {
-                                                                      //
-                                                                      //   });
-                                                                      // }
+                                                                      assessment.subject=subjectController.text;
+                                                                      assessment.topic=topicController.text;
+                                                                      assessment.createAssessmentModelClass=degreeController.text;
+                                                                      assessment.subTopic=semesterController.text;
+                                                                      Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                                      setState(() {
+                                                                        assessment;
+                                                                      });
                                                                       Navigator.of(context).pop();
                                                                     }
                                                                   },
@@ -927,60 +1132,78 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                               ),
                             ),
                             SizedBox(height: height * 0.01,),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Total Marks: ",
-                                      style: TextStyle(
-                                          fontSize: height * 0.016,
-                                          fontFamily: "Inter",
-                                          color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      "45",
-                                      style: TextStyle(
-                                          fontSize: height * 0.016,
-                                          fontFamily: "Inter",
-                                          color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ],
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                //AppLocalizations.of(context)!.lib_online_qn,
+                                "Search My Questions  ",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Total Questions: ",
-                                      style: TextStyle(
-                                          fontSize: height * 0.016,
-                                          fontFamily: "Inter",
-                                          color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      "${assessment.questions?.length}",
-                                      style: TextStyle(
-                                          fontSize: height * 0.016,
-                                          fontFamily: "Inter",
-                                          color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ],
+                              ),
+                            ),
+                            TextField(
+                              onChanged: (t){
+                                setState(() {
+                                });
+                              },
+                              controller: questionSearchController,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                hintStyle: TextStyle(
+                                    color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.016),
+                                hintText: "Subject, Topic, Degree",
+                                suffixIcon:
+                                Column(children: [
+                                  Container(
+                                      height: height * 0.053,
+                                      width: width * 0.1,
+                                      decoration:  BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        // borderRadius:
+                                        // BorderRadius.all(Radius.circular(100)),
+                                        color: questionSearchController.text.isEmpty?
+                                        Color.fromRGBO(153, 153, 153, 0.5):Color.fromRGBO(82, 165, 160, 1),
+                                      ),
+                                      child: IconButton(
+                                        iconSize: height * 0.025,
+                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        onPressed: () {
+                                          questionStart=0;
+                                          questionList=[];
+                                          pageNumber=1;
+                                          getQuestionData(questionSearchController.text);
+                                        },
+                                        icon: const Icon(Icons.search),
+                                      )),
+                                ]
                                 ),
-                              ],
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                ),
+                                // focusedBorder: OutlineInputBorder(
+                                //     borderSide: const BorderSide(
+                                //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                //     borderRadius: BorderRadius.circular(15)),
+                                // border: OutlineInputBorder(
+                                //     borderRadius: BorderRadius.circular(15)),
+                              ),
                             ),
                             SizedBox(height: height * 0.015,),
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Tap question to view and edit',
+                                'Tap to select & add questions',
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 0.3),
                                     fontFamily: 'Inter',
@@ -990,7 +1213,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                             ),
                             SizedBox(height: height * 0.01,),
                             Container(
-                              height: height * 0.6,
+                              height: height * 0.55,
                               width: width * 0.93,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1006,190 +1229,117 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                       MouseRegion(
                                         cursor: SystemMouseCursors.click,
                                         child: GestureDetector(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(5)),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  children: [
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              "Q${i+1} ",
-                                                              style: TextStyle(
-                                                                  fontSize: height * 0.016,
-                                                                  fontFamily: "Inter",
-                                                                  color:
-                                                                  Color.fromRGBO(28, 78, 80, 1),
-                                                                  fontWeight: FontWeight.w700),
-                                                            ),
-                                                            Text(
-                                                              questionList[i].questionType!,
-                                                              style: TextStyle(
-                                                                  fontSize: height * 0.016,
-                                                                  fontFamily: "Inter",
-                                                                  color:
-                                                                  Color.fromRGBO(28, 78, 80, 1),
-                                                                  fontWeight: FontWeight.w700),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Text(
-                                                              "Marks ",
-                                                              style: TextStyle(
-                                                                  fontSize: height * 0.016,
-                                                                  fontFamily: "Inter",
-                                                                  color:
-                                                                  Color.fromRGBO(28, 78, 80, 1),
-                                                                  fontWeight: FontWeight.w700),
-                                                            ),
-                                                            Container(
-                                                              height: height * 0.04,
-                                                              width: width * 0.3,
-                                                              decoration: BoxDecoration(
-                                                                border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                                borderRadius: BorderRadius.all(
-                                                                    Radius.circular(5)),
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                children: [
-                                                                  GestureDetector(
-                                                                    onTap:(){
-                                                                      if(questionList[i].questionMark!=null || questionList[i].questionMark!=0){
-                                                                        questionList[i].questionMark=questionList[i].questionMark!-1;
-                                                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
-                                                                        setState(() {
-                                                                        });
-                                                                      }
-                                                                    },
-                                                                    child: Container(
-                                                                      height: height * 0.03,
-                                                                      width: width * 0.05,
-                                                                      child: Icon(
-                                                                        Icons.remove,
-                                                                        size: height * 0.02,
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                                                    child: Container(
-                                                                      height: height * 0.03,
-                                                                      width: width * 0.1,
-                                                                      decoration: BoxDecoration(
-                                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                                        borderRadius: BorderRadius.all(
-                                                                            Radius.circular(5)),
-                                                                      ),
-                                                                      child: Center(
-                                                                        child: Text(
-                                                                          '${questionList[i].questionMark}',
-                                                                          style: TextStyle(
-                                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                              fontFamily: 'Inter',
-                                                                              fontWeight: FontWeight.w400,
-                                                                              fontSize: height * 0.016),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  GestureDetector(
-                                                                    onTap: (){
-                                                                      if(questionList[i].questionMark!=null){
-                                                                        questionList[i].questionMark=questionList[i].questionMark!+1;
-                                                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
-                                                                        setState(() {
-
-                                                                        });
-                                                                      }
-                                                                    },
-                                                                    child: Container(
-                                                                      height: height * 0.03,
-                                                                      width: width * 0.05,
-
-                                                                      child: Icon(
-                                                                        Icons.add,
-                                                                        size: height * 0.02,
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),)
-                                                          ],
-                                                        ),
-                                                      ],
+                                          onTap:(){
+                                            if(selectedQuesId.contains(questionList[i].questionId)){
+                                              int index = selectedQuesId.indexOf(questionList[i].questionId);
+                                              selectedQuesId.removeAt(index);
+                                              selectedQuestion.removeAt(index);
+                                            }else{
+                                              selectedQuesId.add(questionList[i].questionId);
+                                              questionList[i].questionType=="MCQ"?questionList[i].questionMark=1:questionList[i].questionMark=0;
+                                              selectedQuestion.add(questionList[i]);
+                                            }
+                                            setState(() {
+                                              selectedQuesId;
+                                              selectedQuestion;
+                                            });
+                                          },
+                                          child: QuestionPreview(
+                                            height: height,
+                                            width: width,
+                                            question: questionList[i],
+                                            selected: !selectedQuesId.contains(questionList[i].questionId),
+                                          ),
+                                        ),
+                                      ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                        ),
+                                        Wrap(
+                                          children: [
+                                            Row(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap:(){
+                                                    if(questionList.length>11){
+                                                      setState(() {
+                                                        pageNumber--;
+                                                        questionStart=questionStart-10;
+                                                        questionList.removeRange(questionList.length-10, questionList.length);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    height: height * 0.03,
+                                                    width: width * 0.1,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(5)),
                                                     ),
-                                                    SizedBox(
-                                                      height: height * 0.01,
+                                                    child: Icon(
+                                                      Icons.keyboard_double_arrow_left,
+                                                      size: height * 0.015,
+                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                  child: Container(
+                                                    height: height * 0.03,
+                                                    width: width * 0.15,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(5)),
                                                     ),
-                                                    Align(
-                                                      alignment: Alignment.centerLeft,
+                                                    child: Center(
                                                       child: Text(
-                                                        "${questionList[i].question}",
+                                                        '${questionStart==0?1:((questionStart/10)+1).toInt()}',
                                                         style: TextStyle(
-                                                            color: Color.fromRGBO(102, 102, 102, 1),
+                                                            color: const Color.fromRGBO(28, 78, 80, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w400,
                                                             fontSize: height * 0.016),
                                                       ),
                                                     ),
-                                                    SizedBox(
-                                                      height: height * 0.01,
-                                                    ),
-                                                    Align(
-                                                      alignment: Alignment.centerLeft,
-                                                      child: Text(
-                                                        "sfdsd",
-                                                        // temp[i].toString().substring(1,temp[i].toString().length-1),
-                                                        style: TextStyle(
-                                                            fontSize: height * 0.016,
-                                                            fontFamily: "Inter",
-                                                            color:
-                                                            Color.fromRGBO(82, 165, 160, 1),
-                                                            fontWeight: FontWeight.w700),
-                                                      ),
-                                                    ),
-                                                    Divider(
-                                                      thickness: 2,
-                                                      color: Color.fromRGBO(204, 204, 204, 0.5),
-                                                    ),
-                                                    Align(
-                                                        alignment: Alignment.centerRight,
-                                                        child: IconButton(
-                                                          onPressed: () async {
-                                                            alertDialogDeleteQuestion(context,height,i);
-                                                            setState(() {
-                                                              questionList;
-                                                            });
-
-                                                            //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
-
-                                                          },
-                                                          icon: Icon(
-                                                            Icons.delete_outline,
-                                                            size: height * 0.03,
-                                                            color: const Color.fromRGBO(82, 165, 160, 1),),
-                                                        )
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
-                                              ),
+                                                GestureDetector(
+                                                  onTap: (){
+                                                    setState(() {
+                                                      questionStart=questionStart+10;
+                                                    });
+                                                    getQuestionData(questionSearchController.text);
+                                                  },
+                                                  child: Container(
+                                                    height: height * 0.03,
+                                                    width: width * 0.1,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(5)),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.keyboard_double_arrow_right,
+                                                      size: height * 0.015,
+                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                      ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1205,10 +1355,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/practiceAddQuestion',
-                                          );
+                                          showDialogSave(context,height);
                                         },
                                         child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
@@ -1237,20 +1384,47 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () async {
-                                          String assessmentCode='';
+                                          assessment.userId=userDetails.userId;
+                                          assessment.totalQuestions=questionList.length;
+                                          assessment.assessmentType='practice';
+                                          assessment.assessmentStatus = 'inprogress';
+                                          assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
+                                          assessment.questions=[];
+                                          int mark=0;
+                                          for(int i=0;i<selectedQuestion.length;i++){
+                                            Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                            mark=mark+selectedQuestion[i].questionMark!;
+                                          }
+                                          assessment.totalScore=mark;
+                                          assessment.totalQuestions=selectedQuestion.length;
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return const Center(
+                                                    child:
+                                                    CircularProgressIndicator(
+                                                      color: Color.fromRGBO(
+                                                          48, 145, 139, 1),
+                                                    ));
+                                              });
                                           ResponseEntity statusCode = ResponseEntity();
-                                          assessment.assessmentType = 'test';
-                                          assessment.assessmentStatus='inprogress';
-                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
+                                          //statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
-                                            assessmentCode = statusCode.data.toString().substring(18, statusCode.data
-                                                .toString()
-                                                .length -
-                                                1);
-
+                                            Navigator.of(context).pop();
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
+                                          else{
+                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                                            print(assessment);
+                                            print(statusCode.code);
+                                            print(statusCode.data);
+                                            print(statusCode.message);
+                                          }
 
+                                          // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                          // Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
                                         },
                                         child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
@@ -1279,22 +1453,33 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () {
-                                          // List<questionModel.Question> ques=[];
-                                          // ques.addAll(questionList);
-                                          // print(ques.length);
-                                          // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          // print(ques.length);
-                                          // for(questionModel.Question q in ques) {
-                                          //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
-                                          // }
-                                          print("provider");
-                                          print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
-                                          print("assessment");
-                                          print(assessment.questions?.length);
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/assessmentSettingsPage',
-                                          );
+                                          if(selectedQuestion.isEmpty){
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: CustomDialog(
+                                                  title:
+                                                  AppLocalizations.of(context)!.alert_popup,
+                                                  //'Alert',
+                                                  content:
+                                                  //AppLocalizations.of(context)!.no_question_found,
+                                                  'No Questions were selected',
+                                                  button:
+                                                  AppLocalizations.of(context)!.retry,
+                                                  //"Retry",
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          else{
+                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            for(questionModel.Question q in selectedQuestion) {
+                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                            }
+                                            Navigator.of(context).pushNamedAndRemoveUntil('/draftReview', ModalRoute.withName('/draftAssessmentLanding'));
+
+                                          }
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
@@ -1321,6 +1506,28 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                 ],
                               ),
                             )
+                            // ElevatedButton(
+                            //   style: ElevatedButton.styleFrom(
+                            //     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            //     minimumSize: const Size(280, 48),
+                            //     shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(39),
+                            //     ),
+                            //   ),
+                            //   //shape: StadiumBorder(),
+                            //   onPressed: () {
+                            //     showAlertDialog(context, height);
+                            //   },
+                            //   child: Text(
+                            //     AppLocalizations.of(context)!.submit,
+                            //     //'Submit',
+                            //     style: TextStyle(
+                            //         fontSize: height * 0.025,
+                            //         fontFamily: "Inter",
+                            //         color: const Color.fromRGBO(255, 255, 255, 1),
+                            //         fontWeight: FontWeight.w600),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -1332,139 +1539,35 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
   }
 }
 
-class QuestionPreview extends StatefulWidget {
+class QuestionPreview extends StatelessWidget {
   const QuestionPreview(
       {Key? key,
         required this.height,
         required this.width,
         required this.question,
-        required this.quesIndex,
-        required this.quesList,
+        required this.selected,
       })
       : super(key: key);
 
   final double height;
-  final int quesIndex;
+  final bool selected;
   final double width;
   final questionModel.Question question;
-  final List<questionModel.Question> quesList;
-
-  @override
-  State<QuestionPreview> createState() => _QuestionPreviewState();
-}
-
-class _QuestionPreviewState extends State<QuestionPreview> {
-
-  Future<bool> alertDialogDeleteQuestion(BuildContext context, double height) {
-    Widget cancelButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.no,
-        // 'No',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-    Widget continueButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.yes,
-        //'Yes',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () async {
-        print("--------------------------------------------------");
-        print(widget.quesIndex);
-        print(widget.quesList.length);
-        widget.quesList.removeAt(widget.quesIndex);
-        //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
-        setState(() {
-          widget.quesList;
-        });
-        Navigator.of(context).pop();
-
-      },
-
-    );
-    AlertDialog alert = AlertDialog(
-      title: Row(
-        children: [
-          const Icon(
-            Icons.info,
-            color: Color.fromRGBO(238, 71, 0, 1),
-          ),
-          Text(
-            AppLocalizations.of(context)!.confirm,
-            //'Confirm',
-            style: TextStyle(
-                fontSize: height * 0.02,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(0, 106, 100, 1),
-                fontWeight: FontWeight.w700),
-          ),
-        ],
-      ),
-      content: Text(
-        //AppLocalizations.of(context)!.want_to_del_qn,
-        'Are you sure you want to delete this Question?',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            fontWeight: FontWeight.w400),
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-    return Future.value(true);
-  }
 
   @override
   Widget build(BuildContext context) {
     List<String> temp = [];
-    if(widget.question.question!="MCQ"){
-      for (int i = 0; i < widget.question.choices!.length; i++) {
-        if (widget.question.choices![i].rightChoice!) {
-          temp.add(widget.question.choices![i].choiceText!);
-        }
-      }
-    }
+    // for (int i = 0; i < question.choices!.length; i++) {
+    //   if (question.choices![i].rightChoice!) {
+    //     temp.add(question.choices![i].choiceText!);
+    //   }
+    // }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
+          color: selected?Color.fromRGBO(82, 165, 160, 0.07):Color.fromRGBO(82, 165, 160, 1),
+          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
           borderRadius: BorderRadius.all(
               Radius.circular(5)),
         ),
@@ -1472,169 +1575,75 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "${question.subject ?? ''} | ${question.topic??''}",
+                  style: TextStyle(
+                      fontSize: height * 0.016,
+                      fontFamily: "Inter",
+                      color:!selected?Colors.white:
+                      Color.fromRGBO(28, 78, 80, 1),
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "${question.degreeStudent ?? ''} | ${question.semester??''}",
+                  style: TextStyle(
+                      color: !selected?Colors.white: Color.fromRGBO(102, 102, 102, 1),
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                      fontSize: height * 0.016),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Divider(
+                thickness: 2,
+                color: !selected?Color.fromRGBO(255, 255, 255, 0.7):Color.fromRGBO(0, 0, 0, 0.3),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Q${widget.quesIndex+1} ",
-                        style: TextStyle(
-                            fontSize: widget.height * 0.016,
-                            fontFamily: "Inter",
-                            color:
-                            Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        widget.question.questionType!,
-                        style: TextStyle(
-                            fontSize: widget.height * 0.016,
-                            fontFamily: "Inter",
-                            color:
-                            Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Marks ",
-                        style: TextStyle(
-                            fontSize: widget.height * 0.016,
-                            fontFamily: "Inter",
-                            color:
-                            Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Container(
-                        height: widget.height * 0.04,
-                        width: widget.width * 0.3,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(5)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              onTap:(){
-                                if(widget.question.questionMark!=null || widget.question.questionMark!=0){
-                                  widget.question.questionMark=widget.question.questionMark!-1;
-                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(widget.question.questionMark!, widget.quesIndex);
-                                  setState(() {
-                                  });
-                                }
-                              },
-                              child: Container(
-                                height: widget.height * 0.03,
-                                width: widget.width * 0.05,
-                                child: Icon(
-                                  Icons.remove,
-                                  size: widget.height * 0.02,
-                                  color: const Color.fromRGBO(28, 78, 80, 1),),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(right: widget.width * 0.005,left: widget.width * 0.005),
-                              child: Container(
-                                height: widget.height * 0.03,
-                                width: widget.width * 0.1,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(5)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '${widget.question.questionMark}',
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: widget.height * 0.016),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                if(widget.question.questionMark!=null){
-                                  widget.question.questionMark=widget.question.questionMark!+1;
-                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(widget.question.questionMark!, widget.quesIndex);
-                                  setState(() {
-
-                                  });
-                                }
-                              },
-                              child: Container(
-                                height: widget.height * 0.03,
-                                width: widget.width * 0.05,
-
-                                child: Icon(
-                                  Icons.add,
-                                  size: widget.height * 0.02,
-                                  color: const Color.fromRGBO(28, 78, 80, 1),),
-                              ),
-                            ),
-                          ],
-                        ),)
-                    ],
+                  Text(
+                    question.questionType??'',
+                    style: TextStyle(
+                        fontSize: height * 0.016,
+                        fontFamily: "Inter",
+                        color:
+                        !selected?Colors.white: Color.fromRGBO(28, 78, 80, 1),
+                        fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
               SizedBox(
-                height: widget.height * 0.01,
+                height: height * 0.01,
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "${widget.question.question}",
+                  question.question??'',
                   style: TextStyle(
-                      color: Color.fromRGBO(102, 102, 102, 1),
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                      fontSize: widget.height * 0.016),
+                      fontSize: height * 0.0175,
+                      fontFamily: "Inter",
+                      color: !selected?Colors.white: Color.fromRGBO(51, 51, 51, 1),
+                      fontWeight: FontWeight.w400),
                 ),
               ),
               SizedBox(
-                height: widget.height * 0.01,
+                height: height * 0.01,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "${temp.toString().substring(1,temp.toString().length-1)}",
-                  style: TextStyle(
-                      fontSize: widget.height * 0.016,
-                      fontFamily: "Inter",
-                      color:
-                      Color.fromRGBO(82, 165, 160, 1),
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-              Divider(
-                thickness: 2,
-                color: Color.fromRGBO(204, 204, 204, 0.5),
-              ),
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    onPressed: () async {
-                      bool res = await alertDialogDeleteQuestion(context,widget.height);
-                      setState(() {
-                        widget.quesList;
-                      });
-
-                      //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
-
-                    },
-                    icon: Icon(
-                      Icons.delete_outline,
-                      size: widget.height * 0.03,
-                      color: const Color.fromRGBO(82, 165, 160, 1),),
-                  )
+              SizedBox(
+                height: height * 0.01,
               ),
             ],
           ),

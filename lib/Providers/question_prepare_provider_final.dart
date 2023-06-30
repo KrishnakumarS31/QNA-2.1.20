@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../Entity/Teacher/question_entity.dart';
 
 class QuestionPrepareProviderFinal extends ChangeNotifier {
-  final List<Question> _questionList = [];
+  List<Question> _questionList = [];
 
   List<Question> get getAllQuestion => _questionList;
 
@@ -14,6 +14,7 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
 
   void reSetQuestionList() {
     _questionList.clear();
+    _questionList=[];
     notifyListeners();
   }
 

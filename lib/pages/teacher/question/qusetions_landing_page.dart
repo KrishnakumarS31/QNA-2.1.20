@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
-import '../../../Entity/Teacher/choice_entity.dart';
 import '../../../Entity/Teacher/response_entity.dart';
 import '../../../Entity/user_details.dart';
 import '../../../Providers/LanguageChangeProvider.dart';
@@ -12,7 +11,6 @@ import '../../../Providers/question_prepare_provider_final.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../DataSource/http_url.dart';
 import 'edit_global_question_popup.dart';
 import 'edit_question_popup.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -58,7 +56,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     List<Question>? questions;
     if (responseEntity.code == 200) {
       questionResponse = QuestionResponse.fromJson(responseEntity.data);
-      print(questionResponse);
       questions = questionResponse?.questions;
     }
     else{
@@ -95,7 +92,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     if (responseEntity.code == 200) {
       QuestionResponse questionResponse;
       questionResponse = QuestionResponse.fromJson(responseEntity.data);
-      print(questionResponse);
       questions = questionResponse.questions;
     }
     else{
@@ -131,15 +127,11 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     List<Question>? questions = [];
     ResponseEntity response =
     await QnaService.getSearchQuestion(10, 1, teacherQuestionBankSearchController.text,userDetails);
-    print("RESPONSE CODE");
-    print(response.code);
 
     if(response.code==200){
       QuestionResponse questionResponse;
       questionResponse = QuestionResponse.fromJson(response.data);
       questions = questionResponse.questions;
-      print("Questions");
-      print(questions);
     }
     else{
       Navigator.push(
@@ -269,7 +261,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       // borderRadius:
                                       // BorderRadius.all(Radius.circular(100)),
                                       color: teacherQuestionBankSearchController.text.isEmpty?
-                                      Color.fromRGBO(153, 153, 153, 0.5):Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(153, 153, 153, 0.5):const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: Center(
                                       child: IconButton(
@@ -290,10 +282,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     )),
                               ]
                               ),
-                              enabledBorder: UnderlineInputBorder(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                               ),
                             ),
@@ -486,8 +478,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             height: height * 0.55,
                             width: width ,
                             decoration: BoxDecoration(
-                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                              borderRadius: BorderRadius.all(
+                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                              borderRadius: const BorderRadius.all(
                                   Radius.circular(10)),
                             ),
                             child: SingleChildScrollView(
@@ -531,7 +523,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   width: width * 0.09,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius: const BorderRadius.all(
                                                         Radius.circular(5)),
                                                   ),
                                                   child: Icon(
@@ -547,7 +539,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   width: width * 0.09,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius: const BorderRadius.all(
                                                         Radius.circular(5)),
                                                   ),
                                                   child: Center(
@@ -577,7 +569,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   width: width * 0.09,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius: const BorderRadius.all(
                                                         Radius.circular(5)),
                                                   ),
                                                   child: Icon(
@@ -624,7 +616,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -638,469 +630,468 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
               ));
         }
         else if(constraints.maxWidth > 960)
-          {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                  resizeToAvoidBottomInset: true,
-                  backgroundColor: Colors.white,
-                  appBar:
-                  AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon: Icon(
-                        Icons.chevron_left,
-                        size: height * 0.06,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+        {
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.white,
+                appBar:
+                AppBar(
+                  iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: Icon(
+                      Icons.chevron_left,
+                      size: height * 0.06,
+                      color: Colors.black,
                     ),
-                    toolbarHeight: height * 0.100,
-                    centerTitle: true,
-                    title: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            //AppLocalizations.of(context)!.my_qns,
-                            "Question Bank",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: height * 0.025,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600,
-                            ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          //AppLocalizations.of(context)!.my_qns,
+                          "Question Bank",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
                           ),
-                        ]),
-                    flexibleSpace: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.white
-                      ),
+                        ),
+                      ]),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.white
                     ),
                   ),
-                  endDrawer: const EndDrawerMenuTeacher(),
-                  body: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Padding(
-                        padding: EdgeInsets.only(
-                            top: height * 0.023,
-                            left: height * 0.5,
-                            right: height * 0.5
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              //AppLocalizations.of(context)!.lib_online_qn,
-                              "Search Questions ",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: height * 0.0175,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
+                ),
+                endDrawer: const EndDrawerMenuTeacher(),
+                body: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.023,
+                          left: height * 0.5,
+                          right: height * 0.5
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            //AppLocalizations.of(context)!.lib_online_qn,
+                            "Search Questions ",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.0175,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(height: height * 0.005),
+                          TextField(
+                            onChanged: (t){
+                              setState(() {
+                              });
+                            },
+                            controller: teacherQuestionBankSearchController,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              //floatingLabelBehavior: FloatingLabelBehavior.always,
+                              hintStyle: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: height * 0.016),
+                              hintText: "Subject, Topic, Degree",
+                              suffixIcon:
+                              Column(children: [
+                                Container(
+                                    height: height * 0.05,
+                                    width: width * 0.07,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      // borderRadius:
+                                      // BorderRadius.all(Radius.circular(100)),
+                                      color: teacherQuestionBankSearchController.text.isEmpty?
+                                      const Color.fromRGBO(153, 153, 153, 0.5):const Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                    child: Center(
+                                      child: IconButton(
+                                        iconSize: height * 0.020,
+                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        onPressed: () {
+                                          setState(() {
+                                            questionStart=0;
+                                            questionList=[];
+                                            pageNumber=1;
+                                          });
+                                          onlyMyQuestion?
+                                          getData(teacherQuestionBankSearchController.text):
+                                          searchGlobalQuestion();
+                                        },
+                                        icon: const Icon(Icons.search),
+                                      ),
+                                    )),
+                              ]
+                              ),
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                              ),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                               ),
                             ),
-                            SizedBox(height: height * 0.005),
-                            TextField(
-                              onChanged: (t){
-                                setState(() {
-                                });
-                              },
-                              controller: teacherQuestionBankSearchController,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                hintStyle: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                                hintText: "Subject, Topic, Degree",
-                                suffixIcon:
-                                Column(children: [
-                                  Container(
-                                      height: height * 0.05,
-                                      width: width * 0.07,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        // borderRadius:
-                                        // BorderRadius.all(Radius.circular(100)),
-                                        color: teacherQuestionBankSearchController.text.isEmpty?
-                                        Color.fromRGBO(153, 153, 153, 0.5):Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      child: Center(
-                                        child: IconButton(
-                                          iconSize: height * 0.020,
-                                          color: const Color.fromRGBO(255, 255, 255, 1),
-                                          onPressed: () {
-                                            setState(() {
-                                              questionStart=0;
-                                              questionList=[];
-                                              pageNumber=1;
-                                            });
-                                            onlyMyQuestion?
-                                            getData(teacherQuestionBankSearchController.text):
-                                            searchGlobalQuestion();
-                                          },
-                                          icon: const Icon(Icons.search),
+                          ),
+                          SizedBox(height: height * 0.02),
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: (){
+
+                                showModalBottomSheet(
+                                    constraints: const BoxConstraints(
+                                        maxWidth: 600
+                                    ),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(25.0),
+                                          topRight: Radius.circular(25.0)),
+                                    ),
+                                    context: context,
+                                    builder: (builder) {
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: Colors.white,
+                                            ),
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(20),
+                                                topRight: Radius.circular(20))),
+                                        height: height * 0.245,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: width * 0.10,
+                                              right: width * 0.10
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height:
+                                                height * 0.026,
+                                              ),
+                                              Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  //AppLocalizations.of(context)!.legend,
+                                                  "Search Filters",
+                                                  style: Theme
+                                                      .of(context)
+                                                      .primaryTextTheme
+                                                      .bodyLarge
+                                                      ?.merge(TextStyle(
+                                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: height *
+                                                          0.02)),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width:
+                                                width * 0.052,
+                                              ),
+                                              SizedBox(
+                                                height:
+
+                                                height * 0.019,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    //AppLocalizations.of(context)!.lib_online_qn,
+                                                    "Show only my questions",
+                                                    style: TextStyle(
+                                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                                      fontSize: height * 0.02,
+                                                      fontFamily: "Inter",
+                                                      fontWeight: FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                  FlutterSwitch(
+                                                    activeColor: const Color
+                                                        .fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    inactiveColor:
+                                                    const Color
+                                                        .fromRGBO(
+                                                        217,
+                                                        217,
+                                                        217,
+                                                        1),
+                                                    width: height * 0.08,
+                                                    height: height * 0.04,
+                                                    toggleSize: height * 0.03,
+                                                    value: onlyMyQuestion,
+                                                    borderRadius: 50.0,
+                                                    onToggle: (val) {
+                                                      setState(() {
+                                                        onlyMyQuestion =
+                                                            val;
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height:
+                                                MediaQuery
+                                                    .of(context)
+                                                    .copyWith()
+                                                    .size
+                                                    .height * 0.050,
+                                              ),
+                                              SizedBox(
+                                                width:width * 0.25,
+                                                height:height * 0.04,
+                                                child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                      backgroundColor:
+                                                      const Color.fromRGBO(
+                                                          82, 165, 160, 1),
+
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                        BorderRadius.circular(width),
+                                                      ),
+                                                      side: const BorderSide(
+                                                        color: Color.fromRGBO(
+                                                            82, 165, 160, 1),
+                                                      )),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      pageNumber=1;
+                                                      questionList=[];
+                                                    });
+                                                    onlyMyQuestion?
+                                                    getData(teacherQuestionBankSearchController.text):
+                                                    searchGlobalQuestion();
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text(
+                                                    "Apply",
+                                                    style: TextStyle(
+                                                        fontSize: height * 0.025,
+                                                        fontFamily: "Inter",
+                                                        color: const Color.fromRGBO(
+                                                            255, 255, 255, 1),
+                                                        fontWeight: FontWeight.w600),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
+                                      );
+                                    });
+                              },
+                              child: Row(
+                                children: [
+                                  Text(
+                                    //AppLocalizations.of(context)!.lib_online_qn,
+                                    "Filters",
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      fontSize: height * 0.016,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    size: height * 0.017,
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: height * 0.015),
+                          Text(
+                            //AppLocalizations.of(context)!.my_qn_bank,
+                            "Tap the Question to view ",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(153, 153, 153, 1),
+                              fontSize: height * 0.016,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(height: height * 0.01),
+                          Container(
+                            height: height * 0.55,
+                            width: width ,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(10)),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  for (int i=questionStart;i<questionList.length;i++)
+                                    Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(left:height * 0.01),
+                                        child: Text(
+                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                        ),
+                                      ),
+                                      SizedBox(width: height * 0.28),
+                                      Wrap(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: (){
+                                                  if(questionList.length>11){
+                                                    setState(() {
+                                                      questionStart=questionStart-10;
+                                                      questionList.removeRange(questionList.length-10, questionList.length);
+                                                    });
+                                                  }
+                                                },
+                                                child: Container(
+                                                  height: height * 0.03,
+                                                  width: height * 0.09,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    borderRadius: const BorderRadius.all(
+                                                        Radius.circular(5)),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.keyboard_double_arrow_left,
+                                                    size: height * 0.015,
+                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                child: Container(
+                                                  height: height * 0.03,
+                                                  width: height * 0.07,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    borderRadius: const BorderRadius.all(
+                                                        Radius.circular(5)),
+                                                  ),
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${questionStart==0?1:((questionStart/10)+1).toInt()}',
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.016),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: (){
+                                                  setState(() {
+                                                    questionStart=questionStart+10;
+                                                  });
+
+                                                  onlyMyQuestion?
+                                                  getData(teacherQuestionBankSearchController.text)
+                                                      :searchGlobalQuestion();
+                                                },
+                                                child: Container(
+                                                  height: height * 0.03,
+                                                  width: height * 0.09,
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    borderRadius: const BorderRadius.all(
+                                                        Radius.circular(5)),
+                                                  ),
+                                                  child: Icon(
+                                                    Icons.keyboard_double_arrow_right,
+                                                    size: height * 0.015,
+                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: height * 0.05,)
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Column(children: [
+                            SizedBox(height: height * 0.05),
+                            Center(
+                              child: SizedBox(
+                                width: width * 0.8,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                      Colors.white,
+                                      minimumSize: Size(width * 0.025, height * 0.05),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(39),
+                                      ),
+                                      side: const BorderSide(
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       )),
-                                ]
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                  onPressed: () {
+                                    Provider.of<QuestionPrepareProviderFinal>(context,
+                                        listen: false).reSetQuestionList();
+                                    Navigator.pushNamed(context, '/createNewQuestion');
+                                  },
+                                  child: Text(
+                                    //AppLocalizations.of(context)!.prepare_new_qn,
+                                    'Create New Questions',
+                                    style: TextStyle(
+                                        fontSize: height * 0.025,
+                                        fontFamily: "Inter",
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(height: height * 0.02),
-                            MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: (){
-
-                                  showModalBottomSheet(
-                                      constraints: BoxConstraints(
-                                          maxWidth: 600
-                                      ),
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(25.0),
-                                            topRight: Radius.circular(25.0)),
-                                      ),
-                                      context: context,
-                                      builder: (builder) {
-                                        return Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: Colors.white,
-                                              ),
-                                              borderRadius: const BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(20))),
-                                          height: height * 0.245,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                left: width * 0.10,
-                                                right: width * 0.10
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height:
-                                                  height * 0.026,
-                                                ),
-                                                Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text(
-                                                    //AppLocalizations.of(context)!.legend,
-                                                    "Search Filters",
-                                                    style: Theme
-                                                        .of(context)
-                                                        .primaryTextTheme
-                                                        .bodyLarge
-                                                        ?.merge(TextStyle(
-                                                        color: const Color.fromRGBO(82, 165, 160, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w700,
-                                                        fontSize: height *
-                                                            0.02)),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width:
-                                                  width * 0.052,
-                                                ),
-                                                SizedBox(
-                                                  height:
-
-                                                  height * 0.019,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      //AppLocalizations.of(context)!.lib_online_qn,
-                                                      "Show only my questions",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                                        fontSize: height * 0.02,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    FlutterSwitch(
-                                                      activeColor: const Color
-                                                          .fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      inactiveColor:
-                                                      const Color
-                                                          .fromRGBO(
-                                                          217,
-                                                          217,
-                                                          217,
-                                                          1),
-                                                      width: height * 0.08,
-                                                      height: height * 0.04,
-                                                      toggleSize: height * 0.03,
-                                                      value: onlyMyQuestion,
-                                                      borderRadius: 50.0,
-                                                      onToggle: (val) {
-                                                        setState(() {
-                                                          onlyMyQuestion =
-                                                              val;
-                                                        });
-                                                      },
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height:
-                                                  MediaQuery
-                                                      .of(context)
-                                                      .copyWith()
-                                                      .size
-                                                      .height * 0.050,
-                                                ),
-                                                SizedBox(
-                                                  width:width * 0.25,
-                                                  height:height * 0.04,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton.styleFrom(
-                                                        backgroundColor:
-                                                        const Color.fromRGBO(
-                                                            82, 165, 160, 1),
-
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius:
-                                                          BorderRadius.circular(width),
-                                                        ),
-                                                        side: const BorderSide(
-                                                          color: Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                        )),
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        pageNumber=1;
-                                                        questionList=[];
-                                                      });
-                                                      onlyMyQuestion?
-                                                      getData(teacherQuestionBankSearchController.text):
-                                                      searchGlobalQuestion();
-                                                      Navigator.of(context).pop();
-                                                    },
-                                                    child: Text(
-                                                      "Apply",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.025,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(
-                                                              255, 255, 255, 1),
-                                                          fontWeight: FontWeight.w600),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        );
-                                      });
-                                },
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      //AppLocalizations.of(context)!.lib_online_qn,
-                                      "Filters",
-                                      style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
-                                        fontSize: height * 0.016,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.chevron_right,
-                                      size: height * 0.017,
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.015),
-                            Text(
-                              //AppLocalizations.of(context)!.my_qn_bank,
-                              "Tap the Question to view ",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.016,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            SizedBox(height: height * 0.01),
-                            Container(
-                              height: height * 0.55,
-                              width: width ,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(10)),
-                              ),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    for (int i=questionStart;i<questionList.length;i++)
-                                      Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(left:height * 0.01),
-                                          child: Text(
-                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.016),
-                                          ),
-                                        ),
-                                        SizedBox(width: height * 0.28),
-                                        Wrap(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    print("INSIDE ONTAP FOR ARROW LEFT");
-                                                    if(questionList.length>11){
-                                                      setState(() {
-                                                        questionStart=questionStart-10;
-                                                        questionList.removeRange(questionList.length-10, questionList.length);
-                                                      });
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: height * 0.09,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_left,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: height * 0.07,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        '${questionStart==0?1:((questionStart/10)+1).toInt()}',
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.016),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    setState(() {
-                                                      questionStart=questionStart+10;
-                                                    });
-
-                                                    onlyMyQuestion?
-                                                    getData(teacherQuestionBankSearchController.text)
-                                                        :searchGlobalQuestion();
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: height * 0.09,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_right,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: height * 0.05,)
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Column(children: [
-                              SizedBox(height: height * 0.05),
-                              Center(
-                                child: SizedBox(
-                                  width: width * 0.8,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                        Colors.white,
-                                        minimumSize: Size(width * 0.025, height * 0.05),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(39),
-                                        ),
-                                        side: const BorderSide(
-                                          color: Color.fromRGBO(82, 165, 160, 1),
-                                        )),
-                                    onPressed: () {
-                                      Provider.of<QuestionPrepareProviderFinal>(context,
-                                          listen: false).reSetQuestionList();
-                                      Navigator.pushNamed(context, '/createNewQuestion');
-                                    },
-                                    child: Text(
-                                      //AppLocalizations.of(context)!.prepare_new_qn,
-                                      'Create New Questions',
-                                      style: TextStyle(
-                                          fontSize: height * 0.025,
-                                          fontFamily: "Inter",
-                                          color: Color.fromRGBO(82, 165, 160, 1),
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: height * 0.02),
-                            ]),
-                          ],
-                        )),
-                  ),
-                ));
-          }
+                          ]),
+                        ],
+                      )),
+                ),
+              ));
+        }
         else {
           return WillPopScope(
               onWillPop: () async => false,
@@ -1214,10 +1205,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     )),
                               ]
                               ),
-                              enabledBorder: UnderlineInputBorder(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                               ),
                             ),
@@ -1248,7 +1239,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                         child: Padding(
                                           padding: EdgeInsets.only(
                                               left: width * 0.10,
-                                                  right: width * 0.10
+                                              right: width * 0.10
                                           ),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -1343,11 +1334,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                           82, 165, 160, 1),
                                                     )),
                                                 onPressed: () {
-                                                  print("INSIDE ONPRESSED");
-                                                  print(onlyMyQuestion);
+                                                  setState(() {
+                                                    pageNumber=1;
+                                                    questionList=[];
+                                                  });
                                                   onlyMyQuestion?
                                                   getData(teacherQuestionBankSearchController.text):
                                                   searchGlobalQuestion();
+                                                  Navigator.of(context).pop();
                                                 },
                                                 child: Text(
                                                   "Apply",
@@ -1403,8 +1397,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             height: height * 0.55,
                             width: width * 0.9,
                             decoration: BoxDecoration(
-                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                              borderRadius: BorderRadius.all(
+                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                              borderRadius: const BorderRadius.all(
                                   Radius.circular(10)),
                             ),
                             child: SingleChildScrollView(
@@ -1444,7 +1438,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   width: width * 0.1,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius: const BorderRadius.all(
                                                         Radius.circular(5)),
                                                   ),
                                                   child: Icon(
@@ -1460,7 +1454,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   width: width * 0.15,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius: const BorderRadius.all(
                                                         Radius.circular(5)),
                                                   ),
                                                   child: Center(
@@ -1490,7 +1484,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   width: width * 0.1,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: BorderRadius.all(
+                                                    borderRadius: const BorderRadius.all(
                                                         Radius.circular(5)),
                                                   ),
                                                   child: Icon(
@@ -1592,7 +1586,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -1631,7 +1625,6 @@ class Question_Card extends StatefulWidget {
 class _Question_CardState extends State<Question_Card> {
 
   showQuestionPreview(BuildContext context) {
-    print("INSIDE ONTAP QUESTION PREVIEW");
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1663,18 +1656,18 @@ class _Question_CardState extends State<Question_Card> {
           showGlobalQuestionPreview(context);
         },
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Container(
             height: widget.width > 500 ? widget.height * 0.19 :widget.height * 0.22,
             width: widget.width * 0.85,
             decoration: BoxDecoration(
-              border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.2),),
-              borderRadius: BorderRadius.all(
+              border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.2),),
+              borderRadius: const BorderRadius.all(
                   Radius.circular(10)),
-              color: Color.fromRGBO(82, 165, 160, 0.07),
+              color: const Color.fromRGBO(82, 165, 160, 0.07),
             ),
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -1706,9 +1699,9 @@ class _Question_CardState extends State<Question_Card> {
                     ),
                   ),
                   //SizedBox(height: height * 0.01),
-                  Divider(
+                  const Divider(
                     thickness: 2,
-                    color: const Color.fromRGBO(0, 0, 0, 0.1),
+                    color: Color.fromRGBO(0, 0, 0, 0.1),
                   ),
                   //SizedBox(height: height * 0.005),
                   SizedBox(

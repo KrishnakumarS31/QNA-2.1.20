@@ -63,6 +63,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
   int numberOfAttempts=1;
   bool allowGuestStudent=false;
   bool showAnswerSheetPractice=false;
+  bool makeAssessmentInactive=false;
   bool allowPublishPublic=false;
   bool showName=false;
   bool showEmail=false;
@@ -1248,6 +1249,75 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         ),
                                       ),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        height: height * 0.17,
+                                        width: width,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Container(
+                                                    width: width * 0.5,
+                                                    child: Text(
+                                                      "Make Assessment Inactive",
+                                                      style: TextStyle(
+                                                          fontSize: height * 0.016,
+                                                          fontFamily: "Inter",
+                                                          color: const Color.fromRGBO(102, 102, 102, 1),
+                                                          fontWeight: FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                  FlutterSwitch(
+                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                    inactiveColor:
+                                                    const Color
+                                                        .fromRGBO(
+                                                        217,
+                                                        217,
+                                                        217,
+                                                        1),
+                                                    width: 65.0,
+                                                    height: 35.0,
+                                                    value:
+                                                    makeAssessmentInactive,
+                                                    borderRadius: 30.0,
+                                                    onToggle: (val) {
+                                                      setState(() {
+                                                        makeAssessmentInactive =
+                                                            val;
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              child: Text(
+                                                "This assessment will not be visible to students and other teachers. ",
+                                                style: TextStyle(
+                                                    fontStyle: FontStyle.italic,
+                                                    fontSize: height * 0.016,
+                                                    fontFamily: "Inter",
+                                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1288,14 +1358,21 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ));
                                           });
                                       ResponseEntity statusCode = ResponseEntity();
+                                      makeAssessmentInactive?
+                                      statusCode = await QnaService
+                                          .makeInactiveAssessmentTeacherService(
+                                        assessment.assessmentSettings!,
+                                        assessment
+                                            .assessmentId!,
+                                        assessment.assessmentType!,
+                                        'inactive',userDetails,
+                                      ):
                                       statusCode = await QnaService
                                           .editAssessmentTeacherService(
                                           finalAssessment, assessment.assessmentId!,userDetails);
                                       if (statusCode.code == 200) {
-                                        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                        print(statusCode.code);
-                                        print(statusCode.data);
-                                        print(statusCode.message);
+                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                        Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                       }
                                       else{
                                         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");

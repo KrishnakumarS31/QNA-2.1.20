@@ -427,10 +427,8 @@ class QnaRepo {
     debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
-
       loginModel = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = userDetails.email;

@@ -50,7 +50,7 @@ String convertDuration(int? duration)
   return assessmentDuration;
 }
 
-String convertAttemptDuration(int? duration) {
+String convertAttemptDuration(int? duration) { //If this method doesn't work uncomment below method
   String assessmentDuration = '';
   if (duration!< 60) {
     if (duration.toString().length == 1) {
@@ -74,30 +74,67 @@ String convertAttemptDuration(int? duration) {
     List<String> ch;
     String b;
     double c;
-    double g = duration / 60;
-    f = g.toInt();
-    ch = g.toString().split(".");
-    if(ch.length == 2)
-    { if( ch[1].length == 1)
-    {
-      b= "0.${ch[1]}";
-      c= double.parse(b);
-      d = (c*60).toInt();
-      assessmentDuration = "${f}h:${d}m";
-    }
-    else if(ch[1].length == 2) {
-      b= ch[1];
-      d= (int.parse(b)) * 60;
-      assessmentDuration = "${f}h:${d}m";
-    }}
-
-    else if(ch.length ==1)
-    {
-      assessmentDuration ="${f}h:00m";
-    }
-
+    int hours= duration ~/ 60;
+    double minutes = duration.remainder(60);
+    assessmentDuration="${hours}h:${minutes.toInt()}m";
   }
 
 
   return assessmentDuration;
 }
+// String convertAttemptDuration(int? duration) {
+//   String assessmentDuration = '';
+//   if (duration!< 60) {
+//     if (duration.toString().length == 1) {
+//       duration = duration == 0 ?  1 : duration;
+//       assessmentDuration = "00h 0${duration}m";
+//     }
+//     else if (duration.toString().length == 2)
+//     {
+//       assessmentDuration = "00h ${duration}m";
+//     }
+//   }
+//
+//   else if(duration == 60)
+//   {
+//     assessmentDuration = "01h 00m";
+//   }
+//
+//   else if (duration> 60) {
+//     int d=0;
+//     int f;
+//     List<String> ch;
+//     String b;
+//     double c;
+//     double g = (duration / 60);
+//     f = g.toInt();
+//     ch = g.toString().split(".");
+//     if(ch.length == 2)
+//     {     print(ch[1]);
+//
+//     if( ch[1].length == 1)
+//     {
+//       b= "0.${ch[1]}";
+//       c= double.parse(b);
+//       d = (c*60).toInt();
+//       assessmentDuration = "${f}h:${d}m";
+//     }
+//     else if(ch[1].length == 2) {
+//       b= ch[1];
+//       d= (int.parse(b)) * 60;
+//       assessmentDuration = "${f}h:${d}m";
+//     }else{
+//       b= ch[1];
+//     }
+//     }
+//
+//     else if(ch.length ==1)
+//     {
+//       assessmentDuration ="${f}h:00m";
+//     }
+//
+//   }
+//
+//
+//   return assessmentDuration;
+// }

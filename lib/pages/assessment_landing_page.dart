@@ -317,15 +317,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                 teacherQuestionBankSearchController
                                                     .text)
 
-                                                :
-                                            Navigator.pushNamed(
-                                              context,
-                                              '/teacherLooqQuestionBank',
-                                              arguments: teacherQuestionBankSearchController
-                                                  .text,
-                                            ).then((value) =>
-                                                teacherQuestionBankSearchController
-                                                    .clear());
+                                                :searchGlobalQuestion();
+
                                           },
                                           icon: const Icon(Icons.search),
                                         )),
@@ -620,16 +613,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             ? getData(
                                             teacherQuestionBankSearchController
                                                 .text)
-
                                             :
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/teacherLooqQuestionBank',
-                                          arguments: teacherQuestionBankSearchController
-                                              .text,
-                                        ).then((value) =>
-                                            teacherQuestionBankSearchController
-                                                .clear());
+                                        searchGlobalQuestion();
                                       },
                                       icon: const Icon(Icons.search),
                                     )),
@@ -770,7 +755,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                   onlyMyAssessments?
                                                   getData(teacherQuestionBankSearchController.text):
                                                   searchGlobalQuestion();
-                                                  Navigator.of(context).pop();
+                                                  //Navigator.of(context).pop();
                                                 },
                                                 child: Text(
                                                   "Apply",
@@ -1568,7 +1553,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
           }
         },
         child: Container(
-          height: widget.height * 0.1087,
+          height: widget.height * 0.15,
           width: widget.width * 0.888,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -1587,27 +1572,17 @@ class _AssessmentCardState extends State<AssessmentCard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Text(
-                    widget.assessment.subject!,
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: widget.height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
+              Container(
+                width:widget.width * 0.6,
+                child: Text(
+                  "${widget.assessment.subject!}  | ${widget.assessment.topic!}",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(28, 78, 80, 1),
+                    fontSize: widget.height * 0.0175,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w600,
                   ),
-                  Text(
-                    " | ${widget.assessment.topic}",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: widget.height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
+                ),
               ),
               (widget.assessment.assessmentStatus=="active" && widget.assessment.assessmentType=='test')?
               Container(

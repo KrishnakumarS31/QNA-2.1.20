@@ -323,6 +323,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    assessment.questions=[];
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
   }
 
@@ -1184,7 +1185,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -1862,6 +1863,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () async {
+                                          assessment.questions=[];
                                           assessment.userId=userDetails.userId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
@@ -1900,6 +1902,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                     ));
                                               });
                                           ResponseEntity statusCode = ResponseEntity();
+                                          print("length");
+                                          print(assessment.questions?.length);
+                                          Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             String assessmentCode = statusCode
@@ -1911,6 +1916,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                     .toString()
                                                     .length -
                                                     1);
+                                            assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
                                             assessment.assessmentCode=assessmentCode;
                                             Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                             Navigator.of(context).pop();

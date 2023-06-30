@@ -307,6 +307,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    assessment.removeQuestions=[];
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
@@ -1308,7 +1309,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
-                                          "New Question",
+                                          "Add Question",
                                           //textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1373,7 +1374,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           }
                                           Navigator.pushNamed(
                                             context,
-                                            '/assessmentSettingsPage',
+                                            '/cloneAssessmentSettings',
                                           );
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),

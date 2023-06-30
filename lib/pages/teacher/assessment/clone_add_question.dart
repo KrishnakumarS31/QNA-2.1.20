@@ -1474,7 +1474,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             }
                                             Navigator.pushNamed(
                                               context,
-                                              '/practiceReviewCloned',
+                                              '/cloneReviewQuestion',
                                             );
                                           }
                                         },

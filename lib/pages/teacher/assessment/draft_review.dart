@@ -4,10 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
+import '../../../Entity/Teacher/get_assessment_model.dart';
 import '../../../Entity/user_details.dart';
 import '../../../EntityModel/CreateAssessmentModel.dart';
 import '../../../Providers/LanguageChangeProvider.dart';
 import '../../../Providers/create_assessment_provider.dart';
+import '../../../Providers/edit_assessment_provider.dart';
 import '../../../Providers/question_prepare_provider_final.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -37,7 +39,7 @@ class DraftReviewState extends State<DraftReview> {
   TextEditingController degreeController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController semesterController = TextEditingController();
-  CreateAssessmentModel assessment =CreateAssessmentModel(questions: []);
+  CreateAssessmentModel assessment =CreateAssessmentModel(questions: [],removeQuestions: []);
   TextEditingController questionSearchController = TextEditingController();
 
   List<questionModel.Question> questionList = [];
@@ -46,7 +48,8 @@ class DraftReviewState extends State<DraftReview> {
   List<int> selectedQuesIndex=[];
   List<questionModel.Question> selectedQuestion=[];
   List<List<String>> temp = [];
-
+  GetAssessmentModel getAssessment=GetAssessmentModel();
+  List<int> getAssessmentQuestionId=[];
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
     Widget cancelButton = ElevatedButton(
@@ -88,8 +91,9 @@ class DraftReviewState extends State<DraftReview> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
+        if(getAssessmentQuestionId.contains(questionList[index].questionId)){
+          assessment.removeQuestions?.add(questionList[index].questionId);
+        }
         questionList.removeAt(index);
         setState(() {
         });
@@ -305,9 +309,14 @@ class DraftReviewState extends State<DraftReview> {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    assessment.removeQuestions=[];
+    getAssessment =Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
+    }
+    for(int i=0;i<getAssessment.questions!.length;i++){
+      getAssessmentQuestionId.add(getAssessment.questions![i].questionId);
     }
   }
 
@@ -1287,7 +1296,7 @@ class DraftReviewState extends State<DraftReview> {
                                         onPressed: () {
                                           Navigator.pushNamed(
                                             context,
-                                            '/practiceAddQuestion',
+                                            '/draftAddQuestion',
                                           );
                                         },
                                         child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
@@ -1303,7 +1312,7 @@ class DraftReviewState extends State<DraftReview> {
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
-                                          "New Question",
+                                          "Add Question",
                                           //textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1321,12 +1330,23 @@ class DraftReviewState extends State<DraftReview> {
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
-                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          assessment.questions=[];
+                                          int totalMark=0;
+                                          for(int i=0;i<selectedQuestion.length;i++){
+                                            Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                            totalMark=totalMark+selectedQuestion[i].questionMark!;
+                                          }
+                                          assessment.totalScore=totalMark;
+                                          print("---------------------------------------------------------------");
+                                          debugPrint(assessment.toString());
+                                          statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                           if (statusCode.code == 200) {
-                                            assessmentCode = statusCode.data.toString().substring(18, statusCode.data
-                                                .toString()
-                                                .length -
-                                                1);
+                                            print(statusCode.message);
+                                            // assessmentCode = statusCode.data.toString().substring(18, statusCode.data
+                                            //     .toString()
+                                            //     .length -
+                                            //     1);
 
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
@@ -1367,7 +1387,7 @@ class DraftReviewState extends State<DraftReview> {
                                           }
                                           Navigator.pushNamed(
                                             context,
-                                            '/assessmentSettingsPage',
+                                            '/draftAssessmentSettings',
                                           );
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),

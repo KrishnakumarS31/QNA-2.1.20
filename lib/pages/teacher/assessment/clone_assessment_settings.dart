@@ -21,8 +21,8 @@ import 'package:qna_test/Entity/Teacher/question_entity.dart' as questionModel;
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
-class ActiveAssessmentSettings extends StatefulWidget {
-  ActiveAssessmentSettings({
+class CloneAssessmentSettings extends StatefulWidget {
+  CloneAssessmentSettings({
     Key? key,
   }) : super(key: key);
 
@@ -32,11 +32,11 @@ class ActiveAssessmentSettings extends StatefulWidget {
 
 
   @override
-  ActiveAssessmentSettingsState createState() =>
-      ActiveAssessmentSettingsState();
+  CloneAssessmentSettingsState createState() =>
+      CloneAssessmentSettingsState();
 }
 
-class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
+class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
   //List<Question> finalQuesList = [];
   UserDetails userDetails=UserDetails();
   final formKey = GlobalKey<FormState>();
@@ -67,11 +67,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
   bool showName=false;
   bool showEmail=false;
   bool showWhatsappGroup=false;
-  bool makeAssessmentInactive=false;
-  String startDateTime='';
-  String endDateTime='';
-  int totalMarks=0;
-  GetAssessmentModel getAssessmentModel=GetAssessmentModel();
+  List<int> getAssessmentQuestionID=[];
+  GetAssessmentModel getAssessment=GetAssessmentModel();
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
     Widget cancelButton = ElevatedButton(
@@ -330,27 +327,13 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-    getAssessmentModel =Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    getAssessment =Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
-    DateTime tsDate = DateTime.fromMicrosecondsSinceEpoch(getAssessmentModel.assessmentStartdate!);
-    startDateTime = "${tsDate.day}/${tsDate.month}/${tsDate.year} ${tsDate.hour>12?tsDate.hour-12:tsDate.hour}:${tsDate.hour} ${tsDate.hour>12?"PM":"AM"}";
-    startDate=tsDate;
-    DateTime teDate = DateTime.fromMicrosecondsSinceEpoch(getAssessmentModel.assessmentEnddate!);
-    endDateTime = "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour>12?teDate.hour-12:teDate.hour}:${teDate.hour} ${teDate.hour>12?"PM":"AM"}";
-    endDate=teDate;
-    for(int i=0;i<questionList!.length;i++){
-      totalMarks=totalMarks+questionList![i].questionMark!;
+    assessment.addQuestion=[];
+    for(int i=0;i<getAssessment.questions!.length;i++){
+      getAssessmentQuestionID.add(getAssessment.questions![i].questionId);
+      assessment.addQuestion?.add(getAssessment.questions![i]);
     }
-    category=getAssessmentModel.assessmentType=='test'?"Test":"Practice";
-    numberOfAttempts=getAssessmentModel.assessmentSettings!.allowedNumberOfTestRetries!;
-    allowGuestStudent=getAssessmentModel.assessmentSettings!.allowGuestStudent!;
-    showAnswerSheetPractice=getAssessmentModel.assessmentSettings!.showAnswerSheetDuringPractice!;
-    showName=getAssessmentModel.assessmentSettings!.showAdvisorName!;
-    showEmail=getAssessmentModel.assessmentSettings!.showAdvisorEmail!;
-    timeLimit=DateTime(2023,5,1,(getAssessmentModel.assessmentDuration!/60).round(),(getAssessmentModel.assessmentDuration!%60).round());
-    timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
-    endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
-    startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
   }
 
 
@@ -701,7 +684,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : height * 0.15,
+                              height : height * 0.12,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -718,67 +701,22 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${getAssessmentModel.subject} | ${getAssessmentModel.topic}",
-                                            style: TextStyle(
-                                                fontSize: height * 0.02,
-                                                fontFamily: "Inter",
-                                                color:
-                                                const Color.fromRGBO(28, 78, 80, 1),
-                                                fontWeight: FontWeight.w700),
-                                          ),
-
-                                          Container(
-                                            height: height * 0.04,
-                                            width: width * 0.16,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Icon(
-                                                  Icons.circle,
-                                                  color: const Color.fromRGBO(219, 35, 35, 1),
-                                                  size: MediaQuery
-                                                      .of(context)
-                                                      .copyWith()
-                                                      .size
-                                                      .height *
-                                                      0.02,
-                                                ),
-                                                Text(
-                                                  //AppLocalizations.of(context)!.active,
-                                                  "  LIVE ",
-                                                  style: Theme
-                                                      .of(context)
-                                                      .primaryTextTheme
-                                                      .bodyLarge
-                                                      ?.merge(TextStyle(
-                                                      color: const Color.fromRGBO(51, 51, 51, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: MediaQuery
-                                                          .of(context)
-                                                          .copyWith()
-                                                          .size
-                                                          .height *
-                                                          0.016)),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          "${assessment.subject} | ${assessment.topic}",
+                                          style: TextStyle(
+                                              fontSize: height * 0.02,
+                                              fontFamily: "Inter",
+                                              color:
+                                              const Color.fromRGBO(28, 78, 80, 1),
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${getAssessmentModel.subject} | ${getAssessmentModel.topic}",
+                                          "${assessment.subject} | ${assessment.topic}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -787,39 +725,6 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ),
-                                      SizedBox(height: height*0.01,),
-                                      Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text(AppLocalizations.of(context)!.assessment_id_caps,
-                                                  style: TextStyle(
-                                                      fontSize: height * 0.016,
-                                                      fontFamily: "Inter",
-                                                      color:
-                                                      const Color.fromRGBO(28, 78, 80, 1),
-                                                      fontWeight: FontWeight.w400),
-                                                ),
-                                                Text(getAssessmentModel.assessmentCode!,
-                                                  style: TextStyle(
-                                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],),
-                                            Text(
-                                              startDateTime,
-                                              style: TextStyle(
-                                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                                fontSize: height * 0.015,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ]),
                                       Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -836,7 +741,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     fontWeight: FontWeight.w400),
                                               ),
                                               Text(
-                                                "$totalMarks",
+                                                "45",
                                                 style: TextStyle(
                                                     fontSize: height * 0.016,
                                                     fontFamily: "Inter",
@@ -858,7 +763,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     fontWeight: FontWeight.w400),
                                               ),
                                               Text(
-                                                "${getAssessmentModel.questions!.length}",
+                                                "${questionList.length}",
                                                 style: TextStyle(
                                                     fontSize: height * 0.016,
                                                     fontFamily: "Inter",
@@ -877,7 +782,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                             ),
                             SizedBox(height: height * 0.01,),
                             Container(
-                              height: height * 0.55,
+                              height: height * 0.6,
                               width: width * 0.93,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1289,7 +1194,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -1848,75 +1753,6 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: height * 0.17,
-                                        width: width,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Container(
-                                                    width: width * 0.5,
-                                                    child: Text(
-                                                      "Make Assessment Inactive",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    makeAssessmentInactive,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        makeAssessmentInactive =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Text(
-                                                "This assessment will not be visible to students and other teachers. ",
-                                                style: TextStyle(
-                                                  fontStyle: FontStyle.italic,
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -1931,28 +1767,63 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pushNamedAndRemoveUntil('/createNewAssessment', ModalRoute.withName('/assessmentLandingPage'));
+                                        },
+                                        child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                        style: ElevatedButton.styleFrom(
+                                          side: const BorderSide(
+                                            width: 2,
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                          ),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(20),
+                                          backgroundColor: Colors.white, // <-- Button color
+                                        ),
+                                      ),
+                                      Text(
+                                        //AppLocalizations.of(context)!.subject_topic,
+                                          "New Question",
+                                          //textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(28, 78, 80, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016)),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
                                         onPressed: () async {
-                                          assessment=CreateAssessmentModel(questions: null);
                                           assessment.userId=userDetails.userId;
-                                          assessment.assessmentId=getAssessmentModel.assessmentId;
+                                          assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
-                                          assessment.assessmentStatus = 'active';
+                                          assessment.assessmentStatus = 'inprogress';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
                                           assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
-                                          assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
+                                          //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
                                           assessmentSettings.showAnswerSheetDuringPractice = showAnswerSheetPractice;
                                           assessmentSettings.showAdvisorName = showName;
                                           assessmentSettings.showAdvisorEmail = showEmail;
                                           assessmentSettings.notAvailable = false;
-                                          assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                          //assessmentSettings.avalabilityForPractice = null;
                                           showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                           showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                           assessment.assessmentSettings = assessmentSettings;
                                           assessment.assessmentStartdate = startDate.microsecondsSinceEpoch;
                                           assessment.assessmentEnddate = endDate.microsecondsSinceEpoch;
                                           assessment.assessmentDuration = (timeLimit.hour * 60) + timeLimit.minute;
+                                          int totalMark=0;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                            totalMark=totalMark+questionList[i].questionMark!;
+                                          }
+                                          assessment.totalScore=totalMark;
                                           showDialog(
                                               context: context,
                                               builder: (context) {
@@ -1964,30 +1835,112 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     ));
                                               });
                                           ResponseEntity statusCode = ResponseEntity();
-                                          // statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
-                                          makeAssessmentInactive?
-                                          statusCode = await QnaService
-                                              .makeInactiveAssessmentTeacherService(
-                                            assessment.assessmentSettings!,
-                                            assessment
-                                                .assessmentId!,
-                                            assessment.assessmentType!,
-                                            'inactive',userDetails,
-                                          ):
-                                          statusCode = await QnaService
-                                              .editActiveAssessmentTeacherService(
-                                              assessment,
-                                              assessment.assessmentSettings!,
-                                              assessment
-                                                  .assessmentId!,assessment.assessmentType!,'active',userDetails);
-                                          Navigator.of(context).pop();
+                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
 
                                           }
+                                          Navigator.of(context).pop();
+
+                                        },
+                                        child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                        style: ElevatedButton.styleFrom(
+                                          side: const BorderSide(
+                                            width: 2,
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                          ),
+                                          shape: CircleBorder(),
+                                          padding: EdgeInsets.all(20),
+                                          backgroundColor: Colors.white, // <-- Button color
+                                        ),
+                                      ),
+                                      Text(
+                                        //AppLocalizations.of(context)!.subject_topic,
+                                          "Save Draft",
+                                          //textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(28, 78, 80, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016)),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          assessment.userId=userDetails.userId;
+                                          assessment.totalQuestions=questionList.length;
+                                          assessment.assessmentType=category=="Test"?'test':'practice';
+                                          assessment.assessmentStatus = 'active';
+                                          AssessmentSettings assessmentSettings = AssessmentSettings();
+                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
+                                          assessmentSettings.allowGuestStudent = allowGuestStudent;
+                                          assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
+                                          assessmentSettings.showAnswerSheetDuringPractice = showAnswerSheetPractice;
+                                          assessmentSettings.showAdvisorName = showName;
+                                          assessmentSettings.showAdvisorEmail = showEmail;
+                                          assessmentSettings.notAvailable = false;
+                                          assessmentSettings.avalabilityForPractice = true;
+                                          showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
+                                          showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
+                                          assessment.assessmentSettings = assessmentSettings;
+                                          assessment.assessmentStartdate = startDate.microsecondsSinceEpoch;
+                                          assessment.assessmentEnddate = endDate.microsecondsSinceEpoch;
+                                          assessment.assessmentDuration = (timeLimit.hour * 60) + timeLimit.minute;
+                                          assessment.questions=[];
+                                          int totalMark=0;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            if(getAssessmentQuestionID.contains(questionList[i].questionId)){
+                                            }else{
+                                              assessment.questions?.add(tempQues);
+                                            }
+                                            totalMark=totalMark+questionList[i].questionMark!;
+                                          }
+                                          assessment.totalScore=totalMark;
+                                          showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return const Center(
+                                                    child:
+                                                    CircularProgressIndicator(
+                                                      color: Color.fromRGBO(
+                                                          48, 145, 139, 1),
+                                                    ));
+                                              });
+                                          ResponseEntity statusCode = ResponseEntity();
+                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          if (statusCode.code == 200) {
+                                            String assessmentCode = statusCode
+                                                .data
+                                                .toString()
+                                                .substring(
+                                                18,
+                                                statusCode.data
+                                                    .toString()
+                                                    .length -
+                                                    1);
+                                            assessment.assessmentCode=assessmentCode;
+                                            Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                            Navigator.of(context).pop();
+                                            Navigator.pushNamed(
+                                              context,
+                                              '/publishedAssessment',
+                                            );
+                                          }
+                                          else{
+                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                                            print(assessment);
+                                            print(statusCode.code);
+                                            print(statusCode.data);
+                                            print(statusCode.message);
+                                          }
+                                          //Navigator.of(context).pop();
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
@@ -2002,7 +1955,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
-                                          "Save Changes",
+                                          "Continue",
                                           //textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(28, 78, 80, 1),

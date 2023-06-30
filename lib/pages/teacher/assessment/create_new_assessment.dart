@@ -370,10 +370,10 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
       );
     }
     setState(() {
+      questionList=[];
       pageNumber++;
       questionList.addAll(questions);
       totalQuestionBank;
-
     });
     //Navigator.of(context).pop();
   }
@@ -1389,6 +1389,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                           assessment.assessmentType='practice';
                                           assessment.assessmentStatus = 'inprogress';
                                           assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
+                                          assessment.questions=[];
                                           for(int i=0;i<selectedQuestion.length;i++){
                                             Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
                                             assessment.questions?.add(tempQues);

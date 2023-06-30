@@ -156,7 +156,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                                    Navigator.pushNamed(context, '/assessmentLandingPage');
 
                                   },
                                   child: Text(
@@ -329,7 +329,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                                    Navigator.pushNamed(context, '/assessmentLandingPage');
 
                                   },
                                   child: Text(
@@ -499,7 +499,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                          Navigator.pushNamed(context, '/assessmentLandingPage');
 
                         },
                         child: Text(

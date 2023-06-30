@@ -1479,7 +1479,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                           Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(createassessmentModel);
                                           Navigator.pushNamed(
                                             context,
-                                            '/reviewClonedAssessment',
+                                            '/reviewQuestions',
                                           );
                                         },
                                         child: Icon(Icons.copy, color: const Color.fromRGBO(82, 165, 160, 1),),

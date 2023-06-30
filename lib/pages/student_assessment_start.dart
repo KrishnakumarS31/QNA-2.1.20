@@ -17,7 +17,7 @@ class StudentAssessment extends StatefulWidget {
   StudentAssessment(
       {Key? key,
         this.usedData,
-       this.assessment})
+        this.assessment})
       : super(key: key);
 
   UserDataModel? usedData;
@@ -87,6 +87,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
     pageLimit = 1;
     ResponseEntity response =
     await QnaService.getAssessmentsForStudentsLooq(5, pageLimit, searchVal);
+    print("message${response.data}");
     if(response.data==null){
       Navigator.of(context).pop();
       setState(() {
@@ -95,7 +96,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
     }
     else{
       allAssessment = List<GetAssessmentModel>.from(
-          response.data.map((x) => GetAssessmentModel.fromJson(x)));
+          response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
       Navigator.of(context).pop();
       setState(() {
         assessmentPresent=true;
@@ -203,20 +204,20 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                   height: height * 0.08,
                                 ),
                                 Align(
-                                    alignment: Alignment.topLeft,
-                                    child: RichText(
-                                        text: TextSpan(children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .please_enter,
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: height * 0.020),
-                                          ),
-                                        ])),
-                                  ),
+                                  alignment: Alignment.topLeft,
+                                  child: RichText(
+                                      text: TextSpan(children: [
+                                        TextSpan(
+                                          text: AppLocalizations.of(context)!
+                                              .please_enter,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(102, 102, 102, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: height * 0.020),
+                                        ),
+                                      ])),
+                                ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Row(
@@ -253,8 +254,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         },
 
                                         style: ElevatedButton.styleFrom(
-                                            minimumSize: Size(width * 0.3, height * 0.003),
-                                            backgroundColor: _isSearchTextField ? const Color.fromRGBO(82, 165, 160, 1) :Colors.white  ,
+                                          minimumSize: Size(width * 0.3, height * 0.003),
+                                          backgroundColor: _isSearchTextField ? const Color.fromRGBO(82, 165, 160, 1) :Colors.white  ,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                                         ),
                                         child: Text("Keywords",style: TextStyle(
@@ -414,7 +415,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   inputFormatters: [
                                                     FilteringTextInputFormatter
                                                         .allow(
-                                                        RegExp('[a-zA-Z0-9]')),
+                                                        RegExp('[a-zA-Z0-9 ]')),
                                                   ],
                                                   keyboardType: TextInputType.text,
                                                   decoration: InputDecoration(
@@ -894,7 +895,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               style: ElevatedButton.styleFrom(
                                                   minimumSize: Size(width * 0.15, height * 0.0015),
                                                   backgroundColor: _isAssessmentTextField ? const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
-                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
                                               ),
                                               child: Text("Assessment ID",style: TextStyle(
                                                   color: _isAssessmentTextField ?  Colors.white : const Color.fromRGBO(82, 165, 160, 1)  ,
@@ -918,7 +919,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               style: ElevatedButton.styleFrom(
                                                   minimumSize: Size(width * 0.15, height * 0.0015),
                                                   backgroundColor: _isSearchTextField ? const Color.fromRGBO(82, 165, 160, 1) :Colors.white,
-                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+                                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
                                               child: Text("Keywords",style: TextStyle(
                                                   color: _isSearchTextField ? Colors.white : const Color.fromRGBO(82, 165, 160, 1),
                                                   fontFamily: 'Inter',
@@ -1075,7 +1076,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         inputFormatters: [
                                                           FilteringTextInputFormatter
                                                               .allow(
-                                                              RegExp('[a-zA-Z0-9]')),
+                                                              RegExp('[a-zA-Z0-9 ]')),
                                                         ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
@@ -1595,7 +1596,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.023),
                                               ),),
-                                        ],
+                                          ],
 
                                         ),
                                       ),
@@ -1745,7 +1746,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         inputFormatters: [
                                                           FilteringTextInputFormatter
                                                               .allow(
-                                                              RegExp('[a-zA-Z0-9]')),
+                                                              RegExp('[a-zA-Z0-9 ]')),
                                                         ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
@@ -1789,11 +1790,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                             },
                                                             child: IconButton(
                                                               onPressed: () async {
-                                                                  setState(() {
-                                                                    _searchPressed = false;
-                                                                    looqSearch = true;
-                                                                  });
-                                                                  getAssessmentData(assessmentIdController.text);
+                                                                setState(() {
+                                                                  _searchPressed = false;
+                                                                  looqSearch = true;
+                                                                });
+                                                                getAssessmentData(assessmentIdController.text);
                                                               },
                                                               color:  const Color.fromRGBO(82, 165, 160, 1),
                                                               icon: const Icon(Icons.search_rounded),),

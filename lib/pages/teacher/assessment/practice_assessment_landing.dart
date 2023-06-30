@@ -663,7 +663,7 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                           children: [
                             Text(
                               //AppLocalizations.of(context)!.my_qns,
-                              "Test Assessment",
+                              "Practice Assessment",
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.025,

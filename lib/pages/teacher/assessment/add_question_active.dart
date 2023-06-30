@@ -383,7 +383,6 @@ class AddQuestionActiveState extends State<AddQuestionActive> {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-
     subjectController.text=assessment.subject!;
     topicController.text=assessment.topic!;
     degreeController.text=assessment.createAssessmentModelClass!;

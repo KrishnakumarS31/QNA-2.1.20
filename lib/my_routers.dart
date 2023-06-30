@@ -23,9 +23,12 @@ import 'package:qna_test/pages/teacher/assessment/assessment_settings_page.dart'
 import 'package:qna_test/pages/teacher/assessment/assessment_test.dart';
 import 'package:qna_test/pages/teacher/assessment/clone_add_question.dart';
 import 'package:qna_test/pages/teacher/assessment/clone_assessment_landing.dart';
+import 'package:qna_test/pages/teacher/assessment/clone_assessment_settings.dart';
 import 'package:qna_test/pages/teacher/assessment/clone_review_question.dart';
 import 'package:qna_test/pages/teacher/assessment/create_new_assessment.dart';
+import 'package:qna_test/pages/teacher/assessment/draft_add_question.dart';
 import 'package:qna_test/pages/teacher/assessment/draft_assessment_landing.dart';
+import 'package:qna_test/pages/teacher/assessment/draft_assessment_settings.dart';
 import 'package:qna_test/pages/teacher/assessment/draft_review.dart';
 import 'package:qna_test/pages/teacher/assessment/inactive_assessment_landing.dart';
 import 'package:qna_test/pages/teacher/assessment/inactive_assessment_settings.dart';
@@ -559,6 +562,17 @@ class MyRoutes{
       }
       case '/publishedAssessment':{
         return SlideRightRoute(widget: PublishedAssessment(),settings: settings);
+      }
+      case '/draftAddQuestion':{
+        return SlideRightRoute(widget: DraftAddQuestion(),settings: settings);
+      }
+
+      case '/draftAssessmentSettings':{
+        return SlideRightRoute(widget: DraftAssessmentSettings(),settings: settings);
+      }
+
+      case '/cloneAssessmentSettings':{
+        return SlideRightRoute(widget: CloneAssessmentSettings(),settings: settings);
       }
 
 

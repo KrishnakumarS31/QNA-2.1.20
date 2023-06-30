@@ -46,6 +46,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
   List<int> selectedQuesIndex=[];
   List<questionModel.Question> selectedQuestion=[];
   List<List<String>> temp = [];
+  int totalMarks=0;
 
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
@@ -88,8 +89,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
+
         questionList.removeAt(index);
         setState(() {
         });
@@ -217,98 +217,22 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
     );
   }
 
-  getQuestionData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    List<questionModel.Question> questions = [];
-    if (responseEntity.code == 200) {
-      questions = List<questionModel.Question>.from(
-          responseEntity.data.map((x) => questionModel.Question.fromJson(x)));
-    }
-    else{
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
-            //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
-          ),
-        ),
-      );
-    }
-    setState(() {
-      pageNumber++;
-      questionList.addAll(questions);
-      //pageNumber++;
-      //searchVal = search;
-    });
-    //Navigator.of(context).pop();
-  }
-
-  getInitData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    List<questionModel.Question> questions = [];
-    if (responseEntity.code == 200) {
-      questions = List<questionModel.Question>.from(
-          responseEntity.data.map((x) => questionModel.Question.fromJson(x)));
-    }
-    else{
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
-            //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
-          ),
-        ),
-      );
-    }
-    for(int j=0;j<questionList.length;j++){
-      List<String> chTemp=[];
-      if (questionList[j].question != "MCQ") {
-        for (int i = 0; i < questionList[j].choices!.length; i++) {
-          if (questionList[j].choices![i].rightChoice!) {
-            chTemp.add(questionList[j].choices![i].choiceText!);
-          }
-        }
-      }
-      temp.add(chTemp);
-    }
-    setState(() {
-      pageNumber++;
-      questionList.addAll(questions);
-      //pageNumber++;
-      //searchVal = search;
-    });
-    //Navigator.of(context).pop();
-  }
 
   @override
   void initState() {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    assessment.questions=[];
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
+      totalMarks=totalMarks+questionList![i].questionMark!;
     }
+    subjectController.text=assessment.subject!;
+    topicController.text=assessment.topic!;
+    degreeController.text=assessment.createAssessmentModelClass!;
+    semesterController.text=assessment.subTopic ?? '';
   }
 
 
@@ -950,16 +874,20 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                                         .currentState!
                                                                         .validate();
                                                                     if (valid) {
-                                                                      // for(int i =0;i<finalQuesList.length;i++){
-                                                                      //   finalQuesList[i].subject=subjectController.text;
-                                                                      //   finalQuesList[i].topic=topicController.text;
-                                                                      //   finalQuesList[i].degreeStudent=degreeController.text;
-                                                                      //   finalQuesList[i].semester=semesterController.text;
-                                                                      //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(i,finalQuesList[i]);
-                                                                      //   setState(() {
-                                                                      //
-                                                                      //   });
-                                                                      // }
+                                                                      for(int i =0;i<questionList.length;i++){
+                                                                        questionList[i].subject=subjectController.text;
+                                                                        questionList[i].topic=topicController.text;
+                                                                        questionList[i].degreeStudent=degreeController.text;
+                                                                        questionList[i].semester=semesterController.text;
+                                                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(i,questionList[i]);
+                                                                      }
+                                                                      assessment.subject=subjectController.text;
+                                                                      assessment.topic=topicController.text;
+                                                                      assessment.subTopic=semesterController.text;
+                                                                      assessment.createAssessmentModelClass=degreeController.text;
+                                                                      setState(() {
+
+                                                                      });
                                                                       Navigator.of(context).pop();
                                                                     }
                                                                   },
@@ -1022,7 +950,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "45",
+                                      "$totalMarks",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -1303,7 +1231,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
-                                          "New Question",
+                                          "Add Question",
                                           //textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1362,9 +1290,10 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           List<questionModel.Question> ques=[];
                                           ques.addAll(questionList);
                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          for(questionModel.Question q in ques) {
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                          for(int i=assessment.questions!.length;i<questionList.length;i++) {
+                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(questionList[i]);
                                           }
+                                          print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                           Navigator.pushNamed(
                                             context,
                                             '/assessmentSettingsPage',
@@ -1469,9 +1398,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print("--------------------------------------------------");
-        print(widget.quesIndex);
-        print(widget.quesList.length);
+
         widget.quesList.removeAt(widget.quesIndex);
         //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
         setState(() {

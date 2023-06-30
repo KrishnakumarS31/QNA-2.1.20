@@ -222,7 +222,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
         statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
         if (statusCode.code == 200) {
           Navigator.of(context).pop();
-          Navigator.of(context).pushNamedAndRemoveUntil('/createNewQuestion', ModalRoute.withName('/teacherSelectionPage'));
+          Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
         }
         else{
           print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
@@ -1389,6 +1389,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                           assessment.assessmentType='practice';
                                           assessment.assessmentStatus = 'inprogress';
                                           assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
+                                          assessment.questions=[];
                                           for(int i=0;i<questionList.length;i++){
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
@@ -1468,7 +1469,10 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                             );
                                           }
                                           else{
+                                            print(assessment.questions?.length);
                                             Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            print("privider length after reset ");
+                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
                                             for(questionModel.Question q in selectedQuestion) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }

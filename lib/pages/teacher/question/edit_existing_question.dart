@@ -53,6 +53,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
   IconData showIcon = Icons.arrow_circle_up_outlined;
   String _questionTypeValue = 'MCQ';
   EditQuestionModel editQuestion = EditQuestionModel(editChoices: [], addChoices: [], removeChoices: []);
+
   alertDialogDeleteQuestion(BuildContext context, double height) {
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -162,8 +163,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
       },
     );
   }
-
-
   showAlertDialog(BuildContext context, double height,String? value) {
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -4540,13 +4539,15 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                           addChoice.rightChoice = radioList[i];
                                                                           addChoice.questionId = tempChoiceId[i];
                                                                           addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
-                                                                        } else {
+                                                                        }
+                                                                        else {
                                                                           if (editChoiceId.contains(tempChoiceId[i])) {
                                                                             int index = tempChoiceId.indexOf(tempChoiceId[i]);
                                                                             editQuestion.editChoices?.removeAt(index);
                                                                             editChoice.rightChoice = radioList[i];
                                                                             editChoice.choiceId = tempChoiceId[i];
-                                                                            editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
+                                                                            editChoice.choiceText = val;
+                                                                            editQuestion.editChoices?.add(editChoice);
                                                                           } else {
                                                                             editChoiceId.add(tempChoiceId[i]);
                                                                             editChoice.rightChoice = radioList[i];
@@ -5379,19 +5380,29 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         widget.question.choices![i]
                                                                             .choiceText = val;
                                                                         if (addChoiceId.contains(tempChoiceId[i])) {
+                                                                          print("if");
                                                                           int index = addChoiceId.indexOf(tempChoiceId[i]);
-                                                                          editQuestion.addChoices?.removeAt(index);
+                                                                          //editQuestion.addChoices?.removeAt(index);
                                                                           addChoice.rightChoice = radioList[i];
                                                                           addChoice.questionId = tempChoiceId[i];
-                                                                          addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
-                                                                        } else {
+                                                                          addChoice.choiceText = val;
+                                                                          editQuestion.addChoices?[index]=addChoice;
+                                                                          //editQuestion.addChoices?.add(addChoice);
+                                                                        }
+                                                                        else {
+                                                                          print("else");
                                                                           if (editChoiceId.contains(tempChoiceId[i])) {
+                                                                            print("else if");
                                                                             int index = tempChoiceId.indexOf(tempChoiceId[i]);
-                                                                            editQuestion.editChoices?.removeAt(index);
+                                                                            //editQuestion.editChoices?.removeAt(index);
                                                                             editChoice.rightChoice = radioList[i];
                                                                             editChoice.choiceId = tempChoiceId[i];
-                                                                            editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
-                                                                          } else {
+                                                                            editChoice.choiceText = val;
+                                                                            editQuestion.editChoices?[index]=editChoice;
+                                                                            //editQuestion.editChoices?.add(editChoice);
+                                                                          }
+                                                                          else {
+                                                                            print("else else");
                                                                             editChoiceId.add(tempChoiceId[i]);
                                                                             editChoice.rightChoice = radioList[i];
                                                                             editChoice.choiceId = tempChoiceId[i];
@@ -5410,17 +5421,21 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                             .choiceText = val;
                                                                         if (addChoiceId.contains(tempChoiceId[i])) {
                                                                           int index = addChoiceId.indexOf(tempChoiceId[i]);
-                                                                          editQuestion.addChoices?.removeAt(index);
+                                                                          //editQuestion.addChoices?.removeAt(index);
                                                                           addChoice.rightChoice = radioList[i];
                                                                           addChoice.questionId = tempChoiceId[i];
-                                                                          addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
+                                                                          addChoice.choiceText = val;
+                                                                          editQuestion.addChoices?[index]=addChoice;
+                                                                          //editQuestion.addChoices?.add(addChoice);
                                                                         } else {
                                                                           if (editChoiceId.contains(tempChoiceId[i])) {
                                                                             int index = tempChoiceId.indexOf(tempChoiceId[i]);
-                                                                            editQuestion.editChoices?.removeAt(index);
+                                                                            //editQuestion.editChoices?.removeAt(index);
                                                                             editChoice.rightChoice = radioList[i];
                                                                             editChoice.choiceId = tempChoiceId[i];
-                                                                            editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
+                                                                            editChoice.choiceText = val;
+                                                                            editQuestion.editChoices?[index]=editChoice;
+                                                                            //editQuestion.editChoices?.add(editChoice);
                                                                           } else {
                                                                             editChoiceId.add(tempChoiceId[i]);
                                                                             editChoice.rightChoice = radioList[i];
