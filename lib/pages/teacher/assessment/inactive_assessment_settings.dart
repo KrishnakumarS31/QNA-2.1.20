@@ -1892,9 +1892,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                           );
                                           if (statusCode.code == 200) {
                                             print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+                                            Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
                                             print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
