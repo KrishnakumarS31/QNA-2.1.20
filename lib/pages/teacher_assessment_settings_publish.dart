@@ -4631,22 +4631,22 @@ class TeacherAssessmentSettingPublishState
                                                           assessment.assessmentStatus='active';
                                                         }
 
-                                                        activeStatus?
-                                                        statusCode = await QnaService
-                                                            .makeInactiveAssessmentTeacherService(
-                                                          assessment.assessmentSettings!,
-                                                          assessment
-                                                              .assessmentId!,
-                                                          assessment.assessmentType!,
-                                                          'inactive',userDetails,
-                                                        )
-                                                            :
-                                                        statusCode = await QnaService
-                                                            .editActiveAssessmentTeacherService(
-                                                            assessment,
-                                                            assessment.assessmentSettings!,
-                                                            assessment
-                                                                .assessmentId!,assessment.assessmentType!,'active',userDetails);
+                                                        // activeStatus?
+                                                        // statusCode = await QnaService
+                                                        //     .makeInactiveAssessmentTeacherService(
+                                                        //   assessment.assessmentSettings!,
+                                                        //   assessment
+                                                        //       .assessmentId!,
+                                                        //   assessment.assessmentType!,
+                                                        //   'inactive',userDetails,
+                                                        // )
+                                                        //     :
+                                                        // statusCode = await QnaService
+                                                        //     .editActiveAssessmentTeacherService(
+                                                        //     assessment,
+                                                        //     assessment.assessmentSettings!,
+                                                        //     assessment
+                                                        //         .assessmentId!,assessment.assessmentType!,'active',userDetails);
                                                         assessmentCode =
                                                         assessment.assessmentCode!;
                                                         Navigator.of(context).pop();
@@ -6897,22 +6897,22 @@ class TeacherAssessmentSettingPublishState
                                                       assessment.assessmentStatus='active';
                                                     }
 
-                                                    activeStatus?
-                                                    statusCode = await QnaService
-                                                        .makeInactiveAssessmentTeacherService(
-                                                      assessment.assessmentSettings!,
-                                                      assessment
-                                                          .assessmentId!,
-                                                      assessment.assessmentType!,
-                                                      'inactive',userDetails,
-                                                    )
-                                                        :
-                                                    statusCode = await QnaService
-                                                        .editActiveAssessmentTeacherService(
-                                                        assessment,
-                                                        assessment.assessmentSettings!,
-                                                        assessment
-                                                            .assessmentId!,assessment.assessmentType!,'active',userDetails);
+                                                    // activeStatus?
+                                                    // statusCode = await QnaService
+                                                    //     .makeInactiveAssessmentTeacherService(
+                                                    //   assessment.assessmentSettings!,
+                                                    //   assessment
+                                                    //       .assessmentId!,
+                                                    //   assessment.assessmentType!,
+                                                    //   'inactive',userDetails,
+                                                    // )
+                                                    //     :
+                                                    // statusCode = await QnaService
+                                                    //     .editActiveAssessmentTeacherService(
+                                                    //     assessment,
+                                                    //     assessment.assessmentSettings!,
+                                                    //     assessment
+                                                    //         .assessmentId!,assessment.assessmentType!,'active',userDetails);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();

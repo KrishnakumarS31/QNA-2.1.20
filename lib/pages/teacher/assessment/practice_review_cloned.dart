@@ -48,6 +48,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
   List<questionModel.Question> selectedQuestion=[];
   List<List<String>> temp = [];
   int totalMark=0;
+  List<List<String>> choiceText= [];
 
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
@@ -228,6 +229,15 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
+      totalMark=totalMark+questionList[i].questionMark!;
+      if(questionList[i].questionType=='MCQ'){
+        choiceText.add([]);
+        for(int j=0;j<questionList[i].choices!.length;j++){
+          choiceText[i].add(questionList[i].choices![j].choiceText!);
+        }
+      }else{
+        choiceText.add(['']);
+      }
     }
   }
 
@@ -1071,6 +1081,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                         questionList[i].questionMark=questionList[i].questionMark!-1;
                                                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                         setState(() {
+                                                                          totalMark--;
                                                                         });
                                                                       }
                                                                     },
@@ -1111,7 +1122,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                         questionList[i].questionMark=questionList[i].questionMark!+1;
                                                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                         setState(() {
-
+                                                                          totalMark++;
                                                                         });
                                                                       }
                                                                     },
@@ -1151,7 +1162,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                     Align(
                                                       alignment: Alignment.centerLeft,
                                                       child: Text(
-                                                        "sfdsd",
+                                                        choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
                                                         // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,

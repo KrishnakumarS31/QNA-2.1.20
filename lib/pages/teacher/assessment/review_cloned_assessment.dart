@@ -47,6 +47,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
   List<questionModel.Question> selectedQuestion=[];
   List<List<String>> temp = [];
   int totalMarks=0;
+  List<List<String>> choiceText= [];
 
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
@@ -228,6 +229,14 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
       totalMarks=totalMarks+questionList![i].questionMark!;
+      if(questionList[i].questionType=='MCQ'){
+        choiceText.add([]);
+        for(int j=0;j<questionList[i].choices!.length;j++){
+          choiceText[i].add(questionList[i].choices![j].choiceText!);
+        }
+      }else{
+        choiceText.add(['']);
+      }
     }
     subjectController.text=assessment.subject!;
     topicController.text=assessment.topic!;
@@ -1079,6 +1088,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                                         questionList[i].questionMark=questionList[i].questionMark!-1;
                                                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                         setState(() {
+                                                                          totalMarks--;
                                                                         });
                                                                       }
                                                                     },
@@ -1119,7 +1129,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                                         questionList[i].questionMark=questionList[i].questionMark!+1;
                                                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                         setState(() {
-
+                                                                          totalMarks++;
                                                                         });
                                                                       }
                                                                     },
@@ -1159,7 +1169,8 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                     Align(
                                                       alignment: Alignment.centerLeft,
                                                       child: Text(
-                                                        "sfdsd",
+                                                        questionList[i].questionType=='MCQ'?
+                                                        choiceText[i].toString().substring(1,choiceText[i].toString().length-1):'',
                                                         // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,

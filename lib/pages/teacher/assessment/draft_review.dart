@@ -50,6 +50,8 @@ class DraftReviewState extends State<DraftReview> {
   List<List<String>> temp = [];
   GetAssessmentModel getAssessment=GetAssessmentModel();
   List<int> getAssessmentQuestionId=[];
+  int totalMarks=0;
+  List<List<String>> choiceText= [];
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
     Widget cancelButton = ElevatedButton(
@@ -317,6 +319,16 @@ class DraftReviewState extends State<DraftReview> {
     }
     for(int i=0;i<getAssessment.questions!.length;i++){
       getAssessmentQuestionId.add(getAssessment.questions![i].questionId);
+      totalMarks=totalMarks+getAssessment.questions![i].questionMark!;
+      if(getAssessment.questions![i].questionType=='MCQ'){
+        choiceText.add([]);
+        for(int j=0;j<getAssessment.questions![i].choices!.length;j++){
+          choiceText[i].add(getAssessment.questions![i].choices![j].choiceText!);
+        }
+      }else{
+        choiceText.add(['']);
+      }
+      
     }
   }
 
@@ -1031,7 +1043,7 @@ class DraftReviewState extends State<DraftReview> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "45",
+                                      "$totalMarks",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -1160,6 +1172,7 @@ class DraftReviewState extends State<DraftReview> {
                                                                         questionList[i].questionMark=questionList[i].questionMark!-1;
                                                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                         setState(() {
+                                                                          totalMarks--;
                                                                         });
                                                                       }
                                                                     },
@@ -1200,7 +1213,7 @@ class DraftReviewState extends State<DraftReview> {
                                                                         questionList[i].questionMark=questionList[i].questionMark!+1;
                                                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                         setState(() {
-
+                                                                          totalMarks++;
                                                                         });
                                                                       }
                                                                     },
@@ -1240,7 +1253,7 @@ class DraftReviewState extends State<DraftReview> {
                                                     Align(
                                                       alignment: Alignment.centerLeft,
                                                       child: Text(
-                                                        "sfdsd",
+                                                        choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
                                                         // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,
@@ -1426,314 +1439,3 @@ class DraftReviewState extends State<DraftReview> {
   }
 }
 
-class QuestionPreview extends StatefulWidget {
-  const QuestionPreview(
-      {Key? key,
-        required this.height,
-        required this.width,
-        required this.question,
-        required this.quesIndex,
-        required this.quesList,
-      })
-      : super(key: key);
-
-  final double height;
-  final int quesIndex;
-  final double width;
-  final questionModel.Question question;
-  final List<questionModel.Question> quesList;
-
-  @override
-  State<QuestionPreview> createState() => _QuestionPreviewState();
-}
-
-class _QuestionPreviewState extends State<QuestionPreview> {
-
-  Future<bool> alertDialogDeleteQuestion(BuildContext context, double height) {
-    Widget cancelButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.no,
-        // 'No',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-    Widget continueButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.yes,
-        //'Yes',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () async {
-        print("--------------------------------------------------");
-        print(widget.quesIndex);
-        print(widget.quesList.length);
-        widget.quesList.removeAt(widget.quesIndex);
-        //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
-        setState(() {
-          widget.quesList;
-        });
-        Navigator.of(context).pop();
-
-      },
-
-    );
-    AlertDialog alert = AlertDialog(
-      title: Row(
-        children: [
-          const Icon(
-            Icons.info,
-            color: Color.fromRGBO(238, 71, 0, 1),
-          ),
-          Text(
-            AppLocalizations.of(context)!.confirm,
-            //'Confirm',
-            style: TextStyle(
-                fontSize: height * 0.02,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(0, 106, 100, 1),
-                fontWeight: FontWeight.w700),
-          ),
-        ],
-      ),
-      content: Text(
-        //AppLocalizations.of(context)!.want_to_del_qn,
-        'Are you sure you want to delete this Question?',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            fontWeight: FontWeight.w400),
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-    return Future.value(true);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<String> temp = [];
-    if(widget.question.question!="MCQ"){
-      for (int i = 0; i < widget.question.choices!.length; i++) {
-        if (widget.question.choices![i].rightChoice!) {
-          temp.add(widget.question.choices![i].choiceText!);
-        }
-      }
-    }
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-          borderRadius: BorderRadius.all(
-              Radius.circular(5)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Q${widget.quesIndex+1} ",
-                        style: TextStyle(
-                            fontSize: widget.height * 0.016,
-                            fontFamily: "Inter",
-                            color:
-                            Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        widget.question.questionType!,
-                        style: TextStyle(
-                            fontSize: widget.height * 0.016,
-                            fontFamily: "Inter",
-                            color:
-                            Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Marks ",
-                        style: TextStyle(
-                            fontSize: widget.height * 0.016,
-                            fontFamily: "Inter",
-                            color:
-                            Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                      Container(
-                        height: widget.height * 0.04,
-                        width: widget.width * 0.3,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                          borderRadius: BorderRadius.all(
-                              Radius.circular(5)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              onTap:(){
-                                if(widget.question.questionMark!=null || widget.question.questionMark!=0){
-                                  widget.question.questionMark=widget.question.questionMark!-1;
-                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(widget.question.questionMark!, widget.quesIndex);
-                                  setState(() {
-                                  });
-                                }
-                              },
-                              child: Container(
-                                height: widget.height * 0.03,
-                                width: widget.width * 0.05,
-                                child: Icon(
-                                  Icons.remove,
-                                  size: widget.height * 0.02,
-                                  color: const Color.fromRGBO(28, 78, 80, 1),),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(right: widget.width * 0.005,left: widget.width * 0.005),
-                              child: Container(
-                                height: widget.height * 0.03,
-                                width: widget.width * 0.1,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(5)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    '${widget.question.questionMark}',
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: widget.height * 0.016),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                if(widget.question.questionMark!=null){
-                                  widget.question.questionMark=widget.question.questionMark!+1;
-                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(widget.question.questionMark!, widget.quesIndex);
-                                  setState(() {
-
-                                  });
-                                }
-                              },
-                              child: Container(
-                                height: widget.height * 0.03,
-                                width: widget.width * 0.05,
-
-                                child: Icon(
-                                  Icons.add,
-                                  size: widget.height * 0.02,
-                                  color: const Color.fromRGBO(28, 78, 80, 1),),
-                              ),
-                            ),
-                          ],
-                        ),)
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: widget.height * 0.01,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "${widget.question.question}",
-                  style: TextStyle(
-                      color: Color.fromRGBO(102, 102, 102, 1),
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                      fontSize: widget.height * 0.016),
-                ),
-              ),
-              SizedBox(
-                height: widget.height * 0.01,
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "${temp.toString().substring(1,temp.toString().length-1)}",
-                  style: TextStyle(
-                      fontSize: widget.height * 0.016,
-                      fontFamily: "Inter",
-                      color:
-                      Color.fromRGBO(82, 165, 160, 1),
-                      fontWeight: FontWeight.w700),
-                ),
-              ),
-              Divider(
-                thickness: 2,
-                color: Color.fromRGBO(204, 204, 204, 0.5),
-              ),
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    onPressed: () async {
-                      bool res = await alertDialogDeleteQuestion(context,widget.height);
-                      setState(() {
-                        widget.quesList;
-                      });
-
-                      //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
-
-                    },
-                    icon: Icon(
-                      Icons.delete_outline,
-                      size: widget.height * 0.03,
-                      color: const Color.fromRGBO(82, 165, 160, 1),),
-                  )
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

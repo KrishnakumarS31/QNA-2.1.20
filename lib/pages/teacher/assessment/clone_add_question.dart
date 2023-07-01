@@ -1468,10 +1468,14 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             );
                                           }
                                           else{
+                                            List<questionModel.Question> tempQ=[];
+                                            tempQ.addAll(selectedQuestion);
                                             Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                            for(questionModel.Question q in selectedQuestion) {
+                                            for(questionModel.Question q in tempQ) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }
+                                            print("-----------------------------------------------------");
+                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                             Navigator.pushNamed(
                                               context,
                                               '/cloneReviewQuestion',

@@ -518,18 +518,18 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     SizedBox(
                                                       height: height * 0.015,
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(left: width * 0.02),
-                                                      child: Text(
-                                                        //AppLocalizations.of(context)!.subject_topic,
-                                                          "Answer",
-                                                          //textAlign: TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.020)),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: EdgeInsets.only(left: width * 0.02),
+                                                    //   child: Text(
+                                                    //     //AppLocalizations.of(context)!.subject_topic,
+                                                    //       "Answer",
+                                                    //       //textAlign: TextAlign.left,
+                                                    //       style: TextStyle(
+                                                    //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w600,
+                                                    //           fontSize: height * 0.020)),
+                                                    // ),
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
@@ -771,26 +771,28 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
 
 
                                                     _questionTypeValue=="Descriptive"
-                                                        ? Padding(
-                                                        padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
-                                                        child: TextField(
-                                                            controller: answerController,
-                                                            keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                              hintText: "Type Answer here",
-                                                              enabledBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                              focusedBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                            ))):
-                                                    Padding(
+                                                        ?
+                                                    SizedBox()
+                                                    // Padding(
+                                                    //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
+                                                    //     child: TextField(
+                                                    //         controller: answerController,
+                                                    //         keyboardType: TextInputType.text,
+                                                    //         decoration: InputDecoration(
+                                                    //           hintStyle: TextStyle(
+                                                    //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                    //               fontFamily: 'Inter',
+                                                    //               fontWeight: FontWeight.w400,
+                                                    //               fontSize: height * 0.016),
+                                                    //           hintText: "Type Answer here",
+                                                    //           enabledBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //           focusedBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //         ))):
+                                                        : Padding(
                                                       padding: EdgeInsets.only(left:width * 0.02),
                                                       child: TextButton(
                                                         child: Text(
@@ -1342,18 +1344,18 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     SizedBox(
                                                       height: height * 0.015,
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(left: width * 0.02),
-                                                      child: Text(
-                                                        //AppLocalizations.of(context)!.subject_topic,
-                                                          "Answer",
-                                                          //textAlign: TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.020)),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: EdgeInsets.only(left: width * 0.02),
+                                                    //   child: Text(
+                                                    //     //AppLocalizations.of(context)!.subject_topic,
+                                                    //       "Answer",
+                                                    //       //textAlign: TextAlign.left,
+                                                    //       style: TextStyle(
+                                                    //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w600,
+                                                    //           fontSize: height * 0.020)),
+                                                    // ),
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
@@ -1587,25 +1589,27 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
 
                                                     _questionTypeValue=="Descriptive"
                                                         ?
-                                                    Padding(
-                                                        padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
-                                                        child: TextField(
-                                                            controller: answerController,
-                                                            keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                              hintText: "Type Answer here",
-                                                              enabledBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                              focusedBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                            ))):
+                                                    SizedBox()
+                                                    // Padding(
+                                                    //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
+                                                    //     child: TextField(
+                                                    //         controller: answerController,
+                                                    //         keyboardType: TextInputType.text,
+                                                    //         decoration: InputDecoration(
+                                                    //           hintStyle: TextStyle(
+                                                    //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                    //               fontFamily: 'Inter',
+                                                    //               fontWeight: FontWeight.w400,
+                                                    //               fontSize: height * 0.016),
+                                                    //           hintText: "Type Answer here",
+                                                    //           enabledBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //           focusedBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //         )))
+                                                        :
                                                     Padding(
                                                       padding: EdgeInsets.only(left:width * 0.02),
                                                       child: TextButton(
@@ -2198,18 +2202,18 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     SizedBox(
                                                       height: height * 0.015,
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(left: width * 0.02),
-                                                      child: Text(
-                                                        //AppLocalizations.of(context)!.subject_topic,
-                                                          "Answer",
-                                                          //textAlign: TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.020)),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: EdgeInsets.only(left: width * 0.02),
+                                                    //   child: Text(
+                                                    //     //AppLocalizations.of(context)!.subject_topic,
+                                                    //       "Answer",
+                                                    //       //textAlign: TextAlign.left,
+                                                    //       style: TextStyle(
+                                                    //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w600,
+                                                    //           fontSize: height * 0.020)),
+                                                    // ),
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
@@ -2446,25 +2450,28 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
 
 
                                                     _questionTypeValue=="Descriptive"
-                                                        ? Padding(
-                                                        padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
-                                                        child: TextField(
-                                                            controller: answerController,
-                                                            keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                              hintText: "Type Answer here",
-                                                              enabledBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                              focusedBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                            ))):
+                                                        ?
+                                                    SizedBox()
+                                                    // Padding(
+                                                    //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
+                                                    //     child: TextField(
+                                                    //         controller: answerController,
+                                                    //         keyboardType: TextInputType.text,
+                                                    //         decoration: InputDecoration(
+                                                    //           hintStyle: TextStyle(
+                                                    //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                    //               fontFamily: 'Inter',
+                                                    //               fontWeight: FontWeight.w400,
+                                                    //               fontSize: height * 0.016),
+                                                    //           hintText: "Type Answer here",
+                                                    //           enabledBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //           focusedBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //         )))
+                                                        :
                                                     Padding(
                                                       padding: EdgeInsets.only(left:width * 0.02),
                                                       child: TextButton(
@@ -3011,18 +3018,18 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     SizedBox(
                                                       height: height * 0.015,
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(left: width * 0.02),
-                                                      child: Text(
-                                                        //AppLocalizations.of(context)!.subject_topic,
-                                                          "Answer",
-                                                          //textAlign: TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.020)),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: EdgeInsets.only(left: width * 0.02),
+                                                    //   child: Text(
+                                                    //     //AppLocalizations.of(context)!.subject_topic,
+                                                    //       "Answer",
+                                                    //       //textAlign: TextAlign.left,
+                                                    //       style: TextStyle(
+                                                    //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w600,
+                                                    //           fontSize: height * 0.020)),
+                                                    // ),
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
@@ -3273,25 +3280,28 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
 
 
                                                     _questionTypeValue=="Descriptive"
-                                                        ? Padding(
-                                                        padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
-                                                        child: TextField(
-                                                            controller: answerController,
-                                                            keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                              hintText: "Type Answer here",
-                                                              enabledBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                              focusedBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                            ))):
+                                                        ?
+                                                    SizedBox()
+                                                    // Padding(
+                                                    //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
+                                                    //     child: TextField(
+                                                    //         controller: answerController,
+                                                    //         keyboardType: TextInputType.text,
+                                                    //         decoration: InputDecoration(
+                                                    //           hintStyle: TextStyle(
+                                                    //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                    //               fontFamily: 'Inter',
+                                                    //               fontWeight: FontWeight.w400,
+                                                    //               fontSize: height * 0.016),
+                                                    //           hintText: "Type Answer here",
+                                                    //           enabledBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //           focusedBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //         )))
+                                                        :
                                                     Padding(
                                                       padding: EdgeInsets.only(left:width * 0.02),
                                                       child: TextButton(
@@ -3845,18 +3855,18 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     SizedBox(
                                                       height: height * 0.015,
                                                     ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.all(8.0),
-                                                      child: Text(
-                                                        //AppLocalizations.of(context)!.subject_topic,
-                                                          "Answer",
-                                                          //textAlign: TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.020)),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: const EdgeInsets.all(8.0),
+                                                    //   child: Text(
+                                                    //     //AppLocalizations.of(context)!.subject_topic,
+                                                    //       "Answer",
+                                                    //       //textAlign: TextAlign.left,
+                                                    //       style: TextStyle(
+                                                    //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w600,
+                                                    //           fontSize: height * 0.020)),
+                                                    // ),
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
@@ -4093,25 +4103,27 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
 
                                                     _questionTypeValue=="Descriptive"
                                                         ?
-                                                    Padding(
-                                                        padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
-                                                        child: TextField(
-                                                            controller: answerController,
-                                                            keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                              hintText: "Type Answer here",
-                                                              enabledBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                              focusedBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                            ))):
+                                                    SizedBox()
+                                                    // Padding(
+                                                    //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
+                                                    //     child: TextField(
+                                                    //         controller: answerController,
+                                                    //         keyboardType: TextInputType.text,
+                                                    //         decoration: InputDecoration(
+                                                    //           hintStyle: TextStyle(
+                                                    //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                    //               fontFamily: 'Inter',
+                                                    //               fontWeight: FontWeight.w400,
+                                                    //               fontSize: height * 0.016),
+                                                    //           hintText: "Type Answer here",
+                                                    //           enabledBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //           focusedBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //         )))
+                                                        :
                                                     TextButton(
                                                       child: Text(
                                                         //AppLocalizations.of(context)!.subject_topic,
@@ -4649,18 +4661,18 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     SizedBox(
                                                       height: height * 0.015,
                                                     ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.all(8.0),
-                                                      child: Text(
-                                                        //AppLocalizations.of(context)!.subject_topic,
-                                                          "Answer",
-                                                          //textAlign: TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.020)),
-                                                    ),
+                                                    // Padding(
+                                                    //   padding: const EdgeInsets.all(8.0),
+                                                    //   child: Text(
+                                                    //     //AppLocalizations.of(context)!.subject_topic,
+                                                    //       "Answer",
+                                                    //       //textAlign: TextAlign.left,
+                                                    //       style: TextStyle(
+                                                    //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w600,
+                                                    //           fontSize: height * 0.020)),
+                                                    // ),
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
@@ -4901,25 +4913,28 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
 
 
                                                     _questionTypeValue=="Descriptive"
-                                                        ? Padding(
-                                                        padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
-                                                        child: TextField(
-                                                            controller: answerController,
-                                                            keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                              hintText: "Type Answer here",
-                                                              enabledBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                              focusedBorder: const UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                              ),
-                                                            ))):
+                                                        ?
+                                                    SizedBox()
+                                                    // Padding(
+                                                    //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
+                                                    //     child: TextField(
+                                                    //         controller: answerController,
+                                                    //         keyboardType: TextInputType.text,
+                                                    //         decoration: InputDecoration(
+                                                    //           hintStyle: TextStyle(
+                                                    //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                    //               fontFamily: 'Inter',
+                                                    //               fontWeight: FontWeight.w400,
+                                                    //               fontSize: height * 0.016),
+                                                    //           hintText: "Type Answer here",
+                                                    //           enabledBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //           focusedBorder: const UnderlineInputBorder(
+                                                    //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    //           ),
+                                                    //         )))
+                                                        :
                                                     TextButton(
                                                       child: Text(
                                                         //AppLocalizations.of(context)!.subject_topic,

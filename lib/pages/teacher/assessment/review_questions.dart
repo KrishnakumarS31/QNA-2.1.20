@@ -46,6 +46,8 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
   List<int> selectedQuesIndex=[];
   List<questionModel.Question> selectedQuestion=[];
   List<List<String>> temp = [];
+  List<List<String>> choiceText= [];
+  int totalMark=0;
 
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
@@ -308,6 +310,15 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
+      totalMark=totalMark+questionList[i].questionMark!;
+      if(questionList[i].questionType=='MCQ'){
+        choiceText.add([]);
+        for(int j=0;j<questionList[i].choices!.length;j++){
+          choiceText[i].add(questionList[i].choices![j].choiceText!);
+        }
+      }else{
+        choiceText.add(['']);
+      }
     }
   }
 
@@ -1022,7 +1033,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "45",
+                                      "$totalMark",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -1231,7 +1242,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                     Align(
                                                       alignment: Alignment.centerLeft,
                                                       child: Text(
-                                                        "sfdsd",
+                                                        choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
                                                         // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,

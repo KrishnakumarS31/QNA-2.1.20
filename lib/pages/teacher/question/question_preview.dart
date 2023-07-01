@@ -16,6 +16,7 @@ class TeacherQuestionPreview extends StatefulWidget {
 class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
+  TextEditingController answerController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
 
   List<dynamic> selected = [];
@@ -91,6 +92,9 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                               SizedBox(
                                 height: height * 0.03,
                               ),
+                              widget.finalQuestion.questionType == "Descriptive" ?
+                              SizedBox(
+                              ) :
                               SizedBox(
                                 height: height * 0.25,
                                 child: SingleChildScrollView(
@@ -297,6 +301,9 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                               SizedBox(
                                 height: height * 0.03,
                               ),
+                              widget.finalQuestion.questionType == "Descriptive" ?
+                              SizedBox(
+                              ) :
                               SizedBox(
                                 height: height * 0.25,
                                 child: SingleChildScrollView(
@@ -502,6 +509,9 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                               SizedBox(
                                 height: height * 0.03,
                               ),
+                              widget.finalQuestion.questionType == "Descriptive" ?
+                              SizedBox(
+                              ) :
                               SizedBox(
                                 height: height * 0.25,
                                 child: SingleChildScrollView(
@@ -705,7 +715,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         borderRadius: const BorderRadius.all(Radius.circular(5)),
                         border: Border.all(
                             color: const Color.fromRGBO(209, 209, 209, 1)),
-                        color: ( widget.finalQuestion?.questionType == "Survey" ? false :   widget.finalQuestion!.choices![j].rightChoice!)
+                        color: ( (widget.finalQuestion?.questionType == "Survey" ||widget.finalQuestion?.questionType == "Descriptive") ? false :   widget.finalQuestion!.choices![j].rightChoice!)
                             ? const Color.fromRGBO(82, 165, 160, 1)
                             : const Color.fromRGBO(255, 255, 255, 1),
                       ),
@@ -719,7 +729,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                               widget.finalQuestion!.choices![j].choiceText!,
                               style: TextStyle(
                                 color:
-                                (widget.finalQuestion?.questionType == "Survey" ? false : widget.finalQuestion!.choices![j].rightChoice!)
+                                ((widget.finalQuestion?.questionType == "Survey") ? false : widget.finalQuestion!.choices![j].rightChoice!)
                                     ? const Color.fromRGBO(255, 255, 255, 1)
                                     : const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: widget.height * 0.0162,
