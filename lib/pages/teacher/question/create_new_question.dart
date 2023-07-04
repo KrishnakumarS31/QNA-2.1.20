@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
@@ -1891,7 +1892,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                   SizedBox(height: width * 0.005),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "Save Changes",
+                                      "Continue",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -3561,7 +3562,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                   SizedBox(height: width * 0.005),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "Save Changes",
+                                      "Continue",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -5104,6 +5105,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
+                                      bool val = true;
                                       finalQuestion.question = questionController.text;
                                       finalQuestion.advisorText = adviceController.text;
                                       finalQuestion.advisorUrl = urlController.text;
@@ -5117,7 +5119,28 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       if (_groupValue == 'Descriptive') {
                                         finalQuestion.choices = [];
                                       }
-                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
+                                      if(_groupValue == 'MCQ') {
+                                         var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
+
+                                          if(values.isEmpty)
+                                            {
+                                              setState(() {
+                                                val = false;
+                                              });
+                                             showDialogBox();
+                                            }
+                                          // print(contain);
+                                          // if(contain == false)
+                                          //   {
+                                          //     print("INSIDE FALSE");
+                                          //   }
+                                          // else if(contain == true)
+                                          //   {
+                                          //     print("INSIDE TRUE");
+                                          //   }
+                                        }
+
+                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate() && val == true) {
                                         showQuestionPreview(context);
                                       }
 
@@ -5161,6 +5184,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.advisorText=adviceController.text;
                                       question.advisorUrl=urlController.text;
                                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
+                                     
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
                                         Navigator.pushNamed(
                                           context,
@@ -5182,7 +5206,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "Save Changes",
+                                      "Continue",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -5221,4 +5245,55 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
       tempChoiceList[key].rightChoice = radioList[key];
     });
   }
+
+  showDialogBox() => showCupertinoDialog<String>(
+      context: context,
+      builder: (BuildContext context) =>  AlertDialog(
+        title: Text(
+          "Alert",
+          //"NO CONNECTION",
+          style: const TextStyle(
+            color: Color.fromRGBO(82, 165, 160, 1),
+            fontSize: 25,
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        content: Text(
+          "Please enter one correct choice",
+          //"Please check your internet connectivity",
+          style: const TextStyle(
+            color: Color.fromRGBO(82, 165, 160, 1),
+            fontSize: 16,
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: <Widget>[
+          const SizedBox(width: 400 * 0.020),
+          Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                  const Color.fromRGBO(255, 255, 255, 1),
+                  minimumSize: const Size(90, 30),
+                  side: const BorderSide(
+                    width: 1.5,
+                    color: Color.fromRGBO(82, 165, 160, 1),
+                  ),
+                ),
+                child: Text(AppLocalizations.of(context)!.ok_caps,
+                    style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 400 * 0.018,
+                        color:
+                        Color.fromRGBO(82, 165, 160, 1),
+                        fontWeight: FontWeight.w500)),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )),
+          const SizedBox(width: 400 * 0.005),
+        ],
+      ));
 }

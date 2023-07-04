@@ -983,7 +983,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                   SizedBox(height: width * 0.005),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "Save Changes",
+                                      "Continue",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1757,7 +1757,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                     SizedBox(height: width * 0.005),
                                     Text(
                                       //AppLocalizations.of(context)!.subject_topic,
-                                        "Save Changes",
+                                        "Continue",
                                         //textAlign: TextAlign.left,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(28, 78, 80, 1),
@@ -2499,7 +2499,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "Save Changes",
+                                      "Continue",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),

@@ -693,7 +693,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                 children: [
                                                   Text(
                                                     //AppLocalizations.of(context)!.lib_online_qn,
-                                                    "Show only my questions",
+                                                    "Show only my assessments",
                                                     style: TextStyle(
                                                       color: const Color.fromRGBO(102, 102, 102, 1),
                                                       fontSize: height * 0.02,
