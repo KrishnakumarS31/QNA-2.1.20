@@ -78,7 +78,7 @@ class ResultCardNew extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      assessmentResults[index].attemptStartDate != null ? "${convertTime(assessmentResults[index].attemptStartDate)} IST" : "",
+                      assessmentResults[index].attemptEndDate != null ? "${convertTime(assessmentResults[index].attemptEndDate)} IST" : "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

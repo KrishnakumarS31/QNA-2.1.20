@@ -25,7 +25,7 @@ class TeacherResultTotal extends StatefulWidget {
 }
 
 class TeacherResultTotalState extends State<TeacherResultTotal> {
-  IconData showIcon = Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.arrow_circle_down_outlined;
   int resultStart=0;
   int pageLimit = 1;
   int resultLength=0;
@@ -36,13 +36,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   }
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_down_outlined;
       });
     }
   }
@@ -122,7 +122,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                           Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              showIcon == Icons.expand_circle_down_outlined
+                              showIcon == Icons.arrow_circle_down_outlined
                                   ? Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(
@@ -707,7 +707,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                             Stack(
                               clipBehavior: Clip.none,
                               children: [
-                                showIcon == Icons.expand_circle_down_outlined
+                                showIcon == Icons.arrow_circle_down_outlined
                                     ? Container(
                                     decoration: BoxDecoration(
                                         border: Border.all(

@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Components/today_date.dart';
 import 'package:qna_test/Entity/Teacher/get_assessment_header.dart';
-import 'package:qna_test/Pages/student_assessment_start.dart';
-import 'package:qna_test/pages/student_guest_assessment.dart';
 import '../Entity/question_paper_model.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_num_provider.dart';
 import '../Services/qna_service.dart';
-import '../pages/cookie_policy.dart';
-import '../pages/privacy_policy_hamburger.dart';
-import '../pages/terms_of_services.dart';
-import '../pages/about_us.dart';
-import '../pages/help_page.dart';
-import 'package:qna_test/pages/settings_languages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../DataSource/http_url.dart';
 class StudentResultPage extends StatefulWidget {
   const StudentResultPage({Key? key,
     required this.totalMarks,
@@ -147,7 +137,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             255, 153, 0, 1),
                                         fontWeight: FontWeight.w500,
                                         fontSize: localHeight * 0.096)),
-                                SizedBox(height:1.0),
+                                const SizedBox(height:1.0),
                                 Text(AppLocalizations.of(context)!.mark_scored,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
@@ -198,7 +188,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             const SizedBox(width:10),
                                             Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
@@ -282,30 +272,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.14),
                                               SizedBox(
-                                                child: Text("${widget.assessmentHeaders.getAssessmentModelClass ?? ""}",
+                                                child: Text(widget.assessmentHeaders.getAssessmentModelClass ?? " - ",
                                                     //widget.assessmentHeaders.getAssessmentModelClass != null ? "${widget.assessmentHeaders.getAssessmentModelClass}" : "",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.022)),
-                                              ),],
-                                          ),
-                                          Row(
-                                            children: [
-                                              //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                              Text(
-                                                //"10:26:59",
-                                                  "SubTopic",
-                                                  style: TextStyle(
-                                                      color: const Color.fromRGBO(161, 161, 161, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: localHeight * 0.016)),
-                                              SizedBox(width:localHeight * 0.14),
-                                              SizedBox(
-                                                child: Text("${widget.assessmentHeaders.subTopic ?? ""}",
-                                                    //"${widget.assessmentHeaders.subTopic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                                         fontFamily: 'Inter',
@@ -326,8 +294,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.14),
                                               SizedBox(
-                                                child: Text("",
-                                                    //"${widget.assessmentHeaders.getAssessmentModelClass}",
+                                                child: Text(widget.assessmentHeaders.subTopic ?? " - ",
+                                                    //"${widget.assessmentHeaders.subTopic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                                         fontFamily: 'Inter',
@@ -335,7 +303,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         fontSize: localHeight * 0.022)),
                                               ),],
                                           ),
-                                          Row(
+                                         Row(
                                             children: [
                                               //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                               Text(
@@ -348,7 +316,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.14),
                                               SizedBox(
-                                                child: Text("${widget.assessmentHeaders.topic ?? ""}",
+                                                child: Text(widget.assessmentHeaders.topic ?? " - ",
                                                     //"${widget.assessmentHeaders.topic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
@@ -397,7 +365,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: localHeight * 0.018)),
                               ),
-                              SizedBox(height:0.5),
+                              const SizedBox(height:0.5),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
@@ -638,7 +606,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         Navigator.pushNamed(
                                                             context,
                                                             '/studentAssessment',
-                                                            arguments: [userdata.email,userDataModel]);
+                                                            arguments: [userDataModel,null,userdata.email]);
                                                       }
                                                       else {
                                                         Navigator.pushNamed(
@@ -740,7 +708,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             255, 153, 0, 1),
                                         fontWeight: FontWeight.w500,
                                         fontSize: localHeight * 0.096)),
-                                SizedBox(height:1.0),
+                                const SizedBox(height:1.0),
                                 Text(AppLocalizations.of(context)!.mark_scored,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
@@ -767,7 +735,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(left:localWidth * 0.06),
-                                              child: Icon(Icons.timer,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                              child: Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             ),
                                             SizedBox(
                                               child: Align(
@@ -792,8 +760,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            SizedBox(width:0.1),
+                                            Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:0.1),
                                             Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
@@ -877,30 +845,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.14),
                                               SizedBox(
-                                                child: Text("${widget.assessmentHeaders.getAssessmentModelClass ?? ""}",
+                                                child: Text(widget.assessmentHeaders.getAssessmentModelClass ?? " - ",
                                                     //widget.assessmentHeaders.getAssessmentModelClass != null ? "${widget.assessmentHeaders.getAssessmentModelClass}" : "",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.022)),
-                                              ),],
-                                          ),
-                                          Row(
-                                            children: [
-                                              //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                              Text(
-                                                //"10:26:59",
-                                                  "SubTopic",
-                                                  style: TextStyle(
-                                                      color: const Color.fromRGBO(161, 161, 161, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: localHeight * 0.016)),
-                                              SizedBox(width:localHeight * 0.14),
-                                              SizedBox(
-                                                child: Text("${widget.assessmentHeaders.subTopic ?? ""}",
-                                                    //"${widget.assessmentHeaders.subTopic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                                         fontFamily: 'Inter',
@@ -921,8 +867,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.14),
                                               SizedBox(
-                                                child: Text("",
-                                                    //"${widget.assessmentHeaders.getAssessmentModelClass}",
+                                                child: Text(widget.assessmentHeaders.subTopic ?? "",
+                                                    //"${widget.assessmentHeaders.subTopic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                                         fontFamily: 'Inter',
@@ -943,7 +889,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.14),
                                               SizedBox(
-                                                child: Text("${widget.assessmentHeaders.topic ?? ""}",
+                                                child: Text(widget.assessmentHeaders.topic ?? " - ",
                                                     //"${widget.assessmentHeaders.topic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
@@ -992,7 +938,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: localHeight * 0.018)),
                               ),
-                              SizedBox(height:0.5),
+                              const SizedBox(height:0.5),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
@@ -1233,7 +1179,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentAssessment',
-                                                              arguments: [userdata.email,userDataModel]);
+                                                              arguments: [userDataModel,null,userdata.email]);
                                                         }
                                                         else {
                                                           Navigator.pushNamed(
@@ -1346,7 +1292,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             255, 153, 0, 1),
                                         fontWeight: FontWeight.w500,
                                         fontSize: localHeight * 0.096)),
-                                SizedBox(height:1.0),
+                                const SizedBox(height:1.0),
                                 Text(AppLocalizations.of(context)!.mark_scored,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
@@ -1370,8 +1316,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            Icon(Icons.timer,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            const SizedBox(width:5),
+                                            Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:2),
                                             SizedBox(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
@@ -1389,13 +1335,14 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         )
                                       ],
                                     ),
+                                    const SizedBox(width:3),
                                     Column(
                                       children: [
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            const SizedBox(width:5),
+                                            Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:2),
                                             Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
@@ -1406,6 +1353,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         )
                                       ],
                                     ),
+                                    const SizedBox(width:3),
                                     Column(
                                       children: [
                                         Row(
@@ -1478,30 +1426,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.11),
                                               SizedBox(
-                                                child: Text("${widget.assessmentHeaders.getAssessmentModelClass ?? ""}",
+                                                child: Text(widget.assessmentHeaders.getAssessmentModelClass ?? " - ",
                                                     //widget.assessmentHeaders.getAssessmentModelClass != null ? "${widget.assessmentHeaders.getAssessmentModelClass}" : "",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.022)),
-                                              ),],
-                                          ),
-                                          Row(
-                                            children: [
-                                              //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                              Text(
-                                                //"10:26:59",
-                                                  "SubTopic",
-                                                  style: TextStyle(
-                                                      color: const Color.fromRGBO(161, 161, 161, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: localHeight * 0.016)),
-                                              SizedBox(width:localHeight * 0.026),
-                                              SizedBox(
-                                                child: Text("${widget.assessmentHeaders.subTopic ?? ""}",
-                                                    //"${widget.assessmentHeaders.subTopic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                                         fontFamily: 'Inter',
@@ -1522,7 +1448,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.026),
                                               SizedBox(
-                                                child: Text("",
+                                                child: Text(widget.assessmentHeaders.subTopic ?? " - ",
                                                     //"${widget.assessmentHeaders.getAssessmentModelClass}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
@@ -1544,7 +1470,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       fontSize: localHeight * 0.016)),
                                               SizedBox(width:localHeight * 0.026),
                                               SizedBox(
-                                                child: Text("${widget.assessmentHeaders.topic ?? ""}",
+                                                child: Text(widget.assessmentHeaders.topic ?? " - ",
                                                     //"${widget.assessmentHeaders.topic}",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(102, 102, 102, 1),
@@ -1565,7 +1491,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     endIndent: localWidth * 0.04,
                                     color: Colors.black
                                 ),
-                                SizedBox(height: localHeight * 0.03),
+                                SizedBox(height: localHeight * 0.01),
                                 Align(
                                     alignment: Alignment.center,
                                     child:Text("Thank You",
@@ -1578,7 +1504,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                               ]),
                             ),
                           ),
-                          SizedBox(height:30.0),
+                          const SizedBox(height:30.0),
                           Column(
                             children: [
                               //SizedBox(height: localHeight * 0.27),
@@ -1593,7 +1519,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: localHeight * 0.018)),
                               ),
-                              SizedBox(height:0.5),
+                              const SizedBox(height:0.5),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
@@ -1628,12 +1554,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight *
                                                         0.023))),
                                           ))),
-                                  SizedBox(width:0.0),
+                                  const SizedBox(width:0.0),
                                   IconButton(
                                     icon: const
                                     Icon(
                                         Icons.chevron_right,
-                                        color: const Color
+                                        color: Color
                                             .fromRGBO(
                                             48, 145, 139,
                                             1)
@@ -1833,7 +1759,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentAssessment',
-                                                              arguments: [userdata.email,userDataModel]);
+                                                              arguments: [userDataModel,null,userdata.email]);
                                                         }
                                                         else {
                                                           Navigator.pushNamed(

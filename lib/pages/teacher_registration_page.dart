@@ -2532,7 +2532,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       FontWeight.w600,
                                                       fontSize:
                                                       localHeight *
-                                                          0.020),
+                                                          0.0155),
                                                 ),
                                               ]),
                                               Row(
@@ -2620,12 +2620,12 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                             ],
                                           ),
                                           SizedBox(
-                                            height: localHeight * 0.03,
+                                            height: localHeight * 0.01,
                                           ),
                                           Stack(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(top: 13),
+                                                padding: EdgeInsets.only(left: localWidth * 0.01, right: localWidth * 0.01 , top: localHeight * 0.02),
                                                 child: DropDownTextField(
                                                   controller:
                                                   selectedCountryCitizen,
@@ -2706,23 +2706,20 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   onChanged: (value) {},
                                                 ),
                                               ),
-                                              Positioned(
-                                                left: localWidth * 0.05,
-                                                child:
-                                                Text(
-                                                AppLocalizations.of(context)!
-                                                    .country_citizen,
-                                                //"Citizen of Country",
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    fontSize:
-                                                    localHeight * 0.016),
-                                              ))
+                                              Text(
+                                              AppLocalizations.of(context)!
+                                                  .country_citizen,
+                                              //"Citizen of Country",
+                                              style: TextStyle(
+                                                  color:
+                                                  const Color.fromRGBO(
+                                                      102, 102, 102, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight:
+                                                  FontWeight.w600,
+                                                  fontSize:
+                                                  localHeight * 0.016),
+                                              )
                                             ],
                                           ),
                                           SizedBox(
@@ -2733,7 +2730,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               Padding(
                                                 padding:
                                                 EdgeInsets.only(
-                                                    left: localWidth * 0.05, right: localWidth * 0.05, top: localHeight * 0.02),
+                                                    left: localWidth * 0.01, right: localWidth * 0.01, top: localHeight * 0.02),
                                                 child: DropDownTextField(
                                                   controller:
                                                   selectedCountryResident,

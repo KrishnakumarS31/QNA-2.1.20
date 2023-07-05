@@ -1815,7 +1815,7 @@ class AddQuestionState extends State<AddQuestion> {
                   body: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Padding(
-                      padding: const EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(8),
                       child: Column(
                         children: [
                           Align(

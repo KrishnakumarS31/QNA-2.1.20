@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../DataSource/app_user_repo.dart';
 import '../DataSource/http_url.dart';
 import '../Entity/app_user.dart';

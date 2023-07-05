@@ -31,7 +31,7 @@ class TeacherResultAssessment extends StatefulWidget {
 }
 
 class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
-  IconData showIcon = Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.arrow_circle_down_outlined;
   int totalMarks =0;
   @override
   void initState() {
@@ -41,13 +41,13 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
 
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_down_outlined;
       });
     }
   }
@@ -129,7 +129,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                           Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              showIcon == Icons.expand_circle_down_outlined
+                              showIcon == Icons.arrow_circle_down_outlined
                                   ?
                               Container(
                                   decoration: BoxDecoration(
@@ -788,7 +788,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                             Stack(
                               clipBehavior: Clip.none,
                               children: [
-                                showIcon == Icons.expand_circle_down_outlined
+                                showIcon == Icons.arrow_circle_down_outlined
                                     ?
                                 Container(
                                     decoration: BoxDecoration(

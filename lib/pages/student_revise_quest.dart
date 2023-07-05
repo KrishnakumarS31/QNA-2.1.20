@@ -267,13 +267,15 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   },
                                   child: Row(
                                     children: [
-                                      const Icon(Icons.arrow_back,color: Color.fromRGBO(82, 165, 160, 1),),
+                                      Icon(Icons.arrow_back,
+                                        size: localHeight * 0.03,
+                                        color: const Color.fromRGBO(82, 165, 160, 1),),
                                       Text(AppLocalizations.of(context)!.revise_all,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(82, 165, 160, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w500,
-                                              fontSize: localHeight * 0.02)),
+                                              fontSize: localHeight * 0.025)),
                                     ],
                                   ),),)
                           ),

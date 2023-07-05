@@ -28,7 +28,7 @@ class TeacherResultSubmitted extends StatefulWidget {
 }
 
 class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
-  IconData showIcon = Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.arrow_circle_down_outlined;
   int resultStart=0;
   int pageLimit = 1;
   int resultLength=0;
@@ -40,13 +40,13 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
   }
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_down_outlined;
       });
     }
   }
@@ -123,7 +123,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              showIcon == Icons.expand_circle_down_outlined
+                              showIcon == Icons.arrow_circle_down_outlined
                                   ? Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(
@@ -725,7 +725,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              showIcon == Icons.expand_circle_down_outlined
+                              showIcon == Icons.arrow_circle_down_outlined
                                   ? Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(

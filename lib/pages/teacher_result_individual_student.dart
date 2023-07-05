@@ -26,7 +26,7 @@ class TeacherResultIndividualStudent extends StatefulWidget {
 class TeacherResultIndividualStudentState
     extends State<TeacherResultIndividualStudent> {
   Uint8List? bytes;
-  IconData showIcon = Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.arrow_circle_down_outlined;
   late List<AssessmentResults> totalResults;
 
   @override
@@ -47,13 +47,13 @@ class TeacherResultIndividualStudentState
   }
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_down_outlined;
       });
     }
   }

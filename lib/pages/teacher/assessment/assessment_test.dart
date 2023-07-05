@@ -1948,7 +1948,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04,top:width * 0.02,bottom:width * 0.02),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1964,7 +1964,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    left: width * 0.02, right: width * 0.02,top: height*0.01,bottom: height*0.01),
+                                    left: width * 0.02, right: width * 0.02,top: height*0.01),
                                 child: SizedBox(
                                   width: width,
                                   child: Column(
@@ -1982,7 +1982,8 @@ class AssessmentTestState extends State<AssessmentTest> {
                                                 const Color.fromRGBO(28, 78, 80, 1),
                                                 fontWeight: FontWeight.w700),
                                           ),
-                                          assessment.assessmentStatus=="active"?
+                                          assessment.assessmentStatus=="active"
+                                              ?
                                           Container(
                                             height: height * 0.04,
                                             width: width * 0.16,
@@ -2025,7 +2026,8 @@ class AssessmentTestState extends State<AssessmentTest> {
                                               ],
                                             ),
                                           ):
-                                          assessment.assessmentStatus=="inactive"?
+                                          assessment.assessmentStatus=="inactive"
+                                              ?
                                           Icon(
                                             Icons.circle_outlined,
                                             color: Colors.black,
@@ -2036,7 +2038,8 @@ class AssessmentTestState extends State<AssessmentTest> {
                                                 .height *
                                                 0.02,
                                           ):
-                                          assessment.assessmentStatus=="inprogress"?
+                                          assessment.assessmentStatus=="inprogress"
+                                              ?
                                           Icon(
                                             Icons.circle,
                                             color: const Color.fromRGBO(153, 153, 153, 1),
@@ -2062,7 +2065,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",

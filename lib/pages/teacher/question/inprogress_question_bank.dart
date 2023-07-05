@@ -1466,7 +1466,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04,top:width * 0.02),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1747,28 +1747,11 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                                                   height: height * 0.02,
                                                                 ),
                                                                 ElevatedButton(
-                                                                  style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                    backgroundColor:
-                                                                    const Color
-                                                                        .fromRGBO(
-                                                                        82, 165, 160,
-                                                                        1),
-                                                                    minimumSize:
-                                                                    const Size(280, 48),
-                                                                    shape:
-                                                                    RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                          39),
-                                                                    ),
-                                                                  ),
+                                                                  style: ElevatedButton.styleFrom(backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                                    minimumSize: const Size(280, 48),
+                                                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(39),),),
                                                                   onPressed: () async {
-                                                                    bool valid = formKey
-                                                                        .currentState!
-                                                                        .validate();
+                                                                    bool valid = formKey.currentState!.validate();
                                                                     if (valid) {
                                                                       for(int i =0;i<finalQuesList.length;i++){
                                                                         finalQuesList[i].subject=subjectController.text;

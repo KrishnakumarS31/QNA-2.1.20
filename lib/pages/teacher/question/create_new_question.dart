@@ -640,6 +640,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                   left: width * 0.02,top:width * 0.02),
                                                               child: Row(
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i))),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -703,6 +706,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i))),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -1456,6 +1462,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                   left: width * 0.02,top:width * 0.02),
                                                               child: Row(
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i),style: TextStyle(
+                                                                          color: Colors.black,
+                                                                          fontFamily: 'Inter',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: height * 0.018),
+                                                                        )),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -1520,6 +1534,15 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i),
+                                                                        style: TextStyle(
+                                                                          color: Colors.black,
+                                                                          fontFamily: 'Inter',
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontSize: height * 0.018),
+                                                                      )),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -1784,6 +1807,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
+                                      bool val = true;
                                       finalQuestion.question =
                                           questionController.text;
                                       finalQuestion.advisorText =
@@ -1807,26 +1831,30 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       if (_groupValue == 'Descriptive') {
                                         finalQuestion.choices = [];
                                       }
-                                      // else if(_groupValue == 'MCQ' && tempChoiceList.isEmpty)
-                                      //  {
-                                      //    Navigator.push(
-                                      //      context,
-                                      //      PageTransition(
-                                      //        type: PageTransitionType
-                                      //            .rightToLeft,
-                                      //        child: CustomDialog(
-                                      //          title: "Alert",
-                                      //          // "OOPS!",
-                                      //          content: "Please add one choice",
-                                      //          //"Invalid Role, Please Check Your Login Data",
-                                      //          button: AppLocalizations.of(context)!
-                                      //              .retry,
-                                      //        ),
-                                      //      ),
-                                      //    );
-                                      //  }
+
+                                      if(_groupValue == 'MCQ') {
+                                        var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
+
+                                        if(values.isEmpty)
+                                        {
+                                          setState(() {
+                                            val = false;
+                                          });
+                                          showDialogBox();
+                                        }
+                                        // print(contain);
+                                        // if(contain == false)
+                                        //   {
+                                        //     print("INSIDE FALSE");
+                                        //   }
+                                        // else if(contain == true)
+                                        //   {
+                                        //     print("INSIDE TRUE");
+                                        //   }
+                                      }
+
                                       if(formKey.currentState!
-                                          .validate() && questionFormKey.currentState!.validate())  {
+                                          .validate() && questionFormKey.currentState!.validate() && val == true)  {
                                         showQuestionPreview(context);
                                       }
                                     },
@@ -2309,6 +2337,15 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                   left: width * 0.02),
                                                               child: Row(
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i),
+                                                                        style: TextStyle(
+                                                                            color: Colors.black,
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.018),
+                                                                      )),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -2377,6 +2414,15 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i),
+                                                                        style: TextStyle(
+                                                                            color: Colors.black,
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.018),
+                                                                      )),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -3034,7 +3080,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     _questionTypeValue=="Descriptive"
                                                         ? const SizedBox(height: 0)
                                                         :  _questionTypeValue=="Survey"
-                                                        ? Padding(
+                                                        ?
+                                                    Padding(
                                                       padding: EdgeInsets.only(left: width * 0.02,top:5.0),
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.end,
@@ -3071,7 +3118,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                         ],
                                                       ),
                                                     )
-                                                        :Padding(
+                                                        :
+                                                    Padding(
                                                       padding: EdgeInsets.only(left: width * 0.02),
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.end,
@@ -3093,7 +3141,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             ),
                                                           ),
                                                           Container(
-                                                            alignment: Alignment.centerLeft,
+                                                            alignment: Alignment.center,
                                                             //width: width * 0.11,
                                                             child: Text(
                                                               textAlign: TextAlign.right,
@@ -3140,6 +3188,15 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i),
+                                                                        style: TextStyle(
+                                                                            color: Colors.black,
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.018),
+                                                                      )),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -3207,6 +3264,15 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i),
+                                                                        style: TextStyle(
+                                                                            color: Colors.black,
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.018),
+                                                                      )),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -3476,6 +3542,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () {
+                                      bool val = true;
                                       finalQuestion.question =
                                           questionController.text;
                                       finalQuestion.advisorText =
@@ -3498,7 +3565,28 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                         finalQuestion.choices = [];
                                       }
 
-                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
+                                      if(_groupValue == 'MCQ') {
+                                        var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
+
+                                        if(values.isEmpty)
+                                        {
+                                          setState(() {
+                                            val = false;
+                                          });
+                                          showDialogBox();
+                                        }
+                                        // print(contain);
+                                        // if(contain == false)
+                                        //   {
+                                        //     print("INSIDE FALSE");
+                                        //   }
+                                        // else if(contain == true)
+                                        //   {
+                                        //     print("INSIDE TRUE");
+                                        //   }
+                                      }
+
+                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate() && val == true) {
                                         showQuestionPreview(context);
                                       }
                                     },
@@ -3974,6 +4062,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 left: 8,),
                                                               child: Row(
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i))),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -4036,6 +4127,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i))),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -4781,6 +4875,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 left: 8,),
                                                               child: Row(
                                                                 children: [
+                                                                  SizedBox(
+                                                                      width: width * 0.05,
+                                                                      child: Text(String.fromCharCode(97+i))),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],

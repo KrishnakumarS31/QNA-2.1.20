@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qna_test/Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class CustomCard extends StatefulWidget {
@@ -134,7 +135,7 @@ class _CustomCardState extends State<CustomCard> {
                     ],
                   ),
                   Text(
-                    startDate,
+                    convertDate(widget.result.assessmentStartDate),
                     style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: widget.height * 0.0175,

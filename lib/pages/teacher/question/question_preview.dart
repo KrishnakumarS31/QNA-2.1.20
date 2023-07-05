@@ -708,36 +708,58 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                 onTap: () {},
                 child: Padding(
                   padding: EdgeInsets.only(bottom: widget.height * 0.013),
-                  child: Container(
-                      width: widget.width * 0.744,
-                      height: widget.height * 0.0412,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
-                        border: Border.all(
-                            color: const Color.fromRGBO(209, 209, 209, 1)),
-                        color: ( (widget.finalQuestion?.questionType == "Survey" ||widget.finalQuestion?.questionType == "Descriptive") ? false :   widget.finalQuestion!.choices![j].rightChoice!)
-                            ? const Color.fromRGBO(82, 165, 160, 1)
-                            : const Color.fromRGBO(255, 255, 255, 1),
-                      ),
-                      child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: widget.width * 0.02,
-                            ),
-                            Text(
-                              widget.finalQuestion!.choices![j].choiceText!,
+                  child:
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: widget.height * 0.05),
+                        child: SizedBox(
+                            width: widget.width * 0.05,
+                            child: Text("${String.fromCharCode(97+j)}.",
                               style: TextStyle(
-                                color:
-                                ((widget.finalQuestion?.questionType == "Survey") ? false : widget.finalQuestion!.choices![j].rightChoice!)
-                                    ? const Color.fromRGBO(255, 255, 255, 1)
-                                    : const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: widget.height * 0.0162,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ])),
+                                  color: Colors.black,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: widget.height * 0.018),
+                            )),
+                      ),
+                      Container(
+
+                          width: widget.width > 960 ? widget.width * 0.2 :widget.width * 0.744,
+                          height: widget.height * 0.0412,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(5)),
+                            border: Border.all(
+                                color: const Color.fromRGBO(209, 209, 209, 1)),
+                            color: ( (widget.finalQuestion?.questionType == "Survey" ||widget.finalQuestion?.questionType == "Descriptive") ? false :   widget.finalQuestion!.choices![j].rightChoice!)
+                                ? const Color.fromRGBO(82, 165, 160, 1)
+                                : const Color.fromRGBO(255, 255, 255, 1),
+                          ),
+                          child:
+                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+
+                                SizedBox(
+                                  width: widget.width * 0.02,
+                                ),
+                                Text(
+                                  widget.finalQuestion!.choices![j].choiceText!,
+                                  style: TextStyle(
+                                    color:
+                                    ((widget.finalQuestion?.questionType == "Survey") ? false : widget.finalQuestion!.choices![j].rightChoice!)
+                                        ? const Color.fromRGBO(255, 255, 255, 1)
+                                        : const Color.fromRGBO(102, 102, 102, 1),
+                                    fontSize: widget.height * 0.0162,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ])),
+                    ],
+                  ),
                 ),
               ))
       ],
