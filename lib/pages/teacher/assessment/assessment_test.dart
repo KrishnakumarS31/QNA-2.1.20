@@ -1175,14 +1175,15 @@ class AssessmentTestState extends State<AssessmentTest> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(left: height * 0.045,
-                            right: height * 0.045,
-                            bottom: height * 0.045),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.5,
+                            right: height * 0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : height * 0.15,
+                              height : height * 0.16,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -1214,7 +1215,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                                           assessment.assessmentStatus=="active"?
                                           Container(
                                             height: height * 0.04,
-                                            width: width * 0.16,
+                                            width: width * 0.05,
                                             decoration: BoxDecoration(
                                               border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
                                               borderRadius: BorderRadius.all(
@@ -1801,7 +1802,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
+                            SizedBox(height: height * 0.01),
                             Padding(
                               padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                               child: Row(

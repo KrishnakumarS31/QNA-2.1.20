@@ -1316,10 +1316,9 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                           color: Colors.white,
                           child: Padding(
                             padding: EdgeInsets.only(
-                              //top: height * 0.023,
-                                left: height * 0.045,
-                                right: height * 0.045,
-                                bottom: height * 0.045),
+                                top: height * 0.023,
+                                left: height * 0.5,
+                                right: height * 0.5),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -1338,7 +1337,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            left: width * 0.02, right: width * 0.02),
+                                            left: width * 0.01, right: width * 0.01),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
@@ -1744,7 +1743,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                     suffixIcon:
                                     Column(children: [
                                       Container(
-                                          height: height * 0.035,
+                                          height: height * 0.05,
                                           width: width * 0.07,
                                           decoration:  BoxDecoration(
                                             shape: BoxShape.circle,

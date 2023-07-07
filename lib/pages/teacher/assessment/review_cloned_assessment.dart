@@ -1106,9 +1106,10 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(left: height * 0.045,
-                            right: height * 0.045,
-                            bottom: height * 0.045),
+                        padding: EdgeInsets.only(
+                            //top: height * 0.023,
+                            left: height * 0.5,
+                            right: height * 0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1152,8 +1153,8 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                     child: SingleChildScrollView(
                                                       scrollDirection: Axis.vertical,
                                                       child: Container(
-                                                        height: height * 0.6,
-                                                        width: width * 0.88,
+                                                        height: height * 0.65,
+                                                        width: width * 0.5,
                                                         decoration: BoxDecoration(
                                                           border: Border.all(
                                                               color: Colors.black38,

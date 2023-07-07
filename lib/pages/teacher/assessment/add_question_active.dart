@@ -1290,9 +1290,10 @@ class AddQuestionActiveState extends State<AddQuestionActive> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(left: height * 0.045,
-                            right: height * 0.045,
-                            bottom: height * 0.045),
+                        padding: EdgeInsets.only(
+                            left: height * 0.5,
+                            right: height * 0.5
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1716,7 +1717,7 @@ class AddQuestionActiveState extends State<AddQuestionActive> {
                                 suffixIcon:
                                 Column(children: [
                                   Container(
-                                      height: height * 0.035,
+                                      height: height * 0.05,
                                       width: width * 0.07,
                                       decoration:  BoxDecoration(
                                         shape: BoxShape.circle,
@@ -1805,94 +1806,102 @@ class AddQuestionActiveState extends State<AddQuestionActive> {
                                           ),
                                         ),
                                       ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016),
-                                        ),
-                                        Wrap(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap:(){
-                                                    if(questionList.length>11){
-                                                      setState(() {
-                                                        pageNumber--;
-                                                        questionStart=questionStart-10;
-                                                        questionList.removeRange(questionList.length-10, questionList.length);
-                                                      });
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
+                                    Padding(
+                                      padding: EdgeInsets.only(left:height * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016),
+                                          ),
+                                          Wrap(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap:(){
+                                                      if(questionList.length>11){
+                                                        setState(() {
+                                                          pageNumber--;
+                                                          questionStart=questionStart-10;
+                                                          questionList.removeRange(questionList.length-10, questionList.length);
+                                                        });
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.05,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_left,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_left,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.15,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        '${questionStart==0?1:((questionStart/10)+1).toInt()}',
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.016),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.05,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          '${questionStart==0?1:((questionStart/10)+1).toInt()}',
+                                                          style: TextStyle(
+                                                              color: const Color.fromRGBO(28, 78, 80, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.016),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    setState(() {
-                                                      questionStart=questionStart+10;
-                                                    });
-                                                    getQuestionData(questionSearchController.text);
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(right:height * 0.02),
+                                                    child: GestureDetector(
+                                                      onTap: (){
+                                                        setState(() {
+                                                          questionStart=questionStart+10;
+                                                        });
+                                                        getQuestionData(questionSearchController.text);
+                                                      },
+                                                      child: Container(
+                                                        height: height * 0.03,
+                                                        width: width * 0.05,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                          borderRadius: BorderRadius.all(
+                                                              Radius.circular(5)),
+                                                        ),
+                                                        child: Icon(
+                                                          Icons.keyboard_double_arrow_right,
+                                                          size: height * 0.015,
+                                                          color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                      ),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_right,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(height: height * 0.05,)
+                                        ],
+                                      ),
                                     ),
+
                                   ],
                                 ),
                               ),

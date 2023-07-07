@@ -1780,14 +1780,15 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(left: height * 0.045,
-                            right: height * 0.045,
-                            bottom: height * 0.045),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.5,
+                            right: height * 0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : height * 0.15,
+                              height : height * 0.16,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -1819,7 +1820,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
 
                                           Container(
                                             height: height * 0.04,
-                                            width: width * 0.16,
+                                            width: width * 0.05,
                                             decoration: BoxDecoration(
                                               border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
                                               borderRadius: BorderRadius.all(
@@ -1864,7 +1865,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${getAssessmentModel.subject} | ${getAssessmentModel.topic}",
+                                          "${getAssessmentModel.getAssessmentModelClass} | ${getAssessmentModel.subTopic
+                                          }",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1991,7 +1993,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding: EdgeInsets.only(left: width*0.03),
                                               child: SizedBox(
-                                                width: width * 0.2,
+                                                //width: width * 0.2,
                                                 child: Text(
                                                   "Category",
                                                   style: TextStyle(
@@ -2006,13 +2008,13 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding: EdgeInsets.only(right: width*0.03),
                                               child: SizedBox(
-                                                width: width * 0.55,
+                                                //width: width * 0.55,
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
-                                                        minimumSize: Size(width* 0.25, height*0.04),
+                                                        minimumSize: Size(width* 0.1, height*0.04),
                                                         side: const BorderSide(
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
@@ -2044,9 +2046,10 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
+                                                    SizedBox(width:height * 0.01),
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
-                                                        minimumSize: Size(width* 0.025, height*0.04),
+                                                        minimumSize: Size(width* 0.1, height*0.04),
                                                         side: const BorderSide(
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
@@ -2091,7 +2094,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.38,
+                                        height: height * 0.45,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2276,7 +2279,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.15,
+                                                  width: width * 0.05,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: timeLimitController,
@@ -2399,7 +2402,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.4,
+                                                  width: width * 0.11,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: startTimeController,
@@ -2521,7 +2524,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.4,
+                                                  width: width * 0.11,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: endTimeController,
@@ -2552,7 +2555,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.30,
+                                        height: height * 0.33,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2574,13 +2577,100 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            // Padding(
+                                            //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                            //   child: Row(
+                                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            //     children: [
+                                            //       Container(
+                                            //         width: width * 0.2,
+                                            //         child: Text(
+                                            //           "Number of attempts allowed",
+                                            //           style: TextStyle(
+                                            //               fontSize: height * 0.016,
+                                            //               fontFamily: "Inter",
+                                            //               color: const Color.fromRGBO(102, 102, 102, 1),
+                                            //               fontWeight: FontWeight.w700),
+                                            //         ),
+                                            //       ),
+                                            //       Container(
+                                            //         height: height * 0.04,
+                                            //         width: width * 0.15,
+                                            //         decoration: BoxDecoration(
+                                            //           border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
+                                            //           borderRadius: BorderRadius.all(
+                                            //               Radius.circular(5)),
+                                            //         ),
+                                            //         child: Row(
+                                            //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            //           children: [
+                                            //             GestureDetector(
+                                            //               onTap:(){
+                                            //                 setState(() {
+                                            //                   if(numberOfAttempts!=1){
+                                            //                     numberOfAttempts=numberOfAttempts-1;
+                                            //                   }
+                                            //                 });
+                                            //               },
+                                            //               child: Container(
+                                            //                 height: height * 0.03,
+                                            //                 width: width * 0.02,
+                                            //                 child: Icon(
+                                            //                   Icons.remove,
+                                            //                   size: height * 0.02,
+                                            //                   color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            //               ),
+                                            //             ),
+                                            //             Padding(
+                                            //               padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                            //               child: Container(
+                                            //                 height: height * 0.03,
+                                            //                 width: width * 0.05,
+                                            //                 decoration: BoxDecoration(
+                                            //                   border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
+                                            //                   borderRadius: BorderRadius.all(
+                                            //                       Radius.circular(5)),
+                                            //                 ),
+                                            //                 child: Center(
+                                            //                   child: Text(
+                                            //                     '${numberOfAttempts}',
+                                            //                     style: TextStyle(
+                                            //                         color: const Color.fromRGBO(28, 78, 80, 1),
+                                            //                         fontFamily: 'Inter',
+                                            //                         fontWeight: FontWeight.w400,
+                                            //                         fontSize: height * 0.016),
+                                            //                   ),
+                                            //                 ),
+                                            //               ),
+                                            //             ),
+                                            //             GestureDetector(
+                                            //               onTap: (){
+                                            //                 setState(() {
+                                            //                   numberOfAttempts=numberOfAttempts+1;
+                                            //                 });
+                                            //               },
+                                            //               child: Container(
+                                            //                 height: height * 0.03,
+                                            //                 width: width * 0.02,
+                                            //
+                                            //                 child: Icon(
+                                            //                   Icons.add,
+                                            //                   size: height * 0.02,
+                                            //                   color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            //               ),
+                                            //             ),
+                                            //           ],
+                                            //         ),)
+                                            //     ],
+                                            //   ),
+                                            // ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.2,
                                                     child: Text(
                                                       "Number of attempts allowed",
                                                       style: TextStyle(
@@ -2592,7 +2682,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   ),
                                                   Container(
                                                     height: height * 0.04,
-                                                    width: width * 0.3,
+                                                    width: width * 0.15,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
                                                       borderRadius: BorderRadius.all(
@@ -2611,32 +2701,29 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                           },
                                                           child: Container(
                                                             height: height * 0.03,
-                                                            width: width * 0.05,
+                                                            width: width * 0.02,
                                                             child: Icon(
                                                               Icons.remove,
                                                               size: height * 0.02,
                                                               color: const Color.fromRGBO(28, 78, 80, 1),),
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                                          child: Container(
-                                                            height: height * 0.03,
-                                                            width: width * 0.1,
-                                                            decoration: BoxDecoration(
-                                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                              borderRadius: BorderRadius.all(
-                                                                  Radius.circular(5)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Text(
-                                                                '${numberOfAttempts}',
-                                                                style: TextStyle(
-                                                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.016),
-                                                              ),
+                                                        Container(
+                                                          height: height * 0.03,
+                                                          width: width * 0.05,
+                                                          decoration: BoxDecoration(
+                                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(5)),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              '${numberOfAttempts}',
+                                                              style: TextStyle(
+                                                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: height * 0.016),
                                                             ),
                                                           ),
                                                         ),
@@ -2648,7 +2735,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                           },
                                                           child: Container(
                                                             height: height * 0.03,
-                                                            width: width * 0.05,
+                                                            width: width * 0.02,
 
                                                             child: Icon(
                                                               Icons.add,
@@ -2667,7 +2754,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.2,
                                                     child: Text(
                                                       "Allow guest students",
                                                       style: TextStyle(
@@ -2707,7 +2794,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.2,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
                                                       style: TextStyle(
@@ -2747,7 +2834,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.2,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
                                                       style: TextStyle(
@@ -2788,7 +2875,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.23,
+                                        height: height * 0.25,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2816,7 +2903,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show my name",
                                                       style: TextStyle(
@@ -2856,7 +2943,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show my email",
                                                       style: TextStyle(
@@ -2896,7 +2983,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show Whatsapp Group",
                                                       style: TextStyle(
@@ -2937,7 +3024,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.10,
+                                        height: height * 0.15,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2953,7 +3040,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.15,
                                                     child: Text(
                                                       "Make Assessment Inactive",
                                                       style: TextStyle(
@@ -3007,7 +3094,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
+                            SizedBox(height: height * 0.01),
                             Padding(
                               padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                               child: Row(

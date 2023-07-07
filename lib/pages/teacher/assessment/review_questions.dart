@@ -1174,9 +1174,10 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(left: height * 0.045,
-                            right: height * 0.045,
-                            bottom: height * 0.045),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.5,
+                            right: height * 0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1658,7 +1659,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                             ),
                                                             Container(
                                                               height: height * 0.04,
-                                                              width: width * 0.3,
+                                                              width: width * 0.1,
                                                               decoration: BoxDecoration(
                                                                 border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
                                                                 borderRadius: BorderRadius.all(
@@ -1678,7 +1679,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                     },
                                                                     child: Container(
                                                                       height: height * 0.03,
-                                                                      width: width * 0.05,
+                                                                      width: width * 0.01,
                                                                       child: Icon(
                                                                         Icons.remove,
                                                                         size: height * 0.02,
@@ -1689,7 +1690,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                     padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                                     child: Container(
                                                                       height: height * 0.03,
-                                                                      width: width * 0.1,
+                                                                      width: width * 0.05,
                                                                       decoration: BoxDecoration(
                                                                         border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
                                                                         borderRadius: BorderRadius.all(
@@ -1719,7 +1720,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                     },
                                                                     child: Container(
                                                                       height: height * 0.03,
-                                                                      width: width * 0.05,
+                                                                      width: width * 0.01,
 
                                                                       child: Icon(
                                                                         Icons.add,
@@ -1796,7 +1797,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
+                            SizedBox(height: height * 0.01),
                             Padding(
                               padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                               child: Row(

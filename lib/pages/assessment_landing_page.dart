@@ -1180,6 +1180,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          //Search Text
                           Text(
                             //AppLocalizations.of(context)!.lib_online_qn,
                             "Search",
@@ -1191,6 +1192,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                             ),
                           ),
                           SizedBox(height: height * 0.005),
+                          //Question Bank TextField
                           TextField(
                             onChanged: (t){
                               setState(() {
@@ -1752,7 +1754,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                               scrollDirection: Axis.vertical,
                                               child: Container(
                                                 height: height * 0.6,
-                                                width: width * 0.88,
+                                                width: width * 0.5,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
                                                       color: Colors.black38,

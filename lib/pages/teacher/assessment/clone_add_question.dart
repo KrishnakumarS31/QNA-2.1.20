@@ -1305,10 +1305,8 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: height * 0.023,
-                            left: height * 0.045,
-                            right: height * 0.045,
-                            bottom: height * 0.045),
+                            left: height * 0.5,
+                            right: height * 0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1732,7 +1730,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                 suffixIcon:
                                 Column(children: [
                                   Container(
-                                      height: height * 0.035,
+                                      height: height * 0.05,
                                       width: width * 0.07,
                                       decoration:  BoxDecoration(
                                         shape: BoxShape.circle,

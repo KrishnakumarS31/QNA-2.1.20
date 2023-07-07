@@ -947,9 +947,9 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(left: height * 0.045,
-                        right: height * 0.045,
-                        bottom: height * 0.045),
+                    padding: EdgeInsets.only(
+                        left: height * 0.5,
+                        right: height * 0.5),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

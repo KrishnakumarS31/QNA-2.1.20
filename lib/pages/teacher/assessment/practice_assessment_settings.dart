@@ -1179,9 +1179,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: height * 0.023,
-                            left: height * 0.045,
-                            right: height * 0.045),
+                            left: height * 0.5,
+                            right: height * 0.5),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1364,7 +1363,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.2,
                                                     child: Text(
                                                       "Number of attempts allowed",
                                                       style: TextStyle(
@@ -1376,7 +1375,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   ),
                                                   Container(
                                                     height: height * 0.04,
-                                                    width: width * 0.3,
+                                                    width: width * 0.15,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
                                                       borderRadius: BorderRadius.all(
@@ -1395,7 +1394,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                           },
                                                           child: Container(
                                                             height: height * 0.03,
-                                                            width: width * 0.05,
+                                                            width: width * 0.02,
                                                             child: Icon(
                                                               Icons.remove,
                                                               size: height * 0.02,
@@ -1406,7 +1405,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                           padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                           child: Container(
                                                             height: height * 0.03,
-                                                            width: width * 0.1,
+                                                            width: width * 0.05,
                                                             decoration: BoxDecoration(
                                                               border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
                                                               borderRadius: BorderRadius.all(
@@ -1432,7 +1431,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                           },
                                                           child: Container(
                                                             height: height * 0.03,
-                                                            width: width * 0.05,
+                                                            width: width * 0.02,
 
                                                             child: Icon(
                                                               Icons.add,
@@ -1451,7 +1450,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Allow guest students",
                                                       style: TextStyle(
@@ -1491,7 +1490,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
                                                       style: TextStyle(
@@ -1531,7 +1530,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
                                                       style: TextStyle(
@@ -1600,7 +1599,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show my name",
                                                       style: TextStyle(
@@ -1640,7 +1639,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show my email",
                                                       style: TextStyle(
@@ -1680,7 +1679,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.1,
                                                     child: Text(
                                                       "Show Whatsapp Group",
                                                       style: TextStyle(
@@ -1737,7 +1736,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   Container(
-                                                    width: width * 0.5,
+                                                    width: width * 0.2,
                                                     child: Text(
                                                       "Make Assessment Inactive",
                                                       style: TextStyle(
