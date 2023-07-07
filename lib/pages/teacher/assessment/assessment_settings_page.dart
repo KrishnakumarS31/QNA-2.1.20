@@ -386,7 +386,10 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                    padding: EdgeInsets.only(left: height * 0.045,
+                        right: height * 0.045,
+                        bottom: height * 0.045),
+                        //bottom: height * 0.045),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -423,7 +426,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      "${assessment.subject} | ${assessment.topic}",
+                                      "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -448,7 +451,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Text(
-                                            "45",
+                                            "$totalMark",
                                             style: TextStyle(
                                                 fontSize: height * 0.016,
                                                 fontFamily: "Inter",
@@ -617,7 +620,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.45,
+                                    height: height * 0.38,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1045,7 +1048,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 });
                                           },
                                           child: Padding(
-                                            padding:  EdgeInsets.only(left : width * 0.03),
+                                            padding:  EdgeInsets.only(left : width * 0.03,bottom: width * 0.01),
                                             child: SizedBox(
                                               width: width * 0.4,
                                               child: TextField(
@@ -1074,11 +1077,11 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       ],
                                     ),
                                   ),
-                                ):SizedBox(),
+                                ):SizedBox(height:1.0),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.35,
+                                    height: height * 0.30,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1314,7 +1317,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.3,
+                                    height: height * 0.25,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1727,7 +1730,10 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                    padding: EdgeInsets.only(left: height * 0.045,
+                        right: height * 0.045,
+                        bottom: height * 0.045),
+                    //bottom: height * 0.045),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -1764,7 +1770,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      "${assessment.subject} | ${assessment.topic}",
+                                      "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -1789,7 +1795,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           Text(
-                                            "45",
+                                            "$totalMark",
                                             style: TextStyle(
                                                 fontSize: height * 0.016,
                                                 fontFamily: "Inter",
@@ -1958,7 +1964,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.45,
+                                    height: height * 0.38,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2386,7 +2392,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 });
                                           },
                                           child: Padding(
-                                            padding:  EdgeInsets.only(left : width * 0.03),
+                                            padding:  EdgeInsets.only(left : width * 0.03,bottom: width * 0.01),
                                             child: SizedBox(
                                               width: width * 0.4,
                                               child: TextField(
@@ -2415,11 +2421,11 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       ],
                                     ),
                                   ),
-                                ):SizedBox(),
+                                ):SizedBox(height:1.0),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.35,
+                                    height: height * 0.30,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2655,7 +2661,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.3,
+                                    height: height * 0.25,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),

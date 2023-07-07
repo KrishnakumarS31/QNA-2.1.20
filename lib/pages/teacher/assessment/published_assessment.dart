@@ -94,14 +94,9 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth<= 960 && constraints.maxWidth>=500) {
@@ -151,7 +146,9 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -886,7 +883,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
+                            SizedBox(height: height * 0.05),
                             Padding(
                               padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                               child: Row(
@@ -895,7 +892,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                      minimumSize: const Size(280, 48),
+                                      minimumSize: Size(width * 0.025, height * 0.05),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(39),
                                       ),
@@ -979,7 +976,9 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1714,7 +1713,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
+                            SizedBox(height: height * 0.05),
                             Padding(
                               padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                               child: Row(
@@ -1723,7 +1722,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                      minimumSize: const Size(280, 48),
+                                      minimumSize: Size(width * 0.025, height * 0.05),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(39),
                                       ),

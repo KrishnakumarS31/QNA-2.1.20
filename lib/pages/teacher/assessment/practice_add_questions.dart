@@ -456,7 +456,10 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -835,7 +838,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                           child: Text(
                                             "Edit",
                                             style: TextStyle(
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.02,
                                                 fontFamily: "Inter",
                                                 color:
                                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -880,8 +883,8 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                 suffixIcon:
                                 Column(children: [
                                   Container(
-                                      height: height * 0.053,
-                                      width: width * 0.1,
+                                      height: height * 0.035,
+                                      width: width * 0.07,
                                       decoration:  BoxDecoration(
                                         shape: BoxShape.circle,
                                         // borderRadius:
@@ -970,15 +973,18 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                         ),
                                       ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016),
+                                        Padding(
+                                          padding: EdgeInsets.only(left:height * 0.02),
+                                          child: Text(
+                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016),
+                                          ),
                                         ),
                                         Wrap(
                                           children: [
@@ -996,7 +1002,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                                   },
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.1,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1012,7 +1018,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                                   padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.15,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1030,27 +1036,31 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    setState(() {
-                                                      questionStart=questionStart+10;
-                                                    });
-                                                    getQuestionData(questionSearchController.text);
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right:height * 0.02),
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        questionStart=questionStart+10;
+                                                      });
+                                                      getQuestionData(questionSearchController.text);
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.1,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_right,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_right,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
                                                   ),
                                                 ),
+                                                SizedBox(height: height * 0.05,)
                                               ],
                                             ),
                                           ],
@@ -1298,7 +1308,10 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1677,7 +1690,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                           child: Text(
                                             "Edit",
                                             style: TextStyle(
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.02,
                                                 fontFamily: "Inter",
                                                 color:
                                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -1722,8 +1735,8 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                 suffixIcon:
                                 Column(children: [
                                   Container(
-                                      height: height * 0.053,
-                                      width: width * 0.1,
+                                      height: height * 0.035,
+                                      width: width * 0.07,
                                       decoration:  BoxDecoration(
                                         shape: BoxShape.circle,
                                         // borderRadius:
@@ -1812,15 +1825,18 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                         ),
                                       ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016),
+                                        Padding(
+                                          padding: EdgeInsets.only(left:height * 0.02),
+                                          child: Text(
+                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016),
+                                          ),
                                         ),
                                         Wrap(
                                           children: [
@@ -1838,7 +1854,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                                   },
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.1,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1854,7 +1870,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                                   padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.15,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1872,27 +1888,31 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    setState(() {
-                                                      questionStart=questionStart+10;
-                                                    });
-                                                    getQuestionData(questionSearchController.text);
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right:height * 0.02),
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        questionStart=questionStart+10;
+                                                      });
+                                                      getQuestionData(questionSearchController.text);
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.1,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_right,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_right,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
                                                   ),
                                                 ),
+                                                SizedBox(height: height * 0.05,)
                                               ],
                                             ),
                                           ],

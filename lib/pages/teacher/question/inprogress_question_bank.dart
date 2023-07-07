@@ -1419,7 +1419,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                       ),
                     )));
           }
-          else{
+          else {
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

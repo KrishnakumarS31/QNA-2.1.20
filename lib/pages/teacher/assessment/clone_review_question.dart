@@ -389,7 +389,9 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                    padding: EdgeInsets.only(left: height * 0.045,
+                        right: height * 0.045,
+                        bottom: height * 0.045),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -728,7 +730,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                       child: Text(
                                         "Edit",
                                         style: TextStyle(
-                                            fontSize: height * 0.015,
+                                            fontSize: height * 0.02,
                                             fontFamily: "Inter",
                                             color:
                                             const Color.fromRGBO(82, 165, 160, 1),
@@ -1184,7 +1186,9 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                    padding: EdgeInsets.only(left: height * 0.045,
+                        right: height * 0.045,
+                        bottom: height * 0.045),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -1523,7 +1527,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                       child: Text(
                                         "Edit",
                                         style: TextStyle(
-                                            fontSize: height * 0.015,
+                                            fontSize: height * 0.02,
                                             fontFamily: "Inter",
                                             color:
                                             const Color.fromRGBO(82, 165, 160, 1),

@@ -325,6 +325,7 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
 
   @override
   void initState() {
+    print("Inside Clone Assessment Landing Page");
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
@@ -341,14 +342,9 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth<= 960 && constraints.maxWidth>=500) {
@@ -398,7 +394,9 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                    padding: EdgeInsets.only(left: height * 0.045,
+                        right: height * 0.045,
+                        bottom: height * 0.045),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -448,7 +446,7 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      "${assessment.subject} | ${assessment.topic}",
+                                      "${assessment.getAssessmentModelClass} | ${assessment.subTopic}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -949,7 +947,9 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
                 body: Container(
                   color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                    padding: EdgeInsets.only(left: height * 0.045,
+                        right: height * 0.045,
+                        bottom: height * 0.045),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -999,7 +999,7 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      "${assessment.subject} | ${assessment.topic}",
+                                      "${assessment.getAssessmentModelClass} | ${assessment.subTopic}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",

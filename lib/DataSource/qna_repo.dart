@@ -258,6 +258,8 @@ class QnaRepo {
     debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print("Response Code");
+    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel =responseEntityFromJson(temp);
@@ -427,6 +429,8 @@ class QnaRepo {
     debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print("Status Code");
+    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);

@@ -399,14 +399,9 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth<= 960 && constraints.maxWidth>=500) {
@@ -456,7 +451,11 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -835,7 +834,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                           child: Text(
                                             "Edit",
                                             style: TextStyle(
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.02,
                                                 fontFamily: "Inter",
                                                 color:
                                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -880,8 +879,8 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                 suffixIcon:
                                 Column(children: [
                                   Container(
-                                      height: height * 0.053,
-                                      width: width * 0.1,
+                                      height: height * 0.035,
+                                      width: width * 0.07,
                                       decoration:  BoxDecoration(
                                         shape: BoxShape.circle,
                                         // borderRadius:
@@ -970,15 +969,18 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                         ),
                                       ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016),
+                                        Padding(
+                                          padding: EdgeInsets.only(left:height * 0.02),
+                                          child: Text(
+                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016),
+                                          ),
                                         ),
                                         Wrap(
                                           children: [
@@ -996,7 +998,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                                   },
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.1,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1012,7 +1014,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                                   padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.15,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1030,27 +1032,31 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    setState(() {
-                                                      questionStart=questionStart+10;
-                                                    });
-                                                    getQuestionData(questionSearchController.text);
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right:height * 0.02),
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        questionStart=questionStart+10;
+                                                      });
+                                                      getQuestionData(questionSearchController.text);
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.1,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_right,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_right,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
                                                   ),
                                                 ),
+                                                SizedBox(height: height * 0.05,)
                                               ],
                                             ),
                                           ],
@@ -1298,7 +1304,11 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1677,7 +1687,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                           child: Text(
                                             "Edit",
                                             style: TextStyle(
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.02,
                                                 fontFamily: "Inter",
                                                 color:
                                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -1722,8 +1732,8 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                 suffixIcon:
                                 Column(children: [
                                   Container(
-                                      height: height * 0.053,
-                                      width: width * 0.1,
+                                      height: height * 0.035,
+                                      width: width * 0.07,
                                       decoration:  BoxDecoration(
                                         shape: BoxShape.circle,
                                         // borderRadius:
@@ -1812,15 +1822,18 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                         ),
                                       ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016),
+                                        Padding(
+                                          padding: EdgeInsets.only(left:height * 0.02),
+                                          child: Text(
+                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016),
+                                          ),
                                         ),
                                         Wrap(
                                           children: [
@@ -1838,7 +1851,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                                   },
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.1,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1854,7 +1867,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                                   padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                   child: Container(
                                                     height: height * 0.03,
-                                                    width: width * 0.15,
+                                                    width: width * 0.09,
                                                     decoration: BoxDecoration(
                                                       border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                       borderRadius: BorderRadius.all(
@@ -1872,27 +1885,31 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    setState(() {
-                                                      questionStart=questionStart+10;
-                                                    });
-                                                    getQuestionData(questionSearchController.text);
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.1,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
+                                                Padding(
+                                                  padding: EdgeInsets.only(right:height * 0.02),
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      setState(() {
+                                                        questionStart=questionStart+10;
+                                                      });
+                                                      getQuestionData(questionSearchController.text);
+                                                    },
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.1,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.keyboard_double_arrow_right,
+                                                        size: height * 0.015,
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_right,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
                                                   ),
                                                 ),
+                                                SizedBox(height: height * 0.05,)
                                               ],
                                             ),
                                           ],

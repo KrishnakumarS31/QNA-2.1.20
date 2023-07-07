@@ -398,7 +398,10 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -980,7 +983,10 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

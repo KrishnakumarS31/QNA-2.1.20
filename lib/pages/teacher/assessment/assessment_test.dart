@@ -398,7 +398,9 @@ class AssessmentTestState extends State<AssessmentTest> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1173,7 +1175,9 @@ class AssessmentTestState extends State<AssessmentTest> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

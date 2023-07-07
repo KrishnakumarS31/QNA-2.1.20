@@ -413,7 +413,10 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -463,7 +466,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${getAssessmentModel.subject} | ${getAssessmentModel.topic}",
+                                          "${getAssessmentModel.getAssessmentModelClass} | ${getAssessmentModel.subTopic}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -690,7 +693,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.45,
+                                        height: height * 0.38,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1152,7 +1155,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.35,
+                                        height: height * 0.30,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1388,7 +1391,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.3,
+                                        height: height * 0.25,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1697,7 +1700,10 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -1747,7 +1753,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${getAssessmentModel.subject} | ${getAssessmentModel.topic}",
+                                          "${getAssessmentModel.getAssessmentModelClass} | ${getAssessmentModel.subTopic}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1974,7 +1980,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.45,
+                                        height: height * 0.38,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2436,7 +2442,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.35,
+                                        height: height * 0.30,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2672,7 +2678,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.3,
+                                        height: height * 0.25,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),

@@ -341,14 +341,9 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if (constraints.maxWidth<= 960 && constraints.maxWidth>=500) {
@@ -398,7 +393,11 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -704,7 +703,11 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                     body: Container(
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.only(right:width * 0.04,left:width * 0.04),
+                        padding: EdgeInsets.only(
+                            top: height * 0.023,
+                            left: height * 0.045,
+                            right: height * 0.045,
+                            bottom: height * 0.045),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
