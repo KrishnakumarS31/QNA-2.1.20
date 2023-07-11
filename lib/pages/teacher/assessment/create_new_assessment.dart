@@ -536,7 +536,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                                                       // AppLocalizations.of(
                                                                       //     context)!
                                                                       //     .assessment_title,
-                                                                      'Question Details',
+                                                                      'Assessment Details',
                                                                       style: TextStyle(
                                                                           fontSize: height *
                                                                               0.02,
@@ -1391,7 +1391,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                                                         // AppLocalizations.of(
                                                                         //     context)!
                                                                         //     .assessment_title,
-                                                                        'Question Details',
+                                                                        'Assessment Details',
                                                                         style: TextStyle(
                                                                             fontSize: height *
                                                                                 0.02,
@@ -2242,7 +2242,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                                                       // AppLocalizations.of(
                                                                       //     context)!
                                                                       //     .assessment_title,
-                                                                      'Question Details',
+                                                                      'Assessment Details',
                                                                       style: TextStyle(
                                                                           fontSize: height *
                                                                               0.02,

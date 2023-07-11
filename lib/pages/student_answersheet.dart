@@ -196,8 +196,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                               .totalQuestion['$index'][1] ==
                                               const Color(0xffdb2323)
                                               ? "Not Answered"
-                                              : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
-                                              Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
+                                              :values.data!.questions![index -
+                                              1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
+                                              // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
+                                              // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                           //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                           style:
                                           Provider
@@ -419,8 +421,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                       .totalQuestion['$index'][1] ==
                                                       const Color(0xffdb2323)
                                                       ? "Not Answered"
-                                                      : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
-                                                      Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
+                                                      :values.data!.questions![index -
+                                                      1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
+                                                      // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
+                                                      // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                                   //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                                   style:
                                                   Provider
@@ -642,8 +646,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                       .totalQuestion['$index'][1] ==
                                                       const Color(0xffdb2323)
                                                       ? "Not Answered"
-                                                      : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
-                                                      Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
+                                                      : values.data!.questions![index -
+                                                      1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
+                                                      // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
+                                                      // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                                   //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                                   style:
                                                   Provider

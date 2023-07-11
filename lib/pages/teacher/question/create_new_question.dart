@@ -695,7 +695,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                         ],
                                                       ),
                                                     )
-                                                        : Form(
+                                                        :
+                                                    Form(
                                                       key: _formKey,
                                                       child: Column(
                                                         children: [
@@ -799,7 +800,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     //           ),
                                                     //         ))):
-                                                        : Padding(
+                                                        :
+                                                    Padding(
                                                       padding: EdgeInsets.only(left:width * 0.02),
                                                       child: TextButton(
                                                         child: Text(

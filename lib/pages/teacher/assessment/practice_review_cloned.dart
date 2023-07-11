@@ -92,6 +92,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
       ),
       onPressed: () async {
         questionList.removeAt(index);
+        choiceText.removeAt(index);
         print(questionList.length);
         setState(() {
         });
@@ -903,6 +904,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
@@ -1705,6 +1707,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
@@ -2505,6 +2508,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);

@@ -29,6 +29,8 @@ class TeacherQuestionBank extends StatefulWidget {
 class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   bool agree = true;
   int pageNumber = 1;
+  int globalPageLimit = 10;
+  int globalPageNumber = 1;
   List<Question> questionList = [];
   String searchVal = '';
   TextEditingController teacherQuestionBankSearchController =
@@ -126,12 +128,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   searchGlobalQuestion() async {
     List<Question>? questions = [];
     ResponseEntity response =
-    await QnaService.getSearchQuestion(10, 1, teacherQuestionBankSearchController.text,userDetails);
+    await QnaService.getSearchQuestion(10, pageNumber, teacherQuestionBankSearchController.text,userDetails);
 
     if(response.code==200){
-      QuestionResponse questionResponse;
+
       questionResponse = QuestionResponse.fromJson(response.data);
-      questions = questionResponse.questions;
+      questions = questionResponse?.questions;
     }
     else{
       Navigator.push(
@@ -154,9 +156,11 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     }
 
     setState(() {
+      questionResponse;
       myQuestion=false;
       //questionList=[];
       questionList.addAll(questions!);
+      //globalPageLimit +=10;
       pageNumber++;
       searchVal = teacherQuestionBankSearchController.text;
     });
@@ -415,6 +419,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                       )),
                                                   onPressed: () {
                                                     setState(() {
+                                                      questionStart=0;
                                                       pageNumber=1;
                                                       questionList=[];
                                                     });
@@ -510,7 +515,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(questionList.length>11){
+                                                  if(questionResponse!.total_count!%10==questionList.length-10){
+                                                    setState(() {
+                                                      pageNumber--;
+                                                      questionStart=0;
+                                                      questionList.removeRange(questionList.length-(questionList.length-10), questionList.length);
+                                                    });
+                                                  }
+                                                  else if(questionList.length>10){
                                                     setState(() {
                                                       pageNumber--;
                                                       questionStart=questionStart-10;
@@ -879,6 +891,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                       )),
                                                   onPressed: () {
                                                     setState(() {
+                                                      questionStart=0;
                                                       pageNumber=1;
                                                       questionList=[];
                                                     });
@@ -974,7 +987,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(questionList.length>11){
+                                                  if(questionResponse!.total_count!%10==questionList.length-10){
+                                                    setState(() {
+                                                      pageNumber--;
+                                                      questionStart=0;
+                                                      questionList.removeRange(questionList.length-(questionList.length-10), questionList.length);
+                                                    });
+                                                  }
+                                                  else if(questionList.length>10){
                                                     setState(() {
                                                       questionStart=questionStart-10;
                                                       questionList.removeRange(questionList.length-10, questionList.length);
@@ -1335,6 +1355,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                     )),
                                                 onPressed: () {
                                                   setState(() {
+                                                    questionStart=0;
                                                     pageNumber=1;
                                                     questionList=[];
                                                   });
@@ -1425,7 +1446,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(questionList.length>11){
+                                                  if(questionResponse!.total_count!%10==questionList.length-10){
+                                                    setState(() {
+                                                      pageNumber--;
+                                                      questionStart=0;
+                                                      questionList.removeRange(questionList.length-(questionList.length-10), questionList.length);
+                                                    });
+                                                  }
+                                                  else if(questionList.length>10){
                                                     setState(() {
                                                       pageNumber--;
                                                       questionStart=questionStart-10;

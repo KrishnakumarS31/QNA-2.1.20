@@ -49,13 +49,32 @@ class StudQuestionState extends State<StudQuestion> {
   setTime(){
       myDuration = Duration(minutes: widget.ques.data!.assessmentDuration!);
   }
-
+  @override
+  void didChangeDependencies() {
+    selected = Provider.of<Questions>(context, listen: false).totalQuestion[
+    '${context.watch<QuestionNumProvider>().questionNum}'][0];
+    ansController.text = Provider.of<Questions>(context, listen: false)
+        .totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0]
+        .toString()
+        .substring(
+        1,
+        Provider.of<Questions>(context, listen: false)
+            .totalQuestion[
+        '${context.watch<QuestionNumProvider>().questionNum}']
+        [0]
+            .toString()
+            .length -
+            1);
+    super.didChangeDependencies();
+  }
   @override
   void initState() {
+    // ansController.selection = TextSelection.fromPosition(TextPosition(offset: ansController.text.length,));
     setTime();
     values = widget.ques;
     context.read<Questions>().createQuesAns(values.data!.questions!.length);
     context.read<QuestionNumProvider>().reset();
+
     if(widget.ques.data!.assessmentType=='test') {
       countdownTimer =
           Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
@@ -145,23 +164,6 @@ class StudQuestionState extends State<StudQuestion> {
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
 
-    selected = Provider.of<Questions>(context, listen: false).totalQuestion[
-        '${context.watch<QuestionNumProvider>().questionNum}'][0];
-    ansController.text = Provider.of<Questions>(context, listen: false)
-        .totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0]
-        .toString()
-        .substring(
-            1,
-            Provider.of<Questions>(context, listen: false)
-                    .totalQuestion[
-                        '${context.watch<QuestionNumProvider>().questionNum}']
-                        [0]
-                    .toString()
-                    .length -
-                1);
-    ansController.selection =
-        TextSelection.collapsed(offset: ansController.text.length);
-    // });
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
@@ -1755,6 +1757,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                     const EdgeInsets.all(8.0),
                                                 child: TextField(
                                                   onChanged: (ans) {
+                                                    print(ansController.text);
                                                     if (ansController
                                                         .text.isEmpty) {
                                                       selected = [];
@@ -1809,8 +1812,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                                 color: Colors
                                                                     .black54)),
                                                   ),
-                                                  maxLines: (height * 0.013)
-                                                      .round(), //or null
+                                                  maxLines: (height * 0.013).round(), //or null
                                                 ),
                                               ))
                                           : ChooseWidget(

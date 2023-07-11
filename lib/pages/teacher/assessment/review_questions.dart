@@ -72,6 +72,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
         Navigator.of(context).pop();
       },
     );
+
     Widget continueButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -93,6 +94,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
         print(questionList.length);
         print(index);
         questionList.removeAt(index);
+        questionList.remove(questionList[index].choices);
         setState(() {
         });
         Navigator.of(context).pop();
@@ -325,8 +327,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
+    double width = MediaQuery.of(context)
         .size
         .width;
     double height = MediaQuery
@@ -2787,6 +2788,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
         print(widget.quesIndex);
         print(widget.quesList.length);
         widget.quesList.removeAt(widget.quesIndex);
+        widget.quesList.remove(widget.question.choices);
         //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
         setState(() {
           widget.quesList;

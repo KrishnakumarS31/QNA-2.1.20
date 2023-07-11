@@ -101,7 +101,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
       setState(() {
         assessmentPresent=true;
         searchValue = searchVal;
-        assessments.addAll(allAssessment);
+        assessments = allAssessment;
+        // assessments.addAll(allAssessment);
         pageLimit++;
       });
     }
@@ -1746,7 +1747,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         inputFormatters: [
                                                           FilteringTextInputFormatter
                                                               .allow(
-                                                              RegExp('[a-zA-Z0-9 ]')),
+                                                              RegExp('[a-zA-Z0-9, ]')),
                                                         ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(

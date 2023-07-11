@@ -321,6 +321,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
 
   @override
   void initState() {
+    print("INSIDE DRAFT Assessment Settings");
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
@@ -1549,14 +1550,14 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     ));
                                               });
                                           ResponseEntity statusCode = ResponseEntity();
-                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!,userDetails);
                                           if (statusCode.code == 200) {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
 
                                           }
-                                          Navigator.of(context).pop();
+                                          //Navigator.of(context).pop();
 
                                         },
                                         child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
@@ -2889,14 +2890,14 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     ));
                                               });
                                           ResponseEntity statusCode = ResponseEntity();
-                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!,userDetails);
                                           if (statusCode.code == 200) {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
 
                                           }
-                                          Navigator.of(context).pop();
+                                          //Navigator.of(context).pop();
 
                                         },
                                         child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
@@ -4228,14 +4229,14 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     ));
                                               });
                                           ResponseEntity statusCode = ResponseEntity();
-                                          statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!,userDetails);
                                           if (statusCode.code == 200) {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
 
                                           }
-                                          Navigator.of(context).pop();
+                                          //Navigator.of(context).pop();
 
                                         },
                                         child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
