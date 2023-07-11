@@ -296,11 +296,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                     formKey.currentState!
                                                         .validate();
                                                   },
-                                                  inputFormatters: [
-                                                    FilteringTextInputFormatter
-                                                        .allow(
-                                                        RegExp('[a-zA-Z0-9]')),
-                                                  ],
+                                                  // inputFormatters: [
+                                                  //   FilteringTextInputFormatter
+                                                  //       .allow(
+                                                  //       RegExp('[a-zA-Z0-9]')),
+                                                  // ],
                                                   keyboardType: TextInputType.text,
                                                   decoration: InputDecoration(
                                                     helperStyle: TextStyle(
@@ -413,11 +413,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                     formKey.currentState!
                                                         .validate();
                                                   },
-                                                  inputFormatters: [
-                                                    FilteringTextInputFormatter
-                                                        .allow(
-                                                        RegExp('[a-zA-Z0-9 ]')),
-                                                  ],
+                                                  // inputFormatters: [
+                                                  //   FilteringTextInputFormatter
+                                                  //       .allow(
+                                                  //       RegExp('[a-zA-Z0-9 ]')),
+                                                  // ],
                                                   keyboardType: TextInputType.text,
                                                   decoration: InputDecoration(
                                                     helperStyle: TextStyle(
@@ -957,11 +957,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           formKey.currentState!
                                                               .validate();
                                                         },
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(
-                                                              RegExp('[a-zA-Z0-9]')),
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   FilteringTextInputFormatter
+                                                        //       .allow(
+                                                        //       RegExp('[a-zA-Z0-9]')),
+                                                        // ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           helperStyle: TextStyle(
@@ -1074,11 +1074,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           formKey.currentState!
                                                               .validate();
                                                         },
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(
-                                                              RegExp('[a-zA-Z0-9 ]')),
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   FilteringTextInputFormatter
+                                                        //       .allow(
+                                                        //       RegExp('[a-zA-Z0-9 ]')),
+                                                        // ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           helperStyle: TextStyle(
@@ -1627,11 +1627,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           formKey.currentState!
                                                               .validate();
                                                         },
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(
-                                                              RegExp('[a-zA-Z0-9]')),
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   FilteringTextInputFormatter
+                                                        //       .allow(
+                                                        //       RegExp('[a-zA-Z0-9]')),
+                                                        // ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           helperStyle: TextStyle(
@@ -1744,11 +1744,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           formKey.currentState!
                                                               .validate();
                                                         },
-                                                        inputFormatters: [
-                                                          FilteringTextInputFormatter
-                                                              .allow(
-                                                              RegExp('[a-zA-Z0-9, ]')),
-                                                        ],
+                                                        // inputFormatters: [
+                                                        //   FilteringTextInputFormatter
+                                                        //       .allow(
+                                                        //       RegExp('[a-zA-Z0-9, ]')),
+                                                        // ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           helperStyle: TextStyle(

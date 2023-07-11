@@ -208,7 +208,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                           top: height * 0.023,
                           left: height * 0.045,
                           right: height * 0.045,
-                      bottom: height * 0.045),
+                          bottom: height * 0.045),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -399,6 +399,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                   setState(() {
                                                     pageNumber=1;
                                                     assessmentList=[];
+                                                    assessmentStart=0;
                                                   });
                                                   onlyMyAssessments?
                                                   getData(teacherQuestionBankSearchController.text):
@@ -660,7 +661,14 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(assessmentList.length>11){
+                                                  if(int.parse(totalAssessments)  ==assessmentList.length){
+                                                    setState(() {
+                                                      pageNumber--;
+                                                      assessmentStart=assessmentStart-10;
+                                                      assessmentList.removeRange(assessmentList.length-(int.parse(totalAssessments)%10), assessmentList.length);
+                                                    });
+                                                  }
+                                                  else if(assessmentList.length>10){
                                                     setState(() {
                                                       pageNumber--;
                                                       assessmentStart=assessmentStart-10;
@@ -1174,9 +1182,9 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                   scrollDirection: Axis.vertical,
                   child: Padding(
                       padding: EdgeInsets.only(
-                        top: height * 0.023,
-                        left: height * 0.5,
-                        right: height * 0.5),
+                          top: height * 0.023,
+                          left: height * 0.5,
+                          right: height * 0.5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -1369,6 +1377,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                   setState(() {
                                                     pageNumber=1;
                                                     assessmentList=[];
+                                                    assessmentStart=0;
                                                   });
                                                   onlyMyAssessments?
                                                   getData(teacherQuestionBankSearchController.text):
@@ -1640,7 +1649,14 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(assessmentList.length>11){
+                                                  if(int.parse(totalAssessments)  ==assessmentList.length){
+                                                    setState(() {
+                                                      pageNumber--;
+                                                      assessmentStart=assessmentStart-10;
+                                                      assessmentList.removeRange(assessmentList.length-(int.parse(totalAssessments)%10), assessmentList.length);
+                                                    });
+                                                  }
+                                                  else if(assessmentList.length>10){
                                                     setState(() {
                                                       pageNumber--;
                                                       assessmentStart=assessmentStart-10;
@@ -2383,6 +2399,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                   setState(() {
                                                     pageNumber=1;
                                                     assessmentList=[];
+                                                    assessmentStart=0;
                                                   });
                                                   onlyMyAssessments?
                                                   getData(teacherQuestionBankSearchController.text):
@@ -2641,7 +2658,14 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(assessmentList.length>11){
+                                                  if(int.parse(totalAssessments)  ==assessmentList.length){
+                                                    setState(() {
+                                                      pageNumber--;
+                                                      assessmentStart=assessmentStart-10;
+                                                      assessmentList.removeRange(assessmentList.length-(int.parse(totalAssessments)%10), assessmentList.length);
+                                                    });
+                                                  }
+                                                  else if(assessmentList.length>10){
                                                     setState(() {
                                                       pageNumber--;
                                                       assessmentStart=assessmentStart-10;
