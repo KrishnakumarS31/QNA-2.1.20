@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'edit_global_question_popup.dart';
 import 'edit_question_popup.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:qna_test/DataSource/design.dart';
 
 class TeacherQuestionBank extends StatefulWidget {
   const TeacherQuestionBank({
@@ -184,14 +186,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 backgroundColor: Colors.white,
                 appBar:
                 AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: Icon(
                       Icons.chevron_left,
                       size: height * 0.06,
-                      color: Colors.black,
+                      color: appBarChevronColor,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -652,14 +654,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 backgroundColor: Colors.white,
                 appBar:
                 AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: Icon(
                       Icons.chevron_left,
                       size: height * 0.06,
-                      color: Colors.black,
+                      color: appBarChevronColor,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -1123,14 +1125,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 backgroundColor: Colors.white,
                 appBar:
                 AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: Icon(
                       Icons.chevron_left,
                       size: height * 0.06,
-                      color: Colors.black,
+                      color: appBarChevronColor,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -1436,7 +1438,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
+                                        'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count ?? 0}',
                                         style: TextStyle(
                                             color: const Color.fromRGBO(102, 102, 102, 0.3),
                                             fontFamily: 'Inter',
@@ -1535,63 +1537,11 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             ),
                           ),
 
-                          // Text(
-                          //   AppLocalizations.of(context)!.my_qn_bank,
-                          //   //"My Question Bank",
-                          //   textAlign: TextAlign.left,
-                          //   style: TextStyle(
-                          //     color: const Color.fromRGBO(82, 165, 160, 1),
-                          //     fontSize: height * 0.02,
-                          //     fontFamily: "Inter",
-                          //     fontWeight: FontWeight.w700,
-                          //   ),
-                          // ),
-                          // SizedBox(height: height * 0.01),
-                          // Text(
-                          //   AppLocalizations.of(context)!.tap_to_review,
-                          //   //"Tap to Review/Edit/Delete",
-                          //   style: TextStyle(
-                          //     color: const Color.fromRGBO(153, 153, 153, 1),
-                          //     fontSize: height * 0.015,
-                          //     fontFamily: "Inter",
-                          //     fontWeight: FontWeight.w400,
-                          //   ),
-                          // ),
-                          // SizedBox(height: height * 0.01),
+
                           Column(children: [
-                            // for (Question i in questionList)
-                            //   QuestionPreview(
-                            //     height: height,
-                            //     width: width,
-                            //     question: i,
-                            //   ),
+
                             SizedBox(height: height * 0.02),
-                            // MouseRegion(
-                            //     cursor: SystemMouseCursors.click,
-                            //     child: GestureDetector(
-                            //       onTap: () {
-                            //         getQuestionData();
-                            //       },
-                            //       child: Row(
-                            //           mainAxisAlignment: MainAxisAlignment.center,
-                            //           children: [
-                            //             Text(
-                            //               AppLocalizations.of(context)!.view_more,
-                            //               //"View More",
-                            //               style: TextStyle(
-                            //                 color: const Color.fromRGBO(28, 78, 80, 1),
-                            //                 fontSize: height * 0.0175,
-                            //                 fontFamily: "Inter",
-                            //                 fontWeight: FontWeight.w600,
-                            //               ),
-                            //             ),
-                            //             const Icon(
-                            //               Icons.keyboard_arrow_down,
-                            //               color: Color.fromRGBO(28, 78, 80, 1),
-                            //             ),
-                            //           ]),
-                            //     )),
-                            // SizedBox(height: height * 0.02),
+
                             Center(
                               child: SizedBox(
                                 width: width * 0.8,

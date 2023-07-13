@@ -298,7 +298,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                     ),
                                     child: Column(
                                       children: [
-                                        showIcon==Icons.expand_circle_down_outlined?
+                                        showIcon==Icons.arrow_circle_down_outlined?
                                         Column(
                                           children: [
                                             Container(
@@ -3735,7 +3735,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
-                                        showIcon==Icons.expand_circle_down_outlined
+                                        showIcon==Icons.arrow_circle_down_outlined
                                             ?
                                         Column(
                                           children: [
@@ -5327,13 +5327,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
   }
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_down_outlined;
       });
     }
   }

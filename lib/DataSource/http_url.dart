@@ -1,4 +1,6 @@
 //const domainName = "https://dev.qnatest.com";
+
+
 const domainName = "https://sssuhe.qnatest.com";
 const usersDomain = "$domainName/api/v1/users";
 const assessmentDomain = "$domainName/api/v1/assessment";

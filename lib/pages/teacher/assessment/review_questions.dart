@@ -72,7 +72,6 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
         Navigator.of(context).pop();
       },
     );
-
     Widget continueButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -94,7 +93,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
         print(questionList.length);
         print(index);
         questionList.removeAt(index);
-        questionList.remove(questionList[index].choices);
+        choiceText.removeAt(index);
         setState(() {
         });
         Navigator.of(context).pop();
@@ -257,52 +256,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
     //Navigator.of(context).pop();
   }
 
-  getInitData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    List<questionModel.Question> questions = [];
-    if (responseEntity.code == 200) {
-      questions = List<questionModel.Question>.from(
-          responseEntity.data.map((x) => questionModel.Question.fromJson(x)));
-    }
-    else{
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
-            //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
-          ),
-        ),
-      );
-    }
-    for(int j=0;j<questionList.length;j++){
-      List<String> chTemp=[];
-      if (questionList[j].question != "MCQ") {
-        for (int i = 0; i < questionList[j].choices!.length; i++) {
-          if (questionList[j].choices![i].rightChoice!) {
-            chTemp.add(questionList[j].choices![i].choiceText!);
-          }
-        }
-      }
-      temp.add(chTemp);
-    }
-    setState(() {
-      pageNumber++;
-      questionList.addAll(questions);
-      //pageNumber++;
-      //searchVal = search;
-    });
-    //Navigator.of(context).pop();
-  }
+
 
   @override
   void initState() {
@@ -327,7 +281,8 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context)
+    double width = MediaQuery
+        .of(context)
         .size
         .width;
     double height = MediaQuery
@@ -983,6 +938,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
@@ -1776,6 +1732,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
@@ -2570,6 +2527,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
@@ -2788,7 +2746,6 @@ class _QuestionPreviewState extends State<QuestionPreview> {
         print(widget.quesIndex);
         print(widget.quesList.length);
         widget.quesList.removeAt(widget.quesIndex);
-        widget.quesList.remove(widget.question.choices);
         //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
         setState(() {
           widget.quesList;

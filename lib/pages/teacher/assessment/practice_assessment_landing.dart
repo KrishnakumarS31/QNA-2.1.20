@@ -2218,6 +2218,8 @@ class _QuestionCardState extends State<QuestionCard> {
               ),
             ),
             SizedBox(height: widget.height * 0.01),
+            widget.question.questionType == 'MCQ'
+            ?
             Padding(
               padding: EdgeInsets.only( left : widget.width * 0.03),
               child: Text(
@@ -2231,8 +2233,10 @@ class _QuestionCardState extends State<QuestionCard> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-            ),
+            )
+            :
             SizedBox(height: widget.height * 0.01),
+
             Padding(
               padding: EdgeInsets.only( left : widget.width * 0.03),
               child: Text(

@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
+import 'package:qna_test/DataSource/design.dart';
 import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Components/custom_radio_option.dart';
 import '../../../DataSource/http_url.dart';
@@ -372,14 +373,14 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -946,6 +947,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1075,6 +1077,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1876,6 +1879,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -2004,6 +2008,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -2455,14 +2460,14 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -3021,6 +3026,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -3159,6 +3165,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                               Align(
                                                               alignment:Alignment.centerLeft,
                                                               child: SizedBox(
@@ -3959,6 +3966,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -4091,6 +4099,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -4523,14 +4532,14 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -4896,6 +4905,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
+                                                            Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -5024,6 +5034,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -5816,6 +5827,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -5944,6 +5956,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                SizedBox(width: height * 0.01),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -6405,13 +6419,13 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
   }
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_up_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_up_outlined;
       });
     }
   }

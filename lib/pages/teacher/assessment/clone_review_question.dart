@@ -95,6 +95,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
           assessment.removeQuestions?.add(questionList[index].questionId);
         }
         questionList.removeAt(index);
+        choiceText.removeAt(index);
         setState(() {
         });
         Navigator.of(context).pop();
@@ -2582,6 +2583,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                             alertDialogDeleteQuestion(context,height,i);
                                                             setState(() {
                                                               questionList;
+                                                              choiceText;
                                                             });
 
                                                             //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
