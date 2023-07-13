@@ -1,44 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_result_submitted.dart';
-import 'package:qna_test/Pages/teacher_result_total.dart';
-import 'package:qna_test/pages/teacher_result_inprogress.dart';
-import '../Components/custom_card.dart';
-import '../Components/end_drawer_menu_teacher.dart';
-import '../Components/today_date.dart';
-import '../EntityModel/get_result_model.dart';
+import 'package:qna_test/Components/custom_result_total_card.dart';
+import "package:qna_test/EntityModel/get_result_details_model.dart";
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/pages/teacher/result/teacher_result_individual_student.dart';
+import '../../../Components/custom_card.dart';
+import '../../../Components/end_drawer_menu_teacher.dart';
+import '../../../Entity/Teacher/response_entity.dart';
+import '../../../EntityModel/get_result_model.dart';
+import '../../../Services/qna_service.dart';
+import '../../../Components/today_date.dart';
 
-class TeacherResultAssessment extends StatefulWidget {
-  TeacherResultAssessment({
+class TeacherResultTotal extends StatefulWidget {
+  const TeacherResultTotal({
     Key? key,
     required this.result,
     this.userId,
-    this.advisorName,
-    this.inProgressResults,
-    this.submittedResults,
-    this.advisorEmail
   }) : super(key: key);
-  GetResultModel result;
+  final GetResultModel result;
   final int? userId;
-  final String? advisorName;
-  final String? advisorEmail;
-  List<AssessmentResults>? inProgressResults;
-  List<AssessmentResults>? submittedResults;
-
   @override
-  TeacherResultAssessmentState createState() => TeacherResultAssessmentState();
+  TeacherResultTotalState createState() => TeacherResultTotalState();
 }
 
-class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
+class TeacherResultTotalState extends State<TeacherResultTotal> {
   IconData showIcon = Icons.arrow_circle_down_outlined;
-  int totalMarks =0;
+  int resultStart=0;
+  int pageLimit = 1;
+  bool loading = true;
+  int totalCount=0;
+  GetResultDetailsModel results = GetResultDetailsModel();
+  GetResultDetailsModel allResults = GetResultDetailsModel();
+
+
   @override
   void initState() {
+    Future.delayed(Duration.zero, (){getData();});
     super.initState();
-
   }
 
+  Future<int> getData() async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    ResponseEntity response =
+    await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"total");
+    //widget.userId
+    if(response.code == 200) {
+      Navigator.pop(context);
+      GetResultDetailsModel  resultsModelResponse=GetResultDetailsModel.fromJson(response.data);
+      totalCount = resultsModelResponse.totalCount ?? 0;
+      allResults = resultsModelResponse;
+      setState(() {
+        results=allResults;
+        loading = false;
+      });
+    }
+    else{
+      return 400;
+    }
+    return response.code!;
+  }
 
   changeIcon(IconData pramIcon) {
     if (pramIcon == Icons.arrow_circle_down_outlined) {
@@ -52,29 +80,25 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+
     int? assessmentStartDate = widget.result.assessmentStartDate;
     int? assessmentEndDate = widget.result.assessmentEndDate;
     int? assessmentDuration = widget.result.assessmentDuration;
-    var d = DateTime.fromMicrosecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    var end = DateTime.fromMicrosecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    DateTime now = DateTime.now();
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth > 960) {
-        return Center(
+        return
+          Center(
             child: SizedBox(
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
-                endDrawer: const EndDrawerMenuTeacher(),
                 resizeToAvoidBottomInset: false,
+                endDrawer: const EndDrawerMenuTeacher(),
                 backgroundColor: Colors.white,
                 appBar: AppBar(
                   iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: height * 0.05),
@@ -108,8 +132,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                 ),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
+                  physics: const ClampingScrollPhysics(),
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: height * 0.005, left: height * 0.5,right: height * 0.5),
+                    padding: EdgeInsets.only(bottom: height * 0.00500, left: height * 0.5,right: height * 0.5),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -130,8 +155,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                             clipBehavior: Clip.none,
                             children: [
                               showIcon == Icons.arrow_circle_down_outlined
-                                  ?
-                              Container(
+                                  ? Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                         color: const Color.fromRGBO(153, 153, 153, 0.25),),
@@ -166,8 +190,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                       ),
                                     ],
                                   ))
-                                  :
-                              Container(
+                                  : Container(
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                       color: const Color.fromRGBO(
@@ -353,7 +376,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.result.guestStudentAllowed == true
+                                            widget.result.assessmentSettings!.allowGuestStudent == true
                                                 ? AppLocalizations.of(
                                                 context)!.allowed
                                             //"Allowed"
@@ -380,40 +403,45 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          const Text(
-                                            "-",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        children: [
                                           Text(
-                                            AppLocalizations.of(context)!.published_looq,
+                                            widget.result.assessmentSettings!.showAnswerSheetDuringPractice == true
+                                                ? AppLocalizations.of(
+                                                context)!.viewable
+                                            //"Allowed"
+                                                : AppLocalizations.of(
+                                                context)!.not_viewable,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          const Text(
-                                            "-",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
                                     ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(8.0),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       Text(
+                                    //         AppLocalizations.of(context)!.published_looq,
+                                    //         style: const TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w600),
+                                    //       ),
+                                    //       const Text(
+                                    //         "-",
+                                    //         style: TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w400),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
@@ -427,7 +455,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.advisorName ?? "",
+                                            widget.result.assessmentSettings!.advisorName ?? " - ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -450,7 +478,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.advisorEmail??"",
+                                            widget.result.assessmentSettings!.advisorEmail ?? " - ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -460,29 +488,29 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            AppLocalizations.of(context)!.whatsapp_link,
-                                            style: const TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          Text(
-                                            widget.result.url ?? "" ,
-                                            style: const TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(8.0),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       Text(
+                                    //         AppLocalizations.of(context)!.whatsapp_link,
+                                    //         style: const TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w600),
+                                    //       ),
+                                          // Text(
+                                          //   widget.result.url ?? "" ,
+                                          //   style: const TextStyle(
+                                          //       color: Color.fromRGBO(102, 102, 102, 1),
+                                          //       // fontSize: widget.height * 0.013,
+                                          //       fontFamily: "Inter",
+                                          //       fontWeight: FontWeight.w400),
+                                          // ),
+                                    //     ],
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -491,235 +519,163 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Row(children: <Widget>[
-                            const Expanded(
-                                child: Divider(
-                                  color: Color.fromRGBO(233, 233, 233, 1),
-                                  thickness: 2,
-                                )),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 10, left: 10),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                AppLocalizations.of(context)!.total_parti_list,
+                                //'Total Participants List(0)'
+                                style: TextStyle(
+                                    fontSize: height * 0.022,
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0,right :8),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
                               child: Text(
                                 AppLocalizations.of(context)!
-                                    .participation_statistics,
-                                //'Participation statistics',
+                                    .tap_to_student_details,
+                                //'Tap on respective student for details',
                                 style: TextStyle(
-                                    fontSize: height * 0.0187,
-                                    color: const Color.fromRGBO(153, 153, 153, 1),
+                                    fontSize: height * 0.015,
+                                    color: const Color.fromRGBO(148, 148, 148, 1),
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
-                            const Expanded(
-                                child: Divider(
-                                  color: Color.fromRGBO(233, 233, 233, 1),
-                                  thickness: 2,
-                                )),
-                          ]),
+                          ),
                           SizedBox(
                             height: height * 0.02,
                           ),
+                          for (int index=resultStart;index<results.assessmentResults!.length;index++)
+                            Column(
+                              children: [
+                                MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType
+                                                .rightToLeft,
+                                            child: TeacherResultIndividualStudent(
+                                              result: widget.result,
+                                              results: allResults,
+                                              index: index,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: ResultTotalCard(
+                                          height: height,
+                                          width: width,
+                                          results: allResults,
+                                          index: index),
+                                    )),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                              ],
+                            ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: TeacherResultTotal(
-                                              result: widget.result,
-                                              userId: widget.userId,
-                                              advisorName: widget.advisorName,
-                                              advisorEmail:widget.advisorEmail
+                              Text(
+                                'Showing ${resultStart + 1} to ${resultStart+10 <results.assessmentResults!.length ? resultStart+10:results.totalCount} of ${results.totalCount ?? 0}',
+                                // 'Showing ${resultStart + 1} to ${resultStart+10 <results.totalCount ? resultStart+10:results.assessmentResults!.length} of ${results.assessmentResults!.length}',
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: height * 0.02),
+                              ),
+                              Wrap(
+                                children: [
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: (){
+                                          if(results.assessmentResults!.length>10){
+                                            setState(() {
+                                              results.assessmentResults!.length=results.assessmentResults!.length-resultStart < 10 ? 10 :results.assessmentResults!.length- 10;
+                                              resultStart=resultStart-10;
+                                            });}
+                                        },
+                                        child: Container(
+                                          height: height * 0.03,
+                                          width: width * 0.03,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Icon(
+                                            Icons.keyboard_double_arrow_left,
+                                            size: height * 0.015,
+                                            color: const Color.fromRGBO(28, 78, 80, 1),),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                        child: Container(
+                                          height: height * 0.03,
+                                          width: width * 0.03,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.016),
+                                            ),
                                           ),
                                         ),
-                                      );
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color:
-                                            const Color.fromRGBO(
-                                                233, 233, 233, 1),
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      height: height * 0.1875,
-                                      width: width * 0.1277,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text(
-                                            widget.result.totalAttempts !=
-                                                null ? "${widget.result
-                                                .totalAttempts} " : "0",
-                                            style: TextStyle(
-                                                fontSize: height * 0.0287,
-                                                color: const Color.fromRGBO(
-                                                    0, 167, 204, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700),
-                                          ),
-
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .total_small,
-                                            //  AppLocalizations.of(context)!.total_small,
-                                            //'Total',
-                                            style: TextStyle(
-                                                fontSize: height * 0.015,
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_circle_right_outlined,
-                                            color: Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                          )
-                                        ],
                                       ),
-                                    ),
-                                  )),
-                              MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: TeacherResultSubmitted(
-                                              submittedArray: widget
-                                                  .submittedResults,
-                                              result: widget.result,
-                                              advisorName: widget.advisorName,
-                                              advisorEmail:widget.advisorEmail),
+                                      GestureDetector(
+                                        onTap: (){
+                                          if(results.assessmentResults!.length< results.assessmentResults!.length){
+                                            setState(() {
+                                              results.assessmentResults!.length= results.assessmentResults!.length-resultStart > 0 ? results.assessmentResults!.length-resultStart :results.assessmentResults!.length;
+                                              resultStart=resultStart+10;
+                                            });
+                                          }
+                                        },
+                                        child: Container(
+                                          height: height * 0.03,
+                                          width: width * 0.03,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Icon(
+                                            Icons.keyboard_double_arrow_right,
+                                            size: height * 0.015,
+                                            color: const Color.fromRGBO(28, 78, 80, 1),),
                                         ),
-                                      );
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color:
-                                            const Color.fromRGBO(
-                                                233, 233, 233, 1),
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      height: height * 0.1875,
-                                      width: width * 0.1277,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text(widget.result
-                                              .totalCompletedAttempts != null
-                                              ? "${widget.result
-                                              .totalCompletedAttempts} "
-                                              : "0",
-                                            style: TextStyle(
-                                                fontSize: height * 0.0287,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .submitted_small,
-                                            //'Submitted',
-                                            style: TextStyle(
-                                                fontSize: height * 0.015,
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_circle_right_outlined,
-                                            color: Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                          )
-                                        ],
                                       ),
-                                    ),
-                                  )),
-                              MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: TeacherResultInProgress(
-                                              inProgressArray: widget
-                                                  .inProgressResults,
-                                              result: widget.result,
-                                              advisorName: widget.advisorName,
-                                              advisorEmail:widget.advisorEmail),
-                                        ),
-                                      );
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color:
-                                            const Color.fromRGBO(
-                                                233, 233, 233, 1),
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      height: height * 0.1875,
-                                      width: width * 0.1277,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text(
-                                            widget.result
-                                                .totalInprogressAttempts !=
-                                                null
-                                                ? '${widget.result
-                                                .totalInprogressAttempts}'
-                                                : "0",
-                                            style: TextStyle(
-                                                fontSize: height * 0.0287,
-                                                color: const Color.fromRGBO(
-                                                    255, 153, 0, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .in_progress,
-                                            //'In Progress',
-                                            style: TextStyle(
-                                                fontSize: height * 0.015,
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          const Icon(
-                                            Icons.arrow_circle_right_outlined,
-                                            color: Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ],
                           ),
                           SizedBox(
-                            height: height * 0.03,
-                          )
+                            height: height * 0.02,
+                          ),
                         ]),
                   ),
                 )))));
@@ -729,8 +685,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
-                  endDrawer: const EndDrawerMenuTeacher(),
                   resizeToAvoidBottomInset: false,
+                  endDrawer: const EndDrawerMenuTeacher(),
                   backgroundColor: Colors.white,
                   appBar: AppBar(
                     iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: height * 0.05),
@@ -764,6 +720,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                   ),
                   body: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
+                    physics: const ClampingScrollPhysics(),
                     child: Padding(
                       padding: EdgeInsets.only(
                           top: height * 0.023,
@@ -775,11 +732,11 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                             Padding(
                               padding: const EdgeInsets.only(top:8.0,bottom:8.0),
                               child: CustomCard(
-                                  height: height,
-                                  width: width,
-                                  //subject: results[index].subject,
-                                  result: widget.result,
-                                  isShowTotal: true,
+                                height: height,
+                                width: width,
+                                //subject: results[index].subject,
+                                result: widget.result,
+                                isShowTotal: true,
                               ),
                             ),
                             SizedBox(
@@ -789,14 +746,13 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                               clipBehavior: Clip.none,
                               children: [
                                 showIcon == Icons.arrow_circle_down_outlined
-                                    ?
-                                Container(
+                                    ? Container(
                                     decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color.fromRGBO(153, 153, 153, 0.25),),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(5)
-                                    )),
+                                        border: Border.all(
+                                          color: const Color.fromRGBO(153, 153, 153, 0.25),),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(5)
+                                        )),
                                     // height: height * 0.31,
                                     child:Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -825,8 +781,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         ),
                                       ],
                                     ))
-                                    :
-                                Container(
+                                    : Container(
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                         color: const Color.fromRGBO(
@@ -989,7 +944,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Text(
-                                            widget.result.totalAttempts != null ? "${widget.result.totalAttempts} " : "0",
+                                              widget.result.totalAttempts != null ? "${widget.result.totalAttempts} " : "0",
                                               style: const TextStyle(
                                                   color: Color.fromRGBO(102, 102, 102, 1),
                                                   // fontSize: widget.height * 0.013,
@@ -1012,12 +967,12 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Text(
-                                                widget.result.guestStudentAllowed == true
-                                                    ? AppLocalizations.of(
-                                                    context)!.allowed
-                                                //"Allowed"
-                                                    : AppLocalizations.of(
-                                                    context)!.not_allowed,
+                                              widget.result.assessmentSettings!.allowGuestStudent == true
+                                                  ? AppLocalizations.of(
+                                                  context)!.allowed
+                                              //"Allowed"
+                                                  : AppLocalizations.of(
+                                                  context)!.not_allowed,
                                               style: const TextStyle(
                                                   color: Color.fromRGBO(102, 102, 102, 1),
                                                   // fontSize: widget.height * 0.013,
@@ -1039,9 +994,14 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w600),
                                             ),
-                                            const Text(
-                                              "-",
-                                              style: TextStyle(
+                                            Text(
+                                              widget.result.assessmentSettings!.showAnswerSheetDuringPractice == true
+                                                  ? AppLocalizations.of(
+                                                  context)!.viewable
+                                              //"Allowed"
+                                                  : AppLocalizations.of(
+                                                  context)!.not_viewable,
+                                              style: const TextStyle(
                                                   color: Color.fromRGBO(102, 102, 102, 1),
                                                   // fontSize: widget.height * 0.013,
                                                   fontFamily: "Inter",
@@ -1086,7 +1046,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Text(
-                                              widget.advisorName ?? "",
+                                              widget.result.assessmentSettings!.advisorName ?? " - ",
                                               style: const TextStyle(
                                                   color: Color.fromRGBO(102, 102, 102, 1),
                                                   // fontSize: widget.height * 0.013,
@@ -1109,7 +1069,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Text(
-                                              widget.advisorEmail??"",
+                                              widget.result.assessmentSettings!.advisorEmail ?? " - ",
                                               style: const TextStyle(
                                                   color: Color.fromRGBO(102, 102, 102, 1),
                                                   // fontSize: widget.height * 0.013,
@@ -1119,29 +1079,29 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              AppLocalizations.of(context)!.whatsapp_link,
-                                              style: const TextStyle(
-                                                  color: Color.fromRGBO(102, 102, 102, 1),
-                                                  // fontSize: widget.height * 0.013,
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            Text(
-                                              widget.result.url ?? "" ,
-                                              style: const TextStyle(
-                                                  color: Color.fromRGBO(102, 102, 102, 1),
-                                                  // fontSize: widget.height * 0.013,
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                      // Padding(
+                                      //   padding: const EdgeInsets.all(8.0),
+                                      //   child: Row(
+                                      //     children: [
+                                      //       Text(
+                                      //         AppLocalizations.of(context)!.whatsapp_link,
+                                      //         style: const TextStyle(
+                                      //             color: Color.fromRGBO(102, 102, 102, 1),
+                                      //             // fontSize: widget.height * 0.013,
+                                      //             fontFamily: "Inter",
+                                      //             fontWeight: FontWeight.w600),
+                                      //       ),
+                                            // Text(
+                                            //   widget.result.url ?? "" ,
+                                            //   style: const TextStyle(
+                                            //       color: Color.fromRGBO(102, 102, 102, 1),
+                                            //       // fontSize: widget.height * 0.013,
+                                            //       fontFamily: "Inter",
+                                            //       fontWeight: FontWeight.w400),
+                                            // ),
+                                      //     ],
+                                      //   ),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -1150,237 +1110,166 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                             SizedBox(
                               height: height * 0.02,
                             ),
-                            Row(children: <Widget>[
-                              const Expanded(
-                                  child: Divider(
-                                    color: Color.fromRGBO(233, 233, 233, 1),
-                                    thickness: 2,
-                                  )),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 10, left: 10),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                    AppLocalizations.of(context)!.total_parti_list,
+                                  //'Total Participants List(0)'
+                                  style: TextStyle(
+                                      fontSize: height * 0.022,
+                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0,right :8),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
                                 child: Text(
                                   AppLocalizations.of(context)!
-                                      .participation_statistics,
-                                  //'Participation statistics',
+                                      .tap_to_student_details,
+                                  //'Tap on respective student for details',
                                   style: TextStyle(
-                                      fontSize: height * 0.0187,
-                                      color: const Color.fromRGBO(153, 153, 153, 1),
+                                      fontSize: height * 0.015,
+                                      color: const Color.fromRGBO(148, 148, 148, 1),
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w400),
                                 ),
                               ),
-                              const Expanded(
-                                  child: Divider(
-                                    color: Color.fromRGBO(233, 233, 233, 1),
-                                    thickness: 2,
-                                  )),
-                            ]),
+                            ),
                             SizedBox(
                               height: height * 0.02,
                             ),
+                            for (int index=resultStart;index<results.assessmentResults!.length;index++)
+                              Column(
+                                children: [
+                                  MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: TeacherResultIndividualStudent(
+                                                result: widget.result,
+                                                results: results,
+                                                index: index,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: ResultTotalCard(
+                                            height: height,
+                                            width: width,
+                                            results: results,
+                                            index: index),
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                ],
+                              ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.rightToLeft,
-                                            child: TeacherResultTotal(
-                                                result: widget.result,
-                                                userId: widget.userId,
-                                                advisorName: widget.advisorName,
-                                                advisorEmail:widget.advisorEmail
-                                                ),
+                                Text(
+                                  'Showing ${resultStart + 1} to ${resultStart+10 <results.assessmentResults!.length ? resultStart+10:results.assessmentResults!.length} of ${results.assessmentResults!.length}',
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: height * 0.016),
+                                ),
+                                Wrap(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        GestureDetector(
+                                          onTap: (){
+                                            if(results.assessmentResults!.length> 10){
+                                            setState(() {
+                                              results.assessmentResults!.length= results.assessmentResults!.length-resultStart < 10 ? 10 :results.assessmentResults!.length- 10;
+                                                resultStart=resultStart-10;
+                                            });}
+                                          },
+                                          child: Container(
+                                            height: height * 0.03,
+                                            width: width * 0.1,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            child: Icon(
+                                              Icons.keyboard_double_arrow_left,
+                                              size: height * 0.015,
+                                              color: const Color.fromRGBO(28, 78, 80, 1),),
                                           ),
-                                        );
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color:
-                                              const Color.fromRGBO(
-                                                  233, 233, 233, 1),
-                                            ),
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(20))),
-                                        height: height * 0.1875,
-                                        width: width * 0.277,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(
-                                              widget.result.totalAttempts !=
-                                                  null ? "${widget.result
-                                                  .totalAttempts} " : "0",
-                                              style: TextStyle(
-                                                  fontSize: height * 0.0287,
-                                                  color: const Color.fromRGBO(
-                                                      0, 167, 204, 1),
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .total_small,
-                                              //  AppLocalizations.of(context)!.total_small,
-                                              //'Total',
-                                              style: TextStyle(
-                                                  fontSize: height * 0.015,
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_circle_right_outlined,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                            )
-                                          ],
                                         ),
-                                      ),
-                                    )),
-                                MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.rightToLeft,
-                                            child: TeacherResultSubmitted(
-                                                submittedArray: widget
-                                                    .submittedResults,
-                                                result: widget.result,
-                                                advisorName: widget.advisorName,
-                                                advisorEmail:widget.advisorEmail),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                          child: Container(
+                                            height: height * 0.03,
+                                            width: width * 0.15,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                '${resultStart==0?1:((resultStart/10)+1).toInt()}',
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: height * 0.016),
+                                              ),
+                                            ),
                                           ),
-                                        );
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color:
-                                              const Color.fromRGBO(
-                                                  233, 233, 233, 1),
-                                            ),
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(20))),
-                                        height: height * 0.1875,
-                                        width: width * 0.277,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(widget.result
-                                                .totalCompletedAttempts != null
-                                                ? "${widget.result
-                                                .totalCompletedAttempts} "
-                                                : "0",
-                                              style: TextStyle(
-                                                  fontSize: height * 0.0287,
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .submitted_small,
-                                              //'Submitted',
-                                              style: TextStyle(
-                                                  fontSize: height * 0.015,
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_circle_right_outlined,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                            )
-                                          ],
                                         ),
-                                      ),
-                                    )),
-                                MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.rightToLeft,
-                                            child: TeacherResultInProgress(
-                                                inProgressArray: widget
-                                                    .inProgressResults,
-                                                result: widget.result,
-                                                advisorName: widget.advisorName,
-                                                advisorEmail:widget.advisorEmail),
+                                        GestureDetector(
+                                          onTap: (){
+                                            if(results.assessmentResults!.length< results.assessmentResults!.length){
+                                            setState(() {
+                                              results.assessmentResults!.length = results.assessmentResults!.length-resultStart > 0 ? results.assessmentResults!.length-resultStart :results.assessmentResults!.length;
+                                              resultStart=resultStart+10;
+                                            });
+                                            }
+                                          },
+                                          child: Container(
+                                            height: height * 0.03,
+                                            width: width * 0.1,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(5)),
+                                            ),
+                                            child: Icon(
+                                              Icons.keyboard_double_arrow_right,
+                                              size: height * 0.015,
+                                              color: const Color.fromRGBO(28, 78, 80, 1),),
                                           ),
-                                        );
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color:
-                                              const Color.fromRGBO(
-                                                  233, 233, 233, 1),
-                                            ),
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(20))),
-                                        height: height * 0.1875,
-                                        width: width * 0.277,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(
-                                              widget.result
-                                                  .totalInprogressAttempts !=
-                                                  null
-                                                  ? '${widget.result
-                                                  .totalInprogressAttempts}'
-                                                  : "0",
-                                              style: TextStyle(
-                                                  fontSize: height * 0.0287,
-                                                  color: const Color.fromRGBO(
-                                                      255, 153, 0, 1),
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .in_progress,
-                                              //'In Progress',
-                                              style: TextStyle(
-                                                  fontSize: height * 0.015,
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            const Icon(
-                                              Icons.arrow_circle_right_outlined,
-                                              color: Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                            )
-                                          ],
                                         ),
-                                      ),
-                                    )),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                             SizedBox(
-                              height: height * 0.03,
-                            )
+                              height: height * 0.02,
+                            ),
                           ]),
                     ),
                   )));
         }
-        });}}
+    }
+    );}
+}

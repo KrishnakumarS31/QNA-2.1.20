@@ -2,25 +2,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_result_assessment.dart';
-import '../Components/custom_card.dart';
-import '../Components/end_drawer_menu_teacher.dart';
-import '../Entity/Teacher/response_entity.dart';
-import '../Entity/user_details.dart';
-import '../EntityModel/get_result_model.dart';
-import '../Providers/LanguageChangeProvider.dart';
-import '../Services/qna_service.dart';
+import 'package:qna_test/pages/teacher/result/teacher_result_assessment.dart';
+import '../../../Components/custom_card.dart';
+import '../../../Components/end_drawer_menu_teacher.dart';
+import '../../../Entity/Teacher/response_entity.dart';
+import '../../../Entity/user_details.dart';
+import '../../../EntityModel/get_result_model.dart';
+import '../../../Providers/LanguageChangeProvider.dart';
+import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherResultLanding extends StatefulWidget {
   const TeacherResultLanding({
     Key? key,
     required this.userId,
-    this.advisorName,
-    this.advisorEmail
   }) : super(key: key);
   final int? userId;
-  final String? advisorName;
-  final String? advisorEmail;
 
   @override
   TeacherResultLandingState createState() => TeacherResultLandingState();
@@ -30,14 +26,10 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   bool loading = true;
   ScrollController scrollController = ScrollController();
   int pageLimit = 1;
-  GetResultModel getResultModel = GetResultModel(guestStudentAllowed: false);
   List<GetResultModel> results = [];
   List<GetResultModel> allResults = [];
   int totalCount=0;
-  late List<AssessmentResults> inProgressResults;
-  late List<AssessmentResults> submittedResults;
-  late GetResultModel inProgress;
-  late GetResultModel submitted;
+  late List<AssessmentResults> assessmentResults;
   UserDetails userDetails=UserDetails();
 
   int resultStart=0;
@@ -61,12 +53,11 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
         });
     ResponseEntity response =
     await QnaService.getResultDataService(widget.userId, 10, pageLimit,userDetails);
-    //widget.userId
     if(response.code == 200) {
       Navigator.pop(context);
       ResultsModelResponse resultsModelResponse=ResultsModelResponse.fromJson(response.data);
       totalCount = resultsModelResponse.totalCount ?? 0;
-      allResults = resultsModelResponse.results!;
+      allResults = resultsModelResponse.data!;
       setState(() {
         results=allResults;
         loading = false;
@@ -134,7 +125,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                   child: Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-
                                         Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
@@ -258,19 +248,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                                 cursor: SystemMouseCursors.click,
                                                                 child: GestureDetector(
                                                                   onTap: () {
-                                                                    inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-                                                                    submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
                                                                     Navigator.push(
                                                                       context,
                                                                       PageTransition(
                                                                         type: PageTransitionType.rightToLeft,
                                                                         child: TeacherResultAssessment(
-                                                                            inProgressResults: inProgressResults,
-                                                                            submittedResults: submittedResults,
                                                                             result: results[index],
-                                                                            userId: widget.userId,
-                                                                            advisorName: widget.advisorName,
-                                                                            advisorEmail:widget.advisorEmail),
+                                                                            userId: widget.userId),
                                                                       ),
                                                                     );
                                                                   },
@@ -279,8 +263,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                                     child: CustomCard(
                                                                         height: height,
                                                                         width: width,
-
-                                                                        //subject: results[index].subject,
                                                                         result: results[index]
                                                                     ),
                                                                   ),
@@ -569,19 +551,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                           cursor: SystemMouseCursors.click,
                                                           child: GestureDetector(
                                                             onTap: () {
-                                                              inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-                                                              submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
                                                               Navigator.push(
                                                                 context,
                                                                 PageTransition(
                                                                   type: PageTransitionType.rightToLeft,
                                                                   child: TeacherResultAssessment(
-                                                                      inProgressResults: inProgressResults,
-                                                                      submittedResults: submittedResults,
                                                                       result: results[index],
-                                                                      userId: widget.userId,
-                                                                      advisorName: widget.advisorName,
-                                                                      advisorEmail:widget.advisorEmail),
+                                                                      userId: widget.userId),
                                                                 ),
                                                               );
                                                             },
@@ -877,19 +853,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                     cursor: SystemMouseCursors.click,
                                                     child: GestureDetector(
                                                       onTap: () {
-                                                        inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-                                                        submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
                                                         Navigator.push(
                                                           context,
                                                           PageTransition(
                                                             type: PageTransitionType.rightToLeft,
                                                             child: TeacherResultAssessment(
-                                                                inProgressResults: inProgressResults,
-                                                                submittedResults: submittedResults,
                                                                 result: results[index],
-                                                                userId: widget.userId,
-                                                                advisorName: widget.advisorName,
-                                                                advisorEmail:widget.advisorEmail),
+                                                                userId: widget.userId),
                                                           ),
                                                         );
                                                       },
@@ -898,8 +868,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         child: CustomCard(
                                                             height: height,
                                                             width: width,
-
-                                                            //subject: results[index].subject,
                                                             result: results[index]
                                                         ),
                                                       ),
@@ -933,7 +901,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         setState(() {
                                                           pageLimit--;
                                                           resultStart=resultStart-10;
-                                                          // results.removeRange(results.length-10, results.length);
                                                         });
                                                         getData();
                                                         setState(() {});

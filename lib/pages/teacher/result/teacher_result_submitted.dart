@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Components/custom_result_submit_card.dart';
-import 'package:qna_test/Pages/teacher_result_individual_student.dart';
-import '../Components/custom_card.dart';
-import '../Components/end_drawer_menu_teacher.dart';
-import '../Components/today_date.dart';
-import '../EntityModel/get_result_model.dart';
+import 'package:qna_test/pages/teacher/result/teacher_result_individual_student.dart';
+import '../../../Components/custom_card.dart';
+import '../../../Components/end_drawer_menu_teacher.dart';
+import '../../../Entity/Teacher/response_entity.dart';
+import '../../../EntityModel/get_result_details_model.dart';
+import '../../../EntityModel/get_result_model.dart';
+import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../../../Components/today_date.dart';
+
 
 class TeacherResultSubmitted extends StatefulWidget {
-  TeacherResultSubmitted({
+  const TeacherResultSubmitted({
     Key? key,
     required this.result,
-    this.advisorName,
     this.userId,
-    this.submittedArray,
-    this.advisorEmail
   }) : super(key: key);
   final GetResultModel result;
   final int? userId;
-  final String? advisorName;
-  final String? advisorEmail;
-  List<AssessmentResults>? submittedArray;
 
   @override
   TeacherResultSubmittedState createState() => TeacherResultSubmittedState();
@@ -31,12 +29,45 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
   IconData showIcon = Icons.arrow_circle_down_outlined;
   int resultStart=0;
   int pageLimit = 1;
-  int resultLength=0;
+  bool loading = true;
+  int totalCount=0;
+  GetResultDetailsModel results = GetResultDetailsModel();
+  GetResultDetailsModel allResults = GetResultDetailsModel();
 
   @override
   void initState() {
-    resultLength = widget.submittedArray!.length >=10 ? 10: widget.submittedArray!.length;
+    Future.delayed(Duration.zero, (){getData();});
+    // resultLength = results!.assessmentResults!.length >=10 ? 10: results!.assessmentResults!.length;
     super.initState();
+  }
+
+  Future<int> getData() async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    ResponseEntity response =
+    await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"completed");
+
+    if(response.code == 200) {
+      Navigator.pop(context);
+      GetResultDetailsModel  resultsModelResponse=GetResultDetailsModel.fromJson(response.data);
+      totalCount = resultsModelResponse.totalCount ?? 0;
+      allResults = resultsModelResponse;
+      setState(() {
+        results=allResults;
+        loading = false;
+      });
+    }
+    else{
+      return 400;
+    }
+    return response.code!;
   }
 
   changeIcon(IconData pramIcon) {
@@ -112,7 +143,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                             child: CustomCard(
                               height: height,
                               width: width,
-                              //subject: results[index].subject,
                               result: widget.result,
                               isShowTotal: true,
                             ),
@@ -131,7 +161,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(5)
                                       )),
-                                  // height: height * 0.31,
                                   child:Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -167,7 +196,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(5))),
-                                // height: height * 0.7812,
                                 child: Column(
                                   children: [
                                     Container(
@@ -213,7 +241,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             AppLocalizations.of(context)!.time_limit,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -224,7 +251,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 : "0",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
@@ -239,7 +265,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             AppLocalizations.of(context)!.start_date_time,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -251,7 +276,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 : " ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
@@ -266,7 +290,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             AppLocalizations.of(context)!.end_date_time,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -278,7 +301,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 : " ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
@@ -294,7 +316,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             "${AppLocalizations.of(context)!.category}: ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -317,7 +338,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             AppLocalizations.of(context)!.number_of_attempts,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -325,7 +345,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             widget.result.totalAttempts != null ? "${widget.result.totalAttempts} " : "0",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
@@ -345,7 +364,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.result.guestStudentAllowed == true
+                                            widget.result.assessmentSettings!.allowGuestStudent == true
                                                 ? AppLocalizations.of(
                                                 context)!.allowed
                                             //"Allowed"
@@ -372,40 +391,45 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          const Text(
-                                            "-",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        children: [
                                           Text(
-                                            AppLocalizations.of(context)!.published_looq,
+                                            widget.result.assessmentSettings!.showAnswerSheetDuringPractice == true
+                                                ? AppLocalizations.of(
+                                                context)!.viewable
+                                            //"Allowed"
+                                                : AppLocalizations.of(
+                                                context)!.not_viewable,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          const Text(
-                                            "-",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
                                     ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(8.0),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       Text(
+                                    //         AppLocalizations.of(context)!.published_looq,
+                                    //         style: const TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w600),
+                                    //       ),
+                                    //       const Text(
+                                    //         "-",
+                                    //         style: TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w400),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
@@ -419,7 +443,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.advisorName ?? "",
+                                            widget.result.assessmentSettings!.advisorName ?? " - ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -442,7 +466,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.advisorEmail??"",
+                                            widget.result.assessmentSettings!.advisorEmail ?? " - ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -464,13 +488,14 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          Text(
-                                            widget.result.url ?? "" ,
-                                            style: const TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400),
+                                          const Text(
+                                            "",
+                                            // widget.result.url ?? "" ,
+                                            // style: const TextStyle(
+                                            //     color: Color.fromRGBO(102, 102, 102, 1),
+                                            //     // fontSize: widget.height * 0.013,
+                                            //     fontFamily: "Inter",
+                                            //     fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
@@ -533,7 +558,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          for (int index=resultStart;index<resultLength;index++)
+                          for (int index=resultStart;index<results.assessmentResults!.length;index++)
                             Column(
                               children: [
                                 MouseRegion(
@@ -546,18 +571,18 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             type: PageTransitionType
                                                 .rightToLeft,
                                             child: TeacherResultIndividualStudent(
-                                              result: widget.result,
-                                              comingFrom: "submit",
-                                              index: index,),
+                                                result: widget.result,
+                                                results: results,
+                                                index: index),
                                           ),
                                         );
                                       },
                                       child: ResultSubmitCard(
                                           height: height,
                                           width: width,
-                                          submittedArray: widget
-                                              .submittedArray,
-                                          results: widget.result,
+                                          // submittedArray: widget
+                                          //     .submittedArray,
+                                          results: results,
                                           index: index
                                       ),
                                     )),
@@ -570,7 +595,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Showing ${resultStart + 1} to ${resultStart+10 <widget.submittedArray!.length ? resultStart+10:resultLength} of ${widget.submittedArray?.length ?? 0}',
+                                'Showing ${resultStart + 1} to ${resultStart+10 <widget.result.assessmentResults!.length ? resultStart+10:results.totalCount} of ${results.totalCount ?? 0}',
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 0.3),
                                     fontFamily: 'Inter',
@@ -583,9 +608,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     children: [
                                       GestureDetector(
                                         onTap: (){
-                                          if(resultLength>10){
+                                          if(results.assessmentResults!.length>10){
                                             setState(() {
-                                              resultLength=widget.submittedArray!.length-resultStart < 10 ? 10 :resultLength - 10;
+                                              results.assessmentResults!.length=results.assessmentResults!.length-resultStart < 10 ? 10 :results.assessmentResults!.length - 10;
                                               resultStart=resultStart-10;
                                             });}
                                         },
@@ -627,9 +652,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       ),
                                       GestureDetector(
                                         onTap: (){
-                                          if(resultLength<widget.submittedArray!.length){
+                                          if(results.assessmentResults!.length<results.assessmentResults!.length){
                                             setState(() {
-                                              resultLength=widget.submittedArray!.length-resultStart > 0 ?widget.submittedArray!.length-resultStart :resultLength;
+                                              results.assessmentResults!.length=results.assessmentResults!.length-resultStart > 0 ?results.assessmentResults!.length-resultStart :results.assessmentResults!.length;
                                               resultStart=resultStart+10;
                                             });
                                           }
@@ -947,7 +972,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.result.guestStudentAllowed == true
+                                            widget.result.assessmentSettings!.allowGuestStudent == true
                                                 ? AppLocalizations.of(
                                                 context)!.allowed
                                             //"Allowed"
@@ -974,40 +999,45 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          const Text(
-                                            "-",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        children: [
                                           Text(
-                                            AppLocalizations.of(context)!.published_looq,
+                                            widget.result.assessmentSettings!.showAnswerSheetDuringPractice == true
+                                                ? AppLocalizations.of(
+                                                context)!.viewable
+                                            //"Allowed"
+                                                : AppLocalizations.of(
+                                                context)!.not_viewable,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          const Text(
-                                            "-",
-                                            style: TextStyle(
-                                                color: Color.fromRGBO(102, 102, 102, 1),
-                                                // fontSize: widget.height * 0.013,
-                                                fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
                                         ],
                                       ),
                                     ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(8.0),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       Text(
+                                    //         AppLocalizations.of(context)!.published_looq,
+                                    //         style: const TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w600),
+                                    //       ),
+                                    //       const Text(
+                                    //         "-",
+                                    //         style: TextStyle(
+                                    //             color: Color.fromRGBO(102, 102, 102, 1),
+                                    //             // fontSize: widget.height * 0.013,
+                                    //             fontFamily: "Inter",
+                                    //             fontWeight: FontWeight.w400),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
@@ -1021,7 +1051,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.advisorName ?? "",
+                                            widget.result.assessmentSettings!.advisorName ?? " - ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -1044,7 +1074,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontWeight: FontWeight.w600),
                                           ),
                                           Text(
-                                            widget.advisorEmail??"",
+                                            widget.result.assessmentSettings!.advisorEmail ?? " - ",
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
@@ -1066,9 +1096,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          Text(
-                                            widget.result.url ?? "" ,
-                                            style: const TextStyle(
+                                          const Text(
+                                            "widget.result.url",
+                                            style: TextStyle(
                                                 color: Color.fromRGBO(102, 102, 102, 1),
                                                 // fontSize: widget.height * 0.013,
                                                 fontFamily: "Inter",
@@ -1135,7 +1165,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          for (int index=resultStart;index<resultLength;index++)
+                          for (int index=resultStart;index<results.assessmentResults!.length;index++)
                             Column(
                               children: [
                                 MouseRegion(
@@ -1149,7 +1179,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 .rightToLeft,
                                             child: TeacherResultIndividualStudent(
                                               result: widget.result,
-                                              comingFrom: "submit",
+                                              results: results,
                                               index: index),
                                           ),
                                         );
@@ -1157,9 +1187,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       child: ResultSubmitCard(
                                           height: height,
                                           width: width,
-                                          submittedArray: widget
-                                              .submittedArray,
-                                          results: widget.result,
+                                          // submittedArray: widget
+                                          //     .submittedArray,
+                                          results: results,
                                           index: index
                                       ),
                                     )),
@@ -1172,7 +1202,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Showing ${resultStart + 1} to ${resultStart+10 <widget.submittedArray!.length ? resultStart+10:resultLength} of ${widget.submittedArray?.length ?? 0}',
+                                'Showing ${resultStart + 1} to ${resultStart+10 <widget.result.assessmentResults!.length ? resultStart+10:results.assessmentResults!.length} of ${results.assessmentResults!.length}',
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 0.3),
                                     fontFamily: 'Inter',
@@ -1185,9 +1215,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     children: [
                                       GestureDetector(
                                         onTap: (){
-                                          if(resultLength>10){
+                                          if(results.assessmentResults!.length>10){
                                             setState(() {
-                                              resultLength=widget.submittedArray!.length-resultStart < 10 ? 10 :resultLength - 10;
+                                              results.assessmentResults!.length=results.assessmentResults!.length-resultStart < 10 ? 10 :results.assessmentResults!.length - 10;
                                               resultStart=resultStart-10;
                                             });}
                                         },
@@ -1229,9 +1259,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       ),
                                       GestureDetector(
                                         onTap: (){
-                                          if(resultLength<widget.submittedArray!.length){
+                                          if(results.assessmentResults!.length<results.assessmentResults!.length){
                                             setState(() {
-                                              resultLength=widget.submittedArray!.length-resultStart > 0 ?widget.submittedArray!.length-resultStart :resultLength;
+                                              results.assessmentResults!.length=results.assessmentResults!.length-resultStart > 0 ?results.assessmentResults!.length-resultStart :results.assessmentResults!.length;
                                               resultStart=resultStart+10;
                                             });
                                           }

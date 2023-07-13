@@ -1,22 +1,25 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import '../Components/custom_result_new_card.dart';
-import '../Components/end_drawer_menu_teacher.dart';
-import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../../../Components/custom_result_new_card.dart';
+import '../../../Components/end_drawer_menu_teacher.dart';
+import '../../../Entity/Teacher/response_entity.dart';
+import '../../../EntityModel/get_result_details_model.dart';
+import '../../../EntityModel/get_result_model.dart';
+import '../../../Services/qna_service.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {
-  const TeacherResultIndividualStudent({
+  TeacherResultIndividualStudent({
     Key? key,
     required this.result,
     required this.index,
-    required this.comingFrom,
+    this.results,
     this.advisorName,
   }) : super(key: key);
   final GetResultModel result;
   final int index;
   final String? advisorName;
-  final String? comingFrom;
+  GetResultDetailsModel? results;
 
   @override
   TeacherResultIndividualStudentState createState() =>
@@ -27,23 +30,46 @@ class TeacherResultIndividualStudentState
     extends State<TeacherResultIndividualStudent> {
   Uint8List? bytes;
   IconData showIcon = Icons.arrow_circle_down_outlined;
-  late List<AssessmentResults> totalResults;
+  List<dynamic>? allResults;
+  List<QuestionsDetails> questions = [];
+  bool loading = true;
 
   @override
   void initState() {
+    Future.delayed(Duration.zero, (){getData();});
     super.initState();
-    if(widget.comingFrom == "submit")
-    {
-      totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "Completed").toList();
-    }
-    else if(widget.comingFrom == "inProgress")
-    {
-      totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-    }
-    else {
-      totalResults = widget.result.assessmentResults!;
-    }
+  }
 
+  Future<int> getData() async {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    ResponseEntity response =
+    await QnaService.getQuestionDetailsService(widget.results!.assessmentResults![widget.index].attemptId);
+    if(response.code == 200) {
+      Navigator.pop(context);
+      List<dynamic> resultsModelResponse=response.data!;
+      List<QuestionsDetails>? qs = [];
+      allResults = resultsModelResponse;
+      for(int i=0;i<allResults!.length;i++)
+        {
+          QuestionsDetails questionDetails = QuestionsDetails.fromJson(allResults![i]);
+          setState(() {
+            qs.add(questionDetails);
+          });
+        }
+        questions = qs;
+    }
+    else{
+      return 400;
+    }
+    return response.code!;
   }
 
   changeIcon(IconData pramIcon) {
@@ -125,7 +151,7 @@ class TeacherResultIndividualStudentState
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                  totalResults[widget.index].firstName ?? "",
+                                  widget.results!.assessmentResults![widget.index].firstName ?? "",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.025,
@@ -159,7 +185,7 @@ class TeacherResultIndividualStudentState
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "${totalResults[widget.index].rollNumber}",
+                                "${widget.results!.assessmentResults![widget.index].rollNumber}",
                                 style: TextStyle(
                                     color: const Color.fromRGBO(
                                         102, 102, 102, 1),
@@ -187,7 +213,7 @@ class TeacherResultIndividualStudentState
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "${totalResults[widget.index].organizationName}",
+                                "${widget.results!.assessmentResults![widget.index].organizationName}",
                                 style: TextStyle(
                                     color: const Color.fromRGBO(
                                         102, 102, 102, 1),
@@ -247,8 +273,8 @@ class TeacherResultIndividualStudentState
                               height: height,
                               width: width,
                               index: widget.index,
-                              assessmentResults: totalResults,
-                              results: widget.result),
+                              assessmentResults: widget.results!.assessmentResults,
+                              results: widget.results!),
                           SizedBox(
                             height: height * 0.02,
                           ),
@@ -256,7 +282,7 @@ class TeacherResultIndividualStudentState
                           Column(
                             children: [
                               for(int i = 0; i <
-                                  totalResults[widget.index].questions!.length; i++)
+                                 questions.length; i++)
                                 Column(
                                   children: [
                                     MouseRegion(
@@ -266,10 +292,9 @@ class TeacherResultIndividualStudentState
                                           child: QuesAndAns(
                                             height: height,
                                             width: width,
-                                            ques: totalResults[widget.index]
-                                                .questions![i],
+                                            ques: questions[i],
                                             quesNum: i,
-                                            marks: totalResults[widget.index].questions![i].marks!,
+                                            marks: questions[i].marks ?? 0,
                                           ),
                                         )),
                                     SizedBox(
@@ -344,7 +369,7 @@ class TeacherResultIndividualStudentState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  totalResults[widget.index].firstName ?? "",
+                                  widget.results!.assessmentResults![widget.index].firstName ?? "",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.025,
@@ -374,20 +399,20 @@ class TeacherResultIndividualStudentState
                                     }),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${totalResults[widget.index].rollNumber}",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontSize: height * 0.015,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       "${widget.results!.assessmentResults![widget.index].rollNumber}",
+                            //       style: TextStyle(
+                            //           color: const Color.fromRGBO(
+                            //               102, 102, 102, 1),
+                            //           fontSize: height * 0.015,
+                            //           fontFamily: "Inter",
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //   ],
+                            // ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -402,20 +427,20 @@ class TeacherResultIndividualStudentState
                                 ),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${totalResults[widget.index].organizationName}",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontSize: height * 0.015,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       "${widget.results!.assessmentResults![widget.index].organizationName}",
+                            //       style: TextStyle(
+                            //           color: const Color.fromRGBO(
+                            //               102, 102, 102, 1),
+                            //           fontSize: height * 0.015,
+                            //           fontFamily: "Inter",
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //   ],
+                            // ),
                             const Divider(thickness: 2),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -466,38 +491,37 @@ class TeacherResultIndividualStudentState
                                 height: height,
                                 width: width,
                                 index: widget.index,
-                                assessmentResults: totalResults,
-                                results: widget.result),
+                                assessmentResults: widget.results!.assessmentResults,
+                                results: widget.results!),
                             SizedBox(
                               height: height * 0.02,
                             ),
                             const Divider(thickness: 2),
-                            Column(
-                              children: [
-                                for(int i = 0; i <
-                                    totalResults[widget.index].questions!.length; i++)
-                                  Column(
-                                    children: [
-                                      MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                            onTap: () {},
-                                            child: QuesAndAns(
-                                              height: height,
-                                              width: width,
-                                              ques: totalResults[widget.index]
-                                                  .questions![i],
-                                              quesNum: i,
-                                              marks: totalResults[widget.index].questions![i].marks!,
-                                            ),
-                                          )),
-                                      SizedBox(
-                                        height: height * 0.0,
-                                      ),
-                                    ],
-                                  )
-                              ],
-                            ),
+                            // Column(
+                            //   children: [
+                            //     for(int i = 0; i <
+                            //         widget.result.assessmentResults![widget.index].questions!.length; i++)
+                            //       Column(
+                            //         children: [
+                            //           MouseRegion(
+                            //               cursor: SystemMouseCursors.click,
+                            //               child: GestureDetector(
+                            //                 onTap: () {},
+                            //                 child: QuesAndAns(
+                            //                   height: height,
+                            //                   width: width,
+                            //                   ques: widget.result.assessmentResults![widget.index].questions![i],
+                            //                   quesNum: i,
+                            //                   marks: widget.result.assessmentResults![widget.index].questions![i].marks!,
+                            //                 ),
+                            //               )),
+                            //           SizedBox(
+                            //             height: height * 0.0,
+                            //           ),
+                            //         ],
+                            //       )
+                            //   ],
+                            // ),
                           ]),
                     ),
                   )));
@@ -563,7 +587,7 @@ class TeacherResultIndividualStudentState
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  totalResults[widget.index].firstName ?? "",
+                                  widget.results!.assessmentResults![widget.index].firstName ?? "",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.025,
@@ -593,48 +617,48 @@ class TeacherResultIndividualStudentState
                                     }),
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${totalResults[widget.index].rollNumber}",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontSize: height * 0.015,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${widget.result.degree}",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontSize: height * 0.015,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${totalResults[widget.index].organizationName}",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontSize: height * 0.015,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       "${widget.results!.assessmentResults![widget.index].rollNumber}",
+                            //       style: TextStyle(
+                            //           color: const Color.fromRGBO(
+                            //               102, 102, 102, 1),
+                            //           fontSize: height * 0.015,
+                            //           fontFamily: "Inter",
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //   ],
+                            // ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       "${widget.result.degree}",
+                            //       style: TextStyle(
+                            //           color: const Color.fromRGBO(
+                            //               102, 102, 102, 1),
+                            //           fontSize: height * 0.015,
+                            //           fontFamily: "Inter",
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //   ],
+                            // ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.start,
+                            //   children: [
+                            //     Text(
+                            //       "${widget.results!.assessmentResults![widget.index].organizationName}",
+                            //       style: TextStyle(
+                            //           color: const Color.fromRGBO(
+                            //               102, 102, 102, 1),
+                            //           fontSize: height * 0.015,
+                            //           fontFamily: "Inter",
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //   ],
+                            // ),
                             const Divider(thickness: 2),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -685,38 +709,37 @@ class TeacherResultIndividualStudentState
                                 height: height,
                                 width: width,
                                 index: widget.index,
-                                assessmentResults: totalResults,
-                                results: widget.result),
+                                assessmentResults: widget.results!.assessmentResults,
+                                results: widget.results!),
                             SizedBox(
                               height: height * 0.02,
                             ),
                             const Divider(thickness: 2),
-                            Column(
-                              children: [
-                                for(int i = 0; i <
-                                    totalResults[widget.index].questions!.length; i++)
-                                  Column(
-                                    children: [
-                                      MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                            onTap: () {},
-                                            child: QuesAndAns(
-                                              height: height,
-                                              width: width,
-                                              ques: totalResults[widget.index]
-                                                  .questions![i],
-                                              quesNum: i,
-                                              marks: totalResults[widget.index].questions![i].marks!,
-                                            ),
-                                          )),
-                                      SizedBox(
-                                        height: height * 0.0,
-                                      ),
-                                    ],
-                                  )
-                              ],
-                            ),
+                            // Column(
+                            //   children: [
+                            //     for(int i = 0; i <
+                            //         widget.result.assessmentResults![widget.index].questions!.length; i++)
+                            //       Column(
+                            //         children: [
+                            //           MouseRegion(
+                            //               cursor: SystemMouseCursors.click,
+                            //               child: GestureDetector(
+                            //                 onTap: () {},
+                            //                 child: QuesAndAns(
+                            //                   height: height,
+                            //                   width: width,
+                            //                   ques: widget.result.assessmentResults![widget.index].questions![i],
+                            //                   quesNum: i,
+                            //                   marks: widget.result.assessmentResults![widget.index].questions![i].marks!,
+                            //                 ),
+                            //               )),
+                            //           SizedBox(
+                            //             height: height * 0.0,
+                            //           ),
+                            //         ],
+                            //       )
+                            //   ],
+                            // ),
                           ]),
                     ),
                   )));
@@ -738,7 +761,7 @@ class QuesAndAns extends StatefulWidget {
 
   final double height;
   final double width;
-  final Questions ques;
+  final QuestionsDetails ques;
   final int quesNum;
   final int marks;
 
@@ -817,7 +840,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     height: widget.height * 0.04,
                     width: widget.width * 0.1,
                     child: Text(
-                      widget.ques.status == "Incorrect"
+                      widget.ques.status == "Incorrect" || widget.ques.marks == 0
                               ? "\t\t\t\t0"
                               : "\t\t+ ${widget.ques.marks}",
                           style: TextStyle(
@@ -900,9 +923,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     child: Text(
                         widget.ques.selectedChoices == null || widget.ques.selectedChoices!.isEmpty || widget.ques.selectedChoices![0] == "" || widget.ques.selectedChoices == []
                       ? "Not answered"
-                            : widget.ques
-                          .descriptiveAnswers!.substring(
-                          1, widget.ques.descriptiveAnswers!.length - 1),
+                            : widget.ques.descriptiveAnswers!.substring(1, widget.ques.descriptiveAnswers!.length - 1),
                       style: TextStyle(
                           fontSize: widget.height * 0.014,
                           color: const Color.fromRGBO(102, 102, 102, 1),

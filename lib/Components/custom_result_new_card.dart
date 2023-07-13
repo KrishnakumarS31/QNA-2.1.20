@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:qna_test/Components/today_date.dart';
-import 'package:qna_test/EntityModel/get_result_model.dart';
+import '../EntityModel/get_result_details_model.dart';
+
 
 class ResultCardNew extends StatelessWidget {
-  const ResultCardNew({
+   ResultCardNew({
     Key? key,
     required this.height,
     required this.width,
     required this.index,
     required this.results,
-    required this.assessmentResults
+    this.assessmentResults
   }) : super(key: key);
 
   final double height;
   final double width;
   final int index;
-  final GetResultModel results;
-  final List<AssessmentResults> assessmentResults;
+  final GetResultDetailsModel results;
+  List<AssessmentResultsDetails>? assessmentResults;
 
   @override
   Widget build(BuildContext context) {
-    bool condition = assessmentResults.isEmpty == false;
-    String? name =condition ? assessmentResults[index].firstName : " ";
-    int? timeTaken = condition ? assessmentResults[index].attemptDuration : 0;
-    int? percent = condition ? assessmentResults[index].attemptPercent : 0;
-    int? securedMark = condition ? assessmentResults[index].attemptScore : 0;
+    bool condition = assessmentResults!.isEmpty == false;
+    int? timeTaken = condition ? assessmentResults![index].attemptDuration : 0;
+    int? percent = condition ? assessmentResults![index].attemptPercent : 0;
+    int? securedMark = condition ? assessmentResults![index].attemptScore : 0;
     int? totalMark = results.totalScore ?? 0;
 
     return Padding(
@@ -70,7 +70,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      assessmentResults[index].attemptStartDate != null ? convertDate(assessmentResults[index].attemptStartDate) : " ",
+                      assessmentResults![index].attemptStartDate != null ? convertDate(assessmentResults![index].attemptStartDate) : " ",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -78,7 +78,7 @@ class ResultCardNew extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      assessmentResults[index].attemptEndDate != null ? "${convertTime(assessmentResults[index].attemptEndDate)} IST" : "",
+                      assessmentResults![index].attemptEndDate != null ? "${convertTime(assessmentResults![index].attemptEndDate)} IST" : "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

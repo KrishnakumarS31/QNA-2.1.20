@@ -61,6 +61,32 @@ class QnaRepo {
     return loginModel;
   }
 
+  static editUserDetails(StudentRegistrationModel student, int id,UserDetails userDetails) async {
+    LoginModel loginModel = LoginModel(code: 0, message: 'message');
+    print(studentRegistrationModelToJson(student));
+    var headers = {
+      'Authorization': 'Bearer ${userDetails.token}',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('PUT', Uri.parse("$editUserProfile/$id"));
+    request.body = studentRegistrationModelToJson(student);
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      print(temp);
+      loginModel = loginModelFromJson(temp);
+    }
+    else {
+      String temp = await response.stream.bytesToString();
+      loginModel = loginModelFromJson(temp);
+      return loginModel;
+    }
+    return loginModel;
+  }
+
   static Future<UserDataModel> getUserData(int? userId,UserDetails userDetails) async {
     UserDataModel userData = UserDataModel();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
@@ -258,8 +284,6 @@ class QnaRepo {
     debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("Response Code");
-    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel =responseEntityFromJson(temp);
@@ -316,8 +340,6 @@ class QnaRepo {
       getAllAssessment(pageLimit, pageNumber, search,userDetails);
     } else {
       String value = await response.stream.bytesToString();
-      print(value);
-      print(response.statusCode);
     }
     return allAssessment;
   }
@@ -346,8 +368,6 @@ class QnaRepo {
       getAllQuestion(pageLimit, pageNumber, search,userDetails);
     } else {
       String value = await response.stream.bytesToString();
-      print("-----------------------------------");
-      print(value);
     }
     return responseEntity;
   }
@@ -407,8 +427,6 @@ class QnaRepo {
       editQuestionTeacher(question, questionId,userDetails);
     } else {
       String temp = await response.stream.bytesToString();
-      print("------------------------------------------------------");
-      print(temp);
     }
     return loginModel;
   }
@@ -429,8 +447,6 @@ class QnaRepo {
     debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("Status Code");
-    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
@@ -515,25 +531,6 @@ class QnaRepo {
       String temp = await response.stream.bytesToString();
     }
     return loginModel;
-  }
-
-  static Future<ResponseEntity> getResult(
-      int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
-    //SharedPreferences loginData = await SharedPreferences.getInstance();
-    ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
-    var headers = {'Authorization': 'Bearer ${userDetails.token}'};
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            '$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber'));
-    //${loginData.getInt('userId')}
-    request.headers.addAll(headers);
-    http.StreamedResponse response = await request.send();
-    if (response.statusCode == 200) {
-      String temp = await response.stream.bytesToString();
-      resultData = responseEntityFromJson(temp);
-    } else if (response.statusCode == 401) {}
-    return resultData;
   }
 
   static Future<ResponseEntity> getSearchAssessment(
@@ -626,6 +623,52 @@ class QnaRepo {
       getSearchAssessmentForStudLooq(pageLimit, pageNumber, searchVal);
     } else {}
     return allAssessment;
+  }
+
+  static Future<ResponseEntity> getResult(
+      int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
+        ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
+    var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse('$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber'));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      resultData = responseEntityFromJson(temp);
+    } else if (response.statusCode == 401) {}
+    return resultData;
+  }
+
+  static Future<ResponseEntity> getResultDetails(
+      int assessmentId,int pageLimit, int pageNumber, String attemptStatus) async {
+    ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
+    // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    var request = http.Request(
+        'GET', Uri.parse('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus'));
+    // request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      resultData = responseEntityFromJson(temp);
+    } else if (response.statusCode == 401) {}
+    return resultData;
+  }
+
+  static Future<ResponseEntity> getQuestionDetails(
+      int attemptId) async {
+    ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
+    // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    var request = http.Request(
+        'GET', Uri.parse('$questionDetails?attempt_id=$attemptId'));
+    // request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      resultData = responseEntityFromJson(temp);
+    } else if (response.statusCode == 401) {}
+    return resultData;
   }
 
 }

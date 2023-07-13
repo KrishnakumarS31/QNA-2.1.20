@@ -47,6 +47,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
   List<questionModel.Question> selectedQuestion=[];
   List<questionModel.Question> providerQuestionList=[];
   String totalQuestionBank='';
+
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
@@ -92,34 +93,6 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
       onPressed: () async {
 
       },
-      // {
-      //   showDialog(
-      //       context: context,
-      //       builder: (context) {
-      //         return const Center(
-      //             child: CircularProgressIndicator(
-      //               color: Color.fromRGBO(48, 145, 139, 1),
-      //             ));
-      //       });
-      //
-      //   create_question_model.CreateQuestionModel createQuestionModel = create_question_model.CreateQuestionModel();
-      //   createQuestionModel.questions = finalQuesList;
-      //   createQuestionModel.authorId = userDetails.userId;
-      //   print("-------------------------------------------------------");
-      //   print(createQuestionModel);
-      //   ResponseEntity statusCode =
-      //   await QnaService.createQuestionTeacherService(createQuestionModel,userDetails);
-      //   Navigator.of(context).pop();
-      //   if (statusCode.code == 200) {
-      //     Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-      //     // Navigator.pushNamed(
-      //     //     context,
-      //     //     '/teacherMyQuestionBank',
-      //     //     arguments: widget.assessment
-      //     // );
-      //     //Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
-      //   }
-      // },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
@@ -142,8 +115,9 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
             fontWeight: FontWeight.w400),
       ),
       actions: [
-        cancelButton,
         continueButton,
+        cancelButton,
+
       ],
     );
     // show the dialog
@@ -157,45 +131,77 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
 
   showDialogSave(BuildContext context, double height) {
     // set up the buttons
-    Widget cancelButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
+    Widget cancelButton =
+    ElevatedButton(
+      style:
+      ElevatedButton
+          .styleFrom(
+        backgroundColor:Colors.white,
+        // const Color
+        //     .fromRGBO(
+        //     82, 165, 160,
+        //     1),
+        minimumSize:
+        Size(height * 0.13, height * 0.05),
+        shape:
+        RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius
+              .circular(
+              39),
+        ),
       ),
-      child: Text(
-        AppLocalizations.of(context)!.no,
-        //'No',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () {
+      onPressed: () async {
         Navigator.of(context).pop();
       },
+      child: Text(
+        // AppLocalizations.of(
+        //     context)!
+        //     .save_continue,
+        AppLocalizations.of(context)!.no,
+        style: TextStyle(
+            fontSize:
+            height * 0.025,
+            fontFamily: "Inter",
+            color: const Color
+                .fromRGBO(
+                82,165,160,1),
+            fontWeight:
+            FontWeight
+                .w600),
+      ),
     );
     Widget continueButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
+      style:
+      ElevatedButton
+          .styleFrom(
+        backgroundColor:
+        //Colors.white,
+        const Color
+            .fromRGBO(
+            82, 165, 160,
+            1),
+        minimumSize:
+        Size(height * 0.13, height * 0.05),
+        shape:
+        RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius
+              .circular(
+              39),
+        ),
       ),
       child: Text(
         AppLocalizations.of(context)!.yes,
         //'Yes',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),
+       style: TextStyle(
+          fontSize:
+          height * 0.025,
+          fontFamily: "Inter",
+          color: Colors.white,
+          fontWeight:
+          FontWeight
+              .w600),
       ),
       onPressed: () async {
         assessment.userId=userDetails.userId;
@@ -290,8 +296,16 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
             fontWeight: FontWeight.w400),
       ),
       actions: [
-        cancelButton,
-        continueButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            continueButton,
+            cancelButton,
+            SizedBox(height:height * 0.1)
+
+          ],
+        ),
+
       ],
     );
     // show the dialog

@@ -73,7 +73,7 @@ class TeacherRegistrationOtpPageState
                         icon: const Icon(
                           Icons.chevron_left,
                           size: 40.0,
-                          color: Colors.black,
+                          color: Color.fromRGBO(28, 78, 80, 1),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -84,7 +84,7 @@ class TeacherRegistrationOtpPageState
                       title: Text(
                         AppLocalizations.of(context)!.student_register,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -204,7 +204,9 @@ class TeacherRegistrationOtpPageState
                                             }
                                                 : null
                                             ,
-                                            child: Text(
+                                            child:
+                                            enableResendButton
+                                            ? Text(
                                                 AppLocalizations.of(context)!
                                                     .resent_otp,
                                                 //"   Resend OTP",
@@ -215,7 +217,9 @@ class TeacherRegistrationOtpPageState
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: 14)))
+                                                    fontSize: 14))
+                                         : const Text("")
+                                        )
                                       ],
                                     )
                                   ],
@@ -238,27 +242,6 @@ class TeacherRegistrationOtpPageState
                                           widget.student.email, otp);
                                       if (res.code == 200) {
                                         showAlertDialog(context);
-                                      } else {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeft,
-                                            child: CustomDialog(
-                                              title:
-                                              AppLocalizations.of(context)!
-                                                  .incorrect_otp,
-                                              //'Incorrect Otp',
-                                              content: AppLocalizations.of(
-                                                  context)!
-                                                  .entered_otp_not_match,
-                                              //'Entered OTP does not match',
-                                              button:
-                                              AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
-                                          ),
-                                        );
                                       }
                                     }
                                   },
@@ -284,7 +267,7 @@ class TeacherRegistrationOtpPageState
                         icon: const Icon(
                           Icons.chevron_left,
                           size: 40.0,
-                          color: Colors.black,
+                          color: Color.fromRGBO(28, 78, 80, 1),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -295,7 +278,7 @@ class TeacherRegistrationOtpPageState
                       title: Text(
                         AppLocalizations.of(context)!.student_register,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -415,7 +398,9 @@ class TeacherRegistrationOtpPageState
                                                     }
                                                         : null
                                                     ,
-                                                    child: Text(
+                                                    child:
+                                                    enableResendButton
+                                                    ? Text(
                                                         AppLocalizations.of(context)!
                                                             .resent_otp,
                                                         //"   Resend OTP",
@@ -426,7 +411,8 @@ class TeacherRegistrationOtpPageState
                                                                 82, 165, 160, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w400,
-                                                            fontSize: 14)))
+                                                            fontSize: 14))
+                                                : const Text(""))
                                               ],
                                             )
                                           ],
@@ -449,27 +435,6 @@ class TeacherRegistrationOtpPageState
                                                   widget.student.email, otp);
                                               if (res.code == 200) {
                                                 showAlertDialog(context);
-                                              } else {
-                                                Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .rightToLeft,
-                                                    child: CustomDialog(
-                                                      title:
-                                                      AppLocalizations.of(context)!
-                                                          .incorrect_otp,
-                                                      //'Incorrect Otp',
-                                                      content: AppLocalizations.of(
-                                                          context)!
-                                                          .entered_otp_not_match,
-                                                      //'Entered OTP does not match',
-                                                      button:
-                                                      AppLocalizations.of(context)!
-                                                          .retry,
-                                                    ),
-                                                  ),
-                                                );
                                               }
                                             }
                                           },
@@ -495,7 +460,7 @@ class TeacherRegistrationOtpPageState
                         icon: const Icon(
                           Icons.chevron_left,
                           size: 40.0,
-                          color: Colors.black,
+                          color: Color.fromRGBO(28, 78, 80, 1),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -506,7 +471,7 @@ class TeacherRegistrationOtpPageState
                       title: Text(
                         AppLocalizations.of(context)!.student_register,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -626,7 +591,9 @@ class TeacherRegistrationOtpPageState
                                                     }
                                                         : null
                                                     ,
-                                                    child: Text(
+                                                    child:
+                                                    enableResendButton
+                                                    ? Text(
                                                         AppLocalizations.of(context)!
                                                             .resent_otp,
                                                         //"   Resend OTP",
@@ -637,7 +604,8 @@ class TeacherRegistrationOtpPageState
                                                                 82, 165, 160, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w400,
-                                                            fontSize: 14)))
+                                                            fontSize: 14))
+                                                : const Text(""))
                                               ],
                                             )
                                           ],
@@ -660,28 +628,29 @@ class TeacherRegistrationOtpPageState
                                                   widget.student.email, otp);
                                               if (res.code == 200) {
                                                 showAlertDialog(context);
-                                              } else {
-                                                Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .rightToLeft,
-                                                    child: CustomDialog(
-                                                      title:
-                                                      AppLocalizations.of(context)!
-                                                          .incorrect_otp,
-                                                      //'Incorrect Otp',
-                                                      content: AppLocalizations.of(
-                                                          context)!
-                                                          .entered_otp_not_match,
-                                                      //'Entered OTP does not match',
-                                                      button:
-                                                      AppLocalizations.of(context)!
-                                                          .retry,
-                                                    ),
-                                                  ),
-                                                );
                                               }
+                                              // else {
+                                              //   Navigator.push(
+                                              //     context,
+                                              //     PageTransition(
+                                              //       type: PageTransitionType
+                                              //           .rightToLeft,
+                                              //       child: CustomDialog(
+                                              //         title:
+                                              //         AppLocalizations.of(context)!
+                                              //             .incorrect_otp,
+                                              //         //'Incorrect Otp',
+                                              //         content: AppLocalizations.of(
+                                              //             context)!
+                                              //             .entered_otp_not_match,
+                                              //         //'Entered OTP does not match',
+                                              //         button:
+                                              //         AppLocalizations.of(context)!
+                                              //             .retry,
+                                              //       ),
+                                              //     ),
+                                              //   );
+                                              // }
                                             }
                                           },
                                         ),

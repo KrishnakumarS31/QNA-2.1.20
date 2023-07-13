@@ -430,5 +430,11 @@
   "solution_sheet":"Solution Sheet",
   "view_all_solution": "View all solutions",
   "qn_bank": "Question Bank",
-  "in_progress_participants":"In Progress Participants List"
+  "in_progress_participants":"In Progress Participants List",
+  "citizen_country":"Country Citizen",
+  "resident_country": "Country Resident",
+  "enable_as_teacher": "Enable me as Teacher",
+  "enable_as_student": "Enable me as Student",
+  "edit_user_profile": "Edit User Profile",
+  "submit_your_profile": "Are you sure you want to submit \nchanges to your profile?"
 }

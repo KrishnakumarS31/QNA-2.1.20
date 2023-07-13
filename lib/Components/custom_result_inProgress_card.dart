@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qna_test/Components/today_date.dart';
-import '../EntityModel/get_result_model.dart';
+import '../EntityModel/get_result_details_model.dart';
 
 class ResultInProgressCard extends StatelessWidget {
    ResultInProgressCard({
@@ -9,25 +9,24 @@ class ResultInProgressCard extends StatelessWidget {
     required this.width,
     required this.results,
     required this.index,
-    this.inProgressArray,
   }) : super(key: key);
 
-  final double height;
-  final double width;
-  final GetResultModel results;
-  final int index;
-  List<AssessmentResults>? inProgressArray;
+   final double height;
+   final double width;
+   GetResultDetailsModel? results;
+   final int index;
 
   @override
   Widget build(BuildContext context) {
 
-    bool condition = inProgressArray != null && inProgressArray?.isEmpty == false;
-    String? name =condition ? inProgressArray![index].firstName : " ";
-    String? assessmentCode = results.assessmentCode ?? " ";
-    int? timeTaken = condition ? inProgressArray![index].attemptDuration : 0;
-    int? percent = condition ? inProgressArray![index].attemptPercent : 0;
-    int? securedMark = condition ? inProgressArray![index].attemptScore : 0;
-    int? totalMark = results.totalScore ?? 0;
+    bool condition = results!.assessmentResults!.isEmpty == false;
+    String? name = condition ? results!.assessmentResults![index].firstName : " ";
+    String? assessmentCode = results!.assessmentCode ?? " ";
+    int? timeTaken = condition ? results!.assessmentResults![index].attemptDuration : 0;
+    int? percent = condition ? results!.assessmentResults![index].attemptPercent : 0;
+    int? securedMark = condition ? results!.assessmentResults![index].attemptScore : 0;
+    int? totalMark = results!.totalScore ?? 0;
+
     if (width > 960) {
       return Padding(
         padding: EdgeInsets.only(bottom: height * 0.015),
@@ -87,7 +86,10 @@ class ResultInProgressCard extends StatelessWidget {
                               height: height * 0.023,
                             ),
                             Text(
-                              inProgressArray![index].attemptStartDate != null ? convertDate(inProgressArray![index].attemptStartDate) : " ",
+                              results!.assessmentResults![index].attemptStartDate != null
+                                  ? convertDate(
+                                  results!.assessmentResults![index].attemptStartDate)
+                                  : " ",
                               style: TextStyle(
                                   fontSize: height * 0.013,
                                   color: const Color.fromRGBO(102, 102, 102, 1),
@@ -95,7 +97,10 @@ class ResultInProgressCard extends StatelessWidget {
                                   fontWeight: FontWeight.w300),
                             ),
                             Text(
-                              inProgressArray![index].attemptStartDate != null ? "${convertTime(inProgressArray![index].attemptStartDate)} IST" : "",
+                              results!.assessmentResults![index].attemptStartDate != null
+                                  ? "${convertTime(
+                                  results!.assessmentResults![index].attemptStartDate)} IST"
+                                  : "",
                               style: TextStyle(
                                   fontSize: height * 0.013,
                                   color: const Color.fromRGBO(102, 102, 102, 1),
@@ -206,7 +211,10 @@ class ResultInProgressCard extends StatelessWidget {
                         height: height * 0.023,
                       ),
                       Text(
-                        inProgressArray![index].attemptStartDate != null ? convertDate(inProgressArray![index].attemptStartDate) : " ",
+                        results!.assessmentResults![index].attemptStartDate != null
+                            ? convertDate(
+                            results!.assessmentResults![index].attemptStartDate)
+                            : " ",
                         style: TextStyle(
                             fontSize: height * 0.013,
                             color: const Color.fromRGBO(102, 102, 102, 1),
@@ -214,7 +222,10 @@ class ResultInProgressCard extends StatelessWidget {
                             fontWeight: FontWeight.w300),
                       ),
                       Text(
-                        inProgressArray![index].attemptStartDate != null ? "${convertTime(inProgressArray![index].attemptStartDate)} IST" : "",
+                        results!.assessmentResults![index].attemptStartDate != null
+                            ? "${convertTime(
+                            results!.assessmentResults![index].attemptStartDate)} IST"
+                            : "",
                         style: TextStyle(
                             fontSize: height * 0.013,
                             color: const Color.fromRGBO(102, 102, 102, 1),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qna_test/Components/today_date.dart';
-import '../EntityModel/get_result_model.dart';
-
+import '../EntityModel/get_result_details_model.dart';
 class ResultSubmitCard extends StatelessWidget {
   ResultSubmitCard({
     Key? key,
@@ -9,25 +8,23 @@ class ResultSubmitCard extends StatelessWidget {
     required this.width,
     required this.results,
     required this.index,
-    this.submittedArray
   }) : super(key: key);
 
   final double height;
   final double width;
-  final GetResultModel results;
+  GetResultDetailsModel? results;
   final int index;
-  List<AssessmentResults>? submittedArray;
 
   @override
   Widget build(BuildContext context) {
 
-    bool condition = submittedArray != null && submittedArray?.isEmpty == false;
-    String? name =condition ? submittedArray![index].firstName : " ";
-    String? assessmentCode = results.assessmentCode ?? " ";
-    int? timeTaken = condition ? submittedArray![index].attemptDuration : 0;
-    int? percent = condition ? submittedArray![index].attemptPercent : 0;
-    int? securedMark = condition ? submittedArray![index].attemptScore : 0;
-    int? totalMark = results.totalScore ?? 0;
+    bool condition = results!.assessmentResults!.isEmpty == false;
+    String? name = condition ? results!.assessmentResults![index].firstName : " ";
+    String? assessmentCode = results!.assessmentCode ?? " ";
+    int? timeTaken = condition ? results!.assessmentResults![index].attemptDuration : 0;
+    int? percent = condition ? results!.assessmentResults![index].attemptPercent : 0;
+    int? securedMark = condition ? results!.assessmentResults![index].attemptScore : 0;
+    int? totalMark = results!.totalScore ?? 0;
 
     if (width > 960) {
       return Padding(
@@ -90,9 +87,9 @@ class ResultSubmitCard extends StatelessWidget {
                               height: height * 0.023,
                             ),
                             Text(
-                              submittedArray![index].attemptStartDate != null
+                              results!.assessmentResults![index].attemptStartDate != null
                                   ? convertDate(
-                                  submittedArray![index].attemptStartDate)
+                                  results!.assessmentResults![index].attemptStartDate)
                                   : " ",
                               style: TextStyle(
                                   fontSize: height * 0.013,
@@ -101,9 +98,9 @@ class ResultSubmitCard extends StatelessWidget {
                                   fontWeight: FontWeight.w300),
                             ),
                             Text(
-                              submittedArray![index].attemptStartDate != null
+                              results!.assessmentResults![index].attemptStartDate != null
                                   ? "${convertTime(
-                                  submittedArray![index].attemptStartDate)} IST"
+                                  results!.assessmentResults![index].attemptStartDate)} IST"
                                   : "",
                               style: TextStyle(
                                   fontSize: height * 0.013,
@@ -216,9 +213,9 @@ class ResultSubmitCard extends StatelessWidget {
                         height: height * 0.023,
                       ),
                       Text(
-                        submittedArray![index].attemptStartDate != null
+                        results!.assessmentResults![index].attemptStartDate != null
                             ? convertDate(
-                            submittedArray![index].attemptStartDate)
+                            results!.assessmentResults![index].attemptStartDate)
                             : " ",
                         style: TextStyle(
                             fontSize: height * 0.013,
@@ -227,9 +224,9 @@ class ResultSubmitCard extends StatelessWidget {
                             fontWeight: FontWeight.w300),
                       ),
                       Text(
-                        submittedArray![index].attemptStartDate != null
+                        results!.assessmentResults![index].attemptStartDate != null
                             ? "${convertTime(
-                            submittedArray![index].attemptStartDate)} IST"
+                            results!.assessmentResults![index].attemptStartDate)} IST"
                             : "",
                         style: TextStyle(
                             fontSize: height * 0.013,

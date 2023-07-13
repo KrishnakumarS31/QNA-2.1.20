@@ -49,6 +49,10 @@ class QnaService {
       StudentRegistrationModel student) async {
     return await QnaRepo.registerUserDetails(student);
   }
+  static Future<LoginModel> editUserDetailsService(
+      StudentRegistrationModel student, int id, UserDetails userDetails) async {
+    return await QnaRepo.editUserDetails(student,id,userDetails);
+  }
 
   static Future<QuestionPaperModel> getQuestion(
       {required String assessmentId}) async {
@@ -116,11 +120,6 @@ class QnaService {
     return await QnaRepo.makeInactiveAssessmentTeacher(assessment, assessmentId, assessmentType, assessmentStatus,userDetails);
   }
 
-  static Future<ResponseEntity> getResultDataService(
-      int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
-    return await QnaRepo.getResult(userId, pageLimit, pageNumber,userDetails);
-  }
-
   static Future<ResponseEntity> getSearchAssessment(
       int pageLimit, int pageNumber, String searchVal,UserDetails userDetails) async {
     return await QnaRepo.getSearchAssessment(pageLimit, pageNumber, searchVal,userDetails);
@@ -137,6 +136,20 @@ class QnaService {
 
   static Future<ResponseEntity> getAssessmentsForStudentsLooq(int pageLimit, int pageNumber, String searchVal) async {
     return await QnaRepo.getSearchAssessmentForStudLooq(pageLimit,pageNumber,searchVal);
+  }
+
+  static Future<ResponseEntity> getResultDataService(
+      int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
+    return await QnaRepo.getResult(userId, pageLimit, pageNumber,userDetails);
+  }
+
+  static Future<ResponseEntity> getResultDetailsService(
+      int? assessmentId, int pageLimit, int pageNumber, String attemptStatus) async {
+    return await QnaRepo.getResultDetails(assessmentId!, pageLimit, pageNumber,attemptStatus);
+  }
+
+  static Future<ResponseEntity> getQuestionDetailsService(int? attemptId) async {
+    return await QnaRepo.getQuestionDetails(attemptId!);
   }
 
 }

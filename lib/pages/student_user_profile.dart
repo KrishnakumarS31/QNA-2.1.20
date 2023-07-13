@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/pages/student_edit_profile_page.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/user_data_model.dart';
 import '../DataSource/http_url.dart';
@@ -24,8 +25,8 @@ class StudentUserProfileState extends State<StudentUserProfile> {
   @override
   void initState() {
     super.initState();
-    date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
-    formatted = formatter.format(date);
+    // date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
+    // formatted = formatter.format(date);
   }
 
   @override
@@ -97,7 +98,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ),
                               SizedBox(width: width * 0.04),
                               Text(
-                                '${widget.userDataModel.data?.firstName}',
+                                '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.03,
@@ -316,11 +317,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: CustomDialog(
-                              title: 'Alert',
-                              content: "Feature under development",
-                              button: AppLocalizations.of(context)!.ok_caps,
-                            ),
+                            child: StudentEditProfilePage(userDataModel: widget.userDataModel),
                           ),
                         );
                         // PageTransition(
@@ -401,7 +398,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                   ),
                                   SizedBox(width: width * 0.04),
                                   Text(
-                                    '${widget.userDataModel.data?.firstName}',
+                                    '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(28, 78, 80, 1),
@@ -636,11 +633,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: CustomDialog(
-                                  title: 'Alert',
-                                  content: "Feature under development",
-                                  button: AppLocalizations.of(context)!.ok_caps,
-                                ),
+                                child: StudentEditProfilePage(userDataModel: widget.userDataModel),
                               ),
                             );
                             // PageTransition(
@@ -715,7 +708,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ),
                               SizedBox(width: width * 0.04),
                               Text(
-                                '${widget.userDataModel.data?.firstName}',
+                                '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.03,
@@ -894,6 +887,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             ),
                             SizedBox(height: height * 0.01),
                             Text(
+                                widget.userDataModel.data!=null &&
                               widget.userDataModel.data!.role
                                       .contains("teacher")
                                   ? "Yes"
@@ -934,11 +928,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: CustomDialog(
-                              title: 'Alert',
-                              content: "Feature under development",
-                              button: AppLocalizations.of(context)!.ok_caps,
-                            ),
+                            child: StudentEditProfilePage(userDataModel: widget.userDataModel),
                           ),
                         );
                         // PageTransition(

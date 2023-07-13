@@ -809,7 +809,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       },
                                                       validator: (value) {
                                                         if (value!.isEmpty) {
-                                                          return 'Enter Organization Name';
+                                                          return 'Enter Institution Name';
                                                         } else {
                                                           return null;
                                                         }
@@ -1832,7 +1832,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     },
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
-                                                        return 'Enter Organization Name';
+                                                        return 'Enter Institution Name';
                                                       } else {
                                                         return null;
                                                       }
@@ -2904,7 +2904,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   },
                                                   validator: (value) {
                                                     if (value!.isEmpty) {
-                                                      return 'Enter Organization Name';
+                                                      return 'Enter Institution Name';
                                                     } else {
                                                       return null;
                                                     }

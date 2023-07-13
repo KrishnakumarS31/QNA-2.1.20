@@ -1,28 +1,29 @@
 import 'dart:convert';
+import '../Entity/Teacher/assessment_settings_model.dart';
 
 class ResultsModelResponse{
   ResultsModelResponse({
     this.totalCount,
-    this.results,
+    this.data,
   });
   int? totalCount;
-  List<GetResultModel>? results;
+  List<GetResultModel>? data;
 
   factory ResultsModelResponse.fromJson(Map<String, dynamic> json) =>
       ResultsModelResponse(
         totalCount: json["total_count"],
-        results: List<GetResultModel>.from(
-            json["results"].map((x) => GetResultModel.fromJson(x))),
+        data: List<GetResultModel>.from(
+            json["data"].map((x) => GetResultModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
     "total_count": totalCount,
-    "results": List<dynamic>.from(results!.map((x) => x.toJson())),
+    "data": List<dynamic>.from(data!.map((x) => x.toJson())),
   };
 
   @override
   String toString() {
-    return 'ResultsModelResponse{totalCount: $totalCount, results: $results}';
+    return 'ResultsModelResponse{totalCount: $totalCount, data: $data}';
   }
 }
 
@@ -47,12 +48,12 @@ class GetResultModel {
         this.topic,
         this.semester,
         this.degree,
-        this.attemptPercentage,
-        this.assessmentResults,
-        this.androidUrl,
-        this.url,
-        this.iosUrl,
-        required this.guestStudentAllowed, this.totalAttempts, this.totalCompletedAttempts, this.totalInprogressAttempts});
+        this.totalAttempts,
+        this.totalCompletedAttempts,
+        this.totalInprogressAttempts,
+        this.assessmentSettings,
+        this.assessmentResults
+      });
 
   dynamic assessmentId;
   String? assessmentCode;
@@ -66,15 +67,11 @@ class GetResultModel {
   String? topic;
   String? semester;
   String? degree;
-  int? attemptPercentage;
-  String? url;
-  String? androidUrl;
-  String? iosUrl;
-  bool guestStudentAllowed;
-  List<AssessmentResults>? assessmentResults;
   int? totalAttempts;
   int? totalInprogressAttempts;
   int? totalCompletedAttempts;
+  AssessmentSettings? assessmentSettings;
+  List<AssessmentResults>? assessmentResults;
 
   factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
     assessmentId: json["assessment_id"] ?? " ",
@@ -91,16 +88,12 @@ class GetResultModel {
     totalAttempts:json["total_attempts"] ?? 0,
     totalCompletedAttempts: json["total_completed_attempts"] ?? 0,
     totalInprogressAttempts: json["total_inprogress_attempts"] ?? 0,
-    // url: json["url"] ?? " ",
-    // androidUrl: json["android_app"] ?? " ",
-    // iosUrl: json["ios_app"] ?? " ",
     degree: json["class"] ?? " ",
-    attemptPercentage: json["attempt_percentage"] ?? 0,
     assessmentResults: json["assessment_results"] == null
         ? []
         : List<AssessmentResults>.from(json["assessment_results"]
         .map((x) => AssessmentResults.fromJson(x))),
-    guestStudentAllowed: json["guest_student_allowed"] ?? " ",
+    assessmentSettings: AssessmentSettings.fromJson(json["assessment_settings"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -116,22 +109,24 @@ class GetResultModel {
     "topic": topic,
     "sub_topic": semester,
     "class": degree,
-    "attempt_percentage":attemptPercentage,
     "total_attempts":totalAttempts,
     "total_completed_attempts":totalCompletedAttempts,
     "total_inprogress_attempts":totalInprogressAttempts,
-    // "url": url,
-    // "android_app": androidUrl,
-    // "ios_app": iosUrl,
+    "assessment_settings":
+    assessmentSettings == null ? '' : assessmentSettings!.toJson(),
     "assessment_results": assessmentResults,
-    "guest_student_allowed": guestStudentAllowed,
   };
 
   @override
   String toString() {
-    return 'GetResultModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $semester, studentClass: $degree, attemptPercentage: $attemptPercentage, url: $url, androidUrl: $androidUrl, iosUrl: $iosUrl, guestStudentAllowed: $guestStudentAllowed, assessmentResults: $assessmentResults, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts}';
+    return 'GetResultModel{assessmentId: $assessmentId, assessmentResults: $assessmentResults, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $semester, studentClass: $degree, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts,assessmentSettings: $assessmentSettings,}';
   }
 }
+
+
+
+
+
 
 class AssessmentResults {
   AssessmentResults(
@@ -147,7 +142,8 @@ class AssessmentResults {
         this.attemptEndDate,
         this.attemptDuration,
         this.attemptScore,
-        this.questions, this.attemptPercent});
+        this.questions,
+        this.attemptPercent});
 
   String? attemptType;
   int? userId;
@@ -163,10 +159,8 @@ class AssessmentResults {
   int? attemptPercent;
   List<Questions>? questions;
 
-  //factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
   factory AssessmentResults.fromJson(Map<String, dynamic> json) =>
       AssessmentResults(
-        attemptType: json["attempt_type"] ?? "",
         userId: json["user_id"] ?? 0,
         firstName: json["first_name"] ?? "",
         lastName: json["last_name"] ?? "",
@@ -185,7 +179,6 @@ class AssessmentResults {
       );
 
   Map<String, dynamic> toJson() => {
-    "attempt_type":attemptType,
     "user_id": userId,
     "first_name": firstName,
     "last_name": lastName,
@@ -202,7 +195,7 @@ class AssessmentResults {
 
   @override
   String toString() {
-    return 'AssessmentResults{attemptType: $attemptType, userId: $userId, firstName: $firstName, lastName: $lastName, rollNumber: $rollNumber, organizationName: $organizationName, attemptId: $attemptId, attemptStartDate: $attemptStartDate, attemptEndDate: $attemptEndDate, attemptDuration: $attemptDuration,\n attemptScore: $attemptScore, attemptPercent: $attemptPercent,\n questions: $questions}\n';
+    return 'AssessmentResults{userId: $userId, firstName: $firstName, lastName: $lastName, rollNumber: $rollNumber, organizationName: $organizationName, attemptId: $attemptId, attemptStartDate: $attemptStartDate, attemptEndDate: $attemptEndDate, attemptDuration: $attemptDuration,\n attemptScore: $attemptScore, attemptPercent: $attemptPercent,\n questions: $questions}\n';
   }
 }
 

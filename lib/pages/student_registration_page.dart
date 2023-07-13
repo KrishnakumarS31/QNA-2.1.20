@@ -930,7 +930,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                     controller: studentRollNumberController,
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(   
-labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
                                                       label: RichText(

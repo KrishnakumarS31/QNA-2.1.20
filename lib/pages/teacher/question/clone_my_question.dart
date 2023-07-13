@@ -18,6 +18,7 @@ import '../../../Providers/LanguageChangeProvider.dart';
 import '../../../Providers/question_prepare_provider_final.dart';
 import '../../../Services/qna_service.dart';
 import '../../../EntityModel/create_question_model.dart' as create_question_model;
+import 'package:qna_test/DataSource/design.dart';
 
 Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
@@ -255,14 +256,14 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -322,7 +323,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                     ),
                                     child: Column(
                                       children: [
-                                        showIcon==Icons.expand_circle_down_outlined?
+                                        showIcon==Icons.arrow_circle_down_outlined?
                                     Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -656,6 +657,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                             left: width * 0.02,top:width*0.02),
                                                         child: Row(
                                                           children: [
+                                                            Text("${String.fromCharCode(97+i)}."),
                                                             Expanded(
                                                               child: TextFormField(
                                                                 controller: chooses[i],
@@ -719,6 +721,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
+                                                            Text("${String.fromCharCode(97+i)}."),
                                                             Expanded(
                                                               child: TextFormField(
                                                                 controller: chooses[i],
@@ -1424,6 +1427,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1487,6 +1491,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1862,14 +1867,14 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                     backgroundColor: Colors.white,
                     endDrawer: const EndDrawerMenuTeacher(),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       leading: IconButton(
                         icon: Icon(
                           Icons.chevron_left,
                           size: height * 0.06,
-                          color: Colors.black,
+                          color: appBarChevronColor,
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -1928,7 +1933,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                       ),
                                       child: Column(
                                         children: [
-                                          showIcon==Icons.expand_circle_down_outlined?
+                                          showIcon==Icons.arrow_circle_down_outlined?
                                           Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
@@ -2259,6 +2264,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                 children: [
+                                                                  Text("${String.fromCharCode(97+i)}."),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -2326,6 +2332,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
+                                                                  Text("${String.fromCharCode(97+i)}."),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -3034,6 +3041,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                                 children: [
+                                                                  Text("${String.fromCharCode(97+i)}."),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -3101,6 +3109,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               child: Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
+                                                                  Text("${String.fromCharCode(97+i)}."),
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
@@ -3480,14 +3489,14 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -3538,7 +3547,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Column(
                                       children: [
-                                        showIcon==Icons.expand_circle_down_outlined?
+                                        showIcon==Icons.arrow_circle_down_outlined?
                                         Column(
                                           children: [
                                             Container(
@@ -3852,6 +3861,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -3914,6 +3924,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4604,6 +4615,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4666,6 +4678,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
+                                                                Text("${String.fromCharCode(97+i)}."),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -5029,13 +5042,13 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
   }
 
   changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
+    if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
       });
     } else {
       setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
+        showIcon = Icons.arrow_circle_down_outlined;
       });
     }
   }

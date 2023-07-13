@@ -7,7 +7,6 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/user_details.dart';
 import '../Providers/LanguageChangeProvider.dart';
-import '../DataSource/http_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class ChangeEmailTeacher extends StatefulWidget {
   const ChangeEmailTeacher({Key? key, required this.userId}) : super(key: key);
@@ -116,6 +115,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: Text(
                                                 AppLocalizations.of(context)!.new_email_id,
                                                 style: TextStyle(
@@ -159,6 +159,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: Text(
                                                 AppLocalizations.of(context)!.confirm_new_mail,
                                                 style: TextStyle(
@@ -350,6 +351,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                                 decoration: InputDecoration(
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   label: Text(
                                                     AppLocalizations.of(context)!.new_email_id,
                                                     style: TextStyle(
@@ -393,6 +395,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                                 decoration: InputDecoration(
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   label: Text(
                                                     AppLocalizations.of(context)!.confirm_new_mail,
                                                     style: TextStyle(
@@ -580,6 +583,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: Text(
                                                 AppLocalizations.of(context)!.new_email_id,
                                                 style: TextStyle(
@@ -623,6 +627,7 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: Text(
                                                 AppLocalizations.of(context)!.confirm_new_mail,
                                                 style: TextStyle(

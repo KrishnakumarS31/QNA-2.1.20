@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/pages/teacher_result_landing_page.dart';
-
+import 'package:qna_test/pages/teacher/result/teacher_result_landing_page.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage(
@@ -196,10 +194,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                       PageTransition(
                                         type: PageTransitionType.rightToLeft,
                                         child: TeacherResultLanding(
-                                            userId: userId,
-                                            advisorName: widget.userData.data!.firstName,
-                                            advisorEmail: widget.userData.data!.email
-                                        ),
+                                            userId: userId),
                                       ),
                                     );
                                   },
@@ -369,10 +364,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                       PageTransition(
                                         type: PageTransitionType.rightToLeft,
                                         child: TeacherResultLanding(
-                                            userId: userId,
-                                            advisorName: widget.userData.data!.firstName,
-                                            advisorEmail: widget.userData.data!.email
-                                        ),
+                                            userId: userId),
                                       ),
                                     );
                                   },
@@ -539,9 +531,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: TeacherResultLanding(
-                                  userId: userId,
-                                  advisorName: widget.userData.data!.firstName,
-                                  advisorEmail: widget.userData.data!.email),
+                                  userId: userId),
                             ),
                           );
                         },

@@ -1051,59 +1051,104 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                           SizedBox(
                                                             height: height * 0.02,
                                                           ),
-                                                          ElevatedButton(
-                                                            style:
-                                                            ElevatedButton
-                                                                .styleFrom(
-                                                              backgroundColor:
-                                                              const Color
-                                                                  .fromRGBO(
-                                                                  82, 165, 160,
-                                                                  1),
-                                                              minimumSize:
-                                                              const Size(280, 48),
-                                                              shape:
-                                                              RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    39),
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            children: [
+
+                                                              ElevatedButton(
+                                                                style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:Colors.white,
+                                                                  // const Color
+                                                                  //     .fromRGBO(
+                                                                  //     82, 165, 160,
+                                                                  //     1),
+                                                                  minimumSize:
+                                                                  Size(width * 0.06, height * 0.05),
+                                                                  shape:
+                                                                  RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                        39),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async {
+                                                                  Navigator.of(context).pop();
+                                                                },
+                                                                child: Text(
+                                                                  // AppLocalizations.of(
+                                                                  //     context)!
+                                                                  //     .save_continue,
+                                                                  'Cancel',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                      height * 0.025,
+                                                                      fontFamily: "Inter",
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          82,165,160,1),
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            onPressed: () async {
-                                                              bool valid = formKey.currentState!.validate();
-                                                              if (valid) {
-                                                                Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
-                                                                CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
-                                                                assessment.subject=subjectController.text;
-                                                                assessment.topic=topicController.text;
-                                                                assessment.createAssessmentModelClass=degreeController.text;
-                                                                assessment.subTopic=semesterController.text;
-                                                                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                                                Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-                                                                Navigator.pushNamed(
-                                                                  context,
-                                                                  '/createNewAssessment',
-                                                                );
-                                                              }
-                                                            },
-                                                            child: Text(
-                                                              // AppLocalizations.of(
-                                                              //     context)!
-                                                              //     .save_continue,
-                                                              'Save',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                  height * 0.025,
-                                                                  fontFamily: "Inter",
-                                                                  color: const Color
+                                                              ElevatedButton(
+                                                                style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:
+                                                                  const Color
                                                                       .fromRGBO(
-                                                                      255, 255,
-                                                                      255, 1),
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
-                                                            ),
+                                                                      82, 165, 160,
+                                                                      1),
+                                                                  minimumSize:
+                                                                  Size(width * 0.06, height * 0.05),
+                                                                  shape:
+                                                                  RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                        width * 0.06),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async {
+                                                                  bool valid = formKey.currentState!.validate();
+                                                                  if (valid) {
+                                                                    Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
+                                                                    CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
+                                                                    assessment.subject=subjectController.text;
+                                                                    assessment.topic=topicController.text;
+                                                                    assessment.createAssessmentModelClass=degreeController.text;
+                                                                    assessment.subTopic=semesterController.text;
+                                                                    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                                                    Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                                    Navigator.pushNamed(
+                                                                      context,
+                                                                      '/createNewAssessment',
+                                                                    );
+                                                                  }
+                                                                },
+                                                                child: Text(
+                                                                  // AppLocalizations.of(
+                                                                  //     context)!
+                                                                  //     .save_continue,
+                                                                  'Continue',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                      height * 0.025,
+                                                                      fontFamily: "Inter",
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          255, 255,
+                                                                          255, 1),
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -2039,59 +2084,104 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                           SizedBox(
                                                             height: height * 0.02,
                                                           ),
-                                                          ElevatedButton(
-                                                            style:
-                                                            ElevatedButton
-                                                                .styleFrom(
-                                                              backgroundColor:
-                                                              const Color
-                                                                  .fromRGBO(
-                                                                  82, 165, 160,
-                                                                  1),
-                                                              minimumSize:
-                                                              const Size(280, 48),
-                                                              shape:
-                                                              RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    39),
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            children: [
+
+                                                              ElevatedButton(
+                                                                style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:Colors.white,
+                                                                  // const Color
+                                                                  //     .fromRGBO(
+                                                                  //     82, 165, 160,
+                                                                  //     1),
+                                                                  minimumSize:
+                                                                  Size(width * 0.06, height * 0.05),
+                                                                  shape:
+                                                                  RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                        39),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async {
+                                                                  Navigator.of(context).pop();
+                                                                },
+                                                                child: Text(
+                                                                  // AppLocalizations.of(
+                                                                  //     context)!
+                                                                  //     .save_continue,
+                                                                  'Cancel',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                      height * 0.025,
+                                                                      fontFamily: "Inter",
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          82,165,160,1),
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            onPressed: () async {
-                                                              bool valid = formKey.currentState!.validate();
-                                                              if (valid) {
-                                                                Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
-                                                                CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
-                                                                assessment.subject=subjectController.text;
-                                                                assessment.topic=topicController.text;
-                                                                assessment.createAssessmentModelClass=degreeController.text;
-                                                                assessment.subTopic=semesterController.text;
-                                                                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                                                Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-                                                                Navigator.pushNamed(
-                                                                  context,
-                                                                  '/createNewAssessment',
-                                                                );
-                                                              }
-                                                            },
-                                                            child: Text(
-                                                              // AppLocalizations.of(
-                                                              //     context)!
-                                                              //     .save_continue,
-                                                              'Save',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                  height * 0.025,
-                                                                  fontFamily: "Inter",
-                                                                  color: const Color
+                                                              ElevatedButton(
+                                                                style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:
+                                                                  const Color
                                                                       .fromRGBO(
-                                                                      255, 255,
-                                                                      255, 1),
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
-                                                            ),
+                                                                      82, 165, 160,
+                                                                      1),
+                                                                  minimumSize:
+                                                                  Size(width * 0.06, height * 0.05),
+                                                                  shape:
+                                                                  RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                        width * 0.06),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async {
+                                                                  bool valid = formKey.currentState!.validate();
+                                                                  if (valid) {
+                                                                    Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
+                                                                    CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
+                                                                    assessment.subject=subjectController.text;
+                                                                    assessment.topic=topicController.text;
+                                                                    assessment.createAssessmentModelClass=degreeController.text;
+                                                                    assessment.subTopic=semesterController.text;
+                                                                    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                                                    Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                                    Navigator.pushNamed(
+                                                                      context,
+                                                                      '/createNewAssessment',
+                                                                    );
+                                                                  }
+                                                                },
+                                                                child: Text(
+                                                                  // AppLocalizations.of(
+                                                                  //     context)!
+                                                                  //     .save_continue,
+                                                                  'Continue',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                      height * 0.025,
+                                                                      fontFamily: "Inter",
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          255, 255,
+                                                                          255, 1),
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -3067,59 +3157,104 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                           SizedBox(
                                                             height: height * 0.02,
                                                           ),
-                                                          ElevatedButton(
-                                                            style:
-                                                            ElevatedButton
-                                                                .styleFrom(
-                                                              backgroundColor:
-                                                              const Color
-                                                                  .fromRGBO(
-                                                                  82, 165, 160,
-                                                                  1),
-                                                              minimumSize:
-                                                              const Size(280, 48),
-                                                              shape:
-                                                              RoundedRectangleBorder(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    39),
+                                                          Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            children: [
+
+                                                              ElevatedButton(
+                                                                style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:Colors.white,
+                                                                  // const Color
+                                                                  //     .fromRGBO(
+                                                                  //     82, 165, 160,
+                                                                  //     1),
+                                                                  minimumSize:
+                                                                  Size(width * 0.06, height * 0.05),
+                                                                  shape:
+                                                                  RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                        39),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async {
+                                                                Navigator.of(context).pop();
+                                                                },
+                                                                child: Text(
+                                                                  // AppLocalizations.of(
+                                                                  //     context)!
+                                                                  //     .save_continue,
+                                                                  'Cancel',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                      height * 0.025,
+                                                                      fontFamily: "Inter",
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                         82,165,160,1),
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            onPressed: () async {
-                                                              bool valid = formKey.currentState!.validate();
-                                                              if (valid) {
-                                                                Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
-                                                                CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
-                                                                assessment.subject=subjectController.text;
-                                                                assessment.topic=topicController.text;
-                                                                assessment.createAssessmentModelClass=degreeController.text;
-                                                                assessment.subTopic=semesterController.text;
-                                                                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                                                Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-                                                                Navigator.pushNamed(
-                                                                  context,
-                                                                  '/createNewAssessment',
-                                                                );
-                                                              }
-                                                            },
-                                                            child: Text(
-                                                              // AppLocalizations.of(
-                                                              //     context)!
-                                                              //     .save_continue,
-                                                              'Save',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                  height * 0.025,
-                                                                  fontFamily: "Inter",
-                                                                  color: const Color
+                                                              ElevatedButton(
+                                                                style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                                  backgroundColor:
+                                                                  const Color
                                                                       .fromRGBO(
-                                                                      255, 255,
-                                                                      255, 1),
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w600),
-                                                            ),
+                                                                      82, 165, 160,
+                                                                      1),
+                                                                  minimumSize:
+                                                                  Size(width * 0.06, height * 0.05),
+                                                                  shape:
+                                                                  RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                        width * 0.06),
+                                                                  ),
+                                                                ),
+                                                                onPressed: () async {
+                                                                  bool valid = formKey.currentState!.validate();
+                                                                  if (valid) {
+                                                                    Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
+                                                                    CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
+                                                                    assessment.subject=subjectController.text;
+                                                                    assessment.topic=topicController.text;
+                                                                    assessment.createAssessmentModelClass=degreeController.text;
+                                                                    assessment.subTopic=semesterController.text;
+                                                                    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                                                    Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                                    Navigator.pushNamed(
+                                                                      context,
+                                                                      '/createNewAssessment',
+                                                                    );
+                                                                  }
+                                                                },
+                                                                child: Text(
+                                                                  // AppLocalizations.of(
+                                                                  //     context)!
+                                                                  //     .save_continue,
+                                                                  'Continue',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                      height * 0.025,
+                                                                      fontFamily: "Inter",
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          255, 255,
+                                                                          255, 1),
+                                                                      fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ],
                                                       ),
@@ -3211,8 +3346,8 @@ class _AssessmentCardState extends State<AssessmentCard> {
           }
         },
         child: Container(
-          height: widget.deviceType =="Web" ? widget.height * 0.11 : widget.height * 0.15,
-          width: widget.deviceType == "Web" ?widget.width * 0.4 : widget.width * 0.888,
+          height: widget.height * 0.15,
+          width:  widget.width>960 ? widget.width * 0.37 :widget.width > 500 ? widget.width * 0.78 :widget.width * 0.3,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             border: Border.all(
@@ -3231,7 +3366,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width:widget.deviceType == "Web" ?widget.width * 0.4 :widget.width * 0.6,
+                      width:widget.width > 960 ? widget.width * 0.1 :widget.width > 500 ? widget.width * 0.3 :widget.width * 0.6,
                       child: Text(
                         "${widget.assessment.subject!}  | ${widget.assessment.topic!}",
                         style: TextStyle(
@@ -3244,12 +3379,12 @@ class _AssessmentCardState extends State<AssessmentCard> {
                     ),
                     (widget.assessment.assessmentStatus=="active" && widget.assessment.assessmentType=='test')?
                     Container(
-                      height: widget.deviceType == "Web" ? 10.0 : widget.height * 0.04,
-                      width: widget.deviceType == "Web" ? 10.0 :widget.width * 0.16,
+                      height: widget.height * 0.04,
+                      width: widget.width > 960 ? widget.width * 0.05 : widget.width * 0.16,
                       decoration: BoxDecoration(
                         border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
                         borderRadius: BorderRadius.all(
-                            Radius.circular(1)),
+                            Radius.circular(10)),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
