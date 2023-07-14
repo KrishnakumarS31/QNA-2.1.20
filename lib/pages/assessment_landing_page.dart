@@ -3,24 +3,22 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/Providers/edit_assessment_provider.dart';
-import '../Components/custom_incorrect_popup.dart';
-import '../Components/end_drawer_menu_teacher.dart';
-import '../Entity/Teacher/choice_entity.dart';
-import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/response_entity.dart';
-import '../Entity/user_details.dart';
-import '../EntityModel/CreateAssessmentModel.dart';
-import '../Providers/LanguageChangeProvider.dart';
-import '../Providers/create_assessment_provider.dart';
-import '../Providers/question_prepare_provider_final.dart';
-import '../Services/qna_service.dart';
+import '../../../Components/custom_incorrect_popup.dart';
+import '../../../Components/end_drawer_menu_teacher.dart';
+import '../../../Entity/Teacher/choice_entity.dart';
+import '../../../Entity/Teacher/get_assessment_model.dart';
+import '../../../Entity/Teacher/response_entity.dart';
+import '../../../Entity/user_details.dart';
+import '../../../EntityModel/CreateAssessmentModel.dart';
+import '../../../Providers/LanguageChangeProvider.dart';
+import '../../../Providers/create_assessment_provider.dart';
+import '../../../Providers/question_prepare_provider_final.dart';
+import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../DataSource/http_url.dart';
+import '../../../DataSource/http_url.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
-import 'teacher/question/edit_global_question_popup.dart';
-import 'teacher/question/edit_question_popup.dart';
 
 class AssessmentLandingPage extends StatefulWidget {
   const AssessmentLandingPage({
@@ -3181,7 +3179,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                                   ),
                                                                 ),
                                                                 onPressed: () async {
-                                                                Navigator.of(context).pop();
+                                                                  Navigator.of(context).pop();
                                                                 },
                                                                 child: Text(
                                                                   // AppLocalizations.of(
@@ -3194,7 +3192,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                                                       fontFamily: "Inter",
                                                                       color: const Color
                                                                           .fromRGBO(
-                                                                         82,165,160,1),
+                                                                          82,165,160,1),
                                                                       fontWeight:
                                                                       FontWeight
                                                                           .w600),
@@ -3315,6 +3313,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
 
   @override
   void initState() {
+    print(widget.width);
     DateTime tsDate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
     datetime = "${tsDate.day}/${tsDate.month}/${tsDate.year}";
     super.initState();
@@ -3347,7 +3346,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
         },
         child: Container(
           height: widget.height * 0.15,
-          width:  widget.width>960 ? widget.width * 0.37 :widget.width > 500 ? widget.width * 0.78 :widget.width * 0.3,
+          width:  widget.width>960 ? widget.width * 0.37 : widget.width > 500 ? widget.width * 0.78 :widget.width * 0.85,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             border: Border.all(
@@ -3366,7 +3365,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      width:widget.width > 960 ? widget.width * 0.1 :widget.width > 500 ? widget.width * 0.3 :widget.width * 0.6,
+                      width:widget.width > 960 ? widget.width * 0.1 :widget.width > 500 ? widget.width * 0.3 :widget.width * 0.5,
                       child: Text(
                         "${widget.assessment.subject!}  | ${widget.assessment.topic!}",
                         style: TextStyle(

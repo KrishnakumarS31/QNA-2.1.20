@@ -190,7 +190,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
-                                        name,
+                                       "${widget.usedData!.data!.firstName} ${widget.usedData!.data!.lastName}",
                                         style: Theme.of(context)
                                             .primaryTextTheme
                                             .bodyLarge

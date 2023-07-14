@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/DataSource/design.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
 import '../../../Components/custom_incorrect_popup.dart';
@@ -244,14 +245,14 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -1009,14 +1010,14 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                     backgroundColor: Colors.white,
                     endDrawer: const EndDrawerMenuTeacher(),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       leading: IconButton(
                         icon: Icon(
                           Icons.chevron_left,
                           size: height * 0.06,
-                          color: Colors.black,
+                          color: appBarChevronColor,
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -1782,14 +1783,14 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();

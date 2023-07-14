@@ -174,22 +174,23 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                                           if (context.mounted) {
                                                             showAlertDialog(context);
                                                           }
-                                                        } else {
-                                                          if (context.mounted) {
-                                                            Navigator.push(
-                                                              context,
-                                                              PageTransition(
-                                                                type: PageTransitionType.rightToLeft,
-                                                                child: CustomDialog(
-                                                                  title: 'Incorrect Otp',
-                                                                  content: 'Entered OTP does not match',
-                                                                  button:
-                                                                  AppLocalizations.of(context)!.retry,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
                                                         }
+                                                        // else {
+                                                        //   if (context.mounted) {
+                                                        //     Navigator.push(
+                                                        //       context,
+                                                        //       PageTransition(
+                                                        //         type: PageTransitionType.rightToLeft,
+                                                        //         child: CustomDialog(
+                                                        //           title: 'Incorrect Otp',
+                                                        //           content: 'Entered OTP does not match',
+                                                        //           button:
+                                                        //           AppLocalizations.of(context)!.retry,
+                                                        //         ),
+                                                        //       ),
+                                                        //     );
+                                                        //   }
+                                                        // }
                                                       }
                                                     },
                                                   ),
@@ -377,22 +378,23 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                                           if (context.mounted) {
                                                             showAlertDialog(context);
                                                           }
-                                                        } else {
-                                                          if (context.mounted) {
-                                                            Navigator.push(
-                                                              context,
-                                                              PageTransition(
-                                                                type: PageTransitionType.rightToLeft,
-                                                                child: CustomDialog(
-                                                                  title: 'Incorrect Otp',
-                                                                  content: 'Entered OTP does not match',
-                                                                  button:
-                                                                  AppLocalizations.of(context)!.retry,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
                                                         }
+                                                        // else {
+                                                        //   if (context.mounted) {
+                                                        //     Navigator.push(
+                                                        //       context,
+                                                        //       PageTransition(
+                                                        //         type: PageTransitionType.rightToLeft,
+                                                        //         child: CustomDialog(
+                                                        //           title: 'Incorrect Otp',
+                                                        //           content: 'Entered OTP does not match',
+                                                        //           button:
+                                                        //           AppLocalizations.of(context)!.retry,
+                                                        //         ),
+                                                        //       ),
+                                                        //     );
+                                                        //   }
+                                                        // }
                                                       }
                                                     },
                                                   ),
@@ -580,22 +582,23 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                                 if (context.mounted) {
                                                   showAlertDialog(context);
                                                 }
-                                              } else {
-                                                if (context.mounted) {
-                                                  Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType.rightToLeft,
-                                                      child: CustomDialog(
-                                                        title: 'Incorrect Otp',
-                                                        content: 'Entered OTP does not match',
-                                                        button:
-                                                        AppLocalizations.of(context)!.retry,
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
                                               }
+                                              // else {
+                                              //   if (context.mounted) {
+                                              //     Navigator.push(
+                                              //       context,
+                                              //       PageTransition(
+                                              //         type: PageTransitionType.rightToLeft,
+                                              //         child: CustomDialog(
+                                              //           title: 'Incorrect Otp',
+                                              //           content: 'Entered OTP does not match',
+                                              //           button:
+                                              //           AppLocalizations.of(context)!.retry,
+                                              //         ),
+                                              //       ),
+                                              //     );
+                                              //   }
+                                              // }
                                             }
                                           },
                                         ),

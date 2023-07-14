@@ -1319,7 +1319,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       padding: EdgeInsets.only(left: width * 0.02,right : width * 0.02),
                                                       child: TextFormField(
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines:100,
+                                                        expands: true,
                                                         onChanged: (val) {
                                                           questionFormKey.currentState!.validate();
 
@@ -1922,7 +1924,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                   SizedBox(height: width * 0.005),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "Continue",
+                                      "",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),

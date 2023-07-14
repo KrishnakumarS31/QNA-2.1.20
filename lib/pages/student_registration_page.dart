@@ -915,7 +915,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         },
                                                         validator: (value) {
                                                           if (value!.isEmpty) {
-                                                            return 'Enter Organization Name';
+                                                            return 'Enter Institution Name';
                                                           } else {
                                                             return null;
                                                           }
@@ -1917,7 +1917,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           },
                                                           validator: (value) {
                                                             if (value!.isEmpty) {
-                                                              return 'Enter Organization Name';
+                                                              return 'Enter Institution Name';
                                                             } else {
                                                               return null;
                                                             }
@@ -3008,7 +3008,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           },
                                                           validator: (value) {
                                                             if (value!.isEmpty) {
-                                                              return 'Enter Organization Name';
+                                                              return 'Enter Institution Name Name';
                                                             } else {
                                                               return null;
                                                             }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/DataSource/design.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
@@ -351,14 +352,14 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                 endDrawer: const EndDrawerMenuTeacher(),
                 backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                 appBar: AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: Icon(
                       Icons.chevron_left,
                       size: height * 0.06,
-                      color: Colors.black,
+                      color: appBarChevronColor,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -370,15 +371,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                   title: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          //AppLocalizations.of(context)!.my_qns,
-                          "Review Cloned Assessment",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.025,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                          ),
+                        SizedBox(
+                          width:width,
+                          child:  Text(
+                            //AppLocalizations.of(context)!.my_qns,
+                            "Review Cloned Assessment",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+
+
                         ),
                       ]),
                   flexibleSpace: Container(
@@ -464,7 +470,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                 // AppLocalizations.of(
                                                                 //     context)!
                                                                 //     .assessment_title,
-                                                                'Question Details',
+                                                                'Assessment Details',
                                                                 style: TextStyle(
                                                                     fontSize: height *
                                                                         0.02,
@@ -497,8 +503,26 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                               ),
                                                             ),
                                                             Padding(
+                                                              padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
+                                                              child: Align(
+                                                                alignment:
+                                                                Alignment.centerLeft,
+                                                                child: Text(
+                                                                  //AppLocalizations.of(context)!.my_qn_bank,
+                                                                  "Subject",
+                                                                  textAlign: TextAlign.left,
+                                                                  style: TextStyle(
+                                                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                    fontSize: height * 0.02,
+                                                                    fontFamily: "Inter",
+                                                                    fontWeight: FontWeight.w400,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Padding(
                                                               padding: EdgeInsets.only(left: width * 0.02),
-                                                              child: TextField(
+                                                              child: TextFormField(
                                                                 controller: subjectController,
                                                                 keyboardType: TextInputType.text,
                                                                 decoration: InputDecoration(
@@ -515,13 +539,25 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                   focusedBorder: UnderlineInputBorder(
                                                                     borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                                   ),
-                                                                  // focusedBorder: OutlineInputBorder(
-                                                                  //     borderSide: const BorderSide(
-                                                                  //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                  //     borderRadius: BorderRadius.circular(15)),
-                                                                  // border: OutlineInputBorder(
-                                                                  //     borderRadius: BorderRadius.circular(15)),
+
                                                                 ),
+                                                                validator: (value) {
+                                                                  if (value!
+                                                                      .isEmpty) {
+                                                                    return AppLocalizations
+                                                                        .of(
+                                                                        context)!
+                                                                        .enter_subject;
+                                                                    //'Enter Subject';
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
+                                                                onChanged: (value) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(
@@ -544,7 +580,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.only(left: width * 0.02),
-                                                              child: TextField(
+                                                              child: TextFormField(
                                                                 controller: topicController,
                                                                 keyboardType: TextInputType.text,
                                                                 decoration: InputDecoration(
@@ -568,6 +604,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                   // border: OutlineInputBorder(
                                                                   //     borderRadius: BorderRadius.circular(15)),
                                                                 ),
+                                                                validator: (value) {
+                                                                  if (value!
+                                                                      .isEmpty) {
+                                                                    return
+                                                                      'Enter Topic';
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
+                                                                onChanged: (value) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(
@@ -590,7 +640,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.only(left: width * 0.02),
-                                                              child: TextField(
+                                                              child: TextFormField(
                                                                 controller: degreeController,
                                                                 keyboardType: TextInputType.text,
                                                                 decoration: InputDecoration(
@@ -614,6 +664,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                   // border: OutlineInputBorder(
                                                                   //     borderRadius: BorderRadius.circular(15)),
                                                                 ),
+                                                                validator: (value) {
+                                                                  if (value!
+                                                                      .isEmpty) {
+                                                                    return
+                                                                      'Enter Degree';
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
+                                                                onChanged: (value) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(
@@ -1148,14 +1212,14 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                 endDrawer: const EndDrawerMenuTeacher(),
                 backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                 appBar: AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: Icon(
                       Icons.chevron_left,
                       size: height * 0.06,
-                      color: Colors.black,
+                      color: appBarChevronColor,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -1167,15 +1231,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                   title: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          //AppLocalizations.of(context)!.my_qns,
-                          "Review Cloned Assessment",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.025,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                          ),
+                        SizedBox(
+                            width:width,
+                            child:  Text(
+                              //AppLocalizations.of(context)!.my_qns,
+                              "Review Cloned Assessment",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.025,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+
+
                         ),
                       ]),
                   flexibleSpace: Container(
@@ -1261,7 +1330,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                 // AppLocalizations.of(
                                                                 //     context)!
                                                                 //     .assessment_title,
-                                                                'Question Details',
+                                                                'Assessment Details',
                                                                 style: TextStyle(
                                                                     fontSize: height *
                                                                         0.02,
@@ -1295,7 +1364,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.only(left: width * 0.02),
-                                                              child: TextField(
+                                                              child: TextFormField(
                                                                 controller: subjectController,
                                                                 keyboardType: TextInputType.text,
                                                                 decoration: InputDecoration(
@@ -1312,13 +1381,25 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                   focusedBorder: UnderlineInputBorder(
                                                                     borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                                   ),
-                                                                  // focusedBorder: OutlineInputBorder(
-                                                                  //     borderSide: const BorderSide(
-                                                                  //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                  //     borderRadius: BorderRadius.circular(15)),
-                                                                  // border: OutlineInputBorder(
-                                                                  //     borderRadius: BorderRadius.circular(15)),
+
                                                                 ),
+                                                                validator: (value) {
+                                                                  if (value!
+                                                                      .isEmpty) {
+                                                                    return AppLocalizations
+                                                                        .of(
+                                                                        context)!
+                                                                        .enter_subject;
+                                                                    //'Enter Subject';
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
+                                                                onChanged: (value) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(
@@ -1341,7 +1422,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.only(left: width * 0.02),
-                                                              child: TextField(
+                                                              child: TextFormField(
                                                                 controller: topicController,
                                                                 keyboardType: TextInputType.text,
                                                                 decoration: InputDecoration(
@@ -1365,6 +1446,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                   // border: OutlineInputBorder(
                                                                   //     borderRadius: BorderRadius.circular(15)),
                                                                 ),
+                                                                validator: (value) {
+                                                                  if (value!
+                                                                      .isEmpty) {
+                                                                    return
+                                                                      'Enter Topic';
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
+                                                                onChanged: (value) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(
@@ -1387,7 +1482,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.only(left: width * 0.02),
-                                                              child: TextField(
+                                                              child: TextFormField(
                                                                 controller: degreeController,
                                                                 keyboardType: TextInputType.text,
                                                                 decoration: InputDecoration(
@@ -1411,6 +1506,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                   // border: OutlineInputBorder(
                                                                   //     borderRadius: BorderRadius.circular(15)),
                                                                 ),
+                                                                validator: (value) {
+                                                                  if (value!
+                                                                      .isEmpty) {
+                                                                    return
+                                                                      'Enter Degree';
+                                                                  } else {
+                                                                    return null;
+                                                                  }
+                                                                },
+                                                                onChanged: (value) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(
@@ -1945,14 +2054,14 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                     endDrawer: const EndDrawerMenuTeacher(),
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       leading: IconButton(
                         icon: Icon(
                           Icons.chevron_left,
                           size: height * 0.06,
-                          color: Colors.black,
+                          color: appBarChevronColor,
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -1964,15 +2073,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                       title: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text(
-                              //AppLocalizations.of(context)!.my_qns,
-                              "Review Cloned Assessment",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
+                            SizedBox(
+                                width:width,
+                                child:  Text(
+                                  //AppLocalizations.of(context)!.my_qns,
+                                  "Review Cloned Assessment",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontSize: height * 0.025,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )
+
+
                             ),
                           ]),
                       flexibleSpace: Container(
@@ -2056,7 +2170,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                     // AppLocalizations.of(
                                                                     //     context)!
                                                                     //     .assessment_title,
-                                                                    'Question Details',
+                                                                    'Assessment Details',
                                                                     style: TextStyle(
                                                                         fontSize: height *
                                                                             0.02,
@@ -2090,7 +2204,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
+                                                                  child: TextFormField(
                                                                     controller: subjectController,
                                                                     keyboardType: TextInputType.text,
                                                                     decoration: InputDecoration(
@@ -2107,13 +2221,25 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                       focusedBorder: UnderlineInputBorder(
                                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                                       ),
-                                                                      // focusedBorder: OutlineInputBorder(
-                                                                      //     borderSide: const BorderSide(
-                                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                      // border: OutlineInputBorder(
-                                                                      //     borderRadius: BorderRadius.circular(15)),
+
                                                                     ),
+                                                                    validator: (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        return AppLocalizations
+                                                                            .of(
+                                                                            context)!
+                                                                            .enter_subject;
+                                                                        //'Enter Subject';
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onChanged: (value) {
+                                                                      formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                    },
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -2136,7 +2262,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
+                                                                  child: TextFormField(
                                                                     controller: topicController,
                                                                     keyboardType: TextInputType.text,
                                                                     decoration: InputDecoration(
@@ -2160,6 +2286,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                       // border: OutlineInputBorder(
                                                                       //     borderRadius: BorderRadius.circular(15)),
                                                                     ),
+                                                                    validator: (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        return
+                                                                          'Enter Topic';
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onChanged: (value) {
+                                                                      formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                    },
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -2182,7 +2322,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                 ),
                                                                 Padding(
                                                                   padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
+                                                                  child: TextFormField(
                                                                     controller: degreeController,
                                                                     keyboardType: TextInputType.text,
                                                                     decoration: InputDecoration(
@@ -2206,6 +2346,20 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                       // border: OutlineInputBorder(
                                                                       //     borderRadius: BorderRadius.circular(15)),
                                                                     ),
+                                                                    validator: (value) {
+                                                                      if (value!
+                                                                          .isEmpty) {
+                                                                        return
+                                                                          'Enter Degree';
+                                                                      } else {
+                                                                        return null;
+                                                                      }
+                                                                    },
+                                                                    onChanged: (value) {
+                                                                      formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                    },
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -2678,7 +2832,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
-                                          "Save Draftt",
+                                          "Save Draft",
                                           //textAlign: TextAlign.left,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(28, 78, 80, 1),

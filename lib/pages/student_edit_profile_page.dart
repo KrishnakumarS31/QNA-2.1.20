@@ -2624,8 +2624,15 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                       fontWeight: FontWeight.w500,
                       fontSize: 15),
                 ),
-                onPressed: () {
-                  Navigator.popUntil(context, ModalRoute.withName('/studentAssessment'));
+                onPressed: () async {
+                  UserDataModel userDataModel =
+                      await QnaService
+                      .getUserDataService(userDetails.userId,userDetails);
+                  Navigator.pushNamed(
+                      context,
+                      '/studentAssessment',
+                      arguments: [userDataModel,null,userDetails.email]);
+                  // Navigator.popUntil(context, ModalRoute.withName('/studentAssessment',arguments: [userDataModel,null,regNumber]));
                 },
               )
             ],

@@ -451,8 +451,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                             color: Colors
                                                                 .black54)),
                                                   ),
-                                                  maxLines: (height * 0.013)
-                                                      .round(), //or null
+                                                  maxLines: (height * 0.013).round(), //or null
                                                 ),
                                               ))
                                               : ChooseWidget(
@@ -1134,8 +1133,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                             color: Colors
                                                                 .black54)),
                                                   ),
-                                                  maxLines: (height * 0.013)
-                                                      .round(), //or null
+                                                  maxLines: (height * 0.013).round(), //or null
                                                 ),
                                               ))
                                               : ChooseWidget(

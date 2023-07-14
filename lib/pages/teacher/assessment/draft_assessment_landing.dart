@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/DataSource/design.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
@@ -656,6 +657,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                       ),
                     )));
           }
+
           else if(constraints.maxWidth > 960) {
             return WillPopScope(
                 onWillPop: () async => false,
@@ -965,6 +967,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                       ),
                     )));
           }
+
           else{
             return WillPopScope(
                 onWillPop: () async => false,
@@ -973,14 +976,14 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                     endDrawer: const EndDrawerMenuTeacher(),
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       leading: IconButton(
                         icon: Icon(
                           Icons.chevron_left,
                           size: height * 0.06,
-                          color: Colors.black,
+                          color: appBarChevronColor,
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
