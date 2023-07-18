@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as questions;
 import 'package:qna_test/EntityModel/user_data_model.dart';
-import 'package:qna_test/Pages/welcome_page.dart';
+import 'package:qna_test/pages/welcome_page.dart';
 import 'package:qna_test/pages/about_us.dart';
 import 'package:qna_test/pages/change_email_student.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
@@ -65,29 +65,29 @@ import 'package:qna_test/pages/teacher_selection_page.dart';
 import 'package:qna_test/pages/teacher_user_profile.dart';
 import 'package:qna_test/pages/terms_of_services.dart';
 import 'EntityModel/student_registration_model.dart';
-import 'Pages/forgot_password_email.dart';
-import 'Pages/privacy_policy_hamburger.dart';
-import 'Pages/reset_password_student.dart';
-import 'Pages/settings_languages.dart';
-import 'Pages/student_Advisor.dart';
-import 'Pages/student_answersheet.dart';
-import 'Pages/student_assessment_start.dart';
-import 'Pages/forgot_password.dart';
-import 'Pages/student_guest_login_page.dart';
-import 'Pages/student_member_login_page.dart';
-import 'Pages/student_regis_verify_otp.dart';
-import 'Pages/student_registration_page.dart';
-import 'Pages/student_selection_page.dart';
-import 'Pages/teacher_assessment_settings_publish.dart';
-import 'Pages/teacher_create_assessment.dart';
-import 'Pages/teacher_forgot_password.dart';
-import 'Pages/teacher_forgot_password_email.dart';
-import 'Pages/teacher_login.dart';
-import 'Pages/teacher_qn_preview.dart';
-import 'Pages/teacher_registration_page.dart';
-import 'Pages/teacher_registration_verify_page.dart';
-import 'Pages/teacher_verify_page.dart';
-import 'Pages/verify_otp_page.dart';
+import 'pages/forgot_password_email.dart';
+import 'pages/privacy_policy_hamburger.dart';
+import 'pages/reset_password_student.dart';
+import 'pages/settings_languages.dart';
+import 'pages/student_Advisor.dart';
+import 'pages/student_answersheet.dart';
+import 'pages/student_assessment_start.dart';
+import 'pages/forgot_password.dart';
+import 'pages/student_guest_login_page.dart';
+import 'pages/student_member_login_page.dart';
+import 'pages/student_regis_verify_otp.dart';
+import 'pages/student_registration_page.dart';
+import 'pages/student_selection_page.dart';
+import 'pages/teacher_assessment_settings_publish.dart';
+import 'pages/teacher_create_assessment.dart';
+import 'pages/teacher_forgot_password.dart';
+import 'pages/teacher_forgot_password_email.dart';
+import 'pages/teacher_login.dart';
+import 'pages/teacher_qn_preview.dart';
+import 'pages/teacher_registration_page.dart';
+import 'pages/teacher_registration_verify_page.dart';
+import 'pages/teacher_verify_page.dart';
+import 'pages/verify_otp_page.dart';
 import 'pages/teacher/question/qusetions_landing_page.dart';
 
 class MyRoutes{
@@ -113,8 +113,8 @@ class MyRoutes{
       case '/teacherRegistrationPage':
         return SlideRightRoute(widget: const TeacherRegistrationPage(),settings: settings);
 
-      case '/teacherForgotPasswordEmail':
-        return SlideRightRoute(widget: const TeacherForgotPasswordEmail(),settings: settings);
+      // case '/teacherForgotPasswordEmail':
+      //   return SlideRightRoute(widget: const TeacherForgotPasswordEmail(),settings: settings);
 
 
 
@@ -208,10 +208,10 @@ class MyRoutes{
         return SlideRightRoute(widget: StudentAssessment(usedData: arguments[0],assessment: arguments[1]),settings: settings);
       }
 
-      case '/ForgotPassword':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: ForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
-      }
+      // case '/ForgotPassword':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: ForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
+      // }
 
       case '/studGuestAssessment':{
         final name = settings.arguments as String;

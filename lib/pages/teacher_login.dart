@@ -307,7 +307,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     Navigator.pushNamed(
                                                         context,
                                                         '/forgotPasswordEmail',
-                                                        arguments: false
+                                                        arguments: true
                                                     );
                                                   },
                                                   child: Text(
@@ -763,7 +763,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     Navigator.pushNamed(
                                                         context,
                                                         '/forgotPasswordEmail',
-                                                        arguments: false
+                                                        arguments: true
                                                     );
                                                   },
                                                   child: Text(
@@ -1213,7 +1213,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     Navigator.pushNamed(
                                                         context,
                                                         '/forgotPasswordEmail',
-                                                        arguments: false
+                                                        arguments: true
                                                     );
                                                   },
                                                   child: Text(

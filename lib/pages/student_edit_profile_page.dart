@@ -360,7 +360,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                       ),
                       centerTitle: true,
                       title: Text(
-                        AppLocalizations.of(context)!.student_register,
+                        AppLocalizations.of(context)!.edit_user_profile,
                         style: const TextStyle(
                           color: Color.fromRGBO(28, 78, 80, 1),
                           fontSize: 18.0,
@@ -1082,7 +1082,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                       ),
                       centerTitle: true,
                       title: Text(
-                        AppLocalizations.of(context)!.student_register,
+                        AppLocalizations.of(context)!.edit_user_profile,
                         style: const TextStyle(
                           color: Color.fromRGBO(28, 78, 80, 1),
                           fontSize: 18.0,
@@ -1107,7 +1107,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                   borderRadius: BorderRadius.circular(10),
                                   boxShadow: kElevationToShadow[4],
                                 ),
-                                width: localWidth * 0.7,
+                                width: localWidth * 0.9,
                                 child: Form(
                                   key: formKey,
                                   child: Column(
@@ -2486,10 +2486,10 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                       //: ["student"]
                                                     );
 
-                                                      if (valid) {
-                                                        showAlertDialog(
-                                                            context,student);
-                                                      }
+                                                    if (valid) {
+                                                      showAlertDialog(
+                                                          context,student);
+                                                    }
 
                                                   }, child: Text(AppLocalizations.of(
                                                     context)!.submit),
@@ -2559,8 +2559,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
       actions: [
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(39))
+              backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(39))
           ),
           child: Text(
             AppLocalizations.of(context)!
@@ -2572,97 +2572,97 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                 fontSize: 15),
           ),
           onPressed: () async {
-    LoginModel res =
-    await QnaService.editUserDetailsService(
-    student,widget.userDataModel.data!.id,userDetails);
-    print(res.code);
-    if (res.code == 200) {
-    if (context.mounted) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Row(
-              children: [
-                Icon(
-                  Icons.check_circle,
-                  size: height * 0.04,
-                  color: const Color.fromRGBO(66, 194, 0, 1),
-                ),
-                SizedBox(
-                  width: height * 0.002,
-                ),
-                Text(
-                  AppLocalizations.of(context)!
-                      .success,
-                  //"Success!",
-                  style: const TextStyle(
-                      color: Color.fromRGBO(51, 51, 51, 1),
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20),
-                ),
-              ],
-            ),
-            content: const Text(
-              "Your profile has been edited successfully.",
-              style: TextStyle(
-                  color: Color.fromRGBO(51, 51, 51, 1),
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15),
-            ),
-            actionsAlignment: MainAxisAlignment.spaceEvenly,
-            actions: [
-              TextButton(
+            LoginModel res =
+            await QnaService.editUserDetailsService(
+                student,widget.userDataModel.data!.id,userDetails);
+            print(res.code);
+            if (res.code == 200) {
+              if (context.mounted) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Row(
+                        children: [
+                          Icon(
+                            Icons.check_circle,
+                            size: height * 0.04,
+                            color: const Color.fromRGBO(66, 194, 0, 1),
+                          ),
+                          SizedBox(
+                            width: height * 0.002,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!
+                                .success,
+                            //"Success!",
+                            style: const TextStyle(
+                                color: Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20),
+                          ),
+                        ],
+                      ),
+                      content: const Text(
+                        "Your profile has been edited successfully.",
+                        style: TextStyle(
+                            color: Color.fromRGBO(51, 51, 51, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15),
+                      ),
+                      actionsAlignment: MainAxisAlignment.spaceEvenly,
+                      actions: [
+                        TextButton(
 
-                child: const Text(
-                  "OK",
-                  style: TextStyle(
-                      color: Color.fromRGBO(82, 165, 160, 1),
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 15),
+                          child: const Text(
+                            "OK",
+                            style: TextStyle(
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15),
+                          ),
+                          onPressed: () async {
+                            UserDataModel userDataModel =
+                            await QnaService
+                                .getUserDataService(userDetails.userId,userDetails);
+                            Navigator.pushNamed(
+                                context,
+                                '/studentAssessment',
+                                arguments: [userDataModel,null,userDetails.email]);
+                            // Navigator.popUntil(context, ModalRoute.withName('/studentAssessment',arguments: [userDataModel,null,regNumber]));
+                          },
+                        )
+                      ],
+                    );;
+                  },
+                );
+              }
+            } else {
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: CustomDialog(
+                    title: AppLocalizations.of(context)!.alert_popup,
+                    //'Alert',
+                    content: '${res.message}',
+                    button: AppLocalizations.of(
+                        context)!.retry,
+                  ),
                 ),
-                onPressed: () async {
-                  UserDataModel userDataModel =
-                      await QnaService
-                      .getUserDataService(userDetails.userId,userDetails);
-                  Navigator.pushNamed(
-                      context,
-                      '/studentAssessment',
-                      arguments: [userDataModel,null,userDetails.email]);
-                  // Navigator.popUntil(context, ModalRoute.withName('/studentAssessment',arguments: [userDataModel,null,regNumber]));
-                },
-              )
-            ],
-          );;
-        },
-      );
-    }
-    } else {
-    Navigator.push(
-    context,
-    PageTransition(
-    type: PageTransitionType.rightToLeft,
-    child: CustomDialog(
-    title: AppLocalizations.of(context)!.alert_popup,
-    //'Alert',
-    content: '${res.message}',
-    button: AppLocalizations.of(
-    context)!.retry,
-    ),
-    ),
-    );
-    }
+              );
+            }
 
             // Navigator.popUntil(context, ModalRoute.withName('/studentMemberLoginPage'));
           },
         ),
         OutlinedButton(
           style: OutlinedButton.styleFrom(
-            backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(39),side: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1),),)
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(39),side: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1),),)
           ),
           child: Text(
             AppLocalizations.of(context)!

@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
-import '../DataSource/http_url.dart';
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
     Key? key,
@@ -47,7 +46,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -201,7 +200,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -358,7 +357,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -511,7 +510,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
       Center(
         child:
       Text(
-        "Enter OTP",
+        "Verify OTP",
         style: TextStyle(
             color: const Color.fromRGBO(48, 145, 139, 1),
             fontFamily: 'Inter',
@@ -556,7 +555,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
         ],
       ),
       content: Text(
-        "If this email ID is registered with us you will receive OTP",
+        "You will receive an OTP if the email ID is registered with us",
         style: TextStyle(
             color: const Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',

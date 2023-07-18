@@ -302,7 +302,6 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
   UserDetails userDetails=UserDetails();
   @override
   void initState() {
-    print('init');
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     roleBackup= List.from(widget.userDataModel.data!.role);
     enableAsStudent= widget.userDataModel.data!=null &&
@@ -1107,7 +1106,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                   borderRadius: BorderRadius.circular(10),
                                   boxShadow: kElevationToShadow[4],
                                 ),
-                                width: localWidth * 0.7,
+                                width: localWidth * 0.9,
                                 child: Form(
                                   key: formKey,
                                   child: Column(

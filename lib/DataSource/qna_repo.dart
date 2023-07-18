@@ -671,4 +671,38 @@ class QnaRepo {
     return resultData;
   }
 
+  static Future<StaticResponse> sendEmailOtp(String email,UserDetails userDetails) async {
+    StaticResponse responses =
+    StaticResponse(code: 0, message: 'Incorrect Email');
+    var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    // var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('PUT', Uri.parse(editEmailOtpUrl));
+    request.body = json.encode({"user_id":userDetails.userId,"new_email": email});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      responses = staticResponseFromJson(temp);
+    } else {}
+    return responses;
+  }
+
+  static Future<StaticResponse> changeEmail(String email,UserDetails userDetails,String otp) async {
+    StaticResponse responses =
+    StaticResponse(code: 0, message: 'Incorrect Email');
+    var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    // var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('PUT', Uri.parse(editEmailUrl));
+    request.body = json.encode({"user_id":userDetails.userId,"new_email": email,"otp":otp});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      responses = staticResponseFromJson(temp);
+    } else {}
+    return responses;
+  }
+
 }

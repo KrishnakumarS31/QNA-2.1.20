@@ -363,8 +363,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                 type:
                                                                 PageTransitionType.rightToLeft,
                                                                 child: CustomDialog(
-                                                                  title: '${assessmentvalues.message}',
-                                                                  content: '',
+                                                                  title: AppLocalizations.of(context)!.alert_popup,
+                                                                  content: '${assessmentvalues.message}',
                                                                   button:
                                                                   AppLocalizations.of(context)!
                                                                       .retry,
@@ -441,6 +441,40 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                             _searchPressed = true;
                                                           });
                                                         }
+                                                        else if (assessmentIdController.text == "")
+                                                          {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                PageTransitionType.rightToLeft,
+                                                                child: CustomDialog(
+                                                                  title: AppLocalizations.of(context)!.alert_popup,
+                                                                  content: '${assessmentvalues.message}',
+                                                                  button:
+                                                                  AppLocalizations.of(context)!
+                                                                      .retry,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+
+                                                        else if (assessmentvalues.code == 400) {
+                                                          Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type:
+                                                              PageTransitionType.rightToLeft,
+                                                              child: CustomDialog(
+                                                                title: AppLocalizations.of(context)!.alert_popup,
+                                                                content: '${assessmentvalues.message}',
+                                                                button:
+                                                                AppLocalizations.of(context)!
+                                                                    .retry,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
                                                         else{
                                                           Navigator.push(
                                                             context,
@@ -448,11 +482,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               type:
                                                               PageTransitionType.rightToLeft,
                                                               child: CustomDialog(
-                                                                title: '${values.message}',
-                                                                content: '',
-                                                                button:
-                                                                AppLocalizations.of(context)!
-                                                                    .retry,
+                                                                title: AppLocalizations.of(context)!.alert_popup,
+                                                                content: '${values.message}',
+                                                                button: AppLocalizations.of(context)!.retry,
                                                               ),
                                                             ),
                                                           );
@@ -685,7 +717,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                 arguments: [
                                                                   assessmentIdController.text,
                                                                   values,name,
-                                                                  null,
+                                                                  userId,
                                                                   false,
                                                                   assessmentHeaderValues
                                                                 ]);
@@ -2018,7 +2050,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                   assessmentIdController.text,
                                                                   values,
                                                                   name,
-                                                                  null,
+                                                                  userId,
                                                                   true,
                                                                   assessmentHeaderValues
                                                                 ]);

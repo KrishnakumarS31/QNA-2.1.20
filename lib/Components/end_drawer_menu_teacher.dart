@@ -74,7 +74,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                             children: [
                               SizedBox(width: width * 0.03),
                               CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.1,
+                                radius: MediaQuery.of(context).size.width * 0.02,
                                 backgroundColor:
                                 const Color.fromRGBO(0, 106, 100, 0),
                                 child: Image.asset(
@@ -88,7 +88,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
-                                    fontSize: width * 0.06),
+                                    fontSize: 20),
                               ),
                             ]),
                       ),
@@ -100,7 +100,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
 
-                                fontSize: width * 0.04),
+                                fontSize: 16),
                           )),
                       SizedBox(height: localHeight * 0.020),
                       //    )

@@ -60,16 +60,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon:  Icon(
-                        Icons.chevron_left,
-                        size: width * 0.08,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    // leading: IconButton(
+                    //   icon:  Icon(
+                    //     Icons.chevron_left,
+                    //     size: width * 0.08,
+                    //     color: Colors.black,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     toolbarHeight: height * 0.100,
                     centerTitle: true,
                     title: Column(
@@ -870,16 +870,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     appBar: AppBar(
                       elevation: 0,
                       backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon:  const Icon(
-                          Icons.chevron_left,
-                          size: 40.0,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
+                      // leading: IconButton(
+                      //   icon:  const Icon(
+                      //     Icons.chevron_left,
+                      //     size: 40.0,
+                      //     color: Colors.black,
+                      //   ),
+                      //   onPressed: () {
+                      //     Navigator.of(context).pop();
+                      //   },
+                      // ),
                       toolbarHeight: height * 0.100,
                       centerTitle: true,
                       title: Column(
@@ -1672,16 +1672,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon:  Icon(
-                        Icons.chevron_left,
-                        size: width * 0.08,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    // leading: IconButton(
+                    //   icon:  Icon(
+                    //     Icons.chevron_left,
+                    //     size: width * 0.08,
+                    //     color: Colors.black,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     toolbarHeight: height * 0.100,
                     centerTitle: true,
                     title: Column(

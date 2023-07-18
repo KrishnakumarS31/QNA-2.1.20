@@ -372,7 +372,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                   fontFamily: 'Inter',
                                                   height: height * 0.0020,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.016),
+                                                  fontSize: height * 0.02),
                                             ),
                                           ),
                                         ),
@@ -458,7 +458,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: webWidth),
+                                              width: width * 1),
                                         ),
                                       ),
                                     ],
@@ -666,7 +666,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                       fontWeight:
                                                       FontWeight.w500,
                                                       fontSize: height *
-                                                          0.015)),
+                                                          0.018)),
                                                 ),
                                               ],
                                             ),
@@ -935,16 +935,12 @@ class StudQuestionState extends State<StudQuestion> {
                                             child: Center(
                                               child: Text(
                                                 "${context.watch<QuestionNumProvider>().questionNum} of ${values.data!.questions!.length}",
-                                                style: Theme.of(context)
-                                                    .primaryTextTheme
-                                                    .bodyLarge
-                                                    ?.merge(TextStyle(
+                                                style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: height * 0.025)),
-                                              ),
                                             ),
                                           ),
                                           values
@@ -1045,16 +1041,13 @@ class StudQuestionState extends State<StudQuestion> {
                                                   .questionNum -
                                                   1]
                                                   .question!,
-                                              style: Theme.of(context)
-                                                  .primaryTextTheme
-                                                  .bodyLarge
-                                                  ?.merge(TextStyle(
+                                              style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
                                                   fontFamily: 'Inter',
                                                   height: height * 0.0020,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.016)),
+                                                  fontSize: height * 0.02),
                                             ),
                                           ),
                                         ),
@@ -1140,7 +1133,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: webWidth),
+                                              width: width * 0.7),
                                         ),
                                       ),
                                     ],
@@ -1730,7 +1723,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                   fontFamily: 'Inter',
                                                   height: height * 0.0020,
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.016)),
+                                                  fontSize: height * 0.02)),
                                         ),
                                       ),
                                     ),
@@ -2001,34 +1994,37 @@ class StudQuestionState extends State<StudQuestion> {
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1)),
                                               ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .go_to_revise_sheet,
-                                                    //"Skip to end",
-                                                    style: Theme.of(context)
-                                                        .primaryTextTheme
-                                                        .bodyLarge
-                                                        ?.merge(TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                82,
-                                                                165,
-                                                                160,
-                                                                1),
-                                                            fontFamily: 'Inter',
-                                                            height:
-                                                                height * 0.0020,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: height *
-                                                                0.018)),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .go_to_revise_sheet,
+                                                      //"Skip to end",
+                                                      style: Theme.of(context)
+                                                          .primaryTextTheme
+                                                          .bodyLarge
+                                                          ?.merge(TextStyle(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1),
+                                                              fontFamily: 'Inter',
+                                                              height:
+                                                                  height * 0.0020,
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: height *
+                                                                  0.014)),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ))
@@ -2314,7 +2310,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         ),
                       ),
                       Container(
-                          width: widget.width * 0.52,
+                          width: widget.width * 0.6,
                           //height: widget.height * 0.0512,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -2361,9 +2357,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                                               .choiceText))
                                           ? const Color.fromRGBO(255, 255, 255, 1)
                                           : const Color.fromRGBO(102, 102, 102, 1),
-                                      fontSize: widget.width >= webWidth
-                                          ? widget.height * 0.0262
-                                          : widget.height * 0.0162,
+                                      fontSize: widget.height * 0.02,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w400,
                                     ),

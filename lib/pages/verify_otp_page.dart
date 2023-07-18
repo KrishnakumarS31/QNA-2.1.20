@@ -142,7 +142,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.02),
                                                   ),
                                                   helperStyle: const TextStyle(
                                                       color:
@@ -361,7 +361,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                   102, 102, 102, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
-                                              fontSize: height * 0.017),
+                                              fontSize: height * 0.02),
                                         ),
                                           helperStyle: const TextStyle(
                                               color:
@@ -580,7 +580,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.02),
                                                   ),
                                                   helperStyle: const TextStyle(
                                                       color:

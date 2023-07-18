@@ -6,8 +6,11 @@ import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/user_details.dart';
+import '../EntityModel/static_response.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'change_email_student_verify_otp_page.dart';
 class ChangeEmailStudent extends StatefulWidget {
   const ChangeEmailStudent({Key? key, required this.userId}) : super(key: key);
 
@@ -97,7 +100,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                             Form(
                               key: formKey,
                               child: SizedBox(
-                                height: height * 0.5,
+                                height: height * 0.3,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -235,17 +238,15 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                             bool valid = formKey.currentState!.validate();
                                             if (valid ||
                                                 newEmail.text == reNewEmail.text) {
-                                              ResponseEntity response =
-                                              await QnaService.updatePassword(
-                                                  oldEmail.text,
-                                                  newEmail.text, widget.userId, context,
-                                                  userDetails);
+                                              StaticResponse response = await QnaService.sendEmailOtpService(newEmail.text,userDetails);
                                               if (response.code == 200) {
                                                 Navigator.push(
                                                   context,
                                                   PageTransition(
-                                                      type: PageTransitionType.fade,
-                                                      child: showAlertDialog(context)),
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: ChangeEmailVerifyOtpPage(
+                                                        isFromStudent: true, email: newEmail.text,userDetails: userDetails),
+                                                  ),
                                                 );
                                               } else {
                                                 Navigator.push(
@@ -254,14 +255,12 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                                     type: PageTransitionType.rightToLeft,
                                                     child: CustomDialog(
                                                       title:
-                                                      AppLocalizations.of(context)!.incorrect_email,
-                                                      //'Incorrect Email',
-                                                      content:
-                                                      AppLocalizations.of(context)!.email_changed,
-                                                      //'Your Email has not been changed',
-                                                      button: AppLocalizations.of(
-                                                          context)!
-                                                          .retry,
+                                                      AppLocalizations.of(context)!
+                                                          .alert_popup,
+                                                      //"Error",
+                                                      content: response.message,
+                                                      button:
+                                                      AppLocalizations.of(context)!.retry,
                                                     ),
                                                   ),
                                                 );
@@ -474,17 +473,15 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                             bool valid = formKey.currentState!.validate();
                                             if (valid ||
                                                 newEmail.text == reNewEmail.text) {
-                                              ResponseEntity response =
-                                              await QnaService.updatePassword(
-                                                  oldEmail.text,
-                                                  newEmail.text, widget.userId, context,
-                                                  userDetails);
+                                              StaticResponse response = await QnaService.sendEmailOtpService(newEmail.text,userDetails);
                                               if (response.code == 200) {
                                                 Navigator.push(
                                                   context,
                                                   PageTransition(
-                                                      type: PageTransitionType.fade,
-                                                      child: showAlertDialog(context)),
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: ChangeEmailVerifyOtpPage(
+                                                        isFromStudent: true, email: newEmail.text,userDetails: userDetails),
+                                                  ),
                                                 );
                                               } else {
                                                 Navigator.push(
@@ -493,14 +490,12 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                                     type: PageTransitionType.rightToLeft,
                                                     child: CustomDialog(
                                                       title:
-                                                      AppLocalizations.of(context)!.incorrect_email,
-                                                      //'Incorrect Email',
-                                                      content:
-                                                      AppLocalizations.of(context)!.email_changed,
-                                                      //'Your Email has not been changed',
-                                                      button: AppLocalizations.of(
-                                                          context)!
-                                                          .retry,
+                                                      AppLocalizations.of(context)!
+                                                          .alert_popup,
+                                                      //"Error",
+                                                      content: response.message,
+                                                      button:
+                                                      AppLocalizations.of(context)!.retry,
                                                     ),
                                                   ),
                                                 );
@@ -708,17 +703,15 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                       bool valid = formKey.currentState!.validate();
                                       if (valid ||
                                           newEmail.text == reNewEmail.text) {
-                                        ResponseEntity response =
-                                        await QnaService.updatePassword(
-                                            oldEmail.text,
-                                            newEmail.text, widget.userId, context,
-                                            userDetails);
+                                        StaticResponse response = await QnaService.sendEmailOtpService(newEmail.text,userDetails);
                                         if (response.code == 200) {
                                           Navigator.push(
                                             context,
                                             PageTransition(
-                                                type: PageTransitionType.fade,
-                                                child: showAlertDialog(context)),
+                                              type: PageTransitionType.rightToLeft,
+                                              child: ChangeEmailVerifyOtpPage(
+                                                  isFromStudent: true, email: newEmail.text,userDetails: userDetails),
+                                            ),
                                           );
                                         } else {
                                           Navigator.push(
@@ -727,18 +720,17 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                               type: PageTransitionType.rightToLeft,
                                               child: CustomDialog(
                                                 title:
-                                                AppLocalizations.of(context)!.incorrect_email,
-                                                //'Incorrect Email',
-                                                content:
-                                                AppLocalizations.of(context)!.email_changed,
-                                                //'Your Email has not been changed',
-                                                button: AppLocalizations.of(
-                                                    context)!
-                                                    .retry,
+                                                AppLocalizations.of(context)!
+                                                    .alert_popup,
+                                                //"Error",
+                                                content: response.message,
+                                                button:
+                                                AppLocalizations.of(context)!.retry,
                                               ),
                                             ),
                                           );
                                         }
+
                                       }
                                     },
                                   )),

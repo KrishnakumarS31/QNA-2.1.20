@@ -1765,6 +1765,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   });
                               LoginModel loginResponse = await QnaService
                                   .postAssessmentService(assessment, values,userDetails);
+                              print(assessment);
+                              print("dvfvfbv");
+                              print(values);
+
                               Navigator.of(context).pop();
                               if (loginResponse.code == 200){
                                 Navigator.pushNamed(

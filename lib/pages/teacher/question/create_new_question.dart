@@ -1473,7 +1473,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
                                                                           fontSize: height * 0.018),
-                                                                        )),
+                                                                      )),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -1542,10 +1542,10 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                       width: width * 0.05,
                                                                       child: Text(String.fromCharCode(97+i),
                                                                         style: TextStyle(
-                                                                          color: Colors.black,
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.018),
+                                                                            color: Colors.black,
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.018),
                                                                       )),
                                                                   Expanded(
                                                                     child: TextFormField(
@@ -1900,15 +1900,22 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.choices=tempChoiceList;
                                       question.advisorText=adviceController.text;
                                       question.advisorUrl=urlController.text;
-                                      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
-
-
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/inprogressQuestionBank',
-                                        );
+                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
+
+                                        }
+                                        else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+
+                                        }
+                                        else{
+                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
+                                          Navigator.pushNamed(
+                                            context,
+                                            '/inprogressQuestionBank',
+                                          );
+                                        }
                                       }
+
                                     },
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
@@ -3632,13 +3639,22 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.choices=tempChoiceList;
                                       question.advisorText=adviceController.text;
                                       question.advisorUrl=urlController.text;
-                                      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
-                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()){
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/inprogressQuestionBank',
-                                        );
+                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
+                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
+
+                                        }
+                                        else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+
+                                        }
+                                        else{
+                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
+                                          Navigator.pushNamed(
+                                            context,
+                                            '/inprogressQuestionBank',
+                                          );
+                                        }
                                       }
+
                                     },
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
@@ -5221,25 +5237,25 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                         finalQuestion.choices = [];
                                       }
                                       if(_groupValue == 'MCQ') {
-                                         var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
+                                        var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
 
-                                          if(values.isEmpty)
-                                            {
-                                              setState(() {
-                                                val = false;
-                                              });
-                                             showDialogBox();
-                                            }
-                                          // print(contain);
-                                          // if(contain == false)
-                                          //   {
-                                          //     print("INSIDE FALSE");
-                                          //   }
-                                          // else if(contain == true)
-                                          //   {
-                                          //     print("INSIDE TRUE");
-                                          //   }
+                                        if(values.isEmpty)
+                                        {
+                                          setState(() {
+                                            val = false;
+                                          });
+                                          showDialogBox();
                                         }
+                                        // print(contain);
+                                        // if(contain == false)
+                                        //   {
+                                        //     print("INSIDE FALSE");
+                                        //   }
+                                        // else if(contain == true)
+                                        //   {
+                                        //     print("INSIDE TRUE");
+                                        //   }
+                                      }
 
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate() && val == true) {
                                         showQuestionPreview(context);
@@ -5284,13 +5300,20 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.choices=tempChoiceList;
                                       question.advisorText=adviceController.text;
                                       question.advisorUrl=urlController.text;
-                                      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
-                                     
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/inprogressQuestionBank',
-                                        );
+                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
+
+                                        }
+                                        else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+
+                                        }
+                                        else{
+                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
+                                          Navigator.pushNamed(
+                                            context,
+                                            '/inprogressQuestionBank',
+                                          );
+                                        }
                                       }
 
                                     },

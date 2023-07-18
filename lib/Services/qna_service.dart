@@ -152,4 +152,11 @@ class QnaService {
     return await QnaRepo.getQuestionDetails(attemptId!);
   }
 
+  static Future<StaticResponse> sendEmailOtpService(String email,UserDetails userDetails) async {
+    return await QnaRepo.sendEmailOtp(email,userDetails);
+  }
+
+  static Future<StaticResponse> changeEmailService(String email,UserDetails userDetails,String otp) async {
+    return await QnaRepo.changeEmail(email,userDetails,otp);
+  }
 }
