@@ -73,258 +73,6 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
   int totalMarks=0;
   GetAssessmentModel getAssessmentModel=GetAssessmentModel();
 
-  alertDialogDeleteQuestion(BuildContext context, double height,int index) {
-    Widget cancelButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.no,
-        // 'No',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-    Widget continueButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(AppLocalizations.of(context)!.yes,
-        //'Yes',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () async {
-        print(questionList.length);
-        print(index);
-        questionList.removeAt(index);
-        setState(() {
-        });
-        Navigator.of(context).pop();
-      },
-    );
-    AlertDialog alert = AlertDialog(
-      title: Row(
-        children: [
-          const Icon(
-            Icons.info,
-            color: Color.fromRGBO(238, 71, 0, 1),
-          ),
-          Text(
-            AppLocalizations.of(context)!.confirm,
-            //'Confirm',
-            style: TextStyle(
-                fontSize: height * 0.02,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(0, 106, 100, 1),
-                fontWeight: FontWeight.w700),
-          ),
-        ],
-      ),
-      content: Text(
-        //AppLocalizations.of(context)!.want_to_del_qn,
-        'Are you sure you want to delete this Question?',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            fontWeight: FontWeight.w400),
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-
-  showAlertDialog(BuildContext context, double height) {
-    // set up the buttons
-    Widget cancelButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(
-        AppLocalizations.of(context)!.no,
-        //'No',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-    Widget continueButton = ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-        textStyle: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      child: Text(
-        AppLocalizations.of(context)!.yes,
-        //'Yes',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),
-      ),
-      onPressed: () async {
-
-      },
-    );
-    // set up the AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text(
-        AppLocalizations.of(context)!.confirm,
-        //'Confirm',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(0, 106, 100, 1),
-            fontWeight: FontWeight.w700),
-      ),
-      content: Text(
-        AppLocalizations.of(context)!.sure_to_submit_qn_bank,
-        //'Are you sure you want to submit to My Question Bank?',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            fontWeight: FontWeight.w400),
-      ),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-
-  getQuestionData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    List<questionModel.Question> questions = [];
-    if (responseEntity.code == 200) {
-      questions = List<questionModel.Question>.from(
-          responseEntity.data.map((x) => questionModel.Question.fromJson(x)));
-    }
-    else{
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
-            //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
-          ),
-        ),
-      );
-    }
-    setState(() {
-      pageNumber++;
-      questionList.addAll(questions);
-      //pageNumber++;
-      //searchVal = search;
-    });
-    //Navigator.of(context).pop();
-  }
-
-  getInitData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    List<questionModel.Question> questions = [];
-    if (responseEntity.code == 200) {
-      questions = List<questionModel.Question>.from(
-          responseEntity.data.map((x) => questionModel.Question.fromJson(x)));
-    }
-    else{
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
-            //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
-          ),
-        ),
-      );
-    }
-    for(int j=0;j<questionList.length;j++){
-      List<String> chTemp=[];
-      if (questionList[j].question != "MCQ") {
-        for (int i = 0; i < questionList[j].choices!.length; i++) {
-          if (questionList[j].choices![i].rightChoice!) {
-            chTemp.add(questionList[j].choices![i].choiceText!);
-          }
-        }
-      }
-      temp.add(chTemp);
-    }
-    setState(() {
-      pageNumber++;
-      questionList.addAll(questions);
-      //pageNumber++;
-      //searchVal = search;
-    });
-    //Navigator.of(context).pop();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -350,7 +98,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
     timeLimit=DateTime(2023,5,1,(getAssessmentModel.assessmentDuration!/60).round(),(getAssessmentModel.assessmentDuration!%60).round());
     timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
     endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
-    startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+    startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
   }
 
 
@@ -817,6 +565,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -2104,6 +1853,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -3164,7 +2914,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                             Padding(
                                               padding: EdgeInsets.only(left: width*0.03),
                                               child: SizedBox(
-                                                width: width * 0.2,
+                                                width: width * 0.25,
                                                 child: Text(
                                                   "Category",
                                                   style: TextStyle(
@@ -3341,53 +3091,38 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-                                                                  // Container(
-                                                                  //   width: width * 0.5,
-                                                                  //   child: Row(
-                                                                  //     children: [
-                                                                  //       SizedBox(width: width*0.12,),
-                                                                  //       SizedBox(
-                                                                  //         width: width * 0.12,
-                                                                  //         child: Text(
-                                                                  //           "HH",
-                                                                  //           style: TextStyle(
-                                                                  //             fontSize: height * 0.020,
-                                                                  //             fontFamily: "Inter",
-                                                                  //             fontWeight: FontWeight.w700,
-                                                                  //             color:
-                                                                  //             const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //       SizedBox(
-                                                                  //         width: width * 0.1,
-                                                                  //         child: Text(
-                                                                  //           "MM",
-                                                                  //           style: TextStyle(
-                                                                  //             fontSize: height * 0.020,
-                                                                  //             fontFamily: "Inter",
-                                                                  //             fontWeight: FontWeight.w700,
-                                                                  //             color:
-                                                                  //             const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //       Text(
-                                                                  //         "  ",
-                                                                  //         style: TextStyle(
-                                                                  //           fontSize: height * 0.020,
-                                                                  //           fontFamily: "Inter",
-                                                                  //           fontWeight: FontWeight.w700,
-                                                                  //           color:
-                                                                  //           const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //     ],
-                                                                  //   ),
-                                                                  // ),
+                                                                  Container(
+
+                                                                    width: width * 0.3,
+                                                                    child: Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                      children: [
+                                                                        Text(
+                                                                          "HH",
+                                                                          style: TextStyle(
+                                                                              fontSize: height * 0.022,
+                                                                              fontFamily: "Inter",
+                                                                              color:
+                                                                              const Color.fromRGBO(28, 78, 80, 1),
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                        SizedBox(width: width * 0.07,),
+                                                                        Text(
+                                                                          "MM",
+                                                                          style: TextStyle(
+                                                                              fontSize: height * 0.022,
+                                                                              fontFamily: "Inter",
+                                                                              color:
+                                                                              const Color.fromRGBO(28, 78, 80, 1),
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -3426,7 +3161,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
+                                                                      timeLimitController.text="${timeLimit.hour}h ${timeLimit.minute}m";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(

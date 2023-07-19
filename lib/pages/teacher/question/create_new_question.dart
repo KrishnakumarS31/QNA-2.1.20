@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
+import '../../../DataSource/design.dart';
 import '../../../Entity/Teacher/choice_entity.dart';
 import '../../../Entity/Teacher/question_entity.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
@@ -231,14 +232,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -1957,14 +1958,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -3695,14 +3696,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();

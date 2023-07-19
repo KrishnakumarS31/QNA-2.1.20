@@ -795,53 +795,11 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-                                                                  // Container(
-                                                                  //   width: width * 0.5,
-                                                                  //   child: Row(
-                                                                  //     children: [
-                                                                  //       SizedBox(width: width*0.12,),
-                                                                  //       SizedBox(
-                                                                  //         width: width * 0.12,
-                                                                  //         child: Text(
-                                                                  //           "HH",
-                                                                  //           style: TextStyle(
-                                                                  //             fontSize: height * 0.020,
-                                                                  //             fontFamily: "Inter",
-                                                                  //             fontWeight: FontWeight.w700,
-                                                                  //             color:
-                                                                  //             const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //       SizedBox(
-                                                                  //         width: width * 0.1,
-                                                                  //         child: Text(
-                                                                  //           "MM",
-                                                                  //           style: TextStyle(
-                                                                  //             fontSize: height * 0.020,
-                                                                  //             fontFamily: "Inter",
-                                                                  //             fontWeight: FontWeight.w700,
-                                                                  //             color:
-                                                                  //             const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //       Text(
-                                                                  //         "  ",
-                                                                  //         style: TextStyle(
-                                                                  //           fontSize: height * 0.020,
-                                                                  //           fontFamily: "Inter",
-                                                                  //           fontWeight: FontWeight.w700,
-                                                                  //           color:
-                                                                  //           const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //     ],
-                                                                  //   ),
-                                                                  // ),
+
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -1193,7 +1151,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
@@ -1703,7 +1661,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
 
                                           }
                                         },
-                                        child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
+                                        child: Icon(Icons.done, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
@@ -2217,6 +2175,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -2568,7 +2527,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
@@ -3162,7 +3121,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
 
                                           }
                                         },
-                                        child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
+                                        child: Icon(Icons.done, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
@@ -3449,7 +3408,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               Padding(
                                                 padding: EdgeInsets.only(left: width*0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.2,
+                                                  width: width * 0.25,
                                                   child: Text(
                                                     "Category",
                                                     style: TextStyle(
@@ -3670,8 +3629,37 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                     //   ),
                                                                     // ),
                                                                     Container(
+
+                                                                      width: width * 0.3,
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                                        children: [
+                                                                          Text(
+                                                                            "HH",
+                                                                            style: TextStyle(
+                                                                                fontSize: height * 0.022,
+                                                                                fontFamily: "Inter",
+                                                                                color:
+                                                                                const Color.fromRGBO(28, 78, 80, 1),
+                                                                                fontWeight: FontWeight.w700),
+                                                                          ),
+                                                                          SizedBox(width: width * 0.07,),
+                                                                          Text(
+                                                                            "MM",
+                                                                            style: TextStyle(
+                                                                                fontSize: height * 0.022,
+                                                                                fontFamily: "Inter",
+                                                                                color:
+                                                                                const Color.fromRGBO(28, 78, 80, 1),
+                                                                                fontWeight: FontWeight.w700),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    Container(
                                                                       width: width * 0.3,
                                                                       child: TimePickerSpinner(
+                                                                        time: DateTime(2000,1,1,0,0),
                                                                         is24HourMode: true,
                                                                         normalTextStyle: TextStyle(
                                                                           fontSize: height * 0.02,
@@ -3710,7 +3698,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                       ),
                                                                       //shape: StadiumBorder(),
                                                                       onPressed: () {
-                                                                        timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
+                                                                        timeLimitController.text="${timeLimit.hour}h ${timeLimit.minute}m";
                                                                         Navigator.of(context).pop();
                                                                       },
                                                                       child: Text(
@@ -3833,7 +3821,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                       ),
                                                                       //shape: StadiumBorder(),
                                                                       onPressed: () {
-                                                                        startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                        startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                         Navigator.of(context).pop();
                                                                       },
                                                                       child: Text(
@@ -4023,7 +4011,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                                 child: Text(
-                                                  "Test Schedule",
+                                                  "Access Control",
                                                   style: TextStyle(
                                                       fontSize: height * 0.022,
                                                       fontFamily: "Inter",
@@ -4533,7 +4521,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
 
                                             }
                                           },
-                                          child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
+                                          child: Icon(Icons.done, color: Colors.white),
                                           style: ElevatedButton.styleFrom(
                                             side: const BorderSide(
                                               width: 2,

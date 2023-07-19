@@ -2575,9 +2575,9 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                         //AppLocalizations.of(context)!.qn_button,
                                         'Go to My Assessment',
                                         style: TextStyle(
-                                            fontSize: height * 0.032,
+                                            fontSize: height * 0.025,
                                             fontFamily: "Inter",
-                                            fontWeight: FontWeight.w600),
+                                            fontWeight: FontWeight.w700),
                                       ),
                                     ),
 

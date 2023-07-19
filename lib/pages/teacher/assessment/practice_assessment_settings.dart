@@ -600,7 +600,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
@@ -1348,7 +1348,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
@@ -2094,7 +2094,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",

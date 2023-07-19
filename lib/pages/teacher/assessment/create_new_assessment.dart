@@ -200,15 +200,17 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
       ),
       onPressed: () async {
         assessment.userId=userDetails.userId;
-        assessment.totalQuestions=questionList.length;
+        assessment.totalQuestions=selectedQuestion.length;
         assessment.assessmentType='practice';
         assessment.assessmentStatus = 'inprogress';
         assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
-        for(int i=0;i<questionList.length;i++){
-          Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+        int totScore=0;
+        for(int i=0;i<selectedQuestion.length;i++){
+          Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
           assessment.questions?.add(tempQues);
+          totScore=totScore+(selectedQuestion[i].questionMark??0);
         }
-        assessment.totalScore=questionList.length;
+        assessment.totalScore=totScore;
         showDialog(
             context: context,
             builder: (context) {
@@ -226,11 +228,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
           Navigator.of(context).pushNamedAndRemoveUntil('/createNewQuestion', ModalRoute.withName('/teacherSelectionPage'));
         }
         else{
-          print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-          print(assessment);
-          print(statusCode.code);
-          print(statusCode.data);
-          print(statusCode.message);
+
         }
       },
       // {

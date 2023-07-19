@@ -329,6 +329,12 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
     for(int i=0;i<questionList.length;i++){
       totalMarks=totalMarks+questionList[i].questionMark!;
     }
+    setState(() {
+      userDetails;
+      assessment;
+      questionList;
+      totalMarks;
+    });
   }
 
 
@@ -748,6 +754,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -1099,7 +1106,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
@@ -2091,6 +2098,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                   Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -2442,7 +2450,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
@@ -3135,7 +3143,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     fontWeight: FontWeight.w400),
                                               ),
                                               Text(
-                                                "45",
+                                                "$totalMarks",
                                                 style: TextStyle(
                                                     fontSize: height * 0.016,
                                                     fontFamily: "Inter",
@@ -3204,7 +3212,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             Padding(
                                               padding: EdgeInsets.only(left: width*0.03),
                                               child: SizedBox(
-                                                width: width * 0.2,
+                                                width: width * 0.25,
                                                 child: Text(
                                                   "Category",
                                                   style: TextStyle(
@@ -3425,8 +3433,37 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                   //   ),
                                                                   // ),
                                                                   Container(
+
+                                                                    width: width * 0.3,
+                                                                    child: Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                      children: [
+                                                                        Text(
+                                                                          "HH",
+                                                                          style: TextStyle(
+                                                                              fontSize: height * 0.022,
+                                                                              fontFamily: "Inter",
+                                                                              color:
+                                                                              const Color.fromRGBO(28, 78, 80, 1),
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                        SizedBox(width: width * 0.07,),
+                                                                        Text(
+                                                                          "MM",
+                                                                          style: TextStyle(
+                                                                              fontSize: height * 0.022,
+                                                                              fontFamily: "Inter",
+                                                                              color:
+                                                                              const Color.fromRGBO(28, 78, 80, 1),
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Container(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
+                                                                      time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
@@ -3465,7 +3502,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
+                                                                      timeLimitController.text="${timeLimit.hour}h ${timeLimit.minute}m";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -3778,7 +3815,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
                                               child: Text(
-                                                "Test Schedule",
+                                                "Access Control",
                                                 style: TextStyle(
                                                     fontSize: height * 0.022,
                                                     fontFamily: "Inter",
