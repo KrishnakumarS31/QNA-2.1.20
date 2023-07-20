@@ -331,7 +331,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                           child: GestureDetector(
                                             onTap: () {},
                                             child: Container(
-                                              width: webWidth,
                                                 margin: const EdgeInsets.all(5),
                                                 padding: const EdgeInsets.all(5),
                                                 decoration: BoxDecoration(
@@ -342,6 +341,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                       color: const Color.fromRGBO(
                                                           153, 153, 153, 0.25)),
                                                 ),
+                                                width: webWidth,
                                                 child:
                                                 Column(
                                                   children: [
@@ -363,7 +363,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                           fontWeight: FontWeight
                                                                               .w700,
                                                                           fontSize: localHeight *
-                                                                              0.012)),
+                                                                              0.02)),
                                                                 ),
 
                                                                 widget.questions
@@ -436,50 +436,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                     ],
                                                                   ),
                                                                 )
-                                                                // SizedBox(width: localHeight *
-                                                                //     0.010),
-                                                                // Provider
-                                                                //     .of<Questions>(
-                                                                //     context, listen: false)
-                                                                //     .totalQuestion["$index"][2] ==
-                                                                //     true
-                                                                //     ? Stack(
-                                                                //   children: [
-                                                                //     Icon(
-                                                                //         Icons
-                                                                //             .mode_comment_outlined,
-                                                                //         color: const Color
-                                                                //             .fromRGBO(
-                                                                //             255, 153, 0, 1),
-                                                                //         size: localHeight *
-                                                                //             0.025),
-                                                                //     Positioned(
-                                                                //         left: MediaQuery
-                                                                //             .of(context)
-                                                                //             .copyWith()
-                                                                //             .size
-                                                                //             .width * 0.008,
-                                                                //         top: MediaQuery
-                                                                //             .of(context)
-                                                                //             .copyWith()
-                                                                //             .size
-                                                                //             .height * 0.004,
-                                                                //         child: Icon(
-                                                                //           Icons.question_mark,
-                                                                //           color: const Color
-                                                                //               .fromRGBO(
-                                                                //               255, 153, 0, 1),
-                                                                //           size: MediaQuery
-                                                                //               .of(context)
-                                                                //               .copyWith()
-                                                                //               .size
-                                                                //               .height *
-                                                                //               0.016,))
-                                                                //   ],
-                                                                // )
-                                                                //     : SizedBox(
-                                                                //     width: localHeight *
-                                                                //         0.010),
                                                               ]),
                                                           SizedBox(height: localHeight *
                                                               0.010),
@@ -497,7 +453,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                   fontWeight: FontWeight
                                                                       .w400,
                                                                   fontSize: localHeight *
-                                                                      0.013),
+                                                                      0.02),
                                                             ),
                                                           ),
                                                           SizedBox(height: localHeight *
@@ -577,7 +533,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                       fontWeight: FontWeight
                                                                           .w600,
                                                                       fontSize: localHeight *
-                                                                          0.014)
+                                                                          0.02)
                                                                       : TextStyle(
                                                                       color: const Color
                                                                           .fromRGBO(
@@ -586,7 +542,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                       fontWeight: FontWeight
                                                                           .w600,
                                                                       fontSize: localHeight *
-                                                                          0.014)
+                                                                          0.02)
                                                               ),
                                                             ),
                                                           ]),
@@ -812,7 +768,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                     fontWeight: FontWeight
                                                                                         .w700,
                                                                                     fontSize: localHeight *
-                                                                                        0.012)),
+                                                                                        0.02)),
                                                                           ),
 
                                                                           widget.questions

@@ -158,8 +158,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       fontWeight:
                                                       FontWeight.w700,
                                                       fontSize:
-                                                      localHeight *
-                                                          0.012)),
+                                                      localHeight * 0.0225)),
                                               SizedBox(width: localHeight * 0.005),
                                               Text(
                                                 "${values.data!.questions![index -
@@ -169,7 +168,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: localHeight * 0.012),
+                                                    fontSize: localHeight * 0.0225),
                                               ),
                                             SizedBox(height: localHeight * 0.010),
                                               SizedBox(
@@ -203,8 +202,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       FontWeight
                                                           .w600,
                                                       fontSize:
-                                                      localHeight *
-                                                          0.014)),
+                                                      localHeight * 0.0225)),
                                             ]),
                                             SizedBox(
                                                 height:
@@ -223,7 +221,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   fontWeight:
                                                   FontWeight.w400,
                                                   fontSize:
-                                                  localHeight * 0.013),
+                                                  localHeight * 0.0225),
                                             ),
                                             SizedBox(
                                                 height:
@@ -252,8 +250,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                             fontWeight:
                                                             FontWeight.w600,
                                                             fontSize:
-                                                            localHeight *
-                                                                0.015)),
+                                                            localHeight * 0.0225)),
                                                     TextSpan(
                                                         text: values
                                                             .data!
@@ -268,8 +265,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                             fontWeight:
                                                             FontWeight.w400,
                                                             fontSize:
-                                                            localHeight *
-                                                                0.015)),
+                                                            localHeight * 0.0225)),
                                                   ])),
                                               const SizedBox(height: 10),
                                               Row(
@@ -288,8 +284,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           FontWeight
                                                               .w400,
                                                           fontSize:
-                                                          localHeight *
-                                                              0.015)),
+                                                          localHeight * 0.0225)),
                                                   const SizedBox(width: 5),
                                                   Flexible(
                                                       child:
@@ -310,8 +305,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                                 fontFamily:
                                                                 'Inter',
                                                                 fontSize:
-                                                                localHeight *
-                                                                    0.015,
+                                                                localHeight * 0.0225,
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     58,
@@ -533,8 +527,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                     fontWeight:
                                                     FontWeight.w700,
                                                     fontSize:
-                                                    localHeight *
-                                                        0.012)),
+                                                    localHeight * 0.0225)),
                                             SizedBox(width: localHeight * 0.005),
                                             Text(
                                               "${values.data!.questions![index -
@@ -544,7 +537,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       82, 165, 160, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight * 0.012),
+                                                  fontSize: localHeight * 0.0225),
                                             ),
                                             SizedBox(height: localHeight * 0.010),
                                             SizedBox(
@@ -570,21 +563,20 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 // AppLocalizations.of(context)!.not_answered:
                                                 // AppLocalizations.of(context)!.incorrectly_answered,
                                                 // //"Not answered",
-                                                // style: TextStyle(
-                                                //     color: const Color
-                                                //         .fromRGBO(
-                                                //         238,
-                                                //         71,
-                                                //         0,
-                                                //         1),
-                                                //     fontFamily:
-                                                //     'Inter',
-                                                //     fontWeight:
-                                                //     FontWeight
-                                                //         .w600,
-                                                //     fontSize:
-                                                //     localHeight *
-                                                //         0.014)
+                                                style: TextStyle(
+                                                    color: const Color
+                                                        .fromRGBO(
+                                                        238,
+                                                        71,
+                                                        0,
+                                                        1),
+                                                    fontFamily:
+                                                    'Inter',
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w600,
+                                                    fontSize:
+                                                    localHeight * 0.0225)
                                             ),
                                           ]),
                                           SizedBox(
@@ -604,7 +596,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 fontWeight:
                                                 FontWeight.w400,
                                                 fontSize:
-                                                localHeight * 0.013),
+                                                localHeight * 0.0225),
                                           ),
                                           SizedBox(
                                               height:
@@ -633,8 +625,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           fontWeight:
                                                           FontWeight.w600,
                                                           fontSize:
-                                                          localHeight *
-                                                              0.015)),
+                                                          localHeight * 0.0225)),
                                                   TextSpan(
                                                       text: values
                                                           .data!
@@ -649,8 +640,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           fontWeight:
                                                           FontWeight.w400,
                                                           fontSize:
-                                                          localHeight *
-                                                              0.015)),
+                                                          localHeight * 0.0225)),
                                                 ])),
                                             const SizedBox(height: 10),
                                             Row(
@@ -669,8 +659,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         FontWeight
                                                             .w400,
                                                         fontSize:
-                                                        localHeight *
-                                                            0.015)),
+                                                        localHeight * 0.0225)),
                                                 const SizedBox(width: 5),
                                                 Flexible(
                                                     child:
@@ -691,8 +680,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                               fontFamily:
                                                               'Inter',
                                                               fontSize:
-                                                              localHeight *
-                                                                  0.015,
+                                                              localHeight * 0.0225,
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   58,

@@ -1,5 +1,5 @@
-const domainName = "https://dev.qnatest.com";
-//const domainName = "https://sssuhe.qnatest.com";
+//const domainName = "https://dev.qnatest.com";
+const domainName = "https://sssuhe.qnatest.com";
 const usersDomain = "$domainName/api/v1/users";
 const assessmentDomain = "$domainName/api/v1/assessment";
 const assessmentDomainVTwo = "$domainName/api/v2/assessment";
@@ -17,7 +17,7 @@ const assessmentLooqUrl = '$assessmentDomain/assessments-looq';
 const resultsUrl = '$assessmentDomainVTwo/results';
 const resultDetails = "$assessmentDomainVTwo/result-details";
 const questionDetails = "$assessmentDomainVTwo/result-sheet";
-const version = "2.0.69";
+const version = "2.0.71";
 const double webWidth = 500.0;
 const editEmailOtpUrl='$usersDomain/edit-email-otp';
 const editEmailUrl='$usersDomain/edit-email';

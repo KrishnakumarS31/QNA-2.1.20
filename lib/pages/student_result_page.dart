@@ -240,15 +240,17 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           Row(
                                             children: [
                                               //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                              Text(
-                                                //"10:26:59",
-                                                  "Assessment ID",
-                                                  style: TextStyle(
-                                                      color: const Color.fromRGBO(161, 161, 161, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: localHeight * 0.016)),
-                                              SizedBox(width:localHeight * 0.080),
+                                              SizedBox(
+                                                width:localHeight * 0.15,
+                                                child: Text(
+                                                  //"10:26:59",
+                                                    "Assessment ID",
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(161, 161, 161, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: localHeight * 0.016)),
+                                              ),
                                               SizedBox(
                                                 child: Text(widget.assessmentCode,
                                                     style: TextStyle(

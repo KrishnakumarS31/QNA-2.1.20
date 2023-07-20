@@ -100,7 +100,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                             Form(
                               key: formKey,
                               child: SizedBox(
-                                height: height * 0.3,
+                                height: height * 0.6,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -317,10 +317,6 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                     resizeToAvoidBottomInset: false,
                     backgroundColor: Colors.white,
                     body:
-          Container(
-          padding: EdgeInsets.only(
-          left: height * 0.5, right: height * 0.5),
-          child:
           Column(children: [
                       SizedBox(height: height * 0.07),
                       Center(
@@ -330,7 +326,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: kElevationToShadow[4],
                             ),
-                            width: width * 0.9,
+                            width: width * 0.7,
                             child:
                             Form(
                               key: formKey,
@@ -510,7 +506,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                 ),
                               ),
                             ),
-                          ))]))));
+                          ))])));
           }
           else {
             return WillPopScope(
@@ -565,7 +561,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                       Form(
                         key: formKey,
                         child: SizedBox(
-                          height: height * 0.5,
+                          height: height * 0.6,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

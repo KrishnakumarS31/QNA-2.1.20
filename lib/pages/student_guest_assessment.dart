@@ -14,7 +14,6 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Components/today_date.dart';
 import '../DataSource/http_url.dart';
 import '../Entity/question_paper_model.dart';
-import '../Pages/teacher_prepare_qnBank.dart';
 import '../Services/qna_service.dart';
 import 'terms_of_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -60,32 +59,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    // leading: IconButton(
-                    //   icon:  Icon(
-                    //     Icons.chevron_left,
-                    //     size: width * 0.08,
-                    //     color: Colors.black,
-                    //   ),
-                    //   onPressed: () {
-                    //     Navigator.of(context).pop();
-                    //   },
-                    // ),
+                    automaticallyImplyLeading: false,
                     toolbarHeight: height * 0.100,
-                    centerTitle: true,
-                    title: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.my_assessments,
-                            //"MY ASSESSMENTS",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: height * 0.0225,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ]),
                     iconTheme: IconThemeData(color: Colors.black,size: width * 0.08),
                   ),
                   endDrawer: Drawer(
@@ -284,8 +259,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     color: Color.fromRGBO(141, 167, 167, 1)),
                                 title: Text(
                                   AppLocalizations.of(context)!.logout,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(226, 68, 0, 1),
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(226, 68, 0, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16),
@@ -401,11 +376,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // SizedBox(height: width * 0.4),
-                                // Container(
-                                //   width: width,
-                                //   margin: EdgeInsets.only(left: width * 0.1),
-                                //child: Column(children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -417,43 +387,28 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         fontSize: height * 0.035),
                                   ),
                                 ),
-                                // SizedBox(
-                                //   height: height * 0.001,
-                                // ),
                                 SizedBox(
                                   width: width,
                                   child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
                                         widget.name,
-                                        style: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyLarge
-                                            ?.merge(TextStyle(
+                                        style: TextStyle(
                                             color: const Color.fromRGBO(28, 78, 80, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
                                             fontSize: height * 0.03)),
-                                      )),
+                                      ),
                                 ),
                                 SizedBox(
                                   height: height * 0.08,
                                 ),
-                                //]),
-                                // ),
-                                // Container(
-                                //   //margin: const EdgeInsets.only(left: 10,right: 50),
-                                //   padding: const EdgeInsets.only(left: 30, right: 30),
-                                //child:
                                 Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Align(
                                         alignment: Alignment.topLeft,
-                                        child: RichText(
-                                            text: TextSpan(children: [
-                                              TextSpan(
-                                                text: AppLocalizations.of(context)!
+                                        child: Text(AppLocalizations.of(context)!
                                                     .enter_assId,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(102, 102, 102, 1),
@@ -461,7 +416,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: height * 0.020),
                                               ),
-                                            ])),
                                       ),
                                       SizedBox(
                                         height: height * 0.0016,
@@ -498,10 +452,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                         ],
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
+                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           helperStyle: TextStyle(
                                                               color: Colors.blue,
-                                                              // Color.fromRGBO(
-                                                              //     102, 102, 102, 0.3),
                                                               fontFamily: 'Inter',
                                                               fontWeight: FontWeight.w400,
                                                               fontSize: height * 0.016),
@@ -528,8 +481,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                     type:
                                                                     PageTransitionType.rightToLeft,
                                                                     child: CustomDialog(
-                                                                      title: '${values.message}',
-                                                                      content: '',
+                                                                      title: AppLocalizations.of(context)!.alert_popup,
+                                                                      content: '${values.message}',
                                                                       button:
                                                                       AppLocalizations.of(context)!
                                                                           .retry,
@@ -558,8 +511,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                       type:
                                                                       PageTransitionType.rightToLeft,
                                                                       child: CustomDialog(
-                                                                        title: '${assessmentvalues.message}',
-                                                                        content: '',
+                                                                        title: AppLocalizations.of(context)!.alert_popup,
+                                                                        content: '${assessmentvalues.message}',
                                                                         button:
                                                                         AppLocalizations.of(context)!
                                                                             .retry,
@@ -601,7 +554,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                               height: height * 0.1087,
                                               width: width * 0.79,
                                               decoration: BoxDecoration(
-                                                //borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                                                 border: Border.all(
                                                   color: const Color.fromRGBO(82, 165, 160, 0.15),
                                                 ),
@@ -688,7 +640,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                   fontWeight: FontWeight.w500,
                                                                 ),
                                                               ),
-                                                              Text("${assessmentIdController.text}",
+                                                              Text(assessmentIdController.text,
                                                                 style: TextStyle(
                                                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                                                   fontSize: height * 0.015,
@@ -802,8 +754,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                             PageTransition(
                                                               type: PageTransitionType.rightToLeft,
                                                               child: CustomDialog(
-                                                                title: '${values.message}',
-                                                                content: '',
+                                                                title: AppLocalizations.of(context)!.alert_popup,
+                                                                content: '${values.message}',
                                                                 button:
                                                                 AppLocalizations.of(context)!
                                                                     .retry,
@@ -870,32 +822,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     appBar: AppBar(
                       elevation: 0,
                       backgroundColor: Colors.transparent,
-                      // leading: IconButton(
-                      //   icon:  const Icon(
-                      //     Icons.chevron_left,
-                      //     size: 40.0,
-                      //     color: Colors.black,
-                      //   ),
-                      //   onPressed: () {
-                      //     Navigator.of(context).pop();
-                      //   },
-                      // ),
+                      automaticallyImplyLeading: false,
                       toolbarHeight: height * 0.100,
-                      centerTitle: true,
-                      title: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.my_assessments,
-                              //"MY ASSESSMENTS",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontSize: height * 0.0225,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ]),
                       iconTheme: const IconThemeData(color: Colors.black,size: 40.0),
                     ),
                     endDrawer: Drawer(
@@ -1094,8 +1022,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       color: Color.fromRGBO(141, 167, 167, 1)),
                                   title: Text(
                                     AppLocalizations.of(context)!.logout,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(226, 68, 0, 1),
+                                    style: const TextStyle(
+                                        color: Color.fromRGBO(226, 68, 0, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16),
@@ -1302,6 +1230,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           ],
                                                           keyboardType: TextInputType.text,
                                                           decoration: InputDecoration(
+                                                            labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             helperStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -1331,9 +1260,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                     PageTransition(
                                                                       type:
                                                                       PageTransitionType.rightToLeft,
-                                                                      child: CustomDialog(
-                                                                        title: '${values.message}',
-                                                                        content: '',
+                                                                      child:  CustomDialog(
+                                                                        title: AppLocalizations.of(context)!.alert_popup,
+                                                                        content: '${values.message}',
                                                                         button:
                                                                         AppLocalizations.of(context)!
                                                                             .retry,
@@ -1361,8 +1290,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                       type:
                                                                       PageTransitionType.rightToLeft,
                                                                       child: CustomDialog(
-                                                                        title: '${assessmentvalues.message}',
-                                                                        content: '',
+                                                                        title: AppLocalizations.of(context)!.alert_popup,
+                                                                        content: '${assessmentvalues.message}',
                                                                         button:
                                                                         AppLocalizations.of(context)!
                                                                             .retry,
@@ -1491,7 +1420,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                     fontWeight: FontWeight.w500,
                                                                   ),
                                                                 ),
-                                                                Text("${assessmentIdController.text}",
+                                                                Text(assessmentIdController.text,
                                                                   style: TextStyle(
                                                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                                                     fontSize: height * 0.015,
@@ -1604,9 +1533,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                               context,
                                                               PageTransition(
                                                                 type: PageTransitionType.rightToLeft,
-                                                                child: CustomDialog(
-                                                                  title: '${values.message}',
-                                                                  content: '',
+                                                                child:  CustomDialog(
+                                                                  title: AppLocalizations.of(context)!.alert_popup,
+                                                                  content: '${values.message}',
                                                                   button:
                                                                   AppLocalizations.of(context)!
                                                                       .retry,
@@ -1672,32 +1601,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    // leading: IconButton(
-                    //   icon:  Icon(
-                    //     Icons.chevron_left,
-                    //     size: width * 0.08,
-                    //     color: Colors.black,
-                    //   ),
-                    //   onPressed: () {
-                    //     Navigator.of(context).pop();
-                    //   },
-                    // ),
+                    automaticallyImplyLeading: false,
                     toolbarHeight: height * 0.100,
-                    centerTitle: true,
-                    title: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.my_assessments,
-                            //"MY ASSESSMENTS",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: height * 0.0225,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ]),
                     iconTheme: IconThemeData(color: Colors.black,size: width * 0.08),
                   ),
                   endDrawer: Drawer(
@@ -2110,10 +2015,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                     ],
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
+                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       helperStyle: TextStyle(
                                                           color: Colors.blue,
-                                                          // Color.fromRGBO(
-                                                          //     102, 102, 102, 0.3),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
@@ -2139,9 +2043,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                               PageTransition(
                                                                 type:
                                                                 PageTransitionType.rightToLeft,
-                                                                child: CustomDialog(
-                                                                  title: '${values.message}',
-                                                                  content: '',
+                                                                child:  CustomDialog(
+                                                                  title: AppLocalizations.of(context)!.alert_popup,
+                                                                  content: '${values.message}',
                                                                   button:
                                                                   AppLocalizations.of(context)!
                                                                       .retry,
@@ -2170,8 +2074,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                 type:
                                                                 PageTransitionType.rightToLeft,
                                                                 child: CustomDialog(
-                                                                  title: '${assessmentvalues.message}',
-                                                                  content: '',
+                                                                  title: AppLocalizations.of(context)!.alert_popup,
+                                                                  content: '${assessmentvalues.message}',
                                                                   button:
                                                                   AppLocalizations.of(context)!
                                                                       .retry,
@@ -2300,7 +2204,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
-                                              Text("${assessmentIdController.text}",
+                                              Text(assessmentIdController.text,
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                                   fontSize: height * 0.015,
@@ -2413,9 +2317,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                  context,
                                                  PageTransition(
                                                    type: PageTransitionType.rightToLeft,
-                                                   child: CustomDialog(
-                                                     title: '${values.message}',
-                                                     content: '',
+                                                   child:  CustomDialog(
+                                                     title: AppLocalizations.of(context)!.alert_popup,
+                                                     content: '${values.message}',
                                                      button:
                                                      AppLocalizations.of(context)!
                                                          .retry,

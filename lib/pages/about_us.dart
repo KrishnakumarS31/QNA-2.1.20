@@ -101,7 +101,7 @@ class AboutUsState extends State<AboutUs> {
                     ),
                     SizedBox(height: height * 0.03),
                     Padding(
-                      padding: EdgeInsets.only(left: width * 0.2),
+                      padding: EdgeInsets.only(left: width * 0.4),
                       child: Column(
                         children: str.map((list) {
                           return Row(children: [
@@ -309,11 +309,12 @@ class AboutUsState extends State<AboutUs> {
                     ),
                     SizedBox(height: height * 0.03),
                     Padding(
-                      padding: EdgeInsets.only(left: height * 0.065
-                      ),
+                      padding: EdgeInsets.only(left: width * 0.2),
                       child: Column(
                         children: str.map((list) {
-                          return Row(children: [
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                             Text(
                               "\u2022",
                               style: TextStyle(

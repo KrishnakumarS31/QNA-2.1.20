@@ -113,8 +113,6 @@ class MyRoutes{
       case '/teacherRegistrationPage':
         return SlideRightRoute(widget: const TeacherRegistrationPage(),settings: settings);
 
-      // case '/teacherForgotPasswordEmail':
-      //   return SlideRightRoute(widget: const TeacherForgotPasswordEmail(),settings: settings);
 
 
 
@@ -208,10 +206,10 @@ class MyRoutes{
         return SlideRightRoute(widget: StudentAssessment(usedData: arguments[0],assessment: arguments[1]),settings: settings);
       }
 
-      // case '/ForgotPassword':{
-      //   final arguments = settings.arguments as List<dynamic>;
-      //   return SlideRightRoute(widget: ForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
-      // }
+      case '/ForgotPassword':{
+        final arguments = settings.arguments as List<dynamic>;
+        return SlideRightRoute(widget: ForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
+      }
 
       case '/studGuestAssessment':{
         final name = settings.arguments as String;

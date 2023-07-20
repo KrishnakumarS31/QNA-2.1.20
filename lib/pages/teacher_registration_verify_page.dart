@@ -125,7 +125,7 @@ class TeacherRegistrationOtpPageState
                                           decoration: InputDecoration(
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
-                                            labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                            labelStyle: Theme.of(context).textTheme.headlineMedium,
                                             label: Text(AppLocalizations.of(
                                                 context)!
                                                 .verify_otp,
@@ -319,7 +319,7 @@ class TeacherRegistrationOtpPageState
                                               decoration: InputDecoration(
                                                 floatingLabelBehavior:
                                                 FloatingLabelBehavior.always,
-                                                labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                 label: Text(AppLocalizations.of(
                                                     context)!
                                                     .verify_otp,
@@ -512,7 +512,7 @@ class TeacherRegistrationOtpPageState
                                               decoration: InputDecoration(
                                                 floatingLabelBehavior:
                                                 FloatingLabelBehavior.always,
-                                                labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                 label: Text(AppLocalizations.of(
                                                     context)!
                                                     .verify_otp,

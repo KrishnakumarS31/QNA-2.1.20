@@ -484,175 +484,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                         )
                                                       ]),
                                                   const Divider(thickness: 2,),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                  //   child: Text(
-                                                  //     //AppLocalizations.of(context)!.my_qn_bank,
-                                                  //     "Subject",
-                                                  //     textAlign: TextAlign.left,
-                                                  //     style: TextStyle(
-                                                  //       color: const Color.fromRGBO(28, 78, 80, 1),
-                                                  //       fontSize: height * 0.02,
-                                                  //       fontFamily: "Inter",
-                                                  //       fontWeight: FontWeight.w400,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-                                                  //   child: TextField(
-                                                  //     controller: subjectController,
-                                                  //     keyboardType: TextInputType.text,
-                                                  //     decoration: InputDecoration(
-                                                  //       //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                  //       hintStyle: TextStyle(
-                                                  //           color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                  //           fontFamily: 'Inter',
-                                                  //           fontWeight: FontWeight.w400,
-                                                  //           fontSize: height * 0.016),
-                                                  //       hintText: "Type here",
-                                                  //       enabledBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       focusedBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       // focusedBorder: OutlineInputBorder(
-                                                  //       //     borderSide: const BorderSide(
-                                                  //       //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //       // border: OutlineInputBorder(
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                  //   child: Text(
-                                                  //     //AppLocalizations.of(context)!.my_qn_bank,
-                                                  //     "Topic",
-                                                  //     textAlign: TextAlign.left,
-                                                  //     style: TextStyle(
-                                                  //       color: const Color.fromRGBO(28, 78, 80, 1),
-                                                  //       fontSize: height * 0.02,
-                                                  //       fontFamily: "Inter",
-                                                  //       fontWeight: FontWeight.w400,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-                                                  //   child: TextField(
-                                                  //     controller: topicController,
-                                                  //     keyboardType: TextInputType.text,
-                                                  //     decoration: InputDecoration(
-                                                  //       //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                  //       hintStyle: TextStyle(
-                                                  //           color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                  //           fontFamily: 'Inter',
-                                                  //           fontWeight: FontWeight.w400,
-                                                  //           fontSize: height * 0.016),
-                                                  //       hintText: "Type here",
-                                                  //       enabledBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       focusedBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       // focusedBorder: OutlineInputBorder(
-                                                  //       //     borderSide: const BorderSide(
-                                                  //       //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //       // border: OutlineInputBorder(
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                  //   child: Text(
-                                                  //     //AppLocalizations.of(context)!.my_qn_bank,
-                                                  //     "Degree",
-                                                  //     textAlign: TextAlign.left,
-                                                  //     style: TextStyle(
-                                                  //       color: const Color.fromRGBO(28, 78, 80, 1),
-                                                  //       fontSize: height * 0.02,
-                                                  //       fontFamily: "Inter",
-                                                  //       fontWeight: FontWeight.w400,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-                                                  //   child: TextField(
-                                                  //     controller: degreeController,
-                                                  //     keyboardType: TextInputType.text,
-                                                  //     decoration: InputDecoration(
-                                                  //       //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                  //       hintStyle: TextStyle(
-                                                  //           color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                  //           fontFamily: 'Inter',
-                                                  //           fontWeight: FontWeight.w400,
-                                                  //           fontSize: height * 0.016),
-                                                  //       hintText: "Type here",
-                                                  //       enabledBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       focusedBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       // focusedBorder: OutlineInputBorder(
-                                                  //       //     borderSide: const BorderSide(
-                                                  //       //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //       // border: OutlineInputBorder(
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                  //   child: Text(
-                                                  //     //AppLocalizations.of(context)!.my_qn_bank,
-                                                  //     "Semester (optional)",
-                                                  //     textAlign: TextAlign.left,
-                                                  //     style: TextStyle(
-                                                  //       color: const Color.fromRGBO(28, 78, 80, 1),
-                                                  //       fontSize: height * 0.02,
-                                                  //       fontFamily: "Inter",
-                                                  //       fontWeight: FontWeight.w400,
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // Padding(
-                                                  //   padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-                                                  //   child: TextField(
-                                                  //     controller: semesterController,
-                                                  //     keyboardType: TextInputType.text,
-                                                  //     decoration: InputDecoration(
-                                                  //       //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                  //       hintStyle: TextStyle(
-                                                  //           color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                  //           fontFamily: 'Inter',
-                                                  //           fontWeight: FontWeight.w400,
-                                                  //           fontSize: height * 0.016),
-                                                  //       hintText: "Type here",
-                                                  //       enabledBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       focusedBorder: const UnderlineInputBorder(
-                                                  //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  //       ),
-                                                  //       // focusedBorder: OutlineInputBorder(
-                                                  //       //     borderSide: const BorderSide(
-                                                  //       //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //       // border: OutlineInputBorder(
-                                                  //       //     borderRadius: BorderRadius.circular(15)),
-                                                  //     ),
-                                                  //   ),
-                                                  // ),
-                                                  // SizedBox(height: height * 0.1,)
                                                 ],
                                               ),
                                             ),
@@ -2423,7 +2254,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                         topicController.text='';
                                         degreeController.text='';
                                         semesterController.text='';
-                                        _questionTypeValue="MCQ";
                                         questionController.text='';
                                         answerController.text='';
                                         tempChoiceList=[];
@@ -4570,7 +4400,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                         topicController.text='';
                                         degreeController.text='';
                                         semesterController.text='';
-                                        _questionTypeValue="MCQ";
                                         questionController.text='';
                                         answerController.text='';
                                         tempChoiceList=[];
@@ -6565,7 +6394,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                         topicController.text='';
                                         degreeController.text='';
                                         semesterController.text='';
-                                        _questionTypeValue="MCQ";
                                         questionController.text='';
                                         answerController.text='';
                                         tempChoiceList=[];

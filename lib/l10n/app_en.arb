@@ -436,5 +436,6 @@
   "enable_as_teacher": "Enable me as Teacher",
   "enable_as_student": "Enable me as Student",
   "edit_user_profile": "Edit User Profile",
-  "submit_your_profile": "Are you sure you want to submit \nchanges to your profile?"
+  "submit_your_profile": "Are you sure you want to submit \nchanges to your profile?",
+  "not_allowed_to_reattempt": "You are not allowed to retake the test, Reached max number of attempts"
 }

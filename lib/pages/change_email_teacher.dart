@@ -316,202 +316,198 @@ class ChangeEmailTeacherState extends State<ChangeEmailTeacher> {
                     resizeToAvoidBottomInset: false,
                     backgroundColor: Colors.white,
                     body:
-                    Container(
-                        padding: EdgeInsets.only(
-                            left: height * 0.5, right: height * 0.5),
-                        child:
-                        Column(children: [
-                          SizedBox(height: height * 0.07),
-                          Center(
-                              child:Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: kElevationToShadow[4],
-                                ),
-                                width: width * 0.9,
-                                child:
-                                Form(
-                                  key: formKey,
-                                  child: SizedBox(
-                                    height: height * 0.6,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(children: [
+                      SizedBox(height: height * 0.07),
+                      Center(
+                          child:Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: kElevationToShadow[4],
+                            ),
+                            width: width * 0.7,
+                            child:
+                            Form(
+                              key: formKey,
+                              child: SizedBox(
+                                height: height * 0.6,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            SizedBox(height: height* 0.03),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: height * 0.025,
-                                                  right: height * 0.025),
-                                              child: TextFormField(
-                                                controller: newEmail,
-                                                keyboardType: TextInputType.emailAddress,
-                                                decoration: InputDecoration(
-                                                  floatingLabelBehavior:
-                                                  FloatingLabelBehavior.always,
-                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                  label: Text(
-                                                    AppLocalizations.of(context)!.new_email_id,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.02),
-                                                  ),
-                                                  //"NEW EMAIL ID",
-                                                  hintText:
-                                                  AppLocalizations.of(context)!.enter_here,
-                                                  //"New Email Id",
-                                                  hintStyle: TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          102, 102, 102, 0.3),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: height * 0.02),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.isEmpty) {
-                                                    return AppLocalizations.of(context)!
-                                                        .enter_email_id;
-                                                  } else {
-                                                    return null;
-                                                  }
-                                                },
+                                        SizedBox(height: height* 0.03),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: height * 0.025,
+                                              right: height * 0.025),
+                                          child: TextFormField(
+                                            controller: newEmail,
+                                            keyboardType: TextInputType.emailAddress,
+                                            decoration: InputDecoration(
+                                              floatingLabelBehavior:
+                                              FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                              label: Text(
+                                                AppLocalizations.of(context)!.new_email_id,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: height * 0.02),
                                               ),
+                                              //"NEW EMAIL ID",
+                                              hintText:
+                                              AppLocalizations.of(context)!.enter_here,
+                                              //"New Email Id",
+                                              hintStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.02),
                                             ),
-                                            SizedBox(
-                                              height: height * 0.03,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: height * 0.025,
-                                                  right: height * 0.025),
-                                              child: TextFormField(
-                                                controller: reNewEmail,
-                                                keyboardType: TextInputType.emailAddress,
-                                                decoration: InputDecoration(
-                                                  floatingLabelBehavior:
-                                                  FloatingLabelBehavior.always,
-                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                  label: Text(
-                                                    AppLocalizations.of(context)!.confirm_new_mail,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.02),
-                                                  ),
-                                                  hintText: AppLocalizations.of(context)!.enter_here,
-                                                  //"Confirm New Email Id",
-                                                  hintStyle: TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          102, 102, 102, 0.3),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: height * 0.02),
-                                                ),
-                                                validator: (value) {
-                                                  if (newEmail.text != reNewEmail.text) {
-                                                    return AppLocalizations.of(context)!.reenter_email;
-                                                    //"Re-Enter Email correctly";
-                                                  } else {
-                                                    return null;
-                                                  }
-                                                },
-                                              ),
-                                            ),
-                                            SizedBox(height: height * 0.04),
-                                            Row(
-                                                children: [
-                                                  SizedBox(width: width * 0.02),
-                                                  Text(AppLocalizations.of(context)!.otp_sent_to_new,
-                                                      //"OTP will be sent to new EMAIL ID",
-                                                      style: const TextStyle(
-                                                          color: Color.fromRGBO(
-                                                              153, 153, 153, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontStyle: FontStyle.italic,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: 14))
-                                                ]),
-                                            SizedBox(height: height * 0.01),
-                                            Row(
-                                                children: [
-                                                  SizedBox(width: width * 0.02),
-                                                  Text(
-                                                      AppLocalizations.of(context)!.password_unchanged,
-                                                      //"Password will remain unchanged.",
-                                                      style: const TextStyle(
-                                                          color: Color.fromRGBO(
-                                                              153, 153, 153, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontStyle: FontStyle.italic,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: 14))
-                                                ]),
-                                            SizedBox(height: height * 0.03),
-                                          ],
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return AppLocalizations.of(context)!
+                                                    .enter_email_id;
+                                              } else {
+                                                return null;
+                                              }
+                                            },
+                                          ),
                                         ),
-                                        Center(
-                                            child: IconButton(
-                                              iconSize: height * 0.06,
-                                              icon: Icon(Icons.arrow_circle_right,
-                                                color:
-                                                (reNewEmail.text.isNotEmpty && newEmail.text.isNotEmpty)
-                                                    ? const Color.fromRGBO(82, 165, 160, 1)
-                                                    : const Color.fromRGBO(153, 153, 153, 0.5),
-                                              ),
-                                              onPressed: () async {
-                                                bool valid = formKey.currentState!.validate();
-                                                if (valid ||
-                                                    newEmail.text == reNewEmail.text) {
-                                                  ResponseEntity response =
-                                                  await QnaService.updatePassword(
-                                                      oldEmail.text,
-                                                      newEmail.text, widget.userId, context,
-                                                      userDetails);
-                                                  if (response.code == 200) {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                          type: PageTransitionType.fade,
-                                                          child: showAlertDialog(context)),
-                                                    );
-                                                  } else {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType.rightToLeft,
-                                                        child: CustomDialog(
-                                                          title:
-                                                          AppLocalizations.of(context)!.incorrect_email,
-                                                          //'Incorrect Email',
-                                                          content:
-                                                          AppLocalizations.of(context)!.email_changed,
-                                                          //'Your Email has not been changed',
-                                                          button: AppLocalizations.of(
-                                                              context)!
-                                                              .retry,
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-                                                }
-                                              },
-                                            )),
                                         SizedBox(
                                           height: height * 0.03,
                                         ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: height * 0.025,
+                                              right: height * 0.025),
+                                          child: TextFormField(
+                                            controller: reNewEmail,
+                                            keyboardType: TextInputType.emailAddress,
+                                            decoration: InputDecoration(
+                                              floatingLabelBehavior:
+                                              FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                              label: Text(
+                                                AppLocalizations.of(context)!.confirm_new_mail,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: height * 0.02),
+                                              ),
+                                              hintText: AppLocalizations.of(context)!.enter_here,
+                                              //"Confirm New Email Id",
+                                              hintStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.02),
+                                            ),
+                                            validator: (value) {
+                                              if (newEmail.text != reNewEmail.text) {
+                                                return AppLocalizations.of(context)!.reenter_email;
+                                                //"Re-Enter Email correctly";
+                                              } else {
+                                                return null;
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(height: height * 0.04),
+                                        Row(
+                                            children: [
+                                              SizedBox(width: width * 0.02),
+                                              Text(AppLocalizations.of(context)!.otp_sent_to_new,
+                                                  //"OTP will be sent to new EMAIL ID",
+                                                  style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontStyle: FontStyle.italic,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14))
+                                            ]),
+                                        SizedBox(height: height * 0.01),
+                                        Row(
+                                            children: [
+                                              SizedBox(width: width * 0.02),
+                                              Text(
+                                                  AppLocalizations.of(context)!.password_unchanged,
+                                                  //"Password will remain unchanged.",
+                                                  style: const TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          153, 153, 153, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontStyle: FontStyle.italic,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: 14))
+                                            ]),
+                                        SizedBox(height: height * 0.03),
                                       ],
                                     ),
-                                  ),
+                                    Center(
+                                        child: IconButton(
+                                          iconSize: height * 0.06,
+                                          icon: Icon(Icons.arrow_circle_right,
+                                            color:
+                                            (reNewEmail.text.isNotEmpty && newEmail.text.isNotEmpty)
+                                                ? const Color.fromRGBO(82, 165, 160, 1)
+                                                : const Color.fromRGBO(153, 153, 153, 0.5),
+                                          ),
+                                          onPressed: () async {
+                                            bool valid = formKey.currentState!.validate();
+                                            if (valid ||
+                                                newEmail.text == reNewEmail.text) {
+                                              ResponseEntity response =
+                                              await QnaService.updatePassword(
+                                                  oldEmail.text,
+                                                  newEmail.text, widget.userId, context,
+                                                  userDetails);
+                                              if (response.code == 200) {
+                                                Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                      type: PageTransitionType.fade,
+                                                      child: showAlertDialog(context)),
+                                                );
+                                              } else {
+                                                Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: CustomDialog(
+                                                      title:
+                                                      AppLocalizations.of(context)!.incorrect_email,
+                                                      //'Incorrect Email',
+                                                      content:
+                                                      AppLocalizations.of(context)!.email_changed,
+                                                      //'Your Email has not been changed',
+                                                      button: AppLocalizations.of(
+                                                          context)!
+                                                          .retry,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            }
+                                          },
+                                        )),
+                                    SizedBox(
+                                      height: height * 0.03,
+                                    ),
+                                  ],
                                 ),
-                              ))]))));
+                              ),
+                            ),
+                          ))])));
           }
           else {
             return WillPopScope(

@@ -157,8 +157,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                       82, 165, 160, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight *
-                                                      0.012)),
+                                                  fontSize: localHeight * 0.0225)),
                                           SizedBox(width: localHeight * 0.005),
                                           Text(
                                             "${values.data!.questions![index -
@@ -168,7 +167,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                     82, 165, 160, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: localHeight * 0.012),
+                                                fontSize: localHeight * 0.0225),
                                           )
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
@@ -182,7 +181,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                   51, 51, 51, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
-                                              fontSize: localHeight * 0.013),
+                                              fontSize: localHeight * 0.0225),
                                         ),
                                         SizedBox(height: localHeight * 0.015),
                                       ]),
@@ -219,7 +218,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                   82, 165, 160, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.014)
+                                              fontSize: localHeight * 0.0225)
                                       ),
                                     ),
                                     SizedBox(height: localHeight * 0.005),
@@ -232,7 +231,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: localHeight * 0.014),
+                                                    fontSize: localHeight * 0.0225),
                                               ),
                                             ],
                                           ),
@@ -247,8 +246,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight
                                                             .w400,
-                                                        fontSize: localHeight *
-                                                            0.015))]),
+                                                        fontSize: localHeight * 0.0225))]),
                                           SizedBox(height: localHeight * 0.005),
                                           Row(
                                             children: [
@@ -272,8 +270,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight
                                                                 .w400,
-                                                            fontSize: localHeight *
-                                                                0.015)),
+                                                            fontSize: localHeight * 0.0225)),
                                                     TextSpan(
                                                         text: values.data!
                                                             .questions![index - 1].advisorUrl,
@@ -284,8 +281,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight
                                                                 .w400,
-                                                            fontSize: localHeight *
-                                                                0.015)),
+                                                            fontSize: localHeight * 0.0225)),
                                                   ]))),
                                             ],
                                           ),
@@ -382,8 +378,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                               82, 165, 160, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w700,
-                                                          fontSize: localHeight *
-                                                              0.012)),
+                                                          fontSize: localHeight * 0.0225)),
                                                   SizedBox(width: localHeight * 0.005),
                                                   Text(
                                                     "${values.data!.questions![index -
@@ -393,7 +388,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             82, 165, 160, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w700,
-                                                        fontSize: localHeight * 0.012),
+                                                        fontSize: localHeight * 0.0225),
                                                   )
                                                 ]),
                                                 SizedBox(height: localHeight * 0.010),
@@ -407,7 +402,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                           51, 51, 51, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w400,
-                                                      fontSize: localHeight * 0.013),
+                                                      fontSize: localHeight * 0.0225),
                                                 ),
                                                 SizedBox(height: localHeight * 0.015),
                                               ]),
@@ -444,7 +439,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                           82, 165, 160, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: localHeight * 0.014)
+                                                      fontSize: localHeight * 0.0225)
                                               ),
                                             ),
                                             SizedBox(height: localHeight * 0.005),
@@ -457,7 +452,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             color: const Color.fromRGBO(82, 165, 160, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w700,
-                                                            fontSize: localHeight * 0.014),
+                                                            fontSize: localHeight * 0.0225),
                                                       ),
                                                     ],
                                                   ),
@@ -472,8 +467,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                                 fontFamily: 'Inter',
                                                                 fontWeight: FontWeight
                                                                     .w400,
-                                                                fontSize: localHeight *
-                                                                    0.015))]),
+                                                                fontSize: localHeight * 0.0225))]),
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                     children: [
@@ -497,8 +491,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight
                                                                             .w400,
-                                                                        fontSize: localHeight *
-                                                                            0.015)),
+                                                                        fontSize: localHeight * 0.0225)),
                                                                 TextSpan(
                                                                     text: values.data!
                                                                         .questions![index - 1].advisorUrl,
@@ -509,8 +502,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight
                                                                             .w400,
-                                                                        fontSize: localHeight *
-                                                                            0.015)),
+                                                                        fontSize: localHeight * 0.0225)),
                                                               ]))),
                                                     ],
                                                   ),

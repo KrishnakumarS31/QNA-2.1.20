@@ -458,7 +458,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: width * 1),
+                                              width: width * 0.9),
                                         ),
                                       ),
                                     ],
@@ -1133,7 +1133,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: width * 0.7),
+                                              width: width * 0.5),
                                         ),
                                       ),
                                     ],
@@ -1810,7 +1810,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: webWidth),
+                                              width: width * 1.15),
                                     ),
                                   ),
                                 ],
@@ -2301,9 +2301,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                           "${String.fromCharCode(96+j)}. ",
                           style: TextStyle(
                             color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: widget.width >= webWidth
-                                ? widget.height * 0.0262
-                                : widget.height * 0.0162,
+                            fontSize:  widget.height * 0.018,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w400,
                           ),

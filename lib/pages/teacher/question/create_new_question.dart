@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
-import '../../../DataSource/design.dart';
+import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Entity/Teacher/choice_entity.dart';
 import '../../../Entity/Teacher/question_entity.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
@@ -198,7 +199,6 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
     _count = 0;
     _values = [];
     demoQuestionModel.choices?.add(choice);
-    addField();
     setData();
   }
 
@@ -233,14 +233,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: appBarChevronColor,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -481,7 +481,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       padding: EdgeInsets.only(left: width * 0.02,right : width * 0.02),
                                                       child: TextFormField(
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines: null,
                                                         onChanged: (val) {
                                                           questionFormKey.currentState!.validate();
 
@@ -1834,11 +1835,11 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                           _questionTypeValue;
 
 
-                                      if (_groupValue == 'Descriptive') {
+                                      if (_questionTypeValue == 'Descriptive') {
                                         finalQuestion.choices = [];
                                       }
 
-                                      if(_groupValue == 'MCQ') {
+                                      if(_questionTypeValue == 'MCQ') {
                                         var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
 
                                         if(values.isEmpty)
@@ -1904,7 +1905,22 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.advisorUrl=urlController.text;
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
                                         if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
-
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content:
+                                                //AppLocalizations.of(context)!.invalid_role,
+                                                "Please enter one correct choice ",
+                                                button: AppLocalizations.of(context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
                                         }
                                         else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
 
@@ -1959,14 +1975,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: appBarChevronColor,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -2210,8 +2226,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     Padding(
                                                       padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                       child: TextFormField(
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines: null,
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
                                                         onChanged: (val) {
                                                           questionFormKey.currentState!.validate();
 
@@ -3039,7 +3056,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                       child: TextFormField(
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines: null,
                                                         decoration: InputDecoration(
                                                           //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                           hintStyle: TextStyle(
@@ -3574,11 +3592,11 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                           tempChoiceList;
                                       finalQuestion.questionType =
                                           _questionTypeValue;
-                                      if (_groupValue == 'Descriptive') {
+                                      if (_questionTypeValue == 'Descriptive') {
                                         finalQuestion.choices = [];
                                       }
 
-                                      if(_groupValue == 'MCQ') {
+                                      if(_questionTypeValue == 'MCQ') {
                                         var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
 
                                         if(values.isEmpty)
@@ -3643,7 +3661,22 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.advisorUrl=urlController.text;
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
                                         if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
-
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content:
+                                                //AppLocalizations.of(context)!.invalid_role,
+                                                "Please enter one correct choice ",
+                                                button: AppLocalizations.of(context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
                                         }
                                         else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
 
@@ -3697,14 +3730,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: appBarChevronColor,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -3927,7 +3960,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       padding: EdgeInsets.only(left: width * 0.02),
                                                       child: TextFormField(
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines: null,
                                                         decoration: InputDecoration(
                                                           //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                           hintStyle: TextStyle(
@@ -4740,7 +4774,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       padding: EdgeInsets.only(left: width * 0.02),
                                                       child: TextFormField(
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines: null,
                                                         onChanged: (val) {
                                                           questionFormKey.currentState?.validate();
                                                         },
@@ -5235,12 +5270,12 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       finalQuestion.choices = tempChoiceList;
                                       finalQuestion.questionType = _questionTypeValue;
 
-                                      if (_groupValue == 'Descriptive') {
+                                      if (_questionTypeValue == 'Descriptive') {
                                         finalQuestion.choices = [];
                                       }
-                                      if(_groupValue == 'MCQ') {
+                                      if(_questionTypeValue == 'MCQ') {
+                                        print(_questionTypeValue == 'MCQ');
                                         var values = finalQuestion.choices!.where((element) => element.rightChoice == true);
-
                                         if(values.isEmpty)
                                         {
                                           setState(() {
@@ -5248,15 +5283,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                           });
                                           showDialogBox();
                                         }
-                                        // print(contain);
-                                        // if(contain == false)
-                                        //   {
-                                        //     print("INSIDE FALSE");
-                                        //   }
-                                        // else if(contain == true)
-                                        //   {
-                                        //     print("INSIDE TRUE");
-                                        //   }
+
                                       }
 
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate() && val == true) {
@@ -5304,7 +5331,22 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                       question.advisorUrl=urlController.text;
                                       if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
                                         if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
-
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content:
+                                                //AppLocalizations.of(context)!.invalid_role,
+                                                "Please enter one correct choice ",
+                                                button: AppLocalizations.of(context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
                                         }
                                         else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
 

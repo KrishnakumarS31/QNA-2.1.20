@@ -77,8 +77,11 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                   ),
                 ),
                 body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      padding: EdgeInsets.only(
+                          left: height * 0.2, right: height * 0.2),
                       height: height * 0.15,
                       decoration: const BoxDecoration(
                         color: Color.fromRGBO(255, 255, 255, 1),
@@ -89,7 +92,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             children: [
                               SizedBox(width: width * 0.025),
                               CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.1,
+                                radius: 23,
                                 backgroundColor:
                                     const Color.fromRGBO(0, 106, 100, 0),
                                 child: Image.asset(
@@ -97,37 +100,36 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 ),
                               ),
                               SizedBox(width: width * 0.04),
-                              Text(
-                                '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.03,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(width: width * 0.25),
-                              Text(
-                                AppLocalizations.of(context)!.student,
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(153, 153, 153, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
+                              Column(
+                                children: [
+                                  Text(
+                                    '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      fontSize: height * 0.03,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context)!.student,
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(153, 153, 153, 1),
+                                      fontSize: height * 0.02,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
                         ],
                       ),
                     ),
-                    Padding(
+                    Container(
                       padding: EdgeInsets.only(
-                          left: width * 0.001, right: width * 0.3),
+                          left: height * 0.2, right: height * 0.2),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -293,43 +295,46 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             ),
                           ]),
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                        minimumSize: const Size(172, 38),
-                        side: const BorderSide(
-                            width: 1, // the thickness
-                            color: Color.fromRGBO(
-                                82, 165, 160, 1) // the color of the border
-                            ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
-                        ),
-                      ),
-                      child: Text('Edit Profile',
-                          style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontSize: height * 0.03,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontWeight: FontWeight.w500)),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: StudentEditProfilePage(userDataModel: widget.userDataModel),
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                          minimumSize: const Size(172, 38),
+                          side: const BorderSide(
+                              width: 1, // the thickness
+                              color: Color.fromRGBO(
+                                  82, 165, 160, 1) // the color of the border
+                              ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
                           ),
-                        );
-                        // PageTransition(
-                        //   type: PageTransitionType.rightToLeft,
-                        //   child: StudentRegistrationUpdatePage(
-                        //       userData: widget, isEdit: true),
-                        // );
-                      },
+                        ),
+                        child: Text('Edit Profile',
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: height * 0.03,
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w500)),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: StudentEditProfilePage(userDataModel: widget.userDataModel),
+                            ),
+                          );
+                          // PageTransition(
+                          //   type: PageTransitionType.rightToLeft,
+                          //   child: StudentRegistrationUpdatePage(
+                          //       userData: widget, isEdit: true),
+                          // );
+                        },
+                      ),
                     )
                   ],
                 )));
-      } else if (constraints.maxWidth > 960) {
+      }
+      else if (constraints.maxWidth > 960) {
         return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -389,7 +394,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 children: [
                                   SizedBox(width: width * 0.015),
                                   CircleAvatar(
-                                    radius: 15,
+                                    radius: 23,
                                     backgroundColor:
                                         const Color.fromRGBO(0, 106, 100, 0),
                                     child: Image.asset(
@@ -397,33 +402,33 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                     ),
                                   ),
                                   SizedBox(width: width * 0.04),
-                                  Text(
-                                    '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
-                                    style: TextStyle(
-                                      color:
-                                          const Color.fromRGBO(28, 78, 80, 1),
-                                      fontSize: height * 0.03,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
+                                        style: TextStyle(
+                                          color:
+                                              const Color.fromRGBO(28, 78, 80, 1),
+                                          fontSize: height * 0.03,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        AppLocalizations.of(context)!.student,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              153, 153, 153, 1),
+                                          fontSize: height * 0.02,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  SizedBox(width: width * 0.08),
-                                  Text(
-                                    AppLocalizations.of(context)!.student,
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          153, 153, 153, 1),
-                                      fontSize: height * 0.02,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
+
                             ],
                           ),
                         ),
@@ -645,7 +650,8 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                         )
                       ],
                     ))));
-      } else {
+      }
+      else {
         return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -699,7 +705,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             children: [
                               SizedBox(width: width * 0.025),
                               CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.1,
+                                radius: 23,
                                 backgroundColor:
                                     const Color.fromRGBO(0, 106, 100, 0),
                                 child: Image.asset(
@@ -707,28 +713,27 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 ),
                               ),
                               SizedBox(width: width * 0.04),
-                              Text(
-                                '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.03,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(width: width * 0.25),
-                              Text(
-                                AppLocalizations.of(context)!.student,
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(153, 153, 153, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
+                              Column(
+                                children: [
+                                  Text(
+                                    '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      fontSize: height * 0.03,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context)!.student,
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(153, 153, 153, 1),
+                                      fontSize: height * 0.02,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),

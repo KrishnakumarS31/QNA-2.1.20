@@ -3279,7 +3279,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                             SizedBox(height: height * 0.02),
                           ]),
                         ],
-                      )),
+                      )
+                  ),
                 ),
               ));
         }

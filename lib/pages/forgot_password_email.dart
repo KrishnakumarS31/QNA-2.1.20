@@ -157,6 +157,12 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               }
                                             },
                                           ),
+                                            suffixIconColor:
+                                            MaterialStateColor.resolveWith((states) =>
+                                            states.contains(MaterialState.focused)
+                                            //   _controller.text.isEmpty
+                                             ? const Color.fromRGBO(82, 165, 160, 1)
+                                              : const Color.fromRGBO(153, 153, 153, 0.5)),
                                           hintStyle: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 0.3),
@@ -276,6 +282,12 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               fontStyle: FontStyle.italic,
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.016),
+                                          suffixIconColor:
+                                          MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
+                                          //   _controller.text.isEmpty
+                                              ? const Color.fromRGBO(82, 165, 160, 1)
+                                              : const Color.fromRGBO(153, 153, 153, 0.5)),
                                           suffixIcon: IconButton(
                                             iconSize: height * 0.05,
                                             icon: Icon(Icons.arrow_circle_right,
@@ -432,6 +444,12 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               fontStyle: FontStyle.italic,
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.016),
+                                          suffixIconColor:
+                                          MaterialStateColor.resolveWith((states) =>
+                                          states.contains(MaterialState.focused)
+                                          //   _controller.text.isEmpty
+                                              ? const Color.fromRGBO(82, 165, 160, 1)
+                                              : const Color.fromRGBO(153, 153, 153, 0.5)),
                                           suffixIcon: IconButton(
                                             iconSize: height * 0.05,
                                             icon: Icon(Icons.arrow_circle_right,

@@ -736,7 +736,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       onPressed: () {
         Navigator.pushNamed(
             context,
-            '/studentForgotPassword',
+            '/ForgotPassword',
             arguments: [widget.email,otp,widget.isFromStudent]
         );
       },
@@ -797,7 +797,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       onPressed: () {
         Navigator.pushNamed(
             context,
-            '/studentForgotPassword',
+            '/ForgotPassword',
             arguments: [widget.email,otp,widget.isFromStudent]
         );
       },
