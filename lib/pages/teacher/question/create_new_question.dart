@@ -198,6 +198,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
     _count = 0;
     _values = [];
     demoQuestionModel.choices?.add(choice);
+    addField();
     setData();
   }
 

@@ -63,6 +63,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
       questions = questionResponse?.questions;
     }
     else{
+      setState(() {
+        questionStart=questionStart-10;
+      });
       Navigator.push(
         context,
         PageTransition(
@@ -93,12 +96,16 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   getData(String search) async {
     ResponseEntity responseEntity =
     await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    if (responseEntity.code == 200) {
-      QuestionResponse questionResponse;
-      questionResponse = QuestionResponse.fromJson(responseEntity.data);
+    QuestionResponse questionResponse;
+    questionResponse = QuestionResponse.fromJson(responseEntity.data);
+    print(responseEntity.toString());
+    if (questionResponse.questions!.isNotEmpty) {
       questions = questionResponse.questions;
     }
     else{
+      setState(() {
+        questionStart=questionStart-10;
+      });
       Navigator.push(
         context,
         PageTransition(
@@ -132,13 +139,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     List<Question>? questions = [];
     ResponseEntity response =
     await QnaService.getSearchQuestion(10, pageNumber, teacherQuestionBankSearchController.text,userDetails);
-
-    if(response.code==200){
-
-      questionResponse = QuestionResponse.fromJson(response.data);
+    questionResponse = QuestionResponse.fromJson(response.data);
+    if(questionResponse!.questions!.isNotEmpty){
       questions = questionResponse?.questions;
     }
     else{
+      setState(() {
+        questionStart=questionStart-10;
+      });
       Navigator.push(
         context,
         PageTransition(

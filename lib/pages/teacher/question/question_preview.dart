@@ -710,7 +710,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                   padding: EdgeInsets.only(bottom: widget.height * 0.013),
                   child:
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
@@ -726,8 +726,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                             )),
                       ),
                       Container(
-
-                          width: widget.width > 960 ? widget.width * 0.2 :widget.width * 0.744,
+                          width: widget.width > 960 ? widget.width * 0.2 :widget.width * 0.6,
                           height: widget.height * 0.0412,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(5)),
