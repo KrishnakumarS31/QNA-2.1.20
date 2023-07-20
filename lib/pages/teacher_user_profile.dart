@@ -81,7 +81,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                       children: [
                         Container(
                           padding: EdgeInsets.only(
-                              left: height * 0.2, right: height * 0.2),
+                              left: height * 0.15, right: height * 0.2),
                           height: height * 0.15,
                           decoration: const BoxDecoration(
                             color: Color.fromRGBO(255, 255, 255, 1),
@@ -92,8 +92,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                                 height: height * 0.005,
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(width: width * 0.015),
                                   CircleAvatar(
                                     radius: 23,
                                     backgroundColor:
@@ -136,7 +136,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: height * 0.02),
                                 Text(
                                   'Gender',
                                   style: TextStyle(
@@ -347,7 +346,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                         )
                       ],
                     )));
-      }
+          }
           else if(constraints.maxWidth > 960){
             return WillPopScope(
                 onWillPop: () async => false,
@@ -406,7 +405,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                                   ),
                                   Row(
                                     children: [
-                                      SizedBox(width: width * 0.015),
+                                      SizedBox(width: width * 0.005),
                                       CircleAvatar(
                                         radius: 23,
                                         backgroundColor:
@@ -415,7 +414,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                                           "assets/images/ProfilePic_Avatar.png",
                                         ),
                                       ),
-                                      SizedBox(width: width * 0.04),
+                                      SizedBox(width: width * 0.02),
                                       Column(
                                         children: [
                                           Text(
@@ -451,6 +450,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    SizedBox(height: height * 0.025),
                                     Text(
                                       'Gender',
                                       style: TextStyle(
@@ -675,7 +675,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                           ],
                         ))));
           }
-      else {
+          else {
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -980,6 +980,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                         )
                       ],
                     )));
-      }
+          }
         }
     );}}

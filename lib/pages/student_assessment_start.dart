@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_student.dart';
 import '../Components/today_date.dart';
@@ -11,6 +12,7 @@ import '../Entity/Teacher/response_entity.dart';
 import '../Entity/question_paper_model.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 
 class StudentAssessment extends StatefulWidget {
@@ -55,6 +57,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getData();
     print("INITIAL STAGE");
     print(_isAssessmentTextField);
@@ -153,17 +156,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: width,
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                       "${widget.usedData!.data!.firstName} ${widget.usedData!.data!.lastName}",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.03))
-                                )),
+                                    width: width,
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                            "${widget.usedData!.data!.firstName} ${widget.usedData!.data!.lastName}",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.03))
+                                    )),
                                 SizedBox(
                                   height: height * 0.08,
                                 ),
@@ -278,7 +281,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         .assessment_id,
                                                     suffixIcon: GestureDetector(
                                                       onTap: () async {
-                                                        assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                        assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                         if(assessmentvalues.code == 200) {
                                                           setState(() {
                                                             assessmentHeaderValues =
@@ -308,7 +311,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       },
                                                       child: IconButton(
                                                         onPressed: () async {
-                                                          assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                          assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                           if(assessmentvalues.code == 200) {
                                                             setState(() {
                                                               assessmentHeaderValues =
@@ -393,7 +396,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                     hintText: "Subject, Topic, Degree, Semester",
                                                     suffixIcon: GestureDetector(
                                                       onTap: () async {
-                                                        assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                        assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                         if(assessmentvalues.code == 200) {
                                                           setState(() {
                                                             assessmentHeaderValues =
@@ -405,22 +408,22 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           });
                                                         }
                                                         else if (assessmentIdController.text == "")
-                                                          {
-                                                            Navigator.push(
-                                                              context,
-                                                              PageTransition(
-                                                                type:
-                                                                PageTransitionType.rightToLeft,
-                                                                child: CustomDialog(
-                                                                  title: AppLocalizations.of(context)!.alert_popup,
-                                                                  content: '${assessmentvalues.message}',
-                                                                  button:
-                                                                  AppLocalizations.of(context)!
-                                                                      .retry,
-                                                                ),
+                                                        {
+                                                          Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type:
+                                                              PageTransitionType.rightToLeft,
+                                                              child: CustomDialog(
+                                                                title: AppLocalizations.of(context)!.alert_popup,
+                                                                content: '${assessmentvalues.message}',
+                                                                button:
+                                                                AppLocalizations.of(context)!
+                                                                    .retry,
                                                               ),
-                                                            );
-                                                          }
+                                                            ),
+                                                          );
+                                                        }
 
                                                         else if (assessmentvalues.code == 400) {
                                                           Navigator.push(
@@ -981,7 +984,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               .assessment_id,
                                                           suffixIcon: GestureDetector(
                                                             onTap: () async {
-                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
                                                                   assessmentHeaderValues =
@@ -1011,7 +1014,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                             },
                                                             child: IconButton(
                                                               onPressed: () async {
-                                                                assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                                assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                                 if(assessmentvalues.code == 200) {
                                                                   setState(() {
                                                                     assessmentHeaderValues =
@@ -1096,7 +1099,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           hintText: "Subject, Topic, Degree, Semester",
                                                           suffixIcon: GestureDetector(
                                                             onTap: () async {
-                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
                                                                   assessmentHeaderValues =
@@ -1665,7 +1668,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               .assessment_id,
                                                           suffixIcon: GestureDetector(
                                                             onTap: () async {
-                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
                                                                   assessmentHeaderValues =
@@ -1695,7 +1698,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                             },
                                                             child: IconButton(
                                                               onPressed: () async {
-                                                                assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                                assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                                 if(assessmentvalues.code == 200) {
                                                                   setState(() {
                                                                     assessmentHeaderValues =
@@ -1780,7 +1783,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           hintText: "Subject, Topic, Degree, Semester",
                                                           suffixIcon: GestureDetector(
                                                             onTap: () async {
-                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
                                                                   assessmentHeaderValues =

@@ -96,11 +96,11 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   getData(String search) async {
     ResponseEntity responseEntity =
     await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
-    QuestionResponse questionResponse;
-    questionResponse = QuestionResponse.fromJson(responseEntity.data);
+    QuestionResponse questionResponses;
+    questionResponses = QuestionResponse.fromJson(responseEntity.data);
     print(responseEntity.toString());
-    if (questionResponse.questions!.isNotEmpty) {
-      questions = questionResponse.questions;
+    if (questionResponses.questions!.isNotEmpty) {
+      questions = questionResponses.questions;
     }
     else{
       setState(() {
@@ -125,11 +125,13 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
       );
     }
     setState(() {
+      questionResponse=questionResponses;
       myQuestion=true;
       //questionList=[];
       questionList.addAll(questions!);
       pageNumber++;
       searchVal = search;
+      questionResponses;
     });
     //Navigator.of(context).pop();
   }
@@ -527,7 +529,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(questionResponse!.total_count==questionList.length){
+                                                  if(questionStart==0){
+
+                                                  }
+                                                  else if(questionResponse!.total_count==questionList.length){
                                                     setState(() {
                                                       pageNumber--;
                                                       questionStart=questionStart-10;
@@ -999,7 +1004,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(questionResponse!.total_count==questionList.length){
+                                                  if(questionStart==0){
+
+                                                  }
+                                                  else if(questionResponse!.total_count==questionList.length){
                                                     setState(() {
                                                       pageNumber--;
                                                       questionStart=questionStart-10;
@@ -1459,7 +1467,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(questionResponse!.total_count==questionList.length){
+                                                  if(questionStart==0){
+
+                                                  }
+                                                  else if(questionResponse!.total_count==questionList.length){
                                                     setState(() {
                                                       pageNumber--;
                                                       questionStart=questionStart-10;

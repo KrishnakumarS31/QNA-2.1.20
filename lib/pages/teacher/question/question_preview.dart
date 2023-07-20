@@ -744,16 +744,18 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                                 SizedBox(
                                   width: widget.width * 0.02,
                                 ),
-                                Text(
-                                  widget.finalQuestion!.choices![j].choiceText!,
-                                  style: TextStyle(
-                                    color:
-                                    ((widget.finalQuestion?.questionType == "Survey") ? false : widget.finalQuestion!.choices![j].rightChoice!)
-                                        ? const Color.fromRGBO(255, 255, 255, 1)
-                                        : const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: widget.height * 0.0162,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w700,
+                                Expanded(
+                                  child: Text(
+                                    widget.finalQuestion!.choices![j].choiceText!,
+                                    style: TextStyle(
+                                      color:
+                                      ((widget.finalQuestion?.questionType == "Survey") ? false : widget.finalQuestion!.choices![j].rightChoice!)
+                                          ? const Color.fromRGBO(255, 255, 255, 1)
+                                          : const Color.fromRGBO(102, 102, 102, 1),
+                                      fontSize: widget.height * 0.0162,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
                                 ),
                               ])),

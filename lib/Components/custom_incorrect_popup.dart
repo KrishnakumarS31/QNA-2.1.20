@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 class CustomDialog extends StatefulWidget {
   CustomDialog(
       {Key? key,
-      required this.title,
-      required this.content,
-      required this.button,
-      this.numberOfScreenBack,
+        required this.title,
+        required this.content,
+        required this.button,
+        this.numberOfScreenBack,
         this.subContent,})
       : super(key: key);
   final String title;
@@ -46,7 +46,7 @@ class _CustomDialogState extends State<CustomDialog> {
           ),
           margin: const EdgeInsets.all(5.0),
           height: height * 0.25,
-          width: width * 0.4,
+          width: width * 0.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -54,51 +54,54 @@ class _CustomDialogState extends State<CustomDialog> {
                 height: height * 0.015,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children:[
-                  SizedBox(width: width * 0.1),
-                  Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(226, 68, 0, 1),
-                  ),
-                  height: height * 0.05,
-                  width: width * 0.05,
-                  child: const Icon(
-                    Icons.info_outline_rounded,
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                ),
-                  SizedBox(width: width * 0.01),
-                  Text(
-                    widget.title,
-                    style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                        const TextStyle(
-                            color: Color.fromRGBO(51, 51, 51, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15)),
-                  ),
-              ]
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children:[
+                    SizedBox(width: width * 0.1),
+                    Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromRGBO(226, 68, 0, 1),
+                      ),
+                      height: height * 0.05,
+                      width: width * 0.05,
+                      child: const Icon(
+                        Icons.info_outline_rounded,
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                    ),
+                    SizedBox(width: width * 0.01),
+                    Text(
+                      widget.title,
+                      style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                          const TextStyle(
+                              color: Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15)),
+                    ),
+                  ]
               ),
               SizedBox(
                 height: height * 0.015,
               ),
               Text(
                 widget.content,
-                style:TextStyle(
-                        color: const Color.fromRGBO(51, 51, 51, 1),
+                style:
+                Theme.of(context).primaryTextTheme.headlineMedium?.merge(
+                    const
+                    TextStyle(
+                        color: Color.fromRGBO(51, 51, 51, 1),
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
-                        fontSize: 20),
+                        fontSize: 20)),
               ),
               Text(
                 widget.subContent??'',
                 style: TextStyle(
-                        color: Color.fromRGBO(51, 51, 51, 1),
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18),
+                    color: Color.fromRGBO(51, 51, 51, 1),
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18),
               ),
               TextButton(
                 onPressed: () {

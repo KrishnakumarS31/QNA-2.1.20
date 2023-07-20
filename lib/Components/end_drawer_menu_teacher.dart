@@ -74,7 +74,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                             children: [
                               SizedBox(width: width * 0.03),
                               CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.02,
+                                radius: MediaQuery.of(context).size.width * 0.03,
                                 backgroundColor:
                                 const Color.fromRGBO(0, 106, 100, 0),
                                 child: Image.asset(
@@ -419,8 +419,6 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                             context: context,
                             builder: (context) =>
                                 AlertDialog(
-                                  insetPadding: const EdgeInsets.only(
-                                      left: 25, right: 25),
                                   title: Row(children: [
                                     SizedBox(width: localHeight * 0.030),
                                     Container(
@@ -456,6 +454,9 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                         backgroundColor: const Color.fromRGBO(
                                             255, 255, 255, 1),
                                         minimumSize: const Size(90, 30),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(39),
+                                        ),
                                         side: const BorderSide(
                                           width: 1.5,
                                           color: Color.fromRGBO(82, 165, 160, 1),
@@ -478,6 +479,9 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: const Color.fromRGBO(
                                               82, 165, 160, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(39),
+                                          ),
                                           minimumSize: const Size(90, 30),
                                         ),
                                         child: Text(

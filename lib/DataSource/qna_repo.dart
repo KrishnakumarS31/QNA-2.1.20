@@ -206,7 +206,7 @@ class QnaRepo {
       assessment!.userId = questionPaper.data!.accessTokenDetails!.userId!;
       token = questionPaper.data!.accessTokenDetails!.accessToken!;
     }
-
+    print(token);
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer $token',
@@ -217,6 +217,7 @@ class QnaRepo {
     log(request.body);
 
     request.headers.addAll(headers);
+
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
@@ -559,17 +560,18 @@ class QnaRepo {
     return allAssessment;
   }
 
-  static Future<ResponseEntity> getAssessmentHeader(String assessmentCode) async {
+  static Future<ResponseEntity> getAssessmentHeader(String assessmentCode,UserDetails userDetails) async {
     ResponseEntity allAssessment = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
+    var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     var request = http.Request(
         'GET',
         Uri.parse(
             '$domainName/api/v1/assessment-details?code=$assessmentCode'));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-      String value = await response.stream.bytesToString();
-      allAssessment = responseEntityFromJson(value);
-
+    String value = await response.stream.bytesToString();
+    allAssessment = responseEntityFromJson(value);
     return allAssessment;
   }
 
@@ -627,7 +629,7 @@ class QnaRepo {
 
   static Future<ResponseEntity> getResult(
       int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
-        ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
+    ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     var request = http.Request(
         'GET',
@@ -643,6 +645,7 @@ class QnaRepo {
 
   static Future<ResponseEntity> getResultDetails(
       int assessmentId,int pageLimit, int pageNumber, String attemptStatus) async {
+    print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus');
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     var request = http.Request(

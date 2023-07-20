@@ -130,8 +130,8 @@ class QnaService {
     return await QnaRepo.getSearchQuestion(pageLimit, pageNumber, searchVal,userDetails);
   }
 
-  static Future<ResponseEntity> getAssessmentHeader(String assessmentCode) async {
-    return await QnaRepo.getAssessmentHeader(assessmentCode);
+  static Future<ResponseEntity> getAssessmentHeader(String assessmentCode,UserDetails userDetails) async {
+    return await QnaRepo.getAssessmentHeader(assessmentCode,userDetails);
   }
 
   static Future<ResponseEntity> getAssessmentsForStudentsLooq(int pageLimit, int pageNumber, String searchVal) async {
