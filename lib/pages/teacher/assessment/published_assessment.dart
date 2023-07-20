@@ -1744,7 +1744,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                     child: Text(
 
                                       //AppLocalizations.of(context)!.qn_button,
-                                      'Go to My Assessment',
+                                      'Go to My Assessments',
                                       style: TextStyle(
                                           fontSize: height * 0.032,
                                           fontFamily: "Inter",
@@ -2573,7 +2573,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                       child: Text(
 
                                         //AppLocalizations.of(context)!.qn_button,
-                                        'Go to My Assessment',
+                                        'Go to My Assessments',
                                         style: TextStyle(
                                             fontSize: height * 0.025,
                                             fontFamily: "Inter",

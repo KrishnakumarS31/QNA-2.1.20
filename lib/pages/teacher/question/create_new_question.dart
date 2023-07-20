@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
 import '../../../Components/custom_incorrect_popup.dart';
+import '../../../DataSource/design.dart';
 import '../../../Entity/Teacher/choice_entity.dart';
 import '../../../Entity/Teacher/question_entity.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
@@ -199,6 +200,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
     _count = 0;
     _values = [];
     demoQuestionModel.choices?.add(choice);
+    addField();
     setData();
   }
 
@@ -233,14 +235,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -1323,8 +1325,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       child: TextFormField(
                                                         controller: questionController,
                                                         keyboardType: TextInputType.multiline,
-                                                        maxLines:100,
-                                                        expands: true,
+                                                        // maxLines:null,
+                                                        // expands: true,
                                                         onChanged: (val) {
                                                           questionFormKey.currentState!.validate();
 
@@ -1975,14 +1977,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -3521,7 +3523,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                 )
                             ),
                           ),
-                          SizedBox(height:height * 0.015),
+                          SizedBox(height:height * 0.010),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -3730,14 +3732,14 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                   backgroundColor: Colors.white,
                   endDrawer: const EndDrawerMenuTeacher(),
                   appBar: AppBar(
-                    iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: Icon(
                         Icons.chevron_left,
                         size: height * 0.06,
-                        color: Colors.black,
+                        color: appBarChevronColor,
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();

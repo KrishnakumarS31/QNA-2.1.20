@@ -160,10 +160,15 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
     );
   }
 
-  reactivateAssessment(BuildContext context, double height) {
+  reactivateAssessment(BuildContext context, double height,double width) {
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -185,6 +190,11 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
     Widget continueButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -213,7 +223,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
         children: [
           const Icon(
             Icons.info,
-            color: Color.fromRGBO(82, 165, 160, 1),
+            color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
             AppLocalizations.of(context)!.confirm,
@@ -236,8 +246,14 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
             fontWeight: FontWeight.w400),
       ),
       actions: [
-        cancelButton,
-        continueButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            continueButton,
+            cancelButton
+
+          ],
+        ),
       ],
     );
     // show the dialog
@@ -1229,7 +1245,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () async {
-                                          reactivateAssessment(context,height);
+                                          reactivateAssessment(context,height,width);
                                         },
                                         child: Icon(Icons.settings_applications_outlined, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
@@ -2050,7 +2066,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                       children: [
                                         ElevatedButton(
                                           onPressed: () async {
-                                            reactivateAssessment(context,height);
+                                            reactivateAssessment(context,height,width);
                                           },
                                           child: Icon(Icons.settings_applications_outlined, color: const Color.fromRGBO(82, 165, 160, 1),),
                                           style: ElevatedButton.styleFrom(
@@ -2868,7 +2884,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () async {
-                                          reactivateAssessment(context,height);
+                                          reactivateAssessment(context,height,width);
                                         },
                                         child: Icon(Icons.settings_applications_outlined, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(

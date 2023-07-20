@@ -671,131 +671,127 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             showDialog(
                                                 context: context,
                                                 builder: (BuildContext context) {
-                                                  return Dialog(
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(17))),
-                                                    child: SingleChildScrollView(
-                                                      scrollDirection: Axis.vertical,
-                                                      child: Container(
-                                                        height: height * 0.3,
-                                                        width: width * 0.3,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color: Colors.black38,
-                                                              width: 1),
-                                                          borderRadius:
-                                                          BorderRadius.circular(17),
-                                                        ),
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: width * 0.02,
-                                                              right: width * 0.02,
-                                                              top: height * 0.02,
-                                                              bottom: height * 0.02),
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                              // Container(
-                                                              //   width: width * 0.5,
-                                                              //   child: Row(
-                                                              //     children: [
-                                                              //       SizedBox(width: width*0.12,),
-                                                              //       SizedBox(
-                                                              //         width: width * 0.12,
-                                                              //         child: Text(
-                                                              //           "HH",
-                                                              //           style: TextStyle(
-                                                              //             fontSize: height * 0.020,
-                                                              //             fontFamily: "Inter",
-                                                              //             fontWeight: FontWeight.w700,
-                                                              //             color:
-                                                              //             const Color.fromRGBO(102, 102, 102, 1),
-                                                              //           ),
-                                                              //         ),
-                                                              //       ),
-                                                              //       SizedBox(
-                                                              //         width: width * 0.1,
-                                                              //         child: Text(
-                                                              //           "MM",
-                                                              //           style: TextStyle(
-                                                              //             fontSize: height * 0.020,
-                                                              //             fontFamily: "Inter",
-                                                              //             fontWeight: FontWeight.w700,
-                                                              //             color:
-                                                              //             const Color.fromRGBO(102, 102, 102, 1),
-                                                              //           ),
-                                                              //         ),
-                                                              //       ),
-                                                              //       Text(
-                                                              //         "  ",
-                                                              //         style: TextStyle(
-                                                              //           fontSize: height * 0.020,
-                                                              //           fontFamily: "Inter",
-                                                              //           fontWeight: FontWeight.w700,
-                                                              //           color:
-                                                              //           const Color.fromRGBO(102, 102, 102, 1),
-                                                              //         ),
-                                                              //       ),
-                                                              //     ],
-                                                              //   ),
-                                                              // ),
-                                                              Container(
-                                                                width: width * 0.3,
-                                                                child: TimePickerSpinner(
-                                                                  time: DateTime(2000,1,1,0,0),
-                                                                  is24HourMode: true,
-                                                                  normalTextStyle: TextStyle(
-                                                                    fontSize: height * 0.02,
-                                                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                                                    fontFamily: "Inter",
-                                                                    fontWeight: FontWeight.w400,
+                                                  return Center(
+                                                    child: Dialog(
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.all(
+                                                              Radius.circular(17))),
+                                                      child: SingleChildScrollView(
+                                                        scrollDirection: Axis.vertical,
+                                                        child: Container(
+                                                          height: height * 0.3,
+                                                          width: width * 0.5,
+                                                          decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: Colors.black38,
+                                                                width: 1),
+                                                            borderRadius:
+                                                            BorderRadius.circular(17),
+                                                          ),
+                                                          child: Padding(
+                                                            padding: EdgeInsets.only(
+                                                                left: width * 0.02,
+                                                                right: width * 0.02,
+                                                                // top: height * 0.02,
+                                                                // bottom: height * 0.02
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              children: [
+                                                                Container(
+
+                                                                  width: width * 0.3,
+                                                                  child: Row(
+                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                    children: [
+                                                                      Center(
+                                                                        child: Text(
+                                                                          "HH",
+                                                                          style: TextStyle(
+                                                                              fontSize: height * 0.022,
+                                                                              fontFamily: "Inter",
+                                                                              color:
+                                                                              const Color.fromRGBO(28, 78, 80, 1),
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ),
+                                                                      SizedBox(width: width * 0.03,),
+                                                                      Center(
+                                                                        child: Text(
+                                                                          "MM",
+                                                                          style: TextStyle(
+                                                                              fontSize: height * 0.022,
+                                                                              fontFamily: "Inter",
+                                                                              color:
+                                                                              const Color.fromRGBO(28, 78, 80, 1),
+                                                                              fontWeight: FontWeight.w700),
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  highlightedTextStyle: TextStyle(
-                                                                    fontSize: height * 0.02,
-                                                                    color: Color.fromRGBO(51, 51, 51, 1),
-                                                                    fontFamily: "Inter",
-                                                                    fontWeight: FontWeight.w700,
+                                                                ),
+                                                                Container(
+                                                                  width: width * 0.8,
+                                                                  child: Column(
+                                                                    children: [
+
+                                                                      TimePickerSpinner(
+                                                                        time: DateTime(2000,1,1,0,0),
+                                                                        is24HourMode: true,
+                                                                        normalTextStyle: TextStyle(
+                                                                          fontSize: height * 0.02,
+                                                                          color: Color.fromRGBO(102, 102, 102, 1),
+                                                                          fontFamily: "Inter",
+                                                                          fontWeight: FontWeight.w400,
+                                                                        ),
+                                                                        highlightedTextStyle: TextStyle(
+                                                                          fontSize: height * 0.02,
+                                                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                                                          fontFamily: "Inter",
+                                                                          fontWeight: FontWeight.w700,
+                                                                        ),
+                                                                        spacing: width * 0.002,
+                                                                        itemHeight: height * 0.05,
+                                                                        isForce2Digits: true,
+                                                                        onTimeChange: (time) {
+                                                                          setState(() {
+                                                                            timeLimit = time;
+                                                                          });
+                                                                        },
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  spacing: width * 0.002,
-                                                                  itemHeight: height * 0.05,
-                                                                  isForce2Digits: true,
-                                                                  onTimeChange: (time) {
-                                                                    setState(() {
-                                                                      timeLimit = time;
-                                                                    });
+                                                                ),
+                                                                ElevatedButton(
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    minimumSize: Size(width* 0.03, height*0.04),
+                                                                    side: const BorderSide(
+                                                                        color: Color.fromRGBO(153, 153, 153, 0.5)
+                                                                    ),
+                                                                    backgroundColor:
+                                                                    Color.fromRGBO(82, 165, 160, 1),
+                                                                    //minimumSize: Size(280, 48),
+                                                                    shape: RoundedRectangleBorder(
+                                                                      borderRadius: BorderRadius.circular(35),
+                                                                    ),
+                                                                  ),
+                                                                  //shape: StadiumBorder(),
+                                                                  onPressed: () {
+                                                                    timeLimitController.text="${timeLimit.hour}h ${timeLimit.minute}m";
+                                                                    Navigator.of(context).pop();
                                                                   },
-                                                                ),
-                                                              ),
-                                                              ElevatedButton(
-                                                                style: ElevatedButton.styleFrom(
-                                                                  minimumSize: Size(width* 0.03, height*0.04),
-                                                                  side: const BorderSide(
-                                                                      color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                                  ),
-                                                                  backgroundColor:
-                                                                  Color.fromRGBO(82, 165, 160, 1),
-                                                                  //minimumSize: Size(280, 48),
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius: BorderRadius.circular(35),
+                                                                  child: Text(
+                                                                    //AppLocalizations.of(context)!.edit_button,
+                                                                    'OK',
+                                                                    style: TextStyle(
+                                                                        fontSize: height * 0.02,
+                                                                        fontFamily: "Inter",
+                                                                        color: Colors.white,
+                                                                        fontWeight: FontWeight.w400),
                                                                   ),
                                                                 ),
-                                                                //shape: StadiumBorder(),
-                                                                onPressed: () {
-                                                                  timeLimitController.text="${timeLimit.hour}h ${timeLimit.minute}m";
-                                                                  Navigator.of(context).pop();
-                                                                },
-                                                                child: Text(
-                                                                  //AppLocalizations.of(context)!.edit_button,
-                                                                  'OK',
-                                                                  style: TextStyle(
-                                                                      fontSize: height * 0.02,
-                                                                      fontFamily: "Inter",
-                                                                      color: Colors.white,
-                                                                      fontWeight: FontWeight.w400),
-                                                                ),
-                                                              ),
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -1049,7 +1045,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 });
                                           },
                                           child: Padding(
-                                            padding:  EdgeInsets.only(left : width * 0.03,bottom: width * 0.01),
+                                            padding:  EdgeInsets.only(left : width * 0.03),
                                             child: SizedBox(
                                               width: width * 0.4,
                                               child: TextField(

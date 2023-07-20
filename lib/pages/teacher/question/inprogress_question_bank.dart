@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/DataSource/design.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
 import '../../../Entity/Teacher/question_entity.dart';
@@ -136,11 +137,16 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
   //   );
   // }
 
-  showAlertDialog(BuildContext context, double height) {
+  showAlertDialog(BuildContext context, double height,double width) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -163,6 +169,11 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
     Widget continueButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -207,14 +218,22 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(
-        AppLocalizations.of(context)!.confirm,
-        //'Confirm',
-        style: TextStyle(
-            fontSize: height * 0.02,
-            fontFamily: "Inter",
-            color: const Color.fromRGBO(0, 106, 100, 1),
-            fontWeight: FontWeight.w700),
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            AppLocalizations.of(context)!.confirm,
+            //'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
       ),
       content: Text(
         AppLocalizations.of(context)!.sure_to_submit_qn_bank,
@@ -226,8 +245,13 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
             fontWeight: FontWeight.w400),
       ),
       actions: [
-        continueButton,
-        cancelButton,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            continueButton,
+            cancelButton,
+          ],
+        ),
 
       ],
     );
@@ -276,7 +300,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                     endDrawer: const EndDrawerMenuTeacher(),
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       // leading: IconButton(
@@ -841,7 +865,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                       children: [
                                         ElevatedButton(
                                           onPressed: () {
-                                            showAlertDialog(context, height);
+                                            showAlertDialog(context, height,width);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             side: const BorderSide(
@@ -905,7 +929,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                     endDrawer: const EndDrawerMenuTeacher(),
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       // leading: IconButton(
@@ -1470,7 +1494,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                       children: [
                                         ElevatedButton(
                                           onPressed: () {
-                                            showAlertDialog(context, height);
+                                            showAlertDialog(context, height,width);
                                           },
                                           style: ElevatedButton.styleFrom(
                                             side: const BorderSide(
@@ -1533,7 +1557,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                     endDrawer: const EndDrawerMenuTeacher(),
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     appBar: AppBar(
-                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       // leading: IconButton(
@@ -2076,7 +2100,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () {
-                                          showAlertDialog(context, height);
+                                          showAlertDialog(context, height,width);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
@@ -2184,7 +2208,7 @@ class QuestionPreview extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Answer",
+                  question.questionType == "MCQ" ? "Answer" : " ",
                   style: TextStyle(
                       fontSize: height * 0.02,
                       fontFamily: "Inter",
