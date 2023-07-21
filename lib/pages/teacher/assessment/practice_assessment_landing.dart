@@ -451,7 +451,7 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1035,7 +1035,7 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1617,7 +1617,7 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",

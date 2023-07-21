@@ -435,7 +435,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1778,7 +1778,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -3121,7 +3121,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",

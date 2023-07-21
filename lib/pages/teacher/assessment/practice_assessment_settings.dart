@@ -362,7 +362,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
     createassessmentModel.totalScore=totalMark;
     Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(createassessmentModel);
     assessment=createassessmentModel;
-    numberOfAttempts=assessment.assessmentSettings!.allowedNumberOfTestRetries!;
+     numberOfAttempts=assessment.assessmentSettings!.allowedNumberOfTestRetries!;
     allowGuestStudent=assessment.assessmentSettings!.allowGuestStudent!;
     showAnswerSheetPractice=assessment.assessmentSettings!.showAnswerSheetDuringPractice!;
     showName=assessment.assessmentSettings!.showAdvisorName!;
@@ -482,7 +482,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1230,7 +1230,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1976,7 +1976,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",

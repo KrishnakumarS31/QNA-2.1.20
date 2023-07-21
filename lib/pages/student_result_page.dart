@@ -156,70 +156,61 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Column(
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(left:localWidth * 0.06),
-                                                  child: Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                                ),
-                                                const SizedBox(width:5),
-                                                SizedBox(
-                                                  child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text(
-                                                      //"10:26:59",
-                                                        widget.endTime.substring(0,7),
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w500,
-                                                            fontSize: localHeight * 0.025)),
-                                                  ),
-                                                ),],
-                                            )
-                                          ],
-                                        ),
-                                        Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                                const SizedBox(width:10),
-                                                Text(convertDateFromString(widget.date),
+                                            Padding(
+                                              padding: EdgeInsets.only(left:localWidth * 0.06),
+                                              child: Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            ),
+                                            const SizedBox(width:5),
+                                            SizedBox(
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  //"10:26:59",
+                                                    widget.endTime.substring(0,7),
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.025)),],
-                                            )
-                                          ],
+                                                        fontSize: localHeight * 0.025)),
+                                              ),
+                                            ),],
                                         ),
-                                        Column(
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.end,
-                                              children: [
-                                                // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                                SizedBox(
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(right: localHeight * 0.06),
-                                                    child: Text(widget.time,
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w500,
-                                                            fontSize: localHeight * 0.025)),
-                                                  ),
-                                                ),],
-                                            )
-                                          ],
+                                            Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:10),
+                                            Text(convertDateFromString(widget.date),
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: localHeight * 0.025)),],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              child: Padding(
+                                                padding: EdgeInsets.only(right: localHeight * 0.06),
+                                                child: Text(widget.time,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: localHeight * 0.025)),
+                                              ),
+                                            ),],
                                         ),
                                       ],
                                     ),
@@ -772,71 +763,62 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Column(
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left:localWidth * 0.06),
-                                              child: Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            ),
-                                            SizedBox(
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  //"10:26:59",
-                                                    widget.endTime.substring(0,7),
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.025)),
-                                              ),
-                                            ),],
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(width:localWidth * 0.05),
-                                    Column(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            const SizedBox(width:0.1),
-                                            Text(convertDateFromString(widget.date),
+                                        Padding(
+                                          padding: EdgeInsets.only(left:localWidth * 0.06),
+                                          child: Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                        ),
+                                        SizedBox(
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              //"10:26:59",
+                                                widget.endTime.substring(0,7),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w500,
-                                                    fontSize: localHeight * 0.025)),],
-                                        )
-                                      ],
+                                                    fontSize: localHeight * 0.025)),
+                                          ),
+                                        ),],
                                     ),
                                     SizedBox(width:localWidth * 0.05),
-                                    Column(
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: [
-                                            // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                            SizedBox(
-                                              child: Padding(
-                                                padding: EdgeInsets.only(right: localHeight * 0.06),
-                                                child: Text(widget.time,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.025)),
-                                              ),
-                                            ),],
-                                        )
-                                      ],
+                                        Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                        const SizedBox(width:0.1),
+                                        Text(convertDateFromString(widget.date),
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: localHeight * 0.025)),],
+                                    ),
+                                    SizedBox(width:localWidth * 0.05),
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                        SizedBox(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(right: localHeight * 0.06),
+                                            child: Text(widget.time,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: localHeight * 0.025)),
+                                          ),
+                                        ),],
                                     ),
                                   ],
                                 ),
@@ -1395,69 +1377,60 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Column(
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                                const SizedBox(width:2),
-                                                SizedBox(
-                                                  child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text(
-                                                      //"10:26:59",
-                                                        widget.endTime.substring(0,7),
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w500,
-                                                            fontSize: localHeight * 0.025)),
-                                                  ),
-                                                ),],
-                                            )
-                                          ],
-                                        ),
-                                        const SizedBox(width:3),
-                                        Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                                const SizedBox(width:2),
-                                                Text(convertDateFromString(widget.date),
+                                            Icon(Icons.timer,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:2),
+                                            SizedBox(
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  //"10:26:59",
+                                                    widget.endTime.substring(0,7),
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.025)),],
-                                            )
-                                          ],
+                                                        fontSize: localHeight * 0.025)),
+                                              ),
+                                            ),],
                                         ),
                                         const SizedBox(width:3),
-                                        Column(
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.end,
-                                              children: [
-                                                // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
-                                                SizedBox(
-                                                  child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text(widget.time,
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w500,
-                                                            fontSize: localHeight * 0.025)),
-                                                  ),
-                                                ),],
-                                            )
-                                          ],
+                                            Icon(Icons.calendar_today_outlined,color:const Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            const SizedBox(width:2),
+                                            Text(convertDateFromString(widget.date),
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: localHeight * 0.025)),],
+                                        ),
+                                        const SizedBox(width:3),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(widget.time,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: localHeight * 0.025)),
+                                              ),
+                                            ),],
                                         ),
                                       ],
                                     ),
