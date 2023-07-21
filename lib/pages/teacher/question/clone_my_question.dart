@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
@@ -2268,7 +2269,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
-                                                                      height: height * 0.05,
+                                                                      //height: height * 0.05,
                                                                       width : width * 0.18,
                                                                       child: TextFormField(
                                                                         controller: chooses[i],
@@ -2336,7 +2337,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
-                                                                      height: height * 0.05,
+                                                                      //height: height * 0.05,
                                                                       width : width * 0.18,
                                                                       child: TextFormField(
                                                                         controller: chooses[i],
@@ -3045,7 +3046,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
-                                                                      height: height * 0.05,
+                                                                      //height: height * 0.05,
                                                                       width : width * 0.18,
                                                                       child: TextFormField(
                                                                         controller: chooses[i],
@@ -3113,7 +3114,6 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                                   Align(
                                                                     alignment:Alignment.centerLeft,
                                                                     child: SizedBox(
-                                                                      height: height * 0.05,
                                                                       width : width * 0.18,
                                                                       child: TextFormField(
                                                                         controller: chooses[i],

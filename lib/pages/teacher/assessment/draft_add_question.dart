@@ -301,8 +301,6 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
           children: [
             continueButton,
             cancelButton,
-            SizedBox(height:height * 0.1)
-
           ],
         ),
 

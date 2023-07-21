@@ -101,6 +101,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     print(responseEntity.toString());
     if (questionResponses.questions!.isNotEmpty) {
       questions = questionResponses.questions;
+      setState(() {
+        questionResponse=questionResponses;
+        myQuestion=true;
+        //questionList=[];
+        questionList.addAll(questions!);
+        pageNumber++;
+        searchVal = search;
+        questionResponses;
+      });
     }
     else{
       setState(() {
@@ -124,15 +133,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
         ),
       );
     }
-    setState(() {
-      questionResponse=questionResponses;
-      myQuestion=true;
-      //questionList=[];
-      questionList.addAll(questions!);
-      pageNumber++;
-      searchVal = search;
-      questionResponses;
-    });
+
     //Navigator.of(context).pop();
   }
 

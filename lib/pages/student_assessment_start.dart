@@ -678,9 +678,10 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                 '/studQuestion',
                                                                 arguments: [
                                                                   assessmentIdController.text,
-                                                                  values,name,
+                                                                  values,
+                                                                  name,
                                                                   userId,
-                                                                  false,
+                                                                  true,
                                                                   assessmentHeaderValues
                                                                 ]);
                                                           }

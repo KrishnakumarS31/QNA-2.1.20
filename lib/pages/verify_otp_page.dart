@@ -546,7 +546,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: kElevationToShadow[4],
                               ),
-                              width: width * 0.5,
+                              width: width * 0.8,
                               child: Form(
                                 key: formKey,
                                 child: SizedBox(
@@ -563,7 +563,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                               height: height * 0.05,
                                             ),
                                             SizedBox(
-                                                width: width * 0.4,
+                                                width: width * 0.7,
                                                 child:TextFormField(
                                                   keyboardType: TextInputType.text,
                                                   controller: otpController,

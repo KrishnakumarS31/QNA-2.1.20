@@ -3121,7 +3121,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",

@@ -536,8 +536,9 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                 fontSize: height * 0.018),
           )),
       onPressed: () {
-
+        Navigator.of(context).pop();
         Navigator.pushNamed(context, '/verifyOtpPage',arguments: [widget.isFromStudent,_controller.text]);
+
 
         // Navigator.push(
         //   context,
@@ -567,7 +568,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
             style: TextStyle(
                 color: const Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
                 fontSize: height * 0.02),
           ),
         ],

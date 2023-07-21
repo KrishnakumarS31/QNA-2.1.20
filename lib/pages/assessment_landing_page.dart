@@ -100,12 +100,24 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
     List<GetAssessmentModel> assessments = [];
-    if (response.code == 200) {
-      assessments = response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
-          response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
+    List<GetAssessmentModel> tempassessment = [];
+    tempassessment=response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
+        response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
+    if (tempassessment.isNotEmpty) {
+      assessments.addAll(tempassessment);
       totalAssessments=response.data['total_count'].toString();
+      setState(() {
+        totalAssessments;
+        onlyMyAssessments=true;
+        assessmentList.addAll(assessments);
+        pageNumber++;
+        searchVal = search;
+      });
     }
     else{
+      setState(() {
+        assessmentStart=assessmentStart-10;
+      });
       Navigator.push(
         context,
         PageTransition(
@@ -115,8 +127,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
             AppLocalizations.of(context)!.alert_popup,
             //'Alert',
             content:
-            AppLocalizations.of(context)!.no_question_found,
-            //'No Questions Found.',
+            //AppLocalizations.of(context)!.no_question_found,
+            'No Assessments Found.',
             button:
             AppLocalizations.of(context)!.retry,
             //"Retry",
@@ -124,12 +136,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
         ),
       );
     }
-    setState(() {
-      onlyMyAssessments=true;
-      assessmentList.addAll(assessments);
-      pageNumber++;
-      searchVal = search;
-    });
+
   }
 
   searchGlobalQuestion() async {
@@ -139,12 +146,38 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
     assessments = response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
         response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
     totalAssessments=response.data['total_count'].toString();
-    setState(() {
-      myQuestion=false;
-      assessmentList.addAll(assessments);
-      pageNumber++;
-      searchVal = teacherQuestionBankSearchController.text;
-    });
+    if(assessments.isNotEmpty){
+      setState(() {
+        totalAssessments;
+        myQuestion=false;
+        assessmentList.addAll(assessments);
+        pageNumber++;
+        searchVal = teacherQuestionBankSearchController.text;
+      });
+    }
+    else{
+      setState(() {
+        assessmentStart=assessmentStart-10;
+      });
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title:
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content:
+            //AppLocalizations.of(context)!.no_question_found,
+            'No Assessments Found.',
+            button:
+            AppLocalizations.of(context)!.retry,
+            //"Retry",
+          ),
+        ),
+      );
+    }
+
     // Navigator.of(context).pop();
   }
 
@@ -659,7 +692,10 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(int.parse(totalAssessments)  ==assessmentList.length){
+                                                  if(assessmentStart==0){
+
+                                                  }
+                                                  else if(int.parse(totalAssessments)  ==assessmentList.length){
                                                     setState(() {
                                                       pageNumber--;
                                                       assessmentStart=assessmentStart-10;
@@ -1692,7 +1728,10 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(int.parse(totalAssessments)  ==assessmentList.length){
+                                                  if(assessmentStart==0){
+
+                                                  }
+                                                  else if(int.parse(totalAssessments)  ==assessmentList.length){
                                                     setState(() {
                                                       pageNumber--;
                                                       assessmentStart=assessmentStart-10;
@@ -2746,7 +2785,10 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             children: [
                                               GestureDetector(
                                                 onTap: (){
-                                                  if(int.parse(totalAssessments)  ==assessmentList.length){
+                                                  if(assessmentStart==0){
+
+                                                  }
+                                                  else if(int.parse(totalAssessments)  ==assessmentList.length){
                                                     setState(() {
                                                       pageNumber--;
                                                       assessmentStart=assessmentStart-10;
