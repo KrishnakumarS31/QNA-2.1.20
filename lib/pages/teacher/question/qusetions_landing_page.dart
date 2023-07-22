@@ -310,176 +310,48 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             ),
                           ),
                           SizedBox(height: height * 0.02),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: (){
-                                showModalBottomSheet(
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(25.0),
-                                          topRight: Radius.circular(25.0)),
-                                    ),
-                                    context: context,
-                                    builder: (builder) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                topRight: Radius.circular(20))),
-                                        height: height * 0.245,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: width * 0.10,
-                                              right: width * 0.10
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                height:
-                                                height * 0.026,
-                                              ),
-                                              Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  //AppLocalizations.of(context)!.legend,
-                                                  "Search Filters",
-                                                  style: Theme
-                                                      .of(context)
-                                                      .primaryTextTheme
-                                                      .bodyLarge
-                                                      ?.merge(TextStyle(
-                                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: height *
-                                                          0.02)),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width:
-                                                width * 0.052,
-                                              ),
-                                              SizedBox(
-                                                height:
-
-                                                height * 0.019,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    //AppLocalizations.of(context)!.lib_online_qn,
-                                                    "Show only my questions",
-                                                    style: TextStyle(
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color
-                                                        .fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: height * 0.08,
-                                                    height: height * 0.04,
-                                                    toggleSize: height * 0.03,
-                                                    value: onlyMyQuestion,
-                                                    borderRadius: 50.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        onlyMyQuestion =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                MediaQuery
-                                                    .of(context)
-                                                    .copyWith()
-                                                    .size
-                                                    .height * 0.050,
-                                              ),
-                                              SizedBox(
-                                                width:width * 0.25,
-                                                height:height * 0.04,
-                                                child: ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                      backgroundColor:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                        BorderRadius.circular(width),
-                                                      ),
-                                                      side: const BorderSide(
-                                                        color: Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                      )),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      questionStart=0;
-                                                      pageNumber=1;
-                                                      questionList=[];
-                                                    });
-                                                    onlyMyQuestion?
-                                                    getData(teacherQuestionBankSearchController.text):
-                                                    searchGlobalQuestion();
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text(
-                                                    "Apply",
-                                                    style: TextStyle(
-                                                        fontSize: height * 0.025,
-                                                        fontFamily: "Inter",
-                                                        color: const Color.fromRGBO(
-                                                            255, 255, 255, 1),
-                                                        fontWeight: FontWeight.w600),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    });
-                              },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    //AppLocalizations.of(context)!.lib_online_qn,
-                                    "Filters",
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                      fontSize: height * 0.016,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right,
-                                    size: height * 0.017,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                  ),
-                                ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                //AppLocalizations.of(context)!.lib_online_qn,
+                                "Show only my questions ",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
+                              FlutterSwitch(
+                                activeColor: const Color
+                                    .fromRGBO(
+                                    82, 165, 160, 1),
+                                inactiveColor:
+                                const Color
+                                    .fromRGBO(
+                                    217,
+                                    217,
+                                    217,
+                                    1),
+                                width: 65.0,
+                                height: 35.0,
+                                value: onlyMyQuestion,
+                                borderRadius: 30.0,
+                                onToggle: (val) {
+                                  setState(() {
+                                    onlyMyQuestion = val;
+                                    questionStart=0;
+                                    pageNumber=1;
+                                    questionList=[];
+                                  });
+                                  onlyMyQuestion?
+                                  getData(teacherQuestionBankSearchController.text):
+                                  searchGlobalQuestion();
+                                },
+                              ),
+
+                            ],
                           ),
                           SizedBox(height: height * 0.015),
                           Text(
@@ -781,180 +653,48 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             ),
                           ),
                           SizedBox(height: height * 0.02),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: (){
-
-                                showModalBottomSheet(
-                                    constraints: const BoxConstraints(
-                                        maxWidth: 600
-                                    ),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(25.0),
-                                          topRight: Radius.circular(25.0)),
-                                    ),
-                                    context: context,
-                                    builder: (builder) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                topRight: Radius.circular(20))),
-                                        height: height * 0.245,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: width * 0.10,
-                                              right: width * 0.10
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                height:
-                                                height * 0.026,
-                                              ),
-                                              Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  //AppLocalizations.of(context)!.legend,
-                                                  "Search Filters",
-                                                  style: Theme
-                                                      .of(context)
-                                                      .primaryTextTheme
-                                                      .bodyLarge
-                                                      ?.merge(TextStyle(
-                                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: height *
-                                                          0.02)),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width:
-                                                width * 0.052,
-                                              ),
-                                              SizedBox(
-                                                height:
-
-                                                height * 0.019,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    //AppLocalizations.of(context)!.lib_online_qn,
-                                                    "Show only my questions",
-                                                    style: TextStyle(
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color
-                                                        .fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: height * 0.08,
-                                                    height: height * 0.04,
-                                                    toggleSize: height * 0.03,
-                                                    value: onlyMyQuestion,
-                                                    borderRadius: 50.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        onlyMyQuestion =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                MediaQuery
-                                                    .of(context)
-                                                    .copyWith()
-                                                    .size
-                                                    .height * 0.050,
-                                              ),
-                                              SizedBox(
-                                                width:width * 0.25,
-                                                height:height * 0.04,
-                                                child: ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                      backgroundColor:
-                                                      const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                        BorderRadius.circular(width),
-                                                      ),
-                                                      side: const BorderSide(
-                                                        color: Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                      )),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      questionStart=0;
-                                                      pageNumber=1;
-                                                      questionList=[];
-                                                    });
-                                                    onlyMyQuestion?
-                                                    getData(teacherQuestionBankSearchController.text):
-                                                    searchGlobalQuestion();
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text(
-                                                    "Apply",
-                                                    style: TextStyle(
-                                                        fontSize: height * 0.025,
-                                                        fontFamily: "Inter",
-                                                        color: const Color.fromRGBO(
-                                                            255, 255, 255, 1),
-                                                        fontWeight: FontWeight.w600),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    });
-                              },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    //AppLocalizations.of(context)!.lib_online_qn,
-                                    "Filters",
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                      fontSize: height * 0.016,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right,
-                                    size: height * 0.017,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                  ),
-                                ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                //AppLocalizations.of(context)!.lib_online_qn,
+                                "Show only my questions ",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
+                              FlutterSwitch(
+                                activeColor: const Color
+                                    .fromRGBO(
+                                    82, 165, 160, 1),
+                                inactiveColor:
+                                const Color
+                                    .fromRGBO(
+                                    217,
+                                    217,
+                                    217,
+                                    1),
+                                width: 65.0,
+                                height: 35.0,
+                                value: onlyMyQuestion,
+                                borderRadius: 30.0,
+                                onToggle: (val) {
+                                  setState(() {
+                                    onlyMyQuestion = val;
+                                    questionStart=0;
+                                    pageNumber=1;
+                                    questionList=[];
+                                  });
+                                  onlyMyQuestion?
+                                  getData(teacherQuestionBankSearchController.text):
+                                  searchGlobalQuestion();
+                                },
+                              ),
+
+                            ],
                           ),
                           SizedBox(height: height * 0.015),
                           Text(
@@ -1257,171 +997,48 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           ),
 
                           SizedBox(height: height * 0.02),
-                          MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: (){
-                                showModalBottomSheet(
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(25.0),
-                                          topRight: Radius.circular(25.0)),
-                                    ),
-                                    context: context,
-                                    builder: (builder) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(20),
-                                                topRight: Radius.circular(20))),
-                                        height: height * 0.245,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: width * 0.10,
-                                              right: width * 0.10
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              SizedBox(
-                                                height:
-                                                height * 0.026,
-                                              ),
-                                              Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  //AppLocalizations.of(context)!.legend,
-                                                  "Search Filters",
-                                                  style: Theme
-                                                      .of(context)
-                                                      .primaryTextTheme
-                                                      .bodyLarge
-                                                      ?.merge(TextStyle(
-                                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: height *
-                                                          0.02)),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width:
-                                                width * 0.052,
-                                              ),
-                                              SizedBox(
-                                                height:
-
-                                                height * 0.019,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    //AppLocalizations.of(context)!.lib_online_qn,
-                                                    "Show only my questions",
-                                                    style: TextStyle(
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight: FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color
-                                                        .fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value: onlyMyQuestion,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        onlyMyQuestion =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                MediaQuery
-                                                    .of(context)
-                                                    .copyWith()
-                                                    .size
-                                                    .height * 0.019,
-                                              ),
-                                              ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                    const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                      BorderRadius.circular(39),
-                                                    ),
-                                                    side: const BorderSide(
-                                                      color: Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                    )),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    questionStart=0;
-                                                    pageNumber=1;
-                                                    questionList=[];
-                                                  });
-                                                  onlyMyQuestion?
-                                                  getData(teacherQuestionBankSearchController.text):
-                                                  searchGlobalQuestion();
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text(
-                                                  "Apply",
-                                                  style: TextStyle(
-                                                      fontSize: height * 0.025,
-                                                      fontFamily: "Inter",
-                                                      color: const Color.fromRGBO(
-                                                          255, 255, 255, 1),
-                                                      fontWeight: FontWeight.w600),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    });
-                              },
-                              child: Row(
-                                children: [
-                                  Text(
-                                    //AppLocalizations.of(context)!.lib_online_qn,
-                                    "Filters",
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                      fontSize: height * 0.016,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right,
-                                    size: height * 0.014,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                  ),
-                                ],
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                //AppLocalizations.of(context)!.lib_online_qn,
+                                "Show only my questions ",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
+                              FlutterSwitch(
+                                activeColor: const Color
+                                    .fromRGBO(
+                                    82, 165, 160, 1),
+                                inactiveColor:
+                                const Color
+                                    .fromRGBO(
+                                    217,
+                                    217,
+                                    217,
+                                    1),
+                                width: 65.0,
+                                height: 35.0,
+                                value: onlyMyQuestion,
+                                borderRadius: 30.0,
+                                onToggle: (val) {
+                                  setState(() {
+                                    onlyMyQuestion = val;
+                                    questionStart=0;
+                                    pageNumber=1;
+                                    questionList=[];
+                                  });
+                                  onlyMyQuestion?
+                                  getData(teacherQuestionBankSearchController.text):
+                                  searchGlobalQuestion();
+                                },
+                              ),
+
+                            ],
                           ),
                           SizedBox(height: height * 0.015),
                           Text(

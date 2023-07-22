@@ -68,6 +68,82 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   //     });
   //   }
   // }
+  showDialogSave(BuildContext context, double height,double width,int? code) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.retry,
+        //'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            AppLocalizations.of(context)!.oops,
+            //'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+        code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            cancelButton,
+            SizedBox(height:10.0),
+          ],
+        ),
+
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +266,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                      fontSize: localHeight * 0.025),
+                                                        fontSize: localHeight * 0.025),
                                                   ),
                                                   hintText:
                                                   AppLocalizations.of(context)!
@@ -241,7 +317,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w600,
-                                                        fontSize: localHeight * 0.025),
+                                                          fontSize: localHeight * 0.025),
                                                     ),
                                                     helperStyle:TextStyle(
                                                         color: const Color.fromRGBO(
@@ -272,9 +348,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                         : Icons.visibility_off,
                                                                     color:
                                                                     passWordController.text.length > 7
-                                                                    ? const Color.fromRGBO(
+                                                                        ? const Color.fromRGBO(
                                                                         82, 165, 160, 1)
-                                                                    : const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                        : const Color.fromRGBO(153, 153, 153, 0.5),
                                                                   ),
                                                                   onPressed: () {
                                                                     setState(() {
@@ -341,8 +417,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 icon: Icon(Icons.arrow_circle_right,
                                   color:
                                   ((passWordController.text.length > 7) && (regNumberController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(regNumberController.text)))
-                                  ? const Color.fromRGBO(82, 165, 160, 1)
-                                  : const Color.fromRGBO(153, 153, 153, 0.5),
+                                      ? const Color.fromRGBO(82, 165, 160, 1)
+                                      : const Color.fromRGBO(153, 153, 153, 0.5),
                                 ),
                                 onPressed: () async {
                                   _prefService
@@ -432,15 +508,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           PageTransition(
                                             type: PageTransitionType
                                                 .rightToLeft,
-                                            child: CustomDialog(
-                                              title: AppLocalizations.of(context)!
-                                                  .oops,
-                                              // "OOPS!",
-                                              content: AppLocalizations.of(context)!.invalid_role,
-                                              //"Invalid Role, Please Check Your Login Data",
-                                              button: AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
+                                            child:showDialogSave( context,localHeight,localWidth,loginResponse.code),
                                           ),
                                         );
                                       } else if (loginResponse.code ==
@@ -450,21 +518,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           PageTransition(
                                             type: PageTransitionType
                                                 .rightToLeft,
-                                            child: CustomDialog(
-                                              title:
-                                              AppLocalizations.of(
-                                                  context)!
-                                                  .wrong_password,
-                                              //'Wrong password',
-                                              content: AppLocalizations
-                                                  .of(context)!
-                                                  .pls_enter_cr_pass,
-                                              //'please enter the correct password',
-                                              button:
-                                              AppLocalizations.of(
-                                                  context)!
-                                                  .retry,
-                                            ),
+                                            child: showDialogSave(context,localHeight,localWidth,loginResponse.code),
                                           ),
                                         );
                                       }
@@ -640,7 +694,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     child:
                     Center(
                       child: SizedBox(
-                          // padding:EdgeInsets.only(left: localHeight * 0.5,right: localHeight * 0.5),
+                        // padding:EdgeInsets.only(left: localHeight * 0.5,right: localHeight * 0.5),
                           width: localWidth * 0.7,
                           child: Column(
                               children: [
@@ -942,15 +996,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 PageTransition(
                                                   type: PageTransitionType
                                                       .rightToLeft,
-                                                  child: CustomDialog(
-                                                    title: AppLocalizations.of(context)!
-                                                        .oops,
-                                                    // "OOPS!",
-                                                    content: AppLocalizations.of(context)!.invalid_role,
-                                                    //"Invalid Role, Please Check Your Login Data",
-                                                    button: AppLocalizations.of(context)!
-                                                        .retry,
-                                                  ),
+                                                  child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
                                                 ),
                                               );
                                             } else if (loginResponse.code ==
@@ -960,21 +1006,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 PageTransition(
                                                   type: PageTransitionType
                                                       .rightToLeft,
-                                                  child: CustomDialog(
-                                                    title:
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .wrong_password,
-                                                    //'Wrong password',
-                                                    content: AppLocalizations
-                                                        .of(context)!
-                                                        .pls_enter_cr_pass,
-                                                    //'please enter the correct password',
-                                                    button:
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .retry,
-                                                  ),
+                                                  child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
                                                 ),
                                               );
                                             }
@@ -1454,15 +1486,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           PageTransition(
                                             type: PageTransitionType
                                                 .rightToLeft,
-                                            child: CustomDialog(
-                                              title: AppLocalizations.of(context)!
-                                                  .oops,
-                                              // "OOPS!",
-                                              content: AppLocalizations.of(context)!.invalid_role,
-                                              //"Invalid Role, Please Check Your Login Data",
-                                              button: AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
+                                            child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
                                           ),
                                         );
                                       } else if (loginResponse.code ==
@@ -1472,21 +1496,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           PageTransition(
                                             type: PageTransitionType
                                                 .rightToLeft,
-                                            child: CustomDialog(
-                                              title:
-                                              AppLocalizations.of(
-                                                  context)!
-                                                  .wrong_password,
-                                              //'Wrong password',
-                                              content: AppLocalizations
-                                                  .of(context)!
-                                                  .pls_enter_cr_pass,
-                                              //'please enter the correct password',
-                                              button:
-                                              AppLocalizations.of(
-                                                  context)!
-                                                  .retry,
-                                            ),
+                                            child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
                                           ),
                                         );
                                       }

@@ -267,14 +267,15 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children:[
                                                                 IconButton(
+                                                                    iconSize: height * 0.028,
                                                                     icon: Icon(
                                                                       _isObscure
                                                                           ? Icons.visibility
                                                                           : Icons.visibility_off,
                                                                       color:
-                                                                      ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
-                                                                          ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
+
+
                                                                     ),
                                                                     onPressed: () {
                                                                       setState(() {
@@ -339,10 +340,8 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 child:IconButton(
                                     iconSize: height * 0.06,
                                     icon: Icon(Icons.arrow_circle_right,
-                                      color:
-                                      ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
-                                          ?  const Color.fromRGBO(82, 165, 160, 1)
-                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                        color:
+                                        const Color.fromRGBO(82, 165, 160, 1)
                                     ),
                                     onPressed: () async {
                                       bool valid = formKey.currentState!.validate();
@@ -414,15 +413,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           context,
                                           PageTransition(
                                             type: PageTransitionType.rightToLeft,
-                                            child: CustomDialog(
-                                              title: AppLocalizations.of(context)!
-                                                  .oops,
-                                              // "OOPS!",
-                                              content: AppLocalizations.of(context)!.invalid_role,
-                                              //"Invalid Role, Please Check Your Login Data",
-                                              button: AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
+                                            child: showDialogSave( context,height,width,loginResponse.code),
                                           ),
                                         );
                                       }
@@ -431,18 +422,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           context,
                                           PageTransition(
                                             type: PageTransitionType.rightToLeft,
-                                            child: CustomDialog(
-                                              title: AppLocalizations.of(
-                                                  context)!
-                                                  .oops,
-                                              //'Wrong password',
-                                              content: AppLocalizations
-                                                  .of(context)!
-                                                  .wrong_password,
-                                              //'please enter the correct password',
-                                              button: AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
+                                            child:showDialogSave(context,height,width,loginResponse.code),
                                           ),
                                         );
                                       }
@@ -729,9 +709,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                                           _isObscure
                                                                               ? Icons.visibility
                                                                               : Icons.visibility_off,
-                                                                          color:  ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
-                                                                              ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                                              :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                          color:  const Color.fromRGBO(82, 165, 160, 1),
                                                                         ),
                                                                         onPressed: () {
                                                                           setState(() {
@@ -792,10 +770,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     child:IconButton(
                                         iconSize: height * 0.06,
                                         icon: Icon(Icons.arrow_circle_right,
-                                          color:
-                                          ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
-                                              ?  const Color.fromRGBO(82, 165, 160, 1)
-                                              :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                          color: const Color.fromRGBO(82, 165, 160, 1),
                                         ),
                                         onPressed: () async {
                                           bool valid = formKey.currentState!.validate();
@@ -867,15 +842,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                               context,
                                               PageTransition(
                                                 type: PageTransitionType.rightToLeft,
-                                                child: CustomDialog(
-                                                  title: AppLocalizations.of(context)!
-                                                      .oops,
-                                                  // "OOPS!",
-                                                  content: AppLocalizations.of(context)!.invalid_role,
-                                                  //"Invalid Role, Please Check Your Login Data",
-                                                  button: AppLocalizations.of(context)!
-                                                      .retry,
-                                                ),
+                                                child: showDialogSave(context,height,width,loginResponse.code),
                                               ),
                                             );
                                           }
@@ -884,18 +851,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                               context,
                                               PageTransition(
                                                 type: PageTransitionType.rightToLeft,
-                                                child: CustomDialog(
-                                                  title: AppLocalizations.of(
-                                                      context)!
-                                                      .oops,
-                                                  //'Wrong password',
-                                                  content: AppLocalizations
-                                                      .of(context)!
-                                                      .wrong_password,
-                                                  //'please enter the correct password',
-                                                  button: AppLocalizations.of(context)!
-                                                      .retry,
-                                                ),
+                                                child:showDialogSave(context,height,width,loginResponse.code),
                                               ),
                                             );
                                           }
@@ -1180,9 +1136,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                                       _isObscure
                                                                           ? Icons.visibility
                                                                           : Icons.visibility_off,
-                                                                      color:  ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
-                                                                          ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                      color:  const Color.fromRGBO(82, 165, 160, 1),
                                                                     ),
                                                                     onPressed: () {
                                                                       setState(() {
@@ -1247,10 +1201,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 child:IconButton(
                                     iconSize: height * 0.06,
                                     icon: Icon(Icons.arrow_circle_right,
-                                      color:
-                                      ((passwordController.text.length > 7) && (emailController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(emailController.text)))
-                                          ?  const Color.fromRGBO(82, 165, 160, 1)
-                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     onPressed: () async {
                                       bool valid = formKey.currentState!.validate();
@@ -1322,15 +1273,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           context,
                                           PageTransition(
                                             type: PageTransitionType.rightToLeft,
-                                            child: CustomDialog(
-                                              title: AppLocalizations.of(context)!
-                                                  .oops,
-                                              // "OOPS!",
-                                              content: AppLocalizations.of(context)!.invalid_role,
-                                              //"Invalid Role, Please Check Your Login Data",
-                                              button: AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
+                                            child: showDialogSave(context,height,width,loginResponse.code),
                                           ),
                                         );
                                       }
@@ -1339,18 +1282,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           context,
                                           PageTransition(
                                             type: PageTransitionType.rightToLeft,
-                                            child: CustomDialog(
-                                              title: AppLocalizations.of(
-                                                  context)!
-                                                  .oops,
-                                              //'Wrong password',
-                                              content: AppLocalizations.of(
-                                                  context)!
-                                                  .wrong_password,
-                                              //'please enter the correct password',
-                                              button: AppLocalizations.of(context)!
-                                                  .retry,
-                                            ),
+                                            child:  showDialogSave(context,height,width,loginResponse.code ?? 0),
                                           ),
                                         );
                                       }
@@ -1441,4 +1373,81 @@ class TeacherLoginState extends State<TeacherLogin> {
                 ));
           }
         }
-    );}}
+    );}
+  showDialogSave(BuildContext context, double height,double width,int? code) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.retry,
+        //'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            AppLocalizations.of(context)!.oops,
+            //'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+        code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            cancelButton,
+            SizedBox(height:10.0),
+          ],
+        ),
+
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+}
