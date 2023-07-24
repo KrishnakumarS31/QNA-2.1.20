@@ -10,6 +10,7 @@ import '../../../EntityModel/get_result_model.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../../../Components/today_date.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class TeacherResultInProgress extends StatefulWidget {
   const TeacherResultInProgress({
@@ -333,7 +334,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                             fontWeight: FontWeight.w600),
                                                       ),
                                                       Text(
-                                                        " ${widget.result.assessmentType}",
+                                                        " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
                                                             // fontSize: widget.height * 0.013,
@@ -927,7 +928,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               Text(
-                                                " ${widget.result.assessmentType}",
+                                                " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                 style: const TextStyle(
                                                     color: Color.fromRGBO(102, 102, 102, 1),
                                                     // fontSize: widget.height * 0.013,

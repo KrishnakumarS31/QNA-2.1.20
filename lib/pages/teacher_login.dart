@@ -562,19 +562,20 @@ class TeacherLoginState extends State<TeacherLogin> {
                     SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child:
-                      Container(
-                          padding:EdgeInsets.only(left: height * 0.5,right: height * 0.5),
+                      Center(
+                        child: SizedBox(
+                          width: width * 0.7,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(height: height * 0.2),
+                                SizedBox(height: height * 0.15),
                                 Row(
                                     children:[
-                                      SizedBox(width: width * 0.08),
+                                      SizedBox(width: width * 0.02),
                                       Text(
                                         AppLocalizations.of(context)!.login_loginPage,
                                         style: TextStyle(
-                                          fontSize: height * 0.02,
+                                          fontSize: height * 0.025,
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
                                           fontFamily: "Inter",
@@ -590,7 +591,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                         borderRadius: BorderRadius.circular(10),
                                         boxShadow: kElevationToShadow[4],
                                       ),
-                                      width: width * 0.35,
+                                      width: width * 0.7,
                                       child:
                                       Form(
                                         key: formKey,
@@ -601,7 +602,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                               children: [
                                                 SizedBox(height: height * 0.05),
                                                 SizedBox(
-                                                    width: width * 0.32,
+                                                    width: width * 0.6,
                                                     child: TextFormField(
                                                       keyboardType: TextInputType.text,
                                                       controller: emailController,
@@ -660,7 +661,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                             Column(
                                               children: [
                                                 SizedBox(
-                                                    width: width * 0.32,
+                                                    width: width * 0.6,
                                                     child: TextFormField(
                                                       controller: passwordController,
                                                       obscureText: _isObscure,
@@ -709,7 +710,8 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                                           _isObscure
                                                                               ? Icons.visibility
                                                                               : Icons.visibility_off,
-                                                                          color:  const Color.fromRGBO(82, 165, 160, 1),
+                                                                          color: const Color.fromRGBO(
+                                                                              82, 165, 160, 1),
                                                                         ),
                                                                         onPressed: () {
                                                                           setState(() {
@@ -733,32 +735,30 @@ class TeacherLoginState extends State<TeacherLogin> {
                                               ],
                                             ),
                                             SizedBox(height: height * 0.02),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                SizedBox(width: width * 0.013),
-                                                MouseRegion(
-                                                    cursor: SystemMouseCursors.click,
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.pushNamed(
-                                                            context,
-                                                            '/forgotPasswordEmail',
-                                                            arguments: true
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                          AppLocalizations.of(context)!
-                                                              .forgot_password,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  48, 145, 139, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontStyle: FontStyle.italic,
-                                                              fontSize: height * 0.018)),
-                                                    )),
-                                              ],
+                                            SizedBox(
+                                              width: width * 0.6,
+                                              child: MouseRegion(
+                                                  cursor: SystemMouseCursors.click,
+                                                  child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          '/forgotPasswordEmail',
+                                                          arguments: true
+                                                      );
+                                                    },
+                                                    child: Text(
+                                                        AppLocalizations.of(context)!
+                                                            .forgot_password,
+                                                        style: TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                48, 145, 139, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontStyle: FontStyle.italic,
+                                                            fontSize:
+                                                            height * 0.018)),
+                                                  )),
                                             ),
                                             SizedBox(height: height * 0.03),
                                           ],
@@ -938,7 +938,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                       ]))]),
                                       ],
                                     )),
-                              ])),
+                              ]),
+                        ),
+                      ),
                     )));
           }
           else {

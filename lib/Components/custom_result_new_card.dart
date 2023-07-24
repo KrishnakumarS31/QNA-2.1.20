@@ -4,7 +4,7 @@ import '../EntityModel/get_result_details_model.dart';
 
 
 class ResultCardNew extends StatelessWidget {
-   ResultCardNew({
+  ResultCardNew({
     Key? key,
     required this.height,
     required this.width,
@@ -26,6 +26,7 @@ class ResultCardNew extends StatelessWidget {
     int? percent = condition ? assessmentResults![index].attemptPercent : 0;
     int? securedMark = condition ? assessmentResults![index].attemptScore : 0;
     int? totalMark = results.totalScore ?? 0;
+    String rollNumber=results!.rollNumber ?? " ";
 
     return Padding(
       padding: EdgeInsets.only(bottom: height * 0.015),
@@ -46,7 +47,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      results.assessmentCode ?? " ",
+                      rollNumber,
                       style: TextStyle(
                           fontSize: height * 0.0187,
                           color: const Color.fromRGBO(28, 78, 80, 1),

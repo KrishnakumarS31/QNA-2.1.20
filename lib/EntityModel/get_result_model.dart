@@ -52,7 +52,8 @@ class GetResultModel {
         this.totalCompletedAttempts,
         this.totalInprogressAttempts,
         this.assessmentSettings,
-        this.assessmentResults
+        this.assessmentResults,
+        this.assessmentStatus
       });
 
   dynamic assessmentId;
@@ -72,6 +73,7 @@ class GetResultModel {
   int? totalCompletedAttempts;
   AssessmentSettings? assessmentSettings;
   List<AssessmentResults>? assessmentResults;
+  String? assessmentStatus;
 
   factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
     assessmentId: json["assessment_id"] ?? " ",
@@ -94,6 +96,7 @@ class GetResultModel {
         : List<AssessmentResults>.from(json["assessment_results"]
         .map((x) => AssessmentResults.fromJson(x))),
     assessmentSettings: AssessmentSettings.fromJson(json["assessment_settings"]),
+    assessmentStatus: json["assessment_status"] ?? " ",
   );
 
   Map<String, dynamic> toJson() => {
@@ -115,11 +118,12 @@ class GetResultModel {
     "assessment_settings":
     assessmentSettings == null ? '' : assessmentSettings!.toJson(),
     "assessment_results": assessmentResults,
+    "assessment_status":assessmentStatus
   };
 
   @override
   String toString() {
-    return 'GetResultModel{assessmentId: $assessmentId, assessmentResults: $assessmentResults, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $semester, studentClass: $degree, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts,assessmentSettings: $assessmentSettings,}';
+    return 'GetResultModel{assessmentId: $assessmentId, assessmentResults: $assessmentResults, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $semester, studentClass: $degree, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts,assessmentSettings: $assessmentSettings,assessment_status: $assessmentStatus}';
   }
 }
 
@@ -216,12 +220,12 @@ class Questions {
   int? marks;
 
   factory Questions.fromJson(Map<String, dynamic> json) => Questions(
-    question: json["question"] ?? "",
-    questionType: json["question_type"] ?? "",
-    selectedChoices: json["selected_choices"] ?? [" "],
-    descriptiveAnswers: json["descriptive_answer"] ?? "",
-    status: json["status"] ?? "",
-    marks: json["marks"] ?? 0
+      question: json["question"] ?? "",
+      questionType: json["question_type"] ?? "",
+      selectedChoices: json["selected_choices"] ?? [" "],
+      descriptiveAnswers: json["descriptive_answer"] ?? "",
+      status: json["status"] ?? "",
+      marks: json["marks"] ?? 0
   );
 
   Map<String, dynamic> toJson() => {

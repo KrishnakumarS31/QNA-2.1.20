@@ -160,7 +160,7 @@ class QuestionsDetails {
 
   String? question;
   String? questionType;
-  List<String>? selectedChoices;
+  List<dynamic>? selectedChoices;
   String? descriptiveAnswers;
   String? status;
   int? marks;

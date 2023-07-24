@@ -163,11 +163,15 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         ),
                                                         child: Row(mainAxisAlignment: MainAxisAlignment.start,
                                                           crossAxisAlignment: CrossAxisAlignment.center,
+                                                          mainAxisSize: MainAxisSize.min,
                                                           children: [
-                                                            Icon(
-                                                              Icons.circle,
-                                                              color: const Color.fromRGBO(219, 35, 35, 1),
-                                                              size: height * 0.03,
+                                                            SizedBox(
+                                                              width: double.infinity,
+                                                              child: Icon(
+                                                                Icons.circle,
+                                                                color: const Color.fromRGBO(219, 35, 35, 1),
+                                                                size: height * 0.03,
+                                                              ),
                                                             ),
                                                             Text(
                                                               AppLocalizations.of(context)!.live_caps,
@@ -261,7 +265,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                                         type: PageTransitionType.rightToLeft,
                                                                         child: TeacherResultAssessment(
                                                                             result: results[index],
-                                                                            userId: widget.userId),
+                                                                            userId: widget.userId,
+                                                                            userDetails:userDetails),
                                                                       ),
                                                                     );
                                                                   },
@@ -562,7 +567,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                             type: PageTransitionType.rightToLeft,
                                                             child: TeacherResultAssessment(
                                                                 result: results[index],
-                                                                userId: widget.userId),
+                                                                userId: widget.userId,
+                                                                userDetails:userDetails),
                                                           ),
                                                         );
                                                       },
@@ -767,6 +773,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                               ),
                                               child: Row(
                                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   Icon(
                                                     Icons.circle,
@@ -860,7 +867,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         type: PageTransitionType.rightToLeft,
                                                         child: TeacherResultAssessment(
                                                             result: results[index],
-                                                            userId: widget.userId),
+                                                            userId: widget.userId,
+                                                            userDetails:userDetails),
                                                       ),
                                                     );
                                                   },

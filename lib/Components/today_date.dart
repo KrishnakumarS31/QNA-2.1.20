@@ -28,7 +28,7 @@ String convertTime(int? date)
 {
   DateTime dateValue;
   dateValue = DateTime.fromMicrosecondsSinceEpoch(date!);
-  return "${dateValue.hour}:${dateValue.minute}";
+  return "${dateValue.hour.toString().padLeft(2,"0")}:${dateValue.minute.toString().padLeft(2,"0")}";
 }
 
 String convertDuration(int? duration)

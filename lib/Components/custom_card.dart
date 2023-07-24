@@ -3,7 +3,7 @@ import 'package:qna_test/Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class CustomCard extends StatefulWidget {
-   CustomCard({
+  CustomCard({
     Key? key,
     required this.height,
     required this.width,
@@ -27,12 +27,13 @@ class _CustomCardState extends State<CustomCard> {
 
   @override
   Widget build(BuildContext context) {
-    var d = DateTime.fromMicrosecondsSinceEpoch(
+    var start = DateTime.fromMicrosecondsSinceEpoch(
         widget.result.assessmentStartDate!);
-    var startDate = "${d.day}/${d.month}/${d.year}";
     var end = DateTime.fromMicrosecondsSinceEpoch(
         widget.result.assessmentEndDate!);
+
     DateTime now = DateTime.now();
+
     return Container(
       // height: widget.height * 0.11,
       padding: const EdgeInsets.all(8),
@@ -45,60 +46,62 @@ class _CustomCardState extends State<CustomCard> {
       child: Column(
         children: [
           Padding(
-          padding: EdgeInsets.only(
-          left: widget.width * 0.03, bottom: widget.height * 0.005),
-          child: Align(
-          alignment: Alignment.centerLeft,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-              Text(
-                "${widget.result.subject} | ${widget.result.topic}",
+              padding: EdgeInsets.only(
+                  left: widget.width * 0.03, bottom: widget.height * 0.005),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${widget.result.subject} | ${widget.result.topic}",
 //'Subject - ${widget.result.subject}',
-                style: TextStyle(
-                    color: const Color.fromRGBO(28, 78, 80, 1),
-                    fontSize: widget.height * 0.0187,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w600),
-              ),
-              d.isAfter(now)?
-              Container(
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  borderRadius:
-                  const BorderRadius.all(
-                      Radius.circular(5)),
-                  border: Border.all(
-                      color: const Color.fromRGBO(
-                          219, 35, 35, 1)),
-                ),
-                child: Row(children: [
-                  const Icon(
-                    Icons.circle,
-                    color: Color.fromRGBO(219, 35, 35, 1),
-                    // size: widget.height * 0.03,
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.live_caps,
-                    style: const TextStyle(
-                        color: Color.fromRGBO(102, 102, 102, 0.7),
-                        // fontSize: widget.height * 0.013,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],),
-              ): Icon(
-                Icons.circle,
-                color:
-                end.isBefore(now)
-                    ? const Color.fromRGBO(42, 36, 186, 1)
-                // : d.isAfter(now)
-                // ? const Color.fromRGBO(219, 35, 35, 1)
-                    : const Color.fromRGBO(153, 153, 153, 1),
-                size: widget.height * 0.03,
-              ),
-            ]),
-          )),
+                        style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: widget.height * 0.0187,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600),
+                      ),
+                      (now.year<start.year || now.month < start.month || now.day < start.day)?
+                      Icon(
+                        Icons.circle,
+                        color: const Color.fromRGBO(153, 153, 153, 1),
+                        size: widget.height * 0.03,
+                      ):(now.year>end.year || now.month > end.month || now.day > end.day)?
+                      Icon(
+                        Icons.circle,
+                        color: const Color.fromRGBO(42, 36, 186, 1),
+                        size: widget.height * 0.03,
+                      ):
+                      // d.isAfter(now)?
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(
+                              Radius.circular(5)),
+                          border: Border.all(
+                              color: const Color.fromRGBO(
+                                  219, 35, 35, 1)),
+                        ),
+                        child: Row(children: [
+                          const Icon(
+                            Icons.circle,
+                            color: Color.fromRGBO(219, 35, 35, 1),
+                            // size: widget.height * 0.03,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.live_caps,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(102, 102, 102, 0.7),
+                                // fontSize: widget.height * 0.013,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],),
+                      )
+                    ]),
+              )),
           Padding(
             padding: EdgeInsets.only(
                 left: widget.width * 0.03, bottom: widget.height * 0.005),
@@ -150,28 +153,28 @@ class _CustomCardState extends State<CustomCard> {
           Container(
             padding: EdgeInsets.only(left: widget.width * 0.03),
             child: Column(children: [
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "${AppLocalizations.of(context)!.total_marks} ${widget.result.totalScore}", //'Class ${widget.result.studentClass}',
-                  style: TextStyle(
-                      color: const Color.fromRGBO(102, 102, 102, 1),
-                      fontSize: widget.height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  "${AppLocalizations.of(context)!.total_ques} ${widget.result.totalQuestions}", //'Class ${widget.result.studentClass}',
-                  style: TextStyle(
-                      color: const Color.fromRGBO(102, 102, 102, 1),
-                      fontSize: widget.height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500),
-                ),
-            ],)
-          ]),):Container()
+              const Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${AppLocalizations.of(context)!.total_marks} ${widget.result.totalScore}", //'Class ${widget.result.studentClass}',
+                    style: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 1),
+                        fontSize: widget.height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "${AppLocalizations.of(context)!.total_ques} ${widget.result.totalQuestions}", //'Class ${widget.result.studentClass}',
+                    style: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 1),
+                        fontSize: widget.height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],)
+            ]),):Container()
         ],
       ),
     );

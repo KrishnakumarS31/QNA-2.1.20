@@ -74,7 +74,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         icon: const Icon(
                           Icons.chevron_left,
                           size: 40.0,
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -87,7 +87,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         AppLocalizations.of(context)!.forgot_password_caps,
                         //"VERIFY OTP",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -294,7 +294,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         icon: const Icon(
                           Icons.chevron_left,
                           size: 40.0,
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -307,7 +307,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         AppLocalizations.of(context)!.forgot_password_caps,
                         //"VERIFY OTP",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -514,7 +514,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         icon: const Icon(
                           Icons.chevron_left,
                           size: 40.0,
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
@@ -527,7 +527,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         AppLocalizations.of(context)!.forgot_password_caps,
                         //"VERIFY OTP",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -579,19 +579,20 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                                             .verify_otp,
                                                         //"CHECK YOUR EMAIL FOR OTP",
                                                         style: TextStyle(
-                                                            color: const Color.fromRGBO(
+                                                            color:
+                                                            const Color.fromRGBO(
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.02),
+                                                            fontSize: height * 0.025),
                                                       ),
-                                                      helperStyle: const TextStyle(
-                                                          color:
-                                                          Color.fromRGBO(
+                                                      helperStyle: TextStyle(
+                                                          color: const Color.fromRGBO(
                                                               102, 102, 102, 0.3),
                                                           fontFamily: 'Inter',
+                                                          fontStyle: FontStyle.italic,
                                                           fontWeight: FontWeight.w400,
-                                                          fontSize: 16),
+                                                          fontSize: height * 0.016),
                                                       suffixIcon: IconButton(
                                                         iconSize: height * 0.06,
                                                         icon: Icon(Icons.arrow_circle_right,
@@ -726,23 +727,26 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
 
   showAlertDialog(BuildContext context, String? msg) {
     double height = MediaQuery.of(context).size.height;
-    Widget okButton = TextButton(
-      child: Text(
-        AppLocalizations.of(context)!.ok_caps,
-        //"OK",
-        style: const TextStyle(
-            color: Color.fromRGBO(48, 145, 139, 1),
-            fontFamily: 'Inter',
-            fontWeight: FontWeight.w500,
-            fontSize: 15),
+    Widget okButton = Center(
+      child: TextButton(
+        child: Text(
+          AppLocalizations.of(context)!.ok_caps,
+          //"OK",
+          style: const TextStyle(
+              color: Color.fromRGBO(48, 145, 139, 1),
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+              fontSize: 15),
+        ),
+        onPressed: () {
+          Navigator.of(context).pop();
+          Navigator.pushNamed(
+              context,
+              '/ForgotPassword',
+              arguments: [widget.email,otp,widget.isFromStudent]
+          );
+        },
       ),
-      onPressed: () {
-        Navigator.pushNamed(
-            context,
-            '/ForgotPassword',
-            arguments: [widget.email,otp,widget.isFromStudent]
-        );
-      },
     );
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -756,8 +760,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             width: height * 0.002,
           ),
           Text(
-            AppLocalizations.of(context)!.success,
-            //"Success!",
+            //AppLocalizations.of(context)!.success,
+            "OTP Verified!",
             style: const TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
@@ -767,7 +771,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
         ],
       ),
       content: Text(
-        msg!,
+        "${msg!}.",
         style: const TextStyle(
             color: Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',

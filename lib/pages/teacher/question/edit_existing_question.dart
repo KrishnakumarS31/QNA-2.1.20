@@ -695,8 +695,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                   _questionTypeValue=="Descriptive"
                                                       ? const SizedBox(height: 0)
                                                       :  _questionTypeValue=="Survey"
-                                                      ?
-                                                  Padding(
+                                                      ? Padding(
                                                     padding: EdgeInsets.only(left: width * 0.02,top:width*0.01),
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.end,
@@ -733,11 +732,10 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                       ],
                                                     ),
                                                   )
-                                                      :
-                                                  Padding(
+                                                      :Padding(
                                                     padding: EdgeInsets.only(left: width * 0.02),
                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      mainAxisAlignment: MainAxisAlignment.start,
                                                       children: [
                                                         Expanded(
                                                           child: Container(
@@ -770,18 +768,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          width: width * 0.11,
-                                                          // child: Text(
-                                                          //   AppLocalizations.of(context)!.delete,
-                                                          //   textAlign: TextAlign.center,
-                                                          //   //"Delete",
-                                                          //   style: TextStyle(
-                                                          //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                          //     fontSize: height * 0.014,
-                                                          //     fontFamily: "Inter",
-                                                          //     fontWeight: FontWeight.w500,
-                                                          //   ),
-                                                          // ),
+                                                          width: width * 0.15,
+
                                                         ),
                                                       ],
                                                     ),
@@ -790,8 +778,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                   _questionTypeValue=="Descriptive"
                                                       ? const SizedBox(height: 0,)
                                                       : _questionTypeValue=="Survey"
-                                                      ?
-                                                  Form(
+                                                      ? Form(
                                                     key: _formKey,
                                                     child: Column(
                                                       children: [
@@ -801,7 +788,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -810,7 +797,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -863,12 +851,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                       String val=chooses[i].text;
                                                                       EditChoice editChoice = EditChoice();
                                                                       setState(() {
-                                                                        print("chooses of i");
-                                                                        print(i);
-                                                                        print("chooses of text");
-                                                                        print(chooses[i].text);
-                                                                        print("question choices of length");
-                                                                        print(widget.question.choices!.length);
+
                                                                         chooses[i].text = val;
                                                                         widget.question.choices![widget.question.choices!.length]
                                                                             .choiceText = val;
@@ -919,8 +902,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                       ],
                                                     ),
                                                   )
-                                                      :
-                                                  Form(
+                                                      : Form(
                                                     key: _formKey,
                                                     child: Column(
                                                       children: [
@@ -931,7 +913,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -940,7 +922,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -961,32 +944,21 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                       setState(() {
                                                                         String val=chooses[i].text;
                                                                         EditChoice editChoice = EditChoice();
-                                                                        print("chooses of i");
-                                                                        print(chooses[i]);
-                                                                        print("chooses of text");
-                                                                        print(chooses[i].text);
-                                                                        print("question choices of length");
-                                                                        print(widget.question.choices!.length);
+
                                                                         chooses[i].text = val;
                                                                         widget.question.choices![i]
                                                                             .choiceText = val;
                                                                         if (addChoiceId.contains(tempChoiceId[i])) {
-                                                                          print("if");
                                                                           int index = addChoiceId.indexOf(tempChoiceId[i]);
-                                                                          print(index);
                                                                           //editQuestion.addChoices?.removeAt(index);
                                                                           addChoice.rightChoice = radioList[i];
                                                                           addChoice.questionId = tempChoiceId[i];
                                                                           addChoice.choiceText = val;
                                                                           editQuestion.addChoices?[index]=addChoice;
-                                                                          print("Add Choice");
-                                                                          print(addChoice);
                                                                           //editQuestion.addChoices?.add(addChoice);
                                                                         }
                                                                         else {
-                                                                          print("else");
                                                                           if (editChoiceId.contains(tempChoiceId[i])) {
-                                                                            print("else if");
                                                                             int index = tempChoiceId.indexOf(tempChoiceId[i]);
                                                                             //editQuestion.editChoices?.removeAt(index);
                                                                             editChoice.rightChoice = radioList[i];
@@ -996,7 +968,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                             //editQuestion.editChoices?.add(editChoice);
                                                                           }
                                                                           else {
-                                                                            print("else else");
                                                                             editChoiceId.add(tempChoiceId[i]);
                                                                             editChoice.rightChoice = radioList[i];
                                                                             editChoice.choiceId = tempChoiceId[i];
@@ -1751,7 +1722,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                       :Padding(
                                                     padding: EdgeInsets.only(left: width * 0.02),
                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      mainAxisAlignment: MainAxisAlignment.start,
                                                       children: [
                                                         Expanded(
                                                           child: Container(
@@ -1784,7 +1755,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          width: width * 0.11,
+                                                          width: width * 0.15,
 
                                                         ),
                                                       ],
@@ -1804,7 +1775,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1813,7 +1784,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -1933,7 +1905,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1942,7 +1914,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -2364,13 +2337,9 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                       editQuestion.questionType =_questionTypeValue;
                                       editQuestion.advisorUrl =urlController.text;
                                       editQuestion.advisorText =adviceController.text;
-                                      //editQuestion.choices = widget.question.choices;
-                                      // CreateQuestionModel createQuestion = CreateQuestionModel(questions: []);
-                                      // createQuestion.questions?.add(question);
                                       UserDetails userDetails=UserDetails();
                                       userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
-                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
+                                      if(((showIcon == Icons.expand_circle_down_outlined) || formKey.currentState!.validate()) && questionFormKey.currentState!.validate()) {                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
 
                                         }
                                         else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
@@ -2832,7 +2801,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -2846,7 +2815,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
                                                                           fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.text,
+                                                                      keyboardType: TextInputType.multiline,
+                                                                      maxLines: null,
                                                                       decoration: InputDecoration(
                                                                         floatingLabelBehavior:
                                                                         FloatingLabelBehavior.always,
@@ -2965,7 +2935,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -2978,7 +2948,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
                                                                           fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.text,
+                                                                      keyboardType: TextInputType.multiline,
+                                                                      maxLines: null,
                                                                       decoration: InputDecoration(
                                                                         floatingLabelBehavior:
                                                                         FloatingLabelBehavior.always,
@@ -3843,7 +3814,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -3857,7 +3828,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
                                                                           fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.text,
+                                                                      keyboardType: TextInputType.multiline,
+                                                                      maxLines: null,
                                                                       decoration: InputDecoration(
                                                                         floatingLabelBehavior:
                                                                         FloatingLabelBehavior.always,
@@ -3976,7 +3948,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -3989,7 +3961,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
                                                                           fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.text,
+                                                                      keyboardType: TextInputType.multiline,
+                                                                      maxLines: null,
                                                                       decoration: InputDecoration(
                                                                         floatingLabelBehavior:
                                                                         FloatingLabelBehavior.always,
@@ -4423,8 +4396,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                       // createQuestion.questions?.add(question);
                                       UserDetails userDetails=UserDetails();
                                       userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
-                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
+                                      if(((showIcon == Icons.expand_circle_down_outlined) || formKey.currentState!.validate()) && questionFormKey.currentState!.validate()) {                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
 
                                         }
                                         else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
@@ -4860,7 +4832,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4869,7 +4841,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -4989,7 +4962,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.  "),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4998,7 +4971,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -5851,7 +5825,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   left: 8,),
                                                                 child: Row(
                                                                   children: [
-                                                                    Text("${String.fromCharCode(97+i)}."),
+                                                                    Text("${String.fromCharCode(97+i)}.  "),
                                                                     Expanded(
                                                                       child: TextFormField(
                                                                         controller: chooses[i],
@@ -5860,7 +5834,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                             fontFamily: 'Inter',
                                                                             fontWeight: FontWeight.w400,
                                                                             fontSize: height * 0.018),
-                                                                        keyboardType: TextInputType.text,
+                                                                        keyboardType: TextInputType.multiline,
+                                                                        maxLines: null,
                                                                         decoration: InputDecoration(
                                                                           floatingLabelBehavior:
                                                                           FloatingLabelBehavior.always,
@@ -5983,7 +5958,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.end,
                                                                   children: [
-                                                                    Text("${String.fromCharCode(97+i)}."),
+                                                                    Text("${String.fromCharCode(97+i)}.  "),
                                                                     SizedBox(width: height * 0.01),
                                                                     Expanded(
                                                                       child: TextFormField(
@@ -5993,7 +5968,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                             fontFamily: 'Inter',
                                                                             fontWeight: FontWeight.w400,
                                                                             fontSize: height * 0.018),
-                                                                        keyboardType: TextInputType.text,
+                                                                        keyboardType: TextInputType.multiline,
+                                                                        maxLines: null,
                                                                         decoration: InputDecoration(
                                                                           floatingLabelBehavior:
                                                                           FloatingLabelBehavior.always,
@@ -6010,85 +5986,27 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                               borderRadius:
                                                                               BorderRadius.circular(5)),
                                                                         ),
-                                                                        onFieldSubmitted: (t){
-                                                                          setState(() {
-                                                                            String val=chooses[i].text;
-                                                                            EditChoice editChoice = EditChoice();
-                                                                            print("chooses of i");
-                                                                            print(chooses[i]);
-                                                                            print("chooses of text");
-                                                                            print(chooses[i].text);
-                                                                            print("question choices of length");
-                                                                            print(widget.question.choices!.length);
-                                                                            chooses[i].text = val;
-                                                                            widget.question.choices![i]
-                                                                                .choiceText = val;
-                                                                            if (addChoiceId.contains(tempChoiceId[i])) {
-                                                                              print("if");
-                                                                              int index = addChoiceId.indexOf(tempChoiceId[i]);
-                                                                              print(index);
-                                                                              //editQuestion.addChoices?.removeAt(index);
-                                                                              addChoice.rightChoice = radioList[i];
-                                                                              addChoice.questionId = tempChoiceId[i];
-                                                                              addChoice.choiceText = val;
-                                                                              editQuestion.addChoices?[index]=addChoice;
-                                                                              print("Add Choice");
-                                                                              print(addChoice);
-                                                                              //editQuestion.addChoices?.add(addChoice);
-                                                                            }
-                                                                            else {
-                                                                              print("else");
-                                                                              if (editChoiceId.contains(tempChoiceId[i])) {
-                                                                                print("else if");
-                                                                                int index = tempChoiceId.indexOf(tempChoiceId[i]);
-                                                                                //editQuestion.editChoices?.removeAt(index);
-                                                                                editChoice.rightChoice = radioList[i];
-                                                                                editChoice.choiceId = tempChoiceId[i];
-                                                                                editChoice.choiceText = val;
-                                                                                editQuestion.editChoices?[index]=editChoice;
-                                                                                //editQuestion.editChoices?.add(editChoice);
-                                                                              }
-                                                                              else {
-                                                                                print("else else");
-                                                                                editChoiceId.add(tempChoiceId[i]);
-                                                                                editChoice.rightChoice = radioList[i];
-                                                                                editChoice.choiceId = tempChoiceId[i];
-                                                                                editChoice.choiceText = val;
-                                                                                editQuestion.editChoices?.add(editChoice);
-                                                                              }
-                                                                            }
-                                                                          });
-                                                                        },
                                                                         onTapOutside: (t) {
                                                                           setState(() {
                                                                             String val=chooses[i].text;
                                                                             EditChoice editChoice = EditChoice();
-                                                                            print("chooses of i");
-                                                                            print(chooses[i]);
-                                                                            print("chooses of text");
-                                                                            print(chooses[i].text);
-                                                                            print("question choices of length");
-                                                                            print(widget.question.choices!.length);
+
                                                                             chooses[i].text = val;
                                                                             widget.question.choices![i]
                                                                                 .choiceText = val;
                                                                             if (addChoiceId.contains(tempChoiceId[i])) {
-                                                                              print("if");
                                                                               int index = addChoiceId.indexOf(tempChoiceId[i]);
-                                                                              print(index);
+
                                                                               //editQuestion.addChoices?.removeAt(index);
                                                                               addChoice.rightChoice = radioList[i];
                                                                               addChoice.questionId = tempChoiceId[i];
                                                                               addChoice.choiceText = val;
                                                                               editQuestion.addChoices?[index]=addChoice;
-                                                                              print("Add Choice");
-                                                                              print(addChoice);
+
                                                                               //editQuestion.addChoices?.add(addChoice);
                                                                             }
                                                                             else {
-                                                                              print("else");
                                                                               if (editChoiceId.contains(tempChoiceId[i])) {
-                                                                                print("else if");
                                                                                 int index = tempChoiceId.indexOf(tempChoiceId[i]);
                                                                                 //editQuestion.editChoices?.removeAt(index);
                                                                                 editChoice.rightChoice = radioList[i];
@@ -6098,7 +6016,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                                 //editQuestion.editChoices?.add(editChoice);
                                                                               }
                                                                               else {
-                                                                                print("else else");
                                                                                 editChoiceId.add(tempChoiceId[i]);
                                                                                 editChoice.rightChoice = radioList[i];
                                                                                 editChoice.choiceId = tempChoiceId[i];
@@ -6415,22 +6332,23 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                       editQuestion.questionType =_questionTypeValue;
                                       editQuestion.advisorUrl =urlController.text;
                                       editQuestion.advisorText =adviceController.text;
-                                      //editQuestion.choices = widget.question.choices;
-                                      // CreateQuestionModel createQuestion = CreateQuestionModel(questions: []);
-                                      // createQuestion.questions?.add(question);
+                                      print("before userDetails");
                                       UserDetails userDetails=UserDetails();
                                       userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                      if(formKey.currentState!.validate() && questionFormKey.currentState!.validate()) {
+                                      print("after userDetails");
+                                      if(((showIcon == Icons.expand_circle_down_outlined) || formKey.currentState!.validate()) && questionFormKey.currentState!.validate()) {
                                         if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
 
                                         }
                                         else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
-
+                                          print("else survey");
                                         }
                                         else{
+                                          print("else");
                                           ResponseEntity statusCode = await QnaService.editQuestionTeacherService(
                                               editQuestion,
                                               widget.question.questionId, userDetails);
+                                          print("after else");
                                           if(statusCode.code==200){
                                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
 

@@ -84,7 +84,6 @@ class StudQuestionState extends State<StudQuestion> {
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
 
     if(widget.ques.data!.assessmentType=='test') {
-      print(myDuration.inSeconds);
       countdownTimer =
           Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
     }
@@ -104,7 +103,6 @@ class StudQuestionState extends State<StudQuestion> {
   Future<void> setCountDown() async {
     const reduceSecondsBy = 1;
     final seconds = myDuration.inSeconds - reduceSecondsBy;
-    print(seconds);
     if (seconds < 0) {
       int a = now.microsecondsSinceEpoch + myDuration.inMicroseconds;
       int d2 = DateTime
@@ -287,9 +285,6 @@ class StudQuestionState extends State<StudQuestion> {
               });
           LoginModel loginResponse = await QnaService
               .postAssessmentService(assessment, values, userDetails);
-          print(assessment);
-          print("dvfvfbv");
-          print(values);
           Navigator.of(context).pop();
           countdownTimer!.cancel();
           if (loginResponse.code == 200) {
@@ -354,8 +349,11 @@ class StudQuestionState extends State<StudQuestion> {
       }
       myDuration = Duration(seconds: seconds);
     }
-    setState(() {
-    });
+    if (this.mounted) {
+      setState(() {
+        // Your state change code goes here
+      });
+    }
   }
 
   @override
@@ -954,8 +952,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     )
                                         : ElevatedButton(
                                         onPressed: () {
-                                          //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
-                                          //print(context.watch<QuestionNumProvider>().questionNum);
 
                                           context.read<QuestionNumProvider>().increment();
 
@@ -1637,8 +1633,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     )
                                         : ElevatedButton(
                                         onPressed: () {
-                                          //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
-                                          //print(context.watch<QuestionNumProvider>().questionNum);
 
                                           context.read<QuestionNumProvider>().increment();
 
@@ -1958,7 +1952,6 @@ class StudQuestionState extends State<StudQuestion> {
                                             const EdgeInsets.all(8.0),
                                             child: TextField(
                                               onChanged: (ans) {
-                                                print(ansController.text);
                                                 if (ansController
                                                     .text.isEmpty) {
                                                   selected = [];
@@ -2299,8 +2292,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     // if(widget.ques.data!.assessmentType=='test') {
                                     //   countdownTimer!.cancel();
                                     // }
-                                    print('userId');
-                                    print(widget.userId);
                                     Navigator.pushNamed(
                                         context,
                                         '/studentReviseQuest',
@@ -2321,8 +2312,6 @@ class StudQuestionState extends State<StudQuestion> {
                                     :
                                 ElevatedButton(
                                     onPressed: () {
-                                      //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
-                                      //print(context.watch<QuestionNumProvider>().questionNum);
 
                                       context.read<QuestionNumProvider>().increment();
 

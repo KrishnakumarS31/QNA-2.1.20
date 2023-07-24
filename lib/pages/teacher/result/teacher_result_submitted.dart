@@ -5,21 +5,25 @@ import 'package:qna_test/pages/teacher/result/teacher_result_individual_student.
 import '../../../Components/custom_card.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
 import '../../../Entity/Teacher/response_entity.dart';
+import '../../../Entity/user_details.dart';
 import '../../../EntityModel/get_result_details_model.dart';
 import '../../../EntityModel/get_result_model.dart';
+import '../../../EntityModel/user_data_model.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../../../Components/today_date.dart';
-
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class TeacherResultSubmitted extends StatefulWidget {
   const TeacherResultSubmitted({
     Key? key,
     required this.result,
     this.userId,
+    required this.userDetails
   }) : super(key: key);
   final GetResultModel result;
   final int? userId;
+  final UserDetails userDetails;
 
   @override
   TeacherResultSubmittedState createState() => TeacherResultSubmittedState();
@@ -37,6 +41,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
   @override
   void initState() {
     Future.delayed(Duration.zero, (){getData();});
+
     super.initState();
   }
 
@@ -50,6 +55,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                 color: Color.fromRGBO(48, 145, 139, 1),
               ));
         });
+    UserDataModel userDataModel =
+    await QnaService.getUserDataService(widget.userId,widget.userDetails);
     ResponseEntity response =
     await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"completed");
     print(response.code);
@@ -319,7 +326,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                               fontWeight: FontWeight.w600),
                                                         ),
                                                         Text(
-                                                          " ${widget.result.assessmentType}",
+
+                                                          " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                           style: const TextStyle(
                                                               color: Color.fromRGBO(102, 102, 102, 1),
                                                               // fontSize: widget.height * 0.013,
@@ -475,30 +483,30 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          AppLocalizations.of(context)!.whatsapp_link,
-                                                          style: const TextStyle(
-                                                              color: Color.fromRGBO(102, 102, 102, 1),
-                                                              // fontSize: widget.height * 0.013,
-                                                              fontFamily: "Inter",
-                                                              fontWeight: FontWeight.w600),
-                                                        ),
-                                                        const Text(
-                                                          "",
-                                                          // widget.result.url ?? "" ,
-                                                          // style: const TextStyle(
-                                                          //     color: Color.fromRGBO(102, 102, 102, 1),
-                                                          //     // fontSize: widget.height * 0.013,
-                                                          //     fontFamily: "Inter",
-                                                          //     fontWeight: FontWeight.w400),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
+                                                  // Padding(
+                                                  //   padding: const EdgeInsets.all(8.0),
+                                                  //   child: Row(
+                                                  //     children: [
+                                                  //       Text(
+                                                  //         AppLocalizations.of(context)!.whatsapp_link,
+                                                  //         style: const TextStyle(
+                                                  //             color: Color.fromRGBO(102, 102, 102, 1),
+                                                  //             // fontSize: widget.height * 0.013,
+                                                  //             fontFamily: "Inter",
+                                                  //             fontWeight: FontWeight.w600),
+                                                  //       ),
+                                                  //       const Text(
+                                                  //         "",
+                                                  //         // widget.result.url ?? "" ,
+                                                  //         // style: const TextStyle(
+                                                  //         //     color: Color.fromRGBO(102, 102, 102, 1),
+                                                  //         //     // fontSize: widget.height * 0.013,
+                                                  //         //     fontFamily: "Inter",
+                                                  //         //     fontWeight: FontWeight.w400),
+                                                  //       ),
+                                                  //     ],
+                                                  //   ),
+                                                  // ),
                                                 ],
                                               ),
                                             ),
@@ -930,7 +938,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               Text(
-                                                " ${widget.result.assessmentType}",
+                                                " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                 style: const TextStyle(
                                                     color: Color.fromRGBO(102, 102, 102, 1),
                                                     // fontSize: widget.height * 0.013,
@@ -1088,29 +1096,29 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!.whatsapp_link,
-                                                style: const TextStyle(
-                                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                                    // fontSize: widget.height * 0.013,
-                                                    fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w600),
-                                              ),
-                                              const Text(
-                                                "widget.result.url",
-                                                style: TextStyle(
-                                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                                    // fontSize: widget.height * 0.013,
-                                                    fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.all(8.0),
+                                        //   child: Row(
+                                        //     children: [
+                                        //       Text(
+                                        //         AppLocalizations.of(context)!.whatsapp_link,
+                                        //         style: const TextStyle(
+                                        //             color: Color.fromRGBO(102, 102, 102, 1),
+                                        //             // fontSize: widget.height * 0.013,
+                                        //             fontFamily: "Inter",
+                                        //             fontWeight: FontWeight.w600),
+                                        //       ),
+                                        //       const Text(
+                                        //         "widget.result.url",
+                                        //         style: TextStyle(
+                                        //             color: Color.fromRGBO(102, 102, 102, 1),
+                                        //             // fontSize: widget.height * 0.013,
+                                        //             fontFamily: "Inter",
+                                        //             fontWeight: FontWeight.w400),
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),

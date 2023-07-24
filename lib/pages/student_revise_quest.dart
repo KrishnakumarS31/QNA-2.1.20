@@ -56,6 +56,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+  @override
   void initState() {
     setTime();
     connection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
@@ -80,11 +85,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     }
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+    print(widget.questions.data?.questions?[1].question);
+    print(widget.questions.data?.questions?[1].questionType);
     values = widget.questions;
-    print(widget.questions.data?.questions?.length ?? 0);
     int length = widget.questions.data?.questions?.length ?? 0;
     for (int j = 1; j <= length; j++) {
-      print(j);
       List<dynamic> selectedAns = Provider
           .of<Questions>(context, listen: false)
           .totalQuestion['$j'][0];
@@ -121,7 +126,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   Future<void> setCountDown() async {
     const reduceSecondsBy = 1;
     final seconds = myDuration.inSeconds - reduceSecondsBy;
-    print(seconds);
     if (seconds < 0) {
       int a = now.microsecondsSinceEpoch + myDuration.inMicroseconds;
       int d2 = DateTime
@@ -304,9 +308,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
               });
           LoginModel loginResponse = await QnaService
               .postAssessmentService(assessment, values, userDetails);
-          print(assessment);
-          print("dvfvfbv");
-          print(values);
           Navigator.of(context).pop();
           countdownTimer!.cancel();
           if (loginResponse.code == 200) {
@@ -371,8 +372,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       }
       myDuration = Duration(seconds: seconds);
     }
-    setState(() {
-    });
+    if (this.mounted) {
+      setState(() {
+        // Your state change code goes here
+      });
+    }
   }
 
   @override
@@ -1455,10 +1459,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                 Text(
                                                                                   values
                                                                                       .data!
-                                                                                      .questions![context
-                                                                                      .watch<
-                                                                                      QuestionNumProvider>()
-                                                                                      .questionNum -
+                                                                                      .questions![index -
                                                                                       1]
                                                                                       .questionType ==
                                                                                       "MCQ"
@@ -1936,9 +1937,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     });
                                 LoginModel loginResponse = await QnaService
                                     .postAssessmentService(assessment, values,userDetails);
-                                print(assessment);
-                                print("dvfvfbv");
-                                print(values);
 
                                 Navigator.of(context).pop();
                                 if (loginResponse.code == 200){

@@ -20,6 +20,7 @@ class ForgotPasswordEmail extends StatefulWidget {
 class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
+  Color iconColor= const Color.fromRGBO(153, 153, 153, 0.5);
 
   @override
   void initState() {
@@ -94,7 +95,16 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                             controller: _controller,
                                             keyboardType: TextInputType.emailAddress,
                                             onChanged: (val) {
-                                              formKey.currentState!.validate();
+                                              bool valid = formKey.currentState!.validate();
+                                              if(valid){
+                                                iconColor=const Color.fromRGBO(82, 165, 160, 1);
+                                              }
+                                              else{
+                                                iconColor=const Color.fromRGBO(153, 153, 153, 0.5);
+                                              }
+                                              setState(() {
+                                                iconColor;
+                                              });
                                             },
                                             decoration: InputDecoration(
                                               floatingLabelBehavior: FloatingLabelBehavior
@@ -108,7 +118,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: height * 0.020),
+                                                    fontSize: height * 0.025),
                                               ),
                                               helperText: AppLocalizations.of(context)!
                                                   .email_helper_text,
@@ -119,10 +129,12 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   fontStyle: FontStyle.italic,
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.016),
+                                              suffixIconColor:
+                                              iconColor,
                                               suffixIcon: IconButton(
                                                 iconSize: height * 0.05,
                                                 icon: const Icon(Icons.arrow_circle_right,
-                                                  // color:
+                                                  //color:
                                                   // (_controller.text.isNotEmpty)
                                                   //     ? const Color.fromRGBO(82, 165, 160, 1)
                                                   //     : const Color.fromRGBO(153, 153, 153, 0.5),
@@ -157,18 +169,12 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   }
                                                 },
                                               ),
-                                              suffixIconColor:
-                                              MaterialStateColor.resolveWith((states) =>
-                                              states.contains(MaterialState.focused)
-                                              //   _controller.text.isEmpty
-                                                  ? const Color.fromRGBO(82, 165, 160, 1)
-                                                  : const Color.fromRGBO(153, 153, 153, 0.5)),
                                               hintStyle: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.018),
+                                                  fontSize: height * 0.02),
                                               hintText: AppLocalizations.of(context)!
                                                   .enter_here,
                                             ),
@@ -258,20 +264,30 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                 controller: _controller,
                                                 keyboardType: TextInputType.emailAddress,
                                                 onChanged: (val) {
-                                                  formKey.currentState!.validate();
+                                                  bool valid = formKey.currentState!.validate();
+                                                  if(valid){
+                                                    iconColor=const Color.fromRGBO(82, 165, 160, 1);
+                                                  }
+                                                  else{
+                                                    iconColor=const Color.fromRGBO(153, 153, 153, 0.5);
+                                                  }
+                                                  setState(() {
+                                                    iconColor;
+                                                  });
                                                 },
                                                 decoration: InputDecoration(
                                                   floatingLabelBehavior: FloatingLabelBehavior
                                                       .always,
                                                   labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                  label: Text(AppLocalizations.of(context)!.email_id_caps,
+                                                  label: Text(AppLocalizations.of(context)!
+                                                      .email_id_caps,
                                                     style: TextStyle(
                                                         color:
                                                         const Color.fromRGBO(
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.020),
+                                                        fontSize: height * 0.025),
                                                   ),
                                                   helperText: AppLocalizations.of(context)!
                                                       .email_helper_text,
@@ -283,15 +299,11 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: height * 0.016),
                                                   suffixIconColor:
-                                                  MaterialStateColor.resolveWith((states) =>
-                                                  states.contains(MaterialState.focused)
-                                                  //   _controller.text.isEmpty
-                                                      ? const Color.fromRGBO(82, 165, 160, 1)
-                                                      : const Color.fromRGBO(153, 153, 153, 0.5)),
+                                                  iconColor,
                                                   suffixIcon: IconButton(
                                                     iconSize: height * 0.05,
                                                     icon: const Icon(Icons.arrow_circle_right,
-                                                      // color:
+                                                      //color:
                                                       // (_controller.text.isNotEmpty)
                                                       //     ? const Color.fromRGBO(82, 165, 160, 1)
                                                       //     : const Color.fromRGBO(153, 153, 153, 0.5),
@@ -331,7 +343,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                           102, 102, 102, 0.3),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w400,
-                                                      fontSize: height * 0.018),
+                                                      fontSize: height * 0.02),
                                                   hintText: AppLocalizations.of(context)!
                                                       .enter_here,
                                                 ),
@@ -419,7 +431,16 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                     controller: _controller,
                                                     keyboardType: TextInputType.emailAddress,
                                                     onChanged: (val) {
-                                                      formKey.currentState!.validate();
+                                                      bool valid = formKey.currentState!.validate();
+                                                      if(valid){
+                                                        iconColor=const Color.fromRGBO(82, 165, 160, 1);
+                                                      }
+                                                      else{
+                                                        iconColor=const Color.fromRGBO(153, 153, 153, 0.5);
+                                                      }
+                                                      setState(() {
+                                                        iconColor;
+                                                      });
                                                     },
                                                     decoration: InputDecoration(
                                                       floatingLabelBehavior: FloatingLabelBehavior
@@ -445,11 +466,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       suffixIconColor:
-                                                      MaterialStateColor.resolveWith((states) =>
-                                                      states.contains(MaterialState.focused)
-                                                      //   _controller.text.isEmpty
-                                                          ? const Color.fromRGBO(82, 165, 160, 1)
-                                                          : const Color.fromRGBO(153, 153, 153, 0.5)),
+                                                      iconColor,
                                                       suffixIcon: IconButton(
                                                         iconSize: height * 0.05,
                                                         icon: const Icon(Icons.arrow_circle_right,

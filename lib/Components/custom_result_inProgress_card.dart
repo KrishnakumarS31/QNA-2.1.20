@@ -3,7 +3,7 @@ import 'package:qna_test/Components/today_date.dart';
 import '../EntityModel/get_result_details_model.dart';
 
 class ResultInProgressCard extends StatelessWidget {
-   ResultInProgressCard({
+  ResultInProgressCard({
     Key? key,
     required this.height,
     required this.width,
@@ -11,10 +11,10 @@ class ResultInProgressCard extends StatelessWidget {
     required this.index,
   }) : super(key: key);
 
-   final double height;
-   final double width;
-   GetResultDetailsModel? results;
-   final int index;
+  final double height;
+  final double width;
+  GetResultDetailsModel? results;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +97,9 @@ class ResultInProgressCard extends StatelessWidget {
                                   fontWeight: FontWeight.w300),
                             ),
                             Text(
-                              results!.assessmentResults![index].attemptStartDate != null
+                              results!.assessmentResults![index].attemptEndDate != null
                                   ? "${convertTime(
-                                  results!.assessmentResults![index].attemptStartDate)} IST"
+                                  results!.assessmentResults![index].attemptEndDate)} IST"
                                   : "",
                               style: TextStyle(
                                   fontSize: height * 0.013,
@@ -222,9 +222,9 @@ class ResultInProgressCard extends StatelessWidget {
                             fontWeight: FontWeight.w300),
                       ),
                       Text(
-                        results!.assessmentResults![index].attemptStartDate != null
+                        results!.assessmentResults![index].attemptEndDate != null
                             ? "${convertTime(
-                            results!.assessmentResults![index].attemptStartDate)} IST"
+                            results!.assessmentResults![index].attemptEndDate)} IST"
                             : "",
                         style: TextStyle(
                             fontSize: height * 0.013,

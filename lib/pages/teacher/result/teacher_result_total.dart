@@ -10,6 +10,7 @@ import '../../../Entity/Teacher/response_entity.dart';
 import '../../../EntityModel/get_result_model.dart';
 import '../../../Services/qna_service.dart';
 import '../../../Components/today_date.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class TeacherResultTotal extends StatefulWidget {
   const TeacherResultTotal({
@@ -330,7 +331,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                               fontWeight: FontWeight.w600),
                                                         ),
                                                         Text(
-                                                          " ${widget.result.assessmentType}",
+                                                          " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                           style: const TextStyle(
                                                               color: Color.fromRGBO(102, 102, 102, 1),
                                                               // fontSize: widget.height * 0.013,
@@ -925,7 +926,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                     fontWeight: FontWeight.w600),
                                               ),
                                               Text(
-                                                " ${widget.result.assessmentType}",
+                                                " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                 style: const TextStyle(
                                                     color: Color.fromRGBO(102, 102, 102, 1),
                                                     // fontSize: widget.height * 0.013,

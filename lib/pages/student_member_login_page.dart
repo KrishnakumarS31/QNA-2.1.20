@@ -346,11 +346,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                     _isObscure
                                                                         ? Icons.visibility
                                                                         : Icons.visibility_off,
-                                                                    color:
-                                                                    passWordController.text.length > 7
-                                                                        ? const Color.fromRGBO(
-                                                                        82, 165, 160, 1)
-                                                                        : const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                    color: const Color.fromRGBO(
+                                                                        82, 165, 160, 1),
                                                                   ),
                                                                   onPressed: () {
                                                                     setState(() {
@@ -415,10 +412,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child:IconButton(
                                 iconSize: localHeight * 0.06,
                                 icon: Icon(Icons.arrow_circle_right,
-                                  color:
-                                  ((passWordController.text.length > 7) && (regNumberController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(regNumberController.text)))
-                                      ? const Color.fromRGBO(82, 165, 160, 1)
-                                      : const Color.fromRGBO(153, 153, 153, 0.5),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 onPressed: () async {
                                   _prefService
@@ -551,7 +545,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      const Size(189, 37),
+                                      const Size(290, 37),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -840,11 +834,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                           _isObscure
                                                                               ? Icons.visibility
                                                                               : Icons.visibility_off,
-                                                                          color:
-                                                                          passWordController.text.length > 7
-                                                                              ? const Color.fromRGBO(
-                                                                              82, 165, 160, 1)
-                                                                              : const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                          color: const Color.fromRGBO(
+                                                                              82, 165, 160, 1),
                                                                         ),
                                                                         onPressed: () {
                                                                           setState(() {
@@ -903,10 +894,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     child: IconButton(
                                       iconSize: localHeight * 0.06,
                                       icon: Icon(Icons.arrow_circle_right,
-                                        color:
-                                        ((passWordController.text.length > 7) && (regNumberController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(regNumberController.text)))
-                                            ? const Color.fromRGBO(82, 165, 160, 1)
-                                            : const Color.fromRGBO(153, 153, 153, 0.5),
+                                        color: const Color.fromRGBO(82, 165, 160, 1)
+                                        ,
                                       ),
                                       onPressed: () async {
                                         _prefService
@@ -1324,11 +1313,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                     _isObscure
                                                                         ? Icons.visibility
                                                                         : Icons.visibility_off,
-                                                                    color:
-                                                                    passWordController.text.length > 7
-                                                                        ? const Color.fromRGBO(
-                                                                        82, 165, 160, 1)
-                                                                        : const Color.fromRGBO(153, 153, 153, 0.5),
+                                                                    color: const Color.fromRGBO(
+                                                                        82, 165, 160, 1),
                                                                   ),
                                                                   onPressed: () {
                                                                     setState(() {
@@ -1393,10 +1379,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child: IconButton(
                                 iconSize: localHeight * 0.06,
                                 icon: Icon(Icons.arrow_circle_right,
-                                  color:
-                                  ((passWordController.text.length > 7) && (regNumberController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(regNumberController.text)))
-                                      ? const Color.fromRGBO(82, 165, 160, 1)
-                                      : const Color.fromRGBO(153, 153, 153, 0.5),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 onPressed: () async {
                                   _prefService

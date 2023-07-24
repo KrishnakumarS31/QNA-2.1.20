@@ -448,7 +448,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -758,7 +758,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1065,7 +1065,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
-                                          "${assessment.subject} | ${assessment.topic}",
+                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
                                           style: TextStyle(
                                               fontSize: height * 0.016,
                                               fontFamily: "Inter",
@@ -1405,7 +1405,7 @@ class _QuestionCardState extends State<QuestionCard> {
                 ),
               ),
             )
-            :
+                :
             SizedBox(height: widget.height * 0.01),
             Padding(
               padding: EdgeInsets.only( left : widget.width * 0.03),

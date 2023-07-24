@@ -265,6 +265,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                                   ),
                                                 );
                                               }
+
                                             }
                                           },
                                         )),
@@ -496,6 +497,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                                   ),
                                                 );
                                               }
+
                                             }
                                           },
                                         )),

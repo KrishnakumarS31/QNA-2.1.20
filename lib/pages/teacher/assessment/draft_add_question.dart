@@ -205,15 +205,15 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
       ),
       onPressed: () async {
         assessment.userId=userDetails.userId;
-        assessment.totalQuestions=questionList.length;
+        assessment.totalQuestions=selectedQuestion.length;
         assessment.assessmentType='practice';
         assessment.assessmentStatus = 'inprogress';
         assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
-        for(int i=0;i<questionList.length;i++){
-          Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+        for(int i=0;i<selectedQuestion.length;i++){
+          Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
           assessment.questions?.add(tempQues);
         }
-        assessment.totalScore=questionList.length;
+        assessment.totalScore=selectedQuestion.length;
         showDialog(
             context: context,
             builder: (context) {
