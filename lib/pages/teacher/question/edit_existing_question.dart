@@ -2341,19 +2341,19 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                       userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                       if(((showIcon == Icons.expand_circle_down_outlined) || formKey.currentState!.validate()) && questionFormKey.currentState!.validate()) {                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
 
-                                        }
-                                        else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+                                      }
+                                      else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+
+                                      }
+                                      else{
+                                        ResponseEntity statusCode = await QnaService.editQuestionTeacherService(
+                                            editQuestion,
+                                            widget.question.questionId, userDetails);
+                                        if(statusCode.code==200){
+                                          Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
 
                                         }
-                                        else{
-                                          ResponseEntity statusCode = await QnaService.editQuestionTeacherService(
-                                              editQuestion,
-                                              widget.question.questionId, userDetails);
-                                          if(statusCode.code==200){
-                                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-
-                                          }
-                                        }
+                                      }
                                       }
                                     },
                                     child: Icon(Icons.check, size:width * 0.04,color: Colors.white),
@@ -2780,7 +2780,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          width: width * 0.1,
+                                                          width: width * 0.08,
 
                                                         ),
                                                       ],
@@ -2806,7 +2806,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
                                                                     //height: height * 0.05,
-                                                                    width : width * 0.18,
+                                                                    width : width * 0.23,
                                                                     child:
                                                                     TextFormField(
                                                                       controller: chooses[i],
@@ -2940,7 +2940,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
                                                                     //height: height * 0.05,
-                                                                    width : width * 0.18,
+                                                                    width : width * 0.23,
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
                                                                       style: TextStyle(
@@ -3793,7 +3793,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          width: width * 0.1,
+                                                          width: width * 0.08,
 
                                                         ),
                                                       ],
@@ -3819,7 +3819,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
                                                                     //height: height * 0.05,
-                                                                    width : width * 0.18,
+                                                                    width : width * 0.23,
                                                                     child:
                                                                     TextFormField(
                                                                       controller: chooses[i],
@@ -3953,7 +3953,7 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
                                                                     //height: height * 0.05,
-                                                                    width : width * 0.18,
+                                                                    width : width * 0.23,
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
                                                                       style: TextStyle(
@@ -4085,47 +4085,47 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   width: width * 0.1,
                                                                   child: IconButton(
 
-                                                                      onPressed: () {
-                                                                        EditChoice editChoice = EditChoice();
-                                                                        if (addChoiceId
+                                                                    onPressed: () {
+                                                                      EditChoice editChoice = EditChoice();
+                                                                      if (addChoiceId
+                                                                          .contains(tempChoiceId[i])) {
+                                                                        int index = addChoiceId
+                                                                            .indexOf(tempChoiceId[i]);
+                                                                        editQuestion.addChoices![index]
+                                                                            .choiceText = chooses[i].text;
+                                                                        editQuestion.addChoices![index]
+                                                                            .questionId = tempChoiceId[i];
+                                                                        editQuestion.addChoices![index]
+                                                                            .rightChoice = !radioList[i];
+                                                                      }
+                                                                      else {
+                                                                        if (editChoiceId
                                                                             .contains(tempChoiceId[i])) {
-                                                                          int index = addChoiceId
+                                                                          int index = editChoiceId
                                                                               .indexOf(tempChoiceId[i]);
-                                                                          editQuestion.addChoices![index]
+                                                                          editQuestion.editChoices![index]
                                                                               .choiceText = chooses[i].text;
-                                                                          editQuestion.addChoices![index]
-                                                                              .questionId = tempChoiceId[i];
-                                                                          editQuestion.addChoices![index]
+                                                                          editQuestion.editChoices![index]
+                                                                              .choiceId = tempChoiceId[i];
+                                                                          editQuestion.editChoices![index]
                                                                               .rightChoice = !radioList[i];
                                                                         }
                                                                         else {
-                                                                          if (editChoiceId
-                                                                              .contains(tempChoiceId[i])) {
-                                                                            int index = editChoiceId
-                                                                                .indexOf(tempChoiceId[i]);
-                                                                            editQuestion.editChoices![index]
-                                                                                .choiceText = chooses[i].text;
-                                                                            editQuestion.editChoices![index]
-                                                                                .choiceId = tempChoiceId[i];
-                                                                            editQuestion.editChoices![index]
-                                                                                .rightChoice = !radioList[i];
-                                                                          }
-                                                                          else {
-                                                                            editChoiceId.add(tempChoiceId[i]);
-                                                                            editChoice.rightChoice =
-                                                                            !radioList[i];
-                                                                            editChoice.choiceId = tempChoiceId[i];
-                                                                            editChoice.choiceText =
-                                                                                chooses[i].text;
-                                                                            editQuestion.editChoices
-                                                                                ?.add(editChoice);
-                                                                          }
+                                                                          editChoiceId.add(tempChoiceId[i]);
+                                                                          editChoice.rightChoice =
+                                                                          !radioList[i];
+                                                                          editChoice.choiceId = tempChoiceId[i];
+                                                                          editChoice.choiceText =
+                                                                              chooses[i].text;
+                                                                          editQuestion.editChoices
+                                                                              ?.add(editChoice);
                                                                         }
-                                                                        _onRadioChange(i);
-                                                                        setState(() {
-                                                                          radioList;
-                                                                        });
-                                                                      },
+                                                                      }
+                                                                      _onRadioChange(i);
+                                                                      setState(() {
+                                                                        radioList;
+                                                                      });
+                                                                    },
 
                                                                     icon: Icon(
                                                                       size:height * 0.03,
@@ -4398,19 +4398,19 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                       userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                       if(((showIcon == Icons.expand_circle_down_outlined) || formKey.currentState!.validate()) && questionFormKey.currentState!.validate()) {                                        if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
 
-                                        }
-                                        else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+                                      }
+                                      else if(_questionTypeValue=='Survey' && tempChoiceList!.length==0){
+
+                                      }
+                                      else{
+                                        ResponseEntity statusCode = await QnaService.editQuestionTeacherService(
+                                            editQuestion,
+                                            widget.question.questionId, userDetails);
+                                        if(statusCode.code==200){
+                                          Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
 
                                         }
-                                        else{
-                                          ResponseEntity statusCode = await QnaService.editQuestionTeacherService(
-                                              editQuestion,
-                                              widget.question.questionId, userDetails);
-                                          if(statusCode.code==200){
-                                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-
-                                          }
-                                        }
+                                      }
                                       }
 
                                     },

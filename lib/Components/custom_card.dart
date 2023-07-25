@@ -85,10 +85,10 @@ class _CustomCardState extends State<CustomCard> {
                                   219, 35, 35, 1)),
                         ),
                         child: Row(children: [
-                          const Icon(
+                           Icon(
                             Icons.circle,
-                            color: Color.fromRGBO(219, 35, 35, 1),
-                            // size: widget.height * 0.03,
+                            color: const Color.fromRGBO(219, 35, 35, 1),
+                            size: widget.height * 0.03,
                           ),
                           Text(
                             AppLocalizations.of(context)!.live_caps,

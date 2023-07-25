@@ -486,7 +486,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                             //'Participation statistics',
                                             style: TextStyle(
                                                 fontSize: height * 0.0187,
-                                                color: const Color.fromRGBO(153, 153, 153, 1),
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w400),
                                           ),
@@ -1124,7 +1124,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     //'Participation statistics',
                                     style: TextStyle(
                                         fontSize: height * 0.0187,
-                                        color: const Color.fromRGBO(153, 153, 153, 1),
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w400),
                                   ),

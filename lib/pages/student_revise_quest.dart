@@ -596,11 +596,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                 Text(
                                                                                   values
                                                                                       .data!
-                                                                                      .questions![context
-                                                                                      .watch<
-                                                                                      QuestionNumProvider>()
-                                                                                      .questionNum -
-                                                                                      1]
+                                                                                      .questions![index - 1]
                                                                                       .questionType ==
                                                                                       "MCQ"
                                                                                       ? "${values.data!
@@ -1006,11 +1002,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                 Text(
                                                                                   values
                                                                                       .data!
-                                                                                      .questions![context
-                                                                                      .watch<
-                                                                                      QuestionNumProvider>()
-                                                                                      .questionNum -
-                                                                                      1]
+                                                                                      .questions![index - 1]
                                                                                       .questionType ==
                                                                                       "MCQ"
                                                                                       ? "${values.data!

@@ -571,7 +571,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
                                                   fontFamily: 'Inter',
-                                                  height: height * 0.0020,
+                                                  // height: height * 0.0020,
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.02),
                                             ),
@@ -863,7 +863,6 @@ class StudQuestionState extends State<StudQuestion> {
                                                           160,
                                                           1),
                                                       fontFamily: 'Inter',
-                                                      height: height * 0.0020,
                                                       fontWeight:
                                                       FontWeight.w500,
                                                       fontSize: height *
@@ -1251,7 +1250,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
                                                   fontFamily: 'Inter',
-                                                  height: height * 0.0020,
+                                                  // height: height * 0.0020,
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.02)),
                                             ),
@@ -1925,7 +1924,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
                                               fontFamily: 'Inter',
-                                              height: height * 0.0020,
+                                              // height: height * 0.0020,
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.02)),
                                         ),

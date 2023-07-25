@@ -44,30 +44,83 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
     //getData();
   }
 
-  // void checkIfAlreadyLoggedIn() async {
-  //   userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-  //   loginData = await SharedPreferences.getInstance();
-  //   newUser = (userDetails.login ?? true);
-  //   if (newUser == false && userDetails.role == 'student') {
-  //     showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return const Center(
-  //               child: CircularProgressIndicator(
-  //                 color: Color.fromRGBO(48, 145, 139, 1),
-  //               ));
-  //         });
-  //     UserDataModel userDataModel =
-  //     await QnaService.getUserDataService(userDetails.userId!,userDetails);
-  //     Navigator.pushNamed(context,
-  //         '/studentAssessment',
-  //         arguments: [regNumber,userDataModel])
-  //         .then((value) {
-  //       regNumberController.clear();
-  //       passWordController.clear();
-  //     });
-  //   }
+  // showDialogSave(BuildContext context, double height,double width,int? code) {
+  //   // set up the buttons
+  //   Widget cancelButton = ElevatedButton(
+  //     style: ElevatedButton.styleFrom(
+  //       minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+  //       shape: RoundedRectangleBorder(      borderRadius:
+  //       BorderRadius
+  //           .circular(
+  //           39),),
+  //       backgroundColor: Colors.white,
+  //       textStyle: TextStyle(
+  //           fontSize: height * 0.02,
+  //           fontFamily: "Inter",
+  //           color: const Color.fromRGBO(48, 145, 139, 1),
+  //           fontWeight: FontWeight.w500),
+  //     ),
+  //     child: Text(
+  //       AppLocalizations.of(context)!.retry,
+  //       //'No',
+  //       style: TextStyle(
+  //           fontSize: height * 0.02,
+  //           fontFamily: "Inter",
+  //           color: const Color.fromRGBO(48, 145, 139, 1),
+  //           fontWeight: FontWeight.w500),
+  //     ),
+  //     onPressed: () {
+  //       Navigator.of(context).pop();
+  //     },
+  //   );
+  //   AlertDialog alert = AlertDialog(
+  //     title: Row(
+  //       children: [
+  //         const Icon(
+  //           Icons.info,
+  //           color: Color.fromRGBO(238, 71, 0, 1),
+  //         ),
+  //         Text(
+  //           AppLocalizations.of(context)!.oops,
+  //           //'Confirm',
+  //           style: TextStyle(
+  //               fontSize: height * 0.02,
+  //               fontFamily: "Inter",
+  //               color: const Color.fromRGBO(0, 106, 100, 1),
+  //               fontWeight: FontWeight.w700),
+  //         ),
+  //       ],
+  //     ),
+  //     content: Text(
+  //       //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+  //       code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
+  //       style: TextStyle(
+  //           fontSize: height * 0.02,
+  //           fontFamily: "Inter",
+  //           color: const Color.fromRGBO(51, 51, 51, 1),
+  //           fontWeight: FontWeight.w400),
+  //     ),
+  //     actions: [
+  //
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: [
+  //           cancelButton,
+  //           SizedBox(height:10.0),
+  //         ],
+  //       ),
+  //
+  //     ],
+  //   );
+  //   // show the dialog
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return alert;
+  //     },
+  //   );
   // }
+
   showDialogSave(BuildContext context, double height,double width,int? code) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
@@ -94,9 +147,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
+        print("INSIDE RETRY ONPRESSED");
         Navigator.of(context).pop();
       },
     );
+    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -105,7 +160,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            AppLocalizations.of(context)!.oops,
+            AppLocalizations.of(context)!.confirm,
             //'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
@@ -117,7 +172,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
       ),
       content: Text(
         //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
-        code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
+         code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -495,26 +550,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             passWordController.clear();
                                           });
                                         }
-                                      } else if (loginResponse.code ==
-                                          400) {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeft,
-                                            child:showDialogSave( context,localHeight,localWidth,loginResponse.code),
-                                          ),
-                                        );
-                                      } else if (loginResponse.code ==
-                                          401) {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeft,
-                                            child: showDialogSave(context,localHeight,localWidth,loginResponse.code),
-                                          ),
-                                        );
+                                      }
+                                      else if (loginResponse.code ==
+                                          400 || loginResponse.code == 401) {
+                                        showDialogSave( context,localHeight,localWidth,loginResponse.code);
                                       }
                                     }
                                   });
@@ -545,7 +584,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      const Size(290, 37),
+                                      Size(localWidth * 0.29, localHeight * 0.03),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -578,7 +617,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      const Size(189, 37),
+                                      Size(localWidth * 0.02, localHeight * 0.03),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -925,6 +964,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 'student');
                                             Navigator.of(context).pop();
 
+                                            print("Login Response Code");
+                                            print(loginResponse.code);
+
                                             if (loginResponse.code == 200) {
                                               //UserDataModel userDataModel = UserDataModel();
                                               //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
@@ -978,26 +1020,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   passWordController.clear();
                                                 });
                                               }
-                                            } else if (loginResponse.code ==
-                                                400) {
-                                              Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
-                                                ),
-                                              );
-                                            } else if (loginResponse.code ==
-                                                401) {
-                                              Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
-                                                ),
-                                              );
+                                            }
+                                            else if (loginResponse.code ==
+                                                400 || loginResponse.code == 401) {
+                                                showDialogSave( context,localHeight,localWidth,loginResponse.code);
+
                                             }
                                           }
                                         });
@@ -1462,26 +1489,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             passWordController.clear();
                                           });
                                         }
-                                      } else if (loginResponse.code ==
-                                          400) {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeft,
-                                            child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
-                                          ),
-                                        );
-                                      } else if (loginResponse.code ==
-                                          401) {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeft,
-                                            child: showDialogSave( context,localHeight,localWidth,loginResponse.code),
-                                          ),
-                                        );
+                                      }
+                                      else if (loginResponse.code ==
+                                          400 || loginResponse.code == 401) {
+                                        showDialogSave(context,localHeight,localWidth,loginResponse.code);
                                       }
                                     }
                                   });

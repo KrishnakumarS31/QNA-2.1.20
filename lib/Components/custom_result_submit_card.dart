@@ -25,6 +25,7 @@ class ResultSubmitCard extends StatelessWidget {
     int? percent = condition ? results!.assessmentResults![index].attemptPercent : 0;
     int? securedMark = condition ? results!.assessmentResults![index].attemptScore : 0;
     int? totalMark = results!.totalScore ?? 0;
+    String? rollNumber = condition ? results!.assessmentResults![index].rollNumber : " ";
 
     if (width > 960) {
       return Padding(
@@ -55,7 +56,7 @@ class ResultSubmitCard extends StatelessWidget {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        assessmentCode,
+                        rollNumber ?? " ",
                         style: TextStyle(
                             fontSize: height * 0.015,
                             color: const Color.fromRGBO(82, 165, 160, 1),
@@ -115,9 +116,7 @@ class ResultSubmitCard extends StatelessWidget {
                     Container(
                       width: width * 0.1,
                       decoration: BoxDecoration(
-                          color: percent! > 50
-                              ? const Color.fromRGBO(82, 165, 160, 1)
-                              : const Color.fromRGBO(255, 166, 0, 1),
+                          color: const Color.fromRGBO(82, 165, 160, 1),
                           borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(20),
                               bottomRight: Radius.circular(20))),
@@ -184,7 +183,7 @@ class ResultSubmitCard extends StatelessWidget {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        assessmentCode,
+                        rollNumber ?? " ",
                         style: TextStyle(
                             fontSize: height * 0.015,
                             color: const Color.fromRGBO(82, 165, 160, 1),
@@ -240,9 +239,7 @@ class ResultSubmitCard extends StatelessWidget {
                 Container(
                   width: width * 0.233,
                   decoration: BoxDecoration(
-                      color: percent! > 50
-                          ? const Color.fromRGBO(82, 165, 160, 1)
-                          : const Color.fromRGBO(255, 166, 0, 1),
+                      color:const Color.fromRGBO(82, 165, 160, 1),
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20))),

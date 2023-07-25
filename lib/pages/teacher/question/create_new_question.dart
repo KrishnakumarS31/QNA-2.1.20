@@ -562,16 +562,6 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       SizedBox(
                                                         width: width * 0.02,
                                                       ),
-                                                      // Text(
-                                                      //   AppLocalizations.of(context)!.delete,
-                                                      //   //"Delete",
-                                                      //   style: TextStyle(
-                                                      //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                      //     fontSize: height * 0.016,
-                                                      //     fontFamily: "Inter",
-                                                      //     fontWeight: FontWeight.w500,
-                                                      //   ),
-                                                      // ),
                                                     ],
                                                   ),
                                                 )
@@ -579,21 +569,20 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 Padding(
                                                   padding: EdgeInsets.only(left: width * 0.02),
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-                                                      Expanded(
-                                                        child: Container(
-                                                          alignment: Alignment.centerLeft,
-                                                          child: Text(
-                                                            AppLocalizations.of(context)!.choices,
-                                                            //"Choices",
-                                                            style: TextStyle(
-                                                              color:
-                                                              const Color.fromRGBO(51, 51, 51, 1),
-                                                              fontSize: height * 0.014,
-                                                              fontFamily: "Inter",
-                                                              fontWeight: FontWeight.w500,
-                                                            ),
+                                                      Container(
+                                                        width: width * 0.655,
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(context)!.choices,
+                                                          //"Choices",
+                                                          style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontSize: height * 0.014,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
                                                           ),
                                                         ),
                                                       ),
@@ -611,20 +600,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
-                                                        width: width * 0.11,
-                                                        // child: Text(
-                                                        //   AppLocalizations.of(context)!.delete,
-                                                        //   textAlign: TextAlign.center,
-                                                        //   //"Delete",
-                                                        //   style: TextStyle(
-                                                        //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                        //     fontSize: height * 0.014,
-                                                        //     fontFamily: "Inter",
-                                                        //     fontWeight: FontWeight.w500,
-                                                        //   ),
-                                                        // ),
-                                                      ),
+
                                                     ],
                                                   ),
                                                 ),
@@ -645,7 +621,12 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i))),
+                                                                  child: Text(String.fromCharCode(97+i),style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                  )),
                                                               Expanded(
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
@@ -709,12 +690,19 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
                                                             left: 8,),
                                                           child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i))),
-                                                              Expanded(
+                                                                  child: Text(String.fromCharCode(97+i),
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                  )),
+                                                              Container(
+                                                                width : width * 0.7,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
                                                                   style: TextStyle(
@@ -746,7 +734,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.13,
+                                                                width: width * 0.05,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
@@ -763,7 +751,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.11,
+                                                                width: width * 0.05,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     removeItem(i);
@@ -781,7 +769,6 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     ],
                                                   ),
                                                 ),
-
 
                                                 _questionTypeValue=="Descriptive"
                                                     ?
@@ -1407,21 +1394,20 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 Padding(
                                                   padding: EdgeInsets.only(left: width * 0.02),
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-                                                      Expanded(
-                                                        child: Container(
-                                                          alignment: Alignment.centerLeft,
-                                                          child: Text(
-                                                            AppLocalizations.of(context)!.choices,
-                                                            //"Choices",
-                                                            style: TextStyle(
-                                                              color:
-                                                              const Color.fromRGBO(51, 51, 51, 1),
-                                                              fontSize: height * 0.014,
-                                                              fontFamily: "Inter",
-                                                              fontWeight: FontWeight.w500,
-                                                            ),
+                                                      Container(
+                                                        width: width * 0.655,
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(context)!.choices,
+                                                          //"Choices",
+                                                          style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontSize: height * 0.014,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
                                                           ),
                                                         ),
                                                       ),
@@ -1439,20 +1425,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(
-                                                        width: width * 0.11,
-                                                        // child: Text(
-                                                        //   AppLocalizations.of(context)!.delete,
-                                                        //   textAlign: TextAlign.center,
-                                                        //   //"Delete",
-                                                        //   style: TextStyle(
-                                                        //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                        //     fontSize: height * 0.014,
-                                                        //     fontFamily: "Inter",
-                                                        //     fontWeight: FontWeight.w500,
-                                                        //   ),
-                                                        // ),
-                                                      ),
+
                                                     ],
                                                   ),
                                                 ),
@@ -1542,7 +1515,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
                                                             left: 8,),
                                                           child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
@@ -1553,7 +1526,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
                                                                   )),
-                                                              Expanded(
+                                                              Container(
+                                                                width : width * 0.7,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
                                                                   style: TextStyle(
@@ -1585,7 +1559,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.13,
+                                                                width: width * 0.05,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
@@ -1602,7 +1576,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.11,
+                                                                width: width * 0.05,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     removeItem(i);
@@ -2318,17 +2292,35 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 Padding(
                                                   padding: EdgeInsets.only(left: width * 0.02),
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-                                                      Expanded(
+                                                      Container(
+                                                        width:width * 0.23,
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(context)!.choices,
+                                                          //"Choices",
+                                                          style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontSize: height * 0.014,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(left: width * 0.07),
                                                         child: Container(
-                                                          alignment: Alignment.centerLeft,
+
+                                                          //alignment: Alignment.center,
+                                                          width: width * 0.05,
                                                           child: Text(
-                                                            AppLocalizations.of(context)!.choices,
-                                                            //"Choices",
+                                                            textAlign: TextAlign.right,
+                                                            AppLocalizations.of(context)!.correct_answer,
+                                                            //"Correct\nAnswer",
                                                             style: TextStyle(
-                                                              color:
-                                                              const Color.fromRGBO(51, 51, 51, 1),
+                                                              color: const Color.fromRGBO(51, 51, 51, 1),
                                                               fontSize: height * 0.014,
                                                               fontFamily: "Inter",
                                                               fontWeight: FontWeight.w500,
@@ -2336,25 +2328,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Container(
 
-                                                        alignment: Alignment.center,
-                                                        width: width * 0.05,
-                                                        child: Text(
-                                                          textAlign: TextAlign.right,
-                                                          AppLocalizations.of(context)!.correct_answer,
-                                                          //"Correct\nAnswer",
-                                                          style: TextStyle(
-                                                            color: const Color.fromRGBO(51, 51, 51, 1),
-                                                            fontSize: height * 0.014,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: width * 0.035,
-                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -2381,44 +2355,40 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                         color: Colors.black,
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.018),
+                                                                        fontSize: height * 0.020),
                                                                   )),
-                                                              Align(
-                                                                alignment:Alignment.centerLeft,
-                                                                child: Expanded(
-                                                                  child: SizedBox(
-                                                                    //height: height * 0.05,
-                                                                    width : width * 0.36,
-                                                                    child: TextFormField(
-                                                                      controller: chooses[i],
-                                                                      style: TextStyle(
-                                                                          color: Colors.black,
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.multiline,
-                                                                      maxLines: null,
-                                                                      decoration: InputDecoration(
-                                                                        floatingLabelBehavior:
-                                                                        FloatingLabelBehavior.always,
-                                                                        hintStyle: TextStyle(
-                                                                            color: const Color.fromRGBO(
-                                                                                102, 102, 102, 0.3),
-                                                                            fontFamily: 'Inter',
-                                                                            fontWeight: FontWeight.w400,
-                                                                            fontSize: height * 0.02),
-                                                                        hintText: AppLocalizations.of(context)!
-                                                                            .type_op_here,
-                                                                        //"Type Option Here",
-                                                                        border: OutlineInputBorder(
-                                                                            borderRadius:
-                                                                            BorderRadius.circular(5)),
-                                                                      ),
-                                                                      onChanged: (val) {
-                                                                        tempChoiceList[i].choiceText = val;
-                                                                      },
-                                                                    ),
+
+                                                              SizedBox(
+                                                                //height: height * 0.05,
+                                                                width : width * 0.28,
+                                                                child: TextFormField(
+                                                                  controller: chooses[i],
+                                                                  style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                  keyboardType: TextInputType.multiline,
+                                                                  maxLines: null,
+                                                                  decoration: InputDecoration(
+                                                                    floatingLabelBehavior:
+                                                                    FloatingLabelBehavior.always,
+                                                                    hintStyle: TextStyle(
+                                                                        color: const Color.fromRGBO(
+                                                                            102, 102, 102, 0.3),
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.02),
+                                                                    hintText: AppLocalizations.of(context)!
+                                                                        .type_op_here,
+                                                                    //"Type Option Here",
+                                                                    border: OutlineInputBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius.circular(5)),
                                                                   ),
+                                                                  onChanged: (val) {
+                                                                    tempChoiceList[i].choiceText = val;
+                                                                  },
                                                                 ),
                                                               ),
                                                               SizedBox(
@@ -2464,41 +2434,40 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               ),
                                                               Align(
                                                                 alignment:Alignment.centerLeft,
-                                                                child: Expanded(
-                                                                  child: SizedBox(
-                                                                    //height: height * 0.05,
-                                                                    width : width * 0.36,
-                                                                    child: TextFormField(
-                                                                      controller: chooses[i],
-                                                                      style: TextStyle(
-                                                                          color: Colors.black,
+                                                                child: SizedBox(
+                                                                  //height: height * 0.05,
+                                                                  width : width * 0.28,
+                                                                  child: TextFormField(
+                                                                    controller: chooses[i],
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
+                                                                    decoration: InputDecoration(
+                                                                      floatingLabelBehavior:
+                                                                      FloatingLabelBehavior.always,
+                                                                      hintStyle: TextStyle(
+                                                                          color: const Color.fromRGBO(
+                                                                              102, 102, 102, 0.3),
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.multiline,
-                                                                      maxLines: null,
-                                                                      decoration: InputDecoration(
-                                                                        floatingLabelBehavior:
-                                                                        FloatingLabelBehavior.always,
-                                                                        hintStyle: TextStyle(
-                                                                            color: const Color.fromRGBO(
-                                                                                102, 102, 102, 0.3),
-                                                                            fontFamily: 'Inter',
-                                                                            fontWeight: FontWeight.w400,
-                                                                            fontSize: height * 0.02),
-                                                                        hintText: AppLocalizations.of(context)!
-                                                                            .type_op_here,
-                                                                        //"Type Option Here",
-                                                                        border: OutlineInputBorder(
-                                                                            borderRadius:
-                                                                            BorderRadius.circular(5)),
-                                                                      ),
-                                                                      onChanged: (val) {
-                                                                        tempChoiceList[i].choiceText = val;
-                                                                      },
+                                                                          fontSize: height * 0.02),
+                                                                      hintText: AppLocalizations.of(context)!
+                                                                          .type_op_here,
+                                                                      //"Type Option Here",
+                                                                      border: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(5)),
                                                                     ),
+                                                                    onChanged: (val) {
+                                                                      tempChoiceList[i].choiceText = val;
+                                                                    },
                                                                   ),
                                                                 ),
+
                                                               ),
                                                               Container(
 
@@ -2589,6 +2558,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                         ),
                                         SizedBox(
                                           height: height * 0.015,),
+
 
                                         //Advisor Container
                                         Container(
@@ -3143,16 +3113,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       SizedBox(
                                                         width: width * 0.02,
                                                       ),
-                                                      // Text(
-                                                      //   AppLocalizations.of(context)!.delete,
-                                                      //   //"Delete",
-                                                      //   style: TextStyle(
-                                                      //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                      //     fontSize: height * 0.016,
-                                                      //     fontFamily: "Inter",
-                                                      //     fontWeight: FontWeight.w500,
-                                                      //   ),
-                                                      // ),
+
                                                     ],
                                                   ),
                                                 )
@@ -3160,17 +3121,34 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 Padding(
                                                   padding: EdgeInsets.only(left: width * 0.02),
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-                                                      Expanded(
+                                                      Container(
+                                                        width:width * 0.23,
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(context)!.choices,
+                                                          //"Choices",
+                                                          style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontSize: height * 0.014,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(left:width * 0.065),
                                                         child: Container(
-                                                          alignment: Alignment.centerLeft,
+                                                          //alignment: Alignment.center,
+                                                          width: width * 0.05,
                                                           child: Text(
-                                                            AppLocalizations.of(context)!.choices,
-                                                            //"Choices",
+                                                            textAlign: TextAlign.right,
+                                                            AppLocalizations.of(context)!.correct_answer,
+                                                            //"Correct\nAnswer",
                                                             style: TextStyle(
-                                                              color:
-                                                              const Color.fromRGBO(51, 51, 51, 1),
+                                                              color: const Color.fromRGBO(51, 51, 51, 1),
                                                               fontSize: height * 0.014,
                                                               fontFamily: "Inter",
                                                               fontWeight: FontWeight.w500,
@@ -3178,25 +3156,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Container(
 
-                                                        alignment: Alignment.center,
-                                                        width: width * 0.05,
-                                                        child: Text(
-                                                          textAlign: TextAlign.right,
-                                                          AppLocalizations.of(context)!.correct_answer,
-                                                          //"Correct\nAnswer",
-                                                          style: TextStyle(
-                                                            color: const Color.fromRGBO(51, 51, 51, 1),
-                                                            fontSize: height * 0.014,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: width * 0.035,
-                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -3227,41 +3187,40 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                   )),
                                                               Align(
                                                                 alignment:Alignment.centerLeft,
-                                                                child: Expanded(
-                                                                  child: SizedBox(
-                                                                    //height: height * 0.05,
-                                                                    width : width * 0.36,
-                                                                    child: TextFormField(
-                                                                      controller: chooses[i],
-                                                                      style: TextStyle(
-                                                                          color: Colors.black,
+                                                                child: SizedBox(
+                                                                  //height: height * 0.05,
+                                                                  width : width * 0.28,
+                                                                  child: TextFormField(
+                                                                    controller: chooses[i],
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
+                                                                    decoration: InputDecoration(
+                                                                      floatingLabelBehavior:
+                                                                      FloatingLabelBehavior.always,
+                                                                      hintStyle: TextStyle(
+                                                                          color: const Color.fromRGBO(
+                                                                              102, 102, 102, 0.3),
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.multiline,
-                                                                      maxLines: null,
-                                                                      decoration: InputDecoration(
-                                                                        floatingLabelBehavior:
-                                                                        FloatingLabelBehavior.always,
-                                                                        hintStyle: TextStyle(
-                                                                            color: const Color.fromRGBO(
-                                                                                102, 102, 102, 0.3),
-                                                                            fontFamily: 'Inter',
-                                                                            fontWeight: FontWeight.w400,
-                                                                            fontSize: height * 0.02),
-                                                                        hintText: AppLocalizations.of(context)!
-                                                                            .type_op_here,
-                                                                        //"Type Option Here",
-                                                                        border: OutlineInputBorder(
-                                                                            borderRadius:
-                                                                            BorderRadius.circular(5)),
-                                                                      ),
-                                                                      onChanged: (val) {
-                                                                        tempChoiceList[i].choiceText = val;
-                                                                      },
+                                                                          fontSize: height * 0.02),
+                                                                      hintText: AppLocalizations.of(context)!
+                                                                          .type_op_here,
+                                                                      //"Type Option Here",
+                                                                      border: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(5)),
                                                                     ),
+                                                                    onChanged: (val) {
+                                                                      tempChoiceList[i].choiceText = val;
+                                                                    },
                                                                   ),
                                                                 ),
+
                                                               ),
                                                               SizedBox(
                                                                 width: width * 0.05,
@@ -3306,41 +3265,40 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                               ),
                                                               Align(
                                                                 alignment:Alignment.centerLeft,
-                                                                child: Expanded(
-                                                                  child: SizedBox(
-                                                                    //height: height * 0.05,
-                                                                    width : width * 0.36,
-                                                                    child: TextFormField(
-                                                                      controller: chooses[i],
-                                                                      style: TextStyle(
-                                                                          color: Colors.black,
+                                                                child: SizedBox(
+                                                                  //height: height * 0.05,
+                                                                  width : width * 0.28,
+                                                                  child: TextFormField(
+                                                                    controller: chooses[i],
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
+                                                                    decoration: InputDecoration(
+                                                                      floatingLabelBehavior:
+                                                                      FloatingLabelBehavior.always,
+                                                                      hintStyle: TextStyle(
+                                                                          color: const Color.fromRGBO(
+                                                                              102, 102, 102, 0.3),
                                                                           fontFamily: 'Inter',
                                                                           fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.018),
-                                                                      keyboardType: TextInputType.multiline,
-                                                                      maxLines: null,
-                                                                      decoration: InputDecoration(
-                                                                        floatingLabelBehavior:
-                                                                        FloatingLabelBehavior.always,
-                                                                        hintStyle: TextStyle(
-                                                                            color: const Color.fromRGBO(
-                                                                                102, 102, 102, 0.3),
-                                                                            fontFamily: 'Inter',
-                                                                            fontWeight: FontWeight.w400,
-                                                                            fontSize: height * 0.02),
-                                                                        hintText: AppLocalizations.of(context)!
-                                                                            .type_op_here,
-                                                                        //"Type Option Here",
-                                                                        border: OutlineInputBorder(
-                                                                            borderRadius:
-                                                                            BorderRadius.circular(5)),
-                                                                      ),
-                                                                      onChanged: (val) {
-                                                                        tempChoiceList[i].choiceText = val;
-                                                                      },
+                                                                          fontSize: height * 0.02),
+                                                                      hintText: AppLocalizations.of(context)!
+                                                                          .type_op_here,
+                                                                      //"Type Option Here",
+                                                                      border: OutlineInputBorder(
+                                                                          borderRadius:
+                                                                          BorderRadius.circular(5)),
                                                                     ),
+                                                                    onChanged: (val) {
+                                                                      tempChoiceList[i].choiceText = val;
+                                                                    },
                                                                   ),
                                                                 ),
+
                                                               ),
                                                               Container(
 

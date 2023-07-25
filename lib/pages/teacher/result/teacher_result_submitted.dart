@@ -533,16 +533,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               ),
-                                              Row(
-                                                children: [
-                                                  IconButton(onPressed: (){}, icon: Icon(Icons.mail_outline,color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                    size: height * 0.04,), ),
-                                                  IconButton(onPressed: (){}, icon: Icon(Icons.print_outlined,color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                    size: height * 0.04,), )
-                                                ],
-                                              )
                                             ],
                                           ),
                                         ),
@@ -1145,16 +1135,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             fontWeight: FontWeight.w700),
                                       ),
                                     ),
-                                    Row(
-                                      children: [
-                                        IconButton(onPressed: (){}, icon: Icon(Icons.mail_outline,color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                          size: height * 0.04,), ),
-                                        IconButton(onPressed: (){}, icon: Icon(Icons.print_outlined,color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                          size: height * 0.04,), )
-                                      ],
-                                    )
                                   ],
                                 ),
                               ),

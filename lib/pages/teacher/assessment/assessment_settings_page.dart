@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
@@ -38,6 +40,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
   //List<Question> finalQuesList = [];
   UserDetails userDetails=UserDetails();
   final formKey = GlobalKey<FormState>();
+  final formKeyFortime = GlobalKey<FormState>();
   TextEditingController subjectController = TextEditingController();
   TextEditingController degreeController = TextEditingController();
   TextEditingController topicController = TextEditingController();
@@ -58,6 +61,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
   TextEditingController timeLimitController = TextEditingController();
   TextEditingController startTimeController = TextEditingController();
   TextEditingController endTimeController = TextEditingController();
+  TextEditingController hourController = TextEditingController();
+  TextEditingController minuteController = TextEditingController();
   int numberOfAttempts=1;
   bool allowGuestStudent=false;
   bool showAnswerSheetPractice=false;
@@ -66,6 +71,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
   bool showEmail=false;
   bool showWhatsappGroup=false;
   int totalMark=0;
+  TimeOfDay? selectedTime;
+  TimeOfDay? timeSelected;
+  static final RegExp numberRegExp = RegExp('[a-zA-Z]');
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
     Widget cancelButton = ElevatedButton(
@@ -107,8 +115,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
         questionList.removeAt(index);
         setState(() {
         });
@@ -1618,8 +1624,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 ));
                                           });
                                       ResponseEntity statusCode = ResponseEntity();
-                                      print("length");
-                                      print(assessment.questions?.length);
                                       Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                       statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                       if (statusCode.code == 200) {
@@ -1642,11 +1646,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                         );
                                       }
                                       else{
-                                        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                        print(assessment);
-                                        print(statusCode.code);
-                                        print(statusCode.data);
-                                        print(statusCode.message);
                                       }
                                       //Navigator.of(context).pop();
                                     },
@@ -1961,6 +1960,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                   ),
                                 ),
                                 category=='Test'?
+
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
@@ -2010,167 +2010,87 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             ),
                                           ),
                                         ),
-                                        GestureDetector(
-                                          onTap: (){
-                                            showDialog(
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                  return Dialog(
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(17))),
-                                                    child: SingleChildScrollView(
-                                                      scrollDirection: Axis.vertical,
-                                                      child: Container(
-                                                        height: height * 0.3,
-                                                        width: width * 0.3,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color: Colors.black38,
-                                                              width: 1),
-                                                          borderRadius:
-                                                          BorderRadius.circular(17),
-                                                        ),
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: width * 0.02,
-                                                              right: width * 0.02,
-                                                              top: height * 0.02,
-                                                              bottom: height * 0.02),
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                              // Container(
-                                                              //   width: width * 0.5,
-                                                              //   child: Row(
-                                                              //     children: [
-                                                              //       SizedBox(width: width*0.12,),
-                                                              //       SizedBox(
-                                                              //         width: width * 0.12,
-                                                              //         child: Text(
-                                                              //           "HH",
-                                                              //           style: TextStyle(
-                                                              //             fontSize: height * 0.020,
-                                                              //             fontFamily: "Inter",
-                                                              //             fontWeight: FontWeight.w700,
-                                                              //             color:
-                                                              //             const Color.fromRGBO(102, 102, 102, 1),
-                                                              //           ),
-                                                              //         ),
-                                                              //       ),
-                                                              //       SizedBox(
-                                                              //         width: width * 0.1,
-                                                              //         child: Text(
-                                                              //           "MM",
-                                                              //           style: TextStyle(
-                                                              //             fontSize: height * 0.020,
-                                                              //             fontFamily: "Inter",
-                                                              //             fontWeight: FontWeight.w700,
-                                                              //             color:
-                                                              //             const Color.fromRGBO(102, 102, 102, 1),
-                                                              //           ),
-                                                              //         ),
-                                                              //       ),
-                                                              //       Text(
-                                                              //         "  ",
-                                                              //         style: TextStyle(
-                                                              //           fontSize: height * 0.020,
-                                                              //           fontFamily: "Inter",
-                                                              //           fontWeight: FontWeight.w700,
-                                                              //           color:
-                                                              //           const Color.fromRGBO(102, 102, 102, 1),
-                                                              //         ),
-                                                              //       ),
-                                                              //     ],
-                                                              //   ),
-                                                              // ),
-                                                              Container(
-                                                                width: width * 0.3,
-                                                                child: TimePickerSpinner(
-                                                                  time: DateTime(2000,1,1,0,0),
-                                                                  is24HourMode: true,
-                                                                  normalTextStyle: TextStyle(
-                                                                    fontSize: height * 0.02,
-                                                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                                                    fontFamily: "Inter",
-                                                                    fontWeight: FontWeight.w400,
-                                                                  ),
-                                                                  highlightedTextStyle: TextStyle(
-                                                                    fontSize: height * 0.02,
-                                                                    color: Color.fromRGBO(51, 51, 51, 1),
-                                                                    fontFamily: "Inter",
-                                                                    fontWeight: FontWeight.w700,
-                                                                  ),
-                                                                  spacing: width * 0.002,
-                                                                  itemHeight: height * 0.05,
-                                                                  isForce2Digits: true,
-                                                                  onTimeChange: (time) {
-                                                                    setState(() {
-                                                                      timeLimit = time;
-                                                                    });
-                                                                  },
-                                                                ),
-                                                              ),
-                                                              ElevatedButton(
-                                                                style: ElevatedButton.styleFrom(
-                                                                  minimumSize: Size(width* 0.03, height*0.04),
-                                                                  side: const BorderSide(
-                                                                      color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                                  ),
-                                                                  backgroundColor:
-                                                                  Color.fromRGBO(82, 165, 160, 1),
-                                                                  //minimumSize: Size(280, 48),
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius: BorderRadius.circular(35),
-                                                                  ),
-                                                                ),
-                                                                //shape: StadiumBorder(),
-                                                                onPressed: () {
-                                                                  timeLimitController.text="${timeLimit.hour}h ${timeLimit.minute}m";
-                                                                  Navigator.of(context).pop();
-                                                                },
-                                                                child: Text(
-                                                                  //AppLocalizations.of(context)!.edit_button,
-                                                                  'OK',
-                                                                  style: TextStyle(
-                                                                      fontSize: height * 0.02,
-                                                                      fontFamily: "Inter",
-                                                                      color: Colors.white,
-                                                                      fontWeight: FontWeight.w400),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
+                                        Padding(
+                                          padding:  EdgeInsets.only(left : width * 0.03),
+                                          child: Form(
+                                            key:formKeyFortime,
+                                            child: Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: width * 0.05,
+                                                  child: TextFormField(
+                                                    onChanged: (val) {
+                                                      formKeyFortime.currentState!.validate();
+                                                    },
+                                                    validator: (value)
+                                                    {
+                                                      if(value != null && numberRegExp.hasMatch(value))
+                                                      {
+                                                        return "Enter Digits Only";
+                                                      }
+                                                    },
+                                                    enabled: true,
+                                                    controller: hourController,
+                                                    textAlign: TextAlign.center ,
+                                                    keyboardType: TextInputType.text,
+                                                    decoration: InputDecoration(
+                                                      hintStyle: TextStyle(
+                                                          color:  hourController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.018),
+                                                      hintText: "HH",
+                                                      enabledBorder: UnderlineInputBorder(
+                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                      ),
+                                                      focusedBorder: UnderlineInputBorder(
+                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
-                                                  );
-                                                });
-                                          },
-                                          child: Padding(
-                                            padding:  EdgeInsets.only(left : width * 0.03),
-                                            child: SizedBox(
-                                              width: width * 0.05,
-                                              child: TextField(
-                                                enabled: false,
-                                                controller: timeLimitController,
-                                                keyboardType: TextInputType.text,
-                                                decoration: InputDecoration(
-
-                                                  hintStyle: TextStyle(
-                                                      color:  timeLimitController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: height * 0.02),
-                                                  hintText: "HH:MM",
-                                                  enabledBorder: UnderlineInputBorder(
-                                                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                  ),
-                                                  focusedBorder: UnderlineInputBorder(
-                                                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                   ),
                                                 ),
-                                              ),
+                                                Text(":",
+                                                  style:TextStyle(
+                                                    color:  hourController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: height * 0.018),),
+                                                SizedBox(
+                                                  width: width * 0.05,
+                                                  child: TextFormField(
+                                                    onChanged: (val) {
+                                                      formKeyFortime.currentState!.validate();
+                                                    },
+                                                    validator: (value)
+                                                    {
+                                                      if(value != null && numberRegExp.hasMatch(value))
+                                                        {
+                                                          return "Enter Digits Only";
+                                                        }
+                                                          },
+                                                    //inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                                                    enabled: true,
+                                                    controller: minuteController,
+                                                    textAlign: TextAlign.center ,
+                                                    keyboardType: TextInputType.number,
+                                                    decoration: InputDecoration(
+                                                      hintStyle: TextStyle(
+                                                          color:  minuteController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.018),
+                                                      hintText: "MM",
+                                                      enabledBorder: UnderlineInputBorder(
+                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                      ),
+                                                      focusedBorder: UnderlineInputBorder(
+                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+
+                                              ],
                                             ),
                                           ),
                                         ),
@@ -2188,92 +2108,35 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                           ),
                                         ),
                                         GestureDetector(
-                                          onTap: (){
-                                            showDialog(
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                  return Dialog(
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(17))),
-                                                    child: SingleChildScrollView(
-                                                      scrollDirection: Axis.vertical,
-                                                      child: Container(
-                                                        height: height * 0.3,
-                                                        width: width * 0.3,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color: Colors.black38,
-                                                              width: 1),
-                                                          borderRadius:
-                                                          BorderRadius.circular(17),
-                                                        ),
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: width * 0.02,
-                                                              right: width * 0.02,
-                                                              top: height * 0.02,
-                                                              bottom: height * 0.02),
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                              Container(
-                                                                height:height*0.2,
-                                                                child: CupertinoDatePicker(
-                                                                  initialDateTime: DateTime.now(),
-                                                                  onDateTimeChanged: (DateTime newdate) {
-                                                                    setState(() {
-                                                                      startDate=newdate;
-                                                                    });
-                                                                  },
-                                                                  use24hFormat: true,
-                                                                  maximumDate: DateTime(3000, 12, 30),
-                                                                  minimumYear: 2023,
-                                                                  maximumYear: 3000,
-                                                                  minuteInterval: 1,
-                                                                  mode: CupertinoDatePickerMode.dateAndTime,
-                                                                ),
-                                                              ),
-                                                              ElevatedButton(
-                                                                style: ElevatedButton.styleFrom(
-                                                                  minimumSize: Size(width* 0.03, height*0.04),
-                                                                  side: const BorderSide(
-                                                                      color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                                  ),
-                                                                  backgroundColor:
-                                                                  Color.fromRGBO(82, 165, 160, 1),
-                                                                  //minimumSize: Size(280, 48),
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius: BorderRadius.circular(35),
-                                                                  ),
-                                                                ),
-                                                                //shape: StadiumBorder(),
-                                                                onPressed: () {
-                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
-                                                                  Navigator.of(context).pop();
-                                                                },
-                                                                child: Text(
-                                                                  //AppLocalizations.of(context)!.edit_button,
-                                                                  'OK',
-                                                                  style: TextStyle(
-                                                                      fontSize: height * 0.02,
-                                                                      fontFamily: "Inter",
-                                                                      color: Colors.white,
-                                                                      fontWeight: FontWeight.w400),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                });
+                                          onTap: () async {
+                                            startDate = (await showOmniDateTimePicker(
+                                              context: context,
+                                              // primaryColor: Colors.cyan,
+                                              // backgroundColor: Colors.grey[900],
+                                              // calendarTextColor: Colors.white,
+                                              // tabTextColor: Colors.white,
+                                              // unselectedTabBackgroundColor: Colors.grey[700],
+                                              // buttonTextColor: Colors.white,
+                                              // timeSpinnerTextStyle:
+                                              // const TextStyle(color: Colors.white70, fontSize: 18),
+                                              // timeSpinnerHighlightedTextStyle:
+                                              // const TextStyle(color: Colors.white, fontSize: 24),
+                                              is24HourMode: false,
+                                              isShowSeconds: false,
+                                              initialDate: DateTime.now(),
+                                              firstDate:
+                                              DateTime(1600).subtract(const Duration(days: 3652)),
+                                              lastDate: DateTime.now().add(
+                                                const Duration(days: 3652),
+                                              ),
+                                              //borderRadius: BorderRadiusGeometry.lerp(, b, t),
+                                            ))! ;
+                                            startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                           },
                                           child: Padding(
                                             padding:  EdgeInsets.only(left : width * 0.03),
                                             child: SizedBox(
-                                              width: width * 0.11,
+                                              width: width * 0.2,
                                               child: TextField(
                                                 enabled: false,
                                                 controller: startTimeController,
@@ -2310,92 +2173,114 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                           ),
                                         ),
                                         GestureDetector(
-                                          onTap: (){
-                                            showDialog(
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                  return Dialog(
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(17))),
-                                                    child: SingleChildScrollView(
-                                                      scrollDirection: Axis.vertical,
-                                                      child: Container(
-                                                        height: height * 0.3,
-                                                        width: width * 0.3,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color: Colors.black38,
-                                                              width: 1),
-                                                          borderRadius:
-                                                          BorderRadius.circular(17),
-                                                        ),
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: width * 0.02,
-                                                              right: width * 0.02,
-                                                              top: height * 0.02,
-                                                              bottom: height * 0.02),
-                                                          child: Column(
-                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                            children: [
-                                                              Container(
-                                                                height:height*0.2,
-                                                                child: CupertinoDatePicker(
-                                                                  initialDateTime: DateTime.now(),
-                                                                  onDateTimeChanged: (DateTime newdate) {
-                                                                    setState(() {
-                                                                      endDate=newdate;
-                                                                    });
-                                                                  },
-                                                                  use24hFormat: true,
-                                                                  maximumDate: DateTime(3000, 12, 30),
-                                                                  minimumYear: 2023,
-                                                                  maximumYear: 3000,
-                                                                  minuteInterval: 1,
-                                                                  mode: CupertinoDatePickerMode.dateAndTime,
-                                                                ),
-                                                              ),
-                                                              ElevatedButton(
-                                                                style: ElevatedButton.styleFrom(
-                                                                  minimumSize: Size(width* 0.03, height*0.04),
-                                                                  side: const BorderSide(
-                                                                      color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                                  ),
-                                                                  backgroundColor:
-                                                                  Color.fromRGBO(82, 165, 160, 1),
-                                                                  //minimumSize: Size(280, 48),
-                                                                  shape: RoundedRectangleBorder(
-                                                                    borderRadius: BorderRadius.circular(35),
-                                                                  ),
-                                                                ),
-                                                                //shape: StadiumBorder(),
-                                                                onPressed: () {
-                                                                  endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
-                                                                  Navigator.of(context).pop();
-                                                                },
-                                                                child: Text(
-                                                                  //AppLocalizations.of(context)!.edit_button,
-                                                                  'OK',
-                                                                  style: TextStyle(
-                                                                      fontSize: height * 0.02,
-                                                                      fontFamily: "Inter",
-                                                                      color: Colors.white,
-                                                                      fontWeight: FontWeight.w400),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                });
+                                          onTap: () async {
+                                            // showDialog(
+                                            //     context: context,
+                                            //     builder: (BuildContext context) {
+                                            //       return Dialog(
+                                            //         shape: const RoundedRectangleBorder(
+                                            //             borderRadius: BorderRadius.all(
+                                            //                 Radius.circular(17))),
+                                            //         child: SingleChildScrollView(
+                                            //           scrollDirection: Axis.vertical,
+                                            //           child: Container(
+                                            //             height: height * 0.3,
+                                            //             width: width * 0.3,
+                                            //             decoration: BoxDecoration(
+                                            //               border: Border.all(
+                                            //                   color: Colors.black38,
+                                            //                   width: 1),
+                                            //               borderRadius:
+                                            //               BorderRadius.circular(17),
+                                            //             ),
+                                            //             child: Padding(
+                                            //               padding: EdgeInsets.only(
+                                            //                   left: width * 0.02,
+                                            //                   right: width * 0.02,
+                                            //                   top: height * 0.02,
+                                            //                   bottom: height * 0.02),
+                                            //               child: Column(
+                                            //                 mainAxisAlignment: MainAxisAlignment.center,
+                                            //                 children: [
+                                            //                   Container(
+                                            //                     height:height*0.2,
+                                            //                     child: CupertinoDatePicker(
+                                            //                       initialDateTime: DateTime.now(),
+                                            //                       onDateTimeChanged: (DateTime newdate) {
+                                            //                         setState(() {
+                                            //                           endDate=newdate;
+                                            //                         });
+                                            //                       },
+                                            //                       use24hFormat: true,
+                                            //                       maximumDate: DateTime(3000, 12, 30),
+                                            //                       minimumYear: 2023,
+                                            //                       maximumYear: 3000,
+                                            //                       minuteInterval: 1,
+                                            //                       mode: CupertinoDatePickerMode.dateAndTime,
+                                            //                     ),
+                                            //                   ),
+                                            //                   ElevatedButton(
+                                            //                     style: ElevatedButton.styleFrom(
+                                            //                       minimumSize: Size(width* 0.03, height*0.04),
+                                            //                       side: const BorderSide(
+                                            //                           color: Color.fromRGBO(153, 153, 153, 0.5)
+                                            //                       ),
+                                            //                       backgroundColor:
+                                            //                       Color.fromRGBO(82, 165, 160, 1),
+                                            //                       //minimumSize: Size(280, 48),
+                                            //                       shape: RoundedRectangleBorder(
+                                            //                         borderRadius: BorderRadius.circular(35),
+                                            //                       ),
+                                            //                     ),
+                                            //                     //shape: StadiumBorder(),
+                                            //                     onPressed: () {
+                                            //                       endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
+                                            //                       Navigator.of(context).pop();
+                                            //                     },
+                                            //                     child: Text(
+                                            //                       //AppLocalizations.of(context)!.edit_button,
+                                            //                       'OK',
+                                            //                       style: TextStyle(
+                                            //                           fontSize: height * 0.02,
+                                            //                           fontFamily: "Inter",
+                                            //                           color: Colors.white,
+                                            //                           fontWeight: FontWeight.w400),
+                                            //                     ),
+                                            //                   ),
+                                            //                 ],
+                                            //               ),
+                                            //             ),
+                                            //           ),
+                                            //         ),
+                                            //       );
+                                            //     });
+                                            endDate = (await showOmniDateTimePicker(
+                                            context: context,
+                                            // primaryColor: Colors.cyan,
+                                            // backgroundColor: Colors.grey[900],
+                                            // calendarTextColor: Colors.white,
+                                            // tabTextColor: Colors.white,
+                                            // unselectedTabBackgroundColor: Colors.grey[700],
+                                            // buttonTextColor: Colors.white,
+                                            // timeSpinnerTextStyle:
+                                            // const TextStyle(color: Colors.white70, fontSize: 18),
+                                            // timeSpinnerHighlightedTextStyle:
+                                            // const TextStyle(color: Colors.white, fontSize: 24),
+                                            is24HourMode: false,
+                                            isShowSeconds: false,
+                                                initialDate: DateTime.now(),
+                                            // firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
+                                            // lastDate: DateTime.now().add(
+                                            // const Duration(days: 3652),
+                                            // ),
+                                            //borderRadius: BorderRadiusGeometry.lerp(, b, t),
+                                            ))! ;
+                                            endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
                                           },
                                           child: Padding(
-                                            padding:  EdgeInsets.only(left : width * 0.03,bottom: width * 0.01),
+                                            padding:  EdgeInsets.only(left : width * 0.03),
                                             child: SizedBox(
-                                              width: width * 0.11,
+                                              width: width * 0.2,
                                               child: TextField(
                                                 enabled: false,
                                                 controller: endTimeController,
@@ -2422,7 +2307,10 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       ],
                                     ),
                                   ),
-                                ):SizedBox(height:1.0),
+                                )
+                                    :
+
+                                SizedBox(height:1.0),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
@@ -2849,6 +2737,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () async {
+                                      int hour = hourController.text != null ? int.parse(hourController.text.toString()) : 0;
+                                      int minute = minuteController.text != null ? int.parse(minuteController.text.toString()) : 0;
                                       assessment.userId=userDetails.userId;
                                       assessment.totalQuestions=questionList.length;
                                       assessment.assessmentType=category=="Test"?'test':'practice';
@@ -2868,7 +2758,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessment.assessmentSettings = assessmentSettings;
                                       assessment.assessmentStartdate = startDate.microsecondsSinceEpoch;
                                       assessment.assessmentEnddate = endDate.microsecondsSinceEpoch;
-                                      assessment.assessmentDuration = (timeLimit.hour * 60) + timeLimit.minute;
+                                      assessment.assessmentDuration = (hour * 60) + minute;
                                       int totalMark=0;
                                       for(int i=0;i<questionList.length;i++){
                                         Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
@@ -2924,6 +2814,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 children: [
                                   ElevatedButton(
                                     onPressed: () async {
+                                      int hour = hourController.text != null ? int.parse(hourController.text.toString()) : 0;
+                                      int minute = minuteController.text != null ? int.parse(minuteController.text.toString()) : 0;
                                       assessment.questions=[];
                                       assessment.userId=userDetails.userId;
                                       assessment.totalQuestions=questionList.length;
@@ -2944,7 +2836,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessment.assessmentSettings = assessmentSettings;
                                       assessment.assessmentStartdate = startDate.microsecondsSinceEpoch;
                                       assessment.assessmentEnddate = endDate.microsecondsSinceEpoch;
-                                      assessment.assessmentDuration = (timeLimit.hour * 60) + timeLimit.minute;
+                                      assessment.assessmentDuration = (hour * 60) + minute;
                                       int totalMark=0;
                                       for(int i=0;i<questionList.length;i++){
                                         Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
@@ -2963,8 +2855,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 ));
                                           });
                                       ResponseEntity statusCode = ResponseEntity();
-                                      print("length");
-                                      print(assessment.questions?.length);
                                       Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                       statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                       if (statusCode.code == 200) {
@@ -2987,11 +2877,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                         );
                                       }
                                       else{
-                                        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                        print(assessment);
-                                        print(statusCode.code);
-                                        print(statusCode.data);
-                                        print(statusCode.message);
                                       }
                                       //Navigator.of(context).pop();
                                     },
@@ -3230,7 +3115,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                               color: Color.fromRGBO(153, 153, 153, 0.5)
                                                           ),
                                                           backgroundColor:
-                                                          category=="Test"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                          category=="Test"?
+                                                          Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
                                                           //minimumSize: const Size(280, 48),
                                                           shape: RoundedRectangleBorder(
                                                             borderRadius: BorderRadius.circular(5),
@@ -3790,7 +3676,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             ],
                                           ),
                                         ),
-                                      ):SizedBox(),
+                                      )
+                                          :
+                                      SizedBox(),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
@@ -4334,8 +4222,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                       ));
                                                 });
                                             ResponseEntity statusCode = ResponseEntity();
-                                            print("length");
-                                            print(assessment.questions?.length);
                                             Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                             statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                             if (statusCode.code == 200) {
@@ -4358,11 +4244,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                               );
                                             }
                                             else{
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
-                                              print(statusCode.code);
-                                              print(statusCode.data);
-                                              print(statusCode.message);
                                             }
                                             //Navigator.of(context).pop();
                                             },
