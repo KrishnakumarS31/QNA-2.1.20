@@ -570,6 +570,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                             result: widget.result,
                                                             results: allResults,
                                                             index: index,
+                                                              status: "total"
                                                           ),
                                                         ),
                                                       );
@@ -1165,6 +1166,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                   result: widget.result,
                                                   results: results,
                                                   index: index,
+                                                    status: "total"
                                                 ),
                                               ),
                                             );

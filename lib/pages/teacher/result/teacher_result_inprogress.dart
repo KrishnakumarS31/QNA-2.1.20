@@ -573,7 +573,8 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         child: TeacherResultIndividualStudent(
                                                             result: widget.result,
                                                             results: results,
-                                                            index: index),
+                                                            index: index,
+                                                            status: "in_progress"),
                                                       ),
                                                     );
                                                   },
@@ -1167,7 +1168,8 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                 child: TeacherResultIndividualStudent(
                                                     result: widget.result,
                                                     results: results,
-                                                    index: index),
+                                                    index: index,
+                                                status: "in_progress"),
                                               ),
                                             );
                                           },

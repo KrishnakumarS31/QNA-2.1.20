@@ -570,7 +570,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                           child: TeacherResultIndividualStudent(
                                                               result: widget.result,
                                                               results: results,
-                                                              index: index),
+                                                              index: index,
+                                                              status: "completed"),
                                                         ),
                                                       );
                                                     },
@@ -1173,7 +1174,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 child: TeacherResultIndividualStudent(
                                                     result: widget.result,
                                                     results: results,
-                                                    index: index),
+                                                    index: index,
+                                                    status: "completed"),
                                               ),
                                             );
                                           },

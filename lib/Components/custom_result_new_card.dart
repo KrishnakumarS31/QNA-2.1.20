@@ -10,6 +10,7 @@ class ResultCardNew extends StatelessWidget {
     required this.width,
     required this.index,
     required this.results,
+    required this.status,
     this.assessmentResults
   }) : super(key: key);
 
@@ -17,6 +18,7 @@ class ResultCardNew extends StatelessWidget {
   final double width;
   final int index;
   final GetResultDetailsModel results;
+  final String status;
   List<AssessmentResultsDetails>? assessmentResults;
 
   @override
@@ -92,11 +94,13 @@ class ResultCardNew extends StatelessWidget {
               Container(
                 width: width * 0.233,
                 decoration: BoxDecoration(
-                    color:
+                    color:status=="completed"?
 
+                    const Color.fromRGBO(82, 165, 160, 1)
                     // percent! > 50
                     //     ? const Color.fromRGBO(82, 165, 160, 1)
-                    //     :
+                    //
+                        :
                     const Color.fromRGBO(255, 166, 0, 1),
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(10),

@@ -13,12 +13,14 @@ class TeacherResultIndividualStudent extends StatefulWidget {
     Key? key,
     required this.result,
     required this.index,
+    required this.status,
     this.results,
     this.advisorName,
   }) : super(key: key);
   final GetResultModel result;
   final int index;
   final String? advisorName;
+  final String status;
   GetResultDetailsModel? results;
 
   @override
@@ -270,11 +272,12 @@ class TeacherResultIndividualStudentState
                                 height: height * 0.02,
                               ),
                               ResultCardNew(
-                                  height: height,
-                                  width: width,
-                                  index: widget.index,
-                                  assessmentResults: widget.results!.assessmentResults,
-                                  results: widget.results!),
+                                height: height,
+                                width: width,
+                                index: widget.index,
+                                assessmentResults: widget.results!.assessmentResults,
+                                results: widget.results!,
+                                status: widget.status,),
                               SizedBox(
                                 height: height * 0.02,
                               ),
@@ -492,7 +495,8 @@ class TeacherResultIndividualStudentState
                                     width: width,
                                     index: widget.index,
                                     assessmentResults: widget.results!.assessmentResults,
-                                    results: widget.results!),
+                                    results: widget.results!,
+                                    status: widget.status),
                                 SizedBox(
                                   height: height * 0.02,
                                 ),
@@ -735,7 +739,8 @@ class TeacherResultIndividualStudentState
                                     width: width,
                                     index: widget.index,
                                     assessmentResults: widget.results!.assessmentResults,
-                                    results: widget.results!),
+                                    results: widget.results!,
+                                    status: widget.status),
                                 SizedBox(
                                   height: height * 0.02,
                                 ),
