@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
-import 'package:qna_test/EntityModel/create_question_model.dart';
-import '../../../Entity/Teacher/response_entity.dart';
 import '../../../Entity/user_details.dart';
 import '../../../Providers/LanguageChangeProvider.dart';
-import '../../../Services/qna_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import '../../../DataSource/http_url.dart';
 
 class EditQuestionPopUp extends StatefulWidget {
   const EditQuestionPopUp({
@@ -146,6 +140,9 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
                                 SizedBox(
                                   height: height * 0.03,
                                 ),
+                                widget.question.questionType == "Descriptive" ?
+                                const SizedBox(
+                                ) :
                                 Center(
                                   child: SizedBox(
                                     height: height * 0.25,
@@ -320,7 +317,6 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
           }
           else if(constraints.maxWidth > 960)
             {
-              print("INSIDE POPUP");
               return WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -416,6 +412,9 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
                                   SizedBox(
                                     height: height * 0.03,
                                   ),
+                                  widget.question.questionType == "Descriptive" ?
+                                  const SizedBox(
+                                  ) :
                                   Center(
                                     child: SizedBox(
                                       height: height * 0.25,
@@ -684,6 +683,9 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
                                 SizedBox(
                                   height: height * 0.03,
                                 ),
+                                widget.question.questionType == "Descriptive" ?
+                                const SizedBox(
+                                ) :
                                 Center(
                                   child: SizedBox(
                                     height: height * 0.25,

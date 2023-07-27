@@ -11,8 +11,6 @@ import '../../../Providers/create_assessment_provider.dart';
 import '../../../Providers/question_prepare_provider_final.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Components/today_date.dart';
-import '../../../DataSource/http_url.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as questionModel;
 class DraftAddQuestion extends StatefulWidget {
   DraftAddQuestion({
@@ -194,14 +192,14 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
       child: Text(
         AppLocalizations.of(context)!.yes,
         //'Yes',
-       style: TextStyle(
-          fontSize:
-          height * 0.025,
-          fontFamily: "Inter",
-          color: Colors.white,
-          fontWeight:
-          FontWeight
-              .w600),
+        style: TextStyle(
+            fontSize:
+            height * 0.025,
+            fontFamily: "Inter",
+            color: Colors.white,
+            fontWeight:
+            FontWeight
+                .w600),
       ),
       onPressed: () async {
         assessment.userId=userDetails.userId;
@@ -225,7 +223,8 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                   ));
             });
         ResponseEntity statusCode = ResponseEntity();
-        statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+        statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!,userDetails);
+        //statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
         if (statusCode.code == 200) {
           Navigator.of(context).pop();
           Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
@@ -1320,7 +1319,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.only(
-                            //top: height * 0.023,
+                          //top: height * 0.023,
                             left: height * 0.5,
                             right: height * 0.5),
                         child: Column(
@@ -3068,7 +3067,7 @@ class QuestionPreview extends StatelessWidget {
                   style: TextStyle(
                       fontSize: height * 0.0175,
                       fontFamily: "Inter",
-                      color: !selected?Colors.white: Color.fromRGBO(51, 51, 51, 1),
+                      color: !selected?Colors.white: const Color.fromRGBO(51, 51, 51, 1),
                       fontWeight: FontWeight.w400),
                 ),
               ),
