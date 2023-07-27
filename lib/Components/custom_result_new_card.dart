@@ -49,7 +49,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      rollNumber,
+                      rollNumber ?? "",
                       style: TextStyle(
                           fontSize: height * 0.0187,
                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -57,7 +57,7 @@ class ResultCardNew extends StatelessWidget {
                           fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      convertAttemptDuration(timeTaken),
+                      convertAttemptDuration(timeTaken) ?? "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

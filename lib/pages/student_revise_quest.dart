@@ -147,8 +147,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
           int ansCorrect = 0;
           int totalMark = 0;
           int? givenMark = 0;
-          PostAssessmentModel assessment = PostAssessmentModel(
-              assessmentResults: []);
+          // PostAssessmentModel assessment = PostAssessmentModel(
+          //     assessmentResults: []);
           assessment.assessmentId = values.data!.assessmentId!;
           assessment.assessmentCode = widget.assessmentID;
           assessment.userId = widget.userId;
@@ -311,6 +311,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
           Navigator.of(context).pop();
           countdownTimer!.cancel();
           if (loginResponse.code == 200) {
+
             Navigator.pushNamed(
                 context,
                 '/studentResultPage',
@@ -1931,7 +1932,14 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     .postAssessmentService(assessment, values,userDetails);
 
                                 Navigator.of(context).pop();
+                                print(assessment);
+                                print("11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+                                print(values);
+                                print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
+                                print(userDetails);
                                 if (loginResponse.code == 200){
+                                  print(widget.userId);
+                                  print("4444444444444444444444444444444444444444");
                                   Navigator.pushNamed(
                                       context,
                                       '/studentResultPage',
@@ -2131,7 +2139,14 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     final String time = timeFormatter.format(now);
     LoginModel loginResponse = await QnaService
         .postAssessmentService(assessment, values,userDetails);
+    print(assessment);
+    print("11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+    print(values);
+    print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
+    print(userDetails);
     if (loginResponse.code == 200) {
+      print(widget.userId);
+      print("33333333333333333333333333333333333333333333333333333333333333333333333333333333333");
       Navigator.pushNamed(
           context,
           '/studentResultPage',

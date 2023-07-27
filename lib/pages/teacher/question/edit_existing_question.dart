@@ -1519,16 +1519,14 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                         flex: 1,
                                                         child: Row(
                                                           children: [
-                                                            Transform.scale(
-                                                              scale: width * 0.002,
-                                                              child: Radio(
-                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                value: "MCQ", groupValue: _questionTypeValue, onChanged: (value){
-                                                                // setState(() {
-                                                                //   _questionTypeValue = value.toString();
-                                                                // });
-                                                              },),
-                                                            ),
+                                                            Radio(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                              value: "MCQ", groupValue: _questionTypeValue, onChanged: (value){
+                                                              // setState(() {
+                                                              //   _questionTypeValue = value.toString();
+                                                              // });
+                                                            },),
+
                                                             Expanded(
                                                               child: Text('MCQ',
                                                                   //textAlign: TextAlign.left,
@@ -1545,16 +1543,14 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                         flex: 1,
                                                         child: Row(
                                                           children: [
-                                                            Transform.scale(
-                                                              scale: width * 0.002,
-                                                              child: Radio(
-                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                value: "Survey", groupValue: _questionTypeValue, onChanged: (value){
-                                                                // setState(() {
-                                                                //   _questionTypeValue = value.toString();
-                                                                // });
-                                                              },),
-                                                            ),
+                                                            Radio(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                              value: "Survey", groupValue: _questionTypeValue, onChanged: (value){
+                                                              // setState(() {
+                                                              //   _questionTypeValue = value.toString();
+                                                              // });
+                                                            },),
+
                                                             Expanded(
                                                               child: Text('Survey',
                                                                   //textAlign: TextAlign.left,
@@ -1571,17 +1567,15 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                         flex: 1,
                                                         child: Row(
                                                           children: [
-                                                            Transform.scale(
-                                                              scale:width * 0.002,
-                                                              child: Radio(
-                                                                value: "Descriptive",
-                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                groupValue: _questionTypeValue, onChanged: (value){
-                                                                // setState(() {
-                                                                //   _questionTypeValue = value.toString();
-                                                                // });
-                                                              },),
-                                                            ),
+                                                            Radio(
+                                                              value: "Descriptive",
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                              groupValue: _questionTypeValue, onChanged: (value){
+                                                              // setState(() {
+                                                              //   _questionTypeValue = value.toString();
+                                                              // });
+                                                            },),
+
                                                             Expanded(
                                                               child: Text('Descriptive',
                                                                   //textAlign: TextAlign.left,

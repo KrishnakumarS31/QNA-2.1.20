@@ -120,7 +120,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                   //'RESULTS',
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontSize: height * 0.0175,
+                                    fontSize: height * 0.0225,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w700,
                                   ),

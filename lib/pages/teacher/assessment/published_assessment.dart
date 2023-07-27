@@ -83,9 +83,9 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     createAssessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     DateTime tsDate = DateTime.fromMicrosecondsSinceEpoch(createAssessment.assessmentStartdate!);
-    startDateTime = "${tsDate.day}/${tsDate.month}/${tsDate.year} ${tsDate.hour>12?tsDate.hour-12:tsDate.hour}:${tsDate.hour} ${tsDate.hour>12?"PM":"AM"}";
+    startDateTime = "${tsDate.day}/${tsDate.month}/${tsDate.year} ${tsDate.hour>12?tsDate.hour-12:tsDate.hour}:${tsDate.minute} ${tsDate.hour>12?"PM":"AM"}";
     DateTime teDate = DateTime.fromMicrosecondsSinceEpoch(createAssessment.assessmentEnddate!);
-    endDateTime = "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour>12?teDate.hour-12:teDate.hour}:${teDate.hour} ${teDate.hour>12?"PM":"AM"}";
+    endDateTime = "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour>12?teDate.hour-12:teDate.hour}:${teDate.minute} ${teDate.hour>12?"PM":"AM"}";
     for(int i=0;i<createAssessment.questions!.length;i++){
       totalMarks=totalMarks+createAssessment.questions![i].questionMarks!;
     }
@@ -182,7 +182,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                 const Color.fromRGBO(28, 78, 80, 1),
                                                 fontWeight: FontWeight.w700),
                                           ),
-                                          createAssessment.assessmentStatus=="active"?
+                                          (createAssessment.assessmentType=="test" && createAssessment.assessmentStatus=="active")?
                                           Container(
                                             height: height * 0.04,
                                             width: width * 0.16,
@@ -485,6 +485,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                     //     ),
                                     //   ),
                                     // ),
+                                    createAssessment.assessmentType=="test"?
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
@@ -604,7 +605,8 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                           ],
                                         ),
                                       ),
-                                    ),
+                                    ):
+                                    SizedBox(),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
@@ -1013,7 +1015,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                 const Color.fromRGBO(28, 78, 80, 1),
                                                 fontWeight: FontWeight.w700),
                                           ),
-                                          createAssessment.assessmentStatus=="active"?
+                                          (createAssessment.assessmentType == "test" && createAssessment.assessmentStatus == "active")?
                                           Container(
                                             height: height * 0.04,
                                             width: width * 0.05,
@@ -1316,6 +1318,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                     //     ),
                                     //   ),
                                     // ),
+                                    createAssessment.assessmentType=="test"?
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
@@ -1435,7 +1438,8 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                           ],
                                         ),
                                       ),
-                                    ),
+                                    )
+                                        :SizedBox(),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
@@ -1842,7 +1846,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                   const Color.fromRGBO(28, 78, 80, 1),
                                                   fontWeight: FontWeight.w700),
                                             ),
-                                            createAssessment.assessmentStatus=="active"?
+                                           (createAssessment.assessmentType=="test" && createAssessment.assessmentStatus=="active")?
                                             Container(
                                               height: height * 0.04,
                                               width: width * 0.16,
@@ -2145,6 +2149,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                       //     ),
                                       //   ),
                                       // ),
+                                      createAssessment.assessmentType=="test"?
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
@@ -2264,7 +2269,9 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                             ],
                                           ),
                                         ),
-                                      ),
+                                      )
+                                          :SizedBox(),
+
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(

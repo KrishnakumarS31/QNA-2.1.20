@@ -64,7 +64,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
     print(widget.usedData!.data!.firstName);
     if(widget.assessment?.assessmentCode != null)
     {
-      _isAssessmentTextField = true;
+      _isAssessmentTextField = false;
+      _isSearchTextField=true;
       _searchPressed = true;
       assessmentIdController.text = widget.assessment!.assessmentCode!;
     }
@@ -1653,18 +1654,18 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                 looqSearch = true;
                                                               });
                                                               getAssessmentData(assessmentIdController.text);
-                                                        },
-                                                          child: const Icon(Icons.search_outlined, color: Colors.white),
-                                                          style: ElevatedButton.styleFrom(
-                                                          fixedSize: const Size(10, 10),
-                                                          side: const BorderSide(
-                                                            width: 1,
-                                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                                            },
+                                                            child: const Icon(Icons.search_outlined, color: Colors.white),
+                                                            style: ElevatedButton.styleFrom(
+                                                              fixedSize: const Size(10, 10),
+                                                              side: const BorderSide(
+                                                                width: 1,
+                                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                                              ),
+                                                              shape: const CircleBorder(),
+                                                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
+                                                            ),
                                                           ),
-                                                          shape: const CircleBorder(),
-                                                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
-                                                          ),
-                                                        ),
                                                           // prefixIcon:
                                                           // const Icon(
                                                           //     Icons.event_note_outlined,

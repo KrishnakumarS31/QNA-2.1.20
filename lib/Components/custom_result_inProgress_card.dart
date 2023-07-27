@@ -26,6 +26,7 @@ class ResultInProgressCard extends StatelessWidget {
     int? percent = condition ? results!.assessmentResults![index].attemptPercent : 0;
     int? securedMark = condition ? results!.assessmentResults![index].attemptScore : 0;
     int? totalMark = results!.totalScore ?? 0;
+    String? rollNumber = condition ? results!.assessmentResults![index].rollNumber : " ";
 
     if (width > 960) {
       return Padding(
@@ -56,7 +57,7 @@ class ResultInProgressCard extends StatelessWidget {
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
-                        assessmentCode,
+                        rollNumber ?? " ",
                         style: TextStyle(
                             fontSize: height * 0.015,
                             color: const Color.fromRGBO(82, 165, 160, 1),
