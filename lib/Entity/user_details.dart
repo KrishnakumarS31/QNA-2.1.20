@@ -1,6 +1,4 @@
-// To parse this JSON data, do
-//
-//     final userDetails = userDetailsFromJson(jsonString);
+
 
 import 'dart:convert';
 
@@ -17,6 +15,7 @@ class UserDetails {
   String? lastName;
   String? token;
   int? userId;
+  int? institutionId;
 
   UserDetails({
     this.login,
@@ -27,6 +26,7 @@ class UserDetails {
     this.lastName,
     this.token,
     this.userId,
+    this.institutionId
   });
 
   UserDetails copyWith({
@@ -37,7 +37,9 @@ class UserDetails {
     String? firstName,
     String? lastName,
     String? token,
+    int? institutionId,
     int? userId,
+
   }) =>
       UserDetails(
         login: login ?? this.login,
@@ -47,6 +49,7 @@ class UserDetails {
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         token: token ?? this.token,
+        institutionId: institutionId ?? this.institutionId,
         userId: userId ?? this.userId,
       );
 
@@ -59,6 +62,7 @@ class UserDetails {
     lastName: json["lastName"],
     token: json["token"],
     userId: json["userId"],
+    institutionId: json["institutionId"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -70,10 +74,11 @@ class UserDetails {
     "lastName": lastName,
     "token": token,
     "userId": userId,
+    "institutionId":institutionId
   };
 
   @override
   String toString() {
-    return 'UserDetails{login: $login, email: $email, password: $password, role: $role, firstName: $firstName, lastName: $lastName, token: $token, userId: $userId}';
+    return 'UserDetails{login: $login, email: $email, password: $password, role: $role, firstName: $firstName, lastName: $lastName, token: $token, userId: $userId,institutionId: $institutionId}';
   }
 }

@@ -443,6 +443,10 @@ class TeacherLoginState extends State<TeacherLogin> {
                                         userDetails.email = regNumber;
                                         userDetails.password = passWord;
                                         userDetails.role = 'teacher';
+                                        userDetails.institutionId = loginResponse.data.institutionId;
+                                        print("USER DETAILS INSTITUTION ID");
+                                        print(loginResponse.data.institutionId);
+                                        print(userDetails.institutionId);
                                         userDetails.firstName =
                                             loginResponse.data.firstName;
                                         userDetails.lastName =
@@ -458,6 +462,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                             .getInstance();
                                         loginData.setBool('login', false);
                                         loginData.setString('email', regNumber);
+                                        loginData.setInt('institutionId', loginResponse.data.institutionId);
                                         loginData.setString('password', passWord);
                                         loginData.setString('role', 'teacher');
                                         loginData.setString(
@@ -860,6 +865,10 @@ class TeacherLoginState extends State<TeacherLogin> {
                                             userDetails.role = 'teacher';
                                             userDetails.firstName =
                                                 loginResponse.data.firstName;
+                                            userDetails.institutionId = loginResponse.data.institutionId;
+                                            print("USER DETAILS INSTITUTION ID");
+                                            print(loginResponse.data.institutionId);
+                                            print(userDetails.institutionId);
                                             userDetails.lastName =
                                                 loginResponse.data.lastName;
                                             userDetails.token =
@@ -875,6 +884,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                             loginData.setString('email', regNumber);
                                             loginData.setString('password', passWord);
                                             loginData.setString('role', 'teacher');
+                                            loginData.setInt('institutionId', loginResponse.data.institutionId);
                                             loginData.setString(
                                                 'firstName',
                                                 loginResponse.data.firstName);
@@ -1277,6 +1287,10 @@ class TeacherLoginState extends State<TeacherLogin> {
                                         userDetails.email = regNumber;
                                         userDetails.password = passWord;
                                         userDetails.role = 'teacher';
+                                        userDetails.institutionId = loginResponse.data.institutionId;
+                                        print("USER DETAILS INSTITUTION ID");
+                                        print(loginResponse.data.institutionId);
+                                        print(userDetails.institutionId);
                                         userDetails.firstName =
                                             loginResponse.data.firstName;
                                         userDetails.lastName =
@@ -1294,6 +1308,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                         loginData.setString('email', regNumber);
                                         loginData.setString('password', passWord);
                                         loginData.setString('role', 'teacher');
+                                        loginData.setInt('institutionId', loginResponse.data.institutionId);
                                         loginData.setString(
                                             'firstName',
                                             loginResponse.data.firstName);

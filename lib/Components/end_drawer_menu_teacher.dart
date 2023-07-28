@@ -60,7 +60,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
             child: Column(
               children: [
                 constraints.maxWidth <= 960 && constraints.maxWidth >=500
-                    ? Container(
+                    ?
+                Container(
                   decoration: const BoxDecoration(
                       color: Color.fromRGBO(255, 255, 255, 1)
                   ),
@@ -220,6 +221,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                           onTap: () async {
                             UserDataModel userDataModel =
                             await QnaService.getUserDataService(userId,userDetails);
+                            print("ROLL NUMBER");
+                            print(userDataModel.data!.rollNumber);
                             Navigator.push(
                               context,
                               PageTransition(
