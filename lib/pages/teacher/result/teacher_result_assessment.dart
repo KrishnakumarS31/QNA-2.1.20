@@ -513,6 +513,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                       type: PageTransitionType.rightToLeft,
                                                       child: TeacherResultTotal(
                                                         result: widget.result,
+                                                        totalAttempts: widget.result.totalAttempts ?? 0,
                                                         userId: widget.userId,
                                                       ),
                                                     ),
@@ -1151,6 +1152,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                               type: PageTransitionType.rightToLeft,
                                               child: TeacherResultTotal(
                                                   result: widget.result,
+                                                  totalAttempts: widget.result.totalAttempts ?? 0,
                                                   userId: widget.userId),
                                             ),
                                           );

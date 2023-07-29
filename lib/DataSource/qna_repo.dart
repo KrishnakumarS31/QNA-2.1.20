@@ -631,6 +631,7 @@ class QnaRepo {
       int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    print('$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber');
     var request = http.Request(
         'GET',
         Uri.parse('$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber'));

@@ -99,7 +99,27 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     QuestionResponse questionResponses;
     questionResponses = QuestionResponse.fromJson(responseEntity.data);
     print(responseEntity.toString());
-    if (questionResponses.questions!.isNotEmpty) {
+    if(questionResponses.total_count == 0)
+    {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title:
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content:
+            AppLocalizations.of(context)!.no_question_found,
+            //'No Questions Found.',
+            button:
+            AppLocalizations.of(context)!.retry,
+            //"Retry",
+          ),
+        ),
+      );
+    }
+    else if (questionResponses.questions!.isNotEmpty) {
       questions = questionResponses.questions;
       setState(() {
         questionResponse=questionResponses;
@@ -143,10 +163,35 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     ResponseEntity response =
     await QnaService.getSearchQuestion(10, pageNumber, teacherQuestionBankSearchController.text,userDetails);
     questionResponse = QuestionResponse.fromJson(response.data);
-    if(questionResponse!.questions!.isNotEmpty){
+    print("QUESTION RESPONSE");
+    print(questionResponse!.questions);
+    print(questionResponse!.total_count);
+    if(questionResponse!.total_count == 0)
+      {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title:
+              AppLocalizations.of(context)!.alert_popup,
+              //'Alert',
+              content:
+              AppLocalizations.of(context)!.no_question_found,
+              //'No Questions Found.',
+              button:
+              AppLocalizations.of(context)!.retry,
+              //"Retry",
+            ),
+          ),
+        );
+      }
+
+    else if(questionResponse!.questions!.isNotEmpty){
       questions = questionResponse?.questions;
     }
     else{
+
       setState(() {
         questionStart=questionStart-10;
       });

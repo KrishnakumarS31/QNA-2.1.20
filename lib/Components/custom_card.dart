@@ -84,21 +84,39 @@ class _CustomCardState extends State<CustomCard> {
                               color: const Color.fromRGBO(
                                   219, 35, 35, 1)),
                         ),
-                        child: Row(children: [
-                           Icon(
-                            Icons.circle,
-                            color: const Color.fromRGBO(219, 35, 35, 1),
-                            size: widget.height * 0.03,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                color: const Color.fromRGBO(219, 35, 35, 1),
+                                size: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.02,
+                              ),
+                              Text(
+                                //AppLocalizations.of(context)!.active,
+                                "  LIVE ",
+                                style: Theme
+                                    .of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: MediaQuery
+                                        .of(context)
+                                        .copyWith()
+                                        .size
+                                        .height *
+                                        0.016)),
+                              ),
+                            ],
                           ),
-                          Text(
-                            AppLocalizations.of(context)!.live_caps,
-                            style: const TextStyle(
-                                color: Color.fromRGBO(102, 102, 102, 0.7),
-                                // fontSize: widget.height * 0.013,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],),
                       )
                     ]),
               )),

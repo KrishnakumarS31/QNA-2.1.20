@@ -161,31 +161,44 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                               color: const Color.fromRGBO(
                                                                   219, 35, 35, 1)),
                                                         ),
-                                                        child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          mainAxisSize: MainAxisSize.min,
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                           children: [
-                                                            SizedBox(
-                                                              width: double.infinity,
-                                                              child: Icon(
-                                                                Icons.circle,
-                                                                color: const Color.fromRGBO(219, 35, 35, 1),
-                                                                size: height * 0.03,
-                                                              ),
+                                                            Icon(
+                                                              Icons.circle,
+                                                              color: const Color.fromRGBO(219, 35, 35, 1),
+                                                              size: MediaQuery
+                                                                  .of(context)
+                                                                  .copyWith()
+                                                                  .size
+                                                                  .height *
+                                                                  0.02,
                                                             ),
                                                             Text(
-                                                              AppLocalizations.of(context)!.live_caps,
-                                                              style: TextStyle(
-                                                                  color: const Color.fromRGBO(102, 102, 102, 0.7),
-                                                                  fontSize: height * 0.02,
-                                                                  fontFamily: "Inter",
-                                                                  fontWeight: FontWeight.w400),
+                                                              //AppLocalizations.of(context)!.active,
+                                                              "  LIVE ",
+                                                              style: Theme
+                                                                  .of(context)
+                                                                  .primaryTextTheme
+                                                                  .bodyLarge
+                                                                  ?.merge(TextStyle(
+                                                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: MediaQuery
+                                                                      .of(context)
+                                                                      .copyWith()
+                                                                      .size
+                                                                      .height *
+                                                                      0.016)),
                                                             ),
-                                                          ],),
+                                                          ],
+                                                        ),
                                                       ),
                                                       Container(
                                                         padding: const EdgeInsets.all(2),
-                                                        child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.start,
                                                           crossAxisAlignment: CrossAxisAlignment.center,
                                                           children: [
                                                             Icon(
@@ -474,23 +487,39 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         color: const Color.fromRGBO(
                                                             219, 35, 35, 1)),
                                                   ),
-                                                  child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                     children: [
                                                       Icon(
                                                         Icons.circle,
                                                         color: const Color.fromRGBO(219, 35, 35, 1),
-                                                        size: height * 0.03,
+                                                        size: MediaQuery
+                                                            .of(context)
+                                                            .copyWith()
+                                                            .size
+                                                            .height *
+                                                            0.02,
                                                       ),
                                                       Text(
-                                                        AppLocalizations.of(context)!.live_caps,
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(102, 102, 102, 0.7),
-                                                            fontSize: height * 0.02,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w400),
+                                                        //AppLocalizations.of(context)!.active,
+                                                        "  LIVE ",
+                                                        style: Theme
+                                                            .of(context)
+                                                            .primaryTextTheme
+                                                            .bodyLarge
+                                                            ?.merge(TextStyle(
+                                                            color: const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontSize: MediaQuery
+                                                                .of(context)
+                                                                .copyWith()
+                                                                .size
+                                                                .height *
+                                                                0.016)),
                                                       ),
-                                                    ],),
+                                                    ],
+                                                  ),
                                                 ),
                                                 Container(
                                                   padding: const EdgeInsets.all(2),
@@ -772,23 +801,38 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         219, 35, 35, 1)),
                                               ),
                                               child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.center,
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Icon(
                                                     Icons.circle,
                                                     color: const Color.fromRGBO(219, 35, 35, 1),
-                                                    size: height * 0.03,
+                                                    size: MediaQuery
+                                                        .of(context)
+                                                        .copyWith()
+                                                        .size
+                                                        .height *
+                                                        0.02,
                                                   ),
                                                   Text(
-                                                    AppLocalizations.of(context)!.live_caps,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(102, 102, 102, 0.7),
-                                                        fontSize: height * 0.02,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w400),
+                                                    //AppLocalizations.of(context)!.active,
+                                                    "  LIVE ",
+                                                    style: Theme
+                                                        .of(context)
+                                                        .primaryTextTheme
+                                                        .bodyLarge
+                                                        ?.merge(TextStyle(
+                                                        color: const Color.fromRGBO(51, 51, 51, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: MediaQuery
+                                                            .of(context)
+                                                            .copyWith()
+                                                            .size
+                                                            .height *
+                                                            0.016)),
                                                   ),
-                                                ],),
+                                                ],
+                                              ),
                                             ),
                                             Container(
                                               padding: const EdgeInsets.all(2),

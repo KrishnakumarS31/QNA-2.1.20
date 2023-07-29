@@ -334,6 +334,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
     startDateTime = "${tsDate.day}/${tsDate.month}/${tsDate.year} ${tsDate.hour>12?tsDate.hour-12:tsDate.hour}:${tsDate.hour} ${tsDate.hour>12?"PM":"AM"}";
     DateTime teDate = DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!);
     endDateTime = "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour>12?teDate.hour-12:teDate.hour}:${teDate.hour} ${teDate.hour>12?"PM":"AM"}";
+    assessment.questions = assessment.questions!.reversed.toList();
     for(int i=0;i<assessment.questions!.length;i++){
       totalMarks=totalMarks+assessment.questions![i].questionMark!;
     }
@@ -580,6 +581,7 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                                       ),
                                     ),
                                     for(int i=0;i<assessment.questions!.length;i++)
+
                                       QuestionCard(width: width, height: height, question: assessment.questions![i],index: i,)
                                   ],
                                 ),

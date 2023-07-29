@@ -110,17 +110,17 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                       iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: height * 0.06,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      //automaticallyImplyLeading: false,
+                      // leading: IconButton(
+                      //   icon: Icon(
+                      //     Icons.chevron_left,
+                      //     size: height * 0.06,
+                      //     color: Colors.black,
+                      //   ),
+                      //   onPressed: () {
+                      //     Navigator.of(context).pop();
+                      //   },
+                      // ),
+                      automaticallyImplyLeading: false,
                       toolbarHeight: height * 0.100,
                       centerTitle: true,
                       title: Column(
@@ -761,7 +761,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    createAssessment.assessmentSettings!.notAvailable!?"Yes":"No",
+                                                    createAssessment.assessmentSettings!.avalabilityForPractice! ?"Yes":"No",
                                                     style: TextStyle(
                                                         fontSize: height * 0.016,
                                                         fontFamily: "Inter",
@@ -942,17 +942,17 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                       iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: height * 0.06,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      //automaticallyImplyLeading: false,
+                      // leading: IconButton(
+                      //   icon: Icon(
+                      //     Icons.chevron_left,
+                      //     size: height * 0.06,
+                      //     color: Colors.black,
+                      //   ),
+                      //   onPressed: () {
+                      //     Navigator.of(context).pop();
+                      //   },
+                      // ),
+                      automaticallyImplyLeading: false,
                       toolbarHeight: height * 0.100,
                       centerTitle: true,
                       title: Column(
@@ -1594,7 +1594,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    createAssessment.assessmentSettings!.notAvailable!?"Yes":"No",
+                                                    createAssessment.assessmentSettings!.avalabilityForPractice!?"Yes":"No",
                                                     style: TextStyle(
                                                         fontSize: height * 0.016,
                                                         fontFamily: "Inter",
@@ -1775,17 +1775,17 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                       iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                       elevation: 0,
                       backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: height * 0.06,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      //automaticallyImplyLeading: false,
+                      // leading: IconButton(
+                      //   icon: Icon(
+                      //     Icons.chevron_left,
+                      //     size: height * 0.06,
+                      //     color: Colors.black,
+                      //   ),
+                      //   onPressed: () {
+                      //     Navigator.of(context).pop();
+                      //   },
+                      // ),
+                      automaticallyImplyLeading: false,
                       toolbarHeight: height * 0.100,
                       centerTitle: true,
                       title: Column(
@@ -2426,7 +2426,7 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      createAssessment.assessmentSettings!.notAvailable!?"Yes":"No",
+                                                      createAssessment.assessmentSettings!.avalabilityForPractice!?"Yes":"No",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",

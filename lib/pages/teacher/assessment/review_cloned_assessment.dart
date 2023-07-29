@@ -49,6 +49,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
   List<List<String>> temp = [];
   int totalMarks=0;
   List<List<String>> choiceText= [];
+  List<String> rightChoices = [];
 
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
@@ -246,9 +247,13 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
         choiceText.add([]);
         for(int j=0;j<questionList[i].choices!.length;j++){
           choiceText[i].add(questionList[i].choices![j].choiceText!);
+          if (questionList[i].choices![j].rightChoice!) {
+            rightChoices.add(questionList[i].choices![j].choiceText!);
+          }
         }
       }else{
         choiceText.add(['']);
+        rightChoices.add("");
       }
     }
     subjectController.text=assessment.subject!;
@@ -951,8 +956,9 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          questionList[i].questionType=='MCQ'?
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1):'',
+                                                          rightChoices[i],
+                                                          // questionList[i].questionType=='MCQ'?
+                                                          // choiceText[i].toString().substring(1,choiceText[i].toString().length-1):'',
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -1044,6 +1050,12 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
+                                          assessment.userId = userDetails.userId;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                          }
+                                          assessment.totalScore=questionList.length;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -1822,8 +1834,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                         Align(
                                                           alignment: Alignment.centerLeft,
                                                           child: Text(
-                                                            questionList[i].questionType=='MCQ'?
-                                                            choiceText[i].toString().substring(1,choiceText[i].toString().length-1):'',
+                                                           rightChoices[i],
                                                             // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                             style: TextStyle(
                                                                 fontSize: height * 0.016,
@@ -1916,6 +1927,12 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
+                                          assessment.userId = userDetails.userId;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                          }
+                                          assessment.totalScore=questionList.length;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -2676,8 +2693,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          questionList[i].questionType=='MCQ'?
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1):'',
+                                                         rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -2769,6 +2785,12 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
+                                          assessment.userId = userDetails.userId;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                          }
+                                          assessment.totalScore=questionList.length;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data

@@ -53,6 +53,7 @@ class DraftReviewState extends State<DraftReview> {
   List<int> getAssessmentQuestionId=[];
   int totalMarks=0;
   List<List<String>> choiceText= [];
+  List<String> rightChoices = [];
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
     Widget cancelButton = ElevatedButton(
@@ -349,10 +350,15 @@ class DraftReviewState extends State<DraftReview> {
           print("INSIDE J LOOP");
           print(questionList![i].choices![j].choiceText!);
           choiceText[i].add(questionList![i].choices![j].choiceText!);
+          if (questionList[i].choices![j].rightChoice!) {
+            rightChoices.add(questionList[i].choices![j].choiceText!);
+          }
+          //rightChoices.add(questionList[i].choices![j].choiceText!);
           print(choiceText);
         }
       }else{
         choiceText.add(['']);
+        rightChoices.add("");
       }
 
     }
@@ -1070,7 +1076,7 @@ class DraftReviewState extends State<DraftReview> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                         rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -1926,7 +1932,7 @@ class DraftReviewState extends State<DraftReview> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                         rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -2783,7 +2789,7 @@ class DraftReviewState extends State<DraftReview> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                          rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,

@@ -52,6 +52,8 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
   List<List<String>> temp = [];
   List<List<String>> choiceText= [];
   int totalMark=0;
+  List<String> chTemp=[];
+  List<List<String>> temps = [];
 
 
   alertDialogDeleteQuestion(BuildContext context, double height,int index) {
@@ -284,8 +286,16 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
       if(questionList[i].questionType=='MCQ'){
         choiceText.add([]);
         for(int j=0;j<questionList[i].choices!.length;j++){
+
           choiceText[i].add(questionList[i].choices![j].choiceText!);
+          if(questionList[i].choices![j].rightChoice!)
+            {
+              chTemp.add(questionList[i]!.choices![j].choiceText!);
+            }
         }
+        temps.add(chTemp);
+        print("Temps");
+        print(temps);
       }
       else{
         choiceText.add(['']);
@@ -991,7 +1001,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                          "S",
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -2001,6 +2011,8 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                     )));
           }
           else{
+            print("INSIDE ELSE");
+            print(temps);
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -2764,11 +2776,13 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='active';
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          print(statusCode.code);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
                                                 .toString()
                                                 .length -
                                                 1);
+                                            print(assessmentCode);
 
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }

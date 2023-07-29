@@ -45,7 +45,8 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
   int questionStart=0;
   List<int> selectedQuesIndex=[];
   List<questionModel.Question> selectedQuestion=[];
-  List<List<String>> temp = [];
+  List<String> rightChoices = [];
+  List<String> rc = [];
   List<List<String>> choiceText= [];
   int totalMark=0;
 
@@ -270,21 +271,30 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
 
   @override
   void initState() {
+    print("INSIDE INIT STATE");
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
+      print("INSIDE FOR");
       selectedQuesIndex.add(i);
       totalMark=totalMark+questionList[i].questionMark!;
       if(questionList[i].questionType=='MCQ'){
         choiceText.add([]);
         for(int j=0;j<questionList[i].choices!.length;j++){
+          if (questionList[i].choices![j].rightChoice!) {
+            rightChoices.add(questionList[i].choices![j].choiceText!);
+          }
           choiceText[i].add(questionList[i].choices![j].choiceText!);
         }
+        print("RIGHT CHOICES");
+        print(rightChoices);
       }
       else{
+        print("Inside Else");
         choiceText.add(['']);
+        rightChoices.add("");
       }
     }
     subjectController.text = assessment.subject ?? "";
@@ -990,7 +1000,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                            rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -1078,7 +1088,14 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                           String assessmentCode='';
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
-                                          assessment.assessmentStatus='active';
+                                          assessment.assessmentStatus = 'inprogress';
+                                          assessment.userId = userDetails.userId;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                          }
+                                          assessment.totalScore=questionList.length;
+
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -1834,7 +1851,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                        rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -1922,7 +1939,14 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                           String assessmentCode='';
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
-                                          assessment.assessmentStatus='active';
+                                          assessment.assessmentStatus = 'inprogress';
+                                          assessment.userId = userDetails.userId;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                          }
+                                          assessment.totalScore=questionList.length;
+
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -2680,7 +2704,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                       Align(
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
-                                                          choiceText[i].toString().substring(1,choiceText[i].toString().length-1),
+                                                          rightChoices[i],
                                                           // temp[i].toString().substring(1,temp[i].toString().length-1),
                                                           style: TextStyle(
                                                               fontSize: height * 0.016,
@@ -2768,14 +2792,23 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                           String assessmentCode='';
                                           ResponseEntity statusCode = ResponseEntity();
                                           assessment.assessmentType = 'test';
-                                          assessment.assessmentStatus='active';
+                                          assessment.assessmentStatus = 'inprogress';
+                                          assessment.userId = userDetails.userId;
+                                          for(int i=0;i<questionList.length;i++){
+                                            Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
+                                            assessment.questions?.add(tempQues);
+                                          }
+                                          assessment.totalScore=questionList.length;
+
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                          print("STATUS CODE");
+                                          print(statusCode.code);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
                                                 .toString()
                                                 .length -
                                                 1);
-
+                                          print(assessmentCode);
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
 

@@ -46,6 +46,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
   IconData showIcon = Icons.arrow_circle_up_outlined;
   String _questionTypeValue = 'MCQ';
   Question questionMvp2=Question();
+  final questionFormKey = GlobalKey<FormState>();
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
@@ -315,7 +316,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -338,6 +339,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Transform.scale(
@@ -361,9 +363,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Transform.scale(
@@ -387,9 +389,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Transform.scale(
@@ -414,8 +416,8 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
+                                                  const SizedBox(height:50.0),
                                                 ],
                                               ),
                                             ],
@@ -425,81 +427,106 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                           height: height * 0.015,
                                         ),
                                         //Question container
-                                        Container(
-                                          width: width * 0.9,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                            // borderRadius: BorderRadius.all(
-                                            //     Radius.circular(10)),
-                                          ),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(left: width * 0.02,top:width * 0.02),
-                                                child: Text(
-                                                  //AppLocalizations.of(context)!.subject_topic,
-                                                    "Question",
-                                                    //textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.020)),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
-                                                child: TextField(
-                                                  controller: questionController,
-                                                  keyboardType: TextInputType.text,
-                                                  decoration: InputDecoration(
-                                                    //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                    hintStyle: TextStyle(
-                                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: height * 0.016),
-                                                    hintText: "Type Question here",
-                                                    enabledBorder: UnderlineInputBorder(
-                                                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                        Form(
+                                          key:questionFormKey,
+                                          child: Container(
+                                            width: width * 0.9,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                              // borderRadius: BorderRadius.all(
+                                              //     Radius.circular(10)),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: width * 0.02,top:width * 0.02),
+                                                  child: Text(
+                                                    //AppLocalizations.of(context)!.subject_topic,
+                                                      "Question",
+                                                      //textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize: height * 0.020)),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
+                                                  child: TextFormField(
+                                                    controller: questionController,
+                                                    keyboardType: TextInputType.multiline,
+                                                    maxLines:null,
+                                                    decoration: InputDecoration(
+                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                      //errorText: question ? "Enter Question" : null,
+                                                      hintStyle: TextStyle(
+                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.016),
+                                                      hintText: "Type Question here",
+                                                      enabledBorder: const UnderlineInputBorder(
+                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                      ),
+                                                      focusedBorder: const UnderlineInputBorder(
+                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                      ),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
-                                                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                    ),
-                                                    // focusedBorder: OutlineInputBorder(
-                                                    //     borderSide: const BorderSide(
-                                                    //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                    //     borderRadius: BorderRadius.circular(15)),
-                                                    // border: OutlineInputBorder(
-                                                    //     borderRadius: BorderRadius.circular(15)),
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: height * 0.015,
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(left: width * 0.02),
-                                                child: Text(
-                                                  //AppLocalizations.of(context)!.subject_topic,
-                                                    "Answer",
-                                                    //textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.020)),
-                                              ),
-                                              _questionTypeValue=="Descriptive"
-                                                  ? const SizedBox(height: 0)
-                                                  :  _questionTypeValue=="Survey"
-                                                  ? Padding(
-                                                padding: EdgeInsets.only(left: width * 0.02,top: width * 0.01),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.end,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Container(
+                                                SizedBox(
+                                                  height: height * 0.015,
+                                                ),
+                                                // Padding(
+                                                //   padding: EdgeInsets.only(left: width * 0.02),
+                                                //   child: Text(
+                                                //     //AppLocalizations.of(context)!.subject_topic,
+                                                //       "Answer",
+                                                //       //textAlign: TextAlign.left,
+                                                //       style: TextStyle(
+                                                //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                //           fontFamily: 'Inter',
+                                                //           fontWeight: FontWeight.w600,
+                                                //           fontSize: height * 0.020)),
+                                                // ),
+                                                _questionTypeValue=="Descriptive"
+                                                    ? const SizedBox(height: 0)
+                                                    :  _questionTypeValue=="Survey"
+                                                    ? Padding(
+                                                  padding: EdgeInsets.only(left: width * 0.02,top: width * 0.01),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Container(
+                                                          alignment: Alignment.centerLeft,
+                                                          child: Text(
+                                                            AppLocalizations.of(context)!.choices,
+                                                            //"Choices",
+                                                            style: TextStyle(
+                                                              color:
+                                                              const Color.fromRGBO(51, 51, 51, 1),
+                                                              fontSize: height * 0.014,
+                                                              fontFamily: "Inter",
+                                                              fontWeight: FontWeight.w500,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: width * 0.02,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                                    :Padding(
+                                                  padding: EdgeInsets.only(left: width * 0.02),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    children: [
+                                                      Container(
+                                                        width: width * 0.655,
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
                                                           AppLocalizations.of(context)!.choices,
@@ -513,260 +540,212 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.02,
-                                                    ),
-                                                    // Text(
-                                                    //   AppLocalizations.of(context)!.delete,
-                                                    //   //"Delete",
-                                                    //   style: TextStyle(
-                                                    //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                    //     fontSize: height * 0.016,
-                                                    //     fontFamily: "Inter",
-                                                    //     fontWeight: FontWeight.w500,
-                                                    //   ),
-                                                    // ),
-                                                  ],
-                                                ),
-                                              )
-                                                  :Padding(
-                                                padding: EdgeInsets.only(left: width * 0.02),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.end,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Container(
-                                                        alignment: Alignment.centerLeft,
+                                                      SizedBox(
+                                                        width: width * 0.13,
                                                         child: Text(
-                                                          AppLocalizations.of(context)!.choices,
-                                                          //"Choices",
+                                                          textAlign: TextAlign.right,
+                                                          AppLocalizations.of(context)!.correct_answer,
+                                                          //"Correct\nAnswer",
                                                           style: TextStyle(
-                                                            color:
-                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            color: const Color.fromRGBO(51, 51, 51, 1),
                                                             fontSize: height * 0.014,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w500,
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.13,
-                                                      child: Text(
-                                                        textAlign: TextAlign.right,
-                                                        AppLocalizations.of(context)!.correct_answer,
-                                                        //"Correct\nAnswer",
-                                                        style: TextStyle(
-                                                          color: const Color.fromRGBO(51, 51, 51, 1),
-                                                          fontSize: height * 0.014,
-                                                          fontFamily: "Inter",
-                                                          fontWeight: FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: width * 0.11,
-                                                      // child: Text(
-                                                      //   AppLocalizations.of(context)!.delete,
-                                                      //   textAlign: TextAlign.center,
-                                                      //   //"Delete",
-                                                      //   style: TextStyle(
-                                                      //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                      //     fontSize: height * 0.014,
-                                                      //     fontFamily: "Inter",
-                                                      //     fontWeight: FontWeight.w500,
-                                                      //   ),
-                                                      // ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
 
-                                              _questionTypeValue=="Descriptive"
-                                                  ? const SizedBox(height: 0,)
-                                                  : _questionTypeValue=="Survey"
-                                                  ? Form(
-                                                key: _formKey,
-                                                child: Column(
-                                                  children: [
-                                                    for (int i = 0; i < chooses.length; i++)
-                                                      Padding(
-                                                        padding: EdgeInsets.only(bottom: height * 0.02,
-                                                            left: width * 0.02,top:width * 0.02),
-                                                        child: Row(
-                                                          children: [
-                                                            Expanded(
-                                                              child: TextFormField(
-                                                                controller: chooses[i],
-                                                                style: TextStyle(
-                                                                    color: Colors.black,
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.018),
-                                                                keyboardType: TextInputType.text,
-                                                                decoration: InputDecoration(
-                                                                  floatingLabelBehavior:
-                                                                  FloatingLabelBehavior.always,
-                                                                  hintStyle: TextStyle(
-                                                                      color: const Color.fromRGBO(
-                                                                          102, 102, 102, 0.3),
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.02),
-                                                                  hintText: AppLocalizations.of(context)!
-                                                                      .type_op_here,
-                                                                  //"Type Option Here",
-                                                                  border: OutlineInputBorder(
-                                                                      borderRadius:
-                                                                      BorderRadius.circular(5)),
-                                                                ),
-                                                                onChanged: (val) {
-                                                                  tempChoiceList[i].choiceText = val;
-                                                                },
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: width * 0.01,
-                                                            ),
-                                                            IconButton(
-                                                              onPressed: () {
-                                                                removeItem(i);
-                                                              },
-                                                              icon: Icon(
-                                                                size: height * 0.03,
-                                                                Icons.delete_outline,
-                                                                color: Color.fromRGBO(82, 165, 160, 1),
-                                                              ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: width * 0.04,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      )
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              )
-                                                  : Form(
-                                                key: _formKey,
-                                                child: Column(
-                                                  children: [
-                                                    for (int i = 0; i < chooses.length; i++)
-                                                      Padding(
-                                                        padding: EdgeInsets.only(bottom: height * 0.02,
-                                                          left: 8,),
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                          children: [
-                                                            Expanded(
-                                                              child: TextFormField(
-                                                                controller: chooses[i],
-                                                                style: TextStyle(
-                                                                    color: Colors.black,
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.018),
-                                                                keyboardType: TextInputType.text,
-                                                                decoration: InputDecoration(
-                                                                  floatingLabelBehavior:
-                                                                  FloatingLabelBehavior.always,
-                                                                  hintStyle: TextStyle(
-                                                                      color: const Color.fromRGBO(
-                                                                          102, 102, 102, 0.3),
+
+                                                _questionTypeValue=="Descriptive"
+                                                    ? const SizedBox(height: 0,)
+                                                    : _questionTypeValue=="Survey"
+                                                    ? Form(
+                                                  key: _formKey,
+                                                  child: Column(
+                                                    children: [
+                                                      for (int i = 0; i < chooses.length; i++)
+                                                        Padding(
+                                                          padding: EdgeInsets.only(bottom: height * 0.02,
+                                                              left: width * 0.02,top:width * 0.02),
+                                                          child: Row(
+                                                            children: [
+                                                              SizedBox(
+                                                                  width: width * 0.05,
+                                                                  child: Text(String.fromCharCode(97+i),style: TextStyle(
+                                                                      color: Colors.black,
                                                                       fontFamily: 'Inter',
                                                                       fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.02),
-                                                                  hintText: AppLocalizations.of(context)!
-                                                                      .type_op_here,
-                                                                  //"Type Option Here",
-                                                                  border: OutlineInputBorder(
-                                                                      borderRadius:
-                                                                      BorderRadius.circular(5)),
+                                                                      fontSize: height * 0.018),
+                                                                  )),
+                                                              Expanded(
+                                                                child: TextFormField(
+                                                                  controller: chooses[i],
+                                                                  style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                  keyboardType: TextInputType.multiline,
+                                                                  maxLines: null,
+                                                                  decoration: InputDecoration(
+                                                                    floatingLabelBehavior:
+                                                                    FloatingLabelBehavior.always,
+                                                                    hintStyle: TextStyle(
+                                                                        color: const Color.fromRGBO(
+                                                                            102, 102, 102, 0.3),
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.02),
+                                                                    hintText: AppLocalizations.of(context)!
+                                                                        .type_op_here,
+                                                                    //"Type Option Here",
+                                                                    border: OutlineInputBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius.circular(5)),
+                                                                  ),
+                                                                  onChanged: (val) {
+                                                                    tempChoiceList[i].choiceText = val;
+                                                                  },
                                                                 ),
-                                                                onChanged: (val) {
-                                                                  tempChoiceList[i].choiceText = val;
-                                                                },
                                                               ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: width * 0.13,
-                                                              child: IconButton(
-                                                                onPressed: () {
-                                                                  _onRadioChange(i);
-                                                                },
-                                                                icon: Icon(
-                                                                  size:height * 0.03,
-                                                                  radioList[i]
-                                                                      ? Icons.radio_button_checked_outlined
-                                                                      : Icons
-                                                                      .radio_button_unchecked_outlined,
-                                                                  color:
-                                                                  const Color.fromRGBO(82, 165, 160, 1),
-                                                                ),
+                                                              SizedBox(
+                                                                width: width * 0.01,
                                                               ),
-                                                            ),
-                                                            SizedBox(
-                                                              width: width * 0.11,
-                                                              child: IconButton(
+                                                              IconButton(
                                                                 onPressed: () {
                                                                   removeItem(i);
                                                                 },
-                                                                icon: Icon(
-                                                                  size:height * 0.03,
+                                                                icon:  Icon(
+                                                                  size: height * 0.03,
                                                                   Icons.delete_outline,
-                                                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      )
-                                                  ],
-                                                ),
-                                              ),
-
-
-                                              _questionTypeValue=="Descriptive"
-                                                  ? Padding(
-                                                  padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
-                                                  child: TextField(
-                                                      controller: answerController,
-                                                      keyboardType: TextInputType.text,
-                                                      decoration: InputDecoration(
-                                                        hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.016),
-                                                        hintText: "Type Answer here",
-                                                        enabledBorder: UnderlineInputBorder(
-                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                        ),
-                                                        focusedBorder: UnderlineInputBorder(
-                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                        ),
-                                                      ))):
-                                              Padding(
-                                                padding: EdgeInsets.only(left:width * 0.02),
-                                                child: TextButton(
-                                                  child: Text(
-                                                    //AppLocalizations.of(context)!.subject_topic,
-                                                    "+Add choice",
-                                                    //textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(82, 165, 160, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        decoration: TextDecoration.underline,
-                                                        fontSize: height * 0.020),
+                                                              SizedBox(
+                                                                width: width * 0.04,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                    ],
                                                   ),
-                                                  onPressed: (){
-                                                    addField();
-                                                  },
+                                                )
+                                                    : Form(
+                                                  key: _formKey,
+                                                  child: Column(
+                                                    children: [
+                                                      for (int i = 0; i < chooses.length; i++)
+                                                        Padding(
+                                                          padding: EdgeInsets.only(bottom: height * 0.02,
+                                                            left: 8,),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            children: [
+                                                              SizedBox(
+                                                                  width: width * 0.05,
+                                                                  child: Text(String.fromCharCode(97+i),
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                  )),
+                                                              Container(
+                                                                width : width * 0.7,
+                                                                child: TextFormField(
+                                                                  controller: chooses[i],
+                                                                  style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                  keyboardType: TextInputType.multiline,
+                                                                  maxLines: null,
+                                                                  decoration: InputDecoration(
+                                                                    floatingLabelBehavior:
+                                                                    FloatingLabelBehavior.always,
+                                                                    hintStyle: TextStyle(
+                                                                        color: const Color.fromRGBO(
+                                                                            102, 102, 102, 0.3),
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.02),
+                                                                    hintText: AppLocalizations.of(context)!
+                                                                        .type_op_here,
+                                                                    //"Type Option Here",
+                                                                    border: OutlineInputBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius.circular(5)),
+                                                                  ),
+                                                                  onChanged: (val) {
+                                                                    tempChoiceList[i].choiceText = val;
+                                                                  },
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: width * 0.05,
+                                                                child: IconButton(
+                                                                  onPressed: () {
+                                                                    _onRadioChange(i);
+                                                                  },
+                                                                  icon: Icon(
+                                                                    size:height * 0.03,
+                                                                    radioList[i]
+                                                                        ? Icons.radio_button_checked_outlined
+                                                                        : Icons
+                                                                        .radio_button_unchecked_outlined,
+                                                                    color:
+                                                                    const Color.fromRGBO(82, 165, 160, 1),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                width: width * 0.05,
+                                                                child: IconButton(
+                                                                  onPressed: () {
+                                                                    removeItem(i);
+                                                                  },
+                                                                  icon:  Icon(
+                                                                    size:height * 0.03,
+                                                                    Icons.delete_outline,
+                                                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+
+
+                                                _questionTypeValue=="Descriptive"
+                                                    ? SizedBox():
+                                                Padding(
+                                                  padding: EdgeInsets.only(left:width * 0.02),
+                                                  child: TextButton(
+                                                    child: Text(
+                                                      //AppLocalizations.of(context)!.subject_topic,
+                                                      "+Add choice",
+                                                      //textAlign: TextAlign.left,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          decoration: TextDecoration.underline,
+                                                          fontSize: height * 0.020),
+                                                    ),
+                                                    onPressed: (){
+                                                      addField();
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
@@ -775,7 +754,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -807,10 +786,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "Suggest what to study if answered incorrectly",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -835,10 +814,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "URL - Any reference (Optional)",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -1002,112 +981,115 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                   )));
         }
         else if(constraints.maxWidth > 960)
-          {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: true,
-                    backgroundColor: Colors.white,
-                    endDrawer: const EndDrawerMenuTeacher(),
-                    appBar: AppBar(
-                      iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: height * 0.06,
-                          color: appBarChevronColor,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
+        {
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  resizeToAvoidBottomInset: true,
+                  backgroundColor: Colors.white,
+                  endDrawer: const EndDrawerMenuTeacher(),
+                  appBar: AppBar(
+                    iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        size: height * 0.06,
+                        color: appBarChevronColor,
                       ),
-                      toolbarHeight: height * 0.100,
-                      centerTitle: true,
-                      title: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              //AppLocalizations.of(context)!.my_qns,
-                              "Edit Question",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    toolbarHeight: height * 0.100,
+                    centerTitle: true,
+                    title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            //AppLocalizations.of(context)!.my_qns,
+                            "Edit Question",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
                             ),
-                          ]),
-                      flexibleSpace: Container(
-                        decoration: const BoxDecoration(
-                            color: Colors.white
-                        ),
+                          ),
+                        ]),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white
                       ),
                     ),
-                    body: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: height * 0.02,
-                            left: height * 0.5,
-                            right: height * 0.5,
-                            bottom: height * 0.023
-                        ),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Container(
-                                  height: height * 0.7,
-                                  width: width * 0.93,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(10)),
-                                  ),
-                                  child:
-                                  SingleChildScrollView(
-                                    scrollDirection: Axis.vertical,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          top: height * 0.023,
-                                          left: height * 0.023,
-                                          right: height * 0.023
-                                      ),
-                                      child: Column(
-                                        children: [
+                  ),
+                  body: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.02,
+                          left: height * 0.5,
+                          right: height * 0.5,
+                          bottom: height * 0.023
+                      ),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Container(
+                                height: height * 0.7,
+                                width: width * 0.93,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(10)),
+                                ),
+                                child:
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        top: height * 0.023,
+                                        left: height * 0.023,
+                                        right: height * 0.023
+                                    ),
+                                    child: Column(
+                                      children: [
 
-                                          SizedBox(
-                                            height: height * 0.015,
+                                        SizedBox(
+                                          height: height * 0.015,
+                                        ),
+                                        //Question type container
+                                        Container(
+                                          width: width * 0.9,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                            // borderRadius: BorderRadius.all(
+                                            //     Radius.circular(10)),
                                           ),
-                                          //Question type container
-                                          Container(
-                                            width: width * 0.9,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                              // borderRadius: BorderRadius.all(
-                                              //     Radius.circular(10)),
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(left:width * 0.02,top:width * 0.02),
-                                                  child: Text(
-                                                    //AppLocalizations.of(context)!.subject_topic,
-                                                      "Question Type",
-                                                      //textAlign: TextAlign.left,
-                                                      style: TextStyle(
-                                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.020)),
-                                                ),
-                                                Row(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(left: width * 0.02,top: width * 0.02),
+                                                child: Text(
+                                                  //AppLocalizations.of(context)!.subject_topic,
+                                                    "Question Type",
+                                                    //textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: height * 0.020)),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(left:height * 0.02),
+                                                child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
                                                     Expanded(
+                                                      flex: 1,
                                                       child: Row(
                                                         children: [
                                                           Radio(
@@ -1128,9 +1110,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           )
                                                         ],
                                                       ),
-                                                      flex: 1,
                                                     ),
                                                     Expanded(
+                                                      flex: 1,
                                                       child: Row(
                                                         children: [
                                                           Radio(
@@ -1151,9 +1133,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           )
                                                         ],
                                                       ),
-                                                      flex: 1,
                                                     ),
                                                     Expanded(
+                                                      flex: 1,
                                                       child: Row(
                                                         children: [
                                                           Radio(
@@ -1175,22 +1157,24 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           )
                                                         ],
                                                       ),
-                                                      flex: 1,
                                                     ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                          SizedBox(
-                                            height: height * 0.015,
-                                          ),
-                                          //Question container
-                                          //Question container
-                                          Container(
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.015,
+                                        ),
+                                        //Question container
+                                        //Question container
+                                        Form(
+                                          key:questionFormKey,
+                                          child: Container(
                                             width: width * 0.9,
                                             decoration: BoxDecoration(
-                                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                               // borderRadius: BorderRadius.all(
                                               //     Radius.circular(10)),
                                             ),
@@ -1211,9 +1195,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-                                                  child: TextField(
+                                                  child: TextFormField(
+                                                    keyboardType: TextInputType.multiline,
+                                                    maxLines: null,
                                                     controller: questionController,
-                                                    keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                       hintStyle: TextStyle(
@@ -1222,36 +1207,30 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "Type Question here",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      // focusedBorder: OutlineInputBorder(
-                                                      //     borderSide: const BorderSide(
-                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                      // border: OutlineInputBorder(
-                                                      //     borderRadius: BorderRadius.circular(15)),
                                                     ),
                                                   ),
                                                 ),
                                                 SizedBox(
                                                   height: height * 0.015,
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(left: width * 0.02),
-                                                  child: Text(
-                                                    //AppLocalizations.of(context)!.subject_topic,
-                                                      "Answer",
-                                                      //textAlign: TextAlign.left,
-                                                      style: TextStyle(
-                                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.020)),
-                                                ),
+                                                // Padding(
+                                                //   padding: EdgeInsets.only(left: width * 0.02),
+                                                //   child: Text(
+                                                //     //AppLocalizations.of(context)!.subject_topic,
+                                                //       "Answer",
+                                                //       //textAlign: TextAlign.left,
+                                                //       style: TextStyle(
+                                                //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                                //           fontFamily: 'Inter',
+                                                //           fontWeight: FontWeight.w600,
+                                                //           fontSize: height * 0.020)),
+                                                // ),
                                                 _questionTypeValue=="Descriptive"
                                                     ? const SizedBox(height: 0)
                                                     :  _questionTypeValue=="Survey"
@@ -1295,17 +1274,35 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                     :Padding(
                                                   padding: EdgeInsets.only(left: width * 0.02),
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-                                                      Expanded(
+                                                      Container(
+                                                        width:width * 0.23,
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(context)!.choices,
+                                                          //"Choices",
+                                                          style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontSize: height * 0.014,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets.only(left: width * 0.07),
                                                         child: Container(
-                                                          alignment: Alignment.centerLeft,
+
+                                                          //alignment: Alignment.center,
+                                                          width: width * 0.05,
                                                           child: Text(
-                                                            AppLocalizations.of(context)!.choices,
-                                                            //"Choices",
+                                                            textAlign: TextAlign.right,
+                                                            AppLocalizations.of(context)!.correct_answer,
+                                                            //"Correct\nAnswer",
                                                             style: TextStyle(
-                                                              color:
-                                                              const Color.fromRGBO(51, 51, 51, 1),
+                                                              color: const Color.fromRGBO(51, 51, 51, 1),
                                                               fontSize: height * 0.014,
                                                               fontFamily: "Inter",
                                                               fontWeight: FontWeight.w500,
@@ -1313,35 +1310,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           ),
                                                         ),
                                                       ),
-                                                      Container(
-                                                        alignment: Alignment.centerLeft,
-                                                        //width: width * 0.11,
-                                                        child: Text(
-                                                          textAlign: TextAlign.right,
-                                                          AppLocalizations.of(context)!.correct_answer,
-                                                          //"Correct\nAnswer",
-                                                          style: TextStyle(
-                                                            color: const Color.fromRGBO(51, 51, 51, 1),
-                                                            fontSize: height * 0.014,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w500,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: width * 0.11,
-                                                        // child: Text(
-                                                        //   AppLocalizations.of(context)!.delete,
-                                                        //   textAlign: TextAlign.center,
-                                                        //   //"Delete",
-                                                        //   style: TextStyle(
-                                                        //     color: const Color.fromRGBO(51, 51, 51, 1),
-                                                        //     fontSize: height * 0.014,
-                                                        //     fontFamily: "Inter",
-                                                        //     fontWeight: FontWeight.w500,
-                                                        //   ),
-                                                        // ),
-                                                      ),
+
                                                     ],
                                                   ),
                                                 ),
@@ -1361,42 +1330,49 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
-                                                              Align(
-                                                                alignment:Alignment.centerLeft,
-                                                                child: SizedBox(
-                                                                  height: height * 0.05,
-                                                                  width : width * 0.18,
-                                                                  child: TextFormField(
-                                                                    controller: chooses[i],
+                                                              SizedBox(
+                                                                  width: width * 0.05,
+                                                                  child: Text(String.fromCharCode(97+i),
                                                                     style: TextStyle(
                                                                         color: Colors.black,
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
-                                                                    decoration: InputDecoration(
-                                                                      floatingLabelBehavior:
-                                                                      FloatingLabelBehavior.always,
-                                                                      hintStyle: TextStyle(
-                                                                          color: const Color.fromRGBO(
-                                                                              102, 102, 102, 0.3),
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.02),
-                                                                      hintText: AppLocalizations.of(context)!
-                                                                          .type_op_here,
-                                                                      //"Type Option Here",
-                                                                      border: OutlineInputBorder(
-                                                                          borderRadius:
-                                                                          BorderRadius.circular(5)),
-                                                                    ),
-                                                                    onChanged: (val) {
-                                                                      tempChoiceList[i].choiceText = val;
-                                                                    },
+                                                                        fontSize: height * 0.020),
+                                                                  )),
+
+                                                              SizedBox(
+                                                                //height: height * 0.05,
+                                                                width : width * 0.28,
+                                                                child: TextFormField(
+                                                                  controller: chooses[i],
+                                                                  style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                  keyboardType: TextInputType.multiline,
+                                                                  maxLines: null,
+                                                                  decoration: InputDecoration(
+                                                                    floatingLabelBehavior:
+                                                                    FloatingLabelBehavior.always,
+                                                                    hintStyle: TextStyle(
+                                                                        color: const Color.fromRGBO(
+                                                                            102, 102, 102, 0.3),
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.02),
+                                                                    hintText: AppLocalizations.of(context)!
+                                                                        .type_op_here,
+                                                                    //"Type Option Here",
+                                                                    border: OutlineInputBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius.circular(5)),
                                                                   ),
+                                                                  onChanged: (val) {
+                                                                    tempChoiceList[i].choiceText = val;
+                                                                  },
                                                                 ),
                                                               ),
-                                                              SizedBox(width: width *0.03),
                                                               SizedBox(
                                                                 width: width * 0.05,
                                                                 child: IconButton(
@@ -1406,7 +1382,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                   icon: Icon(
                                                                     size:height * 0.03,
                                                                     Icons.delete_outline,
-                                                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1426,13 +1402,23 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
                                                             left: width * 0.02,),
                                                           child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
+                                                              SizedBox(
+                                                                width:width * 0.03,
+                                                                child: Text(String.fromCharCode(97+i),
+                                                                  style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                ),
+                                                              ),
                                                               Align(
                                                                 alignment:Alignment.centerLeft,
                                                                 child: SizedBox(
-                                                                  height: height * 0.05,
-                                                                  width : width * 0.18,
+                                                                  //height: height * 0.05,
+                                                                  width : width * 0.28,
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
                                                                     style: TextStyle(
@@ -1440,7 +1426,8 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                         fontFamily: 'Inter',
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
-                                                                    keyboardType: TextInputType.text,
+                                                                    keyboardType: TextInputType.multiline,
+                                                                    maxLines: null,
                                                                     decoration: InputDecoration(
                                                                       floatingLabelBehavior:
                                                                       FloatingLabelBehavior.always,
@@ -1462,9 +1449,11 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                     },
                                                                   ),
                                                                 ),
+
                                                               ),
-                                                              SizedBox(
-                                                                width: width * 0.1,
+                                                              Container(
+
+                                                                width: width * 0.05,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
@@ -1480,8 +1469,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              SizedBox(
-                                                                width: width * 0.05,
+                                                              Container(
+
+                                                                alignment: Alignment.center,
+                                                                width: width * 0.02,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     removeItem(i);
@@ -1489,7 +1480,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                   icon: Icon(
                                                                     size:height * 0.03,
                                                                     Icons.delete_outline,
-                                                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1502,25 +1493,27 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
 
 
                                                 _questionTypeValue=="Descriptive"
-                                                    ? Padding(
-                                                    padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
-                                                    child: TextField(
-                                                        controller: answerController,
-                                                        keyboardType: TextInputType.text,
-                                                        decoration: InputDecoration(
-                                                          hintStyle: TextStyle(
-                                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: height * 0.016),
-                                                          hintText: "Type Answer here",
-                                                          enabledBorder: UnderlineInputBorder(
-                                                            borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                          ),
-                                                          focusedBorder: UnderlineInputBorder(
-                                                            borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                          ),
-                                                        ))):
+                                                    ?
+                                                SizedBox():
+                                                // Padding(
+                                                //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02,right: width * 0.02),
+                                                //     child: TextField(
+                                                //         controller: answerController,
+                                                //         keyboardType: TextInputType.text,
+                                                //         decoration: InputDecoration(
+                                                //           hintStyle: TextStyle(
+                                                //               color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                //               fontFamily: 'Inter',
+                                                //               fontWeight: FontWeight.w400,
+                                                //               fontSize: height * 0.016),
+                                                //           hintText: "Type Answer here",
+                                                //           enabledBorder: UnderlineInputBorder(
+                                                //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                //           ),
+                                                //           focusedBorder: UnderlineInputBorder(
+                                                //             borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                //           ),
+                                                //         ))):
                                                 Padding(
                                                   padding: EdgeInsets.only(left:width * 0.02),
                                                   child: TextButton(
@@ -1543,238 +1536,239 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                               ],
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: height * 0.015,),
-                                          //Advisor Container
-                                          Container(
-                                            width: width * 0.9,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                              // borderRadius: BorderRadius.all(
-                                              //     Radius.circular(10)),
-                                            ),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(left:width * 0.02,top:width*0.02),
-                                                  child: Text(
-                                                    //AppLocalizations.of(context)!.subject_topic,
-                                                      "Advisor",
-                                                      //textAlign: TextAlign.left,
-                                                      style: TextStyle(
-                                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.020)),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
-                                                  child: TextField(
-                                                    controller: adviceController,
-                                                    keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
-                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
-                                                      hintText: "Suggest what to study if answered incorrectly",
-                                                      enabledBorder: UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                      ),
-                                                      focusedBorder: UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                      ),
-                                                      // focusedBorder: OutlineInputBorder(
-                                                      //     borderSide: const BorderSide(
-                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                      // border: OutlineInputBorder(
-                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
-                                                  child: TextField(
-                                                    controller: urlController,
-                                                    keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
-                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
-                                                      hintText: "URL - Any reference (Optional)",
-                                                      enabledBorder: UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                      ),
-                                                      focusedBorder: UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                      ),
-                                                      // focusedBorder: OutlineInputBorder(
-                                                      //     borderSide: const BorderSide(
-                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                      // border: OutlineInputBorder(
-                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: height * 0.015,
-                                                ),
-                                              ],
-                                            ),
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.015,),
+                                        //Advisor Container
+                                        Container(
+                                          width: width * 0.9,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                            // borderRadius: BorderRadius.all(
+                                            //     Radius.circular(10)),
                                           ),
-                                          SizedBox(
-                                            height: height * 0.015,),
-                                        ],
-                                      ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(left:width * 0.02,top:width*0.02),
+                                                child: Text(
+                                                  //AppLocalizations.of(context)!.subject_topic,
+                                                    "Advisor",
+                                                    //textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: height * 0.020)),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
+                                                child: TextField(
+                                                  controller: adviceController,
+                                                  keyboardType: TextInputType.text,
+                                                  decoration: InputDecoration(
+                                                    //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                    hintStyle: TextStyle(
+                                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.016),
+                                                    hintText: "Suggest what to study if answered incorrectly",
+                                                    enabledBorder: const UnderlineInputBorder(
+                                                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    ),
+                                                    focusedBorder: const UnderlineInputBorder(
+                                                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    ),
+                                                    // focusedBorder: OutlineInputBorder(
+                                                    //     borderSide: const BorderSide(
+                                                    //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                                    //     borderRadius: BorderRadius.circular(15)),
+                                                    // border: OutlineInputBorder(
+                                                    //     borderRadius: BorderRadius.circular(15)),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
+                                                child: TextField(
+                                                  controller: urlController,
+                                                  keyboardType: TextInputType.text,
+                                                  decoration: InputDecoration(
+                                                    //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                    hintStyle: TextStyle(
+                                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.016),
+                                                    hintText: "URL - Any reference (Optional)",
+                                                    enabledBorder: const UnderlineInputBorder(
+                                                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    ),
+                                                    focusedBorder: const UnderlineInputBorder(
+                                                      borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                    ),
+                                                    // focusedBorder: OutlineInputBorder(
+                                                    //     borderSide: const BorderSide(
+                                                    //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                                    //     borderRadius: BorderRadius.circular(15)),
+                                                    // border: OutlineInputBorder(
+                                                    //     borderRadius: BorderRadius.circular(15)),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: height * 0.015,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.015,),
+                                      ],
                                     ),
-                                  )
-                              ),
+                                  ),
+                                )
                             ),
-                            SizedBox(height:height * 0.015),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
+                          ),
+                          SizedBox(height:height * 0.015),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
 
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: ()
-                                      {
-                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.questionIndex);
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/inprogressQuestionBank',
-                                        );
-                                      },
-                                      child: Icon(Icons.close,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
-                                      style: ElevatedButton.styleFrom(
-                                        side: const BorderSide(
-                                          width: 2,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(20),
-                                        backgroundColor: Colors.white, // <-- Button color
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: ()
+                                    {
+                                      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.questionIndex);
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/inprogressQuestionBank',
+                                      );
+                                    },
+                                    child: Icon(Icons.close,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                    style: ElevatedButton.styleFrom(
+                                      side: const BorderSide(
+                                        width: 2,
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                       ),
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(20),
+                                      backgroundColor: Colors.white, // <-- Button color
                                     ),
-                                    SizedBox(height: width * 0.005),
-                                    Text(
-                                      //AppLocalizations.of(context)!.subject_topic,
-                                        "Delete",
-                                        //textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: height * 0.016)),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          subjectController.clear();
-                                          topicController.clear();
-                                          degreeController.clear();
-                                          semesterController.clear();
-                                          _questionTypeValue="MCQ";
-                                          questionController.clear();
-                                          answerController.clear();
-                                          tempChoiceList=[];
-                                          chooses=[];
-                                          radioList=[];
-                                          adviceController.clear();
-                                          urlController.clear();
-                                          questionMvp2=Question();
-                                        });
-                                      },
-                                      child: Icon(Icons.refresh,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
-                                      style: ElevatedButton.styleFrom(
-                                        side: const BorderSide(
-                                          width: 2,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(20),
-                                        backgroundColor: Colors.white, // <-- Button color
+                                  ),
+                                  SizedBox(height: width * 0.005),
+                                  Text(
+                                    //AppLocalizations.of(context)!.subject_topic,
+                                      "Delete",
+                                      //textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: height * 0.016)),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        subjectController.clear();
+                                        topicController.clear();
+                                        degreeController.clear();
+                                        semesterController.clear();
+                                        _questionTypeValue="MCQ";
+                                        questionController.clear();
+                                        answerController.clear();
+                                        tempChoiceList=[];
+                                        chooses=[];
+                                        radioList=[];
+                                        adviceController.clear();
+                                        urlController.clear();
+                                        questionMvp2=Question();
+                                      });
+                                    },
+                                    child: Icon(Icons.refresh,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                    style: ElevatedButton.styleFrom(
+                                      side: const BorderSide(
+                                        width: 2,
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                       ),
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(20),
+                                      backgroundColor: Colors.white, // <-- Button color
                                     ),
-                                    SizedBox(height: width * 0.005),
-                                    Text(
-                                      //AppLocalizations.of(context)!.subject_topic,
-                                        "Clear All",
-                                        //textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: height * 0.016)),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        List<Question> questionProviderList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
-                                        Question question = Question();
-                                        question.subject=questionProviderList[0].subject;
-                                        question.topic=questionProviderList[0].topic;
-                                        question.degreeStudent=questionProviderList[0].degreeStudent;
-                                        question.semester=questionProviderList[0].semester;
-                                        question.questionType=_questionTypeValue;
-                                        question.question=questionController.text;
-                                        question.choices=tempChoiceList;
-                                        question.advisorText=adviceController.text;
-                                        question.advisorUrl=urlController.text;
-                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(widget.questionIndex, question);
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/inprogressQuestionBank',
-                                        );
-                                      },
-                                      child: Icon(Icons.check,size:height * 0.05, color: Colors.white),
-                                      style: ElevatedButton.styleFrom(
-                                        side: const BorderSide(
-                                          width: 2,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(20),
-                                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
+                                  ),
+                                  SizedBox(height: width * 0.005),
+                                  Text(
+                                    //AppLocalizations.of(context)!.subject_topic,
+                                      "Clear All",
+                                      //textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: height * 0.016)),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      List<Question> questionProviderList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+                                      Question question = Question();
+                                      question.subject=questionProviderList[0].subject;
+                                      question.topic=questionProviderList[0].topic;
+                                      question.degreeStudent=questionProviderList[0].degreeStudent;
+                                      question.semester=questionProviderList[0].semester;
+                                      question.questionType=_questionTypeValue;
+                                      question.question=questionController.text;
+                                      question.choices=tempChoiceList;
+                                      question.advisorText=adviceController.text;
+                                      question.advisorUrl=urlController.text;
+                                      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(widget.questionIndex, question);
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/inprogressQuestionBank',
+                                      );
+                                    },
+                                    child: Icon(Icons.check,size:height * 0.05, color: Colors.white),
+                                    style: ElevatedButton.styleFrom(
+                                      side: const BorderSide(
+                                        width: 2,
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                       ),
+                                      shape: CircleBorder(),
+                                      padding: EdgeInsets.all(20),
+                                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                     ),
-                                    SizedBox(height: width * 0.005),
-                                    Text(
-                                      //AppLocalizations.of(context)!.subject_topic,
-                                        "Continue",
-                                        //textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: height * 0.016)),
-                                  ],
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-
+                                  ),
+                                  SizedBox(height: width * 0.005),
+                                  Text(
+                                    //AppLocalizations.of(context)!.subject_topic,
+                                      "Continue",
+                                      //textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: height * 0.016)),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                    )));
-          }
+
+                    ),
+                  )));
+        }
         else {
           return WillPopScope(
               onWillPop: () async => false,
@@ -1849,7 +1843,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -1872,6 +1866,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Radio(
@@ -1892,9 +1887,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Radio(
@@ -1915,9 +1910,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Radio(
@@ -1939,7 +1934,6 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                 ],
                                               ),
@@ -1953,7 +1947,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -1974,9 +1968,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.only(left: width * 0.02),
-                                                child: TextField(
+                                                child: TextFormField(
                                                   controller: questionController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(
@@ -1985,10 +1980,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "Type Question here",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -2003,18 +1998,18 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                               SizedBox(
                                                 height: height * 0.015,
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  //AppLocalizations.of(context)!.subject_topic,
-                                                    "Answer",
-                                                    //textAlign: TextAlign.left,
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.020)),
-                                              ),
+                                              // Padding(
+                                              //   padding: const EdgeInsets.all(8.0),
+                                              //   child: Text(
+                                              //     //AppLocalizations.of(context)!.subject_topic,
+                                              //       "Answer",
+                                              //       //textAlign: TextAlign.left,
+                                              //       style: TextStyle(
+                                              //           color: const Color.fromRGBO(28, 78, 80, 1),
+                                              //           fontFamily: 'Inter',
+                                              //           fontWeight: FontWeight.w600,
+                                              //           fontSize: height * 0.020)),
+                                              // ),
                                               _questionTypeValue=="Descriptive"
                                                   ? const SizedBox(height: 0)
                                                   :  _questionTypeValue=="Survey"
@@ -2121,6 +2116,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           left: 8,),
                                                         child: Row(
                                                           children: [
+                                                            SizedBox(
+                                                                width: width * 0.05,
+                                                                child: Text(String.fromCharCode(97+i))),
                                                             Expanded(
                                                               child: TextFormField(
                                                                 controller: chooses[i],
@@ -2129,7 +2127,8 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                     fontFamily: 'Inter',
                                                                     fontWeight: FontWeight.w400,
                                                                     fontSize: height * 0.018),
-                                                                keyboardType: TextInputType.text,
+                                                                keyboardType: TextInputType.multiline,
+                                                                maxLines: null,
                                                                 decoration: InputDecoration(
                                                                   floatingLabelBehavior:
                                                                   FloatingLabelBehavior.always,
@@ -2183,6 +2182,9 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         child: Row(
                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                           children: [
+                                                            SizedBox(
+                                                                width: width * 0.05,
+                                                                child: Text(String.fromCharCode(97+i))),
                                                             Expanded(
                                                               child: TextFormField(
                                                                 controller: chooses[i],
@@ -2191,7 +2193,8 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                                     fontFamily: 'Inter',
                                                                     fontWeight: FontWeight.w400,
                                                                     fontSize: height * 0.018),
-                                                                keyboardType: TextInputType.text,
+                                                                keyboardType: TextInputType.multiline,
+                                                                maxLines: null,
                                                                 decoration: InputDecoration(
                                                                   floatingLabelBehavior:
                                                                   FloatingLabelBehavior.always,
@@ -2250,25 +2253,27 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
 
 
                                               _questionTypeValue=="Descriptive"
-                                                  ? Padding(
-                                                  padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
-                                                  child: TextField(
-                                                      controller: answerController,
-                                                      keyboardType: TextInputType.text,
-                                                      decoration: InputDecoration(
-                                                        hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.016),
-                                                        hintText: "Type Answer here",
-                                                        enabledBorder: UnderlineInputBorder(
-                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                        ),
-                                                        focusedBorder: UnderlineInputBorder(
-                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                        ),
-                                                      ))):
+                                                  ?
+                                              SizedBox():
+                                              // ? Padding(
+                                              // padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
+                                              // child: TextField(
+                                              //     controller: answerController,
+                                              //     keyboardType: TextInputType.text,
+                                              //     decoration: InputDecoration(
+                                              //       hintStyle: TextStyle(
+                                              //           color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                              //           fontFamily: 'Inter',
+                                              //           fontWeight: FontWeight.w400,
+                                              //           fontSize: height * 0.016),
+                                              //       hintText: "Type Answer here",
+                                              //       enabledBorder: UnderlineInputBorder(
+                                              //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                              //       ),
+                                              //       focusedBorder: UnderlineInputBorder(
+                                              //         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                              //       ),
+                                              //     ))):
                                               TextButton(
                                                 child: Text(
                                                   //AppLocalizations.of(context)!.subject_topic,
@@ -2294,7 +2299,7 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -2326,10 +2331,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "Suggest what to study if answered incorrectly",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -2354,10 +2359,10 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "URL - Any reference (Optional)",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(

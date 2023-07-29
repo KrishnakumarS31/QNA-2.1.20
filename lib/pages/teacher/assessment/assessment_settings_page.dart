@@ -1306,7 +1306,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 onToggle: (val) {
                                                   setState(() {
                                                     allowPublishPublic =
-                                                        val;
+                                                        true;
                                                   });
                                                 },
                                               ),
@@ -1600,7 +1600,13 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessmentSettings.showAdvisorName = showName;
                                       assessmentSettings.showAdvisorEmail = showEmail;
                                       assessmentSettings.notAvailable = false;
-                                      assessmentSettings.avalabilityForPractice = true;
+
+                                      print("ALLOW PUBLISH PUBLIC");
+                                      print(allowPublishPublic);
+                                      assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                      print("Assessment Settings");
+                                      print(assessmentSettings.avalabilityForPractice);
+
                                       showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                       showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                       assessment.assessmentSettings = assessmentSettings;
@@ -2536,7 +2542,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 onToggle: (val) {
                                                   setState(() {
                                                     allowPublishPublic =
-                                                        val;
+                                                        true;
                                                   });
                                                 },
                                               ),
@@ -2836,7 +2842,12 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessmentSettings.showAdvisorName = showName;
                                       assessmentSettings.showAdvisorEmail = showEmail;
                                       assessmentSettings.notAvailable = false;
-                                      assessmentSettings.avalabilityForPractice = true;
+
+                                      print("ALLOW PUBLISH PUBLIC");
+                                      print(allowPublishPublic);
+                                      assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                      print("Assessment Settings");
+                                      print(assessmentSettings.avalabilityForPractice);
 
                                       showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                       showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
@@ -3915,7 +3926,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                       onToggle: (val) {
                                                         setState(() {
                                                           allowPublishPublic =
-                                                              val;
+                                                              true;
                                                         });
                                                       },
                                                     ),
@@ -4209,7 +4220,11 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             assessmentSettings.showAdvisorName = showName;
                                             assessmentSettings.showAdvisorEmail = showEmail;
                                             assessmentSettings.notAvailable = false;
-                                            assessmentSettings.avalabilityForPractice = true;
+                                            print("ALLOW PUBLISH PUBLIC");
+                                            print(allowPublishPublic);
+                                            assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                            print("Assessment Settings");
+                                            print(assessmentSettings.avalabilityForPractice);
                                             showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                             showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                             assessment.assessmentSettings = assessmentSettings;

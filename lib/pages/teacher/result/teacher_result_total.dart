@@ -16,9 +16,11 @@ class TeacherResultTotal extends StatefulWidget {
   const TeacherResultTotal({
     Key? key,
     required this.result,
+    required this.totalAttempts,
     this.userId,
   }) : super(key: key);
   final GetResultModel result;
+  final int totalAttempts;
   final int? userId;
   @override
   TeacherResultTotalState createState() => TeacherResultTotalState();
@@ -38,6 +40,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   void initState() {
     Future.delayed(Duration.zero, (){getData();});
     super.initState();
+
   }
 
   Future<int> getData() async {
@@ -53,6 +56,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
     ResponseEntity response =
     await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"total");
     //widget.userId
+    print("TOTAL COUNT TEACHER RESULT");
+    print(widget.totalAttempts);
+    print(response.data['total_count']);
     if(response.code == 200) {
       Navigator.pop(context);
       GetResultDetailsModel  resultsModelResponse=GetResultDetailsModel.fromJson(response.data);
@@ -156,7 +162,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                           clipBehavior: Clip.none,
                                           children: [
                                             showIcon == Icons.arrow_circle_down_outlined
-                                                ? Container(
+                                                ?
+                                            Container(
                                                 decoration: BoxDecoration(
                                                     border: Border.all(
                                                       color: const Color.fromRGBO(153, 153, 153, 0.25),),
@@ -590,7 +597,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Text(
-                                              'Showing ${resultStart + 1} to ${resultStart+10 <totalCount ? resultStart+10:totalCount} of $totalCount',
+                                              'Showing ${resultStart + 1} to ${resultStart+10 <totalCount ? resultStart+10:totalCount} of ${widget.totalAttempts}',
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
@@ -1186,7 +1193,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
-                                    'Showing ${resultStart + 1} to ${resultStart+10 <totalCount ? resultStart+10:totalCount} of $totalCount',
+                                    'Showing ${resultStart + 1} to ${resultStart+10 <totalCount ? resultStart+10:totalCount} of ${widget.totalAttempts}',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(102, 102, 102, 0.3),
                                         fontFamily: 'Inter',
