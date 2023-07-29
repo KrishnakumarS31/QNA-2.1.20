@@ -579,6 +579,7 @@ class QnaRepo {
       int pageLimit, int pageNumber, String searchVal,UserDetails userDetails) async {
     ResponseEntity allAssessment = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
+  print('$assessmentDomain/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal');
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     var request = http.Request(
         'GET',

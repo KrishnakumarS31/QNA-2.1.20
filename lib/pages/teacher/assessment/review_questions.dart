@@ -1770,6 +1770,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                           questionList[i].questionMark=questionList[i].questionMark!-1;
                                                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                           setState(() {
+                                                                            totalMark--;
                                                                           });
                                                                         }
                                                                       },
@@ -1810,7 +1811,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                           questionList[i].questionMark=questionList[i].questionMark!+1;
                                                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                           setState(() {
-
+                                                                                totalMark++;
                                                                           });
                                                                         }
                                                                       },
@@ -2619,6 +2620,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                           print(questionList[i].questionMark);
                                                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                           setState(() {
+                                                                            totalMark--;
                                                                           });
                                                                         }
                                                                       },
@@ -2662,6 +2664,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                           print(totalMark);
                                                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                           setState(() {
+                                                                            totalMark++;
                                                                             // totalMark = totalMark + questionList[i].questionMark!.toInt();
                                                                           });
                                                                         }
