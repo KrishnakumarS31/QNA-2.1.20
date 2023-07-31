@@ -151,7 +151,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
           //     assessmentResults: []);
           assessment.assessmentId = values.data!.assessmentId!;
           assessment.assessmentCode = widget.assessmentID;
-          assessment.userId = widget.userId;
+          assessment.userId = userDetails.userId;
           assessment.statusId = 2;
           assessment.attemptStartdate = DateTime
               .now()
@@ -1778,7 +1778,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
                               assessment.assessmentId = widget.assessmentCode;
                               assessment.assessmentCode = widget.assessmentID;
-                              assessment.userId = widget.userId;
+                              print("USER ID");
+                              print(widget.userId);
+                              assessment.userId = userDetails.userId;
                               assessment.statusId = 2;
                               assessment.attemptStartdate = widget.startTime;
                               assessment.attemptEnddate = DateTime
@@ -1937,6 +1939,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 print(values);
                                 print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
                                 print(userDetails);
+                                print(loginResponse.code);
+                                print("message 1st place");
+                                print(loginResponse.message);
                                 if (loginResponse.code == 200){
                                   print(widget.userId);
                                   print("4444444444444444444444444444444444444444");
@@ -2144,6 +2149,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     print(values);
     print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
     print(userDetails);
+    print(loginResponse.code);
+    print("message 2");
+    print(loginResponse.message);
     if (loginResponse.code == 200) {
       print(widget.userId);
       print("33333333333333333333333333333333333333333333333333333333333333333333333333333333333");

@@ -58,6 +58,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
   void initState() {
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+    print("USER ID");
+    print(userDetails.userId);
     getData();
     print("INITIAL STAGE");
     print(_isAssessmentTextField);
@@ -595,7 +597,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           _notPressedNo = false;
                                                         });
                                                         values = await QnaService.getQuestion(
-                                                            assessmentId: assessmentIdController.text);
+                                                            assessmentIdController.text,userDetails!.userId);
                                                         if (assessmentIdController.text.length >= 8) {
                                                           if (values.code == 200) {
                                                             Navigator.pushNamed(
@@ -1231,7 +1233,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           _notPressedNo = false;
                                                         });
                                                         values = await QnaService.getQuestion(
-                                                            assessmentId: assessmentIdController.text);
+                                                             assessmentIdController.text,userDetails!.userId);
                                                         if (assessmentIdController.text.length >= 8) {
                                                           if (values.code == 200) {
                                                             Navigator.pushNamed(
@@ -1874,7 +1876,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           _notPressedNo = false;
                                                         });
                                                         values = await QnaService.getQuestion(
-                                                            assessmentId: assessmentIdController.text);
+                                                            assessmentIdController.text,userDetails.userId);
                                                         if (assessmentIdController.text.length >= 8) {
                                                           if (values.code == 200) {
                                                             Navigator.pushNamed(

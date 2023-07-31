@@ -222,8 +222,8 @@ class MyRoutes{
       case '/studentLooqLanding':
         return SlideRightRoute(widget: const StudentLooqLanding(),settings: settings);
 
-      case '/studentLooqSelectedAssessment':
-        return SlideRightRoute(widget: const StudentLooqSelectedAssessment(),settings: settings);
+      // case '/studentLooqSelectedAssessment':
+      //   return SlideRightRoute(widget: const StudentLooqSelectedAssessment(),settings: settings);
 
       case '/studentMemberLoginPage':
         return SlideRightRoute(widget: const StudentMemberLoginPage(),settings: settings);

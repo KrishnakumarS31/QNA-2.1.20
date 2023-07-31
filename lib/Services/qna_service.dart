@@ -55,15 +55,11 @@ class QnaService {
   }
 
   static Future<QuestionPaperModel> getQuestion(
-      {required String assessmentId}) async {
-    return await QnaTestRepo.getQuestionPaper(assessmentId);
+      String assessmentId,int? userId) async {
+    return await QnaTestRepo.getQuestionPaper(assessmentId,userId);
   }
 
-  static Future<QuestionPaperModel> getQuestionsForPublishedAssessmentsPage(
-      {required String assessmentId}) async {
-    return await QnaTestRepo.getQuestionPaperForPublishedAssessmentsPage(
-        assessmentId);
-  }
+
 
   static Future<LoginModel> postAssessmentService(
       PostAssessmentModel? assessment,

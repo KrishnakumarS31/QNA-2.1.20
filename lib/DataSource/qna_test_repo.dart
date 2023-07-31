@@ -28,14 +28,14 @@ class QnaTestRepo {
     return response.statusCode;
   }
 
-  static Future<QuestionPaperModel> getQuestionPaper(assessmentId) async {
+  static Future<QuestionPaperModel> getQuestionPaper(assessmentId,userId) async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     QuestionPaperModel questionPaperModel;
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
         'GET',
         Uri.parse(
-            '$assessmentDomain?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
+            '$assessmentDomain?code=$assessmentId&user_id=$userId'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();
@@ -44,32 +44,32 @@ class QnaTestRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel = await logInUser(email!, pass!);
-      getQuestionPaper(assessmentId);
+      getQuestionPaper(assessmentId,userId);
     }
 
     return questionPaperModel;
   }
 
-  static Future<QuestionPaperModel> getQuestionPaperForPublishedAssessmentsPage(
-      assessmentId) async {
-    SharedPreferences loginData = await SharedPreferences.getInstance();
-    QuestionPaperModel questionPaperModel;
-    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            '$assessmentDomain?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
-    request.headers.addAll(headers);
-    http.StreamedResponse response = await request.send();
-    String value = await response.stream.bytesToString();
-    questionPaperModel = questionPaperModelFromJson(value);
-    if (response.statusCode == 401) {
-      String? email = loginData.getString('email');
-      String? pass = loginData.getString('password');
-      LoginModel loginModel = await logInUser(email!, pass!);
-      getQuestionPaper(assessmentId);
-    }
-
-    return questionPaperModel;
-  }
+  // static Future<QuestionPaperModel> getQuestionPaperForPublishedAssessmentsPage(
+  //     assessmentId) async {
+  //   SharedPreferences loginData = await SharedPreferences.getInstance();
+  //   QuestionPaperModel questionPaperModel;
+  //   var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+  //   var request = http.Request(
+  //       'GET',
+  //       Uri.parse(
+  //           '$assessmentDomain?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
+  //   request.headers.addAll(headers);
+  //   http.StreamedResponse response = await request.send();
+  //   String value = await response.stream.bytesToString();
+  //   questionPaperModel = questionPaperModelFromJson(value);
+  //   if (response.statusCode == 401) {
+  //     String? email = loginData.getString('email');
+  //     String? pass = loginData.getString('password');
+  //     LoginModel loginModel = await logInUser(email!, pass!);
+  //     getQuestionPaper(assessmentId);
+  //   }
+  //
+  //   return questionPaperModel;
+  // }
 }
