@@ -190,24 +190,25 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                       alignment: Alignment.topLeft,
                                       child: Text(
                                           values.data!.questions![index -
-                                              1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
+                                              1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).join(",") ?? "",
                                               // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
                                               // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                           //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                           style:
-                                          Provider
-                                              .of<Questions>(
-                                              context, listen: false)
-                                              .totalQuestion['$index'][1] ==
-                                              const Color(0xffdb2323)
-                                              ?
+                                          // Provider
+                                          //     .of<Questions>(
+                                          //     context, listen: false)
+                                          //     .totalQuestion['$index'][1] ==
+                                          //     const Color(0xffdb2323)
+                                          //     ?
+                                          // TextStyle(
+                                          //     color: const Color.fromRGBO(
+                                          //         238, 71, 0, 1),
+                                          //     fontFamily: 'Inter',
+                                          //     fontWeight: FontWeight.w600,
+                                          //     fontSize: localHeight * 0.014)
+                                          //     :
                                           TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  238, 71, 0, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.014)
-                                              : TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontFamily: 'Inter',
@@ -414,7 +415,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                   values.data!.questions![index -
-                                                      1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
+                                                      1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).join(",") ?? "",
                                                       // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
                                                       // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                                   //options[index-1].toString().substring(1,options[index-1].toString().length-1),
@@ -665,24 +666,25 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                             Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(values.data!.questions![index -
-                                                      1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
+                                                      1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).join(",") ?? "",
                                                       // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
                                                       // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                                   //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                                   style:
-                                                  Provider
-                                                      .of<Questions>(
-                                                      context, listen: false)
-                                                      .totalQuestion['$index'][1] ==
-                                                      const Color(0xffdb2323)
-                                                      ?
+                                                  // Provider
+                                                  //     .of<Questions>(
+                                                  //     context, listen: false)
+                                                  //     .totalQuestion['$index'][1] ==
+                                                  //     const Color(0xffdb2323)
+                                                  //     ?
+                                                  // TextStyle(
+                                                  //     color: const Color.fromRGBO(
+                                                  //         238, 71, 0, 1),
+                                                  //     fontFamily: 'Inter',
+                                                  //     fontWeight: FontWeight.w600,
+                                                  //     fontSize: localHeight * 0.014)
+                                                  //     :
                                                   TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          238, 71, 0, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: localHeight * 0.014)
-                                                      : TextStyle(
                                                       color: const Color.fromRGBO(
                                                           82, 165, 160, 1),
                                                       fontFamily: 'Inter',

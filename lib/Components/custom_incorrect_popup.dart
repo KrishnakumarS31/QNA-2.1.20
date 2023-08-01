@@ -44,7 +44,8 @@ class _CustomDialogState extends State<CustomDialog> {
               ),
             ],
           ),
-          margin: const EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(15.0),
+          // margin: const EdgeInsets.all(15.0),
           height: height * 0.25,
           width: width * 0.5,
           child: Column(
@@ -56,7 +57,7 @@ class _CustomDialogState extends State<CustomDialog> {
               Padding(
                 padding: EdgeInsets.only(left: width * 0.01,right:width * 0.01),
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children:[
                       // SizedBox(width: width * 0.1),
                       Container(
@@ -71,6 +72,7 @@ class _CustomDialogState extends State<CustomDialog> {
                           color: Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
+                      SizedBox(width: width * 0.01),
                       // SizedBox(width: width * 0.01),
                       Text(
                         widget.title,
