@@ -82,6 +82,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
   }
 
   getAssessmentData(String searchVal) async {
+    allAssessment=[];
     showDialog(
         context: context,
         builder: (context) {
@@ -92,15 +93,37 @@ class StudentAssessmentState extends State<StudentAssessment> {
         });
     pageLimit = 1;
     ResponseEntity response =
-    await QnaService.getAssessmentsForStudentsLooq(5, pageLimit, searchVal);
+    await QnaService.getAssessmentsForStudentsLooq(1000, pageLimit, searchVal);
     print("message${response.data}");
-    if(response.data==null){
+    if(response.data!=null){
+      allAssessment = List<GetAssessmentModel>.from(
+          response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
+    }
+
+    if(allAssessment.isEmpty){
+      print("if --------------${response.data}");
       Navigator.of(context).pop();
+      Navigator.push(
+        context,
+        PageTransition(
+          type:
+          PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: AppLocalizations.of(context)!.alert_popup,
+            content: "No assessments found",
+            //'${assessmentvalues.message}',
+            button:
+            AppLocalizations.of(context)!
+                .retry,
+          ),
+        ),
+      );
       setState(() {
         looqSearch=false;
       });
     }
     else{
+      print("else --------------${response.data}");
       allAssessment = List<GetAssessmentModel>.from(
           response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
       Navigator.of(context).pop();
@@ -382,8 +405,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         setState(() {
                                                           _searchPressed = false;
                                                           looqSearch = true;
+                                                          getAssessmentData(assessmentIdController.text);
                                                         });
-                                                        getAssessmentData(assessmentIdController.text);
+
                                                       },
                                                       child: const Icon(Icons.search_outlined, color: Colors.white),
                                                       style: ElevatedButton.styleFrom(
@@ -1011,8 +1035,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               setState(() {
                                                                 _searchPressed = false;
                                                                 looqSearch = true;
+                                                                getAssessmentData(assessmentIdController.text);
                                                               });
-                                                              getAssessmentData(assessmentIdController.text);
+
                                                             },
                                                             child: const Icon(Icons.search_outlined, color: Colors.white),
                                                             style: ElevatedButton.styleFrom(
@@ -1233,7 +1258,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           _notPressedNo = false;
                                                         });
                                                         values = await QnaService.getQuestion(
-                                                             assessmentIdController.text,userDetails!.userId);
+                                                            assessmentIdController.text,userDetails!.userId);
                                                         if (assessmentIdController.text.length >= 8) {
                                                           if (values.code == 200) {
                                                             Navigator.pushNamed(
@@ -1654,8 +1679,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               setState(() {
                                                                 _searchPressed = false;
                                                                 looqSearch = true;
+                                                                getAssessmentData(assessmentIdController.text);
                                                               });
-                                                              getAssessmentData(assessmentIdController.text);
+
                                                             },
                                                             child: const Icon(Icons.search_outlined, color: Colors.white),
                                                             style: ElevatedButton.styleFrom(

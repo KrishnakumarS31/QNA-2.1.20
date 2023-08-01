@@ -2135,9 +2135,10 @@ class _QuestionCardState extends State<QuestionCard> {
     if(widget.question.questionType=="MCQ"){
       for(int i=0;i<widget.question.choices!.length;i++){
         if(widget.question.choices![i].rightChoice!){
-          ans=ans + widget.question.choices![i].choiceText!;
+          ans='$ans${widget.question.choices![i].choiceText!}, ';
         }
       }
+      ans=ans.substring(0,ans.length-2);
     }
     super.initState();
   }

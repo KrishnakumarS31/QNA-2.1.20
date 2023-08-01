@@ -461,7 +461,9 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                                 .enter_subject;
                                                                             //'Enter Subject';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.subject = subjectController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -521,7 +523,9 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                             return
                                                                               'Enter Topic';
                                                                           } else {
-                                                                            return null;
+                                                                           setState(() {
+                                                                             assessment.topic = topicController.text;
+                                                                           });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -757,7 +761,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "${assessment.questions?.length}",
+                                      "${questionList.length}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -1320,7 +1324,9 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                                 .enter_subject;
                                                                             //'Enter Subject';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.subject = subjectController.text;
+                                                                            });;
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -1380,7 +1386,9 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                             return
                                                                               'Enter Topic';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.topic = topicController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -1616,7 +1624,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "${assessment.questions?.length}",
+                                      "${questionList.length}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -1714,7 +1722,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                               ),
                                                               Container(
                                                                 height: height * 0.04,
-                                                                width: width * 0.3,
+                                                                width: width * 0.1,
                                                                 decoration: BoxDecoration(
                                                                   border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
                                                                   borderRadius: BorderRadius.all(
@@ -1735,7 +1743,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                       },
                                                                       child: Container(
                                                                         height: height * 0.03,
-                                                                        width: width * 0.05,
+                                                                        width: width * 0.01,
                                                                         child: Icon(
                                                                           Icons.remove,
                                                                           size: height * 0.02,
@@ -1746,7 +1754,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                       padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
                                                                       child: Container(
                                                                         height: height * 0.03,
-                                                                        width: width * 0.1,
+                                                                        width: width * 0.05,
                                                                         decoration: BoxDecoration(
                                                                           border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
                                                                           borderRadius: BorderRadius.all(
@@ -1776,7 +1784,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                       },
                                                                       child: Container(
                                                                         height: height * 0.03,
-                                                                        width: width * 0.05,
+                                                                        width: width * 0.01,
 
                                                                         child: Icon(
                                                                           Icons.add,
@@ -2177,7 +2185,10 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                                 .enter_subject;
                                                                             //'Enter Subject';
                                                                           } else {
-                                                                            return null;
+
+                                                                            setState(() {
+                                                                              assessment.subject = subjectController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -2237,7 +2248,9 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                                                             return
                                                                               'Enter Topic';
                                                                           } else {
-                                                                            return null;
+                                                                           setState(() {
+                                                                             assessment.topic = topicController.text;
+                                                                           });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -2451,7 +2464,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "45",
+                                      "$totalMark",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",
@@ -2473,7 +2486,7 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           fontWeight: FontWeight.w400),
                                     ),
                                     Text(
-                                      "${assessment.questions?.length}",
+                                      "${questionList.length}",
                                       style: TextStyle(
                                           fontSize: height * 0.016,
                                           fontFamily: "Inter",

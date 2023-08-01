@@ -1313,6 +1313,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                           assessment.createAssessmentModelClass=getAssessmentModel.getAssessmentModelClass;
                                           assessment.subTopic=getAssessmentModel.subTopic;
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.assessmentId=getAssessmentModel.assessmentId;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           makeAssessmentInactive?assessment.assessmentStatus = 'active':assessment.assessmentStatus = 'inactive';
@@ -2601,6 +2602,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                           assessment.createAssessmentModelClass=getAssessmentModel.getAssessmentModelClass;
                                           assessment.subTopic=getAssessmentModel.subTopic;
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.assessmentId=getAssessmentModel.assessmentId;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           makeAssessmentInactive?assessment.assessmentStatus = 'active':assessment.assessmentStatus = 'inactive';
@@ -3870,6 +3872,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                           assessment.createAssessmentModelClass=getAssessmentModel.getAssessmentModelClass;
                                           assessment.subTopic=getAssessmentModel.subTopic;
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.assessmentId=getAssessmentModel.assessmentId;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           makeAssessmentInactive?assessment.assessmentStatus = 'active':assessment.assessmentStatus = 'inactive';

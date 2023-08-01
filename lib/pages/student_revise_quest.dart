@@ -85,8 +85,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     }
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-    print(widget.questions.data?.questions?[1].question);
-    print(widget.questions.data?.questions?[1].questionType);
+
     values = widget.questions;
     int length = widget.questions.data?.questions?.length ?? 0;
     for (int j = 1; j <= length; j++) {

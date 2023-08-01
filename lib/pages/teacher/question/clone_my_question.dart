@@ -3861,7 +3861,12 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
+                                                                ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -3924,7 +3929,12 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
+                                                                ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4615,7 +4625,12 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+        Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+        color: Colors.black,
+        fontFamily: 'Inter',
+        fontWeight: FontWeight.w400,
+        fontSize: height * 0.020)
+        ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4678,7 +4693,12 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}."),
+        Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+        color: Colors.black,
+        fontFamily: 'Inter',
+        fontWeight: FontWeight.w400,
+        fontSize: height * 0.020)
+        ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],

@@ -97,6 +97,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
   }
 
   getData(String search) async {
+    print("Search");
+    print(search.isEmpty);
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
     List<GetAssessmentModel> assessments = [];
@@ -104,8 +106,35 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
     tempassessment=response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
         response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
 
-    if(response.data['total_count'] == 0)
+    print("Balle lakka balle lakka");
+    print(response.data['total_count']);
+    print(tempassessment.isNotEmpty);
+
+
+    if(search.isEmpty)
       {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title:
+              AppLocalizations.of(context)!.alert_popup,
+              //'Alert',
+              content:
+              "Please Enter Something",
+              //'No Questions Found.',
+              button:
+              AppLocalizations.of(context)!.retry,
+              //"Retry",
+            ),
+          ),
+        );
+      }
+
+    else if(response.data['total_count'] == 0 )
+      {
+        print("INSIDE IF");
         Navigator.push(
           context,
           PageTransition(
@@ -125,7 +154,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
         );
       }
 
-    if (tempassessment.isNotEmpty) {
+   else if (tempassessment.isNotEmpty) {
       assessments.addAll(tempassessment);
       totalAssessments=response.data['total_count'].toString();
       setState(() {
@@ -136,6 +165,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
         searchVal = search;
       });
     }
+
     else{
       setState(() {
         assessmentStart=assessmentStart-10;
@@ -2094,44 +2124,6 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                     ),
                   ),
                 ),
-                // AppBar(
-                //   leading: IconButton(
-                //     icon: const Icon(
-                //       Icons.chevron_left,
-                //       size: 40.0,
-                //       color: Colors.white,
-                //     ),
-                //     onPressed: () {
-                //       Navigator.of(context).pop();
-                //     },
-                //   ),
-                //   toolbarHeight: height * 0.100,
-                //   centerTitle: true,
-                //   title: Column(
-                //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //       children: [
-                //         Text(
-                //           AppLocalizations.of(context)!.my_qns,
-                //           //"MY QUESTIONS",
-                //           style: TextStyle(
-                //             color: const Color.fromRGBO(255, 255, 255, 1),
-                //             fontSize: height * 0.0225,
-                //             fontFamily: "Inter",
-                //             fontWeight: FontWeight.w400,
-                //           ),
-                //         ),
-                //       ]),
-                //   flexibleSpace: Container(
-                //     decoration: const BoxDecoration(
-                //         gradient: LinearGradient(
-                //             end: Alignment.bottomCenter,
-                //             begin: Alignment.topCenter,
-                //             colors: [
-                //               Color.fromRGBO(0, 106, 100, 1),
-                //               Color.fromRGBO(82, 165, 160, 1),
-                //             ])),
-                //   ),
-                // ),
                 endDrawer: const EndDrawerMenuTeacher(),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,

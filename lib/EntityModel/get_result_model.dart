@@ -86,7 +86,7 @@ class GetResultModel {
     assessmentDuration: json["assessment_duration"] ?? " ",
     subject: json["subject"] ?? " ",
     topic: json["topic"] ?? " ",
-    semester: json["sub_topic"] ?? " ",
+    semester: json["semester"] ?? " ",
     totalAttempts:json["total_attempts"] ?? 0,
     totalCompletedAttempts: json["total_completed_attempts"] ?? 0,
     totalInprogressAttempts: json["total_inprogress_attempts"] ?? 0,
@@ -110,7 +110,7 @@ class GetResultModel {
     "assessment_startdate": assessmentStartDate,
     "subject": subject,
     "topic": topic,
-    "sub_topic": semester,
+    "semester": semester,
     "class": degree,
     "total_attempts":totalAttempts,
     "total_completed_attempts":totalCompletedAttempts,
@@ -123,7 +123,7 @@ class GetResultModel {
 
   @override
   String toString() {
-    return 'GetResultModel{assessmentId: $assessmentId, assessmentResults: $assessmentResults, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $semester, studentClass: $degree, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts,assessmentSettings: $assessmentSettings,assessment_status: $assessmentStatus}';
+    return 'GetResultModel{assessmentId: $assessmentId, assessmentResults: $assessmentResults, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, semester: $semester, studentClass: $degree, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts,assessmentSettings: $assessmentSettings,assessment_status: $assessmentStatus}';
   }
 }
 

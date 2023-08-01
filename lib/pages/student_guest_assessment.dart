@@ -466,8 +466,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           hintText: AppLocalizations.of(
                                                               context)!
                                                               .assessment_id,
-                                                          suffixIcon: GestureDetector(
-                                                            onTap: () async {
+                                                          suffixIcon: ElevatedButton(
+                                                            onPressed: () async {
                                                               assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
@@ -479,7 +479,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                   _searchPressed = true;
                                                                 });
                                                               }
-                                                              else{
+                                                              else if (assessmentvalues.code == 400) {
                                                                 Navigator.push(
                                                                   context,
                                                                   PageTransition(
@@ -487,7 +487,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                     PageTransitionType.rightToLeft,
                                                                     child: CustomDialog(
                                                                       title: AppLocalizations.of(context)!.alert_popup,
-                                                                      content: '${values.message}',
+                                                                      content: '${assessmentvalues.message}',
                                                                       button:
                                                                       AppLocalizations.of(context)!
                                                                           .retry,
@@ -496,38 +496,17 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                 );
                                                               }
                                                             },
-                                                            child: IconButton(
-                                                              onPressed: () async {
-                                                                assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
-                                                                if(assessmentvalues.code == 200) {
-                                                                  setState(() {
-                                                                    assessmentHeaderValues =
-                                                                        GetAssessmentHeaderModel
-                                                                            .fromJson(
-                                                                            assessmentvalues
-                                                                                .data);
-                                                                    _searchPressed = true;
-                                                                  });
-                                                                }
-                                                                else if (assessmentvalues.code == 400) {
-                                                                  Navigator.push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type:
-                                                                      PageTransitionType.rightToLeft,
-                                                                      child: CustomDialog(
-                                                                        title: AppLocalizations.of(context)!.alert_popup,
-                                                                        content: '${assessmentvalues.message}',
-                                                                        button:
-                                                                        AppLocalizations.of(context)!
-                                                                            .retry,
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                }
-                                                              },
-                                                              color:  const Color.fromRGBO(82, 165, 160, 1),
-                                                              icon: const Icon(Icons.search_rounded),),
+
+                                                            child: const Icon(Icons.search_outlined, color: Colors.white),
+                                                            style: ElevatedButton.styleFrom(
+                                                              fixedSize: const Size(8, 8),
+                                                              side: const BorderSide(
+                                                                width: 1,
+                                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                                              ),
+                                                              shape: const CircleBorder(),
+                                                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
+                                                            ),
                                                           ),
                                                           // prefixIcon:
                                                           // const Icon(
@@ -1245,38 +1224,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           hintText: AppLocalizations.of(
                                                               context)!
                                                               .assessment_id,
-                                                          suffixIcon: GestureDetector(
-
-                                                            onTap: () async {
-                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
-                                                              if(assessmentvalues.code == 200) {
-                                                                setState(() {
-                                                                  assessmentHeaderValues =
-                                                                      GetAssessmentHeaderModel
-                                                                          .fromJson(
-                                                                          assessmentvalues
-                                                                              .data);
-                                                                  _searchPressed = true;
-                                                                });
-                                                              }
-                                                              else{
-                                                                Navigator.push(
-                                                                  context,
-                                                                  PageTransition(
-                                                                    type:
-                                                                    PageTransitionType.rightToLeft,
-                                                                    child:  CustomDialog(
-                                                                      title: AppLocalizations.of(context)!.alert_popup,
-                                                                      content: '${values.message}',
-                                                                      button:
-                                                                      AppLocalizations.of(context)!
-                                                                          .retry,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              }
-                                                            },
-                                                            child: IconButton( onPressed: () async {
+                                                          suffixIcon: ElevatedButton(
+                                                            onPressed: () async {
                                                               assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
@@ -1305,8 +1254,17 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                 );
                                                               }
                                                             },
-                                                              color:  const Color.fromRGBO(82, 165, 160, 1),
-                                                              icon: const Icon(Icons.search_rounded),),
+
+                                                            child: const Icon(Icons.search_outlined, color: Colors.white),
+                                                            style: ElevatedButton.styleFrom(
+                                                              fixedSize: const Size(8, 8),
+                                                              side: const BorderSide(
+                                                                width: 1,
+                                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                                              ),
+                                                              shape: const CircleBorder(),
+                                                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
+                                                            ),
                                                           ),
                                                           // prefixIcon:
                                                           // const Icon(
@@ -2029,8 +1987,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           hintText: AppLocalizations.of(
                                                               context)!
                                                               .assessment_id,
-                                                          suffixIcon: GestureDetector(
-                                                            onTap: () async {
+                                                          suffixIcon: ElevatedButton(
+                                                            onPressed: () async {
                                                               assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
                                                               if(assessmentvalues.code == 200) {
                                                                 setState(() {
@@ -2042,15 +2000,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                   _searchPressed = true;
                                                                 });
                                                               }
-                                                              else{
+                                                              else if (assessmentvalues.code == 400) {
                                                                 Navigator.push(
                                                                   context,
                                                                   PageTransition(
                                                                     type:
                                                                     PageTransitionType.rightToLeft,
-                                                                    child:  CustomDialog(
+                                                                    child: CustomDialog(
                                                                       title: AppLocalizations.of(context)!.alert_popup,
-                                                                      content: '${values.message}',
+                                                                      content: '${assessmentvalues.message}',
                                                                       button:
                                                                       AppLocalizations.of(context)!
                                                                           .retry,
@@ -2059,38 +2017,17 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                 );
                                                               }
                                                             },
-                                                            child: IconButton(
-                                                              onPressed: () async {
-                                                                assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
-                                                                if(assessmentvalues.code == 200) {
-                                                                  setState(() {
-                                                                    assessmentHeaderValues =
-                                                                        GetAssessmentHeaderModel
-                                                                            .fromJson(
-                                                                            assessmentvalues
-                                                                                .data);
-                                                                    _searchPressed = true;
-                                                                  });
-                                                                }
-                                                                else if (assessmentvalues.code == 400) {
-                                                                  Navigator.push(
-                                                                    context,
-                                                                    PageTransition(
-                                                                      type:
-                                                                      PageTransitionType.rightToLeft,
-                                                                      child: CustomDialog(
-                                                                        title: AppLocalizations.of(context)!.alert_popup,
-                                                                        content: '${assessmentvalues.message}',
-                                                                        button:
-                                                                        AppLocalizations.of(context)!
-                                                                            .retry,
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                }
-                                                              },
-                                                              color:  const Color.fromRGBO(82, 165, 160, 1),
-                                                              icon: const Icon(Icons.search_rounded),),
+
+                                                            child: const Icon(Icons.search_outlined, color: Colors.white),
+                                                            style: ElevatedButton.styleFrom(
+                                                              fixedSize: const Size(8, 8),
+                                                              side: const BorderSide(
+                                                                width: 1,
+                                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                                              ),
+                                                              shape: const CircleBorder(),
+                                                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
+                                                            ),
                                                           ),
                                                           // prefixIcon:
                                                           // const Icon(

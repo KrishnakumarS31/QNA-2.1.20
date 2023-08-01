@@ -158,7 +158,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       fontWeight:
                                                       FontWeight.w700,
                                                       fontSize:
-                                                      localHeight * 0.0225)),
+                                                      localHeight *
+                                                          0.02)),
                                               SizedBox(width: localHeight * 0.005),
                                               Text(
                                                 "${values.data!.questions![index -
@@ -168,7 +169,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: localHeight * 0.0225),
+                                                    fontSize: localHeight * 0.02),
                                               ),
                                             SizedBox(height: localHeight * 0.010),
                                               SizedBox(
@@ -187,7 +188,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   //"Not answered",
                                                       : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
                                                  ?  AppLocalizations.of(context)!.incorrectly_answered
-                                                  : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+                                                  :"",
+                                                  // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
 
                                                   style: TextStyle(
                                                       color: const Color
@@ -202,7 +204,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       FontWeight
                                                           .w600,
                                                       fontSize:
-                                                      localHeight * 0.0225)),
+                                                      localHeight * 0.02)),
                                             ]),
                                             SizedBox(
                                                 height:
@@ -221,7 +223,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   fontWeight:
                                                   FontWeight.w400,
                                                   fontSize:
-                                                  localHeight * 0.0225),
+                                                  localHeight * 0.02),
                                             ),
                                             SizedBox(
                                                 height:
@@ -234,6 +236,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
+                                              Text(
+                                                AppLocalizations.of(context)!.advisor,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: localHeight * 0.02),
+                                              ),
+                                              SizedBox(
+                                                  height:
+                                                  localHeight * 0.010),
                                               RichText(
                                                   text: TextSpan(children: [
                                                     TextSpan(
@@ -241,16 +255,16 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         "${AppLocalizations.of(
                                                             context)!
                                                             .study_chapter} ${values
-                                                            .data!.subTopic}\t",
+                                                            .data!.subTopic},\t",
                                                         style: TextStyle(
                                                             color: const Color
                                                                 .fromRGBO(
                                                                 51, 51, 51, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight:
-                                                            FontWeight.w600,
+                                                            FontWeight.w400,
                                                             fontSize:
-                                                            localHeight * 0.0225)),
+                                                            localHeight * 0.02)),
                                                     TextSpan(
                                                         text: values
                                                             .data!
@@ -265,7 +279,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                             fontWeight:
                                                             FontWeight.w400,
                                                             fontSize:
-                                                            localHeight * 0.0225)),
+                                                            localHeight * 0.02)),
                                                   ])),
                                               const SizedBox(height: 10),
                                               Row(
@@ -284,7 +298,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           FontWeight
                                                               .w400,
                                                           fontSize:
-                                                          localHeight * 0.0225)),
+                                                          localHeight * 0.02)),
                                                   const SizedBox(width: 5),
                                                   Flexible(
                                                       child:
@@ -305,7 +319,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                                 fontFamily:
                                                                 'Inter',
                                                                 fontSize:
-                                                                localHeight * 0.0225,
+                                                                localHeight * 0.02,
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     58,
@@ -422,14 +436,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               }
                               ),
                           IconButton(
-                              iconSize: localHeight * 0.06,
-                              icon: const Icon(
-                                Icons.chat,
-                                color: Color.fromRGBO(
-                                    82, 165, 160, 1),
-                              ),
+                              iconSize: localHeight * 0.05,
                               onPressed: () async {
-                              }),
+                              }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                                    82, 165, 160, 1,)),),
                         ]
                       )
                     ]
@@ -527,7 +537,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                     fontWeight:
                                                     FontWeight.w700,
                                                     fontSize:
-                                                    localHeight * 0.0225)),
+                                                    localHeight * 0.02)),
                                             SizedBox(width: localHeight * 0.005),
                                             Text(
                                               "${values.data!.questions![index -
@@ -537,7 +547,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       82, 165, 160, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight * 0.0225),
+                                                  fontSize: localHeight * 0.02),
                                             ),
                                             SizedBox(height: localHeight * 0.010),
                                             SizedBox(
@@ -556,7 +566,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               //"Not answered",
                                                   : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
                                                   ?  AppLocalizations.of(context)!.incorrectly_answered
-                                                  : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+                                                  :"",
+                                                  // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
                                                 // Provider
                                                 //     .of<Questions>(context, listen: false)
                                                 //     .totalQuestion['$index'][0].isEmpty?
@@ -576,7 +587,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                     FontWeight
                                                         .w600,
                                                     fontSize:
-                                                    localHeight * 0.0225)
+                                                    localHeight * 0.02)
                                             ),
                                           ]),
                                           SizedBox(
@@ -596,7 +607,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 fontWeight:
                                                 FontWeight.w400,
                                                 fontSize:
-                                                localHeight * 0.0225),
+                                                localHeight * 0.02),
                                           ),
                                           SizedBox(
                                               height:
@@ -609,6 +620,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                           children: [
+                                            Text(
+                                              AppLocalizations.of(context)!.advisor,
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: localHeight * 0.02),
+                                            ),
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.010),
                                             RichText(
                                                 text: TextSpan(children: [
                                                   TextSpan(
@@ -616,16 +639,16 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       "${AppLocalizations.of(
                                                           context)!
                                                           .study_chapter} ${values
-                                                          .data!.subTopic}\t",
+                                                          .data!.subTopic},\t",
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                          FontWeight.w600,
+                                                          FontWeight.w400,
                                                           fontSize:
-                                                          localHeight * 0.0225)),
+                                                          localHeight * 0.02)),
                                                   TextSpan(
                                                       text: values
                                                           .data!
@@ -640,7 +663,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           fontWeight:
                                                           FontWeight.w400,
                                                           fontSize:
-                                                          localHeight * 0.0225)),
+                                                          localHeight * 0.02)),
                                                 ])),
                                             const SizedBox(height: 10),
                                             Row(
@@ -659,7 +682,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         FontWeight
                                                             .w400,
                                                         fontSize:
-                                                        localHeight * 0.0225)),
+                                                        localHeight * 0.02)),
                                                 const SizedBox(width: 5),
                                                 Flexible(
                                                     child:
@@ -680,7 +703,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                               fontFamily:
                                                               'Inter',
                                                               fontSize:
-                                                              localHeight * 0.0225,
+                                                              localHeight * 0.02,
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   58,
@@ -796,14 +819,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       } else {}
                                     }),
                                 IconButton(
-                                    iconSize: localHeight * 0.04,
-                                    icon: const Icon(
-                                      Icons.voice_chat_rounded,
-                                      color: Color.fromRGBO(
-                                          82, 165, 160, 1),
-                                    ),
-                                    onPressed: () {
-                                    }),
+                                  iconSize: localHeight * 0.035,
+                                  onPressed: () async {
+                                  }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                                  82, 165, 160, 1,)),),
                               ]
                           )
                         ]
@@ -900,8 +919,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                     fontWeight:
                                                     FontWeight.w700,
                                                     fontSize:
-                                                    localHeight *
-                                                        0.012)),
+                                                    localHeight * 0.02)),
                                             SizedBox(width: localHeight * 0.005),
                                             Text(
                                               "${values.data!.questions![index -
@@ -911,7 +929,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       82, 165, 160, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight * 0.012),
+                                                  fontSize: localHeight * 0.02),
                                             ),
                                             SizedBox(height: localHeight * 0.010),
                                             SizedBox(
@@ -930,7 +948,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 //"Not answered",
                                                     : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
                                                     ?  AppLocalizations.of(context)!.incorrectly_answered
-                                                    : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+                                                    :"",
+                                                    // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
                                                 // ("${values.data!.questions![index - 1].questionType}" == "MCQ" && Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
                                                 //     ?
                                                 // AppLocalizations.of(context)!.not_answered
@@ -950,8 +969,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                     FontWeight
                                                         .w600,
                                                     fontSize:
-                                                    localHeight *
-                                                        0.014)),
+                                                    localHeight * 0.02)),
                                           ]),
                                           SizedBox(
                                               height:
@@ -970,7 +988,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 fontWeight:
                                                 FontWeight.w400,
                                                 fontSize:
-                                                localHeight * 0.013),
+                                                localHeight * 0.02),
                                           ),
                                           SizedBox(
                                               height:
@@ -983,6 +1001,19 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                           children: [
+                                            Text(
+                                              "${values.data!.questions![index -
+                                                  1].questionType}",
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: localHeight * 0.02),
+                                            ),
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.010),
                                             RichText(
                                                 text: TextSpan(children: [
                                                   TextSpan(
@@ -990,17 +1021,16 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       "${AppLocalizations.of(
                                                           context)!
                                                           .study_chapter} ${values
-                                                          .data!.subTopic}\t",
+                                                          .data!.subTopic},\t",
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                          FontWeight.w600,
+                                                          FontWeight.w400,
                                                           fontSize:
-                                                          localHeight *
-                                                              0.015)),
+                                                          localHeight * 0.02)),
                                                   TextSpan(
                                                       text: values
                                                           .data!
@@ -1015,8 +1045,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           fontWeight:
                                                           FontWeight.w400,
                                                           fontSize:
-                                                          localHeight *
-                                                              0.015)),
+                                                          localHeight * 0.02)),
                                                 ])),
                                             const SizedBox(height: 6),
                                             Row(
@@ -1035,8 +1064,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         FontWeight
                                                             .w400,
                                                         fontSize:
-                                                        localHeight *
-                                                            0.015)),
+                                                        localHeight * 0.02)),
                                                 const SizedBox(width: 5),
                                                 Flexible(
                                                     child:
@@ -1058,7 +1086,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                               'Inter',
                                                               fontSize:
                                                               localHeight *
-                                                                  0.015,
+                                                                  0.02,
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   58,
@@ -1173,14 +1201,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       } else {}
                                     }),
                                 IconButton(
-                                    iconSize: localHeight * 0.04,
-                                    icon: const Icon(
-                                      Icons.voice_chat_rounded,
-                                      color: Color.fromRGBO(
-                                          82, 165, 160, 1),
-                                    ),
-                                    onPressed: () {
-                                    }),
+                                  iconSize: localHeight * 0.036,
+                                  onPressed: () async {
+                                  }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                                  82, 165, 160, 1,)),),
                               ]
                           )
                         ]

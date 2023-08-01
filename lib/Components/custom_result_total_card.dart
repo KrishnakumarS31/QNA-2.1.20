@@ -107,9 +107,7 @@ class ResultTotalCard extends StatelessWidget {
                   Container(
                     width: width * 0.1,
                     decoration: BoxDecoration(
-                        color: percent! > 50
-                            ? const Color.fromRGBO(82, 165, 160, 1)
-                            : const Color.fromRGBO(255, 166, 0, 1),
+                        color: const Color.fromRGBO(0, 167, 204, 1),
                         borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(20),
                             bottomRight: Radius.circular(20))),
@@ -226,9 +224,8 @@ class ResultTotalCard extends StatelessWidget {
                 Container(
                   width: width * 0.233,
                   decoration: BoxDecoration(
-                      color: percent! > 50
-                          ? const Color.fromRGBO(82, 165, 160, 1)
-                          : const Color.fromRGBO(255, 166, 0, 1),
+                      color:
+                      const Color.fromRGBO(0, 167, 204, 1),
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20))),

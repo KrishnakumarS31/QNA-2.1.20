@@ -621,7 +621,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),style: TextStyle(
+                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
                                                                       color: Colors.black,
                                                                       fontFamily: 'Inter',
                                                                       fontWeight: FontWeight.w400,
@@ -694,7 +694,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),
+                                                                  child: Text("${String.fromCharCode(97+i)}.",
                                                                     style: TextStyle(
                                                                         color: Colors.black,
                                                                         fontFamily: 'Inter',
@@ -1446,7 +1446,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),style: TextStyle(
+                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
                                                                       color: Colors.black,
                                                                       fontFamily: 'Inter',
                                                                       fontWeight: FontWeight.w400,
@@ -1519,13 +1519,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),
-                                                                    style: TextStyle(
-                                                                        color: Colors.black,
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.018),
-                                                                  )),
+                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018)
+                                                              ),
+                                                              ),
                                                               Container(
                                                                 width : width * 0.7,
                                                                 child: TextFormField(
@@ -2350,14 +2350,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),
-                                                                    style: TextStyle(
-                                                                        color: Colors.black,
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.020),
-                                                                  )),
-
+                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.020)
+                                                              ),
+                                                              ),
                                                               SizedBox(
                                                                 //height: height * 0.05,
                                                                 width : width * 0.28,
@@ -2424,12 +2423,11 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                 width:width * 0.03,
-                                                                child: Text(String.fromCharCode(97+i),
-                                                                  style: TextStyle(
-                                                                      color: Colors.black,
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.018),
+                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
                                                                 ),
                                                               ),
                                                               Align(
@@ -3178,13 +3176,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),
-                                                                    style: TextStyle(
-                                                                        color: Colors.black,
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.018),
-                                                                  )),
+                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
+                                                                ),
+                                                              ),
                                                               Align(
                                                                 alignment:Alignment.centerLeft,
                                                                 child: SizedBox(
@@ -3255,13 +3253,12 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                 width:width * 0.03,
-                                                                child: Text(String.fromCharCode(97+i),
-                                                                  style: TextStyle(
+                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
                                                                       color: Colors.black,
                                                                       fontFamily: 'Inter',
                                                                       fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.018),
-                                                                ),
+                                                                      fontSize: height * 0.020)
+                                                                  ),
                                                               ),
                                                               Align(
                                                                 alignment:Alignment.centerLeft,
@@ -4082,7 +4079,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 children: [
                                                                   SizedBox(
                                                                       width: width * 0.05,
-                                                                      child: Text(String.fromCharCode(97+i))),
+                                                                    child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.020)
+                                                                    ),
+                                                                  ),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -4148,7 +4151,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 children: [
                                                                   SizedBox(
                                                                       width: width * 0.05,
-                                                                      child: Text(String.fromCharCode(97+i))),
+                                                                    child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.020)
+                                                                    ),
+                                                                  ),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -4898,7 +4907,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 children: [
                                                                   SizedBox(
                                                                       width: width * 0.05,
-                                                                      child: Text(String.fromCharCode(97+i))),
+                                                                    child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.020)
+                                                                    ),
+                                                                  ),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],
@@ -4965,7 +4980,13 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 children: [
                                                                   SizedBox(
                                                                       width: width * 0.05,
-                                                                      child: Text(String.fromCharCode(97+i))),
+                                                                    child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.020)
+                                                                    ),
+                                                                  ),
                                                                   Expanded(
                                                                     child: TextFormField(
                                                                       controller: chooses[i],

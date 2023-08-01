@@ -1606,6 +1606,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                         onPressed: () async {
                                           assessment=CreateAssessmentModel(questions: null);
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.assessmentId=getAssessmentModel.assessmentId;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
@@ -3066,6 +3067,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                         onPressed: () async {
                                           assessment=CreateAssessmentModel(questions: null);
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.assessmentId=getAssessmentModel.assessmentId;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
@@ -4466,6 +4468,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                           onPressed: () async {
                                             assessment=CreateAssessmentModel(questions: null);
                                             assessment.userId=userDetails.userId;
+                                            assessment.institutionId = userDetails.institutionId;
                                             assessment.assessmentId=getAssessmentModel.assessmentId;
                                             assessment.assessmentType=category=="Test"?'test':'practice';
                                             assessment.assessmentStatus = 'active';

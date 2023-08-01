@@ -331,7 +331,9 @@ class QnaRepo {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
+      print("INSIDE IF");
       String value = await response.stream.bytesToString();
+
       allAssessment = responseEntityFromJson(value);
     } else if (response.statusCode == 401) {
       String? email = userDetails.email;
@@ -340,6 +342,7 @@ class QnaRepo {
       await logInUser(email!, pass!, userDetails.role);
       getAllAssessment(pageLimit, pageNumber, search,userDetails);
     } else {
+
       String value = await response.stream.bytesToString();
     }
     return allAssessment;

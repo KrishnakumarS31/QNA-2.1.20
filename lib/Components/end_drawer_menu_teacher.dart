@@ -70,40 +70,47 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                       SizedBox(height: localHeight * 0.050),
                       Container(
                         alignment: Alignment.topLeft,
-                        height: localHeight / 10,
+                        // height: localHeight / 10,
                         child: Row(
                             children: [
-                              SizedBox(width: width * 0.03),
-                              CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.03,
-                                backgroundColor:
-                                const Color.fromRGBO(0, 106, 100, 0),
-                                child: Image.asset(
-                                  "assets/images/ProfilePic_Avatar.png",
+                              // SizedBox(width: width * 0.03),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: CircleAvatar(
+                                  radius: MediaQuery.of(context).size.width * 0.03,
+                                  backgroundColor:
+                                  const Color.fromRGBO(0, 106, 100, 0),
+                                  child: Image.asset(
+                                    "assets/images/ProfilePic_Avatar.png",
+                                  ),
                                 ),
                               ),
-                              const SizedBox(width: 20),
-                              Text(
-                                name,
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20),
+                              // const SizedBox(width: 20),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    name,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 20),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context)!.teacher,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(153, 153, 153, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+
+                                        fontSize: 16),
+                                  ),
+                                ],
                               ),
                             ]),
                       ),
-                      Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.teacher,
-                            style: TextStyle(
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-
-                                fontSize: 16),
-                          )),
-                      SizedBox(height: localHeight * 0.020),
+                      // SizedBox(height: localHeight * 0.020),
                       //    )
                     ],
                   ),
@@ -118,41 +125,49 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                       SizedBox(height: localHeight * 0.050),
                       Container(
                         alignment: Alignment.topLeft,
-                        height: localHeight / 10,
+                        // height: localHeight / 10,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              const SizedBox(width: 20),
-                              CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.02,
-                                backgroundColor:
-                                const Color.fromRGBO(0, 106, 100, 0),
-                                child: Image.asset(
-                                  "assets/images/ProfilePic_Avatar.png",
+                              // const SizedBox(width: 20),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: CircleAvatar(
+                                  radius: MediaQuery.of(context).size.width * 0.02,
+                                  backgroundColor:
+                                  const Color.fromRGBO(0, 106, 100, 0),
+                                  child: Image.asset(
+                                    "assets/images/ProfilePic_Avatar.png",
+                                  ),
                                 ),
                               ),
-                              const SizedBox(width: 10),
-                              Text(
-                                name,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20),
+                              // const SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    name,
+                                    style: const TextStyle(
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 20),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context)!.teacher,
+                                    style: const TextStyle(
+                                        color: Color.fromRGBO(153, 153, 153, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+
+                                        fontSize: 16),
+                                  ),
+                                ],
                               ),
                             ]),
                       ),
-                      Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.teacher,
-                            style: const TextStyle(
-                                color: Color.fromRGBO(153, 153, 153, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
 
-                                fontSize: 16),
-                          )),
-                      SizedBox(height: localHeight * 0.020),
+                      // SizedBox(height: localHeight * 0.020),
                       //    )
                     ],
                   ),
@@ -166,40 +181,46 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                       SizedBox(height: localHeight * 0.050),
                       Container(
                         alignment: Alignment.topLeft,
-                        height: localHeight / 10,
+                        // height: localHeight / 10,
                         child: Row(
                             children: [
-                              SizedBox(width: width * 0.03),
-                              CircleAvatar(
-                                radius: MediaQuery.of(context).size.width * 0.1,
-                                backgroundColor:
-                                const Color.fromRGBO(0, 106, 100, 0),
-                                child: Image.asset(
-                                  "assets/images/ProfilePic_Avatar.png",
+                              // SizedBox(width: width * 0.03),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: CircleAvatar(
+                                  radius: MediaQuery.of(context).size.width * 0.1,
+                                  backgroundColor:
+                                  const Color.fromRGBO(0, 106, 100, 0),
+                                  child: Image.asset(
+                                    "assets/images/ProfilePic_Avatar.png",
+                                  ),
                                 ),
                               ),
-                              const SizedBox(width: 20),
-                              Text(
-                                name,
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: width * 0.06),
+                              // const SizedBox(width: 20),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    name,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: width * 0.06),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(context)!.teacher,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(153, 153, 153, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: width * 0.04),
+                                  ),
+                                ],
                               ),
                             ]),
                       ),
-                      Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.teacher,
-                            style: TextStyle(
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-
-                                fontSize: width * 0.04),
-                          )),
-                      SizedBox(height: localHeight * 0.020),
+                      // SizedBox(height: localHeight * 0.020),
                       //    )
                     ],
                   ),

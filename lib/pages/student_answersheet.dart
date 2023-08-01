@@ -189,13 +189,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                     Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                          Provider
-                                              .of<Questions>(
-                                              context, listen: false)
-                                              .totalQuestion['$index'][1] ==
-                                              const Color(0xffdb2323)
-                                              ? "Not Answered"
-                                              :values.data!.questions![index -
+                                          values.data!.questions![index -
                                               1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
                                               // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
                                               // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
@@ -250,39 +244,48 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                           SizedBox(height: localHeight * 0.005),
                                           Row(
                                             children: [
-                                              GestureDetector(
-                                                onTap: () async {
-                                                  final Uri url = Uri.parse("${values.data!.questions![index - 1].advisorUrl}");
-                                                  if (!await launchUrl(url)) {
-                                                  throw Exception('Could not launch $url');
-                                                  }
-                                                },
-                                                child:
-                                                RichText(
-                                                  text: TextSpan(children: [
-                                                    TextSpan(
-                                                        text:
-                                                        "URL :\t\t",
+                                              Text("URL:",
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          51,
+                                                          51,
+                                                          51,
+                                                          1),
+                                                      fontFamily:
+                                                      'Inter',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w400,
+                                                      fontSize:
+                                                      localHeight * 0.0225)),
+                                              const SizedBox(width: 5),
+                                              Flexible(
+                                                  child:
+                                                  TextButton(
+                                                    onPressed: () async {
+                                                      final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                      if (!await launchUrl(url)) {
+                                                        throw Exception('Could not launch $url');
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                        values.data!.questions![index - 1].advisorUrl!,
                                                         style: TextStyle(
+                                                            fontFamily:
+                                                            'Inter',
+                                                            fontSize:
+                                                            localHeight * 0.0225,
                                                             color: const Color
                                                                 .fromRGBO(
-                                                                51, 51, 51, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            fontSize: localHeight * 0.0225)),
-                                                    TextSpan(
-                                                        text: values.data!
-                                                            .questions![index - 1].advisorUrl,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                58, 137, 210, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            fontSize: localHeight * 0.0225)),
-                                                  ]))),
+                                                                58,
+                                                                137,
+                                                                210,
+                                                                1),
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400)),
+                                                  )),
                                             ],
                                           ),
                                           SizedBox(height: localHeight * 0.005),
@@ -315,7 +318,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                   //"Solution Sheet",
                   style: TextStyle(
                     color: const Color.fromRGBO(28, 78, 80, 1),
-                    fontSize: localHeight * 0.0225,
+                    fontSize: localHeight * 0.03,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w600,
                   ),
@@ -336,7 +339,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w600,
-                                fontSize: localHeight * 0.025),
+                                fontSize: localHeight * 0.028),
                           ),
                         ],
                       ),
@@ -378,7 +381,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                               82, 165, 160, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w700,
-                                                          fontSize: localHeight * 0.0225)),
+                                                          fontSize: localHeight * 0.028)),
                                                   SizedBox(width: localHeight * 0.005),
                                                   Text(
                                                     "${values.data!.questions![index -
@@ -388,7 +391,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             82, 165, 160, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w700,
-                                                        fontSize: localHeight * 0.0225),
+                                                        fontSize: localHeight * 0.028),
                                                   )
                                                 ]),
                                                 SizedBox(height: localHeight * 0.010),
@@ -402,7 +405,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                           51, 51, 51, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w400,
-                                                      fontSize: localHeight * 0.0225),
+                                                      fontSize: localHeight * 0.025),
                                                 ),
                                                 SizedBox(height: localHeight * 0.015),
                                               ]),
@@ -410,36 +413,18 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                             Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(
-                                                  Provider
-                                                      .of<Questions>(
-                                                      context, listen: false)
-                                                      .totalQuestion['$index'][1] ==
-                                                      const Color(0xffdb2323)
-                                                      ? "Not Answered"
-                                                      :values.data!.questions![index -
+                                                  values.data!.questions![index -
                                                       1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
                                                       // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
                                                       // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
                                                   //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                                   style:
-                                                  Provider
-                                                      .of<Questions>(
-                                                      context, listen: false)
-                                                      .totalQuestion['$index'][1] ==
-                                                      const Color(0xffdb2323)
-                                                      ?
                                                   TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          238, 71, 0, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: localHeight * 0.014)
-                                                      : TextStyle(
                                                       color: const Color.fromRGBO(
                                                           82, 165, 160, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: localHeight * 0.0225)
+                                                      fontSize: localHeight * 0.025)
                                               ),
                                             ),
                                             SizedBox(height: localHeight * 0.005),
@@ -452,7 +437,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             color: const Color.fromRGBO(82, 165, 160, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w700,
-                                                            fontSize: localHeight * 0.0225),
+                                                            fontSize: localHeight * 0.028),
                                                       ),
                                                     ],
                                                   ),
@@ -467,45 +452,93 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                                 fontFamily: 'Inter',
                                                                 fontWeight: FontWeight
                                                                     .w400,
-                                                                fontSize: localHeight * 0.0225))]),
+                                                                fontSize: localHeight * 0.025))]),
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                     children: [
-                                                      GestureDetector(
-                                                          onTap: () async {
-                                                            final Uri url = Uri.parse("${values.data!.questions![index - 1].advisorUrl}");
-                                                            if (!await launchUrl(url)) {
-                                                              throw Exception('Could not launch $url');
-                                                            }
-                                                          },
+                                                      Text("URL:",
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51,
+                                                                  51,
+                                                                  51,
+                                                                  1),
+                                                              fontFamily:
+                                                              'Inter',
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400,
+                                                              fontSize:
+                                                              localHeight * 0.0225)),
+                                                      const SizedBox(width: 5),
+                                                      Flexible(
                                                           child:
-                                                          RichText(
-                                                              text: TextSpan(children: [
-                                                                TextSpan(
-                                                                    text:
-                                                                    "URL :\t\t",
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            51, 51, 51, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w400,
-                                                                        fontSize: localHeight * 0.0225)),
-                                                                TextSpan(
-                                                                    text: values.data!
-                                                                        .questions![index - 1].advisorUrl,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            58, 137, 210, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w400,
-                                                                        fontSize: localHeight * 0.0225)),
-                                                              ]))),
+                                                          TextButton(
+                                                            onPressed: () async {
+                                                              final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                              if (!await launchUrl(url)) {
+                                                                throw Exception('Could not launch $url');
+                                                              }
+                                                            },
+                                                            child: Text(
+                                                                values.data!.questions![index - 1].advisorUrl!,
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                    'Inter',
+                                                                    fontSize:
+                                                                    localHeight * 0.0225,
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        58,
+                                                                        137,
+                                                                        210,
+                                                                        1),
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w400)),
+                                                          )),
                                                     ],
                                                   ),
+                                                  // Row(
+                                                  //   children: [
+                                                  //     GestureDetector(
+                                                  //         onTap: () async {
+                                                  //           final Uri url = Uri.parse("${values.data!.questions![index - 1].advisorUrl}");
+                                                  //           if (!await launchUrl(url)) {
+                                                  //             throw Exception('Could not launch $url');
+                                                  //           }
+                                                  //         },
+                                                  //         child:
+                                                  //         Flexible(
+                                                  //             child:
+                                                  //         RichText(
+                                                  //             text: TextSpan(children: [
+                                                  //               TextSpan(
+                                                  //                   text:
+                                                  //                   "URL :\t\t",
+                                                  //                   style: TextStyle(
+                                                  //                       color: const Color
+                                                  //                           .fromRGBO(
+                                                  //                           51, 51, 51, 1),
+                                                  //                       fontFamily: 'Inter',
+                                                  //                       fontWeight: FontWeight
+                                                  //                           .w400,
+                                                  //                       fontSize: localHeight * 0.028)),
+                                                  //               TextSpan(
+                                                  //                   text: values.data!
+                                                  //                       .questions![index - 1].advisorUrl,
+                                                  //                   style: TextStyle(
+                                                  //                       color: const Color
+                                                  //                           .fromRGBO(
+                                                  //                           58, 137, 210, 1),
+                                                  //                       fontFamily: 'Inter',
+                                                  //                       fontWeight: FontWeight
+                                                  //                           .w400,
+                                                  //                       fontSize: localHeight * 0.025)),
+                                                  //             ])))),
+                                                  //   ],
+                                                  // ),
                                                   SizedBox(height: localHeight * 0.005),
                                                 ]),
                                           ]))))
@@ -631,14 +664,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                           subtitle: Column(children: [
                                             Align(
                                               alignment: Alignment.topLeft,
-                                              child: Text(
-                                                  Provider
-                                                      .of<Questions>(
-                                                      context, listen: false)
-                                                      .totalQuestion['$index'][1] ==
-                                                      const Color(0xffdb2323)
-                                                      ? "Not Answered"
-                                                      : values.data!.questions![index -
+                                              child: Text(values.data!.questions![index -
                                                       1].choices?.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).toString() ?? "",
                                                       // : "Answer: ${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,
                                                       // Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length - 1)}",
@@ -694,41 +720,48 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                     children: [
-                                                      GestureDetector(
-                                                          onTap: () async {
-                                                            final Uri url = Uri.parse("${values.data!.questions![index - 1].advisorUrl}");
-                                                            if (!await launchUrl(url)) {
-                                                              throw Exception('Could not launch $url');
-                                                            }
-                                                          },
+                                                      Text("URL:",
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51,
+                                                                  51,
+                                                                  51,
+                                                                  1),
+                                                              fontFamily:
+                                                              'Inter',
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400,
+                                                              fontSize:
+                                                              localHeight * 0.0225)),
+                                                      const SizedBox(width: 5),
+                                                      Flexible(
                                                           child:
-                                                          RichText(
-                                                              text: TextSpan(children: [
-                                                                TextSpan(
-                                                                    text:
-                                                                    "URL :\t\t",
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            51, 51, 51, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w400,
-                                                                        fontSize: localHeight *
-                                                                            0.015)),
-                                                                TextSpan(
-                                                                    text: values.data!
-                                                                        .questions![index - 1].advisorUrl,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            58, 137, 210, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w400,
-                                                                        fontSize: localHeight *
-                                                                            0.015)),
-                                                              ]))),
+                                                          TextButton(
+                                                            onPressed: () async {
+                                                              final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                              if (!await launchUrl(url)) {
+                                                                throw Exception('Could not launch $url');
+                                                              }
+                                                            },
+                                                            child: Text(
+                                                                values.data!.questions![index - 1].advisorUrl!,
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                    'Inter',
+                                                                    fontSize:
+                                                                    localHeight * 0.0225,
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        58,
+                                                                        137,
+                                                                        210,
+                                                                        1),
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w400)),
+                                                          )),
                                                     ],
                                                   ),
                                                   SizedBox(height: localHeight * 0.005),

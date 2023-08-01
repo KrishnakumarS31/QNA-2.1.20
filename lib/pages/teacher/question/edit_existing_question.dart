@@ -779,7 +779,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.018),
+                      ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -904,7 +909,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.018)
+                      ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1760,7 +1770,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 left: width * 0.02,top:width*0.02),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.018)
+                                                                ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -1890,7 +1905,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        fontSize: height * 0.018)
+                    ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -2780,7 +2800,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
+                                                                ),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -2914,7 +2939,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
+                                                                ),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -3793,7 +3823,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.020)
+                                ),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -3927,7 +3962,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.020)
+                                ),
                                                                 Align(
                                                                   alignment:Alignment.centerLeft,
                                                                   child: SizedBox(
@@ -4811,7 +4851,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                               left: 8,),
                                                             child: Row(
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.020)
+                      ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -4941,7 +4986,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                             child: Row(
                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                               children: [
-                                                                Text("${String.fromCharCode(97+i)}.  "),
+                                                            Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.020)
+                      ),
                                                                 Expanded(
                                                                   child: TextFormField(
                                                                     controller: chooses[i],
@@ -5804,7 +5854,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                   left: 8,),
                                                                 child: Row(
                                                                   children: [
-                                                                    Text("${String.fromCharCode(97+i)}.  "),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.020)
+                                            ),
                                                                     Expanded(
                                                                       child: TextFormField(
                                                                         controller: chooses[i],
@@ -5937,7 +5992,12 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                                 child: Row(
                                                                   mainAxisAlignment: MainAxisAlignment.end,
                                                                   children: [
-                                                                    Text("${String.fromCharCode(97+i)}.  "),
+                                                                Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                color: Colors.black,
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.020)
+                                            ),
                                                                     SizedBox(width: height * 0.01),
                                                                     Expanded(
                                                                       child: TextFormField(

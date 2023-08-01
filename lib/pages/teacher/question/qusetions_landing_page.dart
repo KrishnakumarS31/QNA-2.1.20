@@ -1320,82 +1320,85 @@ class _Question_CardState extends State<Question_Card> {
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: widget.width > 500 ? widget.height * 0.19 :widget.height * 0.22,
-            width: widget.width * 0.85,
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.2),),
-              borderRadius: const BorderRadius.all(
-                  Radius.circular(10)),
-              color: const Color.fromRGBO(82, 165, 160, 0.07),
+          child: Flexible(
+            child: Container(
+              constraints: BoxConstraints(
+                  minHeight: widget.width > 500 ? widget.height * 0.19 :widget.height * 0.22,
+                  minWidth: widget.width * 0.85,),
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.2),),
+                borderRadius: const BorderRadius.all(
+                    Radius.circular(10)),
+                color: const Color.fromRGBO(82, 165, 160, 0.07),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      child: Text(
+                        //AppLocalizations.of(context)!.my_qn_bank,
+                        "${widget.question.subject} | ${widget.question.topic}",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: widget.height * 0.016,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: widget.height * 0.01),
+                    SizedBox(
+                      child: Text(
+                        //AppLocalizations.of(context)!.my_qn_bank,
+                        "${widget.question.degreeStudent}",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: widget.height * 0.016,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    //SizedBox(height: height * 0.01),
+                    const Divider(
+                      thickness: 2,
+                      color: Color.fromRGBO(0, 0, 0, 0.1),
+                    ),
+                    //SizedBox(height: height * 0.005),
+                    SizedBox(
+                      child: Text(
+                        //AppLocalizations.of(context)!.my_qn_bank,
+                        "${widget.question.questionType}",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: widget.height * 0.016,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: widget.height * 0.01),
+                    SizedBox(
+                      child: Text(
+                        //AppLocalizations.of(context)!.my_qn_bank,
+                        "${widget.question.question}",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(51, 51, 51, 1),
+                          fontSize: widget.height * 0.016,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    child: Text(
-                      //AppLocalizations.of(context)!.my_qn_bank,
-                      "${widget.question.subject} | ${widget.question.topic}",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: widget.height * 0.016,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: widget.height * 0.01),
-                  SizedBox(
-                    child: Text(
-                      //AppLocalizations.of(context)!.my_qn_bank,
-                      "${widget.question.degreeStudent}",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: widget.height * 0.016,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  //SizedBox(height: height * 0.01),
-                  const Divider(
-                    thickness: 2,
-                    color: Color.fromRGBO(0, 0, 0, 0.1),
-                  ),
-                  //SizedBox(height: height * 0.005),
-                  SizedBox(
-                    child: Text(
-                      //AppLocalizations.of(context)!.my_qn_bank,
-                      "${widget.question.questionType}",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: widget.height * 0.016,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: widget.height * 0.01),
-                  SizedBox(
-                    child: Text(
-                      //AppLocalizations.of(context)!.my_qn_bank,
-                      "${widget.question.question}",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontSize: widget.height * 0.016,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
-              ),),
           ),
         ),
       ),

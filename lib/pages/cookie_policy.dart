@@ -51,7 +51,7 @@ class CookiePolicyState extends State<CookiePolicy> {
                     //"COOKIE POLICY",
                     style: TextStyle(
                       color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.0225,
+                      fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
                     ),
@@ -220,7 +220,7 @@ class CookiePolicyState extends State<CookiePolicy> {
                     //"COOKIE POLICY",
                     style: TextStyle(
                       color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.0225,
+                      fontSize: height * 0.023,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
                     ),

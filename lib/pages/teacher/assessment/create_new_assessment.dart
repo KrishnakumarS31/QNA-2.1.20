@@ -104,6 +104,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
       onPressed: () async {
         assessment.userId=userDetails.userId;
         assessment.totalQuestions=selectedQuestion.length;
+        assessment.institutionId = userDetails.institutionId;
         assessment.assessmentType='practice';
         assessment.assessmentStatus = 'inprogress';
         assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
@@ -1027,6 +1028,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                           onPressed: () async {
                                             assessment.userId=userDetails.userId;
                                             assessment.totalQuestions=questionList.length;
+                                            assessment.institutionId = userDetails.institutionId;
                                             assessment.assessmentType='practice';
                                             assessment.assessmentStatus = 'inprogress';
                                             assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
@@ -1881,6 +1883,7 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                           onPressed: () async {
                                             assessment.userId=userDetails.userId;
                                             assessment.totalQuestions=questionList.length;
+                                            assessment.institutionId = userDetails.institutionId;
                                             assessment.assessmentType='practice';
                                             assessment.assessmentStatus = 'inprogress';
                                             assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
@@ -2738,7 +2741,9 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                       children: [
                                         ElevatedButton(
                                           onPressed: () async {
+                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
                                             assessment.userId=userDetails.userId;
+                                            assessment.institutionId = userDetails.institutionId;
                                             assessment.totalQuestions=questionList.length;
                                             assessment.assessmentType='practice';
                                             assessment.assessmentStatus = 'inprogress';

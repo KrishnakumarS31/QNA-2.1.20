@@ -53,33 +53,36 @@ class _CustomDialogState extends State<CustomDialog> {
               SizedBox(
                 height: height * 0.015,
               ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children:[
-                    SizedBox(width: width * 0.1),
-                    Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(226, 68, 0, 1),
+              Padding(
+                padding: EdgeInsets.only(left: width * 0.01,right:width * 0.01),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children:[
+                      // SizedBox(width: width * 0.1),
+                      Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromRGBO(226, 68, 0, 1),
+                        ),
+                        height: height * 0.05,
+                        width: width * 0.05,
+                        child: const Icon(
+                          Icons.info_outline_rounded,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
                       ),
-                      height: height * 0.05,
-                      width: width * 0.05,
-                      child: const Icon(
-                        Icons.info_outline_rounded,
-                        color: Color.fromRGBO(255, 255, 255, 1),
+                      // SizedBox(width: width * 0.01),
+                      Text(
+                        widget.title,
+                        style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                            const TextStyle(
+                                color: Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15)),
                       ),
-                    ),
-                    SizedBox(width: width * 0.01),
-                    Text(
-                      widget.title,
-                      style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                          const TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15)),
-                    ),
-                  ]
+                    ]
+                ),
               ),
               SizedBox(
                 height: height * 0.015,

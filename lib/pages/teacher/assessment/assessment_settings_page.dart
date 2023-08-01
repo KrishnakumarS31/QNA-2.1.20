@@ -63,6 +63,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
   TextEditingController endTimeController = TextEditingController();
   TextEditingController hourController = TextEditingController();
   TextEditingController minuteController = TextEditingController();
+  TextEditingController numberOfAttemptsController = TextEditingController();
   int numberOfAttempts=1;
   bool allowGuestStudent=false;
   bool showAnswerSheetPractice=false;
@@ -328,6 +329,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
   @override
   void initState() {
     super.initState();
+    numberOfAttemptsController.text=numberOfAttempts.toString();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     assessment.questions=[];
@@ -1138,6 +1140,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                         setState(() {
                                                           if(numberOfAttempts!=1){
                                                             numberOfAttempts=numberOfAttempts-1;
+                                                            numberOfAttemptsController.text=numberOfAttempts.toString();
                                                           }
                                                         });
                                                       },
@@ -1161,14 +1164,30 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                               Radius.circular(5)),
                                                         ),
                                                         child: Center(
-                                                          child: Text(
-                                                            '${numberOfAttempts}',
-                                                            style: TextStyle(
-                                                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w400,
-                                                                fontSize: height * 0.016),
-                                                          ),
+                                                          child: TextField(
+                                                          controller: numberOfAttemptsController,
+                                                          onChanged: (val){
+                                                            if(int.parse(val)<1){
+                                                              numberOfAttemptsController.text='1';
+                                                            }else {
+                                                              print("else");
+                                                              print(val);
+                                                              setState(() {
+                                                                numberOfAttempts =
+                                                                    int.parse(val);
+                                                                print(numberOfAttempts);
+                                                              });
+                                                            }
+                                                          },
+                                                          keyboardType: TextInputType.number,
+                                                            textAlign: TextAlign.center,
+                                                          style: TextStyle(
+
+                                                              color: const Color.fromRGBO(28, 78, 80, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.016),
+                                                        ),
                                                         ),
                                                       ),
                                                     ),
@@ -1176,6 +1195,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                       onTap: (){
                                                         setState(() {
                                                           numberOfAttempts=numberOfAttempts+1;
+                                                          numberOfAttemptsController.text=numberOfAttempts.toString();
                                                         });
                                                       },
                                                       child: Container(
@@ -2377,6 +2397,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                         setState(() {
                                                           if(numberOfAttempts!=1){
                                                             numberOfAttempts=numberOfAttempts-1;
+                                                            numberOfAttemptsController.text=numberOfAttempts.toString();
                                                           }
                                                         });
                                                       },
@@ -2398,20 +2419,36 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                             Radius.circular(5)),
                                                       ),
                                                       child: Center(
-                                                        child: Text(
-                                                          '${numberOfAttempts}',
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: height * 0.016),
-                                                        ),
+                                                        child: TextField(
+                                                        controller: numberOfAttemptsController,
+                                                        onChanged: (val){
+                                                          if(int.parse(val)<1){
+                                                            numberOfAttemptsController.text='1';
+                                                          }else {
+                                                            print("else");
+                                                            print(val);
+                                                            setState(() {
+                                                              numberOfAttempts =
+                                                                  int.parse(val);
+                                                              print(numberOfAttempts);
+                                                            });
+                                                          }
+                                                        },
+                                                          textAlign: TextAlign.center,
+                                                        keyboardType: TextInputType.number,
+                                                        style: TextStyle(
+                                                            color: const Color.fromRGBO(28, 78, 80, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontSize: height * 0.016),
+                                                      ),
                                                       ),
                                                     ),
                                                     GestureDetector(
                                                       onTap: (){
                                                         setState(() {
                                                           numberOfAttempts=numberOfAttempts+1;
+                                                          numberOfAttemptsController.text=numberOfAttempts.toString();
                                                         });
                                                       },
                                                       child: Container(
@@ -3758,6 +3795,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                               setState(() {
                                                                 if(numberOfAttempts!=1){
                                                                   numberOfAttempts=numberOfAttempts-1;
+                                                                  numberOfAttemptsController.text=numberOfAttempts.toString();
                                                                 }
                                                               });
                                                             },
@@ -3781,8 +3819,23 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                     Radius.circular(5)),
                                                               ),
                                                               child: Center(
-                                                                child: Text(
-                                                                  '${numberOfAttempts}',
+                                                                child: TextField(
+                                                                  controller: numberOfAttemptsController,
+                                                                  onChanged: (val){
+                                                                    if(int.parse(val)<1){
+                                                                      numberOfAttemptsController.text='1';
+                                                                    }else {
+                                                                      print("else");
+                                                                      print(val);
+                                                                      setState(() {
+                                                                        numberOfAttempts =
+                                                                            int.parse(val);
+                                                                        print(numberOfAttempts);
+                                                                      });
+                                                                    }
+                                                                  },
+                                                                  textAlign: TextAlign.center,
+                                                                    keyboardType: TextInputType.number,
                                                                   style: TextStyle(
                                                                       color: const Color.fromRGBO(28, 78, 80, 1),
                                                                       fontFamily: 'Inter',
@@ -3796,6 +3849,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                             onTap: (){
                                                               setState(() {
                                                                 numberOfAttempts=numberOfAttempts+1;
+                                                                numberOfAttemptsController.text=numberOfAttempts.toString();
                                                               });
                                                             },
                                                             child: Container(

@@ -574,12 +574,13 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),style: TextStyle(
-                                                                      color: Colors.black,
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.018),
-                                                                  )),
+                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.018)
+                                                                ),
+                                                              ),
                                                               Expanded(
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
@@ -646,13 +647,13 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),
-                                                                    style: TextStyle(
-                                                                        color: Colors.black,
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.018),
-                                                                  )),
+                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.018)
+                                                                ),
+                                                              ),
                                                               Container(
                                                                 width : width * 0.7,
                                                                 child: TextFormField(
@@ -1332,13 +1333,13 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text(String.fromCharCode(97+i),
-                                                                    style: TextStyle(
-                                                                        color: Colors.black,
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight.w400,
-                                                                        fontSize: height * 0.020),
-                                                                  )),
+                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
+                                                                ),
+                                                              ),
 
                                                               SizedBox(
                                                                 //height: height * 0.05,
@@ -1406,12 +1407,11 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                             children: [
                                                               SizedBox(
                                                                 width:width * 0.03,
-                                                                child: Text(String.fromCharCode(97+i),
-                                                                  style: TextStyle(
-                                                                      color: Colors.black,
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.018),
+                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                    color: Colors.black,
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.020)
                                                                 ),
                                                               ),
                                                               Align(
@@ -2118,7 +2118,13 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           children: [
                                                             SizedBox(
                                                                 width: width * 0.05,
-                                                                child: Text(String.fromCharCode(97+i))),
+                                                              child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                  color: Colors.black,
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: height * 0.020)
+                                                              ),
+                                                            ),
                                                             Expanded(
                                                               child: TextFormField(
                                                                 controller: chooses[i],
@@ -2184,7 +2190,13 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                                           children: [
                                                             SizedBox(
                                                                 width: width * 0.05,
-                                                                child: Text(String.fromCharCode(97+i))),
+                                                              child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                  color: Colors.black,
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: height * 0.020)
+                                                              ),
+                                                            ),
                                                             Expanded(
                                                               child: TextFormField(
                                                                 controller: chooses[i],

@@ -1520,6 +1520,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
@@ -1595,6 +1596,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.questions=[];
                                           assessment.assessmentType=category=="Test"?'test':'practice';
@@ -2861,6 +2863,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
@@ -2936,6 +2939,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.questions=[];
                                           assessment.assessmentType=category=="Test"?'test':'practice';
@@ -4229,6 +4233,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
@@ -4304,6 +4309,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.questions=[];
                                           assessment.assessmentType=category=="Test"?'test':'practice';

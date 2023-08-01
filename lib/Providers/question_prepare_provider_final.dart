@@ -13,7 +13,7 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
   }
 
   void reSetQuestionList() {
-    _questionList.clear();
+    //_questionList.clear();
     _questionList=[];
     notifyListeners();
   }

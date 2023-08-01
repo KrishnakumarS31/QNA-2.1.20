@@ -29,7 +29,6 @@ class ResultCardNew extends StatelessWidget {
     int? securedMark = condition ? assessmentResults![index].attemptScore : 0;
     int? totalMark = results.totalScore ?? 0;
     String rollNumber=results!.rollNumber ?? " ";
-
     return Padding(
       padding: EdgeInsets.only(bottom: height * 0.015),
       child: Container(
@@ -94,14 +93,10 @@ class ResultCardNew extends StatelessWidget {
               Container(
                 width: width * 0.233,
                 decoration: BoxDecoration(
-                    color:status=="completed"?
-
-                    const Color.fromRGBO(82, 165, 160, 1)
-                    // percent! > 50
-                    //     ? const Color.fromRGBO(82, 165, 160, 1)
-                    //
-                        :
-                    const Color.fromRGBO(255, 166, 0, 1),
+                    color:status=="completed"
+                    ?const Color.fromRGBO(82, 165, 160, 1)
+                    :status=="total"? const Color.fromRGBO(0, 167, 204, 1)
+                    : const Color.fromRGBO(255, 166, 0, 1),
                     borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(10),
                         bottomRight: Radius.circular(10))),

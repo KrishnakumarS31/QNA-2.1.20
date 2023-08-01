@@ -1518,6 +1518,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
@@ -1593,6 +1594,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
@@ -2863,6 +2865,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
@@ -2938,6 +2941,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
@@ -4232,6 +4236,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
@@ -4307,6 +4312,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                       ElevatedButton(
                                         onPressed: () async {
                                           assessment.userId=userDetails.userId;
+                                          assessment.institutionId = userDetails.institutionId;
                                           assessment.totalQuestions=questionList.length;
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
