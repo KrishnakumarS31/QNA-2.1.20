@@ -31,8 +31,78 @@ class _CustomCardState extends State<CustomCard> {
         widget.result.assessmentStartDate!);
     var end = DateTime.fromMicrosecondsSinceEpoch(
         widget.result.assessmentEndDate!);
-
+    List<String> status = [];
+    List<String> s =[];
     DateTime now = DateTime.now();
+
+    bool completed = now.isAfter(end);
+    bool notStarted = now.isBefore(start);
+    bool live = now.isBefore(end);
+    Widget completedIcon = Icon(
+      Icons.circle,
+      color: const Color.fromRGBO(42, 36, 186, 1),
+      size: widget.height * 0.03,
+    );
+    Widget notStartedIcon = Icon(
+      Icons.circle,
+      color: const Color.fromRGBO(153, 153, 153, 1),
+      size: widget.height * 0.03,
+    );
+    Widget liveIcon = Container(
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        borderRadius:
+        const BorderRadius.all(
+            Radius.circular(5)),
+        border: Border.all(
+            color: const Color.fromRGBO(
+                219, 35, 35, 1)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(
+            Icons.circle,
+            color: const Color.fromRGBO(219, 35, 35, 1),
+            size: MediaQuery
+                .of(context)
+                .copyWith()
+                .size
+                .height *
+                0.02,
+          ),
+          Text(
+            //AppLocalizations.of(context)!.active,
+            "  LIVE ",
+            style: Theme
+                .of(context)
+                .primaryTextTheme
+                .bodyLarge
+                ?.merge(TextStyle(
+                color: const Color.fromRGBO(51, 51, 51, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w400,
+                fontSize: MediaQuery
+                    .of(context)
+                    .copyWith()
+                    .size
+                    .height *
+                    0.016)),
+          ),
+        ],
+      ),
+    );
+
+    print(now);
+    print(start);
+    print(end);
+    print("Completed");
+    print(now.isAfter(end));
+    print("NotStarted");
+    print(now.isBefore(start));
+    print("Live");
+    print(now.isBefore(end));
+
 
     return Container(
       // height: widget.height * 0.11,
@@ -62,62 +132,9 @@ class _CustomCardState extends State<CustomCard> {
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w600),
                       ),
-                      (now.year<start.year || now.month < start.month || now.day < start.day)?
-                      Icon(
-                        Icons.circle,
-                        color: const Color.fromRGBO(153, 153, 153, 1),
-                        size: widget.height * 0.03,
-                      ):(now.year>end.year || now.month > end.month || now.day > end.day)?
-                      Icon(
-                        Icons.circle,
-                        color: const Color.fromRGBO(42, 36, 186, 1),
-                        size: widget.height * 0.03,
-                      ):
-                      // d.isAfter(now)?
-                      Container(
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                          const BorderRadius.all(
-                              Radius.circular(5)),
-                          border: Border.all(
-                              color: const Color.fromRGBO(
-                                  219, 35, 35, 1)),
-                        ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Icon(
-                                Icons.circle,
-                                color: const Color.fromRGBO(219, 35, 35, 1),
-                                size: MediaQuery
-                                    .of(context)
-                                    .copyWith()
-                                    .size
-                                    .height *
-                                    0.02,
-                              ),
-                              Text(
-                                //AppLocalizations.of(context)!.active,
-                                "  LIVE ",
-                                style: Theme
-                                    .of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(TextStyle(
-                                    color: const Color.fromRGBO(51, 51, 51, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: MediaQuery
-                                        .of(context)
-                                        .copyWith()
-                                        .size
-                                        .height *
-                                        0.016)),
-                              ),
-                            ],
-                          ),
-                      )
+
+
+                      live ? liveIcon : completed ? completedIcon : notStartedIcon
                     ]),
               )),
           Padding(
