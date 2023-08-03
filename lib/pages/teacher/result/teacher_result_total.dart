@@ -39,6 +39,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   @override
   void initState() {
     Future.delayed(Duration.zero, (){getData();});
+    print(widget.result);
+    print(widget.totalAttempts);
     super.initState();
 
   }
@@ -58,12 +60,16 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
     //widget.userId
     print("TOTAL COUNT TEACHER RESULT");
     print(widget.totalAttempts);
-    print(response.data['total_count']);
+    print("STUDENT RESULTS");
+    print(widget.result.assessmentResults!.length);
+    //print(response.data['total_count']);
     if(response.code == 200) {
       Navigator.pop(context);
       GetResultDetailsModel  resultsModelResponse=GetResultDetailsModel.fromJson(response.data);
       totalCount = resultsModelResponse.totalCount ?? 0;
       allResults = resultsModelResponse;
+      print("all results");
+      print(allResults.assessmentResults);
       setState(() {
         results=allResults;
         loading = false;
@@ -597,7 +603,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Text(
-                                              'Showing ${resultStart + 1} to ${resultStart+10 <totalCount ? resultStart+10:totalCount} of ${widget.totalAttempts}',
+                                              'Showing ${resultStart + 1} to ${resultStart+10 <widget.totalAttempts ? resultStart+10:widget.totalAttempts} of ${widget.totalAttempts}',
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
@@ -1193,7 +1199,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
-                                    'Showing ${resultStart + 1} to ${resultStart+10 <totalCount ? resultStart+10:totalCount} of ${widget.totalAttempts}',
+                                    'Showing ${resultStart + 1} to ${resultStart+10 <widget.totalAttempts ? resultStart+10:widget.totalAttempts} of ${widget.totalAttempts}',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(102, 102, 102, 0.3),
                                         fontFamily: 'Inter',

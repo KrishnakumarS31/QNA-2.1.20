@@ -1336,7 +1336,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           countryResident:
                                                           selectedCountryResident
                                                               .dropDownValue?.value,
-                                                          role: ["student"]
+                                                          role: ["student"],
+                                                          userRole: "student"
+
                                                         //also == true?
                                                         //["student","teacher"]
                                                         //: ["student"]
@@ -2315,7 +2317,8 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             countryResident:
                                                             selectedCountryResident
                                                                 .dropDownValue?.value,
-                                                            role: ["student"]
+                                                            role: ["student"],
+                                                            userRole: "student"
                                                           //also == true?
                                                           //["student","teacher"]
                                                           //: ["student"]
@@ -3413,7 +3416,8 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             countryResident:
                                                             selectedCountryResident
                                                                 .dropDownValue?.value,
-                                                            role: ["student"]
+                                                            role: ["student"],
+                                                            userRole: "student"
                                                           //also == true?
                                                           //["student","teacher"]
                                                           //: ["student"]

@@ -46,8 +46,8 @@ class _CustomDialogState extends State<CustomDialog> {
           ),
           padding: const EdgeInsets.all(15.0),
           // margin: const EdgeInsets.all(15.0),
-          height: height * 0.25,
-          width: width * 0.5,
+          height: height * 0.27,
+          width: width * 0.7,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -66,22 +66,23 @@ class _CustomDialogState extends State<CustomDialog> {
                           color: Color.fromRGBO(226, 68, 0, 1),
                         ),
                         height: height * 0.05,
-                        width: width * 0.05,
+                        width: width * 0.1,
                         child: const Icon(
                           Icons.info_outline_rounded,
                           color: Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
-                      SizedBox(width: width * 0.01),
+                      SizedBox(width: width * 0.03),
                       // SizedBox(width: width * 0.01),
                       Text(
                         widget.title,
-                        style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                            const TextStyle(
-                                color: Color.fromRGBO(51, 51, 51, 1),
+                        style:
+                        Theme.of(context).primaryTextTheme.headlineMedium?.merge(
+                            TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                fontSize: 15)),
+                                fontSize: height * 0.024)),
                       ),
                     ]
                 ),
@@ -123,7 +124,7 @@ class _CustomDialogState extends State<CustomDialog> {
                   widget.button,
                   style: TextStyle(
                       color: const Color.fromRGBO(48, 145, 139, 1),
-                      fontSize: 18,
+                      fontSize: height * 0.02,
                       fontWeight: FontWeight.w500),
                   // style: GoogleFonts.poppins(
                   //     fontSize: localHeight * 0.02),

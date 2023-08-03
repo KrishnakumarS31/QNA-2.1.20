@@ -1031,7 +1031,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                         countryResident:
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
-                                                        role: roleBackup
+                                                        role: roleBackup,
+                                                        userRole: "student"
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]
@@ -1753,7 +1754,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                         countryResident:
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
-                                                        role: roleBackup
+                                                        role: roleBackup,
+                                                        userRole: "student"
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]
@@ -2480,7 +2482,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                         countryResident:
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
-                                                        role: roleBackup
+                                                        role: roleBackup,
+                                                        userRole: "student"
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]

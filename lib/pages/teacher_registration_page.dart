@@ -1228,7 +1228,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                         rollNumber: teacherRollNumberController.text,
                                                         organisationName: teacherOrganisationNameController.text,
                                                         countryResident: selectedCountryResident.dropDownValue?.value,
-                                                        role: ["teacher"]
+                                                        role: ["teacher"],
+                                                        userRole: "teacher"
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]
@@ -1670,7 +1671,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                  left: localWidth * 0.027,
+                                                  left: localWidth * 0.021,
                                                   child: Text(
                                                     AppLocalizations.of(
                                                         context)!
@@ -1764,7 +1765,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                  left: localWidth * 0.027,
+                                                  left: localWidth * 0.021,
                                                   child: Container(
                                                     color: Colors.white,
                                                     child: Text(
@@ -2229,7 +2230,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       rollNumber: teacherRollNumberController.text,
                                                       organisationName: teacherOrganisationNameController.text,
                                                       countryResident: selectedCountryResident.dropDownValue?.value,
-                                                      role: ["teacher"]
+                                                      role: ["teacher"],
+                                                      userRole: "teacher"
                                                     //also == true?
                                                     //["student","teacher"]
                                                     //: ["student"]
@@ -3391,7 +3393,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     rollNumber: teacherRollNumberController.text,
                                                     organisationName: teacherOrganisationNameController.text,
                                                     countryResident: selectedCountryResident.dropDownValue?.value,
-                                                    role: ["teacher"]
+                                                    role: ["teacher"],
+                                                    userRole: "teacher"
                                                   //also == true?
                                                   //["student","teacher"]
                                                   //: ["student"]

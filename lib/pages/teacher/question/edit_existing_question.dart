@@ -2648,8 +2648,9 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                     child: Padding(
                                                       padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                       child: TextFormField(
+                                                        maxLines:null,
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
                                                         decoration: InputDecoration(
                                                           //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                           hintStyle: TextStyle(
@@ -3672,7 +3673,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                                       padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                       child: TextFormField(
                                                         controller: questionController,
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines:null,
                                                         decoration: InputDecoration(
                                                           //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                           hintStyle: TextStyle(

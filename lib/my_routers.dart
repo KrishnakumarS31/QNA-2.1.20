@@ -236,10 +236,10 @@ class MyRoutes{
       case '/studentRegistrationPage':
         return SlideRightRoute(widget: const StudentRegistrationPage(),settings: settings);
 
-      case '/studentRegistrationUpdatePage':{
-        final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentRegistrationUpdatePage(userData: arguments[0], isEdit: arguments[1],),settings: settings);
-      }
+      // case '/studentRegistrationUpdatePage':{
+      //   final arguments = settings.arguments as List<dynamic>;
+      //   return SlideRightRoute(widget: StudentRegistrationUpdatePage(userData: arguments[0], isEdit: arguments[1],),settings: settings);
+      // }
 
       case '/studentResultPage':{
         final arguments = settings.arguments as List<dynamic>;

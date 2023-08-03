@@ -144,13 +144,13 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(top:8.0,bottom:8.0),
-                                        child: CustomCard(
-                                          height: height,
-                                          width: width,
-                                          //subject: results[index].subject,
-                                          result: widget.result,
-                                          isShowTotal: true,
-                                        ),
+                                        // child: CustomCard(
+                                        //   height: height,
+                                        //   width: width,
+                                        //   //subject: results[index].subject,
+                                        //   result: widget.result,
+                                        //   isShowTotal: true,
+                                        // ),
                                       ),
                                       SizedBox(
                                         height: height * 0.018,
@@ -578,11 +578,11 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                       ),
                                                     );
                                                   },
-                                                  child: ResultInProgressCard(
-                                                      height: height,
-                                                      width: width,
-                                                      results: allResults,
-                                                      index: index),
+                                                  // child: ResultInProgressCard(
+                                                  //     height: height,
+                                                  //     width: width,
+                                                  //     results: allResults,
+                                                  //     index: index),
                                                 )),
                                             SizedBox(
                                               height: height * 0.02,
@@ -739,13 +739,13 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top:8.0,bottom:8.0),
-                                child: CustomCard(
-                                  height: height,
-                                  width: width,
-                                  //subject: results[index].subject,
-                                  result: widget.result,
-                                  isShowTotal: true,
-                                ),
+                                // child: CustomCard(
+                                //   height: height,
+                                //   width: width,
+                                //   //subject: results[index].subject,
+                                //   result: widget.result,
+                                //   isShowTotal: true,
+                                // ),
                               ),
                               SizedBox(
                                 height: height * 0.018,
@@ -1173,11 +1173,11 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                               ),
                                             );
                                           },
-                                          child: ResultInProgressCard(
-                                              height: height,
-                                              width: width,
-                                              results: allResults,
-                                              index: index),
+                                          // child: ResultInProgressCard(
+                                          //     height: height,
+                                          //     width: width,
+                                          //     results: allResults,
+                                          //     index: index),
                                         )),
                                     SizedBox(
                                       height: height * 0.02,
