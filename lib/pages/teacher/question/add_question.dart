@@ -530,27 +530,25 @@ class AddQuestionState extends State<AddQuestion> {
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-                                                      Expanded(
-                                                        child: Container(
-                                                          width: width * 0.655,
-                                                          alignment: Alignment.centerLeft,
-                                                          child: Text(
-                                                            AppLocalizations.of(context)!.choices,
-                                                            //"Choices",
-                                                            style: TextStyle(
-                                                              color:
-                                                              const Color.fromRGBO(51, 51, 51, 1),
-                                                              fontSize: height * 0.014,
-                                                              fontFamily: "Inter",
-                                                              fontWeight: FontWeight.w500,
-                                                            ),
+                                                      Container(
+                                                        width: width * 0.63,
+                                                        alignment: Alignment.centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(context)!.choices,
+                                                          //"Choices",
+                                                          style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(51, 51, 51, 1),
+                                                            fontSize: height * 0.014,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
                                                           ),
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: width * 0.13,
+                                                        width: width * 0.1,
                                                         child: Text(
-                                                          textAlign: TextAlign.right,
+                                                          textAlign: TextAlign.left,
                                                           AppLocalizations.of(context)!.correct_answer,
                                                           //"Correct\nAnswer",
                                                           style: TextStyle(
@@ -561,6 +559,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                           ),
                                                         ),
                                                       ),
+                                                      SizedBox(height:50.0)
+
                                                     ],
                                                   ),
                                                 ),
@@ -568,7 +568,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                 _questionTypeValue=="Descriptive"
                                                     ? const SizedBox(height: 0,)
                                                     : _questionTypeValue=="Survey"
-                                                    ? Form(
+                                                    ?
+                                                Form(
                                                   key: _formKey,
                                                   child: Column(
                                                     children: [
@@ -580,12 +581,12 @@ class AddQuestionState extends State<AddQuestion> {
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
-                                                                    color: Colors.black,
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.018)
-                                                                ),),
+                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
+                                                                      color: Colors.black,
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.018),
+                                                                  )),
                                                               Expanded(
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
@@ -624,10 +625,10 @@ class AddQuestionState extends State<AddQuestion> {
                                                                 onPressed: () {
                                                                   removeItem(i);
                                                                 },
-                                                                icon: Icon(
+                                                                icon:  Icon(
                                                                   size: height * 0.03,
                                                                   Icons.delete_outline,
-                                                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                                                 ),
                                                               ),
                                                               SizedBox(
@@ -639,28 +640,29 @@ class AddQuestionState extends State<AddQuestion> {
                                                     ],
                                                   ),
                                                 )
-                                                    : Form(
+                                                    :
+                                                Form(
                                                   key: _formKey,
                                                   child: Column(
                                                     children: [
                                                       for (int i = 0; i < chooses.length; i++)
                                                         Padding(
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
-                                                            left: 8,),
+                                                              left: 8,top:height * 0.01),
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
-                                                                    color: Colors.black,
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.018)
-                                                                ),
-                                                              ),
+                                                                  child: Text("${String.fromCharCode(97+i)}.",
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                  )),
                                                               Container(
-                                                                width: width * 0.7,
+                                                                width : width * 0.59,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
                                                                   style: TextStyle(
@@ -692,7 +694,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.05,
+                                                                width: width * 0.07,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
@@ -709,15 +711,15 @@ class AddQuestionState extends State<AddQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.05,
+                                                                width: width * 0.07,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     removeItem(i);
                                                                   },
-                                                                  icon: Icon(
+                                                                  icon:  Icon(
                                                                     size:height * 0.03,
                                                                     Icons.delete_outline,
-                                                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                                                   ),
                                                                 ),
                                                               ),

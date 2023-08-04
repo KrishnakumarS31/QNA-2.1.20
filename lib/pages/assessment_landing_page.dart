@@ -63,12 +63,14 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
     List<GetAssessmentModel> assessments = [];
+
     if (response.code == 200) {
       assessments = response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
           response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
       totalAssessments=response.data['total_count'].toString();
     }
-    else{
+
+    else {
       Navigator.push(
         context,
         PageTransition(
@@ -78,7 +80,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
             AppLocalizations.of(context)!.alert_popup,
             //'Alert',
             content:
-            AppLocalizations.of(context)!.no_question_found,
+            "Assessment not found",
             //'No Questions Found.',
             button:
             AppLocalizations.of(context)!.retry,
@@ -97,8 +99,6 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
   }
 
   getData(String search) async {
-    print("Search");
-    print(search.isEmpty);
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
     List<GetAssessmentModel> assessments = [];
@@ -106,35 +106,29 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
     tempassessment=response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
         response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
 
-    print("Balle lakka balle lakka");
-    print(response.data['total_count']);
-    print(tempassessment.isNotEmpty);
+    // if(search.isEmpty)
+    //   {
+    //     Navigator.push(
+    //       context,
+    //       PageTransition(
+    //         type: PageTransitionType.rightToLeft,
+    //         child: CustomDialog(
+    //           title:
+    //           AppLocalizations.of(context)!.alert_popup,
+    //           //'Alert',
+    //           content:
+    //           "Please Enter Something",
+    //           //'No Questions Found.',
+    //           button:
+    //           AppLocalizations.of(context)!.retry,
+    //           //"Retry",
+    //         ),
+    //       ),
+    //     );
+    //   }
 
-
-    if(search.isEmpty)
+    if(response.data['total_count'] == 0 )
       {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: CustomDialog(
-              title:
-              AppLocalizations.of(context)!.alert_popup,
-              //'Alert',
-              content:
-              "Please Enter Something",
-              //'No Questions Found.',
-              button:
-              AppLocalizations.of(context)!.retry,
-              //"Retry",
-            ),
-          ),
-        );
-      }
-
-    else if(response.data['total_count'] == 0 )
-      {
-        print("INSIDE IF");
         Navigator.push(
           context,
           PageTransition(
@@ -198,11 +192,6 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
     assessments = response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
         response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
     totalAssessments=response.data['total_count'].toString();
-    print("TOTAL COUNT");
-    print(response.data['total_count']);
-
-    print("assessmemts");
-    print(assessments);
 
     if(response.data['total_count'] == 0)
       {
@@ -1320,12 +1309,16 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                   borderRadius: 30.0,
                                   onToggle: (val) {
                                     setState(() {
+                                      print("valllllllllllllllllllllllllllllllllllllllll");
+                                      print(val);
                                       onlyMyAssessments =
                                           val;
                                       assessmentStart = 0;
                                       pageNumber = 1;
                                       assessmentList = [];
                                     });
+                                    print("outside if");
+                                    print(onlyMyAssessments);
                                     onlyMyAssessments ? getData(teacherQuestionBankSearchController.text):searchGlobalQuestion();
                                   },
                                 ),
@@ -3028,7 +3021,6 @@ class _AssessmentCardState extends State<AssessmentCard> {
 
   @override
   void initState() {
-    print(widget.width);
     DateTime tsDate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
     datetime = "${tsDate.day}/${tsDate.month}/${tsDate.year}";
     super.initState();

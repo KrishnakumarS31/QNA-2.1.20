@@ -572,7 +572,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
                                                       Container(
-                                                        width: width * 0.655,
+                                                        width: width * 0.63,
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
                                                           AppLocalizations.of(context)!.choices,
@@ -587,9 +587,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: width * 0.13,
+                                                        width: width * 0.1,
                                                         child: Text(
-                                                          textAlign: TextAlign.right,
+                                                          textAlign: TextAlign.left,
                                                           AppLocalizations.of(context)!.correct_answer,
                                                           //"Correct\nAnswer",
                                                           style: TextStyle(
@@ -600,6 +600,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           ),
                                                         ),
                                                       ),
+                                                      SizedBox(height:50.0)
 
                                                     ],
                                                   ),
@@ -688,7 +689,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       for (int i = 0; i < chooses.length; i++)
                                                         Padding(
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
-                                                            left: 8,),
+                                                            left: 8,top:height * 0.01),
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
@@ -702,7 +703,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                         fontSize: height * 0.018),
                                                                   )),
                                                               Container(
-                                                                width : width * 0.7,
+                                                                width : width * 0.59,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
                                                                   style: TextStyle(
@@ -734,7 +735,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.05,
+                                                                width: width * 0.07,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
@@ -1397,7 +1398,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
                                                       Container(
-                                                        width: width * 0.655,
+                                                        width: width * 0.63,
                                                         alignment: Alignment.centerLeft,
                                                         child: Text(
                                                           AppLocalizations.of(context)!.choices,
@@ -1412,9 +1413,9 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: width * 0.13,
+                                                        width: width * 0.1,
                                                         child: Text(
-                                                          textAlign: TextAlign.right,
+                                                          textAlign: TextAlign.left,
                                                           AppLocalizations.of(context)!.correct_answer,
                                                           //"Correct\nAnswer",
                                                           style: TextStyle(
@@ -1425,6 +1426,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                           ),
                                                         ),
                                                       ),
+                                                      SizedBox(height:50.0)
 
                                                     ],
                                                   ),
@@ -1513,21 +1515,21 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                       for (int i = 0; i < chooses.length; i++)
                                                         Padding(
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
-                                                            left: 8,),
+                                                              left: 8,top:height * 0.01),
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                  child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
-                                                                      color: Colors.black,
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontSize: height * 0.018)
-                                                              ),
-                                                              ),
+                                                                  child: Text("${String.fromCharCode(97+i)}.",
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                  )),
                                                               Container(
-                                                                width : width * 0.7,
+                                                                width : width * 0.59,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
                                                                   style: TextStyle(
@@ -1559,7 +1561,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.05,
+                                                                width: width * 0.07,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
@@ -1925,7 +1927,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                   SizedBox(height: width * 0.005),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
-                                      "",
+                                      "Continue",
                                       //textAlign: TextAlign.left,
                                       style: TextStyle(
                                           color: const Color.fromRGBO(28, 78, 80, 1),

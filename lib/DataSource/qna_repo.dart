@@ -650,11 +650,11 @@ class QnaRepo {
 
   static Future<ResponseEntity> getResultDetails(
       int assessmentId,int pageLimit, int pageNumber, String attemptStatus) async {
-    print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus');
+    print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber');
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     var request = http.Request(
-        'GET', Uri.parse('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus'));
+        'GET', Uri.parse('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber'));
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
