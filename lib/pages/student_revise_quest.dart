@@ -403,10 +403,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       onWillPop: () async => false, child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: Colors.white,
-                      body: Padding(
-                        padding: EdgeInsets.only(
-                          top: localHeight * 0.023,),
-                        child: Column(
+                      body:
+                          Align(
+                            child:
+                          SizedBox(
+                              height: localHeight * 0.6675,
+                              width: localWidth * 0.6,
+                      child: Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.only(left: localHeight * 0.023,
@@ -510,7 +513,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               ),
                             ),
                             SizedBox(
-                              height: localHeight *0.6,
                               child: SingleChildScrollView(
                                   physics: const ClampingScrollPhysics(),
                                   child: Padding(
@@ -794,7 +796,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                             ),
                           ],
                         ),
-                      )))));
+                      ))))));
         }
         else if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
           return WillPopScope(
@@ -1210,6 +1212,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         ),
                         Column(
                           children: [
+                            SizedBox(height: localHeight * 0.085),
                             Align(alignment: Alignment.center,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(

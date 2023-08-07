@@ -432,7 +432,7 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               Container(
                                 height: height * 0.6675,
-                                width: webWidth * 0.855,
+                                width: width * 0.7,
                                 decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -1105,7 +1105,7 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               Container(
                                 height: height * 0.6675,
-                                width: webWidth * 0.855,
+                                width: width * 0.6,
                                 decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(15)),

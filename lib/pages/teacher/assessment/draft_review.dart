@@ -1217,16 +1217,38 @@ class DraftReviewState extends State<DraftReview> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () {
-                                          List<questionModel.Question> ques=[];
-                                          ques.addAll(questionList);
-                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          for(questionModel.Question q in ques) {
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                          if(questionList.isEmpty)
+                                          {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: CustomDialog(
+                                                  title:
+                                                  AppLocalizations.of(context)!.alert_popup,
+                                                  //'Alert',
+                                                  content:
+                                                  AppLocalizations.of(context)!.no_question_found,
+                                                  //'No Questions Found.',
+                                                  button:
+                                                  AppLocalizations.of(context)!.retry,
+                                                  //"Retry",
+                                                ),
+                                              ),
+                                            );
                                           }
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/draftAssessmentSettings',
-                                          );
+                                          else {
+                                            List<questionModel.Question> ques=[];
+                                            ques.addAll(questionList);
+                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            for(questionModel.Question q in ques) {
+                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                            }
+                                            Navigator.pushNamed(
+                                              context,
+                                              '/draftAssessmentSettings',
+                                            );
+                                          }
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
@@ -2073,16 +2095,38 @@ class DraftReviewState extends State<DraftReview> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () {
-                                          List<questionModel.Question> ques=[];
-                                          ques.addAll(questionList);
-                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          for(questionModel.Question q in ques) {
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                          if(questionList.isEmpty)
+                                          {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: CustomDialog(
+                                                  title:
+                                                  AppLocalizations.of(context)!.alert_popup,
+                                                  //'Alert',
+                                                  content:
+                                                  AppLocalizations.of(context)!.no_question_found,
+                                                  //'No Questions Found.',
+                                                  button:
+                                                  AppLocalizations.of(context)!.retry,
+                                                  //"Retry",
+                                                ),
+                                              ),
+                                            );
                                           }
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/draftAssessmentSettings',
-                                          );
+                                          else {
+                                            List<questionModel.Question> ques=[];
+                                            ques.addAll(questionList);
+                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            for(questionModel.Question q in ques) {
+                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                            }
+                                            Navigator.pushNamed(
+                                              context,
+                                              '/draftAssessmentSettings',
+                                            );
+                                          }
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
@@ -2930,16 +2974,38 @@ class DraftReviewState extends State<DraftReview> {
                                     children: [
                                       ElevatedButton(
                                         onPressed: () {
-                                          List<questionModel.Question> ques=[];
-                                          ques.addAll(questionList);
-                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          for(questionModel.Question q in ques) {
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                          if(questionList.isEmpty)
+                                            {
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: CustomDialog(
+                                                    title:
+                                                    AppLocalizations.of(context)!.alert_popup,
+                                                    //'Alert',
+                                                    content:
+                                                    AppLocalizations.of(context)!.no_question_found,
+                                                    //'No Questions Found.',
+                                                    button:
+                                                    AppLocalizations.of(context)!.retry,
+                                                    //"Retry",
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                          else {
+                                            List<questionModel.Question> ques=[];
+                                            ques.addAll(questionList);
+                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            for(questionModel.Question q in ques) {
+                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                            }
+                                            Navigator.pushNamed(
+                                              context,
+                                              '/draftAssessmentSettings',
+                                            );
                                           }
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/draftAssessmentSettings',
-                                          );
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
