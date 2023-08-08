@@ -178,49 +178,60 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                       SizedBox(height: height * 0.06),
                                       SizedBox(
                                           width: width * 0.75,
-                                              child: TextFormField(
-                                                controller: rollNumController,
-                                                onChanged: (val) {
-                                                },
-                                                keyboardType: TextInputType.text,
-                                                decoration: InputDecoration(
-                                                  floatingLabelBehavior:
-                                                  FloatingLabelBehavior.always,
-                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                  label: RichText(
-                                                      text: TextSpan(children: [
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(context)!
-                                                              .registrationIdRollNum,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w600,
-                                                              fontSize: height * 0.017),
-                                                        ),
-                                                        TextSpan(
-                                                            text: AppLocalizations.of(context)!
-                                                                .optional,
-                                                            style: TextStyle(
-                                                                color: const Color.fromRGBO(
-                                                                    102, 102, 102, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontStyle: FontStyle.italic,
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: height * 0.017)),
-                                                      ])),
-                                                  hintText:
-                                                  AppLocalizations.of(context)!
-                                                      .enter_id,
-                                                  hintStyle: TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          102, 102, 102, 0.3),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: height * 0.02),
-                                                ),
-                                              )),
+                                          child: TextFormField(
+                                            controller: rollNumController,
+                                            onChanged: (val) {
+                                              formKey.currentState!.validate();
+                                            },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Enter 0,If you have not been assigned with an Organization ID'
+                                                ;
+                                              }
+                                              else if (!RegExp(r'\d')
+                                                  .hasMatch(value)) {
+                                                return "Enter a valid Organization ID";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType: TextInputType.text,
+                                            decoration: InputDecoration(
+                                              floatingLabelBehavior:
+                                              FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                              label: RichText(
+                                                  text: TextSpan(children: [
+                                                    TextSpan(
+                                                      text: "Organization ID",
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize: height * 0.02),
+                                                    ),
+                                                    // TextSpan(
+                                                    //     text: AppLocalizations.of(context)!
+                                                    //         .optional,
+                                                    //     style: TextStyle(
+                                                    //         color: const Color.fromRGBO(
+                                                    //             102, 102, 102, 1),
+                                                    //         fontFamily: 'Inter',
+                                                    //         fontStyle: FontStyle.italic,
+                                                    //         fontWeight: FontWeight.w600,
+                                                    //         fontSize: height * 0.02)),
+                                                  ])),
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_id,
+                                              hintStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.025),
+                                            ),
+                                          )),
                                       SizedBox(height: height * 0.07),
                                     ],
                                   ),
@@ -520,6 +531,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                           child: TextFormField(
                                             controller: rollNumController,
                                             onChanged: (val) {
+                                              formKey.currentState!.validate();
+                                            },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Enter 0,If you have not been assigned with an Organization ID'
+                                                ;
+                                              }
+                                              else if (!RegExp(r'\d')
+                                                  .hasMatch(value)) {
+                                                return "Enter a valid Organization ID";
+                                              }
+                                              return null;
                                             },
                                             keyboardType: TextInputType.text,
                                             decoration: InputDecoration(
@@ -529,8 +552,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               label: RichText(
                                                   text: TextSpan(children: [
                                                     TextSpan(
-                                                      text: AppLocalizations.of(context)!
-                                                          .registrationIdRollNum,
+                                                      text: "Organization ID",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 1),
@@ -538,16 +560,16 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           fontWeight: FontWeight.w600,
                                                           fontSize: height * 0.025),
                                                     ),
-                                                    TextSpan(
-                                                        text: AppLocalizations.of(context)!
-                                                            .optional,
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontStyle: FontStyle.italic,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.025)),
+                                                    // TextSpan(
+                                                    //     text: AppLocalizations.of(context)!
+                                                    //         .optional,
+                                                    //     style: TextStyle(
+                                                    //         color: const Color.fromRGBO(
+                                                    //             102, 102, 102, 1),
+                                                    //         fontFamily: 'Inter',
+                                                    //         fontStyle: FontStyle.italic,
+                                                    //         fontWeight: FontWeight.w600,
+                                                    //         fontSize: height * 0.02)),
                                                   ])),
                                               hintText:
                                               AppLocalizations.of(context)!
@@ -557,7 +579,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.02),
+                                                  fontSize: height * 0.025),
                                             ),
                                           )),
                                       SizedBox(height: height * 0.07),
@@ -857,6 +879,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                           child: TextFormField(
                                             controller: rollNumController,
                                             onChanged: (val) {
+                                              formKey.currentState!.validate();
+                                            },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'Enter 0,If you have not been assigned with an Organization ID'
+                                                ;
+                                              }
+                                              else if (!RegExp(r'\d')
+                                                  .hasMatch(value)) {
+                                                return "Enter a valid Organization ID";
+                                              }
+                                              return null;
                                             },
                                             keyboardType: TextInputType.text,
                                             decoration: InputDecoration(
@@ -866,8 +900,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               label: RichText(
                                                   text: TextSpan(children: [
                                                     TextSpan(
-                                                      text: AppLocalizations.of(context)!
-                                                          .registrationIdRollNum,
+                                                      text: "Organization ID",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 1),
@@ -875,16 +908,16 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           fontWeight: FontWeight.w600,
                                                           fontSize: height * 0.02),
                                                     ),
-                                                    TextSpan(
-                                                        text: AppLocalizations.of(context)!
-                                                            .optional,
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontStyle: FontStyle.italic,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.02)),
+                                                    // TextSpan(
+                                                    //     text: AppLocalizations.of(context)!
+                                                    //         .optional,
+                                                    //     style: TextStyle(
+                                                    //         color: const Color.fromRGBO(
+                                                    //             102, 102, 102, 1),
+                                                    //         fontFamily: 'Inter',
+                                                    //         fontStyle: FontStyle.italic,
+                                                    //         fontWeight: FontWeight.w600,
+                                                    //         fontSize: height * 0.02)),
                                                   ])),
                                               hintText:
                                               AppLocalizations.of(context)!

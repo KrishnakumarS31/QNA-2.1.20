@@ -64,26 +64,28 @@ class SplashScreenState extends State<SplashScreen> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return
-            domainName == "https://sssuhe.qnatest.com"
-                ? AnimatedSplashScreen(
-              splash: "assets/images/SSSUHE.png",
-              nextScreen: const WelcomePage(),
-              splashIconSize: height * 0.4,
-              centered: true,
-              backgroundColor: Colors.black,
-              splashTransition: SplashTransition.fadeTransition,
-            )
-              // logoWidth:
-              // constraints.maxWidth > 700
-              //     ? width * 0.1
-              //     : width * 0.3,
-              // logo: Image.asset(
-              //     "assets/images/SSSUHE.png"),
-              // backgroundColor: Colors.black,
-              // showLoader: true,
-              // loaderColor: const Color.fromRGBO(82, 165, 160, 1),
-              // navigator: const WelcomePage(),
-                : AnimatedSplashScreen(
+            // domainName == "https://sssuhe.qnatest.com"
+            //     ?
+            // AnimatedSplashScreen(
+            //   splash: "assets/images/SSSUHE.png",
+            //   nextScreen: const WelcomePage(),
+            //   splashIconSize: height * 0.4,
+            //   centered: true,
+            //   backgroundColor: Colors.black,
+            //   splashTransition: SplashTransition.fadeTransition,
+            // )
+            //   // logoWidth:
+            //   // constraints.maxWidth > 700
+            //   //     ? width * 0.1
+            //   //     : width * 0.3,
+            //   // logo: Image.asset(
+            //   //     "assets/images/SSSUHE.png"),
+            //   // backgroundColor: Colors.black,
+            //   // showLoader: true,
+            //   // loaderColor: const Color.fromRGBO(82, 165, 160, 1),
+            //   // navigator: const WelcomePage(),
+            //     :
+            AnimatedSplashScreen(
               splash: "assets/images/qna_splash_screen.jpg",
               centered: true,
               duration: 1,

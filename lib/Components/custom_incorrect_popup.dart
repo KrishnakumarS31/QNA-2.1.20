@@ -65,15 +65,15 @@ class _CustomDialogState extends State<CustomDialog> {
                           shape: BoxShape.circle,
                           color: Color.fromRGBO(226, 68, 0, 1),
                         ),
-                        height: height * 0.05,
-                        width: width * 0.1,
+                        // height: height * 0.05,
+                        // width: width * 0.1,
                         child: const Icon(
                           Icons.info_outline_rounded,
                           color: Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
-                      SizedBox(width: width * 0.03),
-                      // SizedBox(width: width * 0.01),
+                      // SizedBox(width: width * 0.03),
+                      SizedBox(width: width * 0.01),
                       Text(
                         widget.title,
                         style:
@@ -103,7 +103,7 @@ class _CustomDialogState extends State<CustomDialog> {
               ),
               Text(
                 widget.subContent??'',
-                style: TextStyle(
+                style: const TextStyle(
                     color: Color.fromRGBO(51, 51, 51, 1),
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w500,

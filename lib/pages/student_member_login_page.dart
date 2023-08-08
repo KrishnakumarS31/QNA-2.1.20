@@ -756,20 +756,20 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           child: Column(
                               children: [
                                 SizedBox(height: localHeight * 0.15),
-                                Row(
-                                    children:[
-                                      SizedBox(width: localWidth * 0.02),
-                                      Text(
-                                        AppLocalizations.of(context)!.login_loginPage,
-                                        style: TextStyle(
-                                          fontSize: localHeight * 0.025,
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      )]),
-                                SizedBox(height: localHeight * 0.02),
+                                // Row(
+                                //     children:[
+                                //       SizedBox(width: localWidth * 0.05),
+                                //       Text(
+                                //         AppLocalizations.of(context)!.login_loginPage,
+                                //         style: TextStyle(
+                                //           fontSize: localHeight * 0.025,
+                                //           color: const Color.fromRGBO(
+                                //               102, 102, 102, 1),
+                                //           fontFamily: "Inter",
+                                //           fontWeight: FontWeight.w600,
+                                //         ),
+                                //       )]),
+                                // SizedBox(height: localHeight * 0.02),
                                 Center(
                                     child:
                                     Container(
@@ -778,7 +778,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         borderRadius: BorderRadius.circular(10),
                                         boxShadow: kElevationToShadow[4],
                                       ),
-                                      width: localWidth * 0.7,
+                                      width: localWidth * 0.35,
                                       child:
                                       Form(
                                         key: formKey,
@@ -789,7 +789,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               children: [
                                                 SizedBox(height: localHeight * 0.05),
                                                 SizedBox(
-                                                    width: localWidth * 0.6,
+                                                    width: localWidth * 0.32,
                                                     child: TextFormField(
                                                       keyboardType: TextInputType.text,
                                                       controller: regNumberController,
@@ -848,7 +848,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             Column(
                                               children: [
                                                 SizedBox(
-                                                    width: localWidth * 0.6,
+                                                    width: localWidth * 0.32,
                                                     child: TextFormField(
                                                       controller: passWordController,
                                                       obscureText: _isObscure,
@@ -923,7 +923,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             ),
                                             SizedBox(height: localHeight * 0.02),
                                             SizedBox(
-                                              width: localWidth * 0.6,
+                                              width: localWidth * 0.32,
                                               child: MouseRegion(
                                                   cursor: SystemMouseCursors.click,
                                                   child: GestureDetector(
@@ -1081,7 +1081,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     )),
                                 SizedBox(height: localHeight * 0.03),
 
-                                SizedBox(height: localHeight * 0.03),
+                                // SizedBox(height: localHeight * 0.03),
                                 Center(
                                     child: Column(
                                       children: [
@@ -1163,7 +1163,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 '/studentGuestLogin');
                                           },
                                         ),
-                                        SizedBox(height: localHeight * 0.065),
+                                        SizedBox(height: localHeight * 0.05),
                                         Row(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [

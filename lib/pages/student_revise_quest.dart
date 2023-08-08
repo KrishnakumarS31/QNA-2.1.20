@@ -396,7 +396,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if(constraints.maxWidth > 960) {
+        if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
           return Center(
               child: SizedBox(
                   child: WillPopScope(
@@ -423,7 +423,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               0, 106, 100, 1),
-                                          fontSize: localHeight * 0.0455,
+                                          fontSize: localHeight * 0.02,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -438,7 +438,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                     color: Colors.black,
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: localHeight * 0.032)),
+                                                    fontSize: localHeight *  0.02)),
                                           ],
                                         ),
                                       ),
@@ -452,7 +452,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: const TextStyle(
                                           color: Color.fromRGBO(
                                               255, 157, 77, 1),
-                                          fontSize: 25,
+                                          fontSize:  0.02,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -480,7 +480,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.025)),
+                                                        fontSize: localHeight * 0.02)),
                                               ),
                                             ],
                                           ),),)
@@ -616,7 +616,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                       fontWeight:
                                                                                       FontWeight.w600,
                                                                                       fontSize:
-                                                                                      localHeight * 0.0237)),
+                                                                                      localHeight * 0.02)),
                                                                                 ),
                                                                                 Text(
                                                                                   AppLocalizations.of(context)!
@@ -774,9 +774,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                       ),
                                       child: Text(
                                           AppLocalizations.of(context)!.submit,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               fontFamily: 'Inter',
-                                              fontSize: 24,
+                                              fontSize: localHeight *
+                                                  0.02,
                                               color: Colors.white,
                                               fontWeight: FontWeight.w600
                                           )
@@ -798,7 +799,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         ),
                       ))))));
         }
-        else if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+        else if(constraints.maxWidth > 960)
+        {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -806,7 +808,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   backgroundColor: Colors.white,
                   body: Padding(
                     padding: EdgeInsets.only(
-                      top: localHeight * 0.04,
+                      top: localHeight * 0.02,
                       // left: localHeight * 0.023,
                       // right: localHeight * 0.023
                     ),
@@ -915,7 +917,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           ),
                         ),
                         SizedBox(
-                          height: localHeight *0.65,
+                          height: localHeight * 0.6,
                           child: SingleChildScrollView(
                               physics: const ClampingScrollPhysics(),
                               child: Padding(

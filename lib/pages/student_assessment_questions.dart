@@ -1105,7 +1105,7 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               Container(
                                 height: height * 0.6675,
-                                width: width * 0.6,
+                                width: width * 0.4,
                                 decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
