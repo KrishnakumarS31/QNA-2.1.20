@@ -590,7 +590,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                               color: Color.fromRGBO(28, 78, 80, 1),
                                                                             ),
                                                                             height: localHeight * 0.045,
-                                                                            width: localWidth * 0.05,
+                                                                            width: localWidth * 0.18,
                                                                             child: Row(
                                                                               mainAxisAlignment:
                                                                               MainAxisAlignment.center,
@@ -616,7 +616,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                       fontWeight:
                                                                                       FontWeight.w600,
                                                                                       fontSize:
-                                                                                      localHeight * 0.02)),
+                                                                                      localHeight * 0.0237)),
                                                                                 ),
                                                                                 Text(
                                                                                   AppLocalizations.of(context)!
@@ -762,6 +762,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                             ),
                             Column(
                               children: [
+                                SizedBox(height: localHeight * 0.085),
                                 Align(alignment: Alignment.center,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
@@ -812,7 +813,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       // left: localHeight * 0.023,
                       // right: localHeight * 0.023
                     ),
-                    child: Column(
+                    child:
+                        Center(
+                        child: SizedBox(
+                            width: localWidth * 0.4,
+                        child: Column(
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: localHeight * 0.023,
@@ -1248,7 +1253,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           ],
                         ),
                       ],
-                    ),
+                    ))),
                   )));
         }
         else {
