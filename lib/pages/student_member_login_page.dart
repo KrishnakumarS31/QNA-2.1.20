@@ -335,13 +335,21 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       fontSize: localHeight * 0.02),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.isEmpty ||
-                                                      !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                          .hasMatch(value)) {
+                                                  if (value!.isEmpty) {
                                                     return AppLocalizations.of(
                                                         context)!
                                                         .error_regID;
-                                                  } else {
+                                                  }
+                                                  else if(RegExp(r'^[a-zA-Z0-9]+$')
+                                                      .hasMatch(value)) {
+                                                    return null;
+                                                  }
+                                                  else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                .hasMatch(value)) {
+                                                    return AppLocalizations.of(context)!
+                                                        .enter_valid_email;
+                                                  }
+                                                  else {
                                                     return null;
                                                   }
                                                 },
@@ -831,13 +839,21 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                             fontSize: localHeight * 0.02),
                                                       ),
                                                       validator: (value) {
-                                                        if (value!.isEmpty ||
-                                                            !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                                .hasMatch(value)) {
+                                                        if (value!.isEmpty) {
                                                           return AppLocalizations.of(
                                                               context)!
                                                               .error_regID;
-                                                        } else {
+                                                        }
+                                                        else if(RegExp(r'^[a-zA-Z0-9]+$')
+                                                            .hasMatch(value)) {
+                                                          return null;
+                                                        }
+                                                        else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                            .hasMatch(value)) {
+                                                          return AppLocalizations.of(context)!
+                                                              .enter_valid_email;
+                                                        }
+                                                        else {
                                                           return null;
                                                         }
                                                       },
@@ -1325,13 +1341,21 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       fontSize: localHeight * 0.02),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.isEmpty ||
-                                                      !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                          .hasMatch(value)) {
+                                                  if (value!.isEmpty) {
                                                     return AppLocalizations.of(
                                                         context)!
                                                         .error_regID;
-                                                  } else {
+                                                  }
+                                                  else if(RegExp(r'^[a-zA-Z0-9]+$')
+                                                      .hasMatch(value)) {
+                                                    return null;
+                                                  }
+                                                  else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                      .hasMatch(value)) {
+                                                    return AppLocalizations.of(context)!
+                                                        .enter_valid_email;
+                                                  }
+                                                  else {
                                                     return null;
                                                   }
                                                 },

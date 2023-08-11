@@ -190,7 +190,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               }
                                               else if (!RegExp(r'\d')
                                                   .hasMatch(value)) {
-                                                return "Enter a valid Organization ID";
+                                                return "Incorrect Organization ID. Enter again.";
                                               }
                                               return null;
                                             },
@@ -199,10 +199,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
                                               labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                              label: RichText(
-                                                  text: TextSpan(children: [
-                                                    TextSpan(
-                                                      text: "Organization ID",
+                                              label: Text("Organization ID",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 1),
@@ -210,17 +207,15 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           fontWeight: FontWeight.w600,
                                                           fontSize: height * 0.02),
                                                     ),
-                                                    // TextSpan(
-                                                    //     text: AppLocalizations.of(context)!
-                                                    //         .optional,
-                                                    //     style: TextStyle(
-                                                    //         color: const Color.fromRGBO(
-                                                    //             102, 102, 102, 1),
-                                                    //         fontFamily: 'Inter',
-                                                    //         fontStyle: FontStyle.italic,
-                                                    //         fontWeight: FontWeight.w600,
-                                                    //         fontSize: height * 0.02)),
-                                                  ])),
+                                              helperText: AppLocalizations.of(
+                                                  context)!.organization_helper,
+                                              helperStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.015),
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .enter_id,
@@ -540,7 +535,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               }
                                               else if (!RegExp(r'\d')
                                                   .hasMatch(value)) {
-                                                return "Enter a valid Organization ID";
+                                                return "Incorrect Organization ID. Enter again.";
                                               }
                                               return null;
                                             },
@@ -549,10 +544,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
                                               labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                              label: RichText(
-                                                  text: TextSpan(children: [
-                                                    TextSpan(
-                                                      text: "Organization ID",
+                                              label: Text("Organization ID",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 1),
@@ -560,17 +552,15 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           fontWeight: FontWeight.w600,
                                                           fontSize: height * 0.025),
                                                     ),
-                                                    // TextSpan(
-                                                    //     text: AppLocalizations.of(context)!
-                                                    //         .optional,
-                                                    //     style: TextStyle(
-                                                    //         color: const Color.fromRGBO(
-                                                    //             102, 102, 102, 1),
-                                                    //         fontFamily: 'Inter',
-                                                    //         fontStyle: FontStyle.italic,
-                                                    //         fontWeight: FontWeight.w600,
-                                                    //         fontSize: height * 0.02)),
-                                                  ])),
+                                              helperText: AppLocalizations.of(
+                                                  context)!.organization_helper,
+                                              helperStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.015),
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .enter_id,
@@ -888,7 +878,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               }
                                               else if (!RegExp(r'\d')
                                                   .hasMatch(value)) {
-                                                return "Enter a valid Organization ID";
+                                                return "Incorrect Organization ID. Enter again.";
                                               }
                                               return null;
                                             },
@@ -897,10 +887,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
                                               labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                              label: RichText(
-                                                  text: TextSpan(children: [
-                                                    TextSpan(
-                                                      text: "Organization ID",
+                                              label: Text("Organization ID",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 1),
@@ -908,17 +895,15 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           fontWeight: FontWeight.w600,
                                                           fontSize: height * 0.02),
                                                     ),
-                                                    // TextSpan(
-                                                    //     text: AppLocalizations.of(context)!
-                                                    //         .optional,
-                                                    //     style: TextStyle(
-                                                    //         color: const Color.fromRGBO(
-                                                    //             102, 102, 102, 1),
-                                                    //         fontFamily: 'Inter',
-                                                    //         fontStyle: FontStyle.italic,
-                                                    //         fontWeight: FontWeight.w600,
-                                                    //         fontSize: height * 0.02)),
-                                                  ])),
+                                              helperText: AppLocalizations.of(
+                                                  context)!.organization_helper,
+                                              helperStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.015),
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .enter_id,

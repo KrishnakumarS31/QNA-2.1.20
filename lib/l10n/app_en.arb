@@ -54,7 +54,7 @@
   "forgot_password": "Forgot password?",
   "register": "Register",
   "member_student": "Student Login",
-  "regId_emailId": "Registration ID or Email",
+  "regId_emailId": "Email ID or User ID",
   "hint_regId": "Enter here",
   "error_regID": "Enter Email ID",
   "error_password": "Password is required",
@@ -437,5 +437,6 @@
   "enable_as_student": "Enable me as Student",
   "edit_user_profile": "Edit User Profile",
   "submit_your_profile": "Are you sure you want to submit \nchanges to your profile?",
-  "not_allowed_to_reattempt": "You are not allowed to retake the test, Reached max number of attempts"
+  "not_allowed_to_reattempt": "You are not allowed to retake the test, Reached max number of attempts",
+  "organization_helper": "If you do not know Organziation ID, Enter 0"
 }

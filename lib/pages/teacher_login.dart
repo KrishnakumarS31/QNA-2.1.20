@@ -282,13 +282,21 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                         fontSize: height * 0.02),
                                                   ),
                                                   validator: (value) {
-                                                    if (value!.isEmpty ||
-                                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                            .hasMatch(value)) {
+                                                    if (value!.isEmpty) {
                                                       return AppLocalizations.of(
                                                           context)!
                                                           .error_regID;
-                                                    } else {
+                                                    }
+                                                    else if(RegExp(r'^[a-zA-Z0-9]+$')
+                                                        .hasMatch(value)) {
+                                                      return null;
+                                                    }
+                                                    else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                        .hasMatch(value)) {
+                                                      return AppLocalizations.of(context)!
+                                                          .enter_valid_email;
+                                                    }
+                                                    else {
                                                       return null;
                                                     }
                                                   },
@@ -413,13 +421,33 @@ class TeacherLoginState extends State<TeacherLogin> {
                                   ),
                                 )),
                             SizedBox(height: height * 0.03),
-                            Center(
-                                child:IconButton(
-                                    iconSize: height * 0.06,
-                                    icon: Icon(Icons.arrow_circle_right,
-                                        color:
-                                        const Color.fromRGBO(82, 165, 160, 1)
-                                    ),
+                      Center(
+                          child: ElevatedButton(
+                              style:
+                              ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(
+                                    width: 1, // the thickness
+                                    color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                ),
+                                minimumSize:
+                                Size(width * 0.29, height * 0.03),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(
+                                      39),
+                                ),
+                              ),
+                              child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize:
+                                      height *
+                                          0.02,
+                                      fontWeight: FontWeight
+                                          .w400,
+                                      color: const Color.fromRGBO(82, 165, 160, 1))),
                                     onPressed: () async {
                                       bool valid = formKey.currentState!.validate();
                                       regNumber = emailController.text;
@@ -712,13 +740,21 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                             fontSize: height * 0.02),
                                                       ),
                                                       validator: (value) {
-                                                        if (value!.isEmpty ||
-                                                            !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                                .hasMatch(value)) {
+                                                        if (value!.isEmpty) {
                                                           return AppLocalizations.of(
                                                               context)!
                                                               .error_regID;
-                                                        } else {
+                                                        }
+                                                        else if(RegExp(r'^[a-zA-Z0-9]+$')
+                                                            .hasMatch(value)) {
+                                                          return null;
+                                                        }
+                                                        else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                            .hasMatch(value)) {
+                                                          return AppLocalizations.of(context)!
+                                                              .enter_valid_email;
+                                                        }
+                                                        else {
                                                           return null;
                                                         }
                                                       },
@@ -835,11 +871,34 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     )),
                                 SizedBox(height: height * 0.03),
                                 Center(
-                                    child:IconButton(
-                                        iconSize: height * 0.06,
-                                        icon: Icon(Icons.arrow_circle_right,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
+
+                                    child: ElevatedButton(
+                                        style:
+                                        ElevatedButton.styleFrom(
+                                          backgroundColor:  const Color.fromRGBO(82, 165, 160, 1),
+                                          side: const BorderSide(
+                                              width: 1, // the thickness
+                                              color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                          ),
+                                          minimumSize:
+                                          const Size(189, 37),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                39),
+                                          ),
                                         ),
+                                        child: Text(
+                                            "Login",
+                                            style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize:
+                                              height *
+                                                  0.02,
+                                              fontWeight: FontWeight
+                                                  .w400,
+                                              color: Colors.white,
+                                            )),
                                         onPressed: () async {
                                           bool valid = formKey.currentState!.validate();
                                           regNumber = emailController.text;
@@ -1131,13 +1190,21 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                         fontSize: height * 0.02),
                                                   ),
                                                   validator: (value) {
-                                                    if (value!.isEmpty ||
-                                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                            .hasMatch(value)) {
+                                                    if (value!.isEmpty) {
                                                       return AppLocalizations.of(
                                                           context)!
                                                           .error_regID;
-                                                    } else {
+                                                    }
+                                                    else if(RegExp(r'^[a-zA-Z0-9]+$')
+                                                        .hasMatch(value)) {
+                                                      return null;
+                                                    }
+                                                    else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                        .hasMatch(value)) {
+                                                      return AppLocalizations.of(context)!
+                                                          .enter_valid_email;
+                                                    }
+                                                    else {
                                                       return null;
                                                     }
                                                   },
@@ -1259,10 +1326,33 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 )),
                             SizedBox(height: height * 0.03),
                             Center(
-                                child:IconButton(
-                                    iconSize: height * 0.06,
-                                    icon: Icon(Icons.arrow_circle_right,
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                child:ElevatedButton(
+                                    style:
+                                    ElevatedButton.styleFrom(
+                                      backgroundColor: Color.fromRGBO(82,165,160,1),
+                                      side: const BorderSide(
+                                        width: 1, // the thickness
+                                        color: Color.fromRGBO(82, 165, 160, 1), // the color of the border
+                                      ),
+                                      minimumSize:
+                                      const Size(189, 37),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(
+                                            39),
+                                      ),
+                                    ),
+                                    child: Text(
+                                        "Login",
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize:
+                                          height *
+                                              0.02,
+                                          fontWeight: FontWeight
+                                              .w400,
+                                          color: Colors.white,
+                                        )
                                     ),
                                     onPressed: () async {
                                       bool valid = formKey.currentState!.validate();
