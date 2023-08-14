@@ -480,7 +480,24 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           suffixIcon: ElevatedButton(
                                                             onPressed: () async {
                                                               assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
-                                                              if(assessmentvalues.code == 200) {
+                                                              if(assessmentvalues.code == 200 && assessmentvalues.data["allow_guest_student"] == false )
+                                                                {
+                                                                  Navigator.push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type:
+                                                                      PageTransitionType.rightToLeft,
+                                                                      child: CustomDialog(
+                                                                        title: AppLocalizations.of(context)!.alert_popup,
+                                                                        content: 'Guest Students Not Allowed',
+                                                                        button:
+                                                                        AppLocalizations.of(context)!
+                                                                            .retry,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                             else if(assessmentvalues.code == 200 && assessmentvalues.data["allow_guest_student"] == true) {
                                                                 setState(() {
                                                                   assessmentHeaderValues =
                                                                       GetAssessmentHeaderModel
@@ -1249,7 +1266,25 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           suffixIcon: ElevatedButton(
                                                             onPressed: () async {
                                                               assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
-                                                              if(assessmentvalues.code == 200) {
+                                                              if(assessmentvalues.code == 200 && assessmentvalues.data["allow_guest_student"] == false)
+                                                                {
+                                                                  Navigator.push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type:
+                                                                      PageTransitionType.rightToLeft,
+                                                                      child: CustomDialog(
+                                                                        title: AppLocalizations.of(context)!.alert_popup,
+                                                                        content: 'Guest Student Not Allowed',
+                                                                        button:
+                                                                        AppLocalizations.of(context)!
+                                                                            .retry,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                              else if(assessmentvalues.code == 200 && assessmentvalues.data["allow_guest_student"] == true) {
+                                                                //print(assessmentValues.data);
                                                                 setState(() {
                                                                   assessmentHeaderValues =
                                                                       GetAssessmentHeaderModel
@@ -1646,33 +1681,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       ),
                                     ]),
                               ),
-                              // Column(
-                              //   children: [
-                              //     Container(
-                              //         padding: const EdgeInsets.only(left: 15),
-                              //         child: Text(
-                              //           AppLocalizations.of(context)!.student,
-                              //           style: TextStyle(
-                              //               color: const Color.fromRGBO(153, 153, 153, 1),
-                              //               fontFamily: 'Inter',
-                              //               fontWeight: FontWeight.w500,
-                              //
-                              //               fontSize: width * 0.04),
-                              //         )),
-                              //     // Container(
-                              //     //     padding: const EdgeInsets.only(left: 15),
-                              //     //     child: Text(
-                              //     //       email,
-                              //     //       style: const TextStyle(
-                              //     //           color: Color.fromRGBO(221, 221, 221, 1),
-                              //     //           fontFamily: 'Inter',
-                              //     //           fontWeight: FontWeight.w500,
-                              //     //           fontSize: 12),
-                              //     //     )),
-                              //   ],
-                              // ),
-                              // SizedBox(height: localHeight * 0.020),
-                              //    )
+
                             ],
                           ),
                         ),
@@ -2047,7 +2056,25 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                           suffixIcon: ElevatedButton(
                                                             onPressed: () async {
                                                               assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text,userDetails);
-                                                              if(assessmentvalues.code == 200) {
+                                                              if(assessmentvalues.code == 200 &&
+                                                                  assessmentvalues.data["allow_guest_student"] == false)
+                                                                {
+                                                                  Navigator.push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type:
+                                                                      PageTransitionType.rightToLeft,
+                                                                      child: CustomDialog(
+                                                                        title: AppLocalizations.of(context)!.alert_popup,
+                                                                        content: 'Guest Students Not Allowed',
+                                                                        button:
+                                                                        AppLocalizations.of(context)!
+                                                                            .retry,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                              else if(assessmentvalues.code == 200 && assessmentvalues.data["allow_guest_student"] == true) {
                                                                 setState(() {
                                                                   assessmentHeaderValues =
                                                                       GetAssessmentHeaderModel
