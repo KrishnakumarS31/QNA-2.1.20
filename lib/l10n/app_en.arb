@@ -107,7 +107,7 @@
   "country_citizen": "Citizen of Country",
   "enter_country": "Enter Country",
   "country_resident": "Resident of Country",
-  "reg_roll_caps": "Registration ID",
+  "reg_roll_caps": "Organization ID",
   "reg_roll": "Registration ID / Roll Number",
   "ins_org_caps": "Institution Name",
   "ins_org": "Institute / Organization Name",
@@ -438,5 +438,6 @@
   "edit_user_profile": "Edit User Profile",
   "submit_your_profile": "Are you sure you want to submit \nchanges to your profile?",
   "not_allowed_to_reattempt": "You are not allowed to retake the test, Reached max number of attempts",
-  "organization_helper": "If you do not know Organziation ID, Enter 0"
+  "organization_helper": "If you do not know Organization ID, Enter 0",
+  "org_helper_reg": "Enter 0, if you have not been assigned with an Organization ID"
 }

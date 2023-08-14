@@ -233,7 +233,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                           SizedBox(height: localHeight * 0.005),
                                           Row(
                                               children: [
-                                          Text("${AppLocalizations.of(context)!.study_chapter} ${values.data!.questions![index - 1].questionId}\t${values.data!.questions![index - 1].advisorText}",
+                                          Text("${values.data!.questions![index - 1].advisorText}",
                                                     style: TextStyle(
                                                         color: const Color
                                                             .fromRGBO(
@@ -445,7 +445,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                       children: [
-                                                        Text("${AppLocalizations.of(context)!.study_chapter} ${values.data!.questions![index - 1].questionId}\t${values.data!.questions![index - 1].advisorText}",
+                                                     Text("${values.data!.questions![index - 1].advisorText}",
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -709,7 +709,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                       children: [
-                                                        Text("${AppLocalizations.of(context)!.study_chapter} ${values.data!.questions![index - 1].questionId}\t${values.data!.questions![index - 1].advisorText}",
+                                                        Text("${values.data!.questions![index - 1].advisorText}",
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(

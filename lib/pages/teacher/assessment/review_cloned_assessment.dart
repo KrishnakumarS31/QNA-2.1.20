@@ -1055,7 +1055,9 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          assessment.totalScore=questionList.length;
+                                          assessment.totalScore=totalMarks;
+                                          assessment.totalQuestions = questionList.length;
+                                          assessment.institutionId = userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -1932,7 +1934,9 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          assessment.totalScore=questionList.length;
+                                          assessment.totalScore=totalMarks;
+                                          assessment.totalQuestions = questionList.length;
+                                          assessment.institutionId = userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -2790,7 +2794,9 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          assessment.totalScore=questionList.length;
+                                          assessment.totalScore=totalMarks;
+                                          assessment.totalQuestions = questionList.length;
+                                          assessment.institutionId = userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data

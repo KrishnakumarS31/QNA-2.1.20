@@ -185,7 +185,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             },
                                             validator: (value) {
                                               if (value!.isEmpty) {
-                                                return 'Enter 0,If you have not been assigned with an Organization ID'
+                                                return 'If you do not know Organization ID, Enter 0'
                                                 ;
                                               }
                                               else if (!RegExp(r'\d')
@@ -530,7 +530,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             },
                                             validator: (value) {
                                               if (value!.isEmpty) {
-                                                return 'Enter 0,If you have not been assigned with an Organization ID'
+                                                return ',If you do not know Organization ID, Enter 0'
                                                 ;
                                               }
                                               else if (!RegExp(r'\d')
@@ -873,7 +873,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             },
                                             validator: (value) {
                                               if (value!.isEmpty) {
-                                                return 'Enter 0,If you have not been assigned with an Organization ID'
+                                                return 'If you do not know Organization ID, Enter 0'
                                                 ;
                                               }
                                               else if (!RegExp(r'\d')

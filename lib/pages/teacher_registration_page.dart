@@ -827,10 +827,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         floatingLabelBehavior:
                                                         FloatingLabelBehavior.always,
-                                                        label: RichText(
-                                                            text: TextSpan(children: [
-                                                              TextSpan(
-                                                                text: AppLocalizations.of(
+                                                        label: Text(
+                                                            AppLocalizations.of(
                                                                     context)!
                                                                     .reg_roll_caps,
                                                                 style: TextStyle(
@@ -843,37 +841,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                     fontSize: localHeight *
                                                                         0.020),
                                                               ),
-                                                              TextSpan(
-                                                                text: AppLocalizations.of(
-                                                                    context)!
-                                                                    .optional,
-                                                                style: TextStyle(
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        102, 102, 102, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight
-                                                                        .w600,
-                                                                    fontStyle: FontStyle.italic,
-                                                                    fontSize: localHeight *
-                                                                        0.020),
-                                                              ),
-                                                              // TextSpan(
-                                                              //     text: "\t*",
-                                                              //     style: TextStyle(
-                                                              //         color: const Color.fromRGBO(
-                                                              //             219, 35, 35, 1),
-                                                              //         fontFamily: 'Inter',
-                                                              //         fontWeight: FontWeight.w600,
-                                                              //         fontSize: localHeight * 0.018)),
-                                                            ])),
-                                                        // labelStyle: TextStyle(
-                                                        //     color:
-                                                        //     const Color.fromRGBO(
-                                                        //         51, 51, 51, 1),
-                                                        //     fontFamily: 'Inter',
-                                                        //     fontWeight: FontWeight.w600,
-                                                        //     fontSize: localHeight * 0.018),
+                                                        helperStyle: TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontStyle: FontStyle.italic,
+                                                            fontSize: localHeight * 0.016),
+                                                        helperText: AppLocalizations.of(context)!.org_helper_reg,
                                                         hintStyle: TextStyle(
                                                             color: const Color.fromRGBO(
                                                                 102, 102, 102, 0.3),
@@ -887,6 +862,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       ),
                                                       onChanged: (value) {
                                                         formKey.currentState!.validate();
+                                                      },
+                                                      validator: (value) {
+                                                        if (value!.isEmpty) {
+                                                          return AppLocalizations.of(context)!.org_helper_reg;
+                                                        } else {
+                                                          return null;
+                                                        }
                                                       },
 
                                                     )),
@@ -937,7 +919,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               fontFamily: 'Inter',
                                                               fontStyle: FontStyle.italic,
                                                               fontWeight: FontWeight.w400,
-                                                              fontSize: localHeight * 0.018),
+                                                              fontSize: localHeight * 0.016),
                                                           hintStyle: TextStyle(
                                                               color: const Color.fromRGBO(
                                                                   102, 102, 102, 0.3),
@@ -1851,11 +1833,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
-                                                      label: RichText(
-                                                          text: TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                  text: AppLocalizations.of(
+                                                      label: Text(
+                                                        AppLocalizations.of(
                                                                       context)!
                                                                       .reg_roll_caps,
                                                                   style: TextStyle(
@@ -1868,22 +1847,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                       fontSize: localHeight *
                                                                           0.020),
                                                                 ),
-                                                                TextSpan(
-                                                                  text: AppLocalizations.of(
-                                                                      context)!
-                                                                      .optional,
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          102, 102, 102, 1),
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight
-                                                                          .w600,
-                                                                      fontStyle: FontStyle.italic,
-                                                                      fontSize: localHeight *
-                                                                          0.020),
-                                                                ),
-                                                              ])),
+                                                      helperStyle: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontStyle: FontStyle.italic,
+                                                          fontSize: localHeight * 0.016),
+                                                      helperText: AppLocalizations.of(context)!.org_helper_reg,
                                                       hintStyle: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 0.3),
@@ -1897,6 +1868,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     ),
                                                     onChanged: (value) {
                                                       formKey.currentState!.validate();
+                                                    },
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return AppLocalizations.of(context)!.org_helper_reg;
+                                                      } else {
+                                                        return null;
+                                                      }
                                                     },
 
                                                   )),
@@ -1939,7 +1917,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             fontFamily: 'Inter',
                                                             fontStyle: FontStyle.italic,
                                                             fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.018),
+                                                            fontSize: localHeight * 0.016),
                                                         hintStyle: TextStyle(
                                                             color: const Color.fromRGBO(
                                                                 102, 102, 102, 0.3),
@@ -2929,12 +2907,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     floatingLabelBehavior:
                                                     FloatingLabelBehavior
                                                         .always,
-                                                    label: RichText(
-                                                        text:
-                                                        TextSpan(children: [
-                                                          TextSpan(
-                                                            text:
-                                                            AppLocalizations.of(
+                                                    label: Text(
+                                                      AppLocalizations.of(
                                                                 context)!
                                                                 .reg_roll_caps,
                                                             style: TextStyle(
@@ -2951,43 +2925,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 localHeight *
                                                                     0.020),
                                                           ),
-                                                          TextSpan(
-                                                            text:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .optional,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight:
-                                                                FontWeight.w600,
-                                                                fontStyle: FontStyle
-                                                                    .italic,
-                                                                fontSize:
-                                                                localHeight *
-                                                                    0.020),
-                                                          ),
-                                                          // TextSpan(
-                                                          //     text: "\t*",
-                                                          //     style: TextStyle(
-                                                          //         color: const Color.fromRGBO(
-                                                          //             219, 35, 35, 1),
-                                                          //         fontFamily: 'Inter',
-                                                          //         fontWeight: FontWeight.w600,
-                                                          //         fontSize: localHeight * 0.018)),
-                                                        ])),
-                                                    // labelStyle: TextStyle(
-                                                    //     color:
-                                                    //     const Color.fromRGBO(
-                                                    //         51, 51, 51, 1),
-                                                    //     fontFamily: 'Inter',
-                                                    //     fontWeight: FontWeight.w600,
-                                                    //     fontSize: localHeight * 0.018),
+                                                    helperStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontStyle: FontStyle.italic,
+                                                        fontSize: localHeight * 0.016),
+                                                    helperText: AppLocalizations.of(context)!.org_helper_reg,
                                                     hintStyle: TextStyle(
                                                         color: const Color
                                                             .fromRGBO(
@@ -3005,6 +2950,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   onChanged: (value) {
                                                     formKey.currentState!
                                                         .validate();
+                                                  },
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return AppLocalizations.of(context)!.org_helper_reg;
+                                                    } else {
+                                                      return null;
+                                                    }
                                                   },
                                                 )),
                                           ),
@@ -3049,14 +3001,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       AppLocalizations.of(
                                                           context)!
                                                           .email_helper_text,
-                                                      //'an OTP will be sent to Email ID',
-                                                      // labelStyle: TextStyle(
-                                                      //     color:
-                                                      //     const Color.fromRGBO(
-                                                      //         51, 51, 51, 1),
-                                                      //     fontFamily: 'Inter',
-                                                      //     fontWeight: FontWeight.w600,
-                                                      //     fontSize: localHeight * 0.016),
                                                       helperStyle: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(102,
@@ -3068,7 +3012,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                           FontWeight.w400,
                                                           fontSize:
                                                           localHeight *
-                                                              0.018),
+                                                              0.016),
                                                       hintStyle: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(102,

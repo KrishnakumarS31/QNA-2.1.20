@@ -225,7 +225,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             ),
                             SizedBox(height: height * 0.02),
                             Text(
-                              'Registration ID',
+                              AppLocalizations.of(
+                                  context)!
+                                  .reg_roll_caps,
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.015,
@@ -537,7 +539,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 ),
                                 SizedBox(height: height * 0.02),
                                 Text(
-                                  'Registration ID',
+                                  AppLocalizations.of(
+                                      context)!
+                                      .reg_roll_caps,
                                   style: TextStyle(
                                     color:
                                         const Color.fromRGBO(102, 102, 102, 1),
@@ -838,7 +842,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             ),
                             SizedBox(height: height * 0.02),
                             Text(
-                              'Registration ID',
+                              AppLocalizations.of(
+                                  context)!
+                                  .reg_roll_caps,
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.015,

@@ -163,13 +163,26 @@ class StudentAssessmentState extends State<StudentAssessment> {
                       physics: const ClampingScrollPhysics(),
                       child: Padding(
                           padding: EdgeInsets.only(
-                              top: height * 0.050,
                               left: height * 0.040,
                               right: height * 0.040
                           ),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    widget.usedData!.data!.organisationName,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.08,
+                                ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -781,13 +794,26 @@ class StudentAssessmentState extends State<StudentAssessment> {
                       physics: const ClampingScrollPhysics(),
                       child: Padding(
                           padding: EdgeInsets.only(
-                              top: height * 0.050,
                               left: height * 0.5,
                               right: height * 0.5
                           ),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    widget.usedData!.data!.organisationName,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.08,
+                                ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -1416,18 +1442,26 @@ class StudentAssessmentState extends State<StudentAssessment> {
                       physics: const ClampingScrollPhysics(),
                       child: Padding(
                           padding: EdgeInsets.only(
-                              top: height * 0.050,
                               left: height * 0.040,
                               right: height * 0.040
                           ),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // SizedBox(height: width * 0.4),
-                                // Container(
-                                //   width: width,
-                                //   margin: EdgeInsets.only(left: width * 0.1),
-                                //child: Column(children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    widget.usedData!.data!.organisationName,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.08,
+                                ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(

@@ -1094,7 +1094,9 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          assessment.totalScore=questionList.length;
+                                          assessment.totalScore=totalMark;
+                                          assessment.totalQuestions = questionList.length;
+                                          assessment.institutionId = userDetails.institutionId;
 
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
@@ -1946,7 +1948,9 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          assessment.totalScore=questionList.length;
+                                          assessment.totalScore=totalMark;
+                                          assessment.totalQuestions = questionList.length;
+                                          assessment.institutionId = userDetails.institutionId;
 
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
@@ -2801,8 +2805,9 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          assessment.totalScore=questionList.length;
-
+                                          assessment.totalScore=totalMark;
+                                          assessment.totalQuestions = questionList.length;
+                                          assessment.institutionId = userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           print("STATUS CODE");
                                           print(statusCode.code);

@@ -933,10 +933,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
-                                                      label: RichText(
-                                                          text: TextSpan(children: [
-                                                            TextSpan(
-                                                              text: AppLocalizations.of(
+                                                      label: Text(AppLocalizations.of(
                                                                   context)!
                                                                   .reg_roll_caps,
                                                               style: TextStyle(
@@ -949,48 +946,32 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   fontSize: localHeight *
                                                                       0.020),
                                                             ),
-                                                            TextSpan(
-                                                              text: AppLocalizations.of(
-                                                                  context)!
-                                                                  .optional,
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontStyle: FontStyle.italic,
-                                                                  fontSize: localHeight *
-                                                                      0.020),
-                                                            ),
-                                                            // TextSpan(
-                                                            //     text: "\t*",
-                                                            //     style: TextStyle(
-                                                            //         color: const Color.fromRGBO(
-                                                            //             219, 35, 35, 1),
-                                                            //         fontFamily: 'Inter',
-                                                            //         fontWeight: FontWeight.w600,
-                                                            //         fontSize: localHeight * 0.018)),
-                                                          ])),
-                                                      // labelStyle: TextStyle(
-                                                      //     color:
-                                                      //     const Color.fromRGBO(
-                                                      //         51, 51, 51, 1),
-                                                      //     fontFamily: 'Inter',
-                                                      //     fontWeight: FontWeight.w600,
-                                                      //     fontSize: localHeight * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 0.3),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: localHeight * 0.018),
+                                                      helperStyle: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontStyle: FontStyle.italic,
+                                                          fontSize: localHeight * 0.016),
+                                                      helperText: AppLocalizations.of(context)!.org_helper_reg,
                                                       hintText:
                                                       AppLocalizations.of(
                                                           context)!
                                                           .enter_here,
                                                     ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return AppLocalizations.of(context)!.org_helper_reg;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
                                                     onChanged: (value) {
                                                       formKey.currentState!.validate();
                                                     },
@@ -1009,7 +990,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           controller: studentEmailController,
                                                           keyboardType: TextInputType.text,
                                                           decoration: InputDecoration(   
-labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                            labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: Text(
@@ -1043,7 +1024,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                 fontFamily: 'Inter',
                                                                 fontStyle: FontStyle.italic,
                                                                 fontWeight: FontWeight.w400,
-                                                                fontSize: localHeight * 0.018),
+                                                                fontSize: localHeight * 0.016),
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -1937,11 +1918,8 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
-                                                            label: RichText(
-                                                                text: TextSpan(
-                                                                    children: [
-                                                                  TextSpan(
-                                                                    text: AppLocalizations.of(
+                                                            label: Text(
+                                                                  AppLocalizations.of(
                                                                         context)!
                                                                         .reg_roll_caps,
                                                                     style: TextStyle(
@@ -1954,22 +1932,14 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                         fontSize: localHeight *
                                                                             0.020),
                                                                   ),
-                                                                      TextSpan(
-                                                                        text: AppLocalizations.of(
-                                                                            context)!
-                                                                            .optional,
-                                                                        style: TextStyle(
-                                                                            color: const Color
-                                                                                .fromRGBO(
-                                                                                102, 102, 102, 1),
-                                                                            fontFamily: 'Inter',
-                                                                            fontWeight: FontWeight
-                                                                                .w600,
-                                                                            fontStyle: FontStyle.italic,
-                                                                            fontSize: localHeight *
-                                                                                0.020),
-                                                                      ),
-                                                                ])),
+                                                            helperStyle: TextStyle(
+                                                                color: const Color.fromRGBO(
+                                                                    102, 102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight.w400,
+                                                                fontStyle: FontStyle.italic,
+                                                                fontSize: localHeight * 0.018),
+                                                            helperText: AppLocalizations.of(context)!.org_helper_reg,
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -1981,6 +1951,13 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                 context)!
                                                                 .enter_here,
                                                           ),
+                                                          validator: (value) {
+                                                            if (value!.isEmpty) {
+                                                              return AppLocalizations.of(context)!.org_helper_reg;
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          },
                                                           onChanged: (value) {
                                                             formKey.currentState!.validate();
                                                           },
@@ -3029,10 +3006,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
-                                                            label: RichText(
-                                                                text: TextSpan(children: [
-                                                                  TextSpan(
-                                                                    text: AppLocalizations.of(
+                                                            label: Text(AppLocalizations.of(
                                                                         context)!
                                                                         .reg_roll_caps,
                                                                     style: TextStyle(
@@ -3045,30 +3019,14 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                         fontSize: localHeight *
                                                                             0.020),
                                                                   ),
-                                                                  TextSpan(
-                                                                    text: AppLocalizations.of(
-                                                                        context)!
-                                                                        .optional,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            102, 102, 102, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w600,
-                                                                        fontStyle: FontStyle.italic,
-                                                                        fontSize: localHeight *
-                                                                            0.020),
-                                                                  ),
-                                                                  // TextSpan(
-                                                                  //     text: "\t*",
-                                                                  //     style: TextStyle(
-                                                                  //         color: const Color.fromRGBO(
-                                                                  //             219, 35, 35, 1),
-                                                                  //         fontFamily: 'Inter',
-                                                                  //         fontWeight: FontWeight.w600,
-                                                                  //         fontSize: localHeight * 0.018)),
-                                                                ])),
+                                                            helperStyle: TextStyle(
+                                                                color: const Color.fromRGBO(
+                                                                    102, 102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight.w400,
+                                                                fontStyle: FontStyle.italic,
+                                                                fontSize: localHeight * 0.016),
+                                                            helperText: AppLocalizations.of(context)!.org_helper_reg,
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -3080,6 +3038,13 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                 context)!
                                                                 .enter_here,
                                                           ),
+                                                          validator: (value) {
+                                                            if (value!.isEmpty) {
+                                                              return AppLocalizations.of(context)!.org_helper_reg;
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          },
                                                           onChanged: (value) {
                                                             formKey.currentState!.validate();
                                                           },
@@ -3124,7 +3089,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   fontFamily: 'Inter',
                                                                   fontStyle: FontStyle.italic,
                                                                   fontWeight: FontWeight.w400,
-                                                                  fontSize: localHeight * 0.018),
+                                                                  fontSize: localHeight * 0.016),
                                                               hintStyle: TextStyle(
                                                                   color: const Color.fromRGBO(
                                                                       102, 102, 102, 0.3),

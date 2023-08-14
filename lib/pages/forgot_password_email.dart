@@ -93,7 +93,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                           child:
                                           TextFormField(
                                             controller: _controller,
-                                            keyboardType: TextInputType.emailAddress,
+                                            keyboardType: TextInputType.text,
                                             onChanged: (val) {
                                               bool valid = formKey.currentState!.validate();
                                               if(valid){
@@ -111,7 +111,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   .always,
                                               labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: Text(AppLocalizations.of(context)!
-                                                  .email_id_caps,
+                                                  .regId_emailId,
                                                 style: TextStyle(
                                                     color:
                                                     const Color.fromRGBO(
@@ -262,7 +262,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               child:
                                               TextFormField(
                                                 controller: _controller,
-                                                keyboardType: TextInputType.emailAddress,
+                                                keyboardType: TextInputType.text,
                                                 onChanged: (val) {
                                                   bool valid = formKey.currentState!.validate();
                                                   if(valid){
@@ -280,7 +280,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                       .always,
                                                   labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   label: Text(AppLocalizations.of(context)!
-                                                      .email_id_caps,
+                                                      .regId_emailId,
                                                     style: TextStyle(
                                                         color:
                                                         const Color.fromRGBO(
@@ -429,7 +429,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   child:
                                                   TextFormField(
                                                     controller: _controller,
-                                                    keyboardType: TextInputType.emailAddress,
+                                                    keyboardType: TextInputType.text,
                                                     onChanged: (val) {
                                                       bool valid = formKey.currentState!.validate();
                                                       if(valid){
@@ -447,7 +447,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                           .always,
                                                       labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       label: Text(AppLocalizations.of(context)!
-                                                          .email_id_caps,
+                                                          .regId_emailId,
                                                         style: TextStyle(
                                                             color:
                                                             const Color.fromRGBO(

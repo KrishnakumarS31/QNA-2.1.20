@@ -70,7 +70,21 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(height: height * 0.15),
+                                SizedBox(
+                                  height: height * 0.06,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    widget.userData.data!.organisationName,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                  ),
+                                ),
+                                SizedBox(height: height * 0.1),
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children:[
@@ -100,7 +114,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                         ),
                                       ),
                                     ]),
-                                SizedBox(height: height * 0.16),
+                                SizedBox(height: height * 0.14),
                                 ElevatedButton(
                                   style:
                                   ElevatedButton.styleFrom(
@@ -240,7 +254,23 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
           child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(height: height * 0.15),
+                                SizedBox(
+                                  height: height * 0.1,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    widget.userData.data!.organisationName,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.1,
+                                ),
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children:[
@@ -407,7 +437,21 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(height: height * 0.15),
+                      SizedBox(
+                        height: height * 0.06,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          widget.userData.data!.organisationName,
+                          style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: height * 0.02),
+                        ),
+                      ),
+                      SizedBox(height: height * 0.1),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children:[

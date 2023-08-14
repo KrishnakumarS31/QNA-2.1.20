@@ -435,11 +435,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 } else {}
                               }
                               ),
-                          IconButton(
-                              iconSize: localHeight * 0.05,
-                              onPressed: () async {
-                              }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
-                                    82, 165, 160, 1,)),),
+                          // IconButton(
+                          //     iconSize: localHeight * 0.05,
+                          //     onPressed: () async {
+                          //     }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                          //           82, 165, 160, 1,)),),
                         ]
                       )
                     ]
@@ -825,11 +825,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           if (await launchUrl(mail)) {
                                           } else {}
                                         }),
-                                    IconButton(
-                                      iconSize: localHeight * 0.035,
-                                      onPressed: () async {
-                                      }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
-                                      82, 165, 160, 1,)),),
+                                    // IconButton(
+                                    //   iconSize: localHeight * 0.035,
+                                    //   onPressed: () async {
+                                    //   }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                                    //   82, 165, 160, 1,)),),
                                   ]
                               )
                             ]
@@ -1209,11 +1209,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       if (await launchUrl(mail)) {
                                       } else {}
                                     }),
-                                IconButton(
-                                  iconSize: localHeight * 0.036,
-                                  onPressed: () async {
-                                  }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
-                                  82, 165, 160, 1,)),),
+                                // IconButton(
+                                //   iconSize: localHeight * 0.036,
+                                //   onPressed: () async {
+                                //   }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                                //   82, 165, 160, 1,)),),
                               ]
                           )
                         ]

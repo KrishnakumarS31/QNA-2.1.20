@@ -134,7 +134,7 @@ class _CustomCardState extends State<CustomCard> {
                       ),
 
 
-                      live ? liveIcon : completed ? completedIcon : notStartedIcon
+                      notStarted ? notStartedIcon : live ? liveIcon : completed ? completedIcon : notStartedIcon
                     ]),
               )),
           Padding(
