@@ -195,7 +195,7 @@ class MyRoutes{
 
       case '/studQuestion':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3],isMember: question[4],assessmentHeaders:question[5] ,),settings: settings);
+        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3],isMember: question[4],assessmentHeaders:question[5],organisationName: question[6],),settings: settings);
       }
 
       case '/studentAssessment':{
@@ -252,7 +252,8 @@ class MyRoutes{
           givenMark: arguments[8],
           isMember: arguments[9],
           assessmentHeaders: arguments[10],
-        ),settings: settings);
+          organisationName: arguments[11],
+        ),settings: settings,);
       }
 
       case '/studentReviseQuest':{
@@ -268,6 +269,7 @@ class MyRoutes{
           isMember: arguments[7],
           assessmentHeaders: arguments[8],
           myDuration: arguments[9],
+          organisationName: arguments[10],
         ),settings: settings);
       }
 

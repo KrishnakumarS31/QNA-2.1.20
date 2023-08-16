@@ -1442,46 +1442,46 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
-                                          padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                width: width * 0.5,
-                                                child: Text(
-                                                  "Show Whatsapp Group",
-                                                  style: TextStyle(
-                                                      fontSize: height * 0.016,
-                                                      fontFamily: "Inter",
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
-                                                      fontWeight: FontWeight.w700),
-                                                ),
-                                              ),
-                                              FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor:
-                                                const Color
-                                                    .fromRGBO(
-                                                    217,
-                                                    217,
-                                                    217,
-                                                    1),
-                                                width: 65.0,
-                                                height: 35.0,
-                                                value:
-                                                showWhatsappGroup,
-                                                borderRadius: 30.0,
-                                                onToggle: (val) {
-                                                  setState(() {
-                                                    showWhatsappGroup =
-                                                        val;
-                                                  });
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        // Padding(
+                                        //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                        //   child: Row(
+                                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        //     children: [
+                                        //       Container(
+                                        //         width: width * 0.5,
+                                        //         child: Text(
+                                        //           "Show Whatsapp Group",
+                                        //           style: TextStyle(
+                                        //               fontSize: height * 0.016,
+                                        //               fontFamily: "Inter",
+                                        //               color: const Color.fromRGBO(102, 102, 102, 1),
+                                        //               fontWeight: FontWeight.w700),
+                                        //         ),
+                                        //       ),
+                                        //       FlutterSwitch(
+                                        //         activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                        //         inactiveColor:
+                                        //         const Color
+                                        //             .fromRGBO(
+                                        //             217,
+                                        //             217,
+                                        //             217,
+                                        //             1),
+                                        //         width: 65.0,
+                                        //         height: 35.0,
+                                        //         value:
+                                        //         showWhatsappGroup,
+                                        //         borderRadius: 30.0,
+                                        //         onToggle: (val) {
+                                        //           setState(() {
+                                        //             showWhatsappGroup =
+                                        //                 val;
+                                        //           });
+                                        //         },
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),
@@ -1557,6 +1557,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                         totalMark=totalMark+questionList[i].questionMark!;
                                       }
                                       assessment.totalScore=totalMark;
+                                      assessment.institutionId = userDetails.institutionId;
                                       showDialog(
                                           context: context,
                                           builder: (context) {
@@ -1575,7 +1576,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       else{
 
                                       }
-                                      Navigator.of(context).pop();
+                                      //Navigator.of(context).pop();
 
                                     },
                                     child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
@@ -2695,46 +2696,46 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             ],
                                           ),
                                         ),
-                                        Padding(
-                                          padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                width: width * 0.1,
-                                                child: Text(
-                                                  "Show Whatsapp Group",
-                                                  style: TextStyle(
-                                                      fontSize: height * 0.016,
-                                                      fontFamily: "Inter",
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
-                                                      fontWeight: FontWeight.w700),
-                                                ),
-                                              ),
-                                              FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor:
-                                                const Color
-                                                    .fromRGBO(
-                                                    217,
-                                                    217,
-                                                    217,
-                                                    1),
-                                                width: 65.0,
-                                                height: 35.0,
-                                                value:
-                                                showWhatsappGroup,
-                                                borderRadius: 30.0,
-                                                onToggle: (val) {
-                                                  setState(() {
-                                                    showWhatsappGroup =
-                                                        val;
-                                                  });
-                                                },
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                        // Padding(
+                                        //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                        //   child: Row(
+                                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        //     children: [
+                                        //       Container(
+                                        //         width: width * 0.1,
+                                        //         child: Text(
+                                        //           "Show Whatsapp Group",
+                                        //           style: TextStyle(
+                                        //               fontSize: height * 0.016,
+                                        //               fontFamily: "Inter",
+                                        //               color: const Color.fromRGBO(102, 102, 102, 1),
+                                        //               fontWeight: FontWeight.w700),
+                                        //         ),
+                                        //       ),
+                                        //       FlutterSwitch(
+                                        //         activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                        //         inactiveColor:
+                                        //         const Color
+                                        //             .fromRGBO(
+                                        //             217,
+                                        //             217,
+                                        //             217,
+                                        //             1),
+                                        //         width: 65.0,
+                                        //         height: 35.0,
+                                        //         value:
+                                        //         showWhatsappGroup,
+                                        //         borderRadius: 30.0,
+                                        //         onToggle: (val) {
+                                        //           setState(() {
+                                        //             showWhatsappGroup =
+                                        //                 val;
+                                        //           });
+                                        //         },
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),
@@ -2812,6 +2813,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                         totalMark=totalMark+questionList[i].questionMark!;
                                       }
                                       assessment.totalScore=totalMark;
+                                      assessment.institutionId = userDetails.institutionId;
                                       showDialog(
                                           context: context,
                                           builder: (context) {
@@ -2830,7 +2832,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       else{
 
                                       }
-                                      Navigator.of(context).pop();
+                                     // Navigator.of(context).pop();
 
                                     },
                                     child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
@@ -4096,46 +4098,46 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                   ],
                                                 ),
                                               ),
-                                              Padding(
-                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Container(
-                                                      width: width * 0.5,
-                                                      child: Text(
-                                                        "Show Whatsapp Group",
-                                                        style: TextStyle(
-                                                            fontSize: height * 0.016,
-                                                            fontFamily: "Inter",
-                                                            color: const Color.fromRGBO(102, 102, 102, 1),
-                                                            fontWeight: FontWeight.w700),
-                                                      ),
-                                                    ),
-                                                    FlutterSwitch(
-                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                      inactiveColor:
-                                                      const Color
-                                                          .fromRGBO(
-                                                          217,
-                                                          217,
-                                                          217,
-                                                          1),
-                                                      width: 65.0,
-                                                      height: 35.0,
-                                                      value:
-                                                      showWhatsappGroup,
-                                                      borderRadius: 30.0,
-                                                      onToggle: (val) {
-                                                        setState(() {
-                                                          showWhatsappGroup =
-                                                              val;
-                                                        });
-                                                      },
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
+                                              // Padding(
+                                              //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              //   child: Row(
+                                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              //     children: [
+                                              //       Container(
+                                              //         width: width * 0.5,
+                                              //         child: Text(
+                                              //           "Show Whatsapp Group",
+                                              //           style: TextStyle(
+                                              //               fontSize: height * 0.016,
+                                              //               fontFamily: "Inter",
+                                              //               color: const Color.fromRGBO(102, 102, 102, 1),
+                                              //               fontWeight: FontWeight.w700),
+                                              //         ),
+                                              //       ),
+                                              //       FlutterSwitch(
+                                              //         activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                              //         inactiveColor:
+                                              //         const Color
+                                              //             .fromRGBO(
+                                              //             217,
+                                              //             217,
+                                              //             217,
+                                              //             1),
+                                              //         width: 65.0,
+                                              //         height: 35.0,
+                                              //         value:
+                                              //         showWhatsappGroup,
+                                              //         borderRadius: 30.0,
+                                              //         onToggle: (val) {
+                                              //           setState(() {
+                                              //             showWhatsappGroup =
+                                              //                 val;
+                                              //           });
+                                              //         },
+                                              //       ),
+                                              //     ],
+                                              //   ),
+                                              // ),
                                             ],
                                           ),
                                         ),
@@ -4211,6 +4213,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                               totalMark=totalMark+questionList[i].questionMark!;
                                             }
                                             assessment.totalScore=totalMark;
+                                            assessment.institutionId = userDetails.institutionId;
                                             showDialog(
                                                 context: context,
                                                 builder: (context) {
@@ -4229,7 +4232,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             else{
 
                                             }
-                                            Navigator.of(context).pop();
+                                            //Navigator.of(context).pop();
 
                                           },
                                           child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),

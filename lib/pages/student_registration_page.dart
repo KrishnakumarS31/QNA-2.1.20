@@ -1290,13 +1290,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   child: IconButton(
                                                     iconSize: localHeight * 0.06,
                                                     icon: Icon(Icons.arrow_circle_right,
-                                                      color:
-                                                      (studentFirstNameController.text.isNotEmpty && studentLastNameController.text.isNotEmpty
-                                                          && studentconfirmPasswordController.text.isNotEmpty
-                                                          && studentEmailController.text.isNotEmpty && studentPasswordController.text.isNotEmpty
-                                                       && studentOrganisationNameController.text.isNotEmpty)
-                                                          ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                          :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                      color: const Color.fromRGBO(82, 165, 160, 1)
                                                     ),
                                                     onPressed: () async {
                                                       bool valid = formKey.currentState!.validate();
@@ -2268,12 +2262,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                     child: IconButton(
                                                       iconSize: localHeight * 0.06,
                                                       icon: Icon(Icons.arrow_circle_right,
-                                                        color:
-                                                        (studentFirstNameController.text.isNotEmpty && studentLastNameController.text.isNotEmpty
-                                                            && studentconfirmPasswordController.text.isNotEmpty && studentEmailController.text.isNotEmpty && studentPasswordController.text.isNotEmpty
-                                                             && studentOrganisationNameController.text.isNotEmpty)
-                                                            ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                            :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                        color: const Color.fromRGBO(82, 165, 160, 1)
                                                       ),
                                                       onPressed: () async {
                                                         bool valid = formKey.currentState!.validate();
@@ -3354,13 +3343,8 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   Center(
                                                     child: IconButton(
                                                       iconSize: localHeight * 0.06,
-                                                      icon: Icon(Icons.arrow_circle_right,
-                                                        color:
-                                                        (studentFirstNameController.text.isNotEmpty && studentLastNameController.text.isNotEmpty
-                                                            && studentconfirmPasswordController.text.isNotEmpty && studentEmailController.text.isNotEmpty && studentPasswordController.text.isNotEmpty
-                                                             && studentOrganisationNameController.text.isNotEmpty)
-                                                            ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                            :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                      icon: const Icon(Icons.arrow_circle_right,
+                                                        color: Color.fromRGBO(82, 165, 160, 1)
                                                       ),
                                                       onPressed: () async {
                                                         bool valid = formKey.currentState!.validate();

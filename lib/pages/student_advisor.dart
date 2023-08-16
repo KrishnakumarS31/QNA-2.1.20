@@ -251,21 +251,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               RichText(
                                                   text: TextSpan(children: [
                                                     TextSpan(
-                                                        text:
-                                                        "${AppLocalizations.of(
-                                                            context)!
-                                                            .study_chapter} ${values
-                                                            .data!.subTopic},\t",
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                51, 51, 51, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize:
-                                                            localHeight * 0.02)),
-                                                    TextSpan(
                                                         text: values
                                                             .data!
                                                             .questions![
@@ -380,7 +365,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             title: AppLocalizations.of(context)!.alert_popup,
                             //'Alert',
                             content: AppLocalizations.of(context)!.shown_for_practice,
-                            //'Answersheet are shown only in Practice mode',
+                            //'Answer sheet is shown only in Practice mode',
                             button:
                             AppLocalizations.of(context)!.ok_caps,
                             //"OK",
@@ -641,21 +626,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                     localHeight * 0.010),
                                                 RichText(
                                                     text: TextSpan(children: [
-                                                      TextSpan(
-                                                          text:
-                                                          "${AppLocalizations.of(
-                                                              context)!
-                                                              .study_chapter} ${values
-                                                              .data!.subTopic},\t",
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  51, 51, 51, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight:
-                                                              FontWeight.w400,
-                                                              fontSize:
-                                                              localHeight * 0.015)),
                                                       TextSpan(
                                                           text: values
                                                               .data!
@@ -1025,21 +995,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 localHeight * 0.010),
                                             RichText(
                                                 text: TextSpan(children: [
-                                                  TextSpan(
-                                                      text:
-                                                      "${AppLocalizations.of(
-                                                          context)!
-                                                          .study_chapter} ${values
-                                                          .data!.subTopic},\t",
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              51, 51, 51, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight * 0.02)),
                                                   TextSpan(
                                                       text: values
                                                           .data!

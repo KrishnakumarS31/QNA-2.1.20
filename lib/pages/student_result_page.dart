@@ -22,7 +22,8 @@ class StudentResultPage extends StatefulWidget {
     required this.endTime,
     required this.givenMark,
     required this.isMember,
-    required this.assessmentHeaders
+    required this.assessmentHeaders,
+    required this.organisationName
   })
       : super(key: key);
   final int totalMarks;
@@ -36,6 +37,7 @@ class StudentResultPage extends StatefulWidget {
   final int givenMark;
   final bool isMember;
   final GetAssessmentHeaderModel assessmentHeaders;
+  final String organisationName;
 
   @override
   StudentResultPageState createState() => StudentResultPageState();
@@ -101,6 +103,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                           padding: EdgeInsets.only(bottom: localHeight * 0.0050),
                           child: Column(
                             children: [
+                              Text(
+                                widget.organisationName,
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: localHeight * 0.02),
+                              ),
+                              SizedBox(height: localHeight * 0.01),
                               SizedBox(
                                 height: localHeight * 0.62,
                                 width: localWidth * 1.5,
@@ -226,11 +237,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(left: localHeight * 0.05),
-                                          child: Column(
+                                       Column(
                                             children: [
                                               Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
@@ -255,6 +265,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   ),],
                                               ),
                                               Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
@@ -279,6 +290,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   ),],
                                               ),
                                               Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
@@ -301,6 +313,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           fontSize: localHeight * 0.022)),],
                                               ),
                                               Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
@@ -323,6 +336,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           fontSize: localHeight * 0.022)),],
                                               ),
                                               Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
@@ -346,7 +360,6 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               )
                                             ],
                                           ),
-                                        ),
                                       ],
                                     ),
                                     SizedBox(height: localHeight * 0.03),
@@ -473,7 +486,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   //           arguments: [values,widget.assessmentCode]
                                   //       );
                                   //     }),
-                                  SizedBox(height: localHeight * 0.09),
+                                  SizedBox(height: localHeight * 0.05),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -701,6 +714,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                     ),
                   ),
 
+
                 ),
                 body: Column(
                   children: [
@@ -708,6 +722,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                       padding: EdgeInsets.only(bottom: localHeight * 0.00500, left: localHeight * 0.1,right: localHeight * 0.1),
                       child: Column(
                         children: [
+                          Text(
+                            widget.organisationName,
+                            style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: localHeight * 0.02),
+                          ),
+                          SizedBox(height: localHeight * 0.01),
                           SizedBox(
                             height: localHeight * 0.64,
                             width: localWidth * 1.5,
@@ -731,7 +754,6 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       SizedBox(width: localWidth * 0.02)
                                     ]
                                 ),
-                                SizedBox(height: localHeight * 0.02),
                                 Text(widget.userName,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(28, 78, 80, 1),
@@ -833,104 +855,133 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 ),
                                 SizedBox(height: localHeight * 0.03),
                                 Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                     Text(
-                                                  //"10:26:59",
-                                                    "Assessment ID",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(161, 161, 161, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.022)),
-                                              Text("\t\t${widget.assessmentCode}",
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              width:localHeight * 0.15,
+                                              child: Text(
+                                                //"10:26:59",
+                                                  "Assessment ID",
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(161, 161, 161, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: localHeight * 0.016)),
+                                            ),
+                                            SizedBox(
+                                              child: Text(widget.assessmentCode,
                                                   style: TextStyle(
                                                       color: const Color.fromRGBO(
                                                           0, 106, 100, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w500,
-                                                      fontSize: localHeight * 0.022)),],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                  //"10:26:59",
-                                                    "Degree",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(161, 161, 161, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.022)),
-                                              Text("\t\t${widget.assessmentHeaders.getAssessmentModelClass}" ?? " - ",
+                                                      fontSize: localHeight * 0.022)),
+                                            ),],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              width:localHeight * 0.15,
+                                              child: Text(
+                                                //"10:26:59",
+                                                  "Degree",
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(161, 161, 161, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: localHeight * 0.016)),
+                                            ),
+                                            SizedBox(
+                                              child: Text(widget.assessmentHeaders.getAssessmentModelClass ?? " - ",
                                                   //widget.assessmentHeaders.getAssessmentModelClass != null ? "${widget.assessmentHeaders.getAssessmentModelClass}" : "",
                                                   style: TextStyle(
                                                       color: const Color.fromRGBO(102, 102, 102, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w500,
-                                                      fontSize: localHeight * 0.022)),],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                  //"10:26:59",
-                                                    "\t\t\tSemester",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(161, 161, 161, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.022)),
-                                              Text("\t\t${widget.assessmentHeaders.subTopic}\t\t\t\t\t\t\t\t\t\t\t" ?? "",
-                                                  //"${widget.assessmentHeaders.subTopic}",
+                                                      fontSize: localHeight * 0.022)),
+                                            ),],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              width:localHeight * 0.15,
+                                              child: Text(
+                                                //"10:26:59",
+                                                  "Semester",
                                                   style: TextStyle(
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                                      color: const Color.fromRGBO(161, 161, 161, 1),
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: localHeight * 0.022)),],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                  //"10:26:59",
-                                                    "\t\tSubject",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(161, 161, 161, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.022)),
-                                              Text("\t\t${widget.assessmentHeaders.subject}" ?? " - ",
-                                                  //"${widget.assessmentHeaders.topic}",
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: localHeight * 0.016)),
+                                            ),
+                                            Text(widget.assessmentHeaders.subTopic ?? " - ",
+                                                //"${widget.assessmentHeaders.subTopic}",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: localHeight * 0.022)),],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              width:localHeight * 0.15,
+                                              child: Text(
+                                                //"10:26:59",
+                                                  "Subject",
                                                   style: TextStyle(
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                                      color: const Color.fromRGBO(161, 161, 161, 1),
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: localHeight * 0.022)),],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                  //"10:26:59",
-                                                    "\t\t\t\t\t\t\t\t\t\t\tTopic",
-                                                    style: TextStyle(
-                                                        color: const Color.fromRGBO(161, 161, 161, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.022)),
-                                              Text("\t\t${widget.assessmentHeaders.topic}" ?? " - ",
-                                                  //"${widget.assessmentHeaders.topic}",
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: localHeight * 0.016)),
+                                            ),
+                                            Text(widget.assessmentHeaders.subject ?? " - ",
+                                                //"${widget.assessmentHeaders.topic}",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: localHeight * 0.022)),],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                            SizedBox(
+                                              width:localHeight * 0.15,
+                                              child: Text(
+                                                //"10:26:59",
+                                                  "Topic",
                                                   style: TextStyle(
-                                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                                      color: const Color.fromRGBO(161, 161, 161, 1),
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: localHeight * 0.022)),],
-                                          )
-                                        ],
-                                      ),
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: localHeight * 0.016)),
+                                            ),
+                                            Text(widget.assessmentHeaders.topic ?? " - ",
+                                                //"${widget.assessmentHeaders.topic}",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: localHeight * 0.022)),],
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                                 SizedBox(height: localHeight * 0.03),
                                 Divider(
                                     thickness: 0.1,
@@ -1300,7 +1351,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                           padding: EdgeInsets.only(bottom: localHeight * 0.0050),
                           child: Column(
                             children: [
-                              SizedBox(height: localHeight * 0.015),
+                              Text(
+                                widget.organisationName,
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: localHeight * 0.02),
+                              ),
+                              SizedBox(height: localHeight * 0.01),
                               SizedBox(
                                 height: localHeight * 0.62,
                                 width: localWidth * 1.5,

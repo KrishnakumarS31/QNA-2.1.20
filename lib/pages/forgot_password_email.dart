@@ -130,7 +130,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.016),
                                               suffixIconColor:
-                                              iconColor,
+                                              Color.fromRGBO(82, 165, 160, 1),
                                               suffixIcon: IconButton(
                                                 iconSize: height * 0.05,
                                                 icon: const Icon(Icons.arrow_circle_right,
@@ -299,7 +299,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                       fontWeight: FontWeight.w400,
                                                       fontSize: height * 0.016),
                                                   suffixIconColor:
-                                                  iconColor,
+                                                  Color.fromRGBO(82, 165, 160, 1),
                                                   suffixIcon: IconButton(
                                                     iconSize: height * 0.05,
                                                     icon: const Icon(Icons.arrow_circle_right,
@@ -466,7 +466,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       suffixIconColor:
-                                                      iconColor,
+                                                      Color.fromRGBO(82, 165, 160, 1),
                                                       suffixIcon: IconButton(
                                                         iconSize: height * 0.05,
                                                         icon: const Icon(Icons.arrow_circle_right,

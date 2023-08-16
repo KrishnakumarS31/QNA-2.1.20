@@ -751,10 +751,16 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                             .currentState!
                                                                             .validate();
                                                                         if (valid) {
-                                                                          setState(() {
-                                                                            assessment.subject = subjectController.text;
-                                                                            assessment.topic = topicController.text;
-                                                                          });
+                                                                          // for(int i =0;i<finalQuesList.length;i++){
+                                                                          //   finalQuesList[i].subject=subjectController.text;
+                                                                          //   finalQuesList[i].topic=topicController.text;
+                                                                          //   finalQuesList[i].degreeStudent=degreeController.text;
+                                                                          //   finalQuesList[i].semester=semesterController.text;
+                                                                          //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(i,finalQuesList[i]);
+                                                                          //   setState(() {
+                                                                          //
+                                                                          //   });
+                                                                          // }
                                                                           Navigator.of(context).pop();
                                                                         }
                                                                       },
@@ -1128,9 +1134,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           assessment.userId=userDetails.userId;
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
-                                          assessment.totalQuestions = questionList.length;
-                                          assessment.totalScore = totalMarks;
-                                          assessment.institutionId = userDetails.institutionId;
+                                          assessment.institutionId=userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -1596,10 +1600,16 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                             .currentState!
                                                                             .validate();
                                                                         if (valid) {
-                                                                          setState(() {
-                                                                            assessment.subject = subjectController.text;
-                                                                            assessment.topic = topicController.text;
-                                                                          });
+                                                                          // for(int i =0;i<finalQuesList.length;i++){
+                                                                          //   finalQuesList[i].subject=subjectController.text;
+                                                                          //   finalQuesList[i].topic=topicController.text;
+                                                                          //   finalQuesList[i].degreeStudent=degreeController.text;
+                                                                          //   finalQuesList[i].semester=semesterController.text;
+                                                                          //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(i,finalQuesList[i]);
+                                                                          //   setState(() {
+                                                                          //
+                                                                          //   });
+                                                                          // }
                                                                           Navigator.of(context).pop();
                                                                         }
                                                                       },
@@ -1972,8 +1982,6 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           assessment.userId=userDetails.userId;
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
-                                          assessment.totalQuestions = questionList.length;
-                                          assessment.totalScore = totalMarks;
                                           assessment.institutionId = userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
@@ -2438,10 +2446,16 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                             .currentState!
                                                                             .validate();
                                                                         if (valid) {
-                                                                          setState(() {
-                                                                            assessment.subject = subjectController.text;
-                                                                            assessment.topic = topicController.text;
-                                                                          });
+                                                                          // for(int i =0;i<finalQuesList.length;i++){
+                                                                          //   finalQuesList[i].subject=subjectController.text;
+                                                                          //   finalQuesList[i].topic=topicController.text;
+                                                                          //   finalQuesList[i].degreeStudent=degreeController.text;
+                                                                          //   finalQuesList[i].semester=semesterController.text;
+                                                                          //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(i,finalQuesList[i]);
+                                                                          //   setState(() {
+                                                                          //
+                                                                          //   });
+                                                                          // }
                                                                           Navigator.of(context).pop();
                                                                         }
                                                                       },
@@ -2816,6 +2830,7 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           assessment.userId=userDetails.userId;
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
+                                          assessment.institutionId=userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data

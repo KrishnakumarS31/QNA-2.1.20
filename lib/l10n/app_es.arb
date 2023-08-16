@@ -380,5 +380,7 @@
   "check_internet" : "Consulte su conectividad a Internet",
   "privacy_text_web" : "Itneducation Inc., construye una gama de TI en productos y servicios educativos que ayudan a millones de estudiantes / alumnos y a los maestros / instructores a aprender digital y libremente.",
   "privacy_text" : "Itneducation Inc., construye un rango de TI en productos y servicios de \n education que ayudan a \nmillions de estudiantes / alumnos e instructores / instructores a aprender digital y libremente.",
-  "read_qna" : "Leer qnatest \t \t"
+  "read_qna" : "Leer qnatest \t \t",
+  "name_uId_helper" : "Ingrese su nombre o ID de usuario",
+  "name_userId" : "Nombre o ID de usuario"
 }

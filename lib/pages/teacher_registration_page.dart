@@ -1185,13 +1185,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 child: IconButton(
                                                   iconSize: localHeight * 0.06,
                                                   icon: Icon(Icons.arrow_circle_right,
-                                                    color:
-                                                    (teacherFirstNameController.text.isNotEmpty && teacherLastNameController.text.isNotEmpty
-                                                        && teacherEmailController.text.isNotEmpty && teacherPasswordController.text.isNotEmpty
-                                                        && teacherconfirmPasswordController.text.isNotEmpty
-                                                        && teacherOrganisationNameController.text.isNotEmpty)
-                                                        ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                        :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                    color: const Color.fromRGBO(82, 165, 160, 1)
                                                   ),
                                                   onPressed: () async {
                                                     bool valid = formKey
@@ -2183,13 +2177,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               child: IconButton(
                                                 iconSize: localHeight * 0.06,
                                                 icon: Icon(Icons.arrow_circle_right,
-                                                  color:
-                                                  (teacherFirstNameController.text.isNotEmpty && teacherLastNameController.text.isNotEmpty
-                                                      && teacherEmailController.text.isNotEmpty && teacherPasswordController.text.isNotEmpty
-                                                      && teacherconfirmPasswordController.text.isNotEmpty
-                                                       && teacherOrganisationNameController.text.isNotEmpty)
-                                                      ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                      :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                  color: const Color.fromRGBO(82, 165, 160, 1)
                                                 ),
                                                 onPressed: () async {
                                                   bool valid = formKey
@@ -3312,13 +3300,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               iconSize: localHeight * 0.06,
                                               icon: Icon(
                                                 Icons.arrow_circle_right,
-                                                color:
-                                                (teacherFirstNameController.text.isNotEmpty && teacherLastNameController.text.isNotEmpty
-                                                    && teacherEmailController.text.isNotEmpty && teacherPasswordController.text.isNotEmpty
-                                                    && teacherconfirmPasswordController.text.isNotEmpty
-                                                    && teacherOrganisationNameController.text.isNotEmpty)
-                                                    ?  const Color.fromRGBO(82, 165, 160, 1)
-                                                    :  const Color.fromRGBO(153, 153, 153, 0.5),
+                                                color: const Color.fromRGBO(82, 165, 160, 1)
                                               ),
                                               onPressed: () async {
                                                 bool valid = formKey

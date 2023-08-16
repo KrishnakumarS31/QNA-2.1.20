@@ -20,7 +20,7 @@ class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
     required this.startTime, required this.assessmentCode,required this.submit,
-    this.userId,required this.isMember,required this.assessmentHeaders,required this.myDuration
+    this.userId,required this.isMember,required this.assessmentHeaders,required this.myDuration,required this.organisationName
   }) : super(key: key);
   final QuestionPaperModel questions;
   final Duration myDuration;
@@ -32,6 +32,8 @@ class StudentReviseQuest extends StatefulWidget {
   final int? userId;
   final bool isMember;
   final GetAssessmentHeaderModel assessmentHeaders;
+  final String organisationName;
+
 
   @override
   StudentReviseQuestState createState() => StudentReviseQuestState();
@@ -1952,6 +1954,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 print(userDetails);
                                 print(loginResponse.code);
                                 print("message 1st place");
+                                print(widget.organisationName);
                                 print(loginResponse.message);
                                 if (loginResponse.code == 200){
                                   print(widget.userId);
@@ -1970,7 +1973,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         endTimeTaken,
                                         givenMark,
                                         widget.isMember,
-                                        widget.assessmentHeaders
+                                        widget.assessmentHeaders,
+                                        widget.organisationName
                                       ]);
                                 }
                               }}

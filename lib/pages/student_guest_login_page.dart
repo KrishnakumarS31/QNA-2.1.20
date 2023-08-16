@@ -7,8 +7,9 @@ import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../DataSource/http_url.dart';
+
 class StudentGuestLogin extends StatefulWidget {
-  const StudentGuestLogin({super.key,});
+  const StudentGuestLogin({super.key});
 
 
   @override
@@ -163,9 +164,8 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
                                                     return AppLocalizations.of(
-                                                        context)!
-                                                        .enter_your_name;
-                                                  } else if (!RegExp(r'^[a-z A-Z]+$')
+                                                        context)!.name_uId_helper;
+                                                  } else if (!RegExp( r'^[a-zA-Z0-9]+$')
                                                       .hasMatch(value)) {
                                                     return AppLocalizations.of(
                                                         context)!
@@ -508,9 +508,8 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
                                                     return AppLocalizations.of(
-                                                        context)!
-                                                        .enter_your_name;
-                                                  } else if (!RegExp(r'^[a-z A-Z]+$')
+                                                        context)!.name_uId_helper;
+                                                  } else if (!RegExp( r'^[a-zA-Z0-9]+$')
                                                       .hasMatch(value)) {
                                                     return AppLocalizations.of(
                                                         context)!
@@ -851,9 +850,8 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
                                                     return AppLocalizations.of(
-                                                        context)!
-                                                        .enter_your_name;
-                                                  } else if (!RegExp(r'^[a-z A-Z]+$')
+                                                        context)!.name_uId_helper;
+                                                  } else if (!RegExp( r'^[a-zA-Z0-9]+$')
                                                       .hasMatch(value)) {
                                                     return AppLocalizations.of(
                                                         context)!

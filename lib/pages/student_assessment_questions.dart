@@ -21,7 +21,8 @@ class StudQuestion extends StatefulWidget {
         required this.userName,
         this.userId,
         required this.isMember,
-        required this.assessmentHeaders
+        required this.assessmentHeaders,
+        required this.organisationName
       })
       : super(key: key);
   final String assessmentId;
@@ -29,6 +30,7 @@ class StudQuestion extends StatefulWidget {
   final String userName;
   int? userId;
   final bool isMember;
+  final String organisationName;
   final GetAssessmentHeaderModel assessmentHeaders;
 
 
@@ -296,6 +298,7 @@ class StudQuestionState extends State<StudQuestion> {
                   formatted,
                   time,
                   values,
+                  widget.organisationName,
                   widget.assessmentId,
                   widget.userName,
                   message,
@@ -945,7 +948,8 @@ class StudQuestionState extends State<StudQuestion> {
                                               widget.userId,
                                               widget.isMember,
                                               widget.assessmentHeaders,
-                                              myDuration
+                                              myDuration,
+                                              widget.organisationName
                                             ]);
                                       },
                                     )
