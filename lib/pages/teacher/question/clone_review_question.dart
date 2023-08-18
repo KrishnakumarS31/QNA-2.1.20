@@ -3089,6 +3089,8 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
                                       left: width * 0.03, right: width * 0.03),
                                   child: TextFormField(
                                     controller: adviceController,
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
                                     enabled: false,
                                     decoration: InputDecoration(
                                         border: const UnderlineInputBorder(),
@@ -3359,6 +3361,8 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
                                       left: width * 0.03, right: width * 0.03),
                                   child: TextFormField(
                                     controller: adviceController,
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
                                     enabled: false,
                                     decoration: InputDecoration(
                                         border: const UnderlineInputBorder(),
@@ -3627,6 +3631,8 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
                                       left: width * 0.03, right: width * 0.03),
                                   child: TextFormField(
                                     controller: adviceController,
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: null,
                                     enabled: false,
                                     decoration: InputDecoration(
                                         border: const UnderlineInputBorder(),

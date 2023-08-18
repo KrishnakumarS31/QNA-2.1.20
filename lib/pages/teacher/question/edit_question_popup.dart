@@ -52,7 +52,7 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     body: Center(
                       child: SizedBox(
-                        height: height * 0.85,
+                        // height: height * 0.85,
                         width: width * 0.888,
                         child: Card(
                             elevation: 12,
@@ -324,7 +324,7 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
                       backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                       body: Center(
                         child: SizedBox(
-                          height: height * 0.85,
+                          // height: height * 0.85,
                           width: width * 0.6,
                           child: Card(
                               elevation: 12,
@@ -595,7 +595,7 @@ class EditQuestionPopUpState extends State<EditQuestionPopUp> {
                     backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                     body: Center(
                       child: SizedBox(
-                        height: height * 0.85,
+                        //height: height * 0.94,
                         width: width * 0.888,
                         child: Card(
                             elevation: 12,

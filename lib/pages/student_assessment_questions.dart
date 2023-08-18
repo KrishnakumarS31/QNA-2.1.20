@@ -471,6 +471,19 @@ class StudQuestionState extends State<StudQuestion> {
                                               ),
                                             ),
                                           ),
+                                          values.data!.questions![context.watch<QuestionNumProvider>().questionNum - 1].choices!.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).length > 1
+                                              ?
+                                          Text(
+                                            "Multiple Choice",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                // height: height * 0.0020,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.02),
+                                          )
+                                              :const Text(""),
                                           values
                                               .data!
                                               .questions![context
@@ -691,7 +704,17 @@ class StudQuestionState extends State<StudQuestion> {
                                         shape: const CircleBorder(),
                                       ),
 
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        print(values
+                                            .data!
+                                            .questions![context
+                                            .watch<
+                                            QuestionNumProvider>()
+                                            .questionNum -
+                                            1].question!);
+                                        print("vfdvbfffffffffffffffffffffffffffffffff");
+
+                                      },
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Icon(
@@ -1149,6 +1172,19 @@ class StudQuestionState extends State<StudQuestion> {
                                               ),
                                             ),
                                           ),
+                                          values.data!.questions![context.watch<QuestionNumProvider>().questionNum - 1].choices!.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).length > 1
+                                              ?
+                                          Text(
+                                            "Multiple Choice",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                // height: height * 0.0020,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.02),
+                                          )
+                                              :const Text(""),
                                           values
                                               .data!
                                               .questions![context
@@ -1630,7 +1666,8 @@ class StudQuestionState extends State<StudQuestion> {
                                               widget.userId,
                                               widget.isMember,
                                               widget.assessmentHeaders,
-                                              myDuration
+                                              myDuration,
+                                              widget.organisationName
                                             ]);
                                       },
                                     )
@@ -1821,6 +1858,19 @@ class StudQuestionState extends State<StudQuestion> {
                                           ),
                                         ),
                                       ),
+                                      values.data!.questions![context.watch<QuestionNumProvider>().questionNum - 1].choices!.where((element) => element.rightChoice ?? false).map((e) => e.choiceText).length > 1
+                                          ?
+                                      Text(
+                                        "Multiple Choice",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            // height: height * 0.0020,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.02),
+                                      )
+                                          :const Text(""),
                                       values
                                           .data!
                                           .questions![context
@@ -2308,7 +2358,8 @@ class StudQuestionState extends State<StudQuestion> {
                                           widget.userId,
                                           widget.isMember,
                                           widget.assessmentHeaders,
-                                          myDuration
+                                          myDuration,
+                                          widget.organisationName
                                         ]);
                                   },
                                 )

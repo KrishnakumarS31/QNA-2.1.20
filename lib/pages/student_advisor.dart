@@ -248,14 +248,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               SizedBox(
                                                   height:
                                                   localHeight * 0.010),
-                                              RichText(
-                                                  text: TextSpan(children: [
-                                                    TextSpan(
-                                                        text: values
-                                                            .data!
-                                                            .questions![
-                                                        index - 1]
-                                                            .advisorText,
+                                              Text(
+                                                  values.data!.questions![index - 1].advisorText!,
                                                         style: TextStyle(
                                                             color: const Color
                                                                 .fromRGBO(
@@ -264,8 +258,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                             fontWeight:
                                                             FontWeight.w400,
                                                             fontSize:
-                                                            localHeight * 0.02)),
-                                                  ])),
+                                                            localHeight * 0.02)
+                                                  ),
                                               const SizedBox(height: 10),
                                               Row(
                                                 children: [
@@ -624,14 +618,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 SizedBox(
                                                     height:
                                                     localHeight * 0.010),
-                                                RichText(
-                                                    text: TextSpan(children: [
-                                                      TextSpan(
-                                                          text: values
+                                                Text(values
                                                               .data!
                                                               .questions![
                                                           index - 1]
-                                                              .advisorText,
+                                                              .advisorText!,
                                                           style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
@@ -641,7 +632,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                               FontWeight.w400,
                                                               fontSize:
                                                               localHeight * 0.015)),
-                                                    ])),
                                                 const SizedBox(height: 10),
                                                 Row(
                                                   children: [
@@ -993,14 +983,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             SizedBox(
                                                 height:
                                                 localHeight * 0.010),
-                                            RichText(
-                                                text: TextSpan(children: [
-                                                  TextSpan(
-                                                      text: values
-                                                          .data!
-                                                          .questions![
-                                                      index - 1]
-                                                          .advisorText,
+                                            Text(values.data!.questions![index - 1].advisorText!,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(
@@ -1010,7 +993,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           FontWeight.w400,
                                                           fontSize:
                                                           localHeight * 0.02)),
-                                                ])),
                                             const SizedBox(height: 6),
                                             Row(
                                               children: [

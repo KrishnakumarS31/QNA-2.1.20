@@ -201,6 +201,7 @@ class AddQuestionState extends State<AddQuestion> {
     _count = 0;
     _values = [];
     demoQuestionModel.choices?.add(choice);
+    addField();
     setData();
   }
 
@@ -787,7 +788,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                 padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                 child: TextField(
                                                   controller: adviceController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(
@@ -1585,7 +1587,8 @@ class AddQuestionState extends State<AddQuestion> {
                                     padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
                                     child: TextField(
                                       controller: adviceController,
-                                      keyboardType: TextInputType.text,
+                                      keyboardType: TextInputType.multiline,
+                                      maxLines: null,
                                       decoration: InputDecoration(
                                         //floatingLabelBehavior: FloatingLabelBehavior.always,
                                         hintStyle: TextStyle(
@@ -2083,7 +2086,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                 _questionTypeValue=="Descriptive"
                                                     ? const SizedBox(height: 0)
                                                     :  _questionTypeValue=="Survey"
-                                                    ? Padding(
+                                                    ?
+                                                Padding(
                                                   padding: const EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -2120,7 +2124,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                     ],
                                                   ),
                                                 )
-                                                    :Padding(
+                                                    :
+                                                Padding(
                                                   padding: const EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -2176,7 +2181,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                 _questionTypeValue=="Descriptive"
                                                     ? const SizedBox(height: 0,)
                                                     : _questionTypeValue=="Survey"
-                                                    ? Form(
+                                                    ?
+                                                Form(
                                                   key: _formKey,
                                                   child: Column(
                                                     children: [
@@ -2246,27 +2252,29 @@ class AddQuestionState extends State<AddQuestion> {
                                                     ],
                                                   ),
                                                 )
-                                                    : Form(
+                                                    :
+                                                Form(
                                                   key: _formKey,
                                                   child: Column(
                                                     children: [
                                                       for (int i = 0; i < chooses.length; i++)
                                                         Padding(
                                                           padding: EdgeInsets.only(bottom: height * 0.02,
-                                                            left: 8,),
+                                                              left: 8,top:height * 0.01),
                                                           child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            mainAxisAlignment: MainAxisAlignment.start,
                                                             children: [
                                                               SizedBox(
                                                                   width: width * 0.05,
-                                                                child: Text("${String.fromCharCode(97+i)}.",style: TextStyle(
-                                                                    color: Colors.black,
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.020)
-                                                                ),
-                                                              ),
-                                                              Expanded(
+                                                                  child: Text("${String.fromCharCode(97+i)}.",
+                                                                    style: TextStyle(
+                                                                        color: Colors.black,
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: height * 0.018),
+                                                                  )),
+                                                              Container(
+                                                                width : width * 0.59,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
                                                                   style: TextStyle(
@@ -2274,7 +2282,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                                       fontFamily: 'Inter',
                                                                       fontWeight: FontWeight.w400,
                                                                       fontSize: height * 0.018),
-                                                                  keyboardType: TextInputType.text,
+                                                                  keyboardType: TextInputType.multiline,
+                                                                  maxLines: null,
                                                                   decoration: InputDecoration(
                                                                     floatingLabelBehavior:
                                                                     FloatingLabelBehavior.always,
@@ -2297,12 +2306,13 @@ class AddQuestionState extends State<AddQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.13,
+                                                                width: width * 0.07,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     _onRadioChange(i);
                                                                   },
                                                                   icon: Icon(
+                                                                    size:height * 0.03,
                                                                     radioList[i]
                                                                         ? Icons.radio_button_checked_outlined
                                                                         : Icons
@@ -2313,14 +2323,15 @@ class AddQuestionState extends State<AddQuestion> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: width * 0.11,
+                                                                width: width * 0.05,
                                                                 child: IconButton(
                                                                   onPressed: () {
                                                                     removeItem(i);
                                                                   },
-                                                                  icon: const Icon(
+                                                                  icon:  Icon(
+                                                                    size:height * 0.03,
                                                                     Icons.delete_outline,
-                                                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                                                   ),
                                                                 ),
                                                               ),
@@ -2404,7 +2415,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                 padding: EdgeInsets.only(left: width * 0.02),
                                                 child: TextField(
                                                   controller: adviceController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(

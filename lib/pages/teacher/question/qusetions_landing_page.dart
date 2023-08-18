@@ -1287,6 +1287,8 @@ class Question_Card extends StatefulWidget {
 
 class _Question_CardState extends State<Question_Card> {
 
+
+
   showQuestionPreview(BuildContext context) {
     showDialog(
       context: context,
@@ -1310,6 +1312,7 @@ class _Question_CardState extends State<Question_Card> {
 
   @override
   Widget build(BuildContext context) {
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -1321,8 +1324,11 @@ class _Question_CardState extends State<Question_Card> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            height: widget.width > 500 ? widget.height * 0.19 :widget.height * 0.22,
-            width: widget.width * 0.85,
+            // height: widget.width > 500 ? widget.height * 0.19 :widget.height * 0.22,
+             width: widget.width > 960 ? widget.width * 0.85 :widget.width >500 ? 650.0  : 400.0,
+            // constraints: BoxConstraints(
+            //   maxWidth: maxWidth,
+            // ),
             decoration: BoxDecoration(
               border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.2),),
               borderRadius: const BorderRadius.all(

@@ -847,7 +847,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                 child: TextField(
                                                   controller: adviceController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(
@@ -1674,7 +1675,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 padding: EdgeInsets.only(left: width * 0.02,right: width * 0.02),
                                                 child: TextField(
                                                   controller: adviceController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(
@@ -2587,7 +2589,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
                                                 child: TextField(
                                                   controller: adviceController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(
@@ -3416,7 +3419,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                 padding: EdgeInsets.only(left: width * 0.02,right:width * 0.02),
                                                 child: TextField(
                                                   controller: adviceController,
-                                                  keyboardType: TextInputType.text,
+                                                  keyboardType: TextInputType.multiline,
+                                                  maxLines: null,
                                                   decoration: InputDecoration(
                                                     //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                     hintStyle: TextStyle(
@@ -4300,7 +4304,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     padding: EdgeInsets.only(left: width * 0.02),
                                                     child: TextField(
                                                       controller: adviceController,
-                                                      keyboardType: TextInputType.text,
+                                                      keyboardType: TextInputType.multiline,
+                                                      maxLines: null,
                                                       decoration: InputDecoration(
                                                         //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                         hintStyle: TextStyle(
@@ -5129,7 +5134,8 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                                     padding: EdgeInsets.only(left: width * 0.02),
                                                     child: TextField(
                                                       controller: adviceController,
-                                                      keyboardType: TextInputType.text,
+                                                      keyboardType: TextInputType.multiline,
+                                                      maxLines: null,
                                                       decoration: InputDecoration(
                                                         //floatingLabelBehavior: FloatingLabelBehavior.always,
                                                         hintStyle: TextStyle(

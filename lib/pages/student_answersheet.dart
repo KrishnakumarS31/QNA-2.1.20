@@ -231,8 +231,6 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                             ],
                                           ),
                                           SizedBox(height: localHeight * 0.005),
-                                          Row(
-                                              children: [
                                           Text("${values.data!.questions![index - 1].advisorText}",
                                                     style: TextStyle(
                                                         color: const Color
@@ -241,7 +239,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight
                                                             .w400,
-                                                        fontSize: localHeight * 0.0225))]),
+                                                        fontSize: localHeight * 0.0225)),
                                           SizedBox(height: localHeight * 0.005),
                                           Row(
                                             children: [
@@ -443,8 +441,6 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                     ],
                                                   ),
                                                   SizedBox(height: localHeight * 0.005),
-                                                  Row(
-                                                      children: [
                                                      Text("${values.data!.questions![index - 1].advisorText}",
                                                             style: TextStyle(
                                                                 color: const Color
@@ -453,7 +449,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                                 fontFamily: 'Inter',
                                                                 fontWeight: FontWeight
                                                                     .w400,
-                                                                fontSize: localHeight * 0.025))]),
+                                                                fontSize: localHeight * 0.025)),
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                     children: [
@@ -707,8 +703,6 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                     ],
                                                   ),
                                                   SizedBox(height: localHeight * 0.005),
-                                                  Row(
-                                                      children: [
                                                         Text("${values.data!.questions![index - 1].advisorText}",
                                                             style: TextStyle(
                                                                 color: const Color
@@ -718,7 +712,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                                 fontWeight: FontWeight
                                                                     .w400,
                                                                 fontSize: localHeight *
-                                                                    0.015))]),
+                                                                    0.015)),
                                                   SizedBox(height: localHeight * 0.005),
                                                   Row(
                                                     children: [
