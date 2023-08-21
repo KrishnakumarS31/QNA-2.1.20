@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/get_assessment_model.dart';
@@ -1722,7 +1721,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                           children: [
                             Text(
                               //AppLocalizations.of(context)!.my_qns,
-                              "Assessment Settings",
+                              "Assessment Setting",
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.025,
@@ -2278,35 +2277,92 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () async {
-                                                startDate = (await showOmniDateTimePicker(
-                                                  context: context,
-                                                  // primaryColor: Colors.cyan,
-                                                  // backgroundColor: Colors.grey[900],
-                                                  // calendarTextColor: Colors.white,
-                                                  // tabTextColor: Colors.white,
-                                                  // unselectedTabBackgroundColor: Colors.grey[700],
-                                                  // buttonTextColor: Colors.white,
-                                                  // timeSpinnerTextStyle:
-                                                  // const TextStyle(color: Colors.white70, fontSize: 18),
-                                                  // timeSpinnerHighlightedTextStyle:
-                                                  // const TextStyle(color: Colors.white, fontSize: 24),
-                                                  is24HourMode: false,
-                                                  isShowSeconds: false,
-                                                  initialDate: DateTime.now(),
-                                                  firstDate:
-                                                  DateTime(1600).subtract(const Duration(days: 3652)),
-                                                  lastDate: DateTime.now().add(
-                                                    const Duration(days: 3652),
-                                                  ),
-                                                  //borderRadius: BorderRadiusGeometry.lerp(, b, t),
-                                                ))! ;
-                                                startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                              onTap: (){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) {
+                                                      return Dialog(
+                                                        shape: const RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(17))),
+                                                        child: SingleChildScrollView(
+                                                          scrollDirection: Axis.vertical,
+                                                          child: Container(
+                                                            height: height * 0.3,
+                                                            width: width * 0.3,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors.black38,
+                                                                  width: 1),
+                                                              borderRadius:
+                                                              BorderRadius.circular(17),
+                                                            ),
+                                                            child: Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  left: width * 0.02,
+                                                                  right: width * 0.02,
+                                                                  top: height * 0.02,
+                                                                  bottom: height * 0.02),
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Container(
+                                                                    height:height*0.2,
+                                                                    child: CupertinoDatePicker(
+                                                                      initialDateTime: DateTime.now(),
+                                                                      onDateTimeChanged: (DateTime newdate) {
+                                                                        setState(() {
+                                                                          startDate=newdate;
+                                                                        });
+                                                                      },
+                                                                      use24hFormat: true,
+                                                                      maximumDate: DateTime(3000, 12, 30),
+                                                                      minimumYear: 2023,
+                                                                      maximumYear: 3000,
+                                                                      minuteInterval: 1,
+                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    ),
+                                                                  ),
+                                                                  ElevatedButton(
+                                                                    style: ElevatedButton.styleFrom(
+                                                                      minimumSize: Size(width* 0.03, height*0.04),
+                                                                      side: const BorderSide(
+                                                                          color: Color.fromRGBO(153, 153, 153, 0.5)
+                                                                      ),
+                                                                      backgroundColor:
+                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      //minimumSize: Size(280, 48),
+                                                                      shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(35),
+                                                                      ),
+                                                                    ),
+                                                                    //shape: StadiumBorder(),
+                                                                    onPressed: () {
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      Navigator.of(context).pop();
+                                                                    },
+                                                                    child: Text(
+                                                                      //AppLocalizations.of(context)!.edit_button,
+                                                                      'OK',
+                                                                      style: TextStyle(
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          color: Colors.white,
+                                                                          fontWeight: FontWeight.w400),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    });
                                               },
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.2,
+                                                  width: width * 0.4,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: startTimeController,
@@ -2343,114 +2399,92 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () async {
-                                                // showDialog(
-                                                //     context: context,
-                                                //     builder: (BuildContext context) {
-                                                //       return Dialog(
-                                                //         shape: const RoundedRectangleBorder(
-                                                //             borderRadius: BorderRadius.all(
-                                                //                 Radius.circular(17))),
-                                                //         child: SingleChildScrollView(
-                                                //           scrollDirection: Axis.vertical,
-                                                //           child: Container(
-                                                //             height: height * 0.3,
-                                                //             width: width * 0.3,
-                                                //             decoration: BoxDecoration(
-                                                //               border: Border.all(
-                                                //                   color: Colors.black38,
-                                                //                   width: 1),
-                                                //               borderRadius:
-                                                //               BorderRadius.circular(17),
-                                                //             ),
-                                                //             child: Padding(
-                                                //               padding: EdgeInsets.only(
-                                                //                   left: width * 0.02,
-                                                //                   right: width * 0.02,
-                                                //                   top: height * 0.02,
-                                                //                   bottom: height * 0.02),
-                                                //               child: Column(
-                                                //                 mainAxisAlignment: MainAxisAlignment.center,
-                                                //                 children: [
-                                                //                   Container(
-                                                //                     height:height*0.2,
-                                                //                     child: CupertinoDatePicker(
-                                                //                       initialDateTime: DateTime.now(),
-                                                //                       onDateTimeChanged: (DateTime newdate) {
-                                                //                         setState(() {
-                                                //                           endDate=newdate;
-                                                //                         });
-                                                //                       },
-                                                //                       use24hFormat: true,
-                                                //                       maximumDate: DateTime(3000, 12, 30),
-                                                //                       minimumYear: 2023,
-                                                //                       maximumYear: 3000,
-                                                //                       minuteInterval: 1,
-                                                //                       mode: CupertinoDatePickerMode.dateAndTime,
-                                                //                     ),
-                                                //                   ),
-                                                //                   ElevatedButton(
-                                                //                     style: ElevatedButton.styleFrom(
-                                                //                       minimumSize: Size(width* 0.03, height*0.04),
-                                                //                       side: const BorderSide(
-                                                //                           color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                //                       ),
-                                                //                       backgroundColor:
-                                                //                       Color.fromRGBO(82, 165, 160, 1),
-                                                //                       //minimumSize: Size(280, 48),
-                                                //                       shape: RoundedRectangleBorder(
-                                                //                         borderRadius: BorderRadius.circular(35),
-                                                //                       ),
-                                                //                     ),
-                                                //                     //shape: StadiumBorder(),
-                                                //                     onPressed: () {
-                                                //                       endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
-                                                //                       Navigator.of(context).pop();
-                                                //                     },
-                                                //                     child: Text(
-                                                //                       //AppLocalizations.of(context)!.edit_button,
-                                                //                       'OK',
-                                                //                       style: TextStyle(
-                                                //                           fontSize: height * 0.02,
-                                                //                           fontFamily: "Inter",
-                                                //                           color: Colors.white,
-                                                //                           fontWeight: FontWeight.w400),
-                                                //                     ),
-                                                //                   ),
-                                                //                 ],
-                                                //               ),
-                                                //             ),
-                                                //           ),
-                                                //         ),
-                                                //       );
-                                                //     });
-                                                endDate = (await showOmniDateTimePicker(
-                                                  context: context,
-                                                  // primaryColor: Colors.cyan,
-                                                  // backgroundColor: Colors.grey[900],
-                                                  // calendarTextColor: Colors.white,
-                                                  // tabTextColor: Colors.white,
-                                                  // unselectedTabBackgroundColor: Colors.grey[700],
-                                                  // buttonTextColor: Colors.white,
-                                                  // timeSpinnerTextStyle:
-                                                  // const TextStyle(color: Colors.white70, fontSize: 18),
-                                                  // timeSpinnerHighlightedTextStyle:
-                                                  // const TextStyle(color: Colors.white, fontSize: 24),
-                                                  is24HourMode: false,
-                                                  isShowSeconds: false,
-                                                  initialDate: DateTime.now(),
-                                                  // firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
-                                                  // lastDate: DateTime.now().add(
-                                                  // const Duration(days: 3652),
-                                                  // ),
-                                                  //borderRadius: BorderRadiusGeometry.lerp(, b, t),
-                                                ))! ;
-                                                endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
+                                              onTap: (){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) {
+                                                      return Dialog(
+                                                        shape: const RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(17))),
+                                                        child: SingleChildScrollView(
+                                                          scrollDirection: Axis.vertical,
+                                                          child: Container(
+                                                            height: height * 0.3,
+                                                            width: width * 0.3,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors.black38,
+                                                                  width: 1),
+                                                              borderRadius:
+                                                              BorderRadius.circular(17),
+                                                            ),
+                                                            child: Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  left: width * 0.02,
+                                                                  right: width * 0.02,
+                                                                  top: height * 0.02,
+                                                                  bottom: height * 0.02),
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Container(
+                                                                    height:height*0.2,
+                                                                    child: CupertinoDatePicker(
+                                                                      initialDateTime: DateTime.now(),
+                                                                      onDateTimeChanged: (DateTime newdate) {
+                                                                        setState(() {
+                                                                          endDate=newdate;
+                                                                        });
+                                                                      },
+                                                                      use24hFormat: true,
+                                                                      maximumDate: DateTime(3000, 12, 30),
+                                                                      minimumYear: 2023,
+                                                                      maximumYear: 3000,
+                                                                      minuteInterval: 1,
+                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    ),
+                                                                  ),
+                                                                  ElevatedButton(
+                                                                    style: ElevatedButton.styleFrom(
+                                                                      minimumSize: Size(width* 0.03, height*0.04),
+                                                                      side: const BorderSide(
+                                                                          color: Color.fromRGBO(153, 153, 153, 0.5)
+                                                                      ),
+                                                                      backgroundColor:
+                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      //minimumSize: Size(280, 48),
+                                                                      shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(35),
+                                                                      ),
+                                                                    ),
+                                                                    //shape: StadiumBorder(),
+                                                                    onPressed: () {
+                                                                      endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
+                                                                      Navigator.of(context).pop();
+                                                                    },
+                                                                    child: Text(
+                                                                      //AppLocalizations.of(context)!.edit_button,
+                                                                      'OK',
+                                                                      style: TextStyle(
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          color: Colors.white,
+                                                                          fontWeight: FontWeight.w400),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    });
                                               },
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.2,
+                                                  width: width * 0.4,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: endTimeController,
@@ -2473,7 +2507,6 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ),
                                               ),
                                             ),
-
                                           ],
                                         ),
                                       ),

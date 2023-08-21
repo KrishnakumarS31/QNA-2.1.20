@@ -564,6 +564,44 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children:[
                                                         ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                              backgroundColor:
+                                                              const Color.fromRGBO(
+                                                                  255, 255, 255, 1),
+                                                              minimumSize: const Size(
+                                                                  90, 30),
+                                                              side: const BorderSide(
+                                                                width: 1.5,
+                                                                color: Color.fromRGBO(
+                                                                    82, 165, 160, 1),
+
+                                                              ),
+                                                              shape: const RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.all(
+                                                                      Radius.circular(17)))
+                                                          ),
+                                                          child: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .no,
+                                                              style: TextStyle(
+                                                                  fontFamily: 'Inter',
+                                                                  fontSize:
+                                                                  localHeight * 0.018,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      82, 165, 160,
+                                                                      1),
+                                                                  fontWeight:
+                                                                  FontWeight.w500)),
+                                                          onPressed: () {
+                                                            Navigator.of(context)
+                                                                .pop();
+                                                          },
+                                                        ),
+                                                        SizedBox(width: localWidth * 0.05),
+                                                        ElevatedButton(
                                                             style: ElevatedButton
                                                                 .styleFrom(
                                                                 backgroundColor:
@@ -625,53 +663,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                     '/studGuestAssessment',
                                                                     arguments: widget.userName);
                                                               }
-                                                              // Navigator.push(
-                                                              //   context,
-                                                              //   PageTransition(
-                                                              //     type: PageTransitionType
-                                                              //         .rightToLeft,
-                                                              //     child: StudentSelectionPage(
-                                                              //         ),
-                                                              //   ),
-                                                              // );
-                                                            }),
-                                                        SizedBox(width: localWidth * 0.05),
-                                                        ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                              backgroundColor:
-                                                              const Color.fromRGBO(
-                                                                  255, 255, 255, 1),
-                                                              minimumSize: const Size(
-                                                                  90, 30),
-                                                              side: const BorderSide(
-                                                                width: 1.5,
-                                                                color: Color.fromRGBO(
-                                                                    82, 165, 160, 1),
-
-                                                              ),
-                                                              shape: const RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.all(
-                                                                      Radius.circular(17)))
-                                                          ),
-                                                          child: Text(
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .no,
-                                                              style: TextStyle(
-                                                                  fontFamily: 'Inter',
-                                                                  fontSize:
-                                                                  localHeight * 0.018,
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      82, 165, 160,
-                                                                      1),
-                                                                  fontWeight:
-                                                                  FontWeight.w500)),
-                                                          onPressed: () {
-                                                            Navigator.of(context)
-                                                                .pop();
-                                                          },
+                                                            }
                                                         ),
                                                       ]
                                                   ),
@@ -1184,6 +1176,43 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children:[
                                                     ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                          backgroundColor:
+                                                          const Color.fromRGBO(
+                                                              255, 255, 255, 1),
+                                                          minimumSize: const Size(
+                                                              90, 30),
+                                                          side: const BorderSide(
+                                                            width: 1.5,
+                                                            color: Color.fromRGBO(
+                                                                82, 165, 160, 1),
+                                                          ),
+                                                          shape: const RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.all(
+                                                                  Radius.circular(17)))
+                                                      ),
+                                                      child: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .no,
+                                                          style: TextStyle(
+                                                              fontFamily: 'Inter',
+                                                              fontSize:
+                                                              localHeight * 0.018,
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  82, 165, 160,
+                                                                  1),
+                                                              fontWeight:
+                                                              FontWeight.w500)),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                    SizedBox(width: localWidth * 0.05),
+                                                    ElevatedButton(
                                                         style: ElevatedButton
                                                             .styleFrom(
                                                             backgroundColor:
@@ -1245,54 +1274,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                 '/studGuestAssessment',
                                                                 arguments: widget.userName);
                                                           }
-                                                          // Navigator.push(
-                                                          //   context,
-                                                          //   PageTransition(
-                                                          //     type: PageTransitionType
-                                                          //         .rightToLeft,
-                                                          //     child: StudentSelectionPage(
-                                                          //         ),
-                                                          //   ),
-                                                          // );
-                                                        }),
-                                                    SizedBox(width: localWidth * 0.05),
-                                                    ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                          backgroundColor:
-                                                          const Color.fromRGBO(
-                                                              255, 255, 255, 1),
-                                                          minimumSize: const Size(
-                                                              90, 30),
-                                                          side: const BorderSide(
-                                                            width: 1.5,
-                                                            color: Color.fromRGBO(
-                                                                82, 165, 160, 1),
-                                                          ),
-                                                          shape: const RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.all(
-                                                                  Radius.circular(17)))
-                                                      ),
-                                                      child: Text(
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .no,
-                                                          style: TextStyle(
-                                                              fontFamily: 'Inter',
-                                                              fontSize:
-                                                              localHeight * 0.018,
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  82, 165, 160,
-                                                                  1),
-                                                              fontWeight:
-                                                              FontWeight.w500)),
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
+                                                        }
                                                     ),
-
                                                   ]
                                               ),
                                             ),
@@ -1802,6 +1785,43 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                       children:[
                                                         ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                              backgroundColor:
+                                                              const Color.fromRGBO(
+                                                                  255, 255, 255, 1),
+                                                              minimumSize: const Size(
+                                                                  90, 30),
+                                                              side: const BorderSide(
+                                                                width: 1.5,
+                                                                color: Color.fromRGBO(
+                                                                    82, 165, 160, 1),
+                                                              ),
+                                                              shape: const RoundedRectangleBorder(
+                                                                  borderRadius: BorderRadius.all(
+                                                                      Radius.circular(17)))
+                                                          ),
+                                                          child: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .no,
+                                                              style: TextStyle(
+                                                                  fontFamily: 'Inter',
+                                                                  fontSize:
+                                                                  localHeight * 0.018,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      82, 165, 160,
+                                                                      1),
+                                                                  fontWeight:
+                                                                  FontWeight.w500)),
+                                                          onPressed: () {
+                                                            Navigator.of(context)
+                                                                .pop();
+                                                          },
+                                                        ),
+                                                        SizedBox(width: localWidth * 0.05),
+                                                        ElevatedButton(
                                                             style: ElevatedButton
                                                                 .styleFrom(
                                                                 backgroundColor:
@@ -1863,52 +1883,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                     '/studGuestAssessment',
                                                                     arguments: widget.userName);
                                                               }
-                                                              // Navigator.push(
-                                                              //   context,
-                                                              //   PageTransition(
-                                                              //     type: PageTransitionType
-                                                              //         .rightToLeft,
-                                                              //     child: StudentSelectionPage(
-                                                              //         ),
-                                                              //   ),
-                                                              // );
-                                                            }),
-                                                        SizedBox(width: localWidth * 0.05),
-                                                        ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                              backgroundColor:
-                                                              const Color.fromRGBO(
-                                                                  255, 255, 255, 1),
-                                                              minimumSize: const Size(
-                                                                  90, 30),
-                                                              side: const BorderSide(
-                                                                width: 1.5,
-                                                                color: Color.fromRGBO(
-                                                                    82, 165, 160, 1),
-                                                              ),
-                                                              shape: const RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius.all(
-                                                                      Radius.circular(17)))
-                                                          ),
-                                                          child: Text(
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .no,
-                                                              style: TextStyle(
-                                                                  fontFamily: 'Inter',
-                                                                  fontSize:
-                                                                  localHeight * 0.018,
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      82, 165, 160,
-                                                                      1),
-                                                                  fontWeight:
-                                                                  FontWeight.w500)),
-                                                          onPressed: () {
-                                                            Navigator.of(context)
-                                                                .pop();
-                                                          },
+                                                            }
                                                         ),
                                                       ]
                                                   ),

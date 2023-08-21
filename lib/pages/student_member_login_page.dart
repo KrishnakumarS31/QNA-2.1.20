@@ -147,7 +147,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        print("INSIDE RETRY ONPRESSED");
         Navigator.of(context).pop();
       },
     );
@@ -185,7 +184,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             cancelButton,
-            SizedBox(height:10.0),
+            const SizedBox(height:10.0),
           ],
         ),
 
@@ -260,19 +259,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: localHeight * 0.2),
-                          Padding(
-                              padding: const EdgeInsets.only(left: 50),
-                              child: Text(
-                                AppLocalizations.of(context)!.login_loginPage,
-                                style: TextStyle(
-                                  fontSize: localHeight * 0.02,
-                                  color: const Color.fromRGBO(
-                                      102, 102, 102, 1),
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              )),
-                          SizedBox(height: localHeight * 0.02),
                           Center(
                               child:
                               Container(
@@ -338,7 +324,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   if (value!.isEmpty) {
                                                     return AppLocalizations.of(
                                                         context)!
-                                                        .error_regID;
+                                                        .email_uId_helper;
                                                   }
                                                   else if(RegExp(r'^[a-zA-Z0-9]+$')
                                                       .hasMatch(value)) {
@@ -476,7 +462,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                             ),
                                             minimumSize:
-                                            Size(localWidth * 0.29, localHeight * 0.03),
+                                            const Size(189, 37),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                               BorderRadius.circular(
@@ -484,7 +470,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             ),
                                           ),
                                           child: Text(
-                                              "Login",
+                                              AppLocalizations.of(context)!.login_loginPage,
                                               style: TextStyle(
                                                   fontFamily: 'Inter',
                                                   fontSize:
@@ -616,7 +602,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      Size(localWidth * 0.29, localHeight * 0.03),
+                                     const Size(189 , 37),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -649,7 +635,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      Size(localWidth * 0.02, localHeight * 0.03),
+                                     const Size(189, 37),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -759,25 +745,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     child:
                     Center(
                       child: SizedBox(
-                        // padding:EdgeInsets.only(left: localHeight * 0.5,right: localHeight * 0.5),
                           width: localWidth * 0.7,
                           child: Column(
                               children: [
                                 SizedBox(height: localHeight * 0.15),
-                                // Row(
-                                //     children:[
-                                //       SizedBox(width: localWidth * 0.05),
-                                //       Text(
-                                //         AppLocalizations.of(context)!.login_loginPage,
-                                //         style: TextStyle(
-                                //           fontSize: localHeight * 0.025,
-                                //           color: const Color.fromRGBO(
-                                //               102, 102, 102, 1),
-                                //           fontFamily: "Inter",
-                                //           fontWeight: FontWeight.w600,
-                                //         ),
-                                //       )]),
-                                // SizedBox(height: localHeight * 0.02),
                                 Center(
                                     child:
                                     Container(
@@ -842,7 +813,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         if (value!.isEmpty) {
                                                           return AppLocalizations.of(
                                                               context)!
-                                                              .error_regID;
+                                                              .email_uId_helper;
                                                         }
                                                         else if(RegExp(r'^[a-zA-Z0-9]+$')
                                                             .hasMatch(value)) {
@@ -983,7 +954,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   ),
                                                 ),
                                                 child: Text(
-                                                    "Login",
+                                                    AppLocalizations.of(context)!.login_loginPage,
+                                                  // "Login",
                                                     style: TextStyle(
                                                       fontFamily: 'Inter',
                                                       fontSize:
@@ -1020,10 +992,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                           passWord,
                                                           'student');
                                                       Navigator.of(context).pop();
-
-                                                      print("Login Response Code");
-                                                      print(loginResponse.code);
-
                                                       if (loginResponse.code == 200) {
                                                         //UserDataModel userDataModel = UserDataModel();
                                                         //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
@@ -1267,19 +1235,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: localHeight * 0.2),
-                          Padding(
-                              padding: EdgeInsets.only(left: localWidth * 0.055),
-                              child: Text(
-                                AppLocalizations.of(context)!.login_loginPage,
-                                style: TextStyle(
-                                  fontSize: localHeight * 0.02,
-                                  color: const Color.fromRGBO(
-                                      102, 102, 102, 1),
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              )),
-                          SizedBox(height: localHeight * 0.02),
                           Center(
                               child:
                               Container(
@@ -1344,7 +1299,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   if (value!.isEmpty) {
                                                     return AppLocalizations.of(
                                                         context)!
-                                                        .error_regID;
+                                                        .email_uId_helper;
                                                   }
                                                   else if(RegExp(r'^[a-zA-Z0-9]+$')
                                                       .hasMatch(value)) {
@@ -1476,10 +1431,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         child:ElevatedButton(
                                           style:
                                           ElevatedButton.styleFrom(
-                                            backgroundColor: Color.fromRGBO(82,165,160,1),
+                                            backgroundColor: Colors.white,
                                             side: const BorderSide(
-                                              width: 1, // the thickness
-                                              color: Color.fromRGBO(82, 165, 160, 1), // the color of the border
+                                                width: 1, // the thickness
+                                                color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                             ),
                                             minimumSize:
                                             const Size(189, 37),
@@ -1490,7 +1445,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             ),
                                           ),
                                           child: Text(
-                                              "Login",
+                                              AppLocalizations.of(context)!.login_loginPage,
+                                            //"Login",
                                               style: TextStyle(
                                                 fontFamily: 'Inter',
                                                 fontSize:

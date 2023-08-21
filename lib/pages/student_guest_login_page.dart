@@ -146,7 +146,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       .your_name,
                                                   label: Text(
                                                     AppLocalizations.of(context)!
-                                                      .name,
+                                                      .name_userId,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -169,7 +169,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       .hasMatch(value)) {
                                                     return AppLocalizations.of(
                                                         context)!
-                                                        .enter_valid_name;
+                                                        .name_special_restrict;
                                                   }
                                                   return null;
                                                 },)),
@@ -336,10 +336,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                  Icons.arrow_circle_right
                                ),
                                 iconSize: height * 0.06,
-                                color:
-                                nameController.text.isNotEmpty
-                                    ? const Color.fromRGBO(82, 165, 160, 1)
-                                    : const Color.fromRGBO(153, 153, 153, 0.5),
+                                color: const Color.fromRGBO(82, 165, 160, 1),
                                 onPressed: () {
                                   if (agree) {
                                     if (formKey.currentState!.validate()) {
@@ -490,7 +487,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       .your_name,
                                                   label: Text(
                                                     AppLocalizations.of(context)!
-                                                        .name,
+                                                        .name_userId,
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             102, 102, 102, 1),
@@ -513,7 +510,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       .hasMatch(value)) {
                                                     return AppLocalizations.of(
                                                         context)!
-                                                        .enter_valid_name;
+                                                        .name_special_restrict;
                                                   }
                                                   return null;
                                                 },)),
@@ -678,10 +675,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 Icons.arrow_circle_right
                             ),
                             iconSize: height * 0.06,
-                            color:
-                            nameController.text.isNotEmpty
-                                ? const Color.fromRGBO(82, 165, 160, 1)
-                                : const Color.fromRGBO(153, 153, 153, 0.5),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             onPressed: () {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {
@@ -855,7 +849,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       .hasMatch(value)) {
                                                     return AppLocalizations.of(
                                                         context)!
-                                                        .enter_valid_name;
+                                                        .name_special_restrict;
                                                   }
                                                   return null;
                                                 },)),
@@ -1022,10 +1016,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 Icons.arrow_circle_right
                             ),
                             iconSize: height * 0.06,
-                            color:
-                            nameController.text.isNotEmpty
-                              ? const Color.fromRGBO(82, 165, 160, 1)
-                          : const Color.fromRGBO(153, 153, 153, 0.5),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             onPressed: () {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {

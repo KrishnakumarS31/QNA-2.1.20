@@ -285,7 +285,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     if (value!.isEmpty) {
                                                       return AppLocalizations.of(
                                                           context)!
-                                                          .error_regID;
+                                                          .email_uId_helper;
                                                     }
                                                     else if(RegExp(r'^[a-zA-Z0-9]+$')
                                                         .hasMatch(value)) {
@@ -294,7 +294,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
                                                         .hasMatch(value)) {
                                                       return AppLocalizations.of(context)!
-                                                          .enter_valid_email;
+                                                          .email_uId_helper;
                                                     }
                                                     else {
                                                       return null;
@@ -412,6 +412,110 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                 )),
                                           ],
                                         ),
+                                        SizedBox(height: height * 0.03),
+                                        Center(
+                                            child: ElevatedButton(
+                                                style:
+                                                ElevatedButton.styleFrom(
+                                                  backgroundColor: Color.fromRGBO(82, 165, 160, 1),
+                                                  side: const BorderSide(
+                                                      width: 1, // the thickness
+                                                      color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                                  ),
+                                                  minimumSize:
+                                                 const Size(189, 37),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        39),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                    "Login",
+                                                    style: TextStyle(
+                                                        fontFamily: 'Inter',
+                                                        fontSize:
+                                                        height *
+                                                            0.02,
+                                                        fontWeight: FontWeight
+                                                            .w400,
+                                                        color: Colors.white)),
+                                                onPressed: () async {
+                                                  bool valid = formKey.currentState!.validate();
+                                                  regNumber = emailController.text;
+                                                  passWord = passwordController.text;
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return const Center(
+                                                            child: CircularProgressIndicator(
+                                                              color: Color.fromRGBO(
+                                                                  48, 145, 139, 1),
+                                                            ));
+                                                      });
+                                                  LoginModel loginResponse =
+                                                  await QnaService.logInUser(
+                                                      regNumber, passWord, 'teacher');
+                                                  Navigator.of(context).pop();
+                                                  if (loginResponse.code == 200) {
+                                                    UserDetails userDetails = UserDetails();
+                                                    userDetails.login = false;
+                                                    userDetails.email = regNumber;
+                                                    userDetails.password = passWord;
+                                                    userDetails.role = 'teacher';
+                                                    userDetails.institutionId = loginResponse.data.institutionId;
+                                                    print("USER DETAILS INSTITUTION ID");
+                                                    print(loginResponse.data.institutionId);
+                                                    print(userDetails.institutionId);
+                                                    userDetails.firstName =
+                                                        loginResponse.data.firstName;
+                                                    userDetails.lastName =
+                                                        loginResponse.data.lastName;
+                                                    userDetails.token =
+                                                        loginResponse.data.accessToken;
+                                                    userDetails.userId =
+                                                        loginResponse.data.userId;
+                                                    Provider.of<LanguageChangeProvider>(
+                                                        context, listen: false).updateUserDetails(
+                                                        userDetails);
+                                                    final SharedPreferences loginData = await SharedPreferences
+                                                        .getInstance();
+                                                    loginData.setBool('login', false);
+                                                    loginData.setString('email', regNumber);
+                                                    loginData.setInt('institutionId', loginResponse.data.institutionId);
+                                                    loginData.setString('password', passWord);
+                                                    loginData.setString('role', 'teacher');
+                                                    loginData.setString(
+                                                        'firstName',
+                                                        loginResponse.data.firstName);
+                                                    loginData.setString(
+                                                        'lastName', loginResponse.data.lastName);
+                                                    loginData.setString(
+                                                        'token', loginResponse.data.accessToken);
+                                                    loginData.setInt(
+                                                        'userId', loginResponse.data.userId);
+                                                    UserDataModel userDataModel = UserDataModel();
+                                                    userDataModel =
+                                                    await QnaService.getUserDataService(
+                                                        loginResponse.data.userId, userDetails);
+                                                    if (userDataModel.data!.role
+                                                        .contains("teacher")) {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          '/teacherSelectionPage',
+                                                          arguments: userDataModel
+                                                      ).then((value) {
+                                                        emailController.clear();
+                                                        passwordController.clear();
+                                                      });
+                                                    }
+                                                  }
+                                                  else if (loginResponse.code ==
+                                                      400 || loginResponse.code == 401) {
+                                                    showDialogSave( context,height,width,loginResponse.code);
+                                                  }
+                                                }
+                                            )),
                                         SizedBox(
                                           height: height * 0.02,
                                         ),
@@ -419,111 +523,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       ],
                                     ),
                                   ),
-                                )),
-                            SizedBox(height: height * 0.03),
-                      Center(
-                          child: ElevatedButton(
-                              style:
-                              ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
-                                side: const BorderSide(
-                                    width: 1, // the thickness
-                                    color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
-                                ),
-                                minimumSize:
-                                Size(width * 0.29, height * 0.03),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(
-                                      39),
-                                ),
-                              ),
-                              child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize:
-                                      height *
-                                          0.02,
-                                      fontWeight: FontWeight
-                                          .w400,
-                                      color: const Color.fromRGBO(82, 165, 160, 1))),
-                                    onPressed: () async {
-                                      bool valid = formKey.currentState!.validate();
-                                      regNumber = emailController.text;
-                                      passWord = passwordController.text;
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const Center(
-                                                child: CircularProgressIndicator(
-                                                  color: Color.fromRGBO(
-                                                      48, 145, 139, 1),
-                                                ));
-                                          });
-                                      LoginModel loginResponse =
-                                      await QnaService.logInUser(
-                                          regNumber, passWord, 'teacher');
-                                      Navigator.of(context).pop();
-                                      if (loginResponse.code == 200) {
-                                        UserDetails userDetails = UserDetails();
-                                        userDetails.login = false;
-                                        userDetails.email = regNumber;
-                                        userDetails.password = passWord;
-                                        userDetails.role = 'teacher';
-                                        userDetails.institutionId = loginResponse.data.institutionId;
-                                        print("USER DETAILS INSTITUTION ID");
-                                        print(loginResponse.data.institutionId);
-                                        print(userDetails.institutionId);
-                                        userDetails.firstName =
-                                            loginResponse.data.firstName;
-                                        userDetails.lastName =
-                                            loginResponse.data.lastName;
-                                        userDetails.token =
-                                            loginResponse.data.accessToken;
-                                        userDetails.userId =
-                                            loginResponse.data.userId;
-                                        Provider.of<LanguageChangeProvider>(
-                                            context, listen: false).updateUserDetails(
-                                            userDetails);
-                                        final SharedPreferences loginData = await SharedPreferences
-                                            .getInstance();
-                                        loginData.setBool('login', false);
-                                        loginData.setString('email', regNumber);
-                                        loginData.setInt('institutionId', loginResponse.data.institutionId);
-                                        loginData.setString('password', passWord);
-                                        loginData.setString('role', 'teacher');
-                                        loginData.setString(
-                                            'firstName',
-                                            loginResponse.data.firstName);
-                                        loginData.setString(
-                                            'lastName', loginResponse.data.lastName);
-                                        loginData.setString(
-                                            'token', loginResponse.data.accessToken);
-                                        loginData.setInt(
-                                            'userId', loginResponse.data.userId);
-                                        UserDataModel userDataModel = UserDataModel();
-                                        userDataModel =
-                                        await QnaService.getUserDataService(
-                                            loginResponse.data.userId, userDetails);
-                                        if (userDataModel.data!.role
-                                            .contains("teacher")) {
-                                          Navigator.pushNamed(
-                                              context,
-                                              '/teacherSelectionPage',
-                                              arguments: userDataModel
-                                          ).then((value) {
-                                            emailController.clear();
-                                            passwordController.clear();
-                                          });
-                                        }
-                                      }
-                                      else if (loginResponse.code ==
-                                          400 || loginResponse.code == 401) {
-                                        showDialogSave( context,height,width,loginResponse.code);
-                                      }
-                                    }
-                                )),
+                                ) ),
                             SizedBox(height: height * 0.03),
                             Center(
                                 child: Column(
@@ -743,7 +743,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                         if (value!.isEmpty) {
                                                           return AppLocalizations.of(
                                                               context)!
-                                                              .error_regID;
+                                                              .email_uId_helper;
                                                         }
                                                         else if(RegExp(r'^[a-zA-Z0-9]+$')
                                                             .hasMatch(value)) {
@@ -865,115 +865,113 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                   )),
                                             ),
                                             SizedBox(height: height * 0.03),
+                                            Center(
+                                                child: ElevatedButton(
+                                                    style:
+                                                    ElevatedButton.styleFrom(
+                                                      backgroundColor: Color.fromRGBO(82, 165, 160, 1),
+                                                      side: const BorderSide(
+                                                          width: 1, // the thickness
+                                                          color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                                      ),
+                                                      minimumSize:
+                                                      const Size(189, 37),
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius:
+                                                        BorderRadius.circular(
+                                                            39),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                        "Login",
+                                                        style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontSize:
+                                                            height *
+                                                                0.02,
+                                                            fontWeight: FontWeight
+                                                                .w400,
+                                                            color: Colors.white)),
+                                                    onPressed: () async {
+                                                      bool valid = formKey.currentState!.validate();
+                                                      regNumber = emailController.text;
+                                                      passWord = passwordController.text;
+                                                      showDialog(
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return const Center(
+                                                                child: CircularProgressIndicator(
+                                                                  color: Color.fromRGBO(
+                                                                      48, 145, 139, 1),
+                                                                ));
+                                                          });
+                                                      LoginModel loginResponse =
+                                                      await QnaService.logInUser(
+                                                          regNumber, passWord, 'teacher');
+                                                      Navigator.of(context).pop();
+                                                      if (loginResponse.code == 200) {
+                                                        UserDetails userDetails = UserDetails();
+                                                        userDetails.login = false;
+                                                        userDetails.email = regNumber;
+                                                        userDetails.password = passWord;
+                                                        userDetails.role = 'teacher';
+                                                        userDetails.institutionId = loginResponse.data.institutionId;
+                                                        print("USER DETAILS INSTITUTION ID");
+                                                        print(loginResponse.data.institutionId);
+                                                        print(userDetails.institutionId);
+                                                        userDetails.firstName =
+                                                            loginResponse.data.firstName;
+                                                        userDetails.lastName =
+                                                            loginResponse.data.lastName;
+                                                        userDetails.token =
+                                                            loginResponse.data.accessToken;
+                                                        userDetails.userId =
+                                                            loginResponse.data.userId;
+                                                        Provider.of<LanguageChangeProvider>(
+                                                            context, listen: false).updateUserDetails(
+                                                            userDetails);
+                                                        final SharedPreferences loginData = await SharedPreferences
+                                                            .getInstance();
+                                                        loginData.setBool('login', false);
+                                                        loginData.setString('email', regNumber);
+                                                        loginData.setInt('institutionId', loginResponse.data.institutionId);
+                                                        loginData.setString('password', passWord);
+                                                        loginData.setString('role', 'teacher');
+                                                        loginData.setString(
+                                                            'firstName',
+                                                            loginResponse.data.firstName);
+                                                        loginData.setString(
+                                                            'lastName', loginResponse.data.lastName);
+                                                        loginData.setString(
+                                                            'token', loginResponse.data.accessToken);
+                                                        loginData.setInt(
+                                                            'userId', loginResponse.data.userId);
+                                                        UserDataModel userDataModel = UserDataModel();
+                                                        userDataModel =
+                                                        await QnaService.getUserDataService(
+                                                            loginResponse.data.userId, userDetails);
+                                                        if (userDataModel.data!.role
+                                                            .contains("teacher")) {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/teacherSelectionPage',
+                                                              arguments: userDataModel
+                                                          ).then((value) {
+                                                            emailController.clear();
+                                                            passwordController.clear();
+                                                          });
+                                                        }
+                                                      }
+                                                      else if (loginResponse.code ==
+                                                          400 || loginResponse.code == 401) {
+                                                        showDialogSave( context,height,width,loginResponse.code);
+                                                      }
+                                                    }
+                                                )),
+                                            SizedBox(height: height * 0.03),
                                           ],
                                         ),
                                       ),
-                                    )),
-                                SizedBox(height: height * 0.03),
-                                Center(
-
-                                    child: ElevatedButton(
-                                        style:
-                                        ElevatedButton.styleFrom(
-                                          backgroundColor:  const Color.fromRGBO(82, 165, 160, 1),
-                                          side: const BorderSide(
-                                              width: 1, // the thickness
-                                              color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
-                                          ),
-                                          minimumSize:
-                                          const Size(189, 37),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(
-                                                39),
-                                          ),
-                                        ),
-                                        child: Text(
-                                            "Login",
-                                            style: TextStyle(
-                                              fontFamily: 'Inter',
-                                              fontSize:
-                                              height *
-                                                  0.02,
-                                              fontWeight: FontWeight
-                                                  .w400,
-                                              color: Colors.white,
-                                            )),
-                                        onPressed: () async {
-                                          bool valid = formKey.currentState!.validate();
-                                          regNumber = emailController.text;
-                                          passWord = passwordController.text;
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return const Center(
-                                                    child: CircularProgressIndicator(
-                                                      color: Color.fromRGBO(
-                                                          48, 145, 139, 1),
-                                                    ));
-                                              });
-                                          LoginModel loginResponse =
-                                          await QnaService.logInUser(
-                                              regNumber, passWord, 'teacher');
-                                          Navigator.of(context).pop();
-                                          if (loginResponse.code == 200) {
-                                            UserDetails userDetails = UserDetails();
-                                            userDetails.login = false;
-                                            userDetails.email = regNumber;
-                                            userDetails.password = passWord;
-                                            userDetails.role = 'teacher';
-                                            userDetails.firstName =
-                                                loginResponse.data.firstName;
-                                            userDetails.institutionId = loginResponse.data.institutionId;
-                                            print("USER DETAILS INSTITUTION ID");
-                                            print(loginResponse.data.institutionId);
-                                            print(userDetails.institutionId);
-                                            userDetails.lastName =
-                                                loginResponse.data.lastName;
-                                            userDetails.token =
-                                                loginResponse.data.accessToken;
-                                            userDetails.userId =
-                                                loginResponse.data.userId;
-                                            Provider.of<LanguageChangeProvider>(
-                                                context, listen: false).updateUserDetails(
-                                                userDetails);
-                                            final SharedPreferences loginData = await SharedPreferences
-                                                .getInstance();
-                                            loginData.setBool('login', false);
-                                            loginData.setString('email', regNumber);
-                                            loginData.setString('password', passWord);
-                                            loginData.setString('role', 'teacher');
-                                            loginData.setInt('institutionId', loginResponse.data.institutionId);
-                                            loginData.setString(
-                                                'firstName',
-                                                loginResponse.data.firstName);
-                                            loginData.setString(
-                                                'lastName', loginResponse.data.lastName);
-                                            loginData.setString(
-                                                'token', loginResponse.data.accessToken);
-                                            loginData.setInt(
-                                                'userId', loginResponse.data.userId);
-                                            UserDataModel userDataModel = UserDataModel();
-                                            userDataModel =
-                                            await QnaService.getUserDataService(
-                                                loginResponse.data.userId, userDetails);
-                                            if (userDataModel.data!.role
-                                                .contains("teacher")) {
-                                              Navigator.pushNamed(
-                                                  context,
-                                                  '/teacherSelectionPage',
-                                                  arguments: userDataModel
-                                              ).then((value) {
-                                                emailController.clear();
-                                                passwordController.clear();
-                                              });
-                                            }
-                                          }
-                                          else if (loginResponse.code ==
-                                              400 || loginResponse.code == 401) {
-                                            showDialogSave(context,height,width,loginResponse.code);
-                                          }
-                                        }
                                     )),
                                 SizedBox(height: height * 0.03),
                                 Center(
@@ -1180,7 +1178,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     ),
                                                     hintText:
                                                     AppLocalizations.of(context)!
-                                                        .hint_regId,
+                                                        .email_uId_helper,
                                                     //Enter here
                                                     hintStyle: TextStyle(
                                                         color: const Color.fromRGBO(
@@ -1202,7 +1200,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
                                                         .hasMatch(value)) {
                                                       return AppLocalizations.of(context)!
-                                                          .enter_valid_email;
+                                                          .email_uId_helper;
                                                     }
                                                     else {
                                                       return null;
@@ -1316,6 +1314,112 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                 )),
                                           ],
                                         ),
+                                        SizedBox(height: height * 0.03),
+                                        Center(
+                                            child:ElevatedButton(
+                                                style:
+                                                ElevatedButton.styleFrom(
+                                                  backgroundColor: Color.fromRGBO(82,165,160,1),
+                                                  side: const BorderSide(
+                                                    width: 1, // the thickness
+                                                    color: Color.fromRGBO(82, 165, 160, 1), // the color of the border
+                                                  ),
+                                                  minimumSize:
+                                                  const Size(189, 37),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        39),
+                                                  ),
+                                                ),
+                                                child: Text(
+                                                    "Login",
+                                                    style: TextStyle(
+                                                      fontFamily: 'Inter',
+                                                      fontSize:
+                                                      height *
+                                                          0.02,
+                                                      fontWeight: FontWeight
+                                                          .w400,
+                                                      color: Colors.white,
+                                                    )
+                                                ),
+                                                onPressed: () async {
+                                                  bool valid = formKey.currentState!.validate();
+                                                  regNumber = emailController.text;
+                                                  passWord = passwordController.text;
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return const Center(
+                                                            child: CircularProgressIndicator(
+                                                              color: Color.fromRGBO(
+                                                                  48, 145, 139, 1),
+                                                            ));
+                                                      });
+                                                  LoginModel loginResponse =
+                                                  await QnaService.logInUser(
+                                                      regNumber, passWord, 'teacher');
+                                                  Navigator.of(context).pop();
+                                                  if (loginResponse.code == 200) {
+                                                    UserDetails userDetails = UserDetails();
+                                                    userDetails.login = false;
+                                                    userDetails.email = regNumber;
+                                                    userDetails.password = passWord;
+                                                    userDetails.role = 'teacher';
+                                                    userDetails.institutionId = loginResponse.data.institutionId;
+                                                    print("USER DETAILS INSTITUTION ID");
+                                                    print(loginResponse.data.institutionId);
+                                                    print(userDetails.institutionId);
+                                                    userDetails.firstName =
+                                                        loginResponse.data.firstName;
+                                                    userDetails.lastName =
+                                                        loginResponse.data.lastName;
+                                                    userDetails.token =
+                                                        loginResponse.data.accessToken;
+                                                    userDetails.userId =
+                                                        loginResponse.data.userId;
+                                                    Provider.of<LanguageChangeProvider>(
+                                                        context, listen: false).updateUserDetails(
+                                                        userDetails);
+                                                    final SharedPreferences loginData = await SharedPreferences
+                                                        .getInstance();
+                                                    loginData.setBool('login', false);
+                                                    loginData.setString('email', regNumber);
+                                                    loginData.setString('password', passWord);
+                                                    loginData.setString('role', 'teacher');
+                                                    loginData.setInt('institutionId', loginResponse.data.institutionId);
+                                                    loginData.setString(
+                                                        'firstName',
+                                                        loginResponse.data.firstName);
+                                                    loginData.setString(
+                                                        'lastName', loginResponse.data.lastName);
+                                                    loginData.setString(
+                                                        'token', loginResponse.data.accessToken);
+                                                    loginData.setInt(
+                                                        'userId', loginResponse.data.userId);
+                                                    UserDataModel userDataModel = UserDataModel();
+                                                    userDataModel =
+                                                    await QnaService.getUserDataService(
+                                                        loginResponse.data.userId, userDetails);
+                                                    if (userDataModel.data!.role
+                                                        .contains("teacher")) {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          '/teacherSelectionPage',
+                                                          arguments: userDataModel
+                                                      ).then((value) {
+                                                        emailController.clear();
+                                                        passwordController.clear();
+                                                      });
+                                                    }
+                                                  }
+                                                  else if (loginResponse.code ==
+                                                      400 || loginResponse.code == 401) {
+                                                    showDialogSave( context,height,width,loginResponse.code);
+                                                  }
+                                                }
+                                            )),
                                         SizedBox(
                                           height: height * 0.02,
                                         ),
@@ -1324,112 +1428,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     ),
                                   ),
                                 )),
-                            SizedBox(height: height * 0.03),
-                            Center(
-                                child:ElevatedButton(
-                                    style:
-                                    ElevatedButton.styleFrom(
-                                      backgroundColor: Color.fromRGBO(82,165,160,1),
-                                      side: const BorderSide(
-                                        width: 1, // the thickness
-                                        color: Color.fromRGBO(82, 165, 160, 1), // the color of the border
-                                      ),
-                                      minimumSize:
-                                      const Size(189, 37),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            39),
-                                      ),
-                                    ),
-                                    child: Text(
-                                        "Login",
-                                        style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize:
-                                          height *
-                                              0.02,
-                                          fontWeight: FontWeight
-                                              .w400,
-                                          color: Colors.white,
-                                        )
-                                    ),
-                                    onPressed: () async {
-                                      bool valid = formKey.currentState!.validate();
-                                      regNumber = emailController.text;
-                                      passWord = passwordController.text;
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const Center(
-                                                child: CircularProgressIndicator(
-                                                  color: Color.fromRGBO(
-                                                      48, 145, 139, 1),
-                                                ));
-                                          });
-                                      LoginModel loginResponse =
-                                      await QnaService.logInUser(
-                                          regNumber, passWord, 'teacher');
-                                      Navigator.of(context).pop();
-                                      if (loginResponse.code == 200) {
-                                        UserDetails userDetails = UserDetails();
-                                        userDetails.login = false;
-                                        userDetails.email = regNumber;
-                                        userDetails.password = passWord;
-                                        userDetails.role = 'teacher';
-                                        userDetails.institutionId = loginResponse.data.institutionId;
-                                        print("USER DETAILS INSTITUTION ID");
-                                        print(loginResponse.data.institutionId);
-                                        print(userDetails.institutionId);
-                                        userDetails.firstName =
-                                            loginResponse.data.firstName;
-                                        userDetails.lastName =
-                                            loginResponse.data.lastName;
-                                        userDetails.token =
-                                            loginResponse.data.accessToken;
-                                        userDetails.userId =
-                                            loginResponse.data.userId;
-                                        Provider.of<LanguageChangeProvider>(
-                                            context, listen: false).updateUserDetails(
-                                            userDetails);
-                                        final SharedPreferences loginData = await SharedPreferences
-                                            .getInstance();
-                                        loginData.setBool('login', false);
-                                        loginData.setString('email', regNumber);
-                                        loginData.setString('password', passWord);
-                                        loginData.setString('role', 'teacher');
-                                        loginData.setInt('institutionId', loginResponse.data.institutionId);
-                                        loginData.setString(
-                                            'firstName',
-                                            loginResponse.data.firstName);
-                                        loginData.setString(
-                                            'lastName', loginResponse.data.lastName);
-                                        loginData.setString(
-                                            'token', loginResponse.data.accessToken);
-                                        loginData.setInt(
-                                            'userId', loginResponse.data.userId);
-                                        UserDataModel userDataModel = UserDataModel();
-                                        userDataModel =
-                                        await QnaService.getUserDataService(
-                                            loginResponse.data.userId, userDetails);
-                                        if (userDataModel.data!.role
-                                            .contains("teacher")) {
-                                          Navigator.pushNamed(
-                                              context,
-                                              '/teacherSelectionPage',
-                                              arguments: userDataModel
-                                          ).then((value) {
-                                            emailController.clear();
-                                            passwordController.clear();
-                                          });
-                                        }
-                                      }
-                                      else if (loginResponse.code ==
-                                          400 || loginResponse.code == 401) {
-                                        showDialogSave( context,height,width,loginResponse.code);
-                                      }
-                                    }
-                                )),
+
                             SizedBox(height: height * 0.03),
                             Center(
                                 child: Column(

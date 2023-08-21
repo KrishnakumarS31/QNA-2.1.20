@@ -621,6 +621,34 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   children: [
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
+                                                        backgroundColor: _notPressedNo ?
+                                                        const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
+                                                        minimumSize: const Size(90, 35),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(39),
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          _notPressedNo = true;
+                                                          _notPressedYes = false;
+                                                          _searchPressed = false;
+                                                        });
+
+                                                      },
+                                                      child: Text(
+                                                        AppLocalizations.of(context)!.no,
+                                                        style: TextStyle(
+                                                            color: _notPressedNo ?
+                                                            Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
+                                                            fontSize: height * 0.02,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: width * 0.05),
+                                                    ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
                                                         backgroundColor: _notPressedYes ?
                                                         const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
                                                         minimumSize: const Size(90, 35),
@@ -685,34 +713,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         AppLocalizations.of(context)!.yes,
                                                         style: TextStyle(
                                                             color: _notPressedYes ?
-                                                            Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
-                                                            fontSize: height * 0.02,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w600),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: width * 0.05),
-                                                    ElevatedButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                        backgroundColor: _notPressedNo ?
-                                                        const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
-                                                        minimumSize: const Size(90, 35),
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(39),
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          _notPressedNo = true;
-                                                          _notPressedYes = false;
-                                                          _searchPressed = false;
-                                                        });
-
-                                                      },
-                                                      child: Text(
-                                                        AppLocalizations.of(context)!.no,
-                                                        style: TextStyle(
-                                                            color: _notPressedNo ?
                                                             Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
@@ -1272,6 +1272,34 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   children: [
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
+                                                        backgroundColor: _notPressedNo ?
+                                                        const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
+                                                        minimumSize: const Size(90, 35),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(39),
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          _notPressedNo = true;
+                                                          _notPressedYes = false;
+                                                          _searchPressed = false;
+                                                        });
+
+                                                      },
+                                                      child: Text(
+                                                        AppLocalizations.of(context)!.no,
+                                                        style: TextStyle(
+                                                            color: _notPressedNo ?
+                                                            Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
+                                                            fontSize: height * 0.02,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: width * 0.05),
+                                                    ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
                                                         backgroundColor: _notPressedYes ?
                                                         const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
                                                         minimumSize: const Size(90, 35),
@@ -1336,34 +1364,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         AppLocalizations.of(context)!.yes,
                                                         style: TextStyle(
                                                             color: _notPressedYes ?
-                                                            Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
-                                                            fontSize: height * 0.02,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w600),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: width * 0.05),
-                                                    ElevatedButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                        backgroundColor: _notPressedNo ?
-                                                        const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
-                                                        minimumSize: const Size(90, 35),
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(39),
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          _notPressedNo = true;
-                                                          _notPressedYes = false;
-                                                          _searchPressed = false;
-                                                        });
-
-                                                      },
-                                                      child: Text(
-                                                        AppLocalizations.of(context)!.no,
-                                                        style: TextStyle(
-                                                            color: _notPressedNo ?
                                                             Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
@@ -1925,6 +1925,34 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   children: [
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
+                                                        backgroundColor: _notPressedNo ?
+                                                        const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
+                                                        minimumSize: const Size(90, 35),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(39),
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          _notPressedNo = true;
+                                                          _notPressedYes = false;
+                                                          _searchPressed = false;
+                                                        });
+
+                                                      },
+                                                      child: Text(
+                                                        AppLocalizations.of(context)!.no,
+                                                        style: TextStyle(
+                                                            color: _notPressedNo ?
+                                                            Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
+                                                            fontSize: height * 0.02,
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w600),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: width * 0.05),
+                                                    ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
                                                         backgroundColor: _notPressedYes ?
                                                         const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
                                                         minimumSize: const Size(90, 35),
@@ -1989,34 +2017,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         AppLocalizations.of(context)!.yes,
                                                         style: TextStyle(
                                                             color: _notPressedYes ?
-                                                            Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
-                                                            fontSize: height * 0.02,
-                                                            fontFamily: "Inter",
-                                                            fontWeight: FontWeight.w600),
-                                                      ),
-                                                    ),
-                                                    SizedBox(width: width * 0.05),
-                                                    ElevatedButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                        backgroundColor: _notPressedNo ?
-                                                        const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
-                                                        minimumSize: const Size(90, 35),
-                                                        shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(39),
-                                                        ),
-                                                      ),
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          _notPressedNo = true;
-                                                          _notPressedYes = false;
-                                                          _searchPressed = false;
-                                                        });
-
-                                                      },
-                                                      child: Text(
-                                                        AppLocalizations.of(context)!.no,
-                                                        style: TextStyle(
-                                                            color: _notPressedNo ?
                                                             Colors.white : const Color.fromRGBO(82, 165, 160, 1) ,
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",

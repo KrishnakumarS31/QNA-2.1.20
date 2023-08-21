@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:omni_datetime_picker/omni_datetime_picker.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
@@ -14,8 +13,6 @@ import '../../../Providers/create_assessment_provider.dart';
 import '../../../Providers/question_prepare_provider_final.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Components/today_date.dart';
-import '../../../DataSource/http_url.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as questionModel;
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -108,8 +105,6 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
         questionList.removeAt(index);
         setState(() {
         });
@@ -322,7 +317,6 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
 
   @override
   void initState() {
-    print("INSIDE DRAFT Assessment Settings");
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
@@ -447,7 +441,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -507,8 +501,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                               height: height * 0.6,
                               width: width * 0.93,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                borderRadius: const BorderRadius.all(
                                     Radius.circular(10)),
                               ),
                               child: SingleChildScrollView(
@@ -522,8 +516,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       child: Container(
                                         height: height * 0.1,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Row(
@@ -558,7 +552,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
                                                         backgroundColor:
-                                                        category=="Test"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                        category=="Test"? const Color.fromRGBO(82, 165, 160, 1):const Color.fromRGBO(255, 255, 255, 1),
                                                         //minimumSize: const Size(280, 48),
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(5),
@@ -581,7 +575,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                         style: TextStyle(
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
-                                                            color: category=="Test"?Colors.white:Color.fromRGBO(102, 102, 102, 1),
+                                                            color: category=="Test"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
@@ -592,7 +586,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
                                                         backgroundColor:
-                                                        category=="Practice"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                        category=="Practice"? const Color.fromRGBO(82, 165, 160, 1):const Color.fromRGBO(255, 255, 255, 1),
                                                         //minimumSize: const Size(280, 48),
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(5),
@@ -615,7 +609,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                         style: TextStyle(
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
-                                                            color: category=="Practice"?Colors.white:Color.fromRGBO(102, 102, 102, 1),
+                                                            color: category=="Practice"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
@@ -635,8 +629,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.38,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -752,20 +746,20 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                   //     ],
                                                                   //   ),
                                                                   // ),
-                                                                  Container(
+                                                                  SizedBox(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
                                                                       time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
-                                                                        color: Color.fromRGBO(102, 102, 102, 1),
+                                                                        color: const Color.fromRGBO(102, 102, 102, 1),
                                                                         fontFamily: "Inter",
                                                                         fontWeight: FontWeight.w400,
                                                                       ),
                                                                       highlightedTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
-                                                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                                                        color: const Color.fromRGBO(51, 51, 51, 1),
                                                                         fontFamily: "Inter",
                                                                         fontWeight: FontWeight.w700,
                                                                       ),
@@ -786,7 +780,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -826,15 +820,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     decoration: InputDecoration(
 
                                                       hintStyle: TextStyle(
-                                                          color:  timeLimitController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  timeLimitController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "HH:MM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -885,7 +879,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-                                                                  Container(
+                                                                  SizedBox(
                                                                     height:height*0.2,
                                                                     child: CupertinoDatePicker(
                                                                       initialDateTime: DateTime.now(),
@@ -909,7 +903,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -948,15 +942,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       hintStyle: TextStyle(
-                                                          color:  startTimeController!=null?Color.fromRGBO(102, 102, 102, 0.3):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  startTimeController!=null?const Color.fromRGBO(102, 102, 102, 0.3):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "DD/MM/YYYY  00:00 AM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -1007,7 +1001,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-                                                                  Container(
+                                                                  SizedBox(
                                                                     height:height*0.2,
                                                                     child: CupertinoDatePicker(
                                                                       initialDateTime: DateTime.now(),
@@ -1031,7 +1025,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -1070,15 +1064,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       hintStyle: TextStyle(
-                                                          color:  endTimeController!=null?Color.fromRGBO(102, 102, 102, 0.3):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  endTimeController!=null?const Color.fromRGBO(102, 102, 102, 0.3):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "DD/MM/YYYY  00:00 AM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -1086,19 +1080,18 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ),
                                               ),
                                             ),
-
                                           ],
                                         ),
                                       ),
-                                    ):SizedBox(),
+                                    ):const SizedBox(),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
                                         height: height * 0.30,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -1121,7 +1114,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Number of attempts allowed",
@@ -1136,8 +1129,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     height: height * 0.04,
                                                     width: width * 0.3,
                                                     decoration: BoxDecoration(
-                                                      border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: BorderRadius.all(
+                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(5)),
                                                     ),
                                                     child: Row(
@@ -1151,7 +1144,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               }
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
                                                             child: Icon(
@@ -1167,12 +1160,12 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             width: width * 0.1,
                                                             decoration: BoxDecoration(
                                                               border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                              borderRadius: BorderRadius.all(
+                                                              borderRadius: const BorderRadius.all(
                                                                   Radius.circular(5)),
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                '${numberOfAttempts}',
+                                                                '$numberOfAttempts',
                                                                 style: TextStyle(
                                                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                                                     fontFamily: 'Inter',
@@ -1188,7 +1181,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               numberOfAttempts=numberOfAttempts+1;
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
 
@@ -1208,7 +1201,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow guest students",
@@ -1248,7 +1241,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
@@ -1288,7 +1281,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
@@ -1333,8 +1326,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.23,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -1357,7 +1350,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my name",
@@ -1397,7 +1390,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my email",
@@ -1493,16 +1486,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         onPressed: () {
                                           Navigator.of(context).pushNamedAndRemoveUntil('/createNewAssessment', ModalRoute.withName('/assessmentLandingPage'));
                                         },
-                                        child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: Colors.white, // <-- Button color
                                         ),
+                                        child: const Icon(Icons.add, color: Color.fromRGBO(82, 165, 160, 1),),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -1569,16 +1562,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           //Navigator.of(context).pop();
 
                                         },
-                                        child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: Colors.white, // <-- Button color
                                         ),
+                                        child: const Icon(Icons.save, color: Color.fromRGBO(82, 165, 160, 1),),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -1640,7 +1633,6 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                           Navigator.of(context).pop();
                                           if (statusCode.code == 200) {
-                                            print(statusCode.message);
                                             // String assessmentCode = statusCode
                                             //     .data
                                             //     .toString()
@@ -1658,24 +1650,19 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             );
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
                                           }
                                           //Navigator.of(context).pop();
                                         },
-                                        child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                         ),
+                                        child: const Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -1791,7 +1778,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -1851,8 +1838,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                               height: height * 0.6,
                               width: width * 0.93,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                borderRadius: const BorderRadius.all(
                                     Radius.circular(10)),
                               ),
                               child: SingleChildScrollView(
@@ -1867,8 +1854,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.1,
                                         width: width * 0.6,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Row(
@@ -1903,7 +1890,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
                                                         backgroundColor:
-                                                        category=="Test"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                        category=="Test"? const Color.fromRGBO(82, 165, 160, 1):const Color.fromRGBO(255, 255, 255, 1),
                                                         //minimumSize: const Size(280, 48),
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(5),
@@ -1926,7 +1913,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                         style: TextStyle(
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
-                                                            color: category=="Test"?Colors.white:Color.fromRGBO(102, 102, 102, 1),
+                                                            color: category=="Test"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
@@ -1938,7 +1925,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
                                                         backgroundColor:
-                                                        category=="Practice"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                        category=="Practice"? const Color.fromRGBO(82, 165, 160, 1):const Color.fromRGBO(255, 255, 255, 1),
                                                         //minimumSize: const Size(280, 48),
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(5),
@@ -1961,7 +1948,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                         style: TextStyle(
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
-                                                            color: category=="Practice"?Colors.white:Color.fromRGBO(102, 102, 102, 1),
+                                                            color: category=="Practice"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
@@ -1981,8 +1968,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.45,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -2098,20 +2085,20 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                   //     ],
                                                                   //   ),
                                                                   // ),
-                                                                  Container(
+                                                                  SizedBox(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
                                                                       time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
-                                                                        color: Color.fromRGBO(102, 102, 102, 1),
+                                                                        color: const Color.fromRGBO(102, 102, 102, 1),
                                                                         fontFamily: "Inter",
                                                                         fontWeight: FontWeight.w400,
                                                                       ),
                                                                       highlightedTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
-                                                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                                                        color: const Color.fromRGBO(51, 51, 51, 1),
                                                                         fontFamily: "Inter",
                                                                         fontWeight: FontWeight.w700,
                                                                       ),
@@ -2132,7 +2119,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -2172,15 +2159,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     decoration: InputDecoration(
 
                                                       hintStyle: TextStyle(
-                                                          color:  timeLimitController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  timeLimitController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "HH:MM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -2202,50 +2189,107 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () async {
-                                                startDate = (await showOmniDateTimePicker(
-                                                  context: context,
-                                                  // primaryColor: Colors.cyan,
-                                                  // backgroundColor: Colors.grey[900],
-                                                  // calendarTextColor: Colors.white,
-                                                  // tabTextColor: Colors.white,
-                                                  // unselectedTabBackgroundColor: Colors.grey[700],
-                                                  // buttonTextColor: Colors.white,
-                                                  // timeSpinnerTextStyle:
-                                                  // const TextStyle(color: Colors.white70, fontSize: 18),
-                                                  // timeSpinnerHighlightedTextStyle:
-                                                  // const TextStyle(color: Colors.white, fontSize: 24),
-                                                  is24HourMode: false,
-                                                  isShowSeconds: false,
-                                                  initialDate: DateTime.now(),
-                                                  firstDate:
-                                                  DateTime(1600).subtract(const Duration(days: 3652)),
-                                                  lastDate: DateTime.now().add(
-                                                    const Duration(days: 3652),
-                                                  ),
-                                                  //borderRadius: BorderRadiusGeometry.lerp(, b, t),
-                                                ))! ;
-                                                startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                              onTap: (){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) {
+                                                      return Dialog(
+                                                        shape: const RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(17))),
+                                                        child: SingleChildScrollView(
+                                                          scrollDirection: Axis.vertical,
+                                                          child: Container(
+                                                            height: height * 0.3,
+                                                            width: width * 0.3,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors.black38,
+                                                                  width: 1),
+                                                              borderRadius:
+                                                              BorderRadius.circular(17),
+                                                            ),
+                                                            child: Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  left: width * 0.02,
+                                                                  right: width * 0.02,
+                                                                  top: height * 0.02,
+                                                                  bottom: height * 0.02),
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  SizedBox(
+                                                                    height:height*0.2,
+                                                                    child: CupertinoDatePicker(
+                                                                      initialDateTime: DateTime.now(),
+                                                                      onDateTimeChanged: (DateTime newdate) {
+                                                                        setState(() {
+                                                                          startDate=newdate;
+                                                                        });
+                                                                      },
+                                                                      use24hFormat: true,
+                                                                      maximumDate: DateTime(3000, 12, 30),
+                                                                      minimumYear: 2023,
+                                                                      maximumYear: 3000,
+                                                                      minuteInterval: 1,
+                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    ),
+                                                                  ),
+                                                                  ElevatedButton(
+                                                                    style: ElevatedButton.styleFrom(
+                                                                      minimumSize: Size(width* 0.03, height*0.04),
+                                                                      side: const BorderSide(
+                                                                          color: Color.fromRGBO(153, 153, 153, 0.5)
+                                                                      ),
+                                                                      backgroundColor:
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                                      //minimumSize: Size(280, 48),
+                                                                      shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(35),
+                                                                      ),
+                                                                    ),
+                                                                    //shape: StadiumBorder(),
+                                                                    onPressed: () {
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      Navigator.of(context).pop();
+                                                                    },
+                                                                    child: Text(
+                                                                      //AppLocalizations.of(context)!.edit_button,
+                                                                      'OK',
+                                                                      style: TextStyle(
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          color: Colors.white,
+                                                                          fontWeight: FontWeight.w400),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    });
                                               },
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.2,
+                                                  width: width * 0.4,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: startTimeController,
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       hintStyle: TextStyle(
-                                                          color:  startTimeController!=null?Color.fromRGBO(102, 102, 102, 0.3):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  startTimeController!=null?const Color.fromRGBO(102, 102, 102, 0.3):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "DD/MM/YYYY  00:00 AM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -2267,129 +2311,107 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               ),
                                             ),
                                             GestureDetector(
-                                              onTap: () async {
-                                                // showDialog(
-                                                //     context: context,
-                                                //     builder: (BuildContext context) {
-                                                //       return Dialog(
-                                                //         shape: const RoundedRectangleBorder(
-                                                //             borderRadius: BorderRadius.all(
-                                                //                 Radius.circular(17))),
-                                                //         child: SingleChildScrollView(
-                                                //           scrollDirection: Axis.vertical,
-                                                //           child: Container(
-                                                //             height: height * 0.3,
-                                                //             width: width * 0.3,
-                                                //             decoration: BoxDecoration(
-                                                //               border: Border.all(
-                                                //                   color: Colors.black38,
-                                                //                   width: 1),
-                                                //               borderRadius:
-                                                //               BorderRadius.circular(17),
-                                                //             ),
-                                                //             child: Padding(
-                                                //               padding: EdgeInsets.only(
-                                                //                   left: width * 0.02,
-                                                //                   right: width * 0.02,
-                                                //                   top: height * 0.02,
-                                                //                   bottom: height * 0.02),
-                                                //               child: Column(
-                                                //                 mainAxisAlignment: MainAxisAlignment.center,
-                                                //                 children: [
-                                                //                   Container(
-                                                //                     height:height*0.2,
-                                                //                     child: CupertinoDatePicker(
-                                                //                       initialDateTime: DateTime.now(),
-                                                //                       onDateTimeChanged: (DateTime newdate) {
-                                                //                         setState(() {
-                                                //                           endDate=newdate;
-                                                //                         });
-                                                //                       },
-                                                //                       use24hFormat: true,
-                                                //                       maximumDate: DateTime(3000, 12, 30),
-                                                //                       minimumYear: 2023,
-                                                //                       maximumYear: 3000,
-                                                //                       minuteInterval: 1,
-                                                //                       mode: CupertinoDatePickerMode.dateAndTime,
-                                                //                     ),
-                                                //                   ),
-                                                //                   ElevatedButton(
-                                                //                     style: ElevatedButton.styleFrom(
-                                                //                       minimumSize: Size(width* 0.03, height*0.04),
-                                                //                       side: const BorderSide(
-                                                //                           color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                //                       ),
-                                                //                       backgroundColor:
-                                                //                       Color.fromRGBO(82, 165, 160, 1),
-                                                //                       //minimumSize: Size(280, 48),
-                                                //                       shape: RoundedRectangleBorder(
-                                                //                         borderRadius: BorderRadius.circular(35),
-                                                //                       ),
-                                                //                     ),
-                                                //                     //shape: StadiumBorder(),
-                                                //                     onPressed: () {
-                                                //                       endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
-                                                //                       Navigator.of(context).pop();
-                                                //                     },
-                                                //                     child: Text(
-                                                //                       //AppLocalizations.of(context)!.edit_button,
-                                                //                       'OK',
-                                                //                       style: TextStyle(
-                                                //                           fontSize: height * 0.02,
-                                                //                           fontFamily: "Inter",
-                                                //                           color: Colors.white,
-                                                //                           fontWeight: FontWeight.w400),
-                                                //                     ),
-                                                //                   ),
-                                                //                 ],
-                                                //               ),
-                                                //             ),
-                                                //           ),
-                                                //         ),
-                                                //       );
-                                                //     });
-                                                endDate = (await showOmniDateTimePicker(
-                                                  context: context,
-                                                  // primaryColor: Colors.cyan,
-                                                  // backgroundColor: Colors.grey[900],
-                                                  // calendarTextColor: Colors.white,
-                                                  // tabTextColor: Colors.white,
-                                                  // unselectedTabBackgroundColor: Colors.grey[700],
-                                                  // buttonTextColor: Colors.white,
-                                                  // timeSpinnerTextStyle:
-                                                  // const TextStyle(color: Colors.white70, fontSize: 18),
-                                                  // timeSpinnerHighlightedTextStyle:
-                                                  // const TextStyle(color: Colors.white, fontSize: 24),
-                                                  is24HourMode: false,
-                                                  isShowSeconds: false,
-                                                  initialDate: DateTime.now(),
-                                                  // firstDate: DateTime(1600).subtract(const Duration(days: 3652)),
-                                                  // lastDate: DateTime.now().add(
-                                                  // const Duration(days: 3652),
-                                                  // ),
-                                                  //borderRadius: BorderRadiusGeometry.lerp(, b, t),
-                                                ))! ;
-                                                endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
+                                              onTap: (){
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) {
+                                                      return Dialog(
+                                                        shape: const RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.all(
+                                                                Radius.circular(17))),
+                                                        child: SingleChildScrollView(
+                                                          scrollDirection: Axis.vertical,
+                                                          child: Container(
+                                                            height: height * 0.3,
+                                                            width: width * 0.3,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors.black38,
+                                                                  width: 1),
+                                                              borderRadius:
+                                                              BorderRadius.circular(17),
+                                                            ),
+                                                            child: Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  left: width * 0.02,
+                                                                  right: width * 0.02,
+                                                                  top: height * 0.02,
+                                                                  bottom: height * 0.02),
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  SizedBox(
+                                                                    height:height*0.2,
+                                                                    child: CupertinoDatePicker(
+                                                                      initialDateTime: DateTime.now(),
+                                                                      onDateTimeChanged: (DateTime newdate) {
+                                                                        setState(() {
+                                                                          endDate=newdate;
+                                                                        });
+                                                                      },
+                                                                      use24hFormat: true,
+                                                                      maximumDate: DateTime(3000, 12, 30),
+                                                                      minimumYear: 2023,
+                                                                      maximumYear: 3000,
+                                                                      minuteInterval: 1,
+                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    ),
+                                                                  ),
+                                                                  ElevatedButton(
+                                                                    style: ElevatedButton.styleFrom(
+                                                                      minimumSize: Size(width* 0.03, height*0.04),
+                                                                      side: const BorderSide(
+                                                                          color: Color.fromRGBO(153, 153, 153, 0.5)
+                                                                      ),
+                                                                      backgroundColor:
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                                      //minimumSize: Size(280, 48),
+                                                                      shape: RoundedRectangleBorder(
+                                                                        borderRadius: BorderRadius.circular(35),
+                                                                      ),
+                                                                    ),
+                                                                    //shape: StadiumBorder(),
+                                                                    onPressed: () {
+                                                                      endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
+                                                                      Navigator.of(context).pop();
+                                                                    },
+                                                                    child: Text(
+                                                                      //AppLocalizations.of(context)!.edit_button,
+                                                                      'OK',
+                                                                      style: TextStyle(
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          color: Colors.white,
+                                                                          fontWeight: FontWeight.w400),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    });
                                               },
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.2,
+                                                  width: width * 0.4,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: endTimeController,
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       hintStyle: TextStyle(
-                                                          color:  endTimeController!=null?Color.fromRGBO(102, 102, 102, 0.3):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  endTimeController!=null?const Color.fromRGBO(102, 102, 102, 0.3):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "DD/MM/YYYY  00:00 AM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -2397,19 +2419,18 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ),
                                               ),
                                             ),
-
                                           ],
                                         ),
                                       ),
-                                    ):SizedBox(),
+                                    ):const SizedBox(),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
                                         height: height * 0.32,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -2432,7 +2453,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
                                                       "Number of attempts allowed",
@@ -2447,8 +2468,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     height: height * 0.04,
                                                     width: width * 0.15,
                                                     decoration: BoxDecoration(
-                                                      border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: BorderRadius.all(
+                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(5)),
                                                     ),
                                                     child: Row(
@@ -2462,7 +2483,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               }
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.02,
                                                             child: Icon(
@@ -2476,12 +2497,12 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                           width: width * 0.05,
                                                           decoration: BoxDecoration(
                                                             border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                            borderRadius: BorderRadius.all(
+                                                            borderRadius: const BorderRadius.all(
                                                                 Radius.circular(5)),
                                                           ),
                                                           child: Center(
                                                             child: Text(
-                                                              '${numberOfAttempts}',
+                                                              '$numberOfAttempts',
                                                               style: TextStyle(
                                                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                                                   fontFamily: 'Inter',
@@ -2496,7 +2517,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               numberOfAttempts=numberOfAttempts+1;
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.02,
 
@@ -2516,7 +2537,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Allow guest students",
@@ -2556,7 +2577,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
@@ -2596,7 +2617,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
@@ -2641,8 +2662,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.25,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -2665,7 +2686,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Show my name",
@@ -2705,7 +2726,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Show my email",
@@ -2801,16 +2822,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         onPressed: () {
                                           Navigator.of(context).pushNamedAndRemoveUntil('/createNewAssessment', ModalRoute.withName('/assessmentLandingPage'));
                                         },
-                                        child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: Colors.white, // <-- Button color
                                         ),
+                                        child: const Icon(Icons.add, color: Color.fromRGBO(82, 165, 160, 1),),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -2877,16 +2898,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           //Navigator.of(context).pop();
 
                                         },
-                                        child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: Colors.white, // <-- Button color
                                         ),
+                                        child: const Icon(Icons.save, color: Color.fromRGBO(82, 165, 160, 1),),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -2948,7 +2969,6 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                           Navigator.of(context).pop();
                                           if (statusCode.code == 200) {
-                                            print(statusCode.message);
                                             // String assessmentCode = statusCode
                                             //     .data
                                             //     .toString()
@@ -2966,24 +2986,19 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             );
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
                                           }
                                           //Navigator.of(context).pop();
                                         },
-                                        child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                         ),
+                                        child: const Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -3097,7 +3112,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               fontWeight: FontWeight.w400),
                                         ),
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -3157,8 +3172,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                               height: height * 0.6,
                               width: width * 0.93,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                borderRadius: const BorderRadius.all(
                                     Radius.circular(10)),
                               ),
                               child: SingleChildScrollView(
@@ -3172,8 +3187,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                       child: Container(
                                         height: height * 0.1,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Row(
@@ -3208,7 +3223,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
                                                         backgroundColor:
-                                                        category=="Test"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                        category=="Test"? const Color.fromRGBO(82, 165, 160, 1):const Color.fromRGBO(255, 255, 255, 1),
                                                         //minimumSize: const Size(280, 48),
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(5),
@@ -3231,7 +3246,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                         style: TextStyle(
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
-                                                            color: category=="Test"?Colors.white:Color.fromRGBO(102, 102, 102, 1),
+                                                            color: category=="Test"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
@@ -3242,7 +3257,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
                                                         backgroundColor:
-                                                        category=="Practice"? Color.fromRGBO(82, 165, 160, 1):Color.fromRGBO(255, 255, 255, 1),
+                                                        category=="Practice"? const Color.fromRGBO(82, 165, 160, 1):const Color.fromRGBO(255, 255, 255, 1),
                                                         //minimumSize: const Size(280, 48),
                                                         shape: RoundedRectangleBorder(
                                                           borderRadius: BorderRadius.circular(5),
@@ -3265,7 +3280,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                         style: TextStyle(
                                                             fontSize: height * 0.02,
                                                             fontFamily: "Inter",
-                                                            color: category=="Practice"?Colors.white:Color.fromRGBO(102, 102, 102, 1),
+                                                            color: category=="Practice"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
@@ -3285,8 +3300,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.45,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -3402,7 +3417,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                   //     ],
                                                                   //   ),
                                                                   // ),
-                                                                  Container(
+                                                                  SizedBox(
 
                                                                     width: width * 0.3,
                                                                     child: Row(
@@ -3430,20 +3445,20 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                       ],
                                                                     ),
                                                                   ),
-                                                                  Container(
+                                                                  SizedBox(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
                                                                       time: DateTime(2000,1,1,0,0),
                                                                       is24HourMode: true,
                                                                       normalTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
-                                                                        color: Color.fromRGBO(102, 102, 102, 1),
+                                                                        color: const Color.fromRGBO(102, 102, 102, 1),
                                                                         fontFamily: "Inter",
                                                                         fontWeight: FontWeight.w400,
                                                                       ),
                                                                       highlightedTextStyle: TextStyle(
                                                                         fontSize: height * 0.02,
-                                                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                                                        color: const Color.fromRGBO(51, 51, 51, 1),
                                                                         fontFamily: "Inter",
                                                                         fontWeight: FontWeight.w700,
                                                                       ),
@@ -3464,7 +3479,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -3504,15 +3519,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     decoration: InputDecoration(
 
                                                       hintStyle: TextStyle(
-                                                          color:  timeLimitController!=null?Color.fromRGBO(102, 102, 102, 1):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  timeLimitController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "HH:MM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -3563,7 +3578,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-                                                                  Container(
+                                                                  SizedBox(
                                                                     height:height*0.2,
                                                                     child: CupertinoDatePicker(
                                                                       initialDateTime: DateTime.now(),
@@ -3587,7 +3602,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -3626,15 +3641,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       hintStyle: TextStyle(
-                                                          color:  startTimeController!=null?Color.fromRGBO(102, 102, 102, 0.3):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  startTimeController!=null?const Color.fromRGBO(102, 102, 102, 0.3):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "DD/MM/YYYY  00:00 AM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -3685,7 +3700,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-                                                                  Container(
+                                                                  SizedBox(
                                                                     height:height*0.2,
                                                                     child: CupertinoDatePicker(
                                                                       initialDateTime: DateTime.now(),
@@ -3709,7 +3724,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                           color: Color.fromRGBO(153, 153, 153, 0.5)
                                                                       ),
                                                                       backgroundColor:
-                                                                      Color.fromRGBO(82, 165, 160, 1),
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
                                                                       //minimumSize: Size(280, 48),
                                                                       shape: RoundedRectangleBorder(
                                                                         borderRadius: BorderRadius.circular(35),
@@ -3748,15 +3763,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     keyboardType: TextInputType.text,
                                                     decoration: InputDecoration(
                                                       hintStyle: TextStyle(
-                                                          color:  endTimeController!=null?Color.fromRGBO(102, 102, 102, 0.3):Color.fromRGBO(102, 102, 102, 1),
+                                                          color:  endTimeController!=null?const Color.fromRGBO(102, 102, 102, 0.3):const Color.fromRGBO(102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w400,
                                                           fontSize: height * 0.016),
                                                       hintText: "DD/MM/YYYY  00:00 AM",
-                                                      enabledBorder: UnderlineInputBorder(
+                                                      enabledBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
-                                                      focusedBorder: UnderlineInputBorder(
+                                                      focusedBorder: const UnderlineInputBorder(
                                                         borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
@@ -3768,15 +3783,15 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           ],
                                         ),
                                       ),
-                                    ):SizedBox(),
+                                    ):const SizedBox(),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
                                         height: height * 0.35,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -3799,7 +3814,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Number of attempts allowed",
@@ -3814,8 +3829,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     height: height * 0.04,
                                                     width: width * 0.3,
                                                     decoration: BoxDecoration(
-                                                      border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: BorderRadius.all(
+                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(5)),
                                                     ),
                                                     child: Row(
@@ -3829,7 +3844,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               }
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
                                                             child: Icon(
@@ -3845,12 +3860,12 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             width: width * 0.1,
                                                             decoration: BoxDecoration(
                                                               border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                              borderRadius: BorderRadius.all(
+                                                              borderRadius: const BorderRadius.all(
                                                                   Radius.circular(5)),
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                '${numberOfAttempts}',
+                                                                '$numberOfAttempts',
                                                                 style: TextStyle(
                                                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                                                     fontFamily: 'Inter',
@@ -3866,7 +3881,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                               numberOfAttempts=numberOfAttempts+1;
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
 
@@ -3886,7 +3901,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow guest students",
@@ -3926,7 +3941,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
@@ -3966,7 +3981,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
@@ -4011,8 +4026,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         height: height * 0.3,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -4035,7 +4050,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my name",
@@ -4075,7 +4090,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my email",
@@ -4171,16 +4186,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                         onPressed: () {
                                           Navigator.of(context).pushNamedAndRemoveUntil('/createNewAssessment', ModalRoute.withName('/assessmentLandingPage'));
                                         },
-                                        child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: Colors.white, // <-- Button color
                                         ),
+                                        child: const Icon(Icons.add, color: Color.fromRGBO(82, 165, 160, 1),),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -4247,16 +4262,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           //Navigator.of(context).pop();
 
                                         },
-                                        child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: Colors.white, // <-- Button color
                                         ),
+                                        child: const Icon(Icons.save, color: Color.fromRGBO(82, 165, 160, 1),),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,
@@ -4318,8 +4333,6 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                           Navigator.of(context).pop();
                                           if (statusCode.code == 200) {
-                                            print(statusCode.message);
-                                            print(statusCode.data);
                                             // String assessmentCode = statusCode
                                             //     .data
                                             //     .toString()
@@ -4337,24 +4350,19 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                             );
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
                                           }
                                           //Navigator.of(context).pop();
                                         },
-                                        child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
                                           side: const BorderSide(
                                             width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(20),
                                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                         ),
+                                        child: const Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                       ),
                                       Text(
                                         //AppLocalizations.of(context)!.subject_topic,

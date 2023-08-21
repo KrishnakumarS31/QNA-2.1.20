@@ -1767,6 +1767,28 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                              minimumSize: const Size(90, 30),
+                              side: const BorderSide(
+                                width: 1.5,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              ),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(localHeight))
+                          ),
+                          child: Text(AppLocalizations.of(context)!.no,
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: localHeight * 0.018,
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontWeight: FontWeight.w500
+                              )
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        ElevatedButton(
                             style:
                             ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -1979,29 +2001,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 }
                               }}
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                              minimumSize: const Size(90, 30),
-                              side: const BorderSide(
-                                width: 1.5,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              ),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(localHeight))
-                          ),
-                          child: Text(AppLocalizations.of(context)!.no,
-                              style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: localHeight * 0.018,
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontWeight: FontWeight.w500
-                              )
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-
                       ],
                     ),
                   )
