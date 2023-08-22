@@ -426,7 +426,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               0, 106, 100, 1),
-                                          fontSize: localHeight * 0.02,
+                                          fontSize: localHeight * 0.025,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -455,7 +455,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: const TextStyle(
                                           color: Color.fromRGBO(
                                               255, 157, 77, 1),
-                                          fontSize:  0.02,
+                                          fontSize:  20,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -483,7 +483,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w500,
-                                                        fontSize: localHeight * 0.02)),
+                                                        fontSize: localHeight * 0.0225)),
                                               ),
                                             ],
                                           ),),)
@@ -893,7 +893,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w500,
-                                                    fontSize: localHeight * 0.02)),
+                                                    fontSize: localHeight * 0.0225)),
                                           ),
                                         ],
                                       ),),)

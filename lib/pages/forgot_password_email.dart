@@ -4,10 +4,10 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
+
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
     Key? key,
-
     required this.isFromStudent,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class ForgotPasswordEmail extends StatefulWidget {
 class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
-  Color iconColor= const Color.fromRGBO(153, 153, 153, 0.5);
+  Color iconColor = const Color.fromRGBO(153, 153, 153, 0.5);
 
   @override
   void initState() {
@@ -32,304 +32,543 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints)
-        {
-          if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: false,
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          size: 40.0,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      automaticallyImplyLeading: false,
-                      centerTitle: true,
-                      title: Text(
-                        AppLocalizations.of(context)!.forgot_password_caps,
-                        style: TextStyle(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      flexibleSpace: Container(
-                        color: Colors.white,
-                      ),
+        builder: (BuildContext context, BoxConstraints constraints) {
+      if (constraints.maxWidth <= 960 && constraints.maxWidth >= 500) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40.0,
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
-                    body: Column(children: [
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  automaticallyImplyLeading: false,
+                  centerTitle: true,
+                  title: Text(
+                    AppLocalizations.of(context)!.forgot_password_caps,
+                    style: TextStyle(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontSize: height * 0.025,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  flexibleSpace: Container(
+                    color: Colors.white,
+                  ),
+                ),
+                body: Column(children: [
+                  SizedBox(height: height * 0.1),
+                  Center(
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: kElevationToShadow[4],
+                          ),
+                          width: width * 0.9,
+                          child: Form(
+                            key: formKey,
+                            child: SizedBox(
+                              height: height * 0.3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: height * 0.05),
+                                  SizedBox(
+                                      width: width * 0.8,
+                                      child: TextFormField(
+                                        controller: _controller,
+                                        keyboardType: TextInputType.text,
+                                        onChanged: (val) {
+                                          bool valid =
+                                              formKey.currentState!.validate();
+                                          if (valid) {
+                                            iconColor = const Color.fromRGBO(
+                                                82, 165, 160, 1);
+                                          } else {
+                                            iconColor = const Color.fromRGBO(
+                                                153, 153, 153, 0.5);
+                                          }
+                                          setState(() {
+                                            iconColor;
+                                          });
+                                        },
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.always,
+                                          labelStyle: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                          label: Text(
+                                            AppLocalizations.of(context)!
+                                                .regId_emailId,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.025),
+                                          ),
+                                          helperText:
+                                              AppLocalizations.of(context)!
+                                                  .email_helper_text,
+                                          helperStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontStyle: FontStyle.italic,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                          suffixIconColor:
+                                              Color.fromRGBO(82, 165, 160, 1),
+                                          suffixIcon: IconButton(
+                                            iconSize: height * 0.05,
+                                            icon: const Icon(
+                                              Icons.arrow_circle_right,
+                                              //color:
+                                              // (_controller.text.isNotEmpty)
+                                              //     ? const Color.fromRGBO(82, 165, 160, 1)
+                                              //     : const Color.fromRGBO(153, 153, 153, 0.5),
+                                            ),
+                                            onPressed: () async {
+                                              bool valid = formKey.currentState!
+                                                  .validate();
+                                              if (valid) {
+                                                StaticResponse response =
+                                                    StaticResponse(
+                                                        code: 0,
+                                                        message:
+                                                            'Incorrect Email');
+                                                response =
+                                                    await QnaService.sendOtp(
+                                                        _controller.text);
+                                                if (response.code == 200) {
+                                                  showAlertDialog(context);
+                                                } else if (response.code !=
+                                                        null &&
+                                                    response.code != 200) {
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .rightToLeft,
+                                                      child: CustomDialog(
+                                                        title:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .alert_popup,
+                                                        //'Wrong password',
+                                                        content:
+                                                            response.message,
+                                                        //'please enter the correct password',
+                                                        button:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .retry,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              }
+                                            },
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.02),
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_here,
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return AppLocalizations.of(context)!
+                                                .email_uId_helper;
+                                          } else if (RegExp(r'^[a-zA-Z0-9]+$')
+                                              .hasMatch(value)) {
+                                            return null;
+                                          } else if (!RegExp(
+                                                  r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                              .hasMatch(value)) {
+                                            return AppLocalizations.of(context)!
+                                                .enter_valid_email;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.06,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ))),
+                ])));
+      } else if (constraints.maxWidth > 960) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40.0,
+                      color: Color.fromRGBO(28, 78, 80, 1),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  automaticallyImplyLeading: false,
+                  centerTitle: true,
+                  title: Text(
+                    AppLocalizations.of(context)!.forgot_password_caps,
+                    style: TextStyle(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontSize: height * 0.025,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  flexibleSpace: Container(
+                    color: Colors.white,
+                  ),
+                ),
+                body: Column(children: [
+                  SizedBox(height: height * 0.1),
+                  Center(
+                      child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: kElevationToShadow[4],
+                          ),
+                          width: width * 0.35,
+                          child: Form(
+                            key: formKey,
+                            child: SizedBox(
+                              height: height * 0.3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: height * 0.05),
+                                  SizedBox(
+                                      width: width * 0.3,
+                                      child: TextFormField(
+                                        controller: _controller,
+                                        keyboardType: TextInputType.text,
+                                        onChanged: (val) {
+                                          bool valid =
+                                              formKey.currentState!.validate();
+                                          if (valid) {
+                                            iconColor = const Color.fromRGBO(
+                                                82, 165, 160, 1);
+                                          } else {
+                                            iconColor = const Color.fromRGBO(
+                                                153, 153, 153, 0.5);
+                                          }
+                                          setState(() {
+                                            iconColor;
+                                          });
+                                        },
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.always,
+                                          labelStyle: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium,
+                                          label: Text(
+                                            AppLocalizations.of(context)!
+                                                .regId_emailId,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.025),
+                                          ),
+                                          helperText:
+                                              AppLocalizations.of(context)!
+                                                  .email_helper_text,
+                                          helperStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontStyle: FontStyle.italic,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                          suffixIconColor:
+                                              Color.fromRGBO(82, 165, 160, 1),
+                                          suffixIcon: IconButton(
+                                            iconSize: height * 0.05,
+                                            icon: const Icon(
+                                              Icons.arrow_circle_right,
+                                              //color:
+                                              // (_controller.text.isNotEmpty)
+                                              //     ? const Color.fromRGBO(82, 165, 160, 1)
+                                              //     : const Color.fromRGBO(153, 153, 153, 0.5),
+                                            ),
+                                            onPressed: () async {
+                                              bool valid = formKey.currentState!
+                                                  .validate();
+                                              if (valid) {
+                                                StaticResponse response =
+                                                    StaticResponse(
+                                                        code: 0,
+                                                        message:
+                                                            'Incorrect Email');
+                                                response =
+                                                    await QnaService.sendOtp(
+                                                        _controller.text);
+                                                if (response.code == 200) {
+                                                  showAlertDialog(context);
+                                                } else if (response.code !=
+                                                        null &&
+                                                    response.code != 200) {
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .rightToLeft,
+                                                      child: CustomDialog(
+                                                        title:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .alert_popup,
+                                                        //'Wrong password',
+                                                        content:
+                                                            response.message,
+                                                        //'please enter the correct password',
+                                                        button:
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .retry,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              }
+                                            },
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.02),
+                                          hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_here,
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return AppLocalizations.of(context)!
+                                                .email_uId_helper;
+                                          } else if (RegExp(r'^[a-zA-Z0-9]+$')
+                                              .hasMatch(value)) {
+                                            return null;
+                                          } else if (!RegExp(
+                                                  r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                              .hasMatch(value)) {
+                                            return AppLocalizations.of(context)!
+                                                .enter_valid_email;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.06,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ))),
+                ])));
+      } else {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40.0,
+                      color: Color.fromRGBO(28, 78, 80, 1),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  automaticallyImplyLeading: false,
+                  centerTitle: true,
+                  title: Text(
+                    AppLocalizations.of(context)!.forgot_password_caps,
+                    style: TextStyle(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontSize: height * 0.025,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  flexibleSpace: Container(
+                    color: Colors.white,
+                  ),
+                ),
+                body: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       SizedBox(height: height * 0.1),
                       Center(
-                          child:Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: kElevationToShadow[4],
-                              ),
-                              width: width * 0.9,
-                              child:
-                              Form(
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: kElevationToShadow[4],
+                            ),
+                            width: width * 0.9,
+                            child: Form(
                                 key: formKey,
-                                child: SizedBox(
-                                  height: height * 0.3,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      SizedBox(
-                                          height: height * 0.05),
-                                      SizedBox(
-                                          width: width * 0.8,
-                                          child:
-                                          TextFormField(
-                                            controller: _controller,
-                                            keyboardType: TextInputType.text,
-                                            onChanged: (val) {
-                                              bool valid = formKey.currentState!.validate();
-                                              if(valid){
-                                                iconColor=const Color.fromRGBO(82, 165, 160, 1);
-                                              }
-                                              else{
-                                                iconColor=const Color.fromRGBO(153, 153, 153, 0.5);
-                                              }
-                                              setState(() {
-                                                iconColor;
-                                              });
-                                            },
-                                            decoration: InputDecoration(
-                                              floatingLabelBehavior: FloatingLabelBehavior
-                                                  .always,
-                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                              label: Text(AppLocalizations.of(context)!
-                                                  .regId_emailId,
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: height * 0.025),
-                                              ),
-                                              helperText: AppLocalizations.of(context)!
-                                                  .email_helper_text,
-                                              helperStyle: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 0.3),
-                                                  fontFamily: 'Inter',
-                                                  fontStyle: FontStyle.italic,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.016),
-                                              suffixIconColor:
-                                              Color.fromRGBO(82, 165, 160, 1),
-                                              suffixIcon: IconButton(
-                                                iconSize: height * 0.05,
-                                                icon: const Icon(Icons.arrow_circle_right,
-                                                  //color:
-                                                  // (_controller.text.isNotEmpty)
-                                                  //     ? const Color.fromRGBO(82, 165, 160, 1)
-                                                  //     : const Color.fromRGBO(153, 153, 153, 0.5),
-                                                ),
-                                                onPressed: () async {
-                                                  bool valid = formKey.currentState!.validate();
-                                                  if (valid) {
-                                                    StaticResponse response = StaticResponse(
-                                                        code: 0, message: 'Incorrect Email');
-                                                    response =
-                                                    await QnaService.sendOtp(_controller.text);
-                                                    if (response.code == 200) {
-                                                      showAlertDialog(context);
-                                                    } else if (response.code != null &&
-                                                        response.code != 200) {
-                                                      Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type: PageTransitionType.rightToLeft,
-                                                          child: CustomDialog(
-                                                            title: AppLocalizations.of(context)!
-                                                                .alert_popup,
-                                                            //'Wrong password',
-                                                            content: response.message,
-                                                            //'please enter the correct password',
-                                                            button: AppLocalizations.of(context)!
-                                                                .retry,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                  }
-                                                },
-                                              ),
-                                              hintStyle: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 0.3),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.02),
-                                              hintText: AppLocalizations.of(context)!
-                                                  .enter_here,
-                                            ),
-                                            validator: (value) {
-                                              if (value!.isEmpty ||
-                                                  !RegExp(
-                                                      r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                      .hasMatch(value)) {
-                                                return AppLocalizations.of(context)!
-                                                    .enter_valid_email;
-                                              } else {
-                                                return null;
-                                              }
-                                            },
-                                          )),
-                                      SizedBox(
-                                        height: height * 0.06,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ))),
-                    ])));
-          }
-          else if(constraints.maxWidth > 960) {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: false,
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          size: 40.0,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      automaticallyImplyLeading: false,
-                      centerTitle: true,
-                      title: Text(
-                        AppLocalizations.of(context)!.forgot_password_caps,
-                        style: TextStyle(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      flexibleSpace: Container(
-                        color: Colors.white,
-                      ),
-                    ),
-                    body:
-                    Container(
-                        padding:EdgeInsets.only(left: height * 0.5,right: height * 0.5),
-                        child:
-                        Column(children: [
-                          SizedBox(height: height * 0.1),
-                          Center(
-                              child:Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: kElevationToShadow[4],
-                                  ),
-                                  width: width * 0.35,
-                                  child:
-                                  Form(
-                                    key: formKey,
-                                    child: SizedBox(
-                                      height: height * 0.3,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                      Column(
                                         children: [
+                                          SizedBox(height: height * 0.05),
                                           SizedBox(
-                                              height: height * 0.05),
-                                          SizedBox(
-                                              width: width * 0.3,
-                                              child:
-                                              TextFormField(
+                                              width: width * 0.7,
+                                              child: TextFormField(
                                                 controller: _controller,
-                                                keyboardType: TextInputType.text,
+                                                keyboardType:
+                                                    TextInputType.text,
                                                 onChanged: (val) {
-                                                  bool valid = formKey.currentState!.validate();
-                                                  if(valid){
-                                                    iconColor=const Color.fromRGBO(82, 165, 160, 1);
-                                                  }
-                                                  else{
-                                                    iconColor=const Color.fromRGBO(153, 153, 153, 0.5);
+                                                  bool valid = formKey
+                                                      .currentState!
+                                                      .validate();
+                                                  if (valid) {
+                                                    iconColor =
+                                                        const Color.fromRGBO(
+                                                            82, 165, 160, 1);
+                                                  } else {
+                                                    iconColor =
+                                                        const Color.fromRGBO(
+                                                            153, 153, 153, 0.5);
                                                   }
                                                   setState(() {
                                                     iconColor;
                                                   });
                                                 },
                                                 decoration: InputDecoration(
-                                                  floatingLabelBehavior: FloatingLabelBehavior
-                                                      .always,
-                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                  label: Text(AppLocalizations.of(context)!
-                                                      .regId_emailId,
+                                                  floatingLabelBehavior:
+                                                      FloatingLabelBehavior
+                                                          .always,
+                                                  labelStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .headlineMedium,
+                                                  label: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .regId_emailId,
                                                     style: TextStyle(
-                                                        color:
-                                                        const Color.fromRGBO(
+                                                        color: const Color
+                                                                .fromRGBO(
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.025),
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize:
+                                                            height * 0.025),
                                                   ),
-                                                  helperText: AppLocalizations.of(context)!
-                                                      .email_helper_text,
+                                                  helperText:
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .email_helper_text,
                                                   helperStyle: TextStyle(
-                                                      color: const Color.fromRGBO(
+                                                      color: const Color
+                                                              .fromRGBO(
                                                           102, 102, 102, 0.3),
                                                       fontFamily: 'Inter',
-                                                      fontStyle: FontStyle.italic,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                       fontSize: height * 0.016),
                                                   suffixIconColor:
-                                                  Color.fromRGBO(82, 165, 160, 1),
+                                                      Color.fromRGBO(
+                                                          82, 165, 160, 1),
                                                   suffixIcon: IconButton(
                                                     iconSize: height * 0.05,
-                                                    icon: const Icon(Icons.arrow_circle_right,
+                                                    icon: const Icon(
+                                                      Icons.arrow_circle_right,
                                                       //color:
                                                       // (_controller.text.isNotEmpty)
                                                       //     ? const Color.fromRGBO(82, 165, 160, 1)
                                                       //     : const Color.fromRGBO(153, 153, 153, 0.5),
                                                     ),
                                                     onPressed: () async {
-                                                      bool valid = formKey.currentState!.validate();
+                                                      bool valid = formKey
+                                                          .currentState!
+                                                          .validate();
                                                       if (valid) {
-                                                        StaticResponse response = StaticResponse(
-                                                            code: 0, message: 'Incorrect Email');
+                                                        StaticResponse
+                                                            response =
+                                                            StaticResponse(
+                                                                code: 0,
+                                                                message:
+                                                                    'Incorrect Email');
                                                         response =
-                                                        await QnaService.sendOtp(_controller.text);
-                                                        if (response.code == 200) {
-                                                          showAlertDialog(context);
-                                                        } else if (response.code != null &&
-                                                            response.code != 200) {
+                                                            await QnaService
+                                                                .sendOtp(
+                                                                    _controller
+                                                                        .text);
+                                                        if (response.code ==
+                                                            200) {
+                                                          showAlertDialog(
+                                                              context);
+                                                        } else if (response
+                                                                    .code !=
+                                                                null &&
+                                                            response.code !=
+                                                                200) {
                                                           Navigator.push(
                                                             context,
                                                             PageTransition(
-                                                              type: PageTransitionType.rightToLeft,
-                                                              child: CustomDialog(
-                                                                title: AppLocalizations.of(context)!
+                                                              type: PageTransitionType
+                                                                  .rightToLeft,
+                                                              child:
+                                                                  CustomDialog(
+                                                                title: AppLocalizations.of(
+                                                                        context)!
                                                                     .alert_popup,
                                                                 //'Wrong password',
-                                                                content: response.message,
+                                                                content: response
+                                                                    .message,
                                                                 //'please enter the correct password',
-                                                                button: AppLocalizations.of(context)!
+                                                                button: AppLocalizations.of(
+                                                                        context)!
                                                                     .retry,
                                                               ),
                                                             ),
@@ -339,20 +578,31 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                     },
                                                   ),
                                                   hintStyle: TextStyle(
-                                                      color: const Color.fromRGBO(
+                                                      color: const Color
+                                                              .fromRGBO(
                                                           102, 102, 102, 0.3),
                                                       fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                       fontSize: height * 0.02),
-                                                  hintText: AppLocalizations.of(context)!
+                                                  hintText: AppLocalizations.of(
+                                                          context)!
                                                       .enter_here,
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.isEmpty ||
-                                                      !RegExp(
+                                                  if (value!.isEmpty) {
+                                                    return AppLocalizations.of(
+                                                            context)!
+                                                        .email_uId_helper;
+                                                  } else if (RegExp(
+                                                          r'^[a-zA-Z0-9]+$')
+                                                      .hasMatch(value)) {
+                                                    return null;
+                                                  } else if (!RegExp(
                                                           r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                          .hasMatch(value)) {
-                                                    return AppLocalizations.of(context)!
+                                                      .hasMatch(value)) {
+                                                    return AppLocalizations.of(
+                                                            context)!
                                                         .enter_valid_email;
                                                   } else {
                                                     return null;
@@ -364,198 +614,30 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ))),
-                        ]))));
-          }
-          else {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: false,
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          size: 40.0,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      automaticallyImplyLeading: false,
-                      centerTitle: true,
-                      title: Text(
-                        AppLocalizations.of(context)!.forgot_password_caps,
-                        style: TextStyle(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      flexibleSpace: Container(
-                        color: Colors.white,
-                      ),
-                    ),
-                    body: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: height * 0.1),
-                          Center(
-                            child:Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: kElevationToShadow[4],
-                                ),
-                                width: width * 0.9,
-                                child:
-                                Form(
-                                    key: formKey,
-                                    child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              SizedBox(
-                                                  height: height * 0.05),
-                                              SizedBox(
-                                                  width: width * 0.7,
-                                                  child:
-                                                  TextFormField(
-                                                    controller: _controller,
-                                                    keyboardType: TextInputType.text,
-                                                    onChanged: (val) {
-                                                      bool valid = formKey.currentState!.validate();
-                                                      if(valid){
-                                                        iconColor=const Color.fromRGBO(82, 165, 160, 1);
-                                                      }
-                                                      else{
-                                                        iconColor=const Color.fromRGBO(153, 153, 153, 0.5);
-                                                      }
-                                                      setState(() {
-                                                        iconColor;
-                                                      });
-                                                    },
-                                                    decoration: InputDecoration(
-                                                      floatingLabelBehavior: FloatingLabelBehavior
-                                                          .always,
-                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                      label: Text(AppLocalizations.of(context)!
-                                                          .regId_emailId,
-                                                        style: TextStyle(
-                                                            color:
-                                                            const Color.fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.025),
-                                                      ),
-                                                      helperText: AppLocalizations.of(context)!
-                                                          .email_helper_text,
-                                                      helperStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontStyle: FontStyle.italic,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
-                                                      suffixIconColor:
-                                                      Color.fromRGBO(82, 165, 160, 1),
-                                                      suffixIcon: IconButton(
-                                                        iconSize: height * 0.05,
-                                                        icon: const Icon(Icons.arrow_circle_right,
-                                                          //color:
-                                                          // (_controller.text.isNotEmpty)
-                                                          //     ? const Color.fromRGBO(82, 165, 160, 1)
-                                                          //     : const Color.fromRGBO(153, 153, 153, 0.5),
-                                                        ),
-                                                        onPressed: () async {
-                                                          bool valid = formKey.currentState!.validate();
-                                                          if (valid) {
-                                                            StaticResponse response = StaticResponse(
-                                                                code: 0, message: 'Incorrect Email');
-                                                            response =
-                                                            await QnaService.sendOtp(_controller.text);
-                                                            if (response.code == 200) {
-                                                              showAlertDialog(context);
-                                                            } else if (response.code != null &&
-                                                                response.code != 200) {
-                                                              Navigator.push(
-                                                                context,
-                                                                PageTransition(
-                                                                  type: PageTransitionType.rightToLeft,
-                                                                  child: CustomDialog(
-                                                                    title: AppLocalizations.of(context)!
-                                                                        .alert_popup,
-                                                                    //'Wrong password',
-                                                                    content: response.message,
-                                                                    //'please enter the correct password',
-                                                                    button: AppLocalizations.of(context)!
-                                                                        .retry,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            }
-                                                          }
-                                                        },
-                                                      ),
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.02),
-                                                      hintText: AppLocalizations.of(context)!
-                                                          .enter_here,
-                                                    ),
-                                                    validator: (value) {
-                                                      if (value!.isEmpty ||
-                                                          !RegExp(
-                                                              r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                              .hasMatch(value)) {
-                                                        return AppLocalizations.of(context)!
-                                                            .enter_valid_email;
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                  )),
-                                              SizedBox(
-                                                height: height * 0.06,
-                                              ),
-                                            ],
-                                          ),
-                                        ]))),
-                          )])));
-          }
-        }
-    );}
+                                    ]))),
+                      )
+                    ])));
+      }
+    });
+  }
 
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
     Widget okButton = TextButton(
-      child:
-      Center(
-          child:
-          Text(
-            "Verify OTP",
-            style: TextStyle(
-                color: const Color.fromRGBO(48, 145, 139, 1),
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: height * 0.018),
-          )),
+      child: Center(
+          child: Text(
+        "Verify OTP",
+        style: TextStyle(
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      )),
       onPressed: () {
         Navigator.of(context).pop();
-        Navigator.pushNamed(context, '/verifyOtpPage',arguments: [widget.isFromStudent,_controller.text]);
-
+        Navigator.pushNamed(context, '/verifyOtpPage',
+            arguments: [widget.isFromStudent, _controller.text]);
 
         // Navigator.push(
         //   context,

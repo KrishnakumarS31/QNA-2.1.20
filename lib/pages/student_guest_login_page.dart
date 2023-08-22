@@ -152,7 +152,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.0225),
                                                   ),
                                                   hintStyle: TextStyle(
                                                       color: const Color.fromRGBO(
@@ -205,7 +205,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.02),
+                                                          fontSize: height * 0.0225),
                                                     ),
                                               helperText: AppLocalizations.of(
                                                   context)!.organization_helper,
@@ -224,7 +224,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                       102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.025),
+                                                  fontSize: height * 0.02),
                                             ),
                                           )),
                                       SizedBox(height: height * 0.07),
@@ -739,7 +739,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                         ]))]),
                         ]),
                   )));
-        }// This is a test comment by E V Gurudutt
+        }
         else {
           return WillPopScope(
               onWillPop: () async => false,

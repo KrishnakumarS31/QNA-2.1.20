@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/DataSource/design.dart';
-import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
 import '../../../Components/custom_incorrect_popup.dart';
-import '../../../Components/custom_radio_option.dart';
-import '../../../DataSource/http_url.dart';
 import '../../../Entity/Teacher/choice_entity.dart';
 import '../../../Entity/Teacher/question_entity.dart';
 import '../../../Components/end_drawer_menu_teacher.dart';
@@ -283,8 +280,8 @@ class AddQuestionState extends State<AddQuestion> {
                                 height: height * 0.7,
                                 width: width * 0.93,
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                  borderRadius: BorderRadius.all(
+                                  border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                  borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 ),
                                 child:
@@ -306,7 +303,7 @@ class AddQuestionState extends State<AddQuestion> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -331,6 +328,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
                                                     Expanded(
+                                                      flex: 1,
                                                       child: Row(
                                                         children: [
                                                           Transform.scale(
@@ -354,9 +352,9 @@ class AddQuestionState extends State<AddQuestion> {
                                                           )
                                                         ],
                                                       ),
-                                                      flex: 1,
                                                     ),
                                                     Expanded(
+                                                      flex: 1,
                                                       child: Row(
                                                         children: [
                                                           Transform.scale(
@@ -380,9 +378,9 @@ class AddQuestionState extends State<AddQuestion> {
                                                           )
                                                         ],
                                                       ),
-                                                      flex: 1,
                                                     ),
                                                     Expanded(
+                                                      flex: 1,
                                                       child: Row(
                                                         children: [
                                                           Transform.scale(
@@ -407,7 +405,6 @@ class AddQuestionState extends State<AddQuestion> {
                                                           )
                                                         ],
                                                       ),
-                                                      flex: 1,
                                                     ),
                                                   ],
                                                 ),
@@ -426,7 +423,7 @@ class AddQuestionState extends State<AddQuestion> {
                                           child: Container(
                                             width: width * 0.9,
                                             decoration: BoxDecoration(
-                                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                               // borderRadius: BorderRadius.all(
                                               //     Radius.circular(10)),
                                             ),
@@ -560,7 +557,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(height:50.0)
+                                                      const SizedBox(height:50.0)
 
                                                     ],
                                                   ),
@@ -662,7 +659,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
                                                                   )),
-                                                              Container(
+                                                              SizedBox(
                                                                 width : width * 0.59,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
@@ -734,7 +731,7 @@ class AddQuestionState extends State<AddQuestion> {
 
                                                 _questionTypeValue=="Descriptive"
                                                     ?
-                                                SizedBox()
+                                                const SizedBox()
                                                     :
                                                 Padding(
                                                   padding: EdgeInsets.only(left:width * 0.02),
@@ -765,7 +762,7 @@ class AddQuestionState extends State<AddQuestion> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -798,10 +795,10 @@ class AddQuestionState extends State<AddQuestion> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "Suggest what to study if answered incorrectly",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -826,10 +823,10 @@ class AddQuestionState extends State<AddQuestion> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "URL - Any reference (Optional)",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -879,16 +876,16 @@ class AddQuestionState extends State<AddQuestion> {
                                         urlController.clear();
                                       });
                                     },
-                                    child: Icon(Icons.refresh,size:width * 0.04, color: const Color.fromRGBO(82, 165, 160, 1),),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: Colors.white, // <-- Button color
                                     ),
+                                    child: Icon(Icons.refresh,size:width * 0.04, color: const Color.fromRGBO(82, 165, 160, 1),),
                                   ),
                                   SizedBox(height: width * 0.005),
                                   Text(
@@ -930,16 +927,16 @@ class AddQuestionState extends State<AddQuestion> {
                                       }
                                       showQuestionPreview(context);
                                     },
-                                    child: Icon(Icons.search,size:width * 0.04, color: const Color.fromRGBO(82, 165, 160, 1),),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: Colors.white, // <-- Button color
                                     ),
+                                    child: Icon(Icons.search,size:width * 0.04, color: const Color.fromRGBO(82, 165, 160, 1),),
                                   ),
                                   SizedBox(height: width * 0.005),
                                   Text(
@@ -972,8 +969,8 @@ class AddQuestionState extends State<AddQuestion> {
                                       question.advisorUrl=urlController.text;
                                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
 
-                                      if(_formKey.currentState!.validate() && questionFormKey.currentState!.validate())
-                                      {
+                                      // if(_formKey.currentState!.validate() && questionFormKey.currentState!.validate())
+                                      // {
                                         if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
                                           Navigator.push(
                                             context,
@@ -995,22 +992,22 @@ class AddQuestionState extends State<AddQuestion> {
                                         else{
                                           Navigator.of(context).pushNamedAndRemoveUntil('/inprogressQuestionBank', ModalRoute.withName('/createNewQuestion'));
                                         }
-                                      }
+                                    //  }
                                       // Navigator.pushNamed(
                                       //   context,
                                       //   '/inprogressQuestionBank',
                                       // );
                                     },
-                                    child: Icon(Icons.arrow_forward_outlined,size:width * 0.04, color: Colors.white),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                     ),
+                                    child: Icon(Icons.arrow_forward_outlined,size:width * 0.04, color: Colors.white),
                                   ),
                                   SizedBox(height: width * 0.005),
                                   Text(
@@ -1094,7 +1091,7 @@ class AddQuestionState extends State<AddQuestion> {
                             Container(
                               width: width * 0.9,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                 // borderRadius: BorderRadius.all(
                                 //     Radius.circular(10)),
                               ),
@@ -1119,6 +1116,7 @@ class AddQuestionState extends State<AddQuestion> {
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Expanded(
+                                          flex: 1,
                                           child: Row(
                                             children: [
                                               Radio(
@@ -1139,9 +1137,9 @@ class AddQuestionState extends State<AddQuestion> {
                                               )
                                             ],
                                           ),
-                                          flex: 1,
                                         ),
                                         Expanded(
+                                          flex: 1,
                                           child: Row(
                                             children: [
                                               Radio(
@@ -1162,9 +1160,9 @@ class AddQuestionState extends State<AddQuestion> {
                                               )
                                             ],
                                           ),
-                                          flex: 1,
                                         ),
                                         Expanded(
+                                          flex: 1,
                                           child: Row(
                                             children: [
                                               Radio(
@@ -1186,7 +1184,6 @@ class AddQuestionState extends State<AddQuestion> {
                                               )
                                             ],
                                           ),
-                                          flex: 1,
                                         ),
                                       ],
                                     ),
@@ -1204,7 +1201,7 @@ class AddQuestionState extends State<AddQuestion> {
                               child: Container(
                                 width: width * 0.9,
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                  border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                   // borderRadius: BorderRadius.all(
                                   //     Radius.circular(10)),
                                 ),
@@ -1427,7 +1424,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                       icon: Icon(
                                                         size:height * 0.03,
                                                         Icons.delete_outline,
-                                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                                       ),
                                                     ),
                                                   ),
@@ -1520,7 +1517,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                       icon: Icon(
                                                         size:height * 0.03,
                                                         Icons.delete_outline,
-                                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                                       ),
                                                     ),
                                                   ),
@@ -1534,7 +1531,7 @@ class AddQuestionState extends State<AddQuestion> {
 
                                     _questionTypeValue=="Descriptive"
                                         ?
-                            SizedBox():
+                            const SizedBox():
                                     Padding(
                                       padding: EdgeInsets.only(left:width * 0.02),
                                       child: TextButton(
@@ -1564,7 +1561,7 @@ class AddQuestionState extends State<AddQuestion> {
                             Container(
                               width: width * 0.9,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                 // borderRadius: BorderRadius.all(
                                 //     Radius.circular(10)),
                               ),
@@ -1597,10 +1594,10 @@ class AddQuestionState extends State<AddQuestion> {
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.016),
                                         hintText: "Suggest what to study if answered incorrectly",
-                                        enabledBorder: UnderlineInputBorder(
+                                        enabledBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                         ),
-                                        focusedBorder: UnderlineInputBorder(
+                                        focusedBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                         ),
                                         // focusedBorder: OutlineInputBorder(
@@ -1625,10 +1622,10 @@ class AddQuestionState extends State<AddQuestion> {
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.016),
                                         hintText: "URL - Any reference (Optional)",
-                                        enabledBorder: UnderlineInputBorder(
+                                        enabledBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                         ),
-                                        focusedBorder: UnderlineInputBorder(
+                                        focusedBorder: const UnderlineInputBorder(
                                           borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                         ),
                                         // focusedBorder: OutlineInputBorder(
@@ -1672,16 +1669,16 @@ class AddQuestionState extends State<AddQuestion> {
                                           urlController.clear();
                                         });
                                       },
-                                      child: Icon(Icons.refresh,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
                                       style: ElevatedButton.styleFrom(
                                         side: const BorderSide(
                                           width: 2,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(20),
+                                        shape: const CircleBorder(),
+                                        padding: const EdgeInsets.all(20),
                                         backgroundColor: Colors.white, // <-- Button color
                                       ),
+                                      child: Icon(Icons.refresh,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
                                     ),
                                     SizedBox(height: width * 0.005),
                                     Text(
@@ -1723,16 +1720,16 @@ class AddQuestionState extends State<AddQuestion> {
                                         }
                                         showQuestionPreview(context);
                                       },
-                                      child: Icon(Icons.search,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
                                       style: ElevatedButton.styleFrom(
                                         side: const BorderSide(
                                           width: 2,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(20),
+                                        shape: const CircleBorder(),
+                                        padding: const EdgeInsets.all(20),
                                         backgroundColor: Colors.white, // <-- Button color
                                       ),
+                                      child: Icon(Icons.search,size:height * 0.05, color: const Color.fromRGBO(82, 165, 160, 1),),
                                     ),
                                     SizedBox(height: width * 0.005),
                                     Text(
@@ -1765,8 +1762,8 @@ class AddQuestionState extends State<AddQuestion> {
                                         question.advisorUrl=urlController.text;
                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
 
-                                        if(_formKey.currentState!.validate() && questionFormKey.currentState!.validate())
-                                          {
+                                        // if(_formKey.currentState!.validate() && questionFormKey.currentState!.validate())
+                                        //   {
                                             if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
                                               Navigator.push(
                                                 context,
@@ -1788,7 +1785,7 @@ class AddQuestionState extends State<AddQuestion> {
                                             else{
                                               Navigator.of(context).pushNamedAndRemoveUntil('/inprogressQuestionBank', ModalRoute.withName('/createNewQuestion'));
                                             }
-                                          }
+                                          //}
 
 
                                         // Navigator.pushNamed(
@@ -1796,16 +1793,16 @@ class AddQuestionState extends State<AddQuestion> {
                                         //   '/inprogressQuestionBank',
                                         // );
                                       },
-                                      child: Icon(Icons.arrow_forward_outlined,size:height * 0.05, color: Colors.white),
                                       style: ElevatedButton.styleFrom(
                                         side: const BorderSide(
                                           width: 2,
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
-                                        shape: CircleBorder(),
-                                        padding: EdgeInsets.all(20),
+                                        shape: const CircleBorder(),
+                                        padding: const EdgeInsets.all(20),
                                         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                       ),
+                                      child: Icon(Icons.arrow_forward_outlined,size:height * 0.05, color: Colors.white),
                                     ),
                                     SizedBox(height: width * 0.005),
                                     Text(
@@ -1882,8 +1879,8 @@ class AddQuestionState extends State<AddQuestion> {
                                 height: height * 0.7,
                                 width: width * 0.93,
                                 decoration: BoxDecoration(
-                                  border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                  borderRadius: BorderRadius.all(
+                                  border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                  borderRadius: const BorderRadius.all(
                                       Radius.circular(10)),
                                 ),
                                 child:
@@ -1901,7 +1898,7 @@ class AddQuestionState extends State<AddQuestion> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -1924,6 +1921,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Radio(
@@ -1944,9 +1942,9 @@ class AddQuestionState extends State<AddQuestion> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Radio(
@@ -1967,9 +1965,9 @@ class AddQuestionState extends State<AddQuestion> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                   Expanded(
+                                                    flex: 1,
                                                     child: Row(
                                                       children: [
                                                         Radio(
@@ -1991,7 +1989,6 @@ class AddQuestionState extends State<AddQuestion> {
                                                         )
                                                       ],
                                                     ),
-                                                    flex: 1,
                                                   ),
                                                 ],
                                               ),
@@ -2007,7 +2004,7 @@ class AddQuestionState extends State<AddQuestion> {
                                           child: Container(
                                             width: width * 0.9,
                                             decoration: BoxDecoration(
-                                              border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                               // borderRadius: BorderRadius.all(
                                               //     Radius.circular(10)),
                                             ),
@@ -2273,7 +2270,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                                         fontWeight: FontWeight.w400,
                                                                         fontSize: height * 0.018),
                                                                   )),
-                                                              Container(
+                                                              SizedBox(
                                                                 width : width * 0.59,
                                                                 child: TextFormField(
                                                                   controller: chooses[i],
@@ -2345,7 +2342,7 @@ class AddQuestionState extends State<AddQuestion> {
 
                                                 _questionTypeValue=="Descriptive"
                                                     ?
-                                                    SizedBox()
+                                                    const SizedBox()
                                                 // Padding(
                                                 //     padding: EdgeInsets.only(left: width * 0.02,bottom: width * 0.02),
                                                 //     child: TextField(
@@ -2392,7 +2389,7 @@ class AddQuestionState extends State<AddQuestion> {
                                         Container(
                                           width: width * 0.9,
                                           decoration: BoxDecoration(
-                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                           ),
@@ -2425,10 +2422,10 @@ class AddQuestionState extends State<AddQuestion> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "Suggest what to study if answered incorrectly",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -2453,10 +2450,10 @@ class AddQuestionState extends State<AddQuestion> {
                                                         fontWeight: FontWeight.w400,
                                                         fontSize: height * 0.016),
                                                     hintText: "URL - Any reference (Optional)",
-                                                    enabledBorder: UnderlineInputBorder(
+                                                    enabledBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
-                                                    focusedBorder: UnderlineInputBorder(
+                                                    focusedBorder: const UnderlineInputBorder(
                                                       borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                     ),
                                                     // focusedBorder: OutlineInputBorder(
@@ -2506,16 +2503,16 @@ class AddQuestionState extends State<AddQuestion> {
                                         urlController.clear();
                                       });
                                     },
-                                    child: Icon(Icons.refresh, color: const Color.fromRGBO(82, 165, 160, 1),),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: Colors.white, // <-- Button color
                                     ),
+                                    child: const Icon(Icons.refresh, color: Color.fromRGBO(82, 165, 160, 1),),
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
@@ -2556,16 +2553,16 @@ class AddQuestionState extends State<AddQuestion> {
                                       }
                                       showQuestionPreview(context);
                                     },
-                                    child: Icon(Icons.search, color: const Color.fromRGBO(82, 165, 160, 1),),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: Colors.white, // <-- Button color
                                     ),
+                                    child: const Icon(Icons.search, color: Color.fromRGBO(82, 165, 160, 1),),
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
@@ -2597,8 +2594,8 @@ class AddQuestionState extends State<AddQuestion> {
                                       question.advisorUrl=urlController.text;
                                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(question);
 
-                                      if(_formKey.currentState!.validate() && questionFormKey.currentState!.validate())
-                                      {
+                                      // if(_formKey.currentState!.validate() && questionFormKey.currentState!.validate())
+                                      // {
                                         if(_questionTypeValue=='MCQ' && !radioList.contains(true)){
                                           Navigator.push(
                                             context,
@@ -2620,22 +2617,22 @@ class AddQuestionState extends State<AddQuestion> {
                                         else{
                                           Navigator.of(context).pushNamedAndRemoveUntil('/inprogressQuestionBank', ModalRoute.withName('/createNewQuestion'));
                                         }
-                                      }
+                                      // }
                                       // Navigator.pushNamed(
                                       //   context,
                                       //   '/inprogressQuestionBank',
                                       // );
                                     },
-                                    child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                     ),
+                                    child: const Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,

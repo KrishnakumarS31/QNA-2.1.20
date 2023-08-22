@@ -1,3 +1,4 @@
+import 'package:date_field/date_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -42,6 +43,10 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
   TextEditingController semesterController = TextEditingController();
   CreateAssessmentModel assessment =CreateAssessmentModel(questions: []);
   TextEditingController questionSearchController = TextEditingController();
+  static final RegExp numberRegExp = RegExp('[a-zA-Z]');
+  final formKeyFortime = GlobalKey<FormState>();
+  TextEditingController hourController = TextEditingController();
+  TextEditingController minuteController = TextEditingController();
 
   List<questionModel.Question> questionList = [];
   int pageNumber=1;
@@ -2011,167 +2016,87 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ),
                                               ),
                                             ),
-                                            GestureDetector(
-                                              onTap: (){
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (BuildContext context) {
-                                                      return Dialog(
-                                                        shape: const RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.all(
-                                                                Radius.circular(17))),
-                                                        child: SingleChildScrollView(
-                                                          scrollDirection: Axis.vertical,
-                                                          child: Container(
-                                                            height: height * 0.3,
-                                                            width: width * 0.3,
-                                                            decoration: BoxDecoration(
-                                                              border: Border.all(
-                                                                  color: Colors.black38,
-                                                                  width: 1),
-                                                              borderRadius:
-                                                              BorderRadius.circular(17),
-                                                            ),
-                                                            child: Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  left: width * 0.02,
-                                                                  right: width * 0.02,
-                                                                  top: height * 0.02,
-                                                                  bottom: height * 0.02),
-                                                              child: Column(
-                                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                                children: [
-                                                                  // Container(
-                                                                  //   width: width * 0.5,
-                                                                  //   child: Row(
-                                                                  //     children: [
-                                                                  //       SizedBox(width: width*0.12,),
-                                                                  //       SizedBox(
-                                                                  //         width: width * 0.12,
-                                                                  //         child: Text(
-                                                                  //           "HH",
-                                                                  //           style: TextStyle(
-                                                                  //             fontSize: height * 0.020,
-                                                                  //             fontFamily: "Inter",
-                                                                  //             fontWeight: FontWeight.w700,
-                                                                  //             color:
-                                                                  //             const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //       SizedBox(
-                                                                  //         width: width * 0.1,
-                                                                  //         child: Text(
-                                                                  //           "MM",
-                                                                  //           style: TextStyle(
-                                                                  //             fontSize: height * 0.020,
-                                                                  //             fontFamily: "Inter",
-                                                                  //             fontWeight: FontWeight.w700,
-                                                                  //             color:
-                                                                  //             const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //           ),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //       Text(
-                                                                  //         "  ",
-                                                                  //         style: TextStyle(
-                                                                  //           fontSize: height * 0.020,
-                                                                  //           fontFamily: "Inter",
-                                                                  //           fontWeight: FontWeight.w700,
-                                                                  //           color:
-                                                                  //           const Color.fromRGBO(102, 102, 102, 1),
-                                                                  //         ),
-                                                                  //       ),
-                                                                  //     ],
-                                                                  //   ),
-                                                                  // ),
-                                                                  SizedBox(
-                                                                    width: width * 0.3,
-                                                                    child: TimePickerSpinner(
-                                                                      time: DateTime(2000,1,1,0,0),
-                                                                      is24HourMode: true,
-                                                                      normalTextStyle: TextStyle(
-                                                                        fontSize: height * 0.02,
-                                                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                      highlightedTextStyle: TextStyle(
-                                                                        fontSize: height * 0.02,
-                                                                        color: const Color.fromRGBO(51, 51, 51, 1),
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w700,
-                                                                      ),
-                                                                      spacing: width * 0.002,
-                                                                      itemHeight: height * 0.05,
-                                                                      isForce2Digits: true,
-                                                                      onTimeChange: (time) {
-                                                                        setState(() {
-                                                                          timeLimit = time;
-                                                                        });
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                  ElevatedButton(
-                                                                    style: ElevatedButton.styleFrom(
-                                                                      minimumSize: Size(width* 0.03, height*0.04),
-                                                                      side: const BorderSide(
-                                                                          color: Color.fromRGBO(153, 153, 153, 0.5)
-                                                                      ),
-                                                                      backgroundColor:
-                                                                      const Color.fromRGBO(82, 165, 160, 1),
-                                                                      //minimumSize: Size(280, 48),
-                                                                      shape: RoundedRectangleBorder(
-                                                                        borderRadius: BorderRadius.circular(35),
-                                                                      ),
-                                                                    ),
-                                                                    //shape: StadiumBorder(),
-                                                                    onPressed: () {
-                                                                      timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
-                                                                      Navigator.of(context).pop();
-                                                                    },
-                                                                    child: Text(
-                                                                      //AppLocalizations.of(context)!.edit_button,
-                                                                      'OK',
-                                                                      style: TextStyle(
-                                                                          fontSize: height * 0.02,
-                                                                          fontFamily: "Inter",
-                                                                          color: Colors.white,
-                                                                          fontWeight: FontWeight.w400),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
+                                            Padding(
+                                              padding:  EdgeInsets.only(left : width * 0.03),
+                                              child: Form(
+                                                key:formKeyFortime,
+                                                child: Row(
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.05,
+                                                      child: TextFormField(
+                                                        onChanged: (val) {
+                                                          formKeyFortime.currentState!.validate();
+                                                        },
+                                                        validator: (value)
+                                                        {
+                                                          if(value != null && numberRegExp.hasMatch(value))
+                                                          {
+                                                            return "Enter Digits Only";
+                                                          }
+                                                        },
+                                                        enabled: true,
+                                                        controller: hourController,
+                                                        textAlign: TextAlign.center ,
+                                                        keyboardType: TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          hintStyle: TextStyle(
+                                                              color:  hourController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.018),
+                                                          hintText: "HH",
+                                                          enabledBorder: const UnderlineInputBorder(
+                                                            borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                          ),
+                                                          focusedBorder: const UnderlineInputBorder(
+                                                            borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                           ),
                                                         ),
-                                                      );
-                                                    });
-                                              },
-                                              child: Padding(
-                                                padding:  EdgeInsets.only(left : width * 0.03),
-                                                child: SizedBox(
-                                                  width: width * 0.05,
-                                                  child: TextField(
-                                                    enabled: false,
-                                                    controller: timeLimitController,
-                                                    keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
-
-                                                      hintStyle: TextStyle(
-                                                          color:  timeLimitController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
-                                                      hintText: "HH:MM",
-                                                      enabledBorder: const UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                      ),
-                                                      focusedBorder: const UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
                                                       ),
                                                     ),
-                                                  ),
+                                                    Text(":",
+                                                      style:TextStyle(
+                                                          color:  hourController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.018),),
+                                                    SizedBox(
+                                                      width: width * 0.05,
+                                                      child: TextFormField(
+                                                        onChanged: (val) {
+                                                          formKeyFortime.currentState!.validate();
+                                                        },
+                                                        validator: (value)
+                                                        {
+                                                          if(value != null && numberRegExp.hasMatch(value))
+                                                          {
+                                                            return "Enter Digits Only";
+                                                          }
+                                                        },
+                                                        //inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                                                        enabled: true,
+                                                        controller: minuteController,
+                                                        textAlign: TextAlign.center ,
+                                                        keyboardType: TextInputType.number,
+                                                        decoration: InputDecoration(
+                                                          hintStyle: TextStyle(
+                                                              color:  minuteController!=null?const Color.fromRGBO(102, 102, 102, 1):const Color.fromRGBO(102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.018),
+                                                          hintText: "MM",
+                                                          enabledBorder: const UnderlineInputBorder(
+                                                            borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                          ),
+                                                          focusedBorder: const UnderlineInputBorder(
+                                                            borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+
+                                                  ],
                                                 ),
                                               ),
                                             ),
@@ -2220,19 +2145,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                 children: [
                                                                   SizedBox(
                                                                     height:height*0.2,
-                                                                    child: CupertinoDatePicker(
-                                                                      initialDateTime: DateTime.now(),
-                                                                      onDateTimeChanged: (DateTime newdate) {
-                                                                        setState(() {
-                                                                          startDate=newdate;
-                                                                        });
-                                                                      },
-                                                                      use24hFormat: true,
-                                                                      maximumDate: DateTime(3000, 12, 30),
-                                                                      minimumYear: 2023,
-                                                                      maximumYear: 3000,
-                                                                      minuteInterval: 1,
-                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    child: DateTimeFormField(
+                                                                        onDateSelected: (DateTime newdate) {
+                                                                          setState(() {
+                                                                            startDate=newdate;
+                                                                          });
+                                                                        },
+                                                                        use24hFormat: true,
+                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!),
+                                                                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                                                        mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(
@@ -2342,19 +2264,16 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                                 children: [
                                                                   SizedBox(
                                                                     height:height*0.2,
-                                                                    child: CupertinoDatePicker(
-                                                                      initialDateTime: DateTime.now(),
-                                                                      onDateTimeChanged: (DateTime newdate) {
-                                                                        setState(() {
-                                                                          endDate=newdate;
-                                                                        });
-                                                                      },
-                                                                      use24hFormat: true,
-                                                                      maximumDate: DateTime(3000, 12, 30),
-                                                                      minimumYear: 2023,
-                                                                      maximumYear: 3000,
-                                                                      minuteInterval: 1,
-                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    child: DateTimeFormField(
+                                                                        onDateSelected: (DateTime newdate) {
+                                                                          setState(() {
+                                                                            endDate=newdate;
+                                                                          });
+                                                                        },
+                                                                        use24hFormat: true,
+                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
+                                                                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                                                        mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(
@@ -2869,7 +2788,9 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentSettings = assessmentSettings;
                                           assessment.assessmentStartdate = startDate.microsecondsSinceEpoch;
                                           assessment.assessmentEnddate = endDate.microsecondsSinceEpoch;
-                                          assessment.assessmentDuration = (timeLimit.hour * 60) + timeLimit.minute;
+                                          int hour = hourController.text != null && hourController.text.isNotEmpty ? int.parse(hourController.text.toString()) : 0;
+                                          int minute = minuteController.text != null && minuteController.text.isNotEmpty ? int.parse(minuteController.text.toString()) : 0;
+                                          assessment.assessmentDuration = (hour * 60) + minute;
                                           int totalMark=0;
                                           for(int i=0;i<questionList.length;i++){
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
@@ -2946,7 +2867,9 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentSettings = assessmentSettings;
                                           assessment.assessmentStartdate = startDate.microsecondsSinceEpoch;
                                           assessment.assessmentEnddate = endDate.microsecondsSinceEpoch;
-                                          assessment.assessmentDuration = (timeLimit.hour * 60) + timeLimit.minute;
+                                          int hour = hourController.text != null && hourController.text.isNotEmpty ? int.parse(hourController.text.toString()) : 0;
+                                          int minute = minuteController.text != null && minuteController.text.isNotEmpty ? int.parse(minuteController.text.toString()) : 0;
+                                          assessment.assessmentDuration = (hour * 60) + minute;
                                           int totalMark=0;
                                           assessment.questions=[];
                                           for(int i=0;i<questionList.length;i++){

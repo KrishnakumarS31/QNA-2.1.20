@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Components/preference.dart';
 import 'package:qna_test/Services/qna_service.dart';
-import '../Components/custom_incorrect_popup.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
@@ -259,6 +257,19 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: localHeight * 0.2),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: Text(
+                                AppLocalizations.of(context)!.login_loginPage,
+                                style: TextStyle(
+                                  fontSize: localHeight * 0.02,
+                                  color: const Color.fromRGBO(
+                                      102, 102, 102, 1),
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )),
+                          SizedBox(height: localHeight * 0.025),
                           Center(
                               child:
                               Container(
@@ -456,7 +467,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         child: ElevatedButton(
                                           style:
                                           ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
+                                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
                                             side: const BorderSide(
                                                 width: 1, // the thickness
                                                 color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
@@ -478,7 +489,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       0.02,
                                                   fontWeight: FontWeight
                                                       .w400,
-                                                  color: const Color.fromRGBO(82, 165, 160, 1))),
+                                                  color: Colors.white)),
                                           onPressed: () async {
                                             _prefService
                                                 .createCache(
@@ -747,8 +758,23 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                       child: SizedBox(
                           width: localWidth * 0.7,
                           child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: localHeight * 0.15),
+                                Row(
+                                    children: [
+                                      SizedBox(width: localWidth * 0.2),
+                                    Text(
+                                      AppLocalizations.of(context)!.login_loginPage,
+                                      style: TextStyle(
+                                        fontSize: localHeight * 0.02,
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    )]),
+                                SizedBox(height: localHeight * 0.025),
                                 Center(
                                     child:
                                     Container(
@@ -940,7 +966,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               child: ElevatedButton(
                                                 style:
                                                 ElevatedButton.styleFrom(
-                                                  backgroundColor:  const Color.fromRGBO(82, 165, 160, 1),
+                                                  backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
                                                   side: const BorderSide(
                                                       width: 1, // the thickness
                                                       color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
@@ -1235,6 +1261,19 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: localHeight * 0.2),
+                          Padding(
+                              padding: const EdgeInsets.only(left: 50),
+                              child: Text(
+                                AppLocalizations.of(context)!.login_loginPage,
+                                style: TextStyle(
+                                  fontSize: localHeight * 0.02,
+                                  color: const Color.fromRGBO(
+                                      102, 102, 102, 1),
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )),
+                          SizedBox(height: localHeight * 0.2),
                           Center(
                               child:
                               Container(
@@ -1431,10 +1470,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         child:ElevatedButton(
                                           style:
                                           ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
+                                            backgroundColor: const Color.fromRGBO(82,165,160,1),
                                             side: const BorderSide(
-                                                width: 1, // the thickness
-                                                color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                              width: 1, // the thickness
+                                              color: Color.fromRGBO(82, 165, 160, 1), // the color of the border
                                             ),
                                             minimumSize:
                                             const Size(189, 37),

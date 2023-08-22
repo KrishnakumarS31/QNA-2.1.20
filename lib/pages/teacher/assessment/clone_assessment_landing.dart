@@ -331,9 +331,9 @@ class CloneAssessmentLandingState extends State<CloneAssessmentLanding> {
     assessment =Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     DateTime tsDate = DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!);
-    startDateTime = "${tsDate.day}/${tsDate.month}/${tsDate.year} ${tsDate.hour>12?tsDate.hour-12:tsDate.hour}:${tsDate.hour} ${tsDate.hour>12?"PM":"AM"}";
+    startDateTime = "${tsDate.day}/${tsDate.month}/${tsDate.year} ${tsDate.hour>12?tsDate.hour-12:tsDate.hour}:${tsDate.minute} ${tsDate.hour>12?"PM":"AM"}";
     DateTime teDate = DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!);
-    endDateTime = "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour>12?teDate.hour-12:teDate.hour}:${teDate.hour} ${teDate.hour>12?"PM":"AM"}";
+    endDateTime = "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour>12?teDate.hour-12:teDate.hour}:${teDate.minute} ${teDate.hour>12?"PM":"AM"}";
     for(int i=0;i<assessment.questions!.length;i++){
       totalMarks=totalMarks+assessment.questions![i].questionMark!;
     }
