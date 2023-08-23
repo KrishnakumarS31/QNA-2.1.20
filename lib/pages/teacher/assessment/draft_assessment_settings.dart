@@ -1114,6 +1114,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1200,7 +1201,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            : SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1281,6 +1283,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1320,7 +1323,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                :SizedBox()
                                           ],
                                         ),
                                       ),
@@ -1524,7 +1528,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                           //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -1601,7 +1605,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                           assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -1609,7 +1613,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessmentSettings.showAdvisorName = showName;
                                           assessmentSettings.showAdvisorEmail = showEmail;
                                           assessmentSettings.notAvailable = false;
-                                          assessmentSettings.avalabilityForPractice = true;
+                                          assessmentSettings.avalabilityForPractice = category == 'Test' ? allowPublishPublic:true;
                                           showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                           showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                           assessment.assessmentSettings = assessmentSettings;
@@ -2367,6 +2371,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2450,7 +2455,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            :SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2531,6 +2537,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2570,7 +2577,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                : SizedBox()
                                           ],
                                         ),
                                       ),
@@ -2774,7 +2782,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                           //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -2853,7 +2861,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                           assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -3732,6 +3740,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -3818,7 +3827,9 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            :
+                                                SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -3899,6 +3910,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -3938,7 +3950,8 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                :SizedBox()
                                           ],
                                         ),
                                       ),
@@ -4142,7 +4155,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'inprogress';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                           //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -4219,7 +4232,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                           assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;

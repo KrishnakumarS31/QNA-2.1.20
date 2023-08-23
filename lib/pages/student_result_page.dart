@@ -240,9 +240,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                        Column(
                                             children: [
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                                  SizedBox(width: localWidth * 0.3),
                                                   SizedBox(
                                                     width:localHeight * 0.15,
                                                     child: Text(
@@ -265,9 +266,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   ),],
                                               ),
                                               Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
+                                                  SizedBox(width: localWidth * 0.3),
+                                                  // Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
                                                     width:localHeight * 0.15,
                                                     child: Text(
@@ -290,8 +292,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   ),],
                                               ),
                                               Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
+                                                  SizedBox(width: localWidth * 0.3),
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
                                                     width:localHeight * 0.15,
@@ -313,8 +316,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           fontSize: localHeight * 0.022)),],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
+                                                  SizedBox(width: localWidth * 0.3),
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
                                                     width:localHeight * 0.15,
@@ -336,8 +340,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           fontSize: localHeight * 0.022)),],
                                               ),
                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
+                                                  SizedBox(width: localWidth * 0.3),
                                                   //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                                   SizedBox(
                                                     width:localHeight * 0.15,
@@ -852,8 +857,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     Column(
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            SizedBox(width: localWidth * 0.4),
                                             //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(
                                               width:localHeight * 0.15,
@@ -877,8 +883,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             ),],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            SizedBox(width: localWidth * 0.4),
                                             //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(
                                               width:localHeight * 0.15,
@@ -902,8 +909,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             ),],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            SizedBox(width: localWidth * 0.4),
                                             //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(
                                               width:localHeight * 0.15,
@@ -925,8 +933,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.022)),],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            SizedBox(width: localWidth * 0.4),
                                             //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(
                                               width:localHeight * 0.15,
@@ -948,8 +957,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.022)),],
                                         ),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
+                                            SizedBox(width: localWidth * 0.4),
                                             //Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(
                                               width:localHeight * 0.15,

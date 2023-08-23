@@ -1320,6 +1320,7 @@ class AddQuestionState extends State<AddQuestion> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Container(
+                                            width:width * 0.23,
                                             alignment: Alignment.centerLeft,
                                             child: Text(
                                               AppLocalizations.of(context)!.choices,
@@ -1334,10 +1335,9 @@ class AddQuestionState extends State<AddQuestion> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(left: width * 0.29),
+                                            padding: EdgeInsets.only(left:width * 0.065),
                                             child: Container(
-                                              alignment: Alignment.centerLeft,
-                                              //width: width * 0.11,
+                                              //alignment: Alignment.center,
                                               width: width * 0.05,
                                               child: Text(
                                                 textAlign: TextAlign.right,
@@ -1352,10 +1352,10 @@ class AddQuestionState extends State<AddQuestion> {
                                               ),
                                             ),
                                           ),
+
                                         ],
                                       ),
                                     ),
-
                                     _questionTypeValue=="Descriptive"
                                         ? const SizedBox(height: 0,)
                                         : _questionTypeValue=="Survey"

@@ -42,6 +42,9 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
   UserDetails userDetails=UserDetails();
   bool onlyMyAssessments = true;
   bool myQuestion =true;
+  bool endpointCalledGlobal = false;
+  bool endpointCalledLocal = false;
+
   //-----------------------------------------------------
   final formKey = GlobalKey<FormState>();
   TextEditingController subjectController = TextEditingController();
@@ -99,35 +102,24 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
   }
 
   getData(String search) async {
-    ResponseEntity response =
-    await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
-    List<GetAssessmentModel> assessments = [];
-    List<GetAssessmentModel> tempassessment = [];
-    tempassessment=response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
-        response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
 
-    // if(search.isEmpty)
-    //   {
-    //     Navigator.push(
-    //       context,
-    //       PageTransition(
-    //         type: PageTransitionType.rightToLeft,
-    //         child: CustomDialog(
-    //           title:
-    //           AppLocalizations.of(context)!.alert_popup,
-    //           //'Alert',
-    //           content:
-    //           "Please Enter Something",
-    //           //'No Questions Found.',
-    //           button:
-    //           AppLocalizations.of(context)!.retry,
-    //           //"Retry",
-    //         ),
-    //       ),
-    //     );
-    //   }
+    bool isNumeric = (num.tryParse(search) != null);
 
-    if(response.data['total_count'] == 0 )
+    print(isNumeric);
+    if(isNumeric && endpointCalledLocal)
+      {
+
+      }
+    else {
+      print(search.isNotEmpty);
+      ResponseEntity response =
+      await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
+      List<GetAssessmentModel> assessments = [];
+      List<GetAssessmentModel> tempassessment = [];
+      tempassessment=response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
+          response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
+
+      if(response.data['total_count'] == 0 )
       {
         Navigator.push(
           context,
@@ -148,103 +140,120 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
         );
       }
 
-   else if (tempassessment.isNotEmpty) {
-      assessments.addAll(tempassessment);
-      totalAssessments=response.data['total_count'].toString();
-      setState(() {
-        totalAssessments;
-        onlyMyAssessments=true;
-        assessmentList.addAll(assessments);
-        pageNumber++;
-        searchVal = search;
-      });
-    }
+      else if (tempassessment.isNotEmpty) {
+        assessments.addAll(tempassessment);
+        totalAssessments=response.data['total_count'].toString();
+        setState(() {
+          totalAssessments;
+          onlyMyAssessments=true;
+          assessmentList.addAll(assessments);
+          pageNumber++;
+          endpointCalledLocal = search.isNotEmpty ? true : false;
+          searchVal = search;
+        });
+      }
 
-    else{
-      setState(() {
-        assessmentStart=assessmentStart-10;
-      });
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            //AppLocalizations.of(context)!.no_question_found,
-            'No Assessments Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
+      else{
+        setState(() {
+          assessmentStart=assessmentStart-10;
+        });
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title:
+              AppLocalizations.of(context)!.alert_popup,
+              //'Alert',
+              content:
+              //AppLocalizations.of(context)!.no_question_found,
+              'No Assessments Found.',
+              button:
+              AppLocalizations.of(context)!.retry,
+              //"Retry",
+            ),
           ),
-        ),
-      );
-    }
+        );
+      }
 
+    }
   }
 
   searchGlobalQuestion() async {
-    List<GetAssessmentModel> assessments = [];
-    ResponseEntity response =
-    await QnaService.getSearchAssessment(10, pageNumber, teacherQuestionBankSearchController.text,userDetails);
-    assessments = response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
-        response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
-    totalAssessments=response.data['total_count'].toString();
+    bool isNumeric = (num.tryParse(teacherQuestionBankSearchController.text) != null);
 
-    if(response.data['total_count'] == 0)
+    if(isNumeric && endpointCalledGlobal)
+    {
+
+    }
+    else
       {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: CustomDialog(
-              title:
-              AppLocalizations.of(context)!.alert_popup,
-              //'Alert',
-              content:
-              "No Assessment Found",
-              //'No Questions Found.',
-              button:
-              AppLocalizations.of(context)!.retry,
-              //"Retry",
+        List<GetAssessmentModel> assessments = [];
+        ResponseEntity response =
+        await QnaService.getSearchAssessment(10, pageNumber, teacherQuestionBankSearchController.text,userDetails,);
+        assessments = response.data['assessments']==null?[]:List<GetAssessmentModel>.from(
+            response.data['assessments'].map((x) => GetAssessmentModel.fromJson(x)));
+        totalAssessments=response.data['total_count'].toString();
+
+        if(response.data['total_count'] == 0)
+        {
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: CustomDialog(
+                title:
+                AppLocalizations.of(context)!.alert_popup,
+                //'Alert',
+                content:
+                "No Assessment Found",
+                //'No Questions Found.',
+                button:
+                AppLocalizations.of(context)!.retry,
+                //"Retry",
+              ),
             ),
-          ),
-        );
+          );
+        }
+
+        else if(assessments.isNotEmpty){
+          setState(() {
+            totalAssessments;
+            myQuestion=false;
+            assessmentList.addAll(assessments);
+            pageNumber++;
+            endpointCalledGlobal = teacherQuestionBankSearchController.text.isNotEmpty ? true : false;
+            print(endpointCalledGlobal);
+            print(pageNumber);
+            //print(pageNumber++);
+            searchVal = teacherQuestionBankSearchController.text;
+          });
+        }
+
+        else{
+          setState(() {
+            assessmentStart=assessmentStart-10;
+          });
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: CustomDialog(
+                title:
+                AppLocalizations.of(context)!.alert_popup,
+                //'Alert',
+                content:
+                //AppLocalizations.of(context)!.no_question_found,
+                'No Assessments Found.',
+                button:
+                AppLocalizations.of(context)!.retry,
+                //"Retry",
+              ),
+            ),
+          );
+        }
       }
 
-    else if(assessments.isNotEmpty){
-      setState(() {
-        totalAssessments;
-        myQuestion=false;
-        assessmentList.addAll(assessments);
-        pageNumber++;
-        searchVal = teacherQuestionBankSearchController.text;
-      });
-    }
-    else{
-      setState(() {
-        assessmentStart=assessmentStart-10;
-      });
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content:
-            //AppLocalizations.of(context)!.no_question_found,
-            'No Assessments Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
-            //"Retry",
-          ),
-        ),
-      );
-    }
 
     // Navigator.of(context).pop();
   }
@@ -348,8 +357,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                       shape: BoxShape.circle,
                                       // borderRadius:
                                       // BorderRadius.all(Radius.circular(100)),
-                                      color: teacherQuestionBankSearchController.text.isEmpty?
-                                      const Color.fromRGBO(153, 153, 153, 0.5):const Color.fromRGBO(82, 165, 160, 1),
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: IconButton(
                                       iconSize: height * 0.025,
@@ -1249,8 +1257,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                       shape: BoxShape.circle,
                                       // borderRadius:
                                       // BorderRadius.all(Radius.circular(100)),
-                                      color: teacherQuestionBankSearchController.text.isEmpty?
-                                      const Color.fromRGBO(153, 153, 153, 0.5):const Color.fromRGBO(82, 165, 160, 1),
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: IconButton(
                                       iconSize: height * 0.025,
@@ -2165,7 +2172,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                       shape: BoxShape.circle,
                                       // borderRadius:
                                       // BorderRadius.all(Radius.circular(100)),
-                                      color: Color.fromRGBO(153, 153, 153, 0.5),
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: IconButton(
                                       iconSize: height * 0.025,

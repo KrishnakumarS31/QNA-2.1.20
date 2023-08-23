@@ -497,7 +497,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                         ),
                         SizedBox(height: height * 0.01,),
                         Container(
-                          height: height * 0.6,
+                          height: category == 'Test' ? height * 0.6 : height * 0.55,
                           width: width * 0.93,
                           decoration: BoxDecoration(
                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1078,11 +1078,14 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       ],
                                     ),
                                   ),
-                                ):const SizedBox(height:1.0),
+                                )
+                                    :
+                                const SizedBox(height:1.0),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.30,
+                                    height: category == 'Test'
+                                        ? height * 0.30 : height * 0.20,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1104,6 +1107,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 fontWeight: FontWeight.w700),
                                           ),
                                         ),
+                                        category == 'Test'
+                                        ?
                                         Padding(
                                           padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                           child: Row(
@@ -1205,7 +1210,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 ),)
                                             ],
                                           ),
-                                        ),
+                                        )
+                                        :
+                                            SizedBox(),
                                         Padding(
                                           padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                           child: Row(
@@ -1286,6 +1293,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             ],
                                           ),
                                         ),
+                                        category == 'Test'
+                                            ?
                                         Padding(
                                           padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                           child: Row(
@@ -1325,7 +1334,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                               ),
                                             ],
                                           ),
-                                        ),
+                                        )
+                                            :
+                                            SizedBox()
                                       ],
                                     ),
                                   ),
@@ -1333,7 +1344,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.25,
+                                    height:  height*0.20,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1483,7 +1494,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: height * 0.02),
+
+                        SizedBox(height:  category == 'Test'
+                            ? height * 0.02 : height * 0.05),
                         Padding(
                           padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                           child: Row(
@@ -1528,7 +1541,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessment.assessmentType=category=="Test"?'test':'practice';
                                       assessment.assessmentStatus = 'inprogress';
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                       //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -1606,7 +1619,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessment.assessmentType=category=="Test"?'test':'practice';
                                       assessment.assessmentStatus = 'active';
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries = category == 'Test'
+                                          ? numberOfAttempts : 0;
                                       assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -1615,7 +1629,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessmentSettings.showAdvisorEmail = showEmail;
                                       assessmentSettings.notAvailable = false;
 
-                                      assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                      assessmentSettings.avalabilityForPractice = category == 'Test'
+                                          ? allowPublishPublic : true;
 
                                       showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                       showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
@@ -2047,6 +2062,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                       {
                                                         return "Enter Digits Only";
                                                       }
+                                                      return null;
                                                     },
                                                     enabled: true,
                                                     controller: hourController,
@@ -2086,6 +2102,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                         {
                                                           return "Enter Digits Only";
                                                         }
+                                                      return null;
                                                           },
                                                     //inputFormatters: FilteringTextInputFormatter.digitsOnly,
                                                     enabled: true,
@@ -2158,18 +2175,20 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                             children: [
                                                               SizedBox(
                                                                 height:height*0.2,
-                                                                child:
-                                                                DateTimeFormField(
-                                                                    initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!),
+                                                                child: DateTimeFormField(
+                                                                    initialDate: DateTime.now(),
                                                                     onDateSelected: (DateTime newdate) {
                                                                       setState(() {
                                                                         startDate=newdate;
                                                                       });
                                                                     },
                                                                     use24hFormat: true,
+                                                                    initialValue: DateTime.now(),
+                                                                    // DateTime.fromMicrosecondsSinceEpoch(getAssessmentModel.assessmentStartdate!),
                                                                     initialEntryMode: DatePickerEntryMode.calendarOnly,
                                                                     mode: DateTimeFieldPickerMode.dateAndTime
-                                                                )),
+                                                                ),
+                                                              ),
                                                               ElevatedButton(
                                                                 style: ElevatedButton.styleFrom(
                                                                   minimumSize: Size(width* 0.03, height*0.04),
@@ -2185,7 +2204,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                 ),
                                                                 //shape: StadiumBorder(),
                                                                 onPressed: () {
-                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                   Navigator.of(context).pop();
                                                                 },
                                                                 child: Text(
@@ -2279,7 +2298,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                 height:height*0.2,
                                                                 child:
                                                                 DateTimeFormField(
-                                                                    initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
+                                                                    initialValue: DateTime.now(),
+                                                                    // DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
                                                                     onDateSelected: (DateTime newdate) {
                                                                       setState(() {
                                                                         endDate=newdate;
@@ -2362,7 +2382,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.33,
+                                    height:  category == 'Test'
+                                        ? height * 0.33 : height * 0.20,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2384,6 +2405,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 fontWeight: FontWeight.w700),
                                           ),
                                         ),
+                                        category == 'Test'
+                                            ?
                                         Padding(
                                           padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
                                           child: Row(
@@ -2437,9 +2460,13 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                         borderRadius: const BorderRadius.all(
                                                             Radius.circular(5)),
                                                       ),
-                                                      child: Center(
+                                                      child:Padding(
+                                                        padding: EdgeInsets.only(bottom: height * 0.010),
                                                         child: TextField(
                                                         controller: numberOfAttemptsController,
+                                                        decoration: const InputDecoration(
+                                                          border: InputBorder.none,
+                                                        ),
                                                         onChanged: (val){
                                                           if(int.parse(val)<1){
                                                             numberOfAttemptsController.text='1';
@@ -2481,7 +2508,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 ),)
                                             ],
                                           ),
-                                        ),
+                                        )
+                                        : SizedBox(),
                                         Padding(
                                           padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                           child: Row(
@@ -2562,6 +2590,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             ]
                                           ),
                                         ),
+                                        category == 'Test'
+                                            ?
                                         Padding(
                                           padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                           child: Row(
@@ -2601,7 +2631,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                               ),
                                             ],
                                           ),
-                                        ),
+                                        )
+                                            : SizedBox()
                                       ],
                                     ),
                                   ),
@@ -2609,7 +2640,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.25,
+                                    height:  category == 'Test'
+                                        ? height * 0.25 : height * 0.20,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2766,7 +2798,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessment.assessmentType=category=="Test"?'test':'practice';
                                       assessment.assessmentStatus = 'inprogress';
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries =  category == 'Test'
+                                          ? numberOfAttempts : 0;
                                       //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -2846,7 +2879,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessment.assessmentType=category=="Test"?'test':'practice';
                                       assessment.assessmentStatus = 'active';
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries =  category == 'Test'
+                                          ? numberOfAttempts : 0;
                                       assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -2855,7 +2889,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       assessmentSettings.showAdvisorEmail = showEmail;
                                       assessmentSettings.notAvailable = false;
 
-                                      assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                      assessmentSettings.avalabilityForPractice =  category == 'Test'
+                                          ? allowPublishPublic : true;
 
                                       showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                       showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
@@ -3709,7 +3744,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          height: height * 0.35,
+                                          height: category == 'Test' ?height * 0.35 : height * 0.23,
                                           width: width,
                                           decoration: BoxDecoration(
                                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -3731,6 +3766,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               ),
+                                              category == 'Test'
+                                              ?
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -3831,7 +3868,9 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                       ),)
                                                   ],
                                                 ),
-                                              ),
+                                              )
+                                              :
+                                                  SizedBox(),
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -3912,6 +3951,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                   ],
                                                 ),
                                               ),
+                                              category == 'Test'
+                                              ?
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -3951,7 +3992,8 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                     ),
                                                   ],
                                                 ),
-                                              ),
+                                              )
+                                                  : SizedBox()
                                             ],
                                           ),
                                         ),
@@ -3959,7 +4001,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          height: height * 0.3,
+                                          height: height * 0.23,
                                           width: width,
                                           decoration: BoxDecoration(
                                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -4154,7 +4196,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             assessment.assessmentType=category=="Test"?'test':'practice';
                                             assessment.assessmentStatus = 'inprogress';
                                             AssessmentSettings assessmentSettings = AssessmentSettings();
-                                            assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                            assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                             //assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                             assessmentSettings.allowGuestStudent = allowGuestStudent;
                                             assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -4232,7 +4274,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             assessment.assessmentType=category=="Test"?'test':'practice';
                                             assessment.assessmentStatus = 'active';
                                             AssessmentSettings assessmentSettings = AssessmentSettings();
-                                            assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                            assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                             assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                             assessmentSettings.allowGuestStudent = allowGuestStudent;
                                             assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -4240,7 +4282,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             assessmentSettings.showAdvisorName = showName;
                                             assessmentSettings.showAdvisorEmail = showEmail;
                                             assessmentSettings.notAvailable = false;
-                                            assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                            assessmentSettings.avalabilityForPractice = category == 'Test' ? allowPublishPublic : true;
                                             showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                             showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                             assessment.assessmentSettings = assessmentSettings;

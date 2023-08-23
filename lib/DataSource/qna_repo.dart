@@ -321,10 +321,13 @@ class QnaRepo {
     ResponseEntity allAssessment = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    bool isNumeric = (num.tryParse(search) != null);
+
+    String url = isNumeric ? '$assessmentDomain/all/${userDetails.userId}/?page_limit=${10}&page_number=${1}&assessment_code=$search' : '$assessmentDomain/all/${userDetails.userId}/?page_limit=$pageLimit&page_number=$pageNumber&search=$search';
     var request = http.Request(
         'GET',
         Uri.parse(
-            '$assessmentDomain/all/${userDetails.userId}/?page_limit=$pageLimit&page_number=$pageNumber&search=$search'));
+            url));
 
     request.headers.addAll(headers);
 
@@ -542,10 +545,13 @@ class QnaRepo {
     ResponseEntity allAssessment = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    bool isNumeric = (num.tryParse(searchVal) != null);
+
+    String url = isNumeric ?'$assessmentLooqUrl?page_limit=${10}&page_number=${1}&assessment_code=$searchVal' :'$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal';
     var request = http.Request(
         'GET',
         Uri.parse(
-            '$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+            url));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

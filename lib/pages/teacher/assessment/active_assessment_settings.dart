@@ -1160,6 +1160,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test'
+                                            ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1246,7 +1248,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            :
+                                                SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1327,6 +1331,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test'
+                                                ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1366,7 +1372,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                :
+                                                SizedBox()
                                           ],
                                         ),
                                       ),
@@ -1611,7 +1619,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries =  category == 'Test'
+                                              ? numberOfAttempts :0;
                                           assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -1619,7 +1628,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                           assessmentSettings.showAdvisorName = showName;
                                           assessmentSettings.showAdvisorEmail = showEmail;
                                           assessmentSettings.notAvailable = false;
-                                          assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                          assessmentSettings.avalabilityForPractice =  category == 'Test'
+                                              ? allowPublishPublic : true;
                                           showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                           showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                           assessment.assessmentSettings = assessmentSettings;
@@ -2540,6 +2550,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             //     ],
                                             //   ),
                                             // ),
+
+                                            category == 'Test'
+                                                ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
                                               child: Row(
@@ -2619,11 +2632,15 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                               color: const Color.fromRGBO(28, 78, 80, 1),),
                                                           ),
                                                         ),
+
                                                       ],
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            : SizedBox(),
+
+
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2704,6 +2721,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test'
+                                                ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2743,7 +2762,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                : SizedBox()
                                           ],
                                         ),
                                       ),
@@ -2751,7 +2771,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.25,
+                                        height:  category == 'Test'
+                                            ? height * 0.25 : height * 0.20,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2990,7 +3011,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                           assessment.assessmentType=category=="Test"?'test':'practice';
                                           assessment.assessmentStatus = 'active';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                          assessmentSettings.allowedNumberOfTestRetries =  category == 'Test'
+                                              ? numberOfAttempts : 0;
                                           assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                           assessmentSettings.allowGuestStudent = allowGuestStudent;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -2998,7 +3020,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                           assessmentSettings.showAdvisorName = showName;
                                           assessmentSettings.showAdvisorEmail = showEmail;
                                           assessmentSettings.notAvailable = false;
-                                          assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                          assessmentSettings.avalabilityForPractice =  category == 'Test'
+                                              ? allowPublishPublic :  true;
                                           showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                           showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                           assessment.assessmentSettings = assessmentSettings;
@@ -3940,6 +3963,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                       fontWeight: FontWeight.w700),
                                                 ),
                                               ),
+                                              category == 'Test'
+                                              ?
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -4026,7 +4051,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                       ),)
                                                   ],
                                                 ),
-                                              ),
+                                              )
+                                              :
+                                                  SizedBox(),
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -4107,6 +4134,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   ],
                                                 ),
                                               ),
+                                              category == 'Test'
+                                              ?
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -4146,7 +4175,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     ),
                                                   ],
                                                 ),
-                                              ),
+                                              )
+                                                  :
+                                                  SizedBox()
                                             ],
                                           ),
                                         ),
@@ -4391,7 +4422,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             assessment.assessmentType=category=="Test"?'test':'practice';
                                             assessment.assessmentStatus = 'active';
                                             AssessmentSettings assessmentSettings = AssessmentSettings();
-                                            assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                            assessmentSettings.allowedNumberOfTestRetries =  category == 'Test'
+                                                ? numberOfAttempts : 0;
                                             assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                             assessmentSettings.allowGuestStudent = allowGuestStudent;
                                             assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -4399,7 +4431,8 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             assessmentSettings.showAdvisorName = showName;
                                             assessmentSettings.showAdvisorEmail = showEmail;
                                             assessmentSettings.notAvailable = false;
-                                            assessmentSettings.avalabilityForPractice = allowPublishPublic;
+                                            assessmentSettings.avalabilityForPractice =  category == 'Test'
+                                                ? allowPublishPublic : true;
                                             showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
                                             showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
                                             assessment.assessmentSettings = assessmentSettings;

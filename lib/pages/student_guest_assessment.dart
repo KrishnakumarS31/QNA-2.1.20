@@ -1042,21 +1042,47 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                               8) {
                                                             if (values.code ==
                                                                 200) {
-                                                              Navigator.pushNamed(
-                                                                  context,
-                                                                  '/studQuestion',
-                                                                  arguments: [
-                                                                    assessmentIdController
-                                                                        .text,
-                                                                    values,
-                                                                    widget.name,
-                                                                    null,
-                                                                    false,
-                                                                    assessmentHeaderValues,
-                                                                    ""
-                                                                  ]);
+
+
+                                                                if(values.data!.questions!.isEmpty|| values.data?.questions == [] )
+                                                                {
+                                                                  Navigator.push(
+                                                                    context,
+                                                                    PageTransition(
+                                                                      type: PageTransitionType
+                                                                          .rightToLeft,
+                                                                      child:
+                                                                      CustomDialog(
+                                                                        title: AppLocalizations.of(
+                                                                            context)!
+                                                                            .alert_popup,
+                                                                        content: "No questions available for this assessment",
+                                                                        button: AppLocalizations.of(
+                                                                            context)!
+                                                                            .ok_caps,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                else {
+                                                                  Navigator.pushNamed(
+                                                                      context,
+                                                                      '/studQuestion',
+                                                                      arguments: [
+                                                                        assessmentIdController
+                                                                            .text,
+                                                                        values,
+                                                                        widget.name,
+                                                                        null,
+                                                                        false,
+                                                                        assessmentHeaderValues,
+                                                                        ""
+                                                                      ]);
+                                                                }
+
                                                             }
-                                                          } else {
+                                                          }
+                                                          else {
                                                             Navigator.push(
                                                               context,
                                                               PageTransition(
@@ -2158,25 +2184,51 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                       .text
                                                                       .length >=
                                                                   8) {
-                                                                if (values
-                                                                        .code ==
+
+                                                                if (values.code ==
                                                                     200) {
-                                                                  Navigator.pushNamed(
+
+
+                                                                  if(values.data!.questions!.isEmpty|| values.data?.questions == [] )
+                                                                  {
+                                                                    Navigator.push(
                                                                       context,
-                                                                      '/studQuestion',
-                                                                      arguments: [
-                                                                        assessmentIdController
-                                                                            .text,
-                                                                        values,
-                                                                        widget
-                                                                            .name,
-                                                                        null,
-                                                                        false,
-                                                                        assessmentHeaderValues,
-                                                                        ""
-                                                                      ]);
+                                                                      PageTransition(
+                                                                        type: PageTransitionType
+                                                                            .rightToLeft,
+                                                                        child:
+                                                                        CustomDialog(
+                                                                          title: AppLocalizations.of(
+                                                                              context)!
+                                                                              .alert_popup,
+                                                                          content: "No questions available for this assessment",
+                                                                          button: AppLocalizations.of(
+                                                                              context)!
+                                                                              .ok_caps,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  }
+                                                                  else {
+                                                                    Navigator.pushNamed(
+                                                                        context,
+                                                                        '/studQuestion',
+                                                                        arguments: [
+                                                                          assessmentIdController
+                                                                              .text,
+                                                                          values,
+                                                                          widget.name,
+                                                                          null,
+                                                                          false,
+                                                                          assessmentHeaderValues,
+                                                                          ""
+                                                                        ]);
+                                                                  }
+
                                                                 }
-                                                              } else {
+                                                              }
+
+                                                                else {
                                                                 Navigator.push(
                                                                   context,
                                                                   PageTransition(
@@ -3239,21 +3291,48 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                               8) {
                                                             if (values.code ==
                                                                 200) {
-                                                              Navigator.pushNamed(
+
+
+                                                              if(values.data!.questions!.isEmpty|| values.data?.questions == [] )
+                                                              {
+                                                                Navigator.push(
                                                                   context,
-                                                                  '/studQuestion',
-                                                                  arguments: [
-                                                                    assessmentIdController
-                                                                        .text,
-                                                                    values,
-                                                                    widget.name,
-                                                                    null,
-                                                                    false,
-                                                                    assessmentHeaderValues,
-                                                                    ""
-                                                                  ]);
+                                                                  PageTransition(
+                                                                    type: PageTransitionType
+                                                                        .rightToLeft,
+                                                                    child:
+                                                                    CustomDialog(
+                                                                      title: AppLocalizations.of(
+                                                                          context)!
+                                                                          .alert_popup,
+                                                                      content: "No questions available for this assessment",
+                                                                      button: AppLocalizations.of(
+                                                                          context)!
+                                                                          .ok_caps,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              else {
+                                                                Navigator.pushNamed(
+                                                                    context,
+                                                                    '/studQuestion',
+                                                                    arguments: [
+                                                                      assessmentIdController
+                                                                          .text,
+                                                                      values,
+                                                                      widget.name,
+                                                                      null,
+                                                                      false,
+                                                                      assessmentHeaderValues,
+                                                                      ""
+                                                                    ]);
+                                                              }
+
                                                             }
-                                                          } else {
+                                                          }
+
+                                                          else {
                                                             Navigator.push(
                                                               context,
                                                               PageTransition(

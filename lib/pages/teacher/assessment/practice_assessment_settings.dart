@@ -609,6 +609,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -695,7 +696,9 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            :
+                                                SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -776,6 +779,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -815,7 +819,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                :SizedBox()
                                           ],
                                         ),
                                       ),
@@ -1011,7 +1016,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                   ElevatedButton(
                                     onPressed: () async {
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts : 0;
                                       assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -1317,6 +1322,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1403,7 +1409,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            : SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1484,6 +1491,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1523,7 +1531,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                : SizedBox(),
                                           ],
                                         ),
                                       ),
@@ -1759,7 +1768,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                   ElevatedButton(
                                     onPressed: () async {
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ?numberOfAttempts:0;
                                       assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
@@ -2063,6 +2072,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2149,7 +2159,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     ),)
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                            :SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2230,6 +2241,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test' ?
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -2269,7 +2281,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            )
+                                                :SizedBox()
                                           ],
                                         ),
                                       ),
@@ -2505,7 +2518,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                   ElevatedButton(
                                     onPressed: () async {
                                       AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = numberOfAttempts;
+                                      assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ? numberOfAttempts :0;
                                       assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
                                       assessmentSettings.allowGuestStudent = allowGuestStudent;
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
