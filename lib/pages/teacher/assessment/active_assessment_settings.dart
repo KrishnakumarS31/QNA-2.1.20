@@ -931,19 +931,17 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                 children: [
                                                                   SizedBox(
                                                                     height:height*0.2,
-                                                                    child: CupertinoDatePicker(
-                                                                      initialDateTime: DateTime.now(),
-                                                                      onDateTimeChanged: (DateTime newdate) {
-                                                                        setState(() {
-                                                                          startDate=newdate;
-                                                                        });
-                                                                      },
-                                                                      use24hFormat: true,
-                                                                      maximumDate: DateTime(3000, 12, 30),
-                                                                      minimumYear: 2023,
-                                                                      maximumYear: 3000,
-                                                                      minuteInterval: 1,
-                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    child: DateTimeFormField(
+                                                                        initialDate: DateTime.now(),
+                                                                        onDateSelected: (DateTime newdate) {
+                                                                          setState(() {
+                                                                            startDate=newdate;
+                                                                          });
+                                                                        },
+                                                                        use24hFormat: true,
+                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(getAssessmentModel.assessmentStartdate!),
+                                                                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                                                        mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(
@@ -1053,19 +1051,18 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                 children: [
                                                                   SizedBox(
                                                                     height:height*0.2,
-                                                                    child: CupertinoDatePicker(
-                                                                      initialDateTime: DateTime.now(),
-                                                                      onDateTimeChanged: (DateTime newdate) {
-                                                                        setState(() {
-                                                                          endDate=newdate;
-                                                                        });
-                                                                      },
-                                                                      use24hFormat: true,
-                                                                      maximumDate: DateTime(3000, 12, 30),
-                                                                      minimumYear: 2023,
-                                                                      maximumYear: 3000,
-                                                                      minuteInterval: 1,
-                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    child:
+                                                                    DateTimeFormField(
+                                                                        initialDate: DateTime.now(),
+                                                                        onDateSelected: (DateTime newdate) {
+                                                                          setState(() {
+                                                                            endDate=newdate;
+                                                                          });
+                                                                        },
+                                                                        use24hFormat: true,
+                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(getAssessmentModel.assessmentEnddate!),
+                                                                        initialEntryMode: DatePickerEntryMode.calendar,
+                                                                        mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(
@@ -1130,7 +1127,6 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ),
                                               ),
                                             ),
-
                                           ],
                                         ),
                                       ),
@@ -1168,7 +1164,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
-                                                    width: width * 0.5,
+                                                    width: width * 0.3,
                                                     child: Text(
                                                       "Number of attempts allowed",
                                                       style: TextStyle(
@@ -1237,7 +1233,6 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                           child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
-
                                                             child: Icon(
                                                               Icons.add,
                                                               size: height * 0.02,
@@ -1934,7 +1929,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                             ),
                             SizedBox(height: height * 0.01,),
                             Container(
-                              height: height * 0.55,
+                              height: height * 0.52,
                               width: width * 0.93,
                               decoration: BoxDecoration(
                                 border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2063,7 +2058,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.45,
+                                        height: height * 0.5,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2290,7 +2285,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.4,
+                                                  width: width * 0.2,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: startTimeController,
@@ -2411,7 +2406,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               child: Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.4,
+                                                  width: width * 0.2,
                                                   child: TextField(
                                                     enabled: false,
                                                     controller: endTimeController,
@@ -2441,7 +2436,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.33,
+                                        height: height * 0.37,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -3070,7 +3065,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             color: Color.fromRGBO(82, 165, 160, 1),
                                           ),
                                           shape: const CircleBorder(),
-                                          padding: const EdgeInsets.all(20),
+                                          padding: const EdgeInsets.all(10),
                                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                         ),
                                         child: const Icon(Icons.done, color: Colors.white),

@@ -497,7 +497,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                         ),
                         SizedBox(height: height * 0.01,),
                         Container(
-                          height: category == 'Test' ? height * 0.6 : height * 0.55,
+                          height: category == 'Test' ? height * 0.57 : height * 0.55,
                           width: width * 0.93,
                           decoration: BoxDecoration(
                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -876,19 +876,18 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                             children: [
                                                               SizedBox(
                                                                 height:height*0.2,
-                                                                child: CupertinoDatePicker(
-                                                                  initialDateTime: DateTime.now(),
-                                                                  onDateTimeChanged: (DateTime newdate) {
-                                                                    setState(() {
-                                                                      startDate=newdate;
-                                                                    });
-                                                                  },
-                                                                  use24hFormat: true,
-                                                                  maximumDate: DateTime(3000, 12, 30),
-                                                                  minimumYear: 2023,
-                                                                  maximumYear: 3000,
-                                                                  minuteInterval: 1,
-                                                                  mode: CupertinoDatePickerMode.dateAndTime,
+                                                                child: DateTimeFormField(
+                                                                    initialDate: DateTime.now(),
+                                                                    onDateSelected: (DateTime newdate) {
+                                                                      setState(() {
+                                                                        startDate=newdate;
+                                                                      });
+                                                                    },
+                                                                    use24hFormat: true,
+                                                                    initialValue: DateTime.now(),
+                                                                    // DateTime.fromMicrosecondsSinceEpoch(getAssessmentModel.assessmentStartdate!),
+                                                                    initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                                                    mode: DateTimeFieldPickerMode.dateAndTime
                                                                 ),
                                                               ),
                                                               ElevatedButton(
@@ -906,7 +905,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                 ),
                                                                 //shape: StadiumBorder(),
                                                                 onPressed: () {
-                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                   Navigator.of(context).pop();
                                                                 },
                                                                 child: Text(
@@ -998,19 +997,18 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                             children: [
                                                               SizedBox(
                                                                 height:height*0.2,
-                                                                child: CupertinoDatePicker(
-                                                                  initialDateTime: DateTime.now(),
-                                                                  onDateTimeChanged: (DateTime newdate) {
-                                                                    setState(() {
-                                                                      endDate=newdate;
-                                                                    });
-                                                                  },
-                                                                  use24hFormat: true,
-                                                                  maximumDate: DateTime(3000, 12, 30),
-                                                                  minimumYear: 2023,
-                                                                  maximumYear: 3000,
-                                                                  minuteInterval: 1,
-                                                                  mode: CupertinoDatePickerMode.dateAndTime,
+                                                                child:
+                                                                DateTimeFormField(
+                                                                    initialValue: DateTime.now(),
+                                                                    // DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
+                                                                    onDateSelected: (DateTime newdate) {
+                                                                      setState(() {
+                                                                        endDate=newdate;
+                                                                      });
+                                                                    },
+                                                                    use24hFormat: true,
+                                                                    initialEntryMode: DatePickerEntryMode.calendar,
+                                                                    mode: DateTimeFieldPickerMode.dateAndTime
                                                                 ),
                                                               ),
                                                               ElevatedButton(
@@ -1115,7 +1113,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
-                                                width: width * 0.5,
+                                                width: width * 0.3,
                                                 child: Text(
                                                   "Number of attempts allowed",
                                                   style: TextStyle(
@@ -1496,7 +1494,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                         ),
 
                         SizedBox(height:  category == 'Test'
-                            ? height * 0.02 : height * 0.05),
+                            ? height * 0.04 : height * 0.04),
                         Padding(
                           padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                           child: Row(
@@ -1866,7 +1864,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                         ),
                         SizedBox(height: height * 0.01,),
                         Container(
-                          height: height * 0.6,
+                          height: height * 0.5,
                           width: width * 0.93,
                           decoration: BoxDecoration(
                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1998,7 +1996,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.45,
+                                    height: height * 0.5,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2383,7 +2381,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     height:  category == 'Test'
-                                        ? height * 0.33 : height * 0.20,
+                                        ? height * 0.4 : height * 0.25,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2641,7 +2639,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     height:  category == 'Test'
-                                        ? height * 0.25 : height * 0.20,
+                                        ? height * 0.25 : height * 0.25,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2751,7 +2749,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: height * 0.005),
+                        SizedBox(height: height * 0.02),
                         Padding(
                           padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                           child: Row(

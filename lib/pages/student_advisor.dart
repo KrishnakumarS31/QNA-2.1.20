@@ -459,344 +459,337 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
               backgroundColor: Colors.white,
               body:
               SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: localHeight * 0.023,
-                      left: localHeight * 0.5,
-                      right: localHeight * 0.5,
-                      bottom: localHeight * 0.045),
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(widget.assessmentId,
-                          style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              fontSize: localHeight * 0.015),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: localHeight * 0.020),
-                    Container(
-                        height: localHeight * 0.6,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: kElevationToShadow[2],
-                        ),
-                        width: localWidth * 0.9,
-                        child:
-                        SingleChildScrollView(
-                          child: Column(children: [
-                            for (int index = 1; index <= context
-                                .watch<Questions>()
-                                .totalQuestion
-                                .length; index++)
-                              Container(
-                                  margin: const EdgeInsets.all(5),
-                                  padding: const EdgeInsets.all(5),
-                                  child:
-                                  Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromRGBO(82, 165, 160, 0.08),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      width: localWidth * 0.9,
-                                      child: inCorrectAns.contains(index)
-                                          ? ListTile(
-                                        title: Column(
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(widget.assessmentId,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600,
+                            fontSize: localHeight * 0.025),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: localHeight * 0.020),
+                  Container(
+                      height: localHeight * 0.6,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: kElevationToShadow[2],
+                      ),
+                      width: localWidth * 0.9,
+                      child:
+                      SingleChildScrollView(
+                        child: Column(children: [
+                          for (int index = 1; index <= context
+                              .watch<Questions>()
+                              .totalQuestion
+                              .length; index++)
+                            Container(
+                                margin: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
+                                child:
+                                Container(
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromRGBO(82, 165, 160, 0.08),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    width: localWidth * 0.9,
+                                    child: inCorrectAns.contains(index)
+                                        ? ListTile(
+                                      title: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Row(children: [
+                                              SizedBox(
+                                                  height:
+                                                  localHeight * 0.050),
+                                              Text("Q$index",
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight:
+                                                      FontWeight.w700,
+                                                      fontSize:
+                                                      localHeight * 0.02)),
+                                              SizedBox(width: localHeight * 0.005),
+                                              Text(
+                                                "${values.data!.questions![index -
+                                                    1].questionType}",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: localHeight * 0.02),
+                                              ),
+                                              SizedBox(height: localHeight * 0.010),
+                                              SizedBox(
+                                                  width:
+                                                  localHeight * 0.020),
+                                              Provider
+                                                  .of<Questions>(context,
+                                                  listen: false)
+                                                  .totalQuestion[
+                                              "$index"][2] ==
+                                                  true
+                                                  ? const Text("")
+                                                  : Text(
+                                                (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
+                                                    ? AppLocalizations.of(context)!.not_answered
+                                                //"Not answered",
+                                                    : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
+                                                    ?  AppLocalizations.of(context)!.incorrectly_answered
+                                                    :"",
+                                                    // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
+                                                  // Provider
+                                                  //     .of<Questions>(context, listen: false)
+                                                  //     .totalQuestion['$index'][0].isEmpty?
+                                                  // AppLocalizations.of(context)!.not_answered:
+                                                  // AppLocalizations.of(context)!.incorrectly_answered,
+                                                  // //"Not answered",
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          238,
+                                                          71,
+                                                          0,
+                                                          1),
+                                                      fontFamily:
+                                                      'Inter',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w600,
+                                                      fontSize:
+                                                      localHeight * 0.02)
+                                              ),
+                                            ]),
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.010),
+                                            Text(
+                                              values
+                                                  .data!
+                                                  .questions![index - 1]
+                                                  .question!,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  color:
+                                                  const Color.fromRGBO(
+                                                      51, 51, 51, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight:
+                                                  FontWeight.w400,
+                                                  fontSize:
+                                                  localHeight * 0.02),
+                                            ),
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.015),
+                                          ]),
+                                      subtitle: Column(children: [
+                                        SizedBox(
+                                            height: localHeight * 0.015),
+                                        Column(
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Row(children: [
-                                                SizedBox(
-                                                    height:
-                                                    localHeight * 0.050),
-                                                Text("Q$index",
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            82, 165, 160, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w700,
-                                                        fontSize:
-                                                        localHeight * 0.015)),
-                                                SizedBox(width: localHeight * 0.005),
-                                                Text(
-                                                  "${values.data!.questions![index -
-                                                      1].questionType}",
-                                                  style: TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: localHeight * 0.015),
-                                                ),
-                                                SizedBox(height: localHeight * 0.010),
-                                                SizedBox(
-                                                    width:
-                                                    localHeight * 0.020),
-                                                Provider
-                                                    .of<Questions>(context,
-                                                    listen: false)
-                                                    .totalQuestion[
-                                                "$index"][2] ==
-                                                    true
-                                                    ? const Text("")
-                                                    : Text(
-                                                  (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isEmpty)
-                                                      ? AppLocalizations.of(context)!.not_answered
-                                                  //"Not answered",
-                                                      : (Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].isNotEmpty && ("${values.data!.questions![index - 1].questionType}" == "MCQ"))
-                                                      ?  AppLocalizations.of(context)!.incorrectly_answered
-                                                      :"",
-                                                      // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString(),
-                                                    // Provider
-                                                    //     .of<Questions>(context, listen: false)
-                                                    //     .totalQuestion['$index'][0].isEmpty?
-                                                    // AppLocalizations.of(context)!.not_answered:
-                                                    // AppLocalizations.of(context)!.incorrectly_answered,
-                                                    // //"Not answered",
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            238,
-                                                            71,
-                                                            0,
-                                                            1),
-                                                        fontFamily:
-                                                        'Inter',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w600,
-                                                        fontSize:
-                                                        localHeight * 0.015)
-                                                ),
-                                              ]),
-                                              SizedBox(
-                                                  height:
-                                                  localHeight * 0.010),
                                               Text(
-                                                values
-                                                    .data!
-                                                    .questions![index - 1]
-                                                    .question!,
-                                                textAlign: TextAlign.start,
+                                                AppLocalizations.of(context)!.advisor,
                                                 style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        51, 51, 51, 1),
+                                                    color: const Color.fromRGBO(
+                                                        82, 165, 160, 1),
                                                     fontFamily: 'Inter',
-                                                    fontWeight:
-                                                    FontWeight.w400,
-                                                    fontSize:
-                                                    localHeight * 0.015),
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: localHeight * 0.02),
                                               ),
                                               SizedBox(
                                                   height:
-                                                  localHeight * 0.015),
-                                            ]),
-                                        subtitle: Column(children: [
-                                          SizedBox(
-                                              height: localHeight * 0.015),
-                                          Column(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  AppLocalizations.of(context)!.advisor,
-                                                  style: TextStyle(
-                                                      color: const Color.fromRGBO(
-                                                          82, 165, 160, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: localHeight * 0.015),
-                                                ),
-                                                SizedBox(
-                                                    height:
-                                                    localHeight * 0.010),
-                                                Text(values
-                                                              .data!
-                                                              .questions![
-                                                          index - 1]
-                                                              .advisorText!,
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  51, 51, 51, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight:
-                                                              FontWeight.w400,
-                                                              fontSize:
-                                                              localHeight * 0.015)),
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                  children: [
-                                                    Text("URL:",
+                                                  localHeight * 0.010),
+                                              Text(values
+                                                            .data!
+                                                            .questions![
+                                                        index - 1]
+                                                            .advisorText!,
                                                         style: TextStyle(
                                                             color: const Color
                                                                 .fromRGBO(
-                                                                51,
-                                                                51,
-                                                                51,
-                                                                1),
-                                                            fontFamily:
-                                                            'Inter',
+                                                                51, 51, 51, 1),
+                                                            fontFamily: 'Inter',
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w400,
+                                                            FontWeight.w400,
                                                             fontSize:
-                                                            localHeight * 0.015)),
-                                                    const SizedBox(width: 5),
-                                                    Flexible(
-                                                        child:
-                                                        TextButton(
-                                                          onPressed: () async {
-                                                            final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
-                                                            if (!await launchUrl(url)) {
-                                                              throw Exception('Could not launch $url');
-                                                            }
-                                                          },
-                                                          child: Text(
-                                                              values
-                                                                  .data!
-                                                                  .questions![
-                                                              index - 1]
-                                                                  .advisorUrl!,
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                  'Inter',
-                                                                  fontSize:
-                                                                  localHeight * 0.015,
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      58,
-                                                                      137,
-                                                                      210,
-                                                                      1),
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w400)),
-                                                        )),
-                                                  ],
-                                                ),
-                                              ])
-                                        ]),
-                                      )
-                                          : const SizedBox(height: 0)
-                                  )
-                              )
-                          ]),
-                        )),
-                    SizedBox(height: localHeight * 0.015),
-                    ElevatedButton(
-                        style:
-                        ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          side: const BorderSide(
-                              width: 1, // the thickness
-                              color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
-                          ),
-                          minimumSize:
-                          Size(localWidth * 0.1,localWidth * 0.04),
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(
-                                39),
-                          ),
+                                                            localHeight * 0.02)),
+                                              const SizedBox(height: 10),
+                                              Row(
+                                                children: [
+                                                  Text("URL:",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              51,
+                                                              51,
+                                                              51,
+                                                              1),
+                                                          fontFamily:
+                                                          'Inter',
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w400,
+                                                          fontSize:
+                                                          localHeight * 0.02)),
+                                                  const SizedBox(width: 5),
+                                                  Flexible(
+                                                      child:
+                                                      TextButton(
+                                                        onPressed: () async {
+                                                          final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                          if (!await launchUrl(url)) {
+                                                            throw Exception('Could not launch $url');
+                                                          }
+                                                        },
+                                                        child: Text(
+                                                            values
+                                                                .data!
+                                                                .questions![
+                                                            index - 1]
+                                                                .advisorUrl!,
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontSize:
+                                                                localHeight * 0.02,
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    58,
+                                                                    137,
+                                                                    210,
+                                                                    1),
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400)),
+                                                      )),
+                                                ],
+                                              ),
+                                            ])
+                                      ]),
+                                    )
+                                        : const SizedBox(height: 0)
+                                )
+                            )
+                        ]),
+                      )),
+                  SizedBox(height: localHeight * 0.015),
+                  ElevatedButton(
+                      style:
+                      ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        side: const BorderSide(
+                            width: 1, // the thickness
+                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                         ),
-                        child: Text(
-                            AppLocalizations.of(context)!.view_all_solution,
-                            style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize:
-                                localHeight *
-                                    0.02,
-                                fontWeight: FontWeight
-                                    .w600,
-                                color: const Color.fromRGBO(82, 165, 160, 1))),
-                        onPressed: () {
-                          values.data!.assessmentType != "test"
-                              ?
-                          Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-                              : Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType
-                                  .rightToLeft,
-                              child: CustomDialog(
-                                title: AppLocalizations.of(context)!.alert_popup,
-                                //'Alert',
-                                content: AppLocalizations.of(context)!.shown_for_practice,
-                                //'Answersheet are shown only in Practice mode',
-                                button:
-                                AppLocalizations.of(context)!.ok_caps,
-                                //"OK",
-                              ),
+                        minimumSize:
+                        Size(localWidth * 0.1,localWidth * 0.04),
+                        shape: RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.circular(
+                              39),
+                        ),
+                      ),
+                      child: Text(
+                          AppLocalizations.of(context)!.view_all_solution,
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize:
+                              localHeight *
+                                  0.02,
+                              fontWeight: FontWeight
+                                  .w600,
+                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                      onPressed: () {
+                        values.data!.assessmentType != "test"
+                            ?
+                        Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+                            : Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType
+                                .rightToLeft,
+                            child: CustomDialog(
+                              title: AppLocalizations.of(context)!.alert_popup,
+                              //'Alert',
+                              content: AppLocalizations.of(context)!.shown_for_practice,
+                              //'Answersheet are shown only in Practice mode',
+                              button:
+                              AppLocalizations.of(context)!.ok_caps,
+                              //"OK",
                             ),
-                          );
-                        }
-                    ),
-                    SizedBox(height: localHeight * 0.005),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    SizedBox(height: localHeight * 0.005),
-                    Container(
-                        height: localHeight * 0.1,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: kElevationToShadow[2],
-                        ),
-                        width: localWidth * 0.4,
-                        child: Column(
-                            children:[
-                              SizedBox(height: localHeight * 0.005),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children:[
-                                    Text(AppLocalizations.of(context)!.pls_contact,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(82, 165, 160, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: localHeight * 0.02),
-                                    ),
-                                  ]
-                              ),
-                              SizedBox(height: localHeight * 0.003),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children:[
-                                    IconButton(
-                                        iconSize: localHeight * 0.04,
-                                        icon: const Icon(
-                                          Icons.mail_outline_outlined,
-                                          color: Color.fromRGBO(
-                                              82, 165, 160, 1),
-                                        ),
-                                        onPressed: () async {
-                                          String email = Uri.encodeComponent("${widget.questions.data!.advisorEmail}");
-                                          Uri mail = Uri.parse("mailto:$email");
-                                          if (await launchUrl(mail)) {
-                                          } else {}
-                                        }),
-                                    // IconButton(
-                                    //   iconSize: localHeight * 0.035,
-                                    //   onPressed: () async {
-                                    //   }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
-                                    //   82, 165, 160, 1,)),),
-                                  ]
-                              )
-                            ]
-                        )),
+                          ),
+                        );
+                      }
+                  ),
+                  SizedBox(height: localHeight * 0.005),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  SizedBox(height: localHeight * 0.005),
+                  Container(
+                      height: localHeight * 0.1,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: kElevationToShadow[2],
+                      ),
+                      width: localWidth * 0.4,
+                      child: Column(
+                          children:[
+                            SizedBox(height: localHeight * 0.005),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:[
+                                  Text(AppLocalizations.of(context)!.pls_contact,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: localHeight * 0.02),
+                                  ),
+                                ]
+                            ),
+                            SizedBox(height: localHeight * 0.003),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children:[
+                                  IconButton(
+                                      iconSize: localHeight * 0.04,
+                                      icon: const Icon(
+                                        Icons.mail_outline_outlined,
+                                        color: Color.fromRGBO(
+                                            82, 165, 160, 1),
+                                      ),
+                                      onPressed: () async {
+                                        String email = Uri.encodeComponent("${widget.questions.data!.advisorEmail}");
+                                        Uri mail = Uri.parse("mailto:$email");
+                                        if (await launchUrl(mail)) {
+                                        } else {}
+                                      }),
+                                  // IconButton(
+                                  //   iconSize: localHeight * 0.035,
+                                  //   onPressed: () async {
+                                  //   }, icon: const ImageIcon(AssetImage("assets/images/whatsapp_logo_icon.png"),color: Color.fromRGBO(
+                                  //   82, 165, 160, 1,)),),
+                                ]
+                            )
+                          ]
+                      )),
 
-                  ]),
-                ),
+                ]),
               )));
         }
         else {

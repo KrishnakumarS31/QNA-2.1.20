@@ -347,7 +347,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.016),
-                              hintText: "Subject, Topic, Degree",
+                              hintText: "Subject, Topic, Degree,Assessment ID",
                               suffixIcon:
                               Column(children: [
                                 Container(
@@ -466,14 +466,15 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                         children: [
                                           Container(
                                             height: height * 0.04,
-                                            width: width * 0.16,
+                                            width: width * 0.15,
                                             decoration: BoxDecoration(
                                               border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(10)),
                                             ),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Icon(
                                                   Icons.circle,
@@ -510,7 +511,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             height: height * 0.04,
                                             width: width * 0.22,
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Icon(
                                                   Icons.circle,
@@ -547,7 +549,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             height: height * 0.04,
                                             width: width * 0.14,
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Icon(
                                                   Icons.circle,
@@ -584,7 +587,8 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             height: height * 0.04,
                                             width: width * 0.22,
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Icon(
                                                   Icons.circle_outlined,
@@ -1247,7 +1251,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.016),
-                              hintText: "Subject, Topic, Degree",
+                              hintText: "Subject, Topic, Degree,Assessment ID",
                               suffixIcon:
                               Column(children: [
                                 Container(
@@ -2162,7 +2166,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.016),
-                              hintText: "Subject, Topic, Degree",
+                              hintText: "Subject, Topic, Degree,Assessment ID",
                               suffixIcon:
                               Column(children: [
                                 Container(

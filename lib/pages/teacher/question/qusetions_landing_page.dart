@@ -22,8 +22,6 @@ class TeacherQuestionBank extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-
-
   @override
   TeacherQuestionBankState createState() => TeacherQuestionBankState();
 }
@@ -36,56 +34,52 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   List<Question> questionList = [];
   String searchVal = '';
   TextEditingController teacherQuestionBankSearchController =
-  TextEditingController();
+      TextEditingController();
   SharedPreferences? loginData;
-  UserDetails userDetails=UserDetails();
+  UserDetails userDetails = UserDetails();
   bool onlyMyQuestion = true;
-  bool myQuestion =true;
-  int questionStart=0;
+  bool myQuestion = true;
+  int questionStart = 0;
   List<Question>? questions = [];
   QuestionResponse? questionResponse;
   //-----------------------------------------------------
 
-
   @override
   void initState() {
     super.initState();
-    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+    userDetails =
+        Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getInitData('');
   }
 
   getInitData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
+    ResponseEntity responseEntity = await QnaService.getQuestionBankService(
+        10, pageNumber, search, userDetails);
     List<Question>? questions;
     if (responseEntity.code == 200) {
       questionResponse = QuestionResponse.fromJson(responseEntity.data);
       questions = questionResponse?.questions;
-    }
-    else{
+    } else {
       setState(() {
-        questionStart=questionStart-10;
+        questionStart = questionStart - 10;
       });
       Navigator.push(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
+            title: AppLocalizations.of(context)!.alert_popup,
             //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
+            content: AppLocalizations.of(context)!.no_question_found,
             //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
+            button: AppLocalizations.of(context)!.retry,
             //"Retry",
           ),
         ),
       );
     }
     setState(() {
-      questionList=[];
+      questionList = [];
       questionList.addAll(questions!);
       pageNumber++;
       searchVal = search;
@@ -94,60 +88,51 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   }
 
   getData(String search) async {
-    ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
+    ResponseEntity responseEntity = await QnaService.getQuestionBankService(
+        10, pageNumber, search, userDetails);
     QuestionResponse questionResponses;
     questionResponses = QuestionResponse.fromJson(responseEntity.data);
     print(responseEntity.toString());
-    if(questionResponses.total_count == 0)
-    {
+    if (questionResponses.total_count == 0) {
       Navigator.push(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
+            title: AppLocalizations.of(context)!.alert_popup,
             //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
+            content: AppLocalizations.of(context)!.no_question_found,
             //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
+            button: AppLocalizations.of(context)!.retry,
             //"Retry",
           ),
         ),
       );
-    }
-    else if (questionResponses.questions!.isNotEmpty) {
+    } else if (questionResponses.questions!.isNotEmpty) {
       questions = questionResponses.questions;
       setState(() {
-        questionResponse=questionResponses;
-        myQuestion=true;
+        questionResponse = questionResponses;
+        myQuestion = true;
         //questionList=[];
         questionList.addAll(questions!);
         pageNumber++;
         searchVal = search;
         questionResponses;
       });
-    }
-    else{
+    } else {
       setState(() {
-        questionStart=questionStart-10;
+        questionStart = questionStart - 10;
       });
       Navigator.push(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
+            title: AppLocalizations.of(context)!.alert_popup,
             //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
+            content: AppLocalizations.of(context)!.no_question_found,
             //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
+            button: AppLocalizations.of(context)!.retry,
             //"Retry",
           ),
         ),
@@ -160,54 +145,43 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   searchGlobalQuestion() async {
     print("inside global search");
     List<Question>? questions = [];
-    ResponseEntity response =
-    await QnaService.getSearchQuestion(10, pageNumber, teacherQuestionBankSearchController.text,userDetails);
+    ResponseEntity response = await QnaService.getSearchQuestion(
+        10, pageNumber, teacherQuestionBankSearchController.text, userDetails);
     questionResponse = QuestionResponse.fromJson(response.data);
     print("QUESTION RESPONSE");
     print(questionResponse!.questions);
     print(questionResponse!.total_count);
-    if(questionResponse!.total_count == 0)
-      {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: CustomDialog(
-              title:
-              AppLocalizations.of(context)!.alert_popup,
-              //'Alert',
-              content:
-              AppLocalizations.of(context)!.no_question_found,
-              //'No Questions Found.',
-              button:
-              AppLocalizations.of(context)!.retry,
-              //"Retry",
-            ),
+    if (questionResponse!.total_count == 0) {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content: AppLocalizations.of(context)!.no_question_found,
+            //'No Questions Found.',
+            button: AppLocalizations.of(context)!.retry,
+            //"Retry",
           ),
-        );
-      }
-
-    else if(questionResponse!.questions!.isNotEmpty){
+        ),
+      );
+    } else if (questionResponse!.questions!.isNotEmpty) {
       questions = questionResponse?.questions;
-    }
-    else{
-
+    } else {
       setState(() {
-        questionStart=questionStart-10;
+        questionStart = questionStart - 10;
       });
       Navigator.push(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title:
-            AppLocalizations.of(context)!.alert_popup,
+            title: AppLocalizations.of(context)!.alert_popup,
             //'Alert',
-            content:
-            AppLocalizations.of(context)!.no_question_found,
+            content: AppLocalizations.of(context)!.no_question_found,
             //'No Questions Found.',
-            button:
-            AppLocalizations.of(context)!.retry,
+            button: AppLocalizations.of(context)!.retry,
             //"Retry",
           ),
         ),
@@ -216,7 +190,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 
     setState(() {
       questionResponse;
-      myQuestion=false;
+      myQuestion = false;
       //questionList=[];
       questionList.addAll(questions!);
       //globalPageLimit +=10;
@@ -234,15 +208,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth<= 960 && constraints.maxWidth>=500) {
+        if (constraints.maxWidth <= 960 && constraints.maxWidth >= 500) {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
                 resizeToAvoidBottomInset: true,
                 backgroundColor: Colors.white,
-                appBar:
-                AppBar(
-                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                appBar: AppBar(
+                  iconTheme: IconThemeData(
+                      color: appBarChevronColor, size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
@@ -272,9 +246,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         ),
                       ]),
                   flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white
-                    ),
+                    decoration: const BoxDecoration(color: Colors.white),
                   ),
                 ),
                 endDrawer: const EndDrawerMenuTeacher(),
@@ -284,8 +256,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       padding: EdgeInsets.only(
                           top: height * 0.023,
                           left: height * 0.045,
-                          right: height * 0.045
-                      ),
+                          right: height * 0.045),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -301,22 +272,21 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           ),
                           SizedBox(height: height * 0.005),
                           TextField(
-                            onChanged: (t){
-                              setState(() {
-                              });
+                            onChanged: (t) {
+                              setState(() {});
                             },
                             controller: teacherQuestionBankSearchController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               //floatingLabelBehavior: FloatingLabelBehavior.always,
                               hintStyle: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                  color:
+                                      const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.016),
                               hintText: "Subject, Topic, Degree",
-                              suffixIcon:
-                              Column(children: [
+                              suffixIcon: Column(children: [
                                 Container(
                                     height: height * 0.035,
                                     width: width * 0.07,
@@ -324,33 +294,43 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       shape: BoxShape.circle,
                                       // borderRadius:
                                       // BorderRadius.all(Radius.circular(100)),
-                                      color: teacherQuestionBankSearchController.text.isEmpty?
-                                      const Color.fromRGBO(153, 153, 153, 0.5):const Color.fromRGBO(82, 165, 160, 1),
+                                      color: teacherQuestionBankSearchController
+                                              .text.isEmpty
+                                          ? const Color.fromRGBO(
+                                              153, 153, 153, 0.5)
+                                          : const Color.fromRGBO(
+                                              82, 165, 160, 1),
                                     ),
                                     child: Center(
                                       child: IconButton(
                                         iconSize: height * 0.020,
-                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
                                         onPressed: () {
                                           setState(() {
-                                            questionStart=0;
-                                            questionList=[];
-                                            pageNumber=1;
+                                            questionStart = 0;
+                                            questionList = [];
+                                            pageNumber = 1;
                                           });
-                                          onlyMyQuestion?
-                                          getData(teacherQuestionBankSearchController.text):
-                                          searchGlobalQuestion();
+                                          onlyMyQuestion
+                                              ? getData(
+                                                  teacherQuestionBankSearchController
+                                                      .text)
+                                              : searchGlobalQuestion();
                                         },
                                         icon: const Icon(Icons.search),
                                       ),
                                     )),
-                              ]
-                              ),
+                              ]),
                               enabledBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                ),
                               ),
                               focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                ),
                               ),
                             ),
                           ),
@@ -369,16 +349,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 ),
                               ),
                               FlutterSwitch(
-                                activeColor: const Color
-                                    .fromRGBO(
-                                    82, 165, 160, 1),
+                                activeColor:
+                                    const Color.fromRGBO(82, 165, 160, 1),
                                 inactiveColor:
-                                const Color
-                                    .fromRGBO(
-                                    217,
-                                    217,
-                                    217,
-                                    1),
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 width: 65.0,
                                 height: 35.0,
                                 value: onlyMyQuestion,
@@ -386,16 +360,17 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 onToggle: (val) {
                                   setState(() {
                                     onlyMyQuestion = val;
-                                    questionStart=0;
-                                    pageNumber=1;
-                                    questionList=[];
+                                    questionStart = 0;
+                                    pageNumber = 1;
+                                    questionList = [];
                                   });
-                                  onlyMyQuestion?
-                                  getData(teacherQuestionBankSearchController.text):
-                                  searchGlobalQuestion();
+                                  onlyMyQuestion
+                                      ? getData(
+                                          teacherQuestionBankSearchController
+                                              .text)
+                                      : searchGlobalQuestion();
                                 },
                               ),
-
                             ],
                           ),
                           SizedBox(height: height * 0.015),
@@ -413,28 +388,39 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           SizedBox(height: height * 0.01),
                           Container(
                             height: height * 0.55,
-                            width: width ,
+                            width: width,
                             decoration: BoxDecoration(
-                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(10)),
+                              border: Border.all(
+                                color: const Color.fromRGBO(153, 153, 153, 0.5),
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
                             ),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (int i=questionStart;i<questionList.length;i++)
-                                    Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
+                                  for (int i = questionStart;
+                                      i < questionList.length;
+                                      i++)
+                                    Question_Card(
+                                        height: height,
+                                        width: width,
+                                        question: questionList[i],
+                                        myQuestion: myQuestion),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(left:width *  0.02),
+                                        padding:
+                                            EdgeInsets.only(left: width * 0.02),
                                         child: Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
+                                          'Showing ${questionStart + 1} to ${questionStart + 10 < questionList.length ? questionStart + 10 : questionList.length} of ${questionResponse?.total_count}',
                                           style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.016),
@@ -446,22 +432,33 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           Row(
                                             children: [
                                               GestureDetector(
-                                                onTap: (){
-                                                  if(questionStart==0){
-
-                                                  }
-                                                  else if(questionResponse!.total_count==questionList.length){
+                                                onTap: () {
+                                                  if (questionStart == 0) {
+                                                  } else if (questionResponse!
+                                                          .total_count ==
+                                                      questionList.length) {
                                                     setState(() {
                                                       pageNumber--;
-                                                      questionStart=questionStart-10;
-                                                      questionList.removeRange(questionList.length-(questionResponse!.total_count!%10), questionList.length);
+                                                      questionStart =
+                                                          questionStart - 10;
+                                                      questionList.removeRange(
+                                                          questionList.length -
+                                                              (questionResponse!
+                                                                      .total_count! %
+                                                                  10),
+                                                          questionList.length);
                                                     });
-                                                  }
-                                                  else if(questionList.length>10){
+                                                  } else if (questionList
+                                                          .length >
+                                                      10) {
                                                     setState(() {
                                                       pageNumber--;
-                                                      questionStart=questionStart-10;
-                                                      questionList.removeRange(questionList.length-10, questionList.length);
+                                                      questionStart =
+                                                          questionStart - 10;
+                                                      questionList.removeRange(
+                                                          questionList.length -
+                                                              10,
+                                                          questionList.length);
                                                     });
                                                   }
                                                 },
@@ -469,67 +466,99 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   height: height * 0.03,
                                                   width: width * 0.09,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Icon(
-                                                    Icons.keyboard_double_arrow_left,
+                                                    Icons
+                                                        .keyboard_double_arrow_left,
                                                     size: height * 0.015,
-                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                  ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                padding: EdgeInsets.only(
+                                                    right: width * 0.005,
+                                                    left: width * 0.005),
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.09,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Center(
                                                     child: Text(
-                                                      '${questionStart==0?1:((questionStart/10)+1).toInt()}',
+                                                      '${questionStart == 0 ? 1 : ((questionStart / 10) + 1).toInt()}',
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                          color: const Color
+                                                                  .fromRGBO(
+                                                              28, 78, 80, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize:
+                                                              height * 0.016),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               GestureDetector(
-                                                onTap: (){
+                                                onTap: () {
                                                   setState(() {
-                                                    questionStart=questionStart+10;
+                                                    questionStart =
+                                                        questionStart + 10;
                                                   });
 
-                                                  onlyMyQuestion?
-                                                  getData(teacherQuestionBankSearchController.text)
-                                                      :searchGlobalQuestion();
+                                                  onlyMyQuestion
+                                                      ? getData(
+                                                          teacherQuestionBankSearchController
+                                                              .text)
+                                                      : searchGlobalQuestion();
                                                 },
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.09,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Icon(
-                                                    Icons.keyboard_double_arrow_right,
+                                                    Icons
+                                                        .keyboard_double_arrow_right,
                                                     size: height * 0.015,
-                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: height * 0.05,)
+                                      SizedBox(
+                                        height: height * 0.05,
+                                      )
                                     ],
                                   ),
                                 ],
@@ -543,9 +572,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 width: width * 0.8,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                      Colors.white,
-                                      minimumSize: Size(width * 0.025, height * 0.05),
+                                      backgroundColor: Colors.white,
+                                      minimumSize:
+                                          Size(width * 0.025, height * 0.05),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(39),
                                       ),
@@ -553,9 +582,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       )),
                                   onPressed: () {
-                                    Provider.of<QuestionPrepareProviderFinal>(context,
-                                        listen: false).reSetQuestionList();
-                                    Navigator.pushNamed(context, '/createNewQuestion');
+                                    Provider.of<QuestionPrepareProviderFinal>(
+                                            context,
+                                            listen: false)
+                                        .reSetQuestionList();
+                                    Navigator.pushNamed(
+                                        context, '/createNewQuestion');
                                   },
                                   child: Text(
                                     //AppLocalizations.of(context)!.prepare_new_qn,
@@ -563,7 +595,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -575,17 +608,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       )),
                 ),
               ));
-        }
-        else if(constraints.maxWidth > 960)
-        {
+        } else if (constraints.maxWidth > 960) {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
                 resizeToAvoidBottomInset: true,
                 backgroundColor: Colors.white,
-                appBar:
-                AppBar(
-                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                appBar: AppBar(
+                  iconTheme: IconThemeData(
+                      color: appBarChevronColor, size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
@@ -615,20 +646,16 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         ),
                       ]),
                   flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white
-                    ),
+                    decoration: const BoxDecoration(color: Colors.white),
                   ),
                 ),
                 endDrawer: const EndDrawerMenuTeacher(),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                          top: height * 0.023,
-                          left: height * 0.5,
-                          right: height * 0.5
-                      ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      width: width * 0.7,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -644,22 +671,21 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           ),
                           SizedBox(height: height * 0.005),
                           TextField(
-                            onChanged: (t){
-                              setState(() {
-                              });
+                            onChanged: (t) {
+                              setState(() {});
                             },
                             controller: teacherQuestionBankSearchController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               //floatingLabelBehavior: FloatingLabelBehavior.always,
                               hintStyle: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                  color:
+                                      const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.016),
                               hintText: "Subject, Topic, Degree",
-                              suffixIcon:
-                              Column(children: [
+                              suffixIcon: Column(children: [
                                 Container(
                                     height: height * 0.05,
                                     width: width * 0.07,
@@ -667,33 +693,43 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       shape: BoxShape.circle,
                                       // borderRadius:
                                       // BorderRadius.all(Radius.circular(100)),
-                                      color: teacherQuestionBankSearchController.text.isEmpty?
-                                      const Color.fromRGBO(153, 153, 153, 0.5):const Color.fromRGBO(82, 165, 160, 1),
+                                      color: teacherQuestionBankSearchController
+                                              .text.isEmpty
+                                          ? const Color.fromRGBO(
+                                              153, 153, 153, 0.5)
+                                          : const Color.fromRGBO(
+                                              82, 165, 160, 1),
                                     ),
                                     child: Center(
                                       child: IconButton(
                                         iconSize: height * 0.020,
-                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
                                         onPressed: () {
                                           setState(() {
-                                            questionStart=0;
-                                            questionList=[];
-                                            pageNumber=1;
+                                            questionStart = 0;
+                                            questionList = [];
+                                            pageNumber = 1;
                                           });
-                                          onlyMyQuestion?
-                                          getData(teacherQuestionBankSearchController.text):
-                                          searchGlobalQuestion();
+                                          onlyMyQuestion
+                                              ? getData(
+                                                  teacherQuestionBankSearchController
+                                                      .text)
+                                              : searchGlobalQuestion();
                                         },
                                         icon: const Icon(Icons.search),
                                       ),
                                     )),
-                              ]
-                              ),
+                              ]),
                               enabledBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                ),
                               ),
                               focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                ),
                               ),
                             ),
                           ),
@@ -712,16 +748,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 ),
                               ),
                               FlutterSwitch(
-                                activeColor: const Color
-                                    .fromRGBO(
-                                    82, 165, 160, 1),
+                                activeColor:
+                                    const Color.fromRGBO(82, 165, 160, 1),
                                 inactiveColor:
-                                const Color
-                                    .fromRGBO(
-                                    217,
-                                    217,
-                                    217,
-                                    1),
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 width: 65.0,
                                 height: 35.0,
                                 value: onlyMyQuestion,
@@ -729,16 +759,17 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 onToggle: (val) {
                                   setState(() {
                                     onlyMyQuestion = val;
-                                    questionStart=0;
-                                    pageNumber=1;
-                                    questionList=[];
+                                    questionStart = 0;
+                                    pageNumber = 1;
+                                    questionList = [];
                                   });
-                                  onlyMyQuestion?
-                                  getData(teacherQuestionBankSearchController.text):
-                                  searchGlobalQuestion();
+                                  onlyMyQuestion
+                                      ? getData(
+                                          teacherQuestionBankSearchController
+                                              .text)
+                                      : searchGlobalQuestion();
                                 },
                               ),
-
                             ],
                           ),
                           SizedBox(height: height * 0.015),
@@ -756,28 +787,39 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           SizedBox(height: height * 0.01),
                           Container(
                             height: height * 0.55,
-                            width: width ,
+                            width: width,
                             decoration: BoxDecoration(
-                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(10)),
+                              border: Border.all(
+                                color: const Color.fromRGBO(153, 153, 153, 0.5),
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
                             ),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (int i=questionStart;i<questionList.length;i++)
-                                    Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
+                                  for (int i = questionStart;
+                                      i < questionList.length;
+                                      i++)
+                                    Question_Card(
+                                        height: height,
+                                        width: width,
+                                        question: questionList[i],
+                                        myQuestion: myQuestion),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(left:height * 0.01),
+                                        padding: EdgeInsets.only(
+                                            left: height * 0.01),
                                         child: Text(
-                                          'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count}',
+                                          'Showing ${questionStart + 1} to ${questionStart + 10 < questionList.length ? questionStart + 10 : questionList.length} of ${questionResponse?.total_count}',
                                           style: TextStyle(
-                                              color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.016),
@@ -789,22 +831,33 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           Row(
                                             children: [
                                               GestureDetector(
-                                                onTap: (){
-                                                  if(questionStart==0){
-
-                                                  }
-                                                  else if(questionResponse!.total_count==questionList.length){
+                                                onTap: () {
+                                                  if (questionStart == 0) {
+                                                  } else if (questionResponse!
+                                                          .total_count ==
+                                                      questionList.length) {
                                                     setState(() {
                                                       pageNumber--;
-                                                      questionStart=questionStart-10;
-                                                      questionList.removeRange(questionList.length-(questionResponse!.total_count!%10), questionList.length);
+                                                      questionStart =
+                                                          questionStart - 10;
+                                                      questionList.removeRange(
+                                                          questionList.length -
+                                                              (questionResponse!
+                                                                      .total_count! %
+                                                                  10),
+                                                          questionList.length);
                                                     });
-                                                  }
-                                                  else if(questionList.length>10){
+                                                  } else if (questionList
+                                                          .length >
+                                                      10) {
                                                     setState(() {
                                                       pageNumber--;
-                                                      questionStart=questionStart-10;
-                                                      questionList.removeRange(questionList.length-10, questionList.length);
+                                                      questionStart =
+                                                          questionStart - 10;
+                                                      questionList.removeRange(
+                                                          questionList.length -
+                                                              10,
+                                                          questionList.length);
                                                     });
                                                   }
                                                 },
@@ -812,67 +865,99 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   height: height * 0.03,
                                                   width: height * 0.09,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Icon(
-                                                    Icons.keyboard_double_arrow_left,
+                                                    Icons
+                                                        .keyboard_double_arrow_left,
                                                     size: height * 0.015,
-                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                  ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                padding: EdgeInsets.only(
+                                                    right: width * 0.005,
+                                                    left: width * 0.005),
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: height * 0.07,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Center(
                                                     child: Text(
-                                                      '${questionStart==0?1:((questionStart/10)+1).toInt()}',
+                                                      '${questionStart == 0 ? 1 : ((questionStart / 10) + 1).toInt()}',
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                          color: const Color
+                                                                  .fromRGBO(
+                                                              28, 78, 80, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize:
+                                                              height * 0.016),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               GestureDetector(
-                                                onTap: (){
+                                                onTap: () {
                                                   setState(() {
-                                                    questionStart=questionStart+10;
+                                                    questionStart =
+                                                        questionStart + 10;
                                                   });
 
-                                                  onlyMyQuestion?
-                                                  getData(teacherQuestionBankSearchController.text)
-                                                      :searchGlobalQuestion();
+                                                  onlyMyQuestion
+                                                      ? getData(
+                                                          teacherQuestionBankSearchController
+                                                              .text)
+                                                      : searchGlobalQuestion();
                                                 },
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: height * 0.09,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Icon(
-                                                    Icons.keyboard_double_arrow_right,
+                                                    Icons
+                                                        .keyboard_double_arrow_right,
                                                     size: height * 0.015,
-                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: height * 0.05,)
+                                      SizedBox(
+                                        height: height * 0.05,
+                                      )
                                     ],
                                   ),
                                 ],
@@ -886,9 +971,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 width: width * 0.8,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                      Colors.white,
-                                      minimumSize: Size(width * 0.025, height * 0.05),
+                                      backgroundColor: Colors.white,
+                                      minimumSize:
+                                          Size(width * 0.025, height * 0.05),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(39),
                                       ),
@@ -896,9 +981,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       )),
                                   onPressed: () {
-                                    Provider.of<QuestionPrepareProviderFinal>(context,
-                                        listen: false).reSetQuestionList();
-                                    Navigator.pushNamed(context, '/createNewQuestion');
+                                    Provider.of<QuestionPrepareProviderFinal>(
+                                            context,
+                                            listen: false)
+                                        .reSetQuestionList();
+                                    Navigator.pushNamed(
+                                        context, '/createNewQuestion');
                                   },
                                   child: Text(
                                     //AppLocalizations.of(context)!.prepare_new_qn,
@@ -906,7 +994,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -915,19 +1004,20 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             SizedBox(height: height * 0.02),
                           ]),
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ));
-        }
-        else {
+        } else {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
                 resizeToAvoidBottomInset: true,
                 backgroundColor: Colors.white,
-                appBar:
-                AppBar(
-                  iconTheme: IconThemeData(color: appBarChevronColor,size: height * 0.05),
+                appBar: AppBar(
+                  iconTheme: IconThemeData(
+                      color: appBarChevronColor, size: height * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
@@ -957,12 +1047,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         ),
                       ]),
                   flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white
-                    ),
+                    decoration: const BoxDecoration(color: Colors.white),
                   ),
                 ),
-
                 endDrawer: const EndDrawerMenuTeacher(),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -991,13 +1078,13 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             decoration: InputDecoration(
                               //floatingLabelBehavior: FloatingLabelBehavior.always,
                               hintStyle: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                  color:
+                                      const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.016),
                               hintText: "Subject, Topic, Degree",
-                              suffixIcon:
-                              Column(children: [
+                              suffixIcon: Column(children: [
                                 Container(
                                     height: height * 0.053,
                                     width: width * 0.1,
@@ -1009,38 +1096,40 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     ),
                                     child: IconButton(
                                       iconSize: height * 0.025,
-                                      color: const Color.fromRGBO(255, 255, 255, 1),
+                                      color: const Color.fromRGBO(
+                                          255, 255, 255, 1),
                                       onPressed: () {
                                         questionList = [];
                                         pageNumber = 1;
                                         agree
                                             ? getData(
-                                            teacherQuestionBankSearchController
-                                                .text)
-
-                                            :
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/teacherLooqQuestionBank',
-                                          arguments: teacherQuestionBankSearchController
-                                              .text,
-                                        ).then((value) =>
-                                            teacherQuestionBankSearchController
-                                                .clear());
+                                                teacherQuestionBankSearchController
+                                                    .text)
+                                            : Navigator.pushNamed(
+                                                context,
+                                                '/teacherLooqQuestionBank',
+                                                arguments:
+                                                    teacherQuestionBankSearchController
+                                                        .text,
+                                              ).then((value) =>
+                                                teacherQuestionBankSearchController
+                                                    .clear());
                                       },
                                       icon: const Icon(Icons.search),
                                     )),
-                              ]
-                              ),
+                              ]),
                               enabledBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                ),
                               ),
                               focusedBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                borderSide: BorderSide(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                ),
                               ),
                             ),
                           ),
-
                           SizedBox(height: height * 0.02),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1056,16 +1145,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 ),
                               ),
                               FlutterSwitch(
-                                activeColor: const Color
-                                    .fromRGBO(
-                                    82, 165, 160, 1),
+                                activeColor:
+                                    const Color.fromRGBO(82, 165, 160, 1),
                                 inactiveColor:
-                                const Color
-                                    .fromRGBO(
-                                    217,
-                                    217,
-                                    217,
-                                    1),
+                                    const Color.fromRGBO(217, 217, 217, 1),
                                 width: 65.0,
                                 height: 35.0,
                                 value: onlyMyQuestion,
@@ -1073,16 +1156,17 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 onToggle: (val) {
                                   setState(() {
                                     onlyMyQuestion = val;
-                                    questionStart=0;
-                                    pageNumber=1;
-                                    questionList=[];
+                                    questionStart = 0;
+                                    pageNumber = 1;
+                                    questionList = [];
                                   });
-                                  onlyMyQuestion?
-                                  getData(teacherQuestionBankSearchController.text):
-                                  searchGlobalQuestion();
+                                  onlyMyQuestion
+                                      ? getData(
+                                          teacherQuestionBankSearchController
+                                              .text)
+                                      : searchGlobalQuestion();
                                 },
                               ),
-
                             ],
                           ),
                           SizedBox(height: height * 0.015),
@@ -1102,24 +1186,34 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             height: height * 0.55,
                             width: width * 0.9,
                             decoration: BoxDecoration(
-                              border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(10)),
+                              border: Border.all(
+                                color: const Color.fromRGBO(153, 153, 153, 0.5),
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(10)),
                             ),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (int i=questionStart;i<questionList.length;i++)
-                                    Question_Card(height: height, width: width,question: questionList[i],myQuestion: myQuestion),
+                                  for (int i = questionStart;
+                                      i < questionList.length;
+                                      i++)
+                                    Question_Card(
+                                        height: height,
+                                        width: width,
+                                        question: questionList[i],
+                                        myQuestion: myQuestion),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of ${questionResponse?.total_count ?? 0}',
+                                        'Showing ${questionStart + 1} to ${questionStart + 10 < questionList.length ? questionStart + 10 : questionList.length} of ${questionResponse?.total_count ?? 0}',
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.3),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.016),
@@ -1129,22 +1223,33 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           Row(
                                             children: [
                                               GestureDetector(
-                                                onTap: (){
-                                                  if(questionStart==0){
-
-                                                  }
-                                                  else if(questionResponse!.total_count==questionList.length){
+                                                onTap: () {
+                                                  if (questionStart == 0) {
+                                                  } else if (questionResponse!
+                                                          .total_count ==
+                                                      questionList.length) {
                                                     setState(() {
                                                       pageNumber--;
-                                                      questionStart=questionStart-10;
-                                                      questionList.removeRange(questionList.length-(questionResponse!.total_count!%10), questionList.length);
+                                                      questionStart =
+                                                          questionStart - 10;
+                                                      questionList.removeRange(
+                                                          questionList.length -
+                                                              (questionResponse!
+                                                                      .total_count! %
+                                                                  10),
+                                                          questionList.length);
                                                     });
-                                                  }
-                                                  else if(questionList.length>10){
+                                                  } else if (questionList
+                                                          .length >
+                                                      10) {
                                                     setState(() {
                                                       pageNumber--;
-                                                      questionStart=questionStart-10;
-                                                      questionList.removeRange(questionList.length-10, questionList.length);
+                                                      questionStart =
+                                                          questionStart - 10;
+                                                      questionList.removeRange(
+                                                          questionList.length -
+                                                              10,
+                                                          questionList.length);
                                                     });
                                                   }
                                                 },
@@ -1152,60 +1257,90 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                                   height: height * 0.03,
                                                   width: width * 0.1,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Icon(
-                                                    Icons.keyboard_double_arrow_left,
+                                                    Icons
+                                                        .keyboard_double_arrow_left,
                                                     size: height * 0.015,
-                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                  ),
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                padding: EdgeInsets.only(
+                                                    right: width * 0.005,
+                                                    left: width * 0.005),
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.15,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Center(
                                                     child: Text(
-                                                      '${questionStart==0?1:((questionStart/10)+1).toInt()}',
+                                                      '${questionStart == 0 ? 1 : ((questionStart / 10) + 1).toInt()}',
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                          color: const Color
+                                                                  .fromRGBO(
+                                                              28, 78, 80, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: height * 0.016),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          fontSize:
+                                                              height * 0.016),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               GestureDetector(
-                                                onTap: (){
+                                                onTap: () {
                                                   setState(() {
-                                                    questionStart=questionStart+10;
+                                                    questionStart =
+                                                        questionStart + 10;
                                                   });
 
-                                                  onlyMyQuestion?
-                                                  getData(teacherQuestionBankSearchController.text)
-                                                      :searchGlobalQuestion();
+                                                  onlyMyQuestion
+                                                      ? getData(
+                                                          teacherQuestionBankSearchController
+                                                              .text)
+                                                      : searchGlobalQuestion();
                                                 },
                                                 child: Container(
                                                   height: height * 0.03,
                                                   width: width * 0.1,
                                                   decoration: BoxDecoration(
-                                                    border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                    borderRadius: const BorderRadius.all(
-                                                        Radius.circular(5)),
+                                                    border: Border.all(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                    ),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(5)),
                                                   ),
                                                   child: Icon(
-                                                    Icons.keyboard_double_arrow_right,
+                                                    Icons
+                                                        .keyboard_double_arrow_right,
                                                     size: height * 0.015,
-                                                    color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -1218,19 +1353,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               ),
                             ),
                           ),
-
-
                           Column(children: [
-
                             SizedBox(height: height * 0.02),
-
                             Center(
                               child: SizedBox(
                                 width: width * 0.8,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                      Colors.white,
+                                      backgroundColor: Colors.white,
                                       minimumSize: const Size(280, 48),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(39),
@@ -1239,9 +1369,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       )),
                                   onPressed: () {
-                                    Provider.of<QuestionPrepareProviderFinal>(context,
-                                        listen: false).reSetQuestionList();
-                                    Navigator.pushNamed(context, '/createNewQuestion');
+                                    Provider.of<QuestionPrepareProviderFinal>(
+                                            context,
+                                            listen: false)
+                                        .reSetQuestionList();
+                                    Navigator.pushNamed(
+                                        context, '/createNewQuestion');
                                   },
                                   child: Text(
                                     //AppLocalizations.of(context)!.prepare_new_qn,
@@ -1249,7 +1382,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -1268,13 +1402,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 }
 
 class Question_Card extends StatefulWidget {
-  const Question_Card({
-    super.key,
-    required this.height,
-    required this.width,
-    required this.question,
-    required this.myQuestion
-  });
+  const Question_Card(
+      {super.key,
+      required this.height,
+      required this.width,
+      required this.question,
+      required this.myQuestion});
 
   final double height;
   final double width;
@@ -1286,9 +1419,6 @@ class Question_Card extends StatefulWidget {
 }
 
 class _Question_CardState extends State<Question_Card> {
-
-
-
   showQuestionPreview(BuildContext context) {
     showDialog(
       context: context,
@@ -1299,6 +1429,7 @@ class _Question_CardState extends State<Question_Card> {
       },
     );
   }
+
   showGlobalQuestionPreview(BuildContext context) {
     showDialog(
       context: context,
@@ -1312,27 +1443,31 @@ class _Question_CardState extends State<Question_Card> {
 
   @override
   Widget build(BuildContext context) {
-
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          widget.myQuestion?
-          showQuestionPreview(context):
-          showGlobalQuestionPreview(context);
+          widget.myQuestion
+              ? showQuestionPreview(context)
+              : showGlobalQuestionPreview(context);
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
             // height: widget.width > 500 ? widget.height * 0.19 :widget.height * 0.22,
-             width: widget.width > 960 ? widget.width * 0.85 :widget.width >500 ? 650.0  : 400.0,
+            width: widget.width > 960
+                ? widget.width * 0.85
+                : widget.width > 500
+                    ? 650.0
+                    : 400.0,
             // constraints: BoxConstraints(
             //   maxWidth: maxWidth,
             // ),
             decoration: BoxDecoration(
-              border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.2),),
-              borderRadius: const BorderRadius.all(
-                  Radius.circular(10)),
+              border: Border.all(
+                color: const Color.fromRGBO(82, 165, 160, 0.2),
+              ),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
               color: const Color.fromRGBO(82, 165, 160, 0.07),
             ),
             child: Padding(
@@ -1401,7 +1536,8 @@ class _Question_CardState extends State<Question_Card> {
                     ),
                   ),
                 ],
-              ),),
+              ),
+            ),
           ),
         ),
       ),
@@ -1415,13 +1551,11 @@ class QuestionPreview extends StatelessWidget {
     required this.height,
     required this.width,
     required this.question,
-
   }) : super(key: key);
 
   final double height;
   final double width;
   final Question question;
-
 
   @override
   Widget build(BuildContext context) {
@@ -1440,11 +1574,8 @@ class QuestionPreview extends StatelessWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
-                  context,
-                  '/questionEdit',
-                  arguments: question
-              );
+              Navigator.pushNamed(context, '/questionEdit',
+                  arguments: question);
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -1474,7 +1605,8 @@ class QuestionPreview extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: height * 0.017,
                                         fontFamily: "Inter",
-                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
                                         fontWeight: FontWeight.w600),
                                   ),
                                   Text(
@@ -1482,7 +1614,8 @@ class QuestionPreview extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: height * 0.015,
                                         fontFamily: "Inter",
-                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ],
@@ -1492,7 +1625,8 @@ class QuestionPreview extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
+                                    color:
+                                        const Color.fromRGBO(255, 255, 255, 1),
                                     fontWeight: FontWeight.w600),
                               ),
                             ],

@@ -885,19 +885,16 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                                                 children: [
                                                                   SizedBox(
                                                                     height:height*0.2,
-                                                                    child: CupertinoDatePicker(
-                                                                      initialDateTime: DateTime.now(),
-                                                                      onDateTimeChanged: (DateTime newdate) {
-                                                                        setState(() {
-                                                                          startDate=newdate;
-                                                                        });
-                                                                      },
-                                                                      use24hFormat: true,
-                                                                      maximumDate: DateTime(3000, 12, 30),
-                                                                      minimumYear: 2023,
-                                                                      maximumYear: 3000,
-                                                                      minuteInterval: 1,
-                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    child: DateTimeFormField(
+                                                                        onDateSelected: (DateTime newdate) {
+                                                                          setState(() {
+                                                                            startDate=newdate;
+                                                                          });
+                                                                        },
+                                                                        use24hFormat: true,
+                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!),
+                                                                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                                                        mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(
@@ -1007,19 +1004,17 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                                                 children: [
                                                                   SizedBox(
                                                                     height:height*0.2,
-                                                                    child: CupertinoDatePicker(
-                                                                      initialDateTime: DateTime.now(),
-                                                                      onDateTimeChanged: (DateTime newdate) {
-                                                                        setState(() {
-                                                                          endDate=newdate;
-                                                                        });
-                                                                      },
-                                                                      use24hFormat: true,
-                                                                      maximumDate: DateTime(3000, 12, 30),
-                                                                      minimumYear: 2023,
-                                                                      maximumYear: 3000,
-                                                                      minuteInterval: 1,
-                                                                      mode: CupertinoDatePickerMode.dateAndTime,
+                                                                    child:
+                                                                    DateTimeFormField(
+                                                                        onDateSelected: (DateTime newdate) {
+                                                                          setState(() {
+                                                                            endDate=newdate;
+                                                                          });
+                                                                        },
+                                                                        use24hFormat: true,
+                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
+                                                                        initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                                                        mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(

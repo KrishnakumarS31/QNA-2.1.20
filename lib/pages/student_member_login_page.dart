@@ -1260,7 +1260,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: localHeight * 0.2),
+                          SizedBox(height: localHeight * 0.1),
                           Padding(
                               padding: const EdgeInsets.only(left: 50),
                               child: Text(
@@ -1273,7 +1273,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               )),
-                          SizedBox(height: localHeight * 0.2),
+                          SizedBox(height: localHeight * 0.05),
                           Center(
                               child:
                               Container(

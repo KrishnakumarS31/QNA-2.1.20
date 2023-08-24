@@ -811,7 +811,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
               child: Scaffold(
                   resizeToAvoidBottomInset: true,
                   backgroundColor: Colors.white,
-                  body: Padding(
+        body: SingleChildScrollView(
+        child: Padding(
                     padding: EdgeInsets.only(
                       top: localHeight * 0.02,
                       // left: localHeight * 0.023,
@@ -1258,7 +1259,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         ),
                       ],
                     ))),
-                  )));
+                  ))));
         }
         else {
           return WillPopScope(
@@ -1266,7 +1267,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
               child: Scaffold(
                   resizeToAvoidBottomInset: true,
                   backgroundColor: Colors.white,
-                  body: Padding(
+                  body: SingleChildScrollView(
+                      child:
+                  Padding(
                     padding: EdgeInsets.only(
                       top: localHeight * 0.04,
                       // left: localHeight * 0.023,
@@ -1324,7 +1327,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 ],
                               ),
                               Padding(
-                                  padding: const EdgeInsets.only(top: 16),
+                                  padding: const EdgeInsets.only(top: 5),
                                   child:MouseRegion(
                                     cursor: SystemMouseCursors.click,
                                     child: GestureDetector(
@@ -1349,7 +1352,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                       ),),)
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16),
+                                padding: const EdgeInsets.only(top: 5),
                                 child: Row(
                                   children: [
                                     Text(AppLocalizations.of(context)!.review_answer_sheet,
@@ -1361,22 +1364,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   ],
                                 ),
                               ),
-                              // Row(
-                              //   children: [
-                              //     Text(AppLocalizations.of(context)!.please_tap_qn,
-                              //         style: TextStyle(
-                              //             color: const Color.fromRGBO(51, 51, 51, 1),
-                              //             fontFamily: 'Inter',
-                              //             fontWeight: FontWeight.w400,
-                              //             fontStyle: FontStyle.italic,
-                              //             fontSize: localHeight * 0.015)),
-                              //   ],
-                              // ),
                             ],
                           ),
                         ),
                         SizedBox(
-                          height: localHeight *0.7,
+                          height: localHeight * 0.65,
                           child: SingleChildScrollView(
                               physics: const ClampingScrollPhysics(),
                               child: Padding(
@@ -1667,7 +1659,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                     ))
                                             ]),
 
-                                        SizedBox(height: localHeight * 0.030),
+                                        // SizedBox(height: localHeight * 0.030),
                                       ]),
                                 ),
                               )),
@@ -1708,7 +1700,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         ),
                       ],
                     ),
-                  )));
+                  ))));
         }
       },
     );

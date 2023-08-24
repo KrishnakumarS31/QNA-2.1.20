@@ -1354,7 +1354,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                               ),
                               SizedBox(height: localHeight * 0.01),
                               SizedBox(
-                                height: localHeight * 0.62,
+                                height: localHeight * 0.58,
                                 width: localWidth * 1.5,
                                 child: Card(
                                   elevation: 12,
@@ -1376,7 +1376,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           SizedBox(width: localWidth * 0.02)
                                         ]
                                     ),
-                                    SizedBox(height: localHeight * 0.02),
+                                    SizedBox(height: localHeight * 0.005),
                                     Text(widget.userName,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1390,7 +1390,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 255, 153, 0, 1),
                                             fontWeight: FontWeight.w500,
                                             fontSize: localHeight * 0.096)),
-                                    const SizedBox(height:1.0),
+                                    SizedBox(height: localHeight * 0.01),
                                     Text(AppLocalizations.of(context)!.mark_scored,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
@@ -1398,7 +1398,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: localHeight * 0.018)),
-                                    SizedBox(height: localHeight * 0.03),
+                                    SizedBox(height: localHeight * 0.01),
                                     Divider(
                                         thickness: 0.1,
                                         indent: localWidth * 0.05,
@@ -1472,7 +1472,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         endIndent: localWidth * 0.04,
                                         color: Colors.black
                                     ),
-                                    SizedBox(height: localHeight * 0.03),
+                                    SizedBox(height: localHeight * 0.01),
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
@@ -1595,7 +1595,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: localHeight * 0.03),
+                                    SizedBox(height: localHeight * 0.01),
                                     Divider(
                                         thickness: 0.1,
                                         indent: localWidth * 0.05,
@@ -1615,7 +1615,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   ]),
                                 ),
                               ),
-                              const SizedBox(height:30.0),
+                              SizedBox(height: localHeight * 0.01),
                               Column(
                                 children: [
                                   //SizedBox(height: localHeight * 0.27),
@@ -1683,42 +1683,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           );
                                         },
                                       ),
-
                                     ],
                                   ),
-                                  // SizedBox(height: localHeight * 0.010),
-                                  // ElevatedButton(
-                                  //     style: ElevatedButton.styleFrom(
-                                  //       backgroundColor: const Color.fromRGBO(
-                                  //           255, 255, 255, 1),
-                                  //       minimumSize: const Size(280, 48),
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(
-                                  //             39),
-                                  //       ),
-                                  //       side: const BorderSide(
-                                  //         width: 1.5,
-                                  //         color: Color.fromRGBO(
-                                  //             82, 165, 160, 1),
-                                  //       ),
-                                  //     ),
-                                  //     child: Text(
-                                  //         AppLocalizations.of(context)!
-                                  //             .advisor,
-                                  //         style: TextStyle(
-                                  //             fontFamily: 'Inter',
-                                  //             fontSize: localHeight * 0.022,
-                                  //             color: const Color.fromRGBO(
-                                  //                 82, 165, 160, 1),
-                                  //             fontWeight: FontWeight.w500)),
-                                  //     onPressed: () {
-                                  //       Navigator.pushNamed(
-                                  //           context,
-                                  //           '/studMemAdvisor',
-                                  //           arguments: [values,widget.assessmentCode]
-                                  //       );
-                                  //     }),
-                                  SizedBox(height: localHeight * 0.03),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -1729,7 +1695,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.all(1.0),
                                       child: Text(
                                           AppLocalizations.of(context)!.exit,
                                           style: TextStyle(
@@ -1743,13 +1709,11 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         context: context,
                                         builder: (context) =>
                                             AlertDialog(
-
                                               title: Padding(
                                                 padding: EdgeInsets.only(left: localHeight * 0.04),
                                                 child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
-
                                                       Container(
                                                         decoration: const BoxDecoration(
                                                           shape: BoxShape.circle,
@@ -1903,6 +1867,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       );
                                     },
                                   ),
+                                  SizedBox(height: localHeight * 0.01),
                                 ],
                               )
                             ],

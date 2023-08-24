@@ -21,7 +21,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
   // final DateFormat formatter = DateFormat('dd/MM/yyyy');
   late String formatted = '';
 
-
   @override
   void initState() {
     super.initState();
@@ -35,957 +34,910 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: true,
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      iconTheme: IconThemeData(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          size: height * 0.05),
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: const Icon(
-                          Icons.chevron_left,
-                          size: 40,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      toolbarHeight: height * 0.100,
-                      centerTitle: true,
-                      title: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "User Profile",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ]),
-                      flexibleSpace: Container(
-                        decoration: const BoxDecoration(color: Colors.white),
-                      ),
+      if (constraints.maxWidth <= 960 && constraints.maxWidth >= 500) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  iconTheme: IconThemeData(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      size: height * 0.05),
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40,
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
-                    body: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          padding: EdgeInsets.only(
-                              left: height * 0.15, right: height * 0.2),
-                          height: height * 0.15,
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                          ),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: height * 0.005,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 23,
-                                    backgroundColor:
-                                    const Color.fromRGBO(0, 106, 100, 0),
-                                    child: Image.asset(
-                                      "assets/images/ProfilePic_Avatar.png",
-                                    ),
-                                  ),
-                                  SizedBox(width: width * 0.04),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
-                                        style: TextStyle(
-                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                          fontSize: height * 0.03,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(context)!.teacher,
-                                        style: TextStyle(
-                                          color: const Color.fromRGBO(153, 153, 153, 1),
-                                          fontSize: height * 0.02,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                        Text(
+                          "User Profile",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.only(
-                              left: height * 0.2, right: height * 0.2),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Gender',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  widget.userDataModel.data?.gender == "male"
-                                      ? "Male"
-                                      : "Female",
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Country Citizen',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.countryNationality}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Country Resident',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.countryResident}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Email ID',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.email}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  AppLocalizations.of(
-                                      context)!
-                                      .reg_roll_caps,
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.rollNumber}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Institution Name',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.organisationName}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Enabled as Student',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.01),
-                                Text(
-                                  widget.userDataModel.data!.role
-                                      .contains("student")
-                                      ? "Yes"
-                                      : "No",
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.08,
-                                ),
-                              ]),
-                        ),
-                        Center(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                              minimumSize: const Size(172, 38),
-                              side: const BorderSide(
-                                  width: 1, // the thickness
-                                  color: Color.fromRGBO(
-                                      82, 165, 160, 1) // the color of the border
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(39),
-                              ),
-                            ),
-                            child: Text('Edit Profile',
-                                style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: height * 0.03,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                    fontWeight: FontWeight.w500)),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherEditProfilePage(userDataModel: widget.userDataModel),
-                                ),
-                              );
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child: CustomDialog(
-                              //       title: 'Alert',
-                              //       content: "Feature under development",
-                              //       button: AppLocalizations.of(context)!.ok_caps,
-                              //     ),
-                              //   ),
-                              // );
-                              // PageTransition(
-                              //   type: PageTransitionType.rightToLeft,
-                              //   child: StudentRegistrationUpdatePage(
-                              //       userData: widget, isEdit: true),
-                              // );
-                            },
-                          ),
-                        )
-                      ],
-                    )));
-          }
-          else if(constraints.maxWidth > 960){
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: true,
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      iconTheme: IconThemeData(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          size: height * 0.05),
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: height * 0.06,
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      toolbarHeight: height * 0.100,
-                      centerTitle: true,
-                      title: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "User Profile",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ]),
-                      flexibleSpace: Container(
-                        decoration: const BoxDecoration(color: Colors.white),
-                      ),
-                    ),
-                    body: Container(
-                        padding: EdgeInsets.only(
-                            left: height * 0.5, right: height * 0.5),
+                      ]),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(color: Colors.white),
+                  ),
+                ),
+                body: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Container(
-                              height: height * 0.1,
-                              decoration: const BoxDecoration(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                              ),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: height * 0.005,
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CircleAvatar(
+                                  radius: 23,
+                                  backgroundColor:
+                                      const Color.fromRGBO(0, 106, 100, 0),
+                                  child: Image.asset(
+                                    "assets/images/ProfilePic_Avatar.png",
                                   ),
-                                  Row(
-                                    children: [
-                                      SizedBox(width: width * 0.005),
-                                      CircleAvatar(
-                                        radius: 23,
-                                        backgroundColor:
-                                        const Color.fromRGBO(0, 106, 100, 0),
-                                        child: Image.asset(
-                                          "assets/images/ProfilePic_Avatar.png",
-                                        ),
-                                      ),
-                                      SizedBox(width: width * 0.02),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
-                                            style: TextStyle(
-                                              color:
-                                              const Color.fromRGBO(28, 78, 80, 1),
-                                              fontSize: height * 0.03,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Text(
-                                            AppLocalizations.of(context)!.teacher,
-                                            style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  153, 153, 153, 1),
-                                              fontSize: height * 0.02,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: width * 0.001, right: width * 0.3),
-                              child: Column(
+                                ),
+                                SizedBox(width: width * 0.01),
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: height * 0.025),
                                     Text(
-                                      'Gender',
+                                      '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
                                       style: TextStyle(
                                         color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
+                                            const Color.fromRGBO(28, 78, 80, 1),
+                                        fontSize: height * 0.03,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
                                     Text(
-                                      widget.userDataModel.data?.gender == "male"
-                                          ? "Male"
-                                          : "Female",
+                                      AppLocalizations.of(context)!.teacher,
                                       style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
+                                        color: const Color.fromRGBO(
+                                            153, 153, 153, 1),
                                         fontSize: height * 0.02,
                                         fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(height: height * 0.02),
-                                    Text(
-                                      'Country Citizen',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      '${widget.userDataModel.data?.countryNationality}',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.02,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.02),
-                                    Text(
-                                      'Country Resident',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      '${widget.userDataModel.data?.countryResident}',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.02,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.02),
-                                    Text(
-                                      'Email ID',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      '${widget.userDataModel.data?.email}',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.02,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.02),
-                                    Text(
-                                      AppLocalizations.of(
-                                          context)!
-                                          .reg_roll_caps,
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      '${widget.userDataModel.data?.rollNumber}',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.02,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.02),
-                                    Text(
-                                      'Institution Name',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.01,
-                                    ),
-                                    Text(
-                                      '${widget.userDataModel.data?.organisationName}',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.02,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.02),
-                                    Text(
-                                      'Enabled as Student',
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.015,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(height: height * 0.01),
-                                    Text(
-                                      widget.userDataModel.data!.role
-                                          .contains("student")
-                                          ? "Yes"
-                                          : "No",
-                                      style: TextStyle(
-                                        color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                        fontSize: height * 0.02,
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.02,
-                                    ),
-                                  ]),
+                                  ],
+                                ),
+                              ],
                             ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
-                                minimumSize: const Size(172, 38),
-                                side: const BorderSide(
-                                    width: 1, // the thickness
-                                    color: Color.fromRGBO(
-                                        82, 165, 160, 1) // the color of the border
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(39),
-                                ),
-                              ),
-                              child: Text('Edit Profile',
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: height * 0.03,
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                      fontWeight: FontWeight.w500)),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: TeacherEditProfilePage(userDataModel: widget.userDataModel),
-                                  ),
-                                );
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: CustomDialog(
-                                //       title: 'Alert',
-                                //       content: "Feature under development",
-                                //       button: AppLocalizations.of(context)!.ok_caps,
-                                //     ),
-                                //   ),
-                                // );
-                                // PageTransition(
-                                //   type: PageTransitionType.rightToLeft,
-                                //   child: StudentRegistrationUpdatePage(
-                                //       userData: widget, isEdit: true),
-                                // );
-                              },
-                            )
-                          ],
-                        ))));
-          }
-          else {
-            return WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    resizeToAvoidBottomInset: true,
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      iconTheme: IconThemeData(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          size: height * 0.05),
-                      elevation: 0,
-                      backgroundColor: Colors.transparent,
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: height * 0.06,
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      toolbarHeight: height * 0.100,
-                      centerTitle: true,
-                      title: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
+                            SizedBox(height: height * 0.1),
                             Text(
-                              "User Profile",
+                              'Gender',
                               style: TextStyle(
-                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.025,
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ]),
-                      flexibleSpace: Container(
-                        decoration: const BoxDecoration(color: Colors.white),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              widget.userDataModel.data?.gender == "male"
+                                  ? "Male"
+                                  : "Female",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Country Citizen',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.countryNationality}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Country Resident',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.countryResident}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Email ID',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.email}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              AppLocalizations.of(context)!.reg_roll_caps,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.rollNumber}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Institution Name',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.organisationName}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Enabled as Student',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.01),
+                            Text(
+                              widget.userDataModel.data!.role
+                                      .contains("student")
+                                  ? "Yes"
+                                  : "No",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    body: Column(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        minimumSize: const Size(172, 38),
+                        side: const BorderSide(
+                            width: 1, // the thickness
+                            color: Color.fromRGBO(
+                                82, 165, 160, 1) // the color of the border
+                            ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(39),
+                        ),
+                      ),
+                      child: Text('Edit Profile',
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: height * 0.03,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontWeight: FontWeight.w500)),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherEditProfilePage(
+                                userDataModel: widget.userDataModel),
+                          ),
+                        );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: CustomDialog(
+                        //       title: 'Alert',
+                        //       content: "Feature under development",
+                        //       button: AppLocalizations.of(context)!.ok_caps,
+                        //     ),
+                        //   ),
+                        // );
+                        // PageTransition(
+                        //   type: PageTransitionType.rightToLeft,
+                        //   child: StudentRegistrationUpdatePage(
+                        //       userData: widget, isEdit: true),
+                        // );
+                      },
+                    )
+                  ],
+                )));
+      } else if (constraints.maxWidth > 960) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  iconTheme: IconThemeData(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      size: height * 0.05),
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: Icon(
+                      Icons.chevron_left,
+                      size: height * 0.06,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
-                          height: height * 0.14,
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(width: width * 0.025),
-                                  CircleAvatar(
-                                    radius: 23,
-                                    backgroundColor:
-                                    const Color.fromRGBO(0, 106, 100, 0),
-                                    child: Image.asset(
-                                      "assets/images/ProfilePic_Avatar.png",
-                                    ),
-                                  ),
-                                  SizedBox(width: width * 0.04),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
-                                        style: TextStyle(
-                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                          fontSize: height * 0.03,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      Text(
-                                        AppLocalizations.of(context)!.teacher,
-                                        style: TextStyle(
-                                          color: const Color.fromRGBO(153, 153, 153, 1),
-                                          fontSize: height * 0.02,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-
-                            ],
+                        Text(
+                          "User Profile",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.001, right: width * 0.3),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      ]),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(color: Colors.white),
+                  ),
+                ),
+                body: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Gender',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
+                                CircleAvatar(
+                                  radius: 23,
+                                  backgroundColor:
+                                      const Color.fromRGBO(0, 106, 100, 0),
+                                  child: Image.asset(
+                                    "assets/images/ProfilePic_Avatar.png",
                                   ),
                                 ),
-                                SizedBox(
-                                  height: height * 0.01,
+                                SizedBox(width: width * 0.01),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
+                                      style: TextStyle(
+                                        color:
+                                            const Color.fromRGBO(28, 78, 80, 1),
+                                        fontSize: height * 0.03,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.teacher,
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            153, 153, 153, 1),
+                                        fontSize: height * 0.02,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  widget.userDataModel.data?.gender == "male"
-                                      ? "Male"
-                                      : "Female",
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Country Citizen',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.countryNationality}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Country Resident',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.countryResident}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Email ID',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.email}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  AppLocalizations.of(
-                                      context)!
-                                      .reg_roll_caps,
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.rollNumber}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Institution Name',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.01,
-                                ),
-                                Text(
-                                  '${widget.userDataModel.data?.organisationName}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.02),
-                                Text(
-                                  'Enabled as Student',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(height: height * 0.01),
-                                Text(
-                                  widget.userDataModel.data!.role
-                                      .contains("student")
-                                      ? "Yes"
-                                      : "No",
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontSize: height * 0.02,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: height * 0.08,
-                                ),
-                              ]),
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                            minimumSize: const Size(172, 38),
-                            side: const BorderSide(
-                                width: 1, // the thickness
-                                color: Color.fromRGBO(
-                                    82, 165, 160, 1) // the color of the border
+                              ],
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(39),
-                            ),
-                          ),
-                          child: Text('Edit Profile',
+                            SizedBox(height: height * 0.1),
+                            Text(
+                              'Gender',
                               style: TextStyle(
-                                  fontFamily: 'Inter',
-                                  fontSize: height * 0.03,
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontWeight: FontWeight.w500)),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherEditProfilePage(userDataModel: widget.userDataModel),
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
                               ),
-                            );
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: CustomDialog(
-                            //       title: 'Alert',
-                            //       content: "Feature under development",
-                            //       button: AppLocalizations.of(context)!.ok_caps,
-                            //     ),
-                            //   ),
-                            // );
-                            // PageTransition(
-                            //   type: PageTransitionType.rightToLeft,
-                            //   child: StudentRegistrationUpdatePage(
-                            //       userData: widget, isEdit: true),
-                            // );
-                          },
-                        )
-                      ],
-                    )));
-          }
-        }
-    );}}
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              widget.userDataModel.data?.gender == "male"
+                                  ? "Male"
+                                  : "Female",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Country Citizen',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.countryNationality}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Country Resident',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.countryResident}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Email ID',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.email}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              AppLocalizations.of(context)!.reg_roll_caps,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.rollNumber}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Institution Name',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.organisationName}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Enabled as Student',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.01),
+                            Text(
+                              widget.userDataModel.data!.role
+                                      .contains("student")
+                                  ? "Yes"
+                                  : "No",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        minimumSize: const Size(172, 38),
+                        side: const BorderSide(
+                            width: 1, // the thickness
+                            color: Color.fromRGBO(
+                                82, 165, 160, 1) // the color of the border
+                            ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(39),
+                        ),
+                      ),
+                      child: Text('Edit Profile',
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: height * 0.03,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontWeight: FontWeight.w500)),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherEditProfilePage(
+                                userDataModel: widget.userDataModel),
+                          ),
+                        );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: CustomDialog(
+                        //       title: 'Alert',
+                        //       content: "Feature under development",
+                        //       button: AppLocalizations.of(context)!.ok_caps,
+                        //     ),
+                        //   ),
+                        // );
+                        // PageTransition(
+                        //   type: PageTransitionType.rightToLeft,
+                        //   child: StudentRegistrationUpdatePage(
+                        //       userData: widget, isEdit: true),
+                        // );
+                      },
+                    )
+                  ],
+                )));
+      } else {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  iconTheme: IconThemeData(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      size: height * 0.05),
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: Icon(
+                      Icons.chevron_left,
+                      size: height * 0.06,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "User Profile",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ]),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(color: Colors.white),
+                  ),
+                ),
+                body: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: SizedBox(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CircleAvatar(
+                                  radius: 23,
+                                  backgroundColor:
+                                      const Color.fromRGBO(0, 106, 100, 0),
+                                  child: Image.asset(
+                                    "assets/images/ProfilePic_Avatar.png",
+                                  ),
+                                ),
+                                SizedBox(width: width * 0.01),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}',
+                                      style: TextStyle(
+                                        color:
+                                            const Color.fromRGBO(28, 78, 80, 1),
+                                        fontSize: height * 0.03,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      AppLocalizations.of(context)!.teacher,
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            153, 153, 153, 1),
+                                        fontSize: height * 0.02,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: height * 0.1),
+                            Text(
+                              'Gender',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              widget.userDataModel.data?.gender == "male"
+                                  ? "Male"
+                                  : "Female",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Country Citizen',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.countryNationality}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Country Resident',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.countryResident}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Email ID',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.email}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              AppLocalizations.of(context)!.reg_roll_caps,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.rollNumber}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Institution Name',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '${widget.userDataModel.data?.organisationName}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              'Enabled as Student',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.01),
+                            Text(
+                              widget.userDataModel.data!.role
+                                      .contains("student")
+                                  ? "Yes"
+                                  : "No",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        minimumSize: const Size(172, 38),
+                        side: const BorderSide(
+                            width: 1, // the thickness
+                            color: Color.fromRGBO(
+                                82, 165, 160, 1) // the color of the border
+                            ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(39),
+                        ),
+                      ),
+                      child: Text('Edit Profile',
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: height * 0.03,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontWeight: FontWeight.w500)),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherEditProfilePage(
+                                userDataModel: widget.userDataModel),
+                          ),
+                        );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: CustomDialog(
+                        //       title: 'Alert',
+                        //       content: "Feature under development",
+                        //       button: AppLocalizations.of(context)!.ok_caps,
+                        //     ),
+                        //   ),
+                        // );
+                        // PageTransition(
+                        //   type: PageTransitionType.rightToLeft,
+                        //   child: StudentRegistrationUpdatePage(
+                        //       userData: widget, isEdit: true),
+                        // );
+                      },
+                    )
+                  ],
+                )));
+      }
+    });
+  }
+}
