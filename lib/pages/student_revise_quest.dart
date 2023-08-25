@@ -821,7 +821,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     child:
                         Center(
                         child: SizedBox(
-                            width: localWidth * 0.4,
+                            width: localWidth * 0.7,
                         child: Column(
                       children: [
                         Padding(

@@ -631,7 +631,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.38,
+                                        height: 300,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1089,7 +1089,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.30,
+                                        height: 250,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1971,7 +1971,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.45,
+                                        height: height * 0.5,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2346,7 +2346,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.32,
+                                        height: height * 0.4,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -3715,7 +3715,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.35,
+                                        height: 250,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),

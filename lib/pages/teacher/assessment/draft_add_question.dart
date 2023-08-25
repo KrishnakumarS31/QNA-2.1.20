@@ -1319,807 +1319,807 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                     ),
                     body: Container(
                       color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            //top: height * 0.023,
-                            left: height * 0.5,
-                            right: height * 0.5),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              height : height * 0.05,
-                              decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(82, 165, 160, 0.08),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(28, 78, 80, 0.08),
-                                  ),
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(5))
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: width * 0.02, right: width * 0.02),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "${assessment.subject} | ${assessment.topic}",
-                                          style: TextStyle(
-                                              fontSize: height * 0.02,
-                                              fontFamily: "Inter",
-                                              color:
-                                              const Color.fromRGBO(28, 78, 80, 1),
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                        GestureDetector(
-                                          onTap: (){
-                                            showDialog(
-                                                context: context,
-                                                builder: (BuildContext context) {
-                                                  return Dialog(
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(17))),
-                                                    child: SingleChildScrollView(
-                                                      scrollDirection: Axis.vertical,
-                                                      child: Container(
-                                                        height: height * 0.6,
-                                                        width: width * 0.88,
-                                                        decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color: Colors.black38,
-                                                              width: 1),
-                                                          borderRadius:
-                                                          BorderRadius.circular(17),
-                                                        ),
-                                                        child: Padding(
-                                                          padding: EdgeInsets.only(
-                                                              left: width * 0.02,
-                                                              right: width * 0.02,
-                                                              top: height * 0.02,
-                                                              bottom: height * 0.02),
-                                                          child: Form(
-                                                            key: formKey,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                              MainAxisAlignment.start,
-                                                              children: [
-                                                                Align(
-                                                                  alignment:
-                                                                  Alignment.centerLeft,
-                                                                  child: Text(
-                                                                    // AppLocalizations.of(
-                                                                    //     context)!
-                                                                    //     .assessment_title,
-                                                                    'Question Details',
-                                                                    style: TextStyle(
-                                                                        fontSize: height *
-                                                                            0.02,
-                                                                        fontFamily: "Inter",
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .w700),
-                                                                  ),
-                                                                ),
-                                                                Divider(
-                                                                  thickness: 2,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                                  child: Align(
-                                                                    alignment:
-                                                                    Alignment.centerLeft,
-                                                                    child: Text(
-                                                                      //AppLocalizations.of(context)!.my_qn_bank,
-                                                                      "Subject",
-                                                                      textAlign: TextAlign.left,
-                                                                      style: TextStyle(
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                        fontSize: height * 0.02,
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextFormField(
-                                                                    controller: subjectController,
-                                                                    keyboardType: TextInputType.text,
-                                                                    decoration: InputDecoration(
-                                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                                      hintStyle: TextStyle(
-                                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.016),
-                                                                      hintText: "Type here",
-                                                                      enabledBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      focusedBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      // focusedBorder: OutlineInputBorder(
-                                                                      //     borderSide: const BorderSide(
-                                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                      // border: OutlineInputBorder(
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                    ),
-                                                                    validator: (value) {
-                                                                      if (value!
-                                                                          .isEmpty) {
-                                                                        return
-                                                                          'Enter Subject';
-                                                                      } else {
-                                                                        return null;
-                                                                      }
-                                                                    },
-                                                                    onChanged: (value) {
-                                                                      formKey
-                                                                          .currentState!
-                                                                          .validate();
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                                  child: Align(
-                                                                    alignment:
-                                                                    Alignment.centerLeft,
-                                                                    child: Text(
-                                                                      //AppLocalizations.of(context)!.my_qn_bank,
-                                                                      "Topic",
-                                                                      textAlign: TextAlign.left,
-                                                                      style: TextStyle(
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                        fontSize: height * 0.02,
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextFormField(
-                                                                    controller: topicController,
-                                                                    keyboardType: TextInputType.text,
-                                                                    decoration: InputDecoration(
-                                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                                      hintStyle: TextStyle(
-                                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.016),
-                                                                      hintText: "Type here",
-                                                                      enabledBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      focusedBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      // focusedBorder: OutlineInputBorder(
-                                                                      //     borderSide: const BorderSide(
-                                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                      // border: OutlineInputBorder(
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                    ),
-                                                                    validator: (value) {
-                                                                      if (value!
-                                                                          .isEmpty) {
-                                                                        return
-                                                                          'Enter Topic';
-                                                                      } else {
-                                                                        return null;
-                                                                      }
-                                                                    },
-                                                                    onChanged: (value) {
-                                                                      formKey
-                                                                          .currentState!
-                                                                          .validate();
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                                  child: Align(
-                                                                    alignment:
-                                                                    Alignment.centerLeft,
-                                                                    child: Text(
-                                                                      //AppLocalizations.of(context)!.my_qn_bank,
-                                                                      "Degree",
-                                                                      textAlign: TextAlign.left,
-                                                                      style: TextStyle(
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                        fontSize: height * 0.02,
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextFormField(
-                                                                    controller: degreeController,
-                                                                    keyboardType: TextInputType.text,
-                                                                    decoration: InputDecoration(
-                                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                                      hintStyle: TextStyle(
-                                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.016),
-                                                                      hintText: "Type here",
-                                                                      enabledBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      focusedBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      // focusedBorder: OutlineInputBorder(
-                                                                      //     borderSide: const BorderSide(
-                                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                      // border: OutlineInputBorder(
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                    ),
-                                                                    validator: (value) {
-                                                                      if (value!
-                                                                          .isEmpty) {
-                                                                        return
-                                                                          'Enter Degree';
-                                                                      } else {
-                                                                        return null;
-                                                                      }
-                                                                    },
-                                                                    onChanged: (value) {
-                                                                      formKey
-                                                                          .currentState!
-                                                                          .validate();
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
-                                                                  child: Align(
-                                                                    alignment: Alignment.centerLeft,
-                                                                    child: Text(
-                                                                      //AppLocalizations.of(context)!.my_qn_bank,
-                                                                      "Semester (optional)",
-                                                                      textAlign: TextAlign.left,
-                                                                      style: TextStyle(
-                                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                        fontSize: height * 0.02,
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsets.only(left: width * 0.02),
-                                                                  child: TextField(
-                                                                    controller: semesterController,
-                                                                    keyboardType: TextInputType.text,
-                                                                    decoration: InputDecoration(
-                                                                      //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                                      hintStyle: TextStyle(
-                                                                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                                          fontFamily: 'Inter',
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: height * 0.016),
-                                                                      hintText: "Type here",
-                                                                      enabledBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      focusedBorder: UnderlineInputBorder(
-                                                                        borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                                                      ),
-                                                                      // focusedBorder: OutlineInputBorder(
-                                                                      //     borderSide: const BorderSide(
-                                                                      //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                      // border: OutlineInputBorder(
-                                                                      //     borderRadius: BorderRadius.circular(15)),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                SizedBox(
-                                                                  height: height * 0.02,
-                                                                ),
-                                                                ElevatedButton(
-                                                                  style:
-                                                                  ElevatedButton
-                                                                      .styleFrom(
-                                                                    backgroundColor:
-                                                                    const Color
-                                                                        .fromRGBO(
-                                                                        82, 165, 160,
-                                                                        1),
-                                                                    minimumSize:
-                                                                    const Size(280, 48),
-                                                                    shape:
-                                                                    RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                          39),
-                                                                    ),
-                                                                  ),
-                                                                  onPressed: () async {
-                                                                    bool valid = formKey
-                                                                        .currentState!
-                                                                        .validate();
-                                                                    if (valid) {
-                                                                      assessment.subject=subjectController.text;
-                                                                      assessment.topic=topicController.text;
-                                                                      assessment.createAssessmentModelClass=degreeController.text;
-                                                                      assessment.subTopic=semesterController.text;
-                                                                      Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-                                                                      setState(() {
-                                                                        assessment;
-                                                                      });
-                                                                      Navigator.of(context).pop();
-                                                                    }
-                                                                  },
-                                                                  child: Text(
-                                                                    // AppLocalizations.of(
-                                                                    //     context)!
-                                                                    //     .save_continue,
-                                                                    'Save',
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                        height * 0.025,
-                                                                        fontFamily: "Inter",
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            255, 255,
-                                                                            255, 1),
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .w600),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                });
-                                          },
-                                          child: Text(
-                                            "Edit",
+                      child: Align(
+                        alignment:Alignment.center,
+                        child: SizedBox(
+                          width: width * 0.7,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height : height * 0.05,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(82, 165, 160, 0.08),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(28, 78, 80, 0.08),
+                                    ),
+                                    borderRadius:
+                                    const BorderRadius.all(Radius.circular(5))
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: width * 0.02, right: width * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "${assessment.subject} | ${assessment.topic}",
                                             style: TextStyle(
                                                 fontSize: height * 0.02,
                                                 fontFamily: "Inter",
                                                 color:
-                                                const Color.fromRGBO(82, 165, 160, 1),
-                                                fontWeight: FontWeight.w600),
+                                                const Color.fromRGBO(28, 78, 80, 1),
+                                                fontWeight: FontWeight.w700),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: height * 0.01,),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                //AppLocalizations.of(context)!.lib_online_qn,
-                                "Search My Questions  ",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.016,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            TextField(
-                              onChanged: (t){
-                                setState(() {
-                                });
-                              },
-                              controller: questionSearchController,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                //floatingLabelBehavior: FloatingLabelBehavior.always,
-                                hintStyle: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                                hintText: "Subject, Topic, Degree",
-                                suffixIcon:
-                                Column(children: [
-                                  Container(
-                                      height: height * 0.05,
-                                      width: width * 0.07,
-                                      decoration:  BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        // borderRadius:
-                                        // BorderRadius.all(Radius.circular(100)),
-                                        color: questionSearchController.text.isEmpty?
-                                        Color.fromRGBO(153, 153, 153, 0.5):Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      child: IconButton(
-                                        iconSize: height * 0.025,
-                                        color: const Color.fromRGBO(255, 255, 255, 1),
-                                        onPressed: () {
-                                          questionStart=0;
-                                          questionList=[];
-                                          pageNumber=1;
-                                          getQuestionData(questionSearchController.text);
-                                        },
-                                        icon: const Icon(Icons.search),
-                                      )),
-                                ]
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
-                                ),
-                                // focusedBorder: OutlineInputBorder(
-                                //     borderSide: const BorderSide(
-                                //         color: Color.fromRGBO(82, 165, 160, 1)),
-                                //     borderRadius: BorderRadius.circular(15)),
-                                // border: OutlineInputBorder(
-                                //     borderRadius: BorderRadius.circular(15)),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.015,),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                'Tap to select & add questions',
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.01,),
-                            Container(
-                              height: height * 0.55,
-                              width: width * 0.93,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(10)),
-                              ),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Column(
-                                  //mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    for (int i=questionStart;i<questionList.length;i++)
-                                      MouseRegion(
-                                        cursor: SystemMouseCursors.click,
-                                        child: GestureDetector(
-                                          onTap:(){
-                                            if(selectedQuesId.contains(questionList[i].questionId)){
-                                              int index = selectedQuesId.indexOf(questionList[i].questionId);
-                                              selectedQuesId.removeAt(index);
-                                              selectedQuestion.removeAt(index);
-                                            }else{
-                                              selectedQuesId.add(questionList[i].questionId);
-                                              questionList[i].questionType=="MCQ"?questionList[i].questionMark=1:questionList[i].questionMark=0;
-                                              selectedQuestion.add(questionList[i]);
-                                            }
-                                            setState(() {
-                                              selectedQuesId;
-                                              selectedQuestion;
-                                            });
-                                          },
-                                          child: QuestionPreview(
-                                            height: height,
-                                            width: width,
-                                            question: questionList[i],
-                                            selected: !selectedQuesId.contains(questionList[i].questionId),
-                                          ),
-                                        ),
-                                      ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(left:height * 0.02),
-                                          child: Text(
-                                            'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.016),
-                                          ),
-                                        ),
-                                        Wrap(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap:(){
-                                                    if(questionList.length>11){
-                                                      setState(() {
-                                                        pageNumber--;
-                                                        questionStart=questionStart-10;
-                                                        questionList.removeRange(questionList.length-10, questionList.length);
-                                                      });
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.09,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.keyboard_double_arrow_left,
-                                                      size: height * 0.015,
-                                                      color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                                  child: Container(
-                                                    height: height * 0.03,
-                                                    width: width * 0.09,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        '${questionStart==0?1:((questionStart/10)+1).toInt()}',
-                                                        style: TextStyle(
-                                                            color: const Color.fromRGBO(28, 78, 80, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.016),
+                                          GestureDetector(
+                                            onTap: (){
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (BuildContext context) {
+                                                    return Dialog(
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.all(
+                                                              Radius.circular(17))),
+                                                      child: SingleChildScrollView(
+                                                        scrollDirection: Axis.vertical,
+                                                        child: Container(
+                                                          height: height * 0.6,
+                                                          width: width * 0.88,
+                                                          decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                                color: Colors.black38,
+                                                                width: 1),
+                                                            borderRadius:
+                                                            BorderRadius.circular(17),
+                                                          ),
+                                                          child: Padding(
+                                                            padding: EdgeInsets.only(
+                                                                left: width * 0.02,
+                                                                right: width * 0.02,
+                                                                top: height * 0.02,
+                                                                bottom: height * 0.02),
+                                                            child: Form(
+                                                              key: formKey,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment.start,
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                    Alignment.centerLeft,
+                                                                    child: Text(
+                                                                      // AppLocalizations.of(
+                                                                      //     context)!
+                                                                      //     .assessment_title,
+                                                                      'Question Details',
+                                                                      style: TextStyle(
+                                                                          fontSize: height *
+                                                                              0.02,
+                                                                          fontFamily: "Inter",
+                                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                          fontWeight:
+                                                                          FontWeight
+                                                                              .w700),
+                                                                    ),
+                                                                  ),
+                                                                  Divider(
+                                                                    thickness: 2,
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
+                                                                    child: Align(
+                                                                      alignment:
+                                                                      Alignment.centerLeft,
+                                                                      child: Text(
+                                                                        //AppLocalizations.of(context)!.my_qn_bank,
+                                                                        "Subject",
+                                                                        textAlign: TextAlign.left,
+                                                                        style: TextStyle(
+                                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          fontWeight: FontWeight.w400,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02),
+                                                                    child: TextFormField(
+                                                                      controller: subjectController,
+                                                                      keyboardType: TextInputType.text,
+                                                                      decoration: InputDecoration(
+                                                                        //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                                        hintStyle: TextStyle(
+                                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.016),
+                                                                        hintText: "Type here",
+                                                                        enabledBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        focusedBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        // focusedBorder: OutlineInputBorder(
+                                                                        //     borderSide: const BorderSide(
+                                                                        //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                        // border: OutlineInputBorder(
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                      ),
+                                                                      validator: (value) {
+                                                                        if (value!
+                                                                            .isEmpty) {
+                                                                          return
+                                                                            'Enter Subject';
+                                                                        } else {
+                                                                          return null;
+                                                                        }
+                                                                      },
+                                                                      onChanged: (value) {
+                                                                        formKey
+                                                                            .currentState!
+                                                                            .validate();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
+                                                                    child: Align(
+                                                                      alignment:
+                                                                      Alignment.centerLeft,
+                                                                      child: Text(
+                                                                        //AppLocalizations.of(context)!.my_qn_bank,
+                                                                        "Topic",
+                                                                        textAlign: TextAlign.left,
+                                                                        style: TextStyle(
+                                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          fontWeight: FontWeight.w400,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02),
+                                                                    child: TextFormField(
+                                                                      controller: topicController,
+                                                                      keyboardType: TextInputType.text,
+                                                                      decoration: InputDecoration(
+                                                                        //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                                        hintStyle: TextStyle(
+                                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.016),
+                                                                        hintText: "Type here",
+                                                                        enabledBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        focusedBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        // focusedBorder: OutlineInputBorder(
+                                                                        //     borderSide: const BorderSide(
+                                                                        //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                        // border: OutlineInputBorder(
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                      ),
+                                                                      validator: (value) {
+                                                                        if (value!
+                                                                            .isEmpty) {
+                                                                          return
+                                                                            'Enter Topic';
+                                                                        } else {
+                                                                          return null;
+                                                                        }
+                                                                      },
+                                                                      onChanged: (value) {
+                                                                        formKey
+                                                                            .currentState!
+                                                                            .validate();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
+                                                                    child: Align(
+                                                                      alignment:
+                                                                      Alignment.centerLeft,
+                                                                      child: Text(
+                                                                        //AppLocalizations.of(context)!.my_qn_bank,
+                                                                        "Degree",
+                                                                        textAlign: TextAlign.left,
+                                                                        style: TextStyle(
+                                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          fontWeight: FontWeight.w400,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02),
+                                                                    child: TextFormField(
+                                                                      controller: degreeController,
+                                                                      keyboardType: TextInputType.text,
+                                                                      decoration: InputDecoration(
+                                                                        //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                                        hintStyle: TextStyle(
+                                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.016),
+                                                                        hintText: "Type here",
+                                                                        enabledBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        focusedBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        // focusedBorder: OutlineInputBorder(
+                                                                        //     borderSide: const BorderSide(
+                                                                        //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                        // border: OutlineInputBorder(
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                      ),
+                                                                      validator: (value) {
+                                                                        if (value!
+                                                                            .isEmpty) {
+                                                                          return
+                                                                            'Enter Degree';
+                                                                        } else {
+                                                                          return null;
+                                                                        }
+                                                                      },
+                                                                      onChanged: (value) {
+                                                                        formKey
+                                                                            .currentState!
+                                                                            .validate();
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02,top: height * 0.02),
+                                                                    child: Align(
+                                                                      alignment: Alignment.centerLeft,
+                                                                      child: Text(
+                                                                        //AppLocalizations.of(context)!.my_qn_bank,
+                                                                        "Semester (optional)",
+                                                                        textAlign: TextAlign.left,
+                                                                        style: TextStyle(
+                                                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                          fontSize: height * 0.02,
+                                                                          fontFamily: "Inter",
+                                                                          fontWeight: FontWeight.w400,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsets.only(left: width * 0.02),
+                                                                    child: TextField(
+                                                                      controller: semesterController,
+                                                                      keyboardType: TextInputType.text,
+                                                                      decoration: InputDecoration(
+                                                                        //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                                        hintStyle: TextStyle(
+                                                                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: height * 0.016),
+                                                                        hintText: "Type here",
+                                                                        enabledBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        focusedBorder: UnderlineInputBorder(
+                                                                          borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                                                        ),
+                                                                        // focusedBorder: OutlineInputBorder(
+                                                                        //     borderSide: const BorderSide(
+                                                                        //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                        // border: OutlineInputBorder(
+                                                                        //     borderRadius: BorderRadius.circular(15)),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: height * 0.02,
+                                                                  ),
+                                                                  ElevatedButton(
+                                                                    style:
+                                                                    ElevatedButton
+                                                                        .styleFrom(
+                                                                      backgroundColor:
+                                                                      const Color
+                                                                          .fromRGBO(
+                                                                          82, 165, 160,
+                                                                          1),
+                                                                      minimumSize:
+                                                                      const Size(280, 48),
+                                                                      shape:
+                                                                      RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                            39),
+                                                                      ),
+                                                                    ),
+                                                                    onPressed: () async {
+                                                                      bool valid = formKey
+                                                                          .currentState!
+                                                                          .validate();
+                                                                      if (valid) {
+                                                                        assessment.subject=subjectController.text;
+                                                                        assessment.topic=topicController.text;
+                                                                        assessment.createAssessmentModelClass=degreeController.text;
+                                                                        assessment.subTopic=semesterController.text;
+                                                                        Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                                        setState(() {
+                                                                          assessment;
+                                                                        });
+                                                                        Navigator.of(context).pop();
+                                                                      }
+                                                                    },
+                                                                    child: Text(
+                                                                      // AppLocalizations.of(
+                                                                      //     context)!
+                                                                      //     .save_continue,
+                                                                      'Save',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                          height * 0.025,
+                                                                          fontFamily: "Inter",
+                                                                          color: const Color
+                                                                              .fromRGBO(
+                                                                              255, 255,
+                                                                              255, 1),
+                                                                          fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(right:height * 0.02),
-                                                  child: GestureDetector(
-                                                    onTap: (){
-                                                      setState(() {
-                                                        questionStart=questionStart+10;
-                                                      });
-                                                      getQuestionData(questionSearchController.text);
+                                                    );
+                                                  });
+                                            },
+                                            child: Text(
+                                              "Edit",
+                                              style: TextStyle(
+                                                  fontSize: height * 0.02,
+                                                  fontFamily: "Inter",
+                                                  color:
+                                                  const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: height * 0.01,),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  //AppLocalizations.of(context)!.lib_online_qn,
+                                  "Search My Questions  ",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                    fontSize: height * 0.016,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              TextField(
+                                onChanged: (t){
+                                  setState(() {
+                                  });
+                                },
+                                controller: questionSearchController,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  //floatingLabelBehavior: FloatingLabelBehavior.always,
+                                  hintStyle: TextStyle(
+                                      color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: height * 0.016),
+                                  hintText: "Subject, Topic, Degree",
+                                  suffixIcon:
+                                  Column(children: [
+                                    Container(
+                                        height: height * 0.05,
+                                        width: width * 0.07,
+                                        decoration:  BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          // borderRadius:
+                                          // BorderRadius.all(Radius.circular(100)),
+                                          color: questionSearchController.text.isEmpty?
+                                          Color.fromRGBO(153, 153, 153, 0.5):Color.fromRGBO(82, 165, 160, 1),
+                                        ),
+                                        child: IconButton(
+                                          iconSize: height * 0.025,
+                                          color: const Color.fromRGBO(255, 255, 255, 1),
+                                          onPressed: () {
+                                            questionStart=0;
+                                            questionList=[];
+                                            pageNumber=1;
+                                            getQuestionData(questionSearchController.text);
+                                          },
+                                          icon: const Icon(Icons.search),
+                                        )),
+                                  ]
+                                  ),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: Color.fromRGBO(0, 0, 0, 0.3),),
+                                  ),
+                                  // focusedBorder: OutlineInputBorder(
+                                  //     borderSide: const BorderSide(
+                                  //         color: Color.fromRGBO(82, 165, 160, 1)),
+                                  //     borderRadius: BorderRadius.circular(15)),
+                                  // border: OutlineInputBorder(
+                                  //     borderRadius: BorderRadius.circular(15)),
+                                ),
+                              ),
+                              SizedBox(height: height * 0.015,),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Tap to select & add questions',
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: height * 0.016),
+                                ),
+                              ),
+                              SizedBox(height: height * 0.01,),
+                              Container(
+                                height: height * 0.55,
+                                width: width * 0.93,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(10)),
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Column(
+                                    //mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      for (int i=questionStart;i<questionList.length;i++)
+                                        MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            onTap:(){
+                                              if(selectedQuesId.contains(questionList[i].questionId)){
+                                                int index = selectedQuesId.indexOf(questionList[i].questionId);
+                                                selectedQuesId.removeAt(index);
+                                                selectedQuestion.removeAt(index);
+                                              }else{
+                                                selectedQuesId.add(questionList[i].questionId);
+                                                questionList[i].questionType=="MCQ"?questionList[i].questionMark=1:questionList[i].questionMark=0;
+                                                selectedQuestion.add(questionList[i]);
+                                              }
+                                              setState(() {
+                                                selectedQuesId;
+                                                selectedQuestion;
+                                              });
+                                            },
+                                            child: QuestionPreview(
+                                              height: height,
+                                              width: width,
+                                              question: questionList[i],
+                                              selected: !selectedQuesId.contains(questionList[i].questionId),
+                                            ),
+                                          ),
+                                        ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(left:height * 0.02),
+                                            child: Text(
+                                              'Showing ${questionStart + 1} to ${questionStart+10 <questionList.length?questionStart+10:questionList.length} of $totalQuestionBank',
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.016),
+                                            ),
+                                          ),
+                                          Wrap(
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap:(){
+                                                      if(questionList.length>11){
+                                                        setState(() {
+                                                          pageNumber--;
+                                                          questionStart=questionStart-10;
+                                                          questionList.removeRange(questionList.length-10, questionList.length);
+                                                        });
+                                                      }
                                                     },
                                                     child: Container(
                                                       height: height * 0.03,
-                                                      width: width * 0.1,
+                                                      width: width * 0.09,
                                                       decoration: BoxDecoration(
                                                         border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
                                                         borderRadius: BorderRadius.all(
                                                             Radius.circular(5)),
                                                       ),
                                                       child: Icon(
-                                                        Icons.keyboard_double_arrow_right,
+                                                        Icons.keyboard_double_arrow_left,
                                                         size: height * 0.015,
                                                         color: const Color.fromRGBO(28, 78, 80, 1),),
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(height: height * 0.05,)
-                                              ],
+                                                  Padding(
+                                                    padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
+                                                    child: Container(
+                                                      height: height * 0.03,
+                                                      width: width * 0.09,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                        borderRadius: BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          '${questionStart==0?1:((questionStart/10)+1).toInt()}',
+                                                          style: TextStyle(
+                                                              color: const Color.fromRGBO(28, 78, 80, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.016),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(right:height * 0.02),
+                                                    child: GestureDetector(
+                                                      onTap: (){
+                                                        setState(() {
+                                                          questionStart=questionStart+10;
+                                                        });
+                                                        getQuestionData(questionSearchController.text);
+                                                      },
+                                                      child: Container(
+                                                        height: height * 0.03,
+                                                        width: width * 0.1,
+                                                        decoration: BoxDecoration(
+                                                          border: Border.all(color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                          borderRadius: BorderRadius.all(
+                                                              Radius.circular(5)),
+                                                        ),
+                                                        child: Icon(
+                                                          Icons.keyboard_double_arrow_right,
+                                                          size: height * 0.015,
+                                                          color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(height: height * 0.05,)
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Padding(
+                                padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            showDialogSave(context,height);
+                                          },
+                                          child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                          style: ElevatedButton.styleFrom(
+                                            side: const BorderSide(
+                                              width: 2,
+                                              color: const Color.fromRGBO(82, 165, 160, 1),
                                             ),
-                                          ],
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                            backgroundColor: Colors.white, // <-- Button color
+                                          ),
                                         ),
+                                        Text(
+                                          //AppLocalizations.of(context)!.subject_topic,
+                                            "New Question",
+                                            //textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016)),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () async {
+                                            assessment.userId=userDetails.userId;
+                                            assessment.totalQuestions=questionList.length;
+                                            assessment.assessmentType='practice';
+                                            assessment.assessmentStatus = 'inprogress';
+                                            assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
+                                            assessment.questions=[];
+                                            int mark=0;
+                                            for(int i=0;i<selectedQuestion.length;i++){
+                                              Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
+                                              assessment.questions?.add(tempQues);
+                                              mark=mark+selectedQuestion[i].questionMark!;
+                                            }
+                                            assessment.totalScore=mark;
+                                            assessment.totalQuestions=selectedQuestion.length;
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return const Center(
+                                                      child:
+                                                      CircularProgressIndicator(
+                                                        color: Color.fromRGBO(
+                                                            48, 145, 139, 1),
+                                                      ));
+                                                });
+                                            ResponseEntity statusCode = ResponseEntity();
+                                            statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
+                                            //statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
+                                            if (statusCode.code == 200) {
+                                              Navigator.of(context).pop();
+                                              Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
+                                            }
+                                            else{
+                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                                              print(assessment);
+                                              print(statusCode.code);
+                                              print(statusCode.data);
+                                              print(statusCode.message);
+                                            }
+
+                                            // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            // Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+                                          },
+                                          child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                          style: ElevatedButton.styleFrom(
+                                            side: const BorderSide(
+                                              width: 2,
+                                              color: const Color.fromRGBO(82, 165, 160, 1),
+                                            ),
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                            backgroundColor: Colors.white, // <-- Button color
+                                          ),
+                                        ),
+                                        Text(
+                                          //AppLocalizations.of(context)!.subject_topic,
+                                            "Save Draft",
+                                            //textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016)),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            if(selectedQuestion.isEmpty){
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: CustomDialog(
+                                                    title:
+                                                    AppLocalizations.of(context)!.alert_popup,
+                                                    //'Alert',
+                                                    content:
+                                                    //AppLocalizations.of(context)!.no_question_found,
+                                                    'No Questions were selected',
+                                                    button:
+                                                    AppLocalizations.of(context)!.retry,
+                                                    //"Retry",
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            else{
+                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                              for(questionModel.Question q in selectedQuestion) {
+                                                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
+                                              }
+                                              Navigator.of(context).pushNamedAndRemoveUntil('/draftReview', ModalRoute.withName('/draftAssessmentLanding'));
+
+                                            }
+                                          },
+                                          child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
+                                          style: ElevatedButton.styleFrom(
+                                            side: const BorderSide(
+                                              width: 2,
+                                              color: const Color.fromRGBO(82, 165, 160, 1),
+                                            ),
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
+                                          ),
+                                        ),
+                                        Text(
+                                          //AppLocalizations.of(context)!.subject_topic,
+                                            "Continue",
+                                            //textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016)),
                                       ],
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.02),
-                            Padding(
-                              padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          showDialogSave(context,height);
-                                        },
-                                        child: Icon(Icons.add, color: const Color.fromRGBO(82, 165, 160, 1),),
-                                        style: ElevatedButton.styleFrom(
-                                          side: const BorderSide(
-                                            width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
-                                          backgroundColor: Colors.white, // <-- Button color
-                                        ),
-                                      ),
-                                      Text(
-                                        //AppLocalizations.of(context)!.subject_topic,
-                                          "New Question",
-                                          //textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016)),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () async {
-                                          assessment.userId=userDetails.userId;
-                                          assessment.totalQuestions=questionList.length;
-                                          assessment.assessmentType='practice';
-                                          assessment.assessmentStatus = 'inprogress';
-                                          assessment.assessmentStartdate = DateTime.now().microsecondsSinceEpoch;
-                                          assessment.questions=[];
-                                          int mark=0;
-                                          for(int i=0;i<selectedQuestion.length;i++){
-                                            Question tempQues=Question(questionId: selectedQuestion[i].questionId,questionMarks: selectedQuestion[i].questionMark);
-                                            assessment.questions?.add(tempQues);
-                                            mark=mark+selectedQuestion[i].questionMark!;
-                                          }
-                                          assessment.totalScore=mark;
-                                          assessment.totalQuestions=selectedQuestion.length;
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return const Center(
-                                                    child:
-                                                    CircularProgressIndicator(
-                                                      color: Color.fromRGBO(
-                                                          48, 145, 139, 1),
-                                                    ));
-                                              });
-                                          ResponseEntity statusCode = ResponseEntity();
-                                          statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
-                                          //statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
-                                          if (statusCode.code == 200) {
-                                            Navigator.of(context).pop();
-                                            Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
-                                          }
-                                          else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
-                                          }
-
-                                          // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          // Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-                                        },
-                                        child: Icon(Icons.save, color: const Color.fromRGBO(82, 165, 160, 1),),
-                                        style: ElevatedButton.styleFrom(
-                                          side: const BorderSide(
-                                            width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
-                                          backgroundColor: Colors.white, // <-- Button color
-                                        ),
-                                      ),
-                                      Text(
-                                        //AppLocalizations.of(context)!.subject_topic,
-                                          "Save Draft",
-                                          //textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016)),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          if(selectedQuestion.isEmpty){
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.rightToLeft,
-                                                child: CustomDialog(
-                                                  title:
-                                                  AppLocalizations.of(context)!.alert_popup,
-                                                  //'Alert',
-                                                  content:
-                                                  //AppLocalizations.of(context)!.no_question_found,
-                                                  'No Questions were selected',
-                                                  button:
-                                                  AppLocalizations.of(context)!.retry,
-                                                  //"Retry",
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          else{
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                            for(questionModel.Question q in selectedQuestion) {
-                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
-                                            }
-                                            Navigator.of(context).pushNamedAndRemoveUntil('/draftReview', ModalRoute.withName('/draftAssessmentLanding'));
-
-                                          }
-                                        },
-                                        child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
-                                        style: ElevatedButton.styleFrom(
-                                          side: const BorderSide(
-                                            width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
-                                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
-                                        ),
-                                      ),
-                                      Text(
-                                        //AppLocalizations.of(context)!.subject_topic,
-                                          "Continue",
-                                          //textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016)),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                            // ElevatedButton(
-                            //   style: ElevatedButton.styleFrom(
-                            //     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                            //     minimumSize: const Size(280, 48),
-                            //     shape: RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.circular(39),
-                            //     ),
-                            //   ),
-                            //   //shape: StadiumBorder(),
-                            //   onPressed: () {
-                            //     showAlertDialog(context, height);
-                            //   },
-                            //   child: Text(
-                            //     AppLocalizations.of(context)!.submit,
-                            //     //'Submit',
-                            //     style: TextStyle(
-                            //         fontSize: height * 0.025,
-                            //         fontFamily: "Inter",
-                            //         color: const Color.fromRGBO(255, 255, 255, 1),
-                            //         fontWeight: FontWeight.w600),
-                            //   ),
-                            // ),
-                          ],
+                              )
+                              // ElevatedButton(
+                              //   style: ElevatedButton.styleFrom(
+                              //     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                              //     minimumSize: const Size(280, 48),
+                              //     shape: RoundedRectangleBorder(
+                              //       borderRadius: BorderRadius.circular(39),
+                              //     ),
+                              //   ),
+                              //   //shape: StadiumBorder(),
+                              //   onPressed: () {
+                              //     showAlertDialog(context, height);
+                              //   },
+                              //   child: Text(
+                              //     AppLocalizations.of(context)!.submit,
+                              //     //'Submit',
+                              //     style: TextStyle(
+                              //         fontSize: height * 0.025,
+                              //         fontFamily: "Inter",
+                              //         color: const Color.fromRGBO(255, 255, 255, 1),
+                              //         fontWeight: FontWeight.w600),
+                              //   ),
+                              // ),
+                            ],
+                          ),
                         ),
                       ),
                     )));

@@ -1214,11 +1214,10 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                 endDrawer: const EndDrawerMenuTeacher(),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                          top: height * 0.023,
-                          left: height * 0.5,
-                          right: height * 0.5),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      width: width * 0.7,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -1379,7 +1378,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                           children: [
                                             Container(
                                               height: height * 0.04,
-                                              width: width * 0.06,
+                                              width: width * 0.07,
                                               decoration: BoxDecoration(
                                                 border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
                                                 borderRadius: BorderRadius.all(
@@ -1424,7 +1423,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                               padding: EdgeInsets.only(right:height * 0.02,left: height * 0.02),
                                               child: Container(
                                                 height: height * 0.04,
-                                                width: width * 0.06,
+                                                width: width * 0.09,
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   mainAxisSize: MainAxisSize.min,
@@ -1463,7 +1462,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             ),
                                             Container(
                                               height: height * 0.04,
-                                              width: width * 0.06,
+                                              width: width * 0.09,
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 mainAxisSize: MainAxisSize.min,
@@ -1501,7 +1500,7 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                             ),
                                             Container(
                                               height: height * 0.04,
-                                              width: width * 0.06,
+                                              width: width * 0.09,
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 mainAxisSize: MainAxisSize.min,
@@ -2081,7 +2080,9 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                             SizedBox(height: height * 0.02),
                           ]),
                         ],
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ));
         }
@@ -3064,7 +3065,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
         },
         child: Container(
           height: widget.height * 0.15,
-          width:  widget.width>960 ? widget.width * 0.37 : widget.width > 500 ? widget.width * 0.78 :widget.width * 0.85,
+          width:  widget.width>960 ? widget.width * 0.6 : widget.width > 500 ? widget.width * 0.78 :widget.width * 0.85,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             border: Border.all(
@@ -3097,7 +3098,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
                     (widget.assessment.assessmentStatus=="active" && widget.assessment.assessmentType=='test')?
                     Container(
                       height: widget.height * 0.04,
-                      width: widget.width > 960 ? widget.width * 0.05 : widget.width * 0.16,
+                      width: widget.width > 960 ? widget.width * 0.07 : widget.width * 0.16,
                       decoration: BoxDecoration(
                         border: Border.all(color: Color.fromRGBO(219, 35, 35, 1),),
                         borderRadius: BorderRadius.all(

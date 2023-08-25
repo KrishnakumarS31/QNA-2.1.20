@@ -15,10 +15,7 @@ import '../../../Providers/edit_assessment_provider.dart';
 import '../../../Providers/question_prepare_provider_final.dart';
 import '../../../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Components/today_date.dart';
-import '../../../DataSource/http_url.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as questionModel;
-import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 class PracticeAssessmentSettings extends StatefulWidget {
@@ -110,8 +107,6 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
         questionList.removeAt(index);
         setState(() {
         });
@@ -330,7 +325,6 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     getAssessmentModel=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
-    print("_____________________________________________________________");
     debugPrint(getAssessmentModel.toString());
     for(int i=0;i<getAssessmentModel.questions!.length;i++){
       totalMarks=totalMarks + getAssessmentModel.questions![i].questionMark!;
@@ -437,7 +431,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : height * 0.15,
+                              height : 100,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -514,7 +508,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             ),
                                           ],),
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -574,8 +568,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                               height: height * 0.55,
                               width: width * 0.93,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                borderRadius: const BorderRadius.all(
                                     Radius.circular(10)),
                               ),
                               child: SingleChildScrollView(
@@ -590,15 +584,15 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.35,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.01),
                                               child: Text(
                                                 "Access Control",
                                                 style: TextStyle(
@@ -615,8 +609,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
-                                                    width: width * 0.5,
+                                                  SizedBox(
+                                                    width: width * 0.3,
                                                     child: Text(
                                                       "Number of attempts allowed",
                                                       style: TextStyle(
@@ -630,8 +624,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     height: height * 0.04,
                                                     width: width * 0.3,
                                                     decoration: BoxDecoration(
-                                                      border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: BorderRadius.all(
+                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(5)),
                                                     ),
                                                     child: Row(
@@ -645,7 +639,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               }
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
                                                             child: Icon(
@@ -661,12 +655,12 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                             width: width * 0.1,
                                                             decoration: BoxDecoration(
                                                               border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                              borderRadius: BorderRadius.all(
+                                                              borderRadius: const BorderRadius.all(
                                                                   Radius.circular(5)),
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                '${numberOfAttempts}',
+                                                                '$numberOfAttempts',
                                                                 style: TextStyle(
                                                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                                                     fontFamily: 'Inter',
@@ -682,7 +676,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               numberOfAttempts=numberOfAttempts+1;
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
 
@@ -698,13 +692,13 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               ),
                                             )
                                             :
-                                                SizedBox(),
+                                                const SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow guest students",
@@ -744,7 +738,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
@@ -785,7 +779,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
@@ -820,7 +814,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             )
-                                                :SizedBox()
+                                                :const SizedBox()
                                           ],
                                         ),
                                       ),
@@ -831,8 +825,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.3,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -855,7 +849,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my name",
@@ -895,7 +889,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my email",
@@ -940,8 +934,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.17,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -952,7 +946,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Make Assessment Inactive",
@@ -1060,24 +1054,19 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                       }
                                       else{
-                                        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                        print(assessment);
-                                        print(statusCode.code);
-                                        print(statusCode.data);
-                                        print(statusCode.message);
                                       }
                                       Navigator.of(context).pop();
                                     },
-                                    child: Icon(Icons.check, color: Colors.white),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                     ),
+                                    child: const Icon(Icons.check, color: Colors.white),
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
@@ -1150,7 +1139,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : height * 0.15,
+                              height : 100,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -1227,7 +1216,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             ),
                                           ],),
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -1287,8 +1276,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                               height: height * 0.55,
                               width: width * 0.93,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                borderRadius: const BorderRadius.all(
                                     Radius.circular(10)),
                               ),
                               child: SingleChildScrollView(
@@ -1300,11 +1289,11 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.35,
+                                        height: height * 0.4,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -1324,11 +1313,11 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             ),
                                             category == 'Test' ?
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
                                                       "Number of attempts allowed",
@@ -1343,8 +1332,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     height: height * 0.04,
                                                     width: width * 0.15,
                                                     decoration: BoxDecoration(
-                                                      border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: BorderRadius.all(
+                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(5)),
                                                     ),
                                                     child: Row(
@@ -1358,7 +1347,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               }
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.02,
                                                             child: Icon(
@@ -1367,25 +1356,22 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               color: const Color.fromRGBO(28, 78, 80, 1),),
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                                          child: Container(
-                                                            height: height * 0.03,
-                                                            width: width * 0.05,
-                                                            decoration: BoxDecoration(
-                                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                              borderRadius: BorderRadius.all(
-                                                                  Radius.circular(5)),
-                                                            ),
-                                                            child: Center(
-                                                              child: Text(
-                                                                '${numberOfAttempts}',
-                                                                style: TextStyle(
-                                                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight.w400,
-                                                                    fontSize: height * 0.016),
-                                                              ),
+                                                        Container(
+                                                          height: height * 0.03,
+                                                          width: width * 0.05,
+                                                          decoration: BoxDecoration(
+                                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
+                                                            borderRadius: const BorderRadius.all(
+                                                                Radius.circular(5)),
+                                                          ),
+                                                          child: Center(
+                                                            child: Text(
+                                                              '$numberOfAttempts',
+                                                              style: TextStyle(
+                                                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: height * 0.016),
                                                             ),
                                                           ),
                                                         ),
@@ -1395,7 +1381,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               numberOfAttempts=numberOfAttempts+1;
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.02,
 
@@ -1405,18 +1391,19 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               color: const Color.fromRGBO(28, 78, 80, 1),),
                                                           ),
                                                         ),
+
                                                       ],
                                                     ),)
                                                 ],
                                               ),
                                             )
-                                            : SizedBox(),
+                                            : const SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Allow guest students",
@@ -1456,7 +1443,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
@@ -1497,7 +1484,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
@@ -1532,7 +1519,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             )
-                                                : SizedBox(),
+                                                : const SizedBox(),
                                           ],
                                         ),
                                       ),
@@ -1543,8 +1530,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.3,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -1567,7 +1554,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Show my name",
@@ -1607,7 +1594,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.1,
                                                     child: Text(
                                                       "Show my email",
@@ -1692,8 +1679,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.17,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -1704,7 +1691,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
                                                       "Make Assessment Inactive",
@@ -1812,24 +1799,19 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                       }
                                       else{
-                                        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                        print(assessment);
-                                        print(statusCode.code);
-                                        print(statusCode.data);
-                                        print(statusCode.message);
                                       }
                                       Navigator.of(context).pop();
                                     },
-                                    child: Icon(Icons.check, color: Colors.white),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                     ),
+                                    child: const Icon(Icons.check, color: Colors.white),
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,
@@ -1977,7 +1959,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             ),
                                           ],),
                                       ),
-                                      Divider(),
+                                      const Divider(),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -2037,8 +2019,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                               height: height * 0.55,
                               width: width * 0.93,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
+                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                borderRadius: const BorderRadius.all(
                                     Radius.circular(10)),
                               ),
                               child: SingleChildScrollView(
@@ -2053,8 +2035,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.35,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -2078,7 +2060,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Number of attempts allowed",
@@ -2093,8 +2075,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     height: height * 0.04,
                                                     width: width * 0.3,
                                                     decoration: BoxDecoration(
-                                                      border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: BorderRadius.all(
+                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(5)),
                                                     ),
                                                     child: Row(
@@ -2108,7 +2090,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               }
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
                                                             child: Icon(
@@ -2124,12 +2106,12 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                             width: width * 0.1,
                                                             decoration: BoxDecoration(
                                                               border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                              borderRadius: BorderRadius.all(
+                                                              borderRadius: const BorderRadius.all(
                                                                   Radius.circular(5)),
                                                             ),
                                                             child: Center(
                                                               child: Text(
-                                                                '${numberOfAttempts}',
+                                                                '$numberOfAttempts',
                                                                 style: TextStyle(
                                                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                                                     fontFamily: 'Inter',
@@ -2145,7 +2127,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                               numberOfAttempts=numberOfAttempts+1;
                                                             });
                                                           },
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: height * 0.03,
                                                             width: width * 0.05,
 
@@ -2160,13 +2142,13 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             )
-                                            :SizedBox(),
+                                            :const SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow guest students",
@@ -2206,7 +2188,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show answer sheet in Practice",
@@ -2247,7 +2229,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Allow paper to be published in public LOOQ (Library of Online Questions)",
@@ -2282,7 +2264,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                 ],
                                               ),
                                             )
-                                                :SizedBox()
+                                                :const SizedBox()
                                           ],
                                         ),
                                       ),
@@ -2293,8 +2275,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.3,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -2317,7 +2299,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my name",
@@ -2357,7 +2339,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Show my email",
@@ -2442,8 +2424,8 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         height: height * 0.17,
                                         width: width,
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
+                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                          borderRadius: const BorderRadius.all(
                                               Radius.circular(5)),
                                         ),
                                         child: Column(
@@ -2454,7 +2436,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Container(
+                                                  SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
                                                       "Make Assessment Inactive",
@@ -2562,24 +2544,19 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                         Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                       }
                                       else{
-                                        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                        print(assessment);
-                                        print(statusCode.code);
-                                        print(statusCode.data);
-                                        print(statusCode.message);
                                       }
                                       Navigator.of(context).pop();
                                     },
-                                    child: Icon(Icons.check, color: Colors.white),
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
                                         width: 2,
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
-                                      shape: CircleBorder(),
-                                      padding: EdgeInsets.all(20),
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(20),
                                       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                     ),
+                                    child: const Icon(Icons.check, color: Colors.white),
                                   ),
                                   Text(
                                     //AppLocalizations.of(context)!.subject_topic,

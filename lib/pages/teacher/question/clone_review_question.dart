@@ -549,7 +549,9 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                                 .enter_subject;
                                                                             //'Enter Subject';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.subject = subjectController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -608,8 +610,11 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                               .isEmpty) {
                                                                             return
                                                                               'Enter Topic';
-                                                                          } else {
-                                                                            return null;
+                                                                          }
+                                                                          else {
+                                                                            setState(() {
+                                                                              assessment.topic = topicController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -668,8 +673,11 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                               .isEmpty) {
                                                                             return
                                                                               'Enter Degree';
-                                                                          } else {
-                                                                            return null;
+                                                                          }
+                                                                          else {
+                                                                            setState(() {
+                                                                              assessment.createAssessmentModelClass = degreeController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -1134,7 +1142,6 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           assessment.userId=userDetails.userId;
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
-                                          assessment.institutionId=userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -1398,7 +1405,9 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                                 .enter_subject;
                                                                             //'Enter Subject';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.subject = subjectController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -1457,8 +1466,11 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                               .isEmpty) {
                                                                             return
                                                                               'Enter Topic';
-                                                                          } else {
-                                                                            return null;
+                                                                          }
+                                                                          else {
+                                                                            setState(() {
+                                                                              assessment.topic = topicController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -1517,8 +1529,11 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                               .isEmpty) {
                                                                             return
                                                                               'Enter Degree';
-                                                                          } else {
-                                                                            return null;
+                                                                          }
+                                                                          else {
+                                                                            setState(() {
+                                                                              assessment.createAssessmentModelClass = degreeController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -1982,7 +1997,6 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           assessment.userId=userDetails.userId;
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
-                                          assessment.institutionId = userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -2244,7 +2258,9 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                                 .enter_subject;
                                                                             //'Enter Subject';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.subject = subjectController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -2304,7 +2320,9 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                             return
                                                                               'Enter Topic';
                                                                           } else {
-                                                                            return null;
+                                                                            setState(() {
+                                                                              assessment.topic = topicController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -2363,8 +2381,11 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                                                               .isEmpty) {
                                                                             return
                                                                               'Enter Degree';
-                                                                          } else {
-                                                                            return null;
+                                                                          }
+                                                                          else {
+                                                                            setState(() {
+                                                                              assessment.createAssessmentModelClass = degreeController.text;
+                                                                            });
                                                                           }
                                                                         },
                                                                         onChanged: (value) {
@@ -2830,7 +2851,6 @@ class CloneReviewQuestionState extends State<CloneReviewQuestion> {
                                           assessment.userId=userDetails.userId;
                                           assessment.assessmentType = 'test';
                                           assessment.assessmentStatus='inprogress';
-                                          assessment.institutionId=userDetails.institutionId;
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
@@ -3089,8 +3109,6 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
                                       left: width * 0.03, right: width * 0.03),
                                   child: TextFormField(
                                     controller: adviceController,
-                                    keyboardType: TextInputType.multiline,
-                                    maxLines: null,
                                     enabled: false,
                                     decoration: InputDecoration(
                                         border: const UnderlineInputBorder(),
@@ -3361,8 +3379,6 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
                                       left: width * 0.03, right: width * 0.03),
                                   child: TextFormField(
                                     controller: adviceController,
-                                    keyboardType: TextInputType.multiline,
-                                    maxLines: null,
                                     enabled: false,
                                     decoration: InputDecoration(
                                         border: const UnderlineInputBorder(),
@@ -3631,8 +3647,6 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
                                       left: width * 0.03, right: width * 0.03),
                                   child: TextFormField(
                                     controller: adviceController,
-                                    keyboardType: TextInputType.multiline,
-                                    maxLines: null,
                                     enabled: false,
                                     decoration: InputDecoration(
                                         border: const UnderlineInputBorder(),

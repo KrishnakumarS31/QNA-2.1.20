@@ -415,7 +415,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : height * 0.15,
+                              height : 100,
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -719,7 +719,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.38,
+                                        height: 300,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -795,32 +795,31 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                               child: Column(
                                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                                 children: [
-
                                                                   SizedBox(
                                                                     width: width * 0.3,
                                                                     child: TimePickerSpinner(
-                                                                      time: DateTime(2000,1,1,0,0),
-                                                                      is24HourMode: true,
-                                                                      normalTextStyle: TextStyle(
-                                                                        fontSize: height * 0.02,
-                                                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w400,
-                                                                      ),
-                                                                      highlightedTextStyle: TextStyle(
-                                                                        fontSize: height * 0.02,
-                                                                        color: const Color.fromRGBO(51, 51, 51, 1),
-                                                                        fontFamily: "Inter",
-                                                                        fontWeight: FontWeight.w700,
-                                                                      ),
-                                                                      spacing: width * 0.002,
-                                                                      itemHeight: height * 0.05,
-                                                                      isForce2Digits: true,
-                                                                      onTimeChange: (time) {
-                                                                        setState(() {
-                                                                          timeLimit = time;
-                                                                        });
-                                                                      },
+                                                                          time: DateTime(2000,1,1,0,0),
+                                                                          is24HourMode: true,
+                                                                          normalTextStyle: TextStyle(
+                                                                            fontSize: height * 0.02,
+                                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                                            fontFamily: "Inter",
+                                                                            fontWeight: FontWeight.w400,
+                                                                          ),
+                                                                          highlightedTextStyle: TextStyle(
+                                                                            fontSize: height * 0.02,
+                                                                            color: const Color.fromRGBO(51, 51, 51, 1),
+                                                                            fontFamily: "Inter",
+                                                                            fontWeight: FontWeight.w700,
+                                                                          ),
+                                                                          spacing: width * 0.002,
+                                                                          itemHeight: height * 0.05,
+                                                                          isForce2Digits: true,
+                                                                          onTimeChange: (time) {
+                                                                            setState(() {
+                                                                              timeLimit = time;
+                                                                            });
+                                                                          },
                                                                     ),
                                                                   ),
                                                                   ElevatedButton(
@@ -1134,7 +1133,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.30,
+                                        height: 250,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1245,7 +1244,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             )
                                             :
-                                                SizedBox(),
+                                                const SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Row(
@@ -1369,7 +1368,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             )
                                                 :
-                                                SizedBox()
+                                                const SizedBox()
                                           ],
                                         ),
                                       ),
@@ -1526,7 +1525,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.10,
+                                        height: 100,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1743,11 +1742,10 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                     ),
                     body: Container(
                       color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: height * 0.023,
-                            left: height * 0.5,
-                            right: height * 0.5),
+          child: Align(
+          alignment: Alignment.center,
+          child: SizedBox(
+          width: width * 0.7,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -2122,6 +2120,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                           {
                                                             return "Enter Digits Only";
                                                           }
+                                                          return null;
                                                         },
                                                         enabled: true,
                                                         controller: hourController,
@@ -2161,6 +2160,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                           {
                                                             return "Enter Digits Only";
                                                           }
+                                                          return null;
                                                         },
                                                         //inputFormatters: FilteringTextInputFormatter.digitsOnly,
                                                         enabled: true,
@@ -2458,94 +2458,6 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     fontWeight: FontWeight.w700),
                                               ),
                                             ),
-                                            // Padding(
-                                            //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                            //   child: Row(
-                                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            //     children: [
-                                            //       Container(
-                                            //         width: width * 0.2,
-                                            //         child: Text(
-                                            //           "Number of attempts allowed",
-                                            //           style: TextStyle(
-                                            //               fontSize: height * 0.016,
-                                            //               fontFamily: "Inter",
-                                            //               color: const Color.fromRGBO(102, 102, 102, 1),
-                                            //               fontWeight: FontWeight.w700),
-                                            //         ),
-                                            //       ),
-                                            //       Container(
-                                            //         height: height * 0.04,
-                                            //         width: width * 0.15,
-                                            //         decoration: BoxDecoration(
-                                            //           border: Border.all(color: Color.fromRGBO(82, 165, 160, 0.5),),
-                                            //           borderRadius: BorderRadius.all(
-                                            //               Radius.circular(5)),
-                                            //         ),
-                                            //         child: Row(
-                                            //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            //           children: [
-                                            //             GestureDetector(
-                                            //               onTap:(){
-                                            //                 setState(() {
-                                            //                   if(numberOfAttempts!=1){
-                                            //                     numberOfAttempts=numberOfAttempts-1;
-                                            //                   }
-                                            //                 });
-                                            //               },
-                                            //               child: Container(
-                                            //                 height: height * 0.03,
-                                            //                 width: width * 0.02,
-                                            //                 child: Icon(
-                                            //                   Icons.remove,
-                                            //                   size: height * 0.02,
-                                            //                   color: const Color.fromRGBO(28, 78, 80, 1),),
-                                            //               ),
-                                            //             ),
-                                            //             Padding(
-                                            //               padding: EdgeInsets.only(right: width * 0.005,left: width * 0.005),
-                                            //               child: Container(
-                                            //                 height: height * 0.03,
-                                            //                 width: width * 0.05,
-                                            //                 decoration: BoxDecoration(
-                                            //                   border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                            //                   borderRadius: BorderRadius.all(
-                                            //                       Radius.circular(5)),
-                                            //                 ),
-                                            //                 child: Center(
-                                            //                   child: Text(
-                                            //                     '${numberOfAttempts}',
-                                            //                     style: TextStyle(
-                                            //                         color: const Color.fromRGBO(28, 78, 80, 1),
-                                            //                         fontFamily: 'Inter',
-                                            //                         fontWeight: FontWeight.w400,
-                                            //                         fontSize: height * 0.016),
-                                            //                   ),
-                                            //                 ),
-                                            //               ),
-                                            //             ),
-                                            //             GestureDetector(
-                                            //               onTap: (){
-                                            //                 setState(() {
-                                            //                   numberOfAttempts=numberOfAttempts+1;
-                                            //                 });
-                                            //               },
-                                            //               child: Container(
-                                            //                 height: height * 0.03,
-                                            //                 width: width * 0.02,
-                                            //
-                                            //                 child: Icon(
-                                            //                   Icons.add,
-                                            //                   size: height * 0.02,
-                                            //                   color: const Color.fromRGBO(28, 78, 80, 1),),
-                                            //               ),
-                                            //             ),
-                                            //           ],
-                                            //         ),)
-                                            //     ],
-                                            //   ),
-                                            // ),
-
                                             category == 'Test'
                                                 ?
                                             Padding(
@@ -2633,7 +2545,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ],
                                               ),
                                             )
-                                            : SizedBox(),
+                                            : const SizedBox(),
 
 
                                             Padding(
@@ -2758,7 +2670,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ],
                                               ),
                                             )
-                                                : SizedBox()
+                                                : const SizedBox()
                                           ],
                                         ),
                                       ),
@@ -3087,7 +2999,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                           ],
                         ),
                       ),
-                    )));
+                    ))));
           }
           else{
             return WillPopScope(
@@ -4048,7 +3960,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ),
                                               )
                                               :
-                                                  SizedBox(),
+                                                  const SizedBox(),
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Row(
@@ -4172,7 +4084,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ),
                                               )
                                                   :
-                                                  SizedBox()
+                                                  const SizedBox()
                                             ],
                                           ),
                                         ),

@@ -625,7 +625,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height: height * 0.38,
+                                    height: 300,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -704,7 +704,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                               mainAxisAlignment: MainAxisAlignment.center,
                                                               children: [
                                                                 SizedBox(
-
                                                                   width: width * 0.3,
                                                                   child: Row(
                                                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -739,7 +738,6 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                   width: width * 0.8,
                                                                   child: Column(
                                                                     children: [
-
                                                                       TimePickerSpinner(
                                                                         time: DateTime(2000,1,1,0,0),
                                                                         is24HourMode: true,
@@ -905,7 +903,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                 ),
                                                                 //shape: StadiumBorder(),
                                                                 onPressed: () {
-                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                   Navigator.of(context).pop();
                                                                 },
                                                                 child: Text(
@@ -1083,7 +1081,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     height: category == 'Test'
-                                        ? height * 0.30 : height * 0.20,
+                                        ? 250 : 180,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1115,7 +1113,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                               SizedBox(
                                                 width: width * 0.3,
                                                 child: Text(
-                                                  "Number of attempts allowed",
+                                                  "Test Schedule",
                                                   style: TextStyle(
                                                       fontSize: height * 0.016,
                                                       fontFamily: "Inter",
@@ -1162,9 +1160,13 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                           borderRadius: const BorderRadius.all(
                                                               Radius.circular(5)),
                                                         ),
-                                                        child: Center(
-                                                          child: TextField(
+                                                        child:Padding(
+                                                      padding: EdgeInsets.only(bottom: height * 0.010),
+                                                      child: TextField(
                                                           controller: numberOfAttemptsController,
+                                                        decoration: const InputDecoration(
+                                                          border: InputBorder.none,
+                                                        ),
                                                           onChanged: (val){
                                                             if(int.parse(val)<1){
                                                               numberOfAttemptsController.text='1';
@@ -1342,7 +1344,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                    height:  height*0.20,
+                                    height: 150,
                                     width: width,
                                     decoration: BoxDecoration(
                                       border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2202,7 +2204,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                                 ),
                                                                 //shape: StadiumBorder(),
                                                                 onPressed: () {
-                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                  startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                   Navigator.of(context).pop();
                                                                 },
                                                                 child: Text(
@@ -2226,7 +2228,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                           child: Padding(
                                             padding:  EdgeInsets.only(left : width * 0.03),
                                             child: SizedBox(
-                                              width: width * 0.4,
+                                              width: width * 0.2,
                                               child: TextField(
                                                 enabled: false,
                                                 controller: startTimeController,
@@ -2347,7 +2349,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                           child: Padding(
                                             padding:  EdgeInsets.only(left : width * 0.03),
                                             child: SizedBox(
-                                              width: width * 0.4,
+                                              width: width * 0.2,
                                               child: TextField(
                                                 enabled: false,
                                                 controller: endTimeController,
@@ -2406,24 +2408,21 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                         category == 'Test'
                                             ?
                                         Padding(
-                                          padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
+                                          padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right: width * 0.02),
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
-                                              SizedBox(
-                                                width: width * 0.2,
-                                                child: Text(
+                                              Text(
                                                   "Number of attempts allowed",
                                                   style: TextStyle(
                                                       fontSize: height * 0.016,
                                                       fontFamily: "Inter",
                                                       color: const Color.fromRGBO(102, 102, 102, 1),
                                                       fontWeight: FontWeight.w700),
-                                                ),
                                               ),
                                               Container(
                                                 height: height * 0.04,
-                                                width: width * 0.15,
+                                                width: 120,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
                                                   borderRadius: const BorderRadius.all(
@@ -2452,7 +2451,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                     ),
                                                     Container(
                                                       height: height * 0.03,
-                                                      width: width * 0.05,
+                                                      width: 50,
                                                       decoration: BoxDecoration(
                                                         border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
                                                         borderRadius: const BorderRadius.all(

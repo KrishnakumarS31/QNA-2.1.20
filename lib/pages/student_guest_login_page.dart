@@ -111,41 +111,99 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           SizedBox(height: height * 0.25),
                           Center(
                               child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: kElevationToShadow[4],
-                            ),
-                            width: width * 0.9,
-                            child: Form(
-                              key: formKey,
-                              child: Column(
-                                mainAxisAlignment:
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: kElevationToShadow[4],
+                                ),
+                                width: width * 0.9,
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
                                     children: [
-                                      SizedBox(height: height * 0.05),
+                                      Column(
+                                        children: [
+                                          SizedBox(height: height * 0.05),
+                                          SizedBox(
+                                              width: width * 0.75,
+                                              child: TextFormField(
+                                                keyboardType: TextInputType.text,
+                                                controller: nameController,
+                                                onChanged: (val) {
+                                                  formKey.currentState!.validate();
+                                                },
+                                                decoration: InputDecoration(
+                                                  labelStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .headlineMedium,
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                  hintText:
+                                                  AppLocalizations.of(context)!
+                                                      .your_name,
+                                                  label: Text(
+                                                    AppLocalizations.of(context)!
+                                                        .name_userId,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: height * 0.0225),
+                                                  ),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.02),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return AppLocalizations.of(
+                                                        context)!
+                                                        .name_uId_helper;
+                                                  } else if (!RegExp(
+                                                      r'^([A-Za-z0-9]+|([A-Za-z]+\s[A-Za-z]+))$')
+                                                      .hasMatch(value)) {
+                                                    return AppLocalizations.of(
+                                                        context)!
+                                                        .name_special_restrict;
+                                                  }
+                                                  return null;
+                                                },
+                                              )),
+                                        ],
+                                      ),
+                                      SizedBox(height: height * 0.06),
                                       SizedBox(
                                           width: width * 0.75,
                                           child: TextFormField(
-                                            keyboardType: TextInputType.text,
-                                            controller: nameController,
+                                            controller: rollNumController,
+                                            inputFormatters: [_numericFormatter],
                                             onChanged: (val) {
                                               formKey.currentState!.validate();
                                             },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'If you do not know Organization ID, Enter 0';
+                                              } else if (!RegExp(r'\d')
+                                                  .hasMatch(value)) {
+                                                return "Incorrect Organization ID. Enter again.";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType: TextInputType.text,
                                             decoration: InputDecoration(
+                                              floatingLabelBehavior:
+                                              FloatingLabelBehavior.always,
                                               labelStyle: Theme.of(context)
                                                   .textTheme
                                                   .headlineMedium,
-                                              floatingLabelBehavior:
-                                                  FloatingLabelBehavior.always,
-                                              hintText:
-                                                  AppLocalizations.of(context)!
-                                                      .your_name,
                                               label: Text(
-                                                AppLocalizations.of(context)!
-                                                    .name_userId,
+                                                "Organization ID",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -153,6 +211,19 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: height * 0.0225),
                                               ),
+                                              helperText:
+                                              AppLocalizations.of(context)!
+                                                  .organization_helper,
+                                              helperStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.015),
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_id,
                                               hintStyle: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.3),
@@ -160,83 +231,12 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.02),
                                             ),
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .name_uId_helper;
-                                              } else if (!RegExp(
-                                                      r'^([A-Za-z0-9]+|([A-Za-z]+\s[A-Za-z]+))$')
-                                                  .hasMatch(value)) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .name_special_restrict;
-                                              }
-                                              return null;
-                                            },
                                           )),
+                                      SizedBox(height: height * 0.07),
                                     ],
                                   ),
-                                  SizedBox(height: height * 0.06),
-                                  SizedBox(
-                                      width: width * 0.75,
-                                      child: TextFormField(
-                                        controller: rollNumController,
-                                        inputFormatters: [_numericFormatter],
-                                        onChanged: (val) {
-                                          formKey.currentState!.validate();
-                                        },
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'If you do not know Organization ID, Enter 0';
-                                          } else if (!RegExp(r'\d')
-                                              .hasMatch(value)) {
-                                            return "Incorrect Organization ID. Enter again.";
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.text,
-                                        decoration: InputDecoration(
-                                          floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
-                                          labelStyle: Theme.of(context)
-                                              .textTheme
-                                              .headlineMedium,
-                                          label: Text(
-                                            "Organization ID",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.0225),
-                                          ),
-                                          helperText:
-                                              AppLocalizations.of(context)!
-                                                  .organization_helper,
-                                          helperStyle: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.015),
-                                          hintText:
-                                              AppLocalizations.of(context)!
-                                                  .enter_id,
-                                          hintStyle: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.02),
-                                        ),
-                                      )),
-                                  SizedBox(height: height * 0.07),
-                                ],
-                              ),
-                            ),
-                          )),
+                                ),
+                              )),
                           SizedBox(height: height * 0.04),
                           Row(children: [
                             SizedBox(width: width * 0.1),
@@ -258,18 +258,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 scale: 1.5,
                                 child: Checkbox(
                                   activeColor:
-                                      const Color.fromRGBO(82, 165, 160, 1),
+                                  const Color.fromRGBO(82, 165, 160, 1),
                                   fillColor:
-                                      MaterialStateProperty.resolveWith<Color>(
+                                  MaterialStateProperty.resolveWith<Color>(
                                           (states) {
-                                    if (states
-                                        .contains(MaterialState.selected)) {
-                                      return const Color.fromRGBO(
-                                          82, 165, 160, 1);
-                                    }
-                                    return const Color.fromRGBO(
-                                        82, 165, 160, 1);
-                                  }),
+                                        if (states
+                                            .contains(MaterialState.selected)) {
+                                          return const Color.fromRGBO(
+                                              82, 165, 160, 1);
+                                        }
+                                        return const Color.fromRGBO(
+                                            82, 165, 160, 1);
+                                      }),
                                   value: agree,
                                   onChanged: (val) {
                                     setState(() {
@@ -283,52 +283,52 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               Flexible(
                                 child: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text:
+                                      TextSpan(
+                                        text:
                                         AppLocalizations.of(context)!.agree_msg,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        color:
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            color:
                                             const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .privacy_Policy,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = _launchUrlPrivacy,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!.and,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        color:
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .privacy_Policy,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = _launchUrlPrivacy,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!.and,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            color:
                                             const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .terms_of_services,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () => _launchUrlTerms(),
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                ])),
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .terms_of_services,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () => _launchUrlTerms(),
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: "Inter"),
+                                      ),
+                                    ])),
                               ),
                             ],
                           ),
@@ -373,26 +373,26 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               children: [
                                 RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .product_of,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: height * 0.018),
-                                  ),
-                                  TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .itn_welcome,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              28, 78, 80, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: height * 0.018)),
-                                ]))
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .product_of,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                48, 145, 139, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.018),
+                                      ),
+                                      TextSpan(
+                                          text: AppLocalizations.of(context)!
+                                              .itn_welcome,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  28, 78, 80, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: height * 0.018)),
+                                    ]))
                               ]),
                         ]),
                   )));
@@ -447,41 +447,99 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           SizedBox(height: height * 0.25),
                           Center(
                               child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: kElevationToShadow[4],
-                            ),
-                            width: width * 0.35,
-                            child: Form(
-                              key: formKey,
-                              child: Column(
-                                mainAxisAlignment:
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: kElevationToShadow[4],
+                                ),
+                                width: width * 0.35,
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
                                     children: [
-                                      SizedBox(height: height * 0.05),
+                                      Column(
+                                        children: [
+                                          SizedBox(height: height * 0.05),
+                                          SizedBox(
+                                              width: width * 0.32,
+                                              child: TextFormField(
+                                                keyboardType: TextInputType.text,
+                                                controller: nameController,
+                                                onChanged: (val) {
+                                                  formKey.currentState!.validate();
+                                                },
+                                                decoration: InputDecoration(
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .headlineMedium,
+                                                  hintText:
+                                                  AppLocalizations.of(context)!
+                                                      .your_name,
+                                                  label: Text(
+                                                    AppLocalizations.of(context)!
+                                                        .name_userId,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: height * 0.025),
+                                                  ),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.02),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return AppLocalizations.of(
+                                                        context)!
+                                                        .name_uId_helper;
+                                                  } else if (!RegExp(
+                                                      r'^([A-Za-z0-9]+|([A-Za-z]+\s[A-Za-z]+))$')
+                                                      .hasMatch(value)) {
+                                                    return AppLocalizations.of(
+                                                        context)!
+                                                        .name_special_restrict;
+                                                  }
+                                                  return null;
+                                                },
+                                              )),
+                                        ],
+                                      ),
+                                      SizedBox(height: height * 0.06),
                                       SizedBox(
                                           width: width * 0.32,
                                           child: TextFormField(
-                                            keyboardType: TextInputType.text,
-                                            controller: nameController,
+                                            controller: rollNumController,
+                                            inputFormatters: [_numericFormatter],
                                             onChanged: (val) {
                                               formKey.currentState!.validate();
                                             },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'If you do not know Organization ID, Enter 0';
+                                              } else if (!RegExp(r'\d')
+                                                  .hasMatch(value)) {
+                                                return "Incorrect Organization ID. Enter again.";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType: TextInputType.text,
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
-                                                  FloatingLabelBehavior.always,
+                                              FloatingLabelBehavior.always,
                                               labelStyle: Theme.of(context)
                                                   .textTheme
                                                   .headlineMedium,
-                                              hintText:
-                                                  AppLocalizations.of(context)!
-                                                      .your_name,
                                               label: Text(
-                                                AppLocalizations.of(context)!
-                                                    .name_userId,
+                                                "Organization ID",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -489,90 +547,32 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: height * 0.025),
                                               ),
+                                              helperText:
+                                              AppLocalizations.of(context)!
+                                                  .organization_helper,
+                                              helperStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.015),
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_id,
                                               hintStyle: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: height * 0.02),
+                                                  fontSize: height * 0.025),
                                             ),
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .name_uId_helper;
-                                              } else if (!RegExp(
-                                                      r'^[a-zA-Z0-9]+$')
-                                                  .hasMatch(value)) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .name_special_restrict;
-                                              }
-                                              return null;
-                                            },
                                           )),
+                                      SizedBox(height: height * 0.07),
                                     ],
                                   ),
-                                  SizedBox(height: height * 0.06),
-                                  SizedBox(
-                                      width: width * 0.32,
-                                      child: TextFormField(
-                                        controller: rollNumController,
-                                        inputFormatters: [_numericFormatter],
-                                        onChanged: (val) {
-                                          formKey.currentState!.validate();
-                                        },
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'If you do not know Organization ID, Enter 0';
-                                          } else if (!RegExp(r'\d')
-                                              .hasMatch(value)) {
-                                            return "Incorrect Organization ID. Enter again.";
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.text,
-                                        decoration: InputDecoration(
-                                          floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
-                                          labelStyle: Theme.of(context)
-                                              .textTheme
-                                              .headlineMedium,
-                                          label: Text(
-                                            "Organization ID",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.025),
-                                          ),
-                                          helperText:
-                                              AppLocalizations.of(context)!
-                                                  .organization_helper,
-                                          helperStyle: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.015),
-                                          hintText:
-                                              AppLocalizations.of(context)!
-                                                  .enter_id,
-                                          hintStyle: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.025),
-                                        ),
-                                      )),
-                                  SizedBox(height: height * 0.07),
-                                ],
-                              ),
-                            ),
-                          )),
+                                ),
+                              )),
                           SizedBox(height: height * 0.04),
                           Row(children: [
                             SizedBox(width: width * 0.33),
@@ -593,18 +593,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 scale: 1.5,
                                 child: Checkbox(
                                   activeColor:
-                                      const Color.fromRGBO(82, 165, 160, 1),
+                                  const Color.fromRGBO(82, 165, 160, 1),
                                   fillColor:
-                                      MaterialStateProperty.resolveWith<Color>(
+                                  MaterialStateProperty.resolveWith<Color>(
                                           (states) {
-                                    if (states
-                                        .contains(MaterialState.selected)) {
-                                      return const Color.fromRGBO(
-                                          82, 165, 160, 1);
-                                    }
-                                    return const Color.fromRGBO(
-                                        82, 165, 160, 1);
-                                  }),
+                                        if (states
+                                            .contains(MaterialState.selected)) {
+                                          return const Color.fromRGBO(
+                                              82, 165, 160, 1);
+                                        }
+                                        return const Color.fromRGBO(
+                                            82, 165, 160, 1);
+                                      }),
                                   value: agree,
                                   onChanged: (val) {
                                     setState(() {
@@ -618,52 +618,52 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               Flexible(
                                 child: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text:
+                                      TextSpan(
+                                        text:
                                         AppLocalizations.of(context)!.agree_msg,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        color:
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            color:
                                             const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .privacy_Policy,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = _launchUrlPrivacy,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!.and,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        color:
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .privacy_Policy,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = _launchUrlPrivacy,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!.and,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            color:
                                             const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .terms_of_services,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () => _launchUrlTerms(),
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                ])),
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .terms_of_services,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () => _launchUrlTerms(),
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: "Inter"),
+                                      ),
+                                    ])),
                               ),
                             ],
                           ),
@@ -708,26 +708,26 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               children: [
                                 RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .product_of,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: height * 0.018),
-                                  ),
-                                  TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .itn_welcome,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              28, 78, 80, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: height * 0.018)),
-                                ]))
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .product_of,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                48, 145, 139, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.018),
+                                      ),
+                                      TextSpan(
+                                          text: AppLocalizations.of(context)!
+                                              .itn_welcome,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  28, 78, 80, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: height * 0.018)),
+                                    ]))
                               ]),
                         ]),
                   )));
@@ -782,41 +782,99 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           SizedBox(height: height * 0.25),
                           Center(
                               child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: kElevationToShadow[4],
-                            ),
-                            width: width * 0.9,
-                            child: Form(
-                              key: formKey,
-                              child: Column(
-                                mainAxisAlignment:
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: kElevationToShadow[4],
+                                ),
+                                width: width * 0.9,
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
                                     children: [
-                                      SizedBox(height: height * 0.05),
+                                      Column(
+                                        children: [
+                                          SizedBox(height: height * 0.05),
+                                          SizedBox(
+                                              width: width * 0.75,
+                                              child: TextFormField(
+                                                keyboardType: TextInputType.text,
+                                                controller: nameController,
+                                                onChanged: (val) {
+                                                  formKey.currentState!.validate();
+                                                },
+                                                decoration: InputDecoration(
+                                                  floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .headlineMedium,
+                                                  hintText:
+                                                  AppLocalizations.of(context)!
+                                                      .your_name,
+                                                  label: Text(
+                                                    AppLocalizations.of(context)!
+                                                        .name_userId,
+                                                    style: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: height * 0.02),
+                                                  ),
+                                                  hintStyle: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 0.3),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.02),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.isEmpty) {
+                                                    return AppLocalizations.of(
+                                                        context)!
+                                                        .name_uId_helper;
+                                                  } else if (!RegExp(
+                                                      r'^([A-Za-z0-9]+|([A-Za-z]+\s[A-Za-z]+))$')
+                                                      .hasMatch(value)) {
+                                                    return AppLocalizations.of(
+                                                        context)!
+                                                        .name_special_restrict;
+                                                  }
+                                                  return null;
+                                                },
+                                              )),
+                                        ],
+                                      ),
+                                      SizedBox(height: height * 0.03),
                                       SizedBox(
                                           width: width * 0.75,
                                           child: TextFormField(
-                                            keyboardType: TextInputType.text,
-                                            controller: nameController,
+                                            controller: rollNumController,
+                                            inputFormatters: [_numericFormatter],
                                             onChanged: (val) {
                                               formKey.currentState!.validate();
                                             },
+                                            validator: (value) {
+                                              if (value!.isEmpty) {
+                                                return 'If you do not know Organization ID, Enter 0';
+                                              } else if (!RegExp(r'\d')
+                                                  .hasMatch(value)) {
+                                                return "Incorrect Organization ID. Enter again.";
+                                              }
+                                              return null;
+                                            },
+                                            keyboardType: TextInputType.text,
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
-                                                  FloatingLabelBehavior.always,
+                                              FloatingLabelBehavior.always,
                                               labelStyle: Theme.of(context)
                                                   .textTheme
                                                   .headlineMedium,
-                                              hintText:
-                                                  AppLocalizations.of(context)!
-                                                      .your_name,
                                               label: Text(
-                                                AppLocalizations.of(context)!
-                                                    .name,
+                                                "Organization ID",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -824,6 +882,19 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: height * 0.02),
                                               ),
+                                              helperText:
+                                              AppLocalizations.of(context)!
+                                                  .organization_helper,
+                                              helperStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontStyle: FontStyle.italic,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.015),
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_id,
                                               hintStyle: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.3),
@@ -831,83 +902,12 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.02),
                                             ),
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .name_uId_helper;
-                                              } else if (!RegExp(
-                                                      r'^[a-zA-Z0-9]+$')
-                                                  .hasMatch(value)) {
-                                                return AppLocalizations.of(
-                                                        context)!
-                                                    .name_special_restrict;
-                                              }
-                                              return null;
-                                            },
                                           )),
+                                      SizedBox(height: height * 0.07),
                                     ],
                                   ),
-                                  SizedBox(height: height * 0.03),
-                                  SizedBox(
-                                      width: width * 0.75,
-                                      child: TextFormField(
-                                        controller: rollNumController,
-                                        inputFormatters: [_numericFormatter],
-                                        onChanged: (val) {
-                                          formKey.currentState!.validate();
-                                        },
-                                        validator: (value) {
-                                          if (value!.isEmpty) {
-                                            return 'If you do not know Organization ID, Enter 0';
-                                          } else if (!RegExp(r'\d')
-                                              .hasMatch(value)) {
-                                            return "Incorrect Organization ID. Enter again.";
-                                          }
-                                          return null;
-                                        },
-                                        keyboardType: TextInputType.text,
-                                        decoration: InputDecoration(
-                                          floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
-                                          labelStyle: Theme.of(context)
-                                              .textTheme
-                                              .headlineMedium,
-                                          label: Text(
-                                            "Organization ID",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.02),
-                                          ),
-                                          helperText:
-                                              AppLocalizations.of(context)!
-                                                  .organization_helper,
-                                          helperStyle: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.015),
-                                          hintText:
-                                              AppLocalizations.of(context)!
-                                                  .enter_id,
-                                          hintStyle: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 0.3),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.02),
-                                        ),
-                                      )),
-                                  SizedBox(height: height * 0.07),
-                                ],
-                              ),
-                            ),
-                          )),
+                                ),
+                              )),
                           SizedBox(height: height * 0.04),
                           Row(children: [
                             SizedBox(width: width * 0.08),
@@ -929,18 +929,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 scale: 1.5,
                                 child: Checkbox(
                                   activeColor:
-                                      const Color.fromRGBO(82, 165, 160, 1),
+                                  const Color.fromRGBO(82, 165, 160, 1),
                                   fillColor:
-                                      MaterialStateProperty.resolveWith<Color>(
+                                  MaterialStateProperty.resolveWith<Color>(
                                           (states) {
-                                    if (states
-                                        .contains(MaterialState.selected)) {
-                                      return const Color.fromRGBO(
-                                          82, 165, 160, 1);
-                                    }
-                                    return const Color.fromRGBO(
-                                        82, 165, 160, 1);
-                                  }),
+                                        if (states
+                                            .contains(MaterialState.selected)) {
+                                          return const Color.fromRGBO(
+                                              82, 165, 160, 1);
+                                        }
+                                        return const Color.fromRGBO(
+                                            82, 165, 160, 1);
+                                      }),
                                   value: agree,
                                   onChanged: (val) {
                                     setState(() {
@@ -954,52 +954,52 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               Flexible(
                                 child: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text:
+                                      TextSpan(
+                                        text:
                                         AppLocalizations.of(context)!.agree_msg,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        color:
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            color:
                                             const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .privacy_Policy,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = _launchUrlPrivacy,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!.and,
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        color:
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .privacy_Policy,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = _launchUrlPrivacy,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!.and,
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            color:
                                             const Color.fromRGBO(51, 51, 51, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .terms_of_services,
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () => _launchUrlTerms(),
-                                    style: TextStyle(
-                                        fontSize: height * 0.018,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.underline,
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fontFamily: "Inter"),
-                                  ),
-                                ])),
+                                            fontFamily: "Inter"),
+                                      ),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .terms_of_services,
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () => _launchUrlTerms(),
+                                        style: TextStyle(
+                                            fontSize: height * 0.018,
+                                            fontWeight: FontWeight.w400,
+                                            decoration: TextDecoration.underline,
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: "Inter"),
+                                      ),
+                                    ])),
                               ),
                             ],
                           ),
@@ -1044,26 +1044,26 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               children: [
                                 RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .product_of,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: height * 0.018),
-                                  ),
-                                  TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .itn_welcome,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              28, 78, 80, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: height * 0.018)),
-                                ]))
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .product_of,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                48, 145, 139, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.018),
+                                      ),
+                                      TextSpan(
+                                          text: AppLocalizations.of(context)!
+                                              .itn_welcome,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  28, 78, 80, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: height * 0.018)),
+                                    ]))
                               ]),
                         ]),
                   )));

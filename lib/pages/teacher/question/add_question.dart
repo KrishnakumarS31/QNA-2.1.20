@@ -332,7 +332,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                       child: Row(
                                                         children: [
                                                           Transform.scale(
-                                                            scale: width * 0.002,
+                                                            scale: 1,
                                                             child: Radio(
                                                               activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                               value: "MCQ", groupValue: _questionTypeValue, onChanged: (value){
@@ -358,7 +358,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                       child: Row(
                                                         children: [
                                                           Transform.scale(
-                                                            scale:width * 0.002,
+                                                            scale: 1,
                                                             child: Radio(
                                                               activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                                               value: "Survey", groupValue: _questionTypeValue, onChanged: (value){
@@ -384,7 +384,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                       child: Row(
                                                         children: [
                                                           Transform.scale(
-                                                            scale: width * 0.002,
+                                                            scale:  1,
                                                             child: Radio(
                                                               value: "Descriptive",
                                                               activeColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -1334,21 +1334,18 @@ class AddQuestionState extends State<AddQuestion> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left:width * 0.065),
-                                            child: Container(
-                                              //alignment: Alignment.center,
-                                              width: width * 0.05,
-                                              child: Text(
-                                                textAlign: TextAlign.right,
-                                                AppLocalizations.of(context)!.correct_answer,
-                                                //"Correct\nAnswer",
-                                                style: TextStyle(
-                                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                                  fontSize: height * 0.014,
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                          SizedBox(
+                                            //alignment: Alignment.center,
+                                            width: width * 0.04,
+                                            child: Text(
+                                              textAlign: TextAlign.right,
+                                              AppLocalizations.of(context)!.correct_answer,
+                                              //"Correct\nAnswer",
+                                              style: TextStyle(
+                                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                                fontSize: height * 0.014,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
                                               ),
                                             ),
                                           ),
@@ -1459,7 +1456,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                     alignment:Alignment.centerLeft,
                                                     child: SizedBox(
                                                       //height: height * 0.05,
-                                                      width : width * 0.28,
+                                                      width : width * 0.2,
                                                       child: TextFormField(
                                                         controller: chooses[i],
                                                         style: TextStyle(

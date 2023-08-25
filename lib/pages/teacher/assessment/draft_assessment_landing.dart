@@ -706,265 +706,265 @@ class DraftAssessmentLandingState extends State<DraftAssessmentLanding> {
                     ),
                     body: Container(
                       color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: height * 0.023,
-                            left: height * 0.5,
-                            right: height * 0.5),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              height : height * 0.15,
-                              decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(82, 165, 160, 0.08),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(28, 78, 80, 0.08),
-                                  ),
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(5))
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: width * 0.02, right: width * 0.02,top: height*0.01,bottom: height*0.01),
-                                child: SizedBox(
-                                  width: width,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${assessment.subject} | ${assessment.topic}",
-                                            style: TextStyle(
-                                                fontSize: height * 0.02,
-                                                fontFamily: "Inter",
-                                                color:
-                                                const Color.fromRGBO(28, 78, 80, 1),
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          Icon(
-                                            Icons.circle,
-                                            color: const Color.fromRGBO(153, 153, 153, 1),
-                                            size: MediaQuery
-                                                .of(context)
-                                                .copyWith()
-                                                .size
-                                                .height *
-                                                0.02,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: height*0.01,),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
-                                          style: TextStyle(
-                                              fontSize: height * 0.016,
-                                              fontFamily: "Inter",
-                                              color:
-                                              const Color.fromRGBO(28, 78, 80, 1),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                      SizedBox(height: height*0.01,),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                            width:width * 0.7,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height : height * 0.15,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(82, 165, 160, 0.08),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(28, 78, 80, 0.08),
+                                    ),
+                                    borderRadius:
+                                    const BorderRadius.all(Radius.circular(5))
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.02, right: width * 0.02,top: height*0.01,bottom: height*0.01),
+                                  child: SizedBox(
+                                    width: width,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                            Text(
+                                              "${assessment.subject} | ${assessment.topic}",
                                               style: TextStyle(
-                                                  fontSize: height * 0.016,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   color:
                                                   const Color.fromRGBO(28, 78, 80, 1),
-                                                  fontWeight: FontWeight.w400),
+                                                  fontWeight: FontWeight.w700),
                                             ),
-                                            Text(assessment.assessmentCode!,
-                                              style: TextStyle(
-                                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.015,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                            ),
-                                          ],),
-                                      ),
-                                      Divider(),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Total Marks: ",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(51, 51, 51, 1),
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                              Text(
-                                                "$totalMarks",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontWeight: FontWeight.w700),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Total Questions: ",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(51, 51, 51, 1),
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                              Text(
-                                                "${assessment.questions!.length}",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontWeight: FontWeight.w700),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.01,),
-                            Container(
-                              height: height * 0.55,
-                              width: width * 0.93,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(10)),
-                              ),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  //mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: height * 0.08,
-                                        width: width,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(5)),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
-                                              child: Text(
-                                                "Questions",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.022,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(28, 78, 80, 1),
-                                                    fontWeight: FontWeight.w700),
-                                              ),
+                                            Icon(
+                                              Icons.circle,
+                                              color: const Color.fromRGBO(153, 153, 153, 1),
+                                              size: MediaQuery
+                                                  .of(context)
+                                                  .copyWith()
+                                                  .size
+                                                  .height *
+                                                  0.02,
                                             ),
                                           ],
                                         ),
-                                      ),
+                                        SizedBox(height: height*0.01,),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "${assessment.getAssessmentModelClass} | ${assessment.subTopic ?? ""}",
+                                            style: TextStyle(
+                                                fontSize: height * 0.016,
+                                                fontFamily: "Inter",
+                                                color:
+                                                const Color.fromRGBO(28, 78, 80, 1),
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                        SizedBox(height: height*0.01,),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Row(
+                                            children: [
+                                              Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                                style: TextStyle(
+                                                    fontSize: height * 0.016,
+                                                    fontFamily: "Inter",
+                                                    color:
+                                                    const Color.fromRGBO(28, 78, 80, 1),
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              Text(assessment.assessmentCode!,
+                                                style: TextStyle(
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.015,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],),
+                                        ),
+                                        Divider(),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Total Marks: ",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(51, 51, 51, 1),
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  "$totalMarks",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Total Questions: ",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(51, 51, 51, 1),
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  "${assessment.questions!.length}",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    for(int i=0;i<assessment.questions!.length;i++)
-                                      QuestionCard(width: width, height: height, question: assessment.questions![i],index: i,)
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: height * 0.02),
-                            Padding(
-                              padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                              SizedBox(height: height * 0.01,),
+                              Container(
+                                height: height * 0.55,
+                                width: width * 0.93,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(10)),
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    //mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                          CreateAssessmentModel createassessmentModel=CreateAssessmentModel(questions: []);
-                                          createassessmentModel.assessmentId=assessment.assessmentId;
-                                          createassessmentModel.userId=userDetails.userId;
-                                          createassessmentModel.assessmentCode=assessment.assessmentCode;
-                                          createassessmentModel.assessmentType=assessment.assessmentType;
-                                          createassessmentModel.assessmentStatus=assessment.assessmentStatus;
-                                          createassessmentModel.totalScore=assessment.totalScore;
-                                          createassessmentModel.totalQuestions=assessment.questions!.length;
-                                          createassessmentModel.assessmentStartdate=assessment.assessmentStartdate;
-                                          createassessmentModel.assessmentEnddate=assessment.assessmentEnddate;
-                                          createassessmentModel.assessmentDuration=assessment.assessmentDuration;
-                                          createassessmentModel.subject=assessment.subject;
-                                          createassessmentModel.topic=assessment.topic;
-                                          createassessmentModel.subTopic=assessment.subTopic;
-                                          createassessmentModel.createAssessmentModelClass=assessment.getAssessmentModelClass;
-                                          createassessmentModel.assessmentSettings=assessment.assessmentSettings;
-                                          int totalMark=0;
-                                          for(int i=0;i<assessment.questions!.length;i++){
-                                            Question tempQues=Question(questionId: assessment.questions![i].questionId,questionMarks: assessment.questions![i].questionMark);
-                                            createassessmentModel.questions?.add(tempQues);
-                                            totalMark=totalMark+assessment.questions![i].questionMark!;
-                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
-                                          }
-                                          assessment.totalScore=totalMark;
-                                          Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(createassessmentModel);
-                                          Navigator.pushNamed(
-                                            context,
-                                            '/draftReview',
-                                          );
-                                        },
-                                        child: Icon(Icons.edit_outlined, color: const Color.fromRGBO(82, 165, 160, 1),),
-                                        style: ElevatedButton.styleFrom(
-                                          side: const BorderSide(
-                                            width: 2,
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          height: height * 0.08,
+                                          width: width,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Color.fromRGBO(153, 153, 153, 0.5),),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(5)),
                                           ),
-                                          shape: CircleBorder(),
-                                          padding: EdgeInsets.all(20),
-                                          backgroundColor: Colors.white, // <-- Button color
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
+                                                child: Text(
+                                                  "Questions",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.022,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(28, 78, 80, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                      Text(
-                                        //AppLocalizations.of(context)!.subject_topic,
-                                          "Edit",
-                                          //textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(28, 78, 80, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.016)),
+                                      for(int i=0;i<assessment.questions!.length;i++)
+                                        QuestionCard(width: width, height: height, question: assessment.questions![i],index: i,)
                                     ],
                                   ),
-                                ],
+                                ),
                               ),
-                            )
-                          ],
+                              SizedBox(height: height * 0.02),
+                              Padding(
+                                padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                            CreateAssessmentModel createassessmentModel=CreateAssessmentModel(questions: []);
+                                            createassessmentModel.assessmentId=assessment.assessmentId;
+                                            createassessmentModel.userId=userDetails.userId;
+                                            createassessmentModel.assessmentCode=assessment.assessmentCode;
+                                            createassessmentModel.assessmentType=assessment.assessmentType;
+                                            createassessmentModel.assessmentStatus=assessment.assessmentStatus;
+                                            createassessmentModel.totalScore=assessment.totalScore;
+                                            createassessmentModel.totalQuestions=assessment.questions!.length;
+                                            createassessmentModel.assessmentStartdate=assessment.assessmentStartdate;
+                                            createassessmentModel.assessmentEnddate=assessment.assessmentEnddate;
+                                            createassessmentModel.assessmentDuration=assessment.assessmentDuration;
+                                            createassessmentModel.subject=assessment.subject;
+                                            createassessmentModel.topic=assessment.topic;
+                                            createassessmentModel.subTopic=assessment.subTopic;
+                                            createassessmentModel.createAssessmentModelClass=assessment.getAssessmentModelClass;
+                                            createassessmentModel.assessmentSettings=assessment.assessmentSettings;
+                                            int totalMark=0;
+                                            for(int i=0;i<assessment.questions!.length;i++){
+                                              Question tempQues=Question(questionId: assessment.questions![i].questionId,questionMarks: assessment.questions![i].questionMark);
+                                              createassessmentModel.questions?.add(tempQues);
+                                              totalMark=totalMark+assessment.questions![i].questionMark!;
+                                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+                                            }
+                                            assessment.totalScore=totalMark;
+                                            Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(createassessmentModel);
+                                            Navigator.pushNamed(
+                                              context,
+                                              '/draftReview',
+                                            );
+                                          },
+                                          child: Icon(Icons.edit_outlined, color: const Color.fromRGBO(82, 165, 160, 1),),
+                                          style: ElevatedButton.styleFrom(
+                                            side: const BorderSide(
+                                              width: 2,
+                                              color: const Color.fromRGBO(82, 165, 160, 1),
+                                            ),
+                                            shape: CircleBorder(),
+                                            padding: EdgeInsets.all(20),
+                                            backgroundColor: Colors.white, // <-- Button color
+                                          ),
+                                        ),
+                                        Text(
+                                          //AppLocalizations.of(context)!.subject_topic,
+                                            "Edit",
+                                            //textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: height * 0.016)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )));
