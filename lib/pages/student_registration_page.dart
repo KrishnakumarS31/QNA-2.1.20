@@ -297,6 +297,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   SingleValueDropDownController selectedCountryResident =
       SingleValueDropDownController();
   int d = 0;
+  bool passObscure = true;
+  bool confirmPassObscure = true;
 
   @override
   void initState() {
@@ -423,6 +425,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         validator: (value) {
                                                           if (value!.isEmpty) {
                                                             return AppLocalizations.of(context)!.org_helper_reg;
+                                                          }
+                                                          else if (value.startsWith("0")) {
+                                                            return null;
                                                           }
                                                           else if (value.length < 8) {
                                                             return " ${8- value.length} more characters needed to verify";
@@ -1068,10 +1073,35 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                       child: TextFormField(
                                                     controller: studentPasswordController,
                                                     keyboardType: TextInputType.text,
+                                        obscureText: passObscure,
+                                        obscuringCharacter: "*",
                                                     decoration: InputDecoration(   
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
+                                                      suffixIcon: SizedBox(
+                                                          child: Row(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                              children:[
+                                                                IconButton(
+                                                                    iconSize: localHeight * 0.028,
+                                                                    icon: Icon(
+                                                                      passObscure
+                                                                          ? Icons.visibility
+                                                                          : Icons.visibility_off,
+                                                                      color:
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                    ),
+                                                                    onPressed: () {
+                                                                      setState(() {
+                                                                        passObscure = !passObscure;
+                                                                      });
+                                                                    }),
+                                                              ]
+                                                          )),
                                                       label: Text(AppLocalizations.of(
                                                                   context)!
                                                                   .password_caps,
@@ -1121,10 +1151,35 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                       child: TextFormField(
                                                     controller: studentconfirmPasswordController,
                                                     keyboardType: TextInputType.text,
+                                        obscureText: confirmPassObscure,
+                                        obscuringCharacter: "*",
                                                     decoration: InputDecoration(   
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
+                                                      suffixIcon: SizedBox(
+                                                          child: Row(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                              children:[
+                                                                IconButton(
+                                                                    iconSize: localHeight * 0.028,
+                                                                    icon: Icon(
+                                                                      confirmPassObscure
+                                                                          ? Icons.visibility
+                                                                          : Icons.visibility_off,
+                                                                      color:
+                                                                      const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                    ),
+                                                                    onPressed: () {
+                                                                      setState(() {
+                                                                        confirmPassObscure = !confirmPassObscure;
+                                                                      });
+                                                                    }),
+                                                              ]
+                                                          )),
                                                       label: Text(AppLocalizations.of(
                                                                   context)!
                                                                   .confirm_password,
@@ -1522,6 +1577,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           validator: (value) {
                                                             if (value!.isEmpty) {
                                                               return AppLocalizations.of(context)!.org_helper_reg;
+                                                            }
+                                                            else if (value.startsWith("0")) {
+                                                              return null;
                                                             }
                                                             else if (value.length < 8) {
                                                               return " ${8- value.length} more characters needed to verify";
@@ -2051,11 +2109,36 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           width: localWidth * 0.65,
                                                           child: TextFormField(
                                                             controller: studentPasswordController,
+                                                            obscureText: passObscure,
+                                                            obscuringCharacter: "*",
                                                             keyboardType: TextInputType.text,
                                                             decoration: InputDecoration(   
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
+                                                              suffixIcon: SizedBox(
+                                                                  child: Row(
+                                                                      mainAxisSize: MainAxisSize.min,
+                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                      children:[
+                                                                        IconButton(
+                                                                            iconSize: localHeight * 0.028,
+                                                                            icon: Icon(
+                                                                              passObscure
+                                                                                  ? Icons.visibility
+                                                                                  : Icons.visibility_off,
+                                                                              color:
+                                                                              const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                            ),
+                                                                            onPressed: () {
+                                                                              setState(() {
+                                                                                passObscure = !passObscure;
+                                                                              });
+                                                                            }),
+                                                                      ]
+                                                                  )),
                                                               label: Text(AppLocalizations.of(
                                                                   context)!
                                                                   .password_caps,
@@ -2105,10 +2188,35 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         child: TextFormField(
                                                           controller: studentconfirmPasswordController,
                                                           keyboardType: TextInputType.text,
+                                                          obscureText: confirmPassObscure,
+                                                          obscuringCharacter: "*",
                                                           decoration: InputDecoration(   
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
+                                                            suffixIcon: SizedBox(
+                                                                child: Row(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children:[
+                                                                      IconButton(
+                                                                          iconSize: localHeight * 0.028,
+                                                                          icon: Icon(
+                                                                            confirmPassObscure
+                                                                                ? Icons.visibility
+                                                                                : Icons.visibility_off,
+                                                                            color:
+                                                                            const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                          ),
+                                                                          onPressed: () {
+                                                                            setState(() {
+                                                                              confirmPassObscure = !confirmPassObscure;
+                                                                            });
+                                                                          }),
+                                                                    ]
+                                                                )),
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .confirm_password,
@@ -2505,6 +2613,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           validator: (value) {
                                                             if (value!.isEmpty) {
                                                               return AppLocalizations.of(context)!.org_helper_reg;
+                                                            }
+                                                            else if (value.startsWith("0")) {
+                                                              return null;
                                                             }
                                                             else if (value.length < 8) {
                                                               return " ${8- value.length} more characters needed to verify";
@@ -3145,11 +3256,36 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           width: localWidth * 0.8,
                                                           child: TextFormField(
                                                             controller: studentPasswordController,
+                                                            obscureText: passObscure,
+                                                            obscuringCharacter: "*",
                                                             keyboardType: TextInputType.text,
                                                             decoration: InputDecoration(   
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
+                                                              suffixIcon: SizedBox(
+                                                                  child: Row(
+                                                                      mainAxisSize: MainAxisSize.min,
+                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                      children:[
+                                                                        IconButton(
+                                                                            iconSize: localHeight * 0.028,
+                                                                            icon: Icon(
+                                                                              passObscure
+                                                                                  ? Icons.visibility
+                                                                                  : Icons.visibility_off,
+                                                                              color:
+                                                                              const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                            ),
+                                                                            onPressed: () {
+                                                                              setState(() {
+                                                                                passObscure = !passObscure;
+                                                                              });
+                                                                            }),
+                                                                      ]
+                                                                  )),
                                                               label: Text(AppLocalizations.of(
                                                                   context)!
                                                                   .password_caps,
@@ -3199,10 +3335,35 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         child: TextFormField(
                                                           controller: studentconfirmPasswordController,
                                                           keyboardType: TextInputType.text,
+                                                          obscureText: confirmPassObscure,
+                                                          obscuringCharacter: "*",
                                                           decoration: InputDecoration(   
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
+                                                            suffixIcon: SizedBox(
+                                                                child: Row(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children:[
+                                                                      IconButton(
+                                                                          iconSize: localHeight * 0.028,
+                                                                          icon: Icon(
+                                                                            confirmPassObscure
+                                                                                ? Icons.visibility
+                                                                                : Icons.visibility_off,
+                                                                            color:
+                                                                            const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                          ),
+                                                                          onPressed: () {
+                                                                            setState(() {
+                                                                              confirmPassObscure = !confirmPassObscure;
+                                                                            });
+                                                                          }),
+                                                                    ]
+                                                                )),
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .confirm_password,

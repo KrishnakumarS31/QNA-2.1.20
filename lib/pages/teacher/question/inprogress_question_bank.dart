@@ -364,7 +364,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.02, right: width * 0.02,top:width * 0.02),
+                                          left: width * 0.02, right: width * 0.02,top:height * 0.02),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -692,7 +692,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                             child: Text(
                                               "Edit",
                                               style: TextStyle(
-                                                  fontSize: height * 0.015,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   color:
                                                   const Color.fromRGBO(82, 165, 160, 1),
@@ -991,7 +991,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            left: width * 0.02, right: width * 0.02,top:width * 0.02),
+                                            left: width * 0.02, right: width * 0.02,top:height * 0.02),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
@@ -1024,8 +1024,8 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                                         child: SingleChildScrollView(
                                                           scrollDirection: Axis.vertical,
                                                           child: Container(
-                                                            height: height * 0.6,
-                                                            width: width * 0.88,
+                                                            height: height * 0.65,
+                                                            width: width * 0.8,
                                                             decoration: BoxDecoration(
                                                               border: Border.all(
                                                                   color: Colors.black38,
@@ -1319,7 +1319,7 @@ class InprogressQuestionBankState extends State<InprogressQuestionBank> {
                                               child: Text(
                                                 "Edit",
                                                 style: TextStyle(
-                                                    fontSize: height * 0.015,
+                                                    fontSize: height * 0.02,
                                                     fontFamily: "Inter",
                                                     color:
                                                     const Color.fromRGBO(82, 165, 160, 1),

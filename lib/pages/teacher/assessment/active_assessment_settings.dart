@@ -415,7 +415,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : 100,
+                              
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -634,9 +634,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding: EdgeInsets.only(right: width*0.03),
                                               child: SizedBox(
-                                                width: width * 0.55,
+                                                
                                                 child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                 
                                                   children: [
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
@@ -671,10 +671,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                             color: category=="Test"?Colors.white:const Color.fromRGBO(102, 102, 102, 1),
                                                             fontWeight: FontWeight.w400),
                                                       ),
+                                                      
                                                     ),
+                                                    SizedBox(
+                                                        width:width * 0.01,
+                                                      ),
                                                     ElevatedButton(
                                                       style: ElevatedButton.styleFrom(
-                                                        minimumSize: Size(width* 0.025, height*0.04),
+                                                        minimumSize: Size(width* 0.25, height*0.04),
                                                         side: const BorderSide(
                                                             color: Color.fromRGBO(153, 153, 153, 0.5)
                                                         ),
@@ -719,7 +723,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: 300,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1101,7 +1105,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     });
                                               },
                                               child: Padding(
-                                                padding:  EdgeInsets.only(left : width * 0.03),
+                                                padding:  EdgeInsets.only(left : width * 0.03,bottom: height * 0.015),
                                                 child: SizedBox(
                                                   width: width * 0.4,
                                                   child: TextField(
@@ -1133,7 +1137,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: 250,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1286,14 +1290,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height*0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Show answer sheet in Practice",
+                                                      category == 'Test'?"Show solution sheet in Practice":"Show solution sheet",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -1328,14 +1332,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             category == 'Test'
                                                 ?
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,right:width*0.03,bottom:height * 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Allow paper to be published in public LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -1376,7 +1380,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.23,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -1439,7 +1443,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height* 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -1782,7 +1786,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
 
                                           Container(
                                             height: height * 0.04,
-                                            width: width * 0.05,
+                                            width: width * 0.07,
                                             decoration: BoxDecoration(
                                               border: Border.all(color: const Color.fromRGBO(219, 35, 35, 1),),
                                               borderRadius: const BorderRadius.all(
@@ -2056,7 +2060,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.5,
+                                        height: height * 0.4,
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2436,7 +2440,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.37,
+                                       
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2589,14 +2593,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height* 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
-                                                      "Show answer sheet in Practice",
+                                                      category=='Test'?"Show solution sheet in Practice":"Show solution sheet",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -2631,14 +2635,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             category == 'Test'
                                                 ?
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,right:width*0.03,bottom:height*0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
-                                                      "Allow paper to be published in public LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -2678,8 +2682,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height:  category == 'Test'
-                                            ? height * 0.25 : height * 0.20,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2742,7 +2745,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height* 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -3273,9 +3276,9 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               Padding(
                                                 padding: EdgeInsets.only(right: width*0.03),
                                                 child: SizedBox(
-                                                  width: width * 0.55,
+                                                  
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    
                                                     children: [
                                                       ElevatedButton(
                                                         style: ElevatedButton.styleFrom(
@@ -3311,9 +3314,10 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                               fontWeight: FontWeight.w400),
                                                         ),
                                                       ),
+                                                      SizedBox(width:width * 0.01),
                                                       ElevatedButton(
                                                         style: ElevatedButton.styleFrom(
-                                                          minimumSize: Size(width* 0.025, height*0.04),
+                                                          minimumSize: Size(width* 0.25, height*0.04),
                                                           side: const BorderSide(
                                                               color: Color.fromRGBO(153, 153, 153, 0.5)
                                                           ),
@@ -3358,7 +3362,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          height: height * 0.45,
+                                          
                                           width: width,
                                           decoration: BoxDecoration(
                                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -3815,7 +3819,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                       });
                                                 },
                                                 child: Padding(
-                                                  padding:  EdgeInsets.only(left : width * 0.03),
+                                                  padding:  EdgeInsets.only(left : width * 0.03,bottom:height*0.015),
                                                   child: SizedBox(
                                                     width: width * 0.4,
                                                     child: TextField(
@@ -3848,7 +3852,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          height: height * 0.35,
+                                         
                                           width: width,
                                           decoration: BoxDecoration(
                                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -4002,14 +4006,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height* 0.015),
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: width * 0.5,
                                                       child: Text(
-                                                        "Show answer sheet in Practice",
+                                                        category == 'Test'?"Show solution sheet in Practice":"Show solution sheet",
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,
                                                             fontFamily: "Inter",
@@ -4044,14 +4048,14 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               category == 'Test'
                                               ?
                                               Padding(
-                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                padding:  EdgeInsets.only(left : width * 0.03,right:width*0.03,bottom:height * 0.015),
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: width * 0.5,
                                                       child: Text(
-                                                        "Allow paper to be published in public LOOQ (Library of Online Questions)",
+                                                        "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,
                                                             fontFamily: "Inter",
@@ -4092,7 +4096,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Container(
-                                          height: height * 0.3,
+                                          
                                           width: width,
                                           decoration: BoxDecoration(
                                             border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -4155,7 +4159,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                                 child: Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [

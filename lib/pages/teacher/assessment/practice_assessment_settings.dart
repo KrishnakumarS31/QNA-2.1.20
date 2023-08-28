@@ -431,7 +431,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height : 100,
+                              
                               decoration: BoxDecoration(
                                   color: const Color.fromRGBO(82, 165, 160, 0.08),
                                   border: Border.all(
@@ -581,7 +581,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.35,
+                                       
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -741,7 +741,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Show answer sheet in Practice",
+                                                      "Show solution sheet",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -775,14 +775,14 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             ),
                                             category == 'Test' ?
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Allow paper to be published in public LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -822,7 +822,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.3,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -885,7 +885,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -931,7 +931,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.17,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -982,7 +982,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Text(
                                                 "This assessment will not be visible to students and other teachers. ",
                                                 style: TextStyle(
@@ -1130,702 +1130,703 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                       ),
                     ),
                     body: Container(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: height * 0.5,
-                            right: height * 0.5),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              height : 100,
-                              decoration: BoxDecoration(
-                                  color: const Color.fromRGBO(82, 165, 160, 0.08),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(28, 78, 80, 0.08),
-                                  ),
-                                  borderRadius:
-                                  const BorderRadius.all(Radius.circular(5))
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: width * 0.02, right: width * 0.02,top: height*0.01,bottom: height*0.01),
-                                child: SizedBox(
-                                  width: width,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${assessment.subject} | ${assessment.topic}",
-                                            style: TextStyle(
-                                                fontSize: height * 0.02,
-                                                fontFamily: "Inter",
-                                                color:
-                                                const Color.fromRGBO(28, 78, 80, 1),
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                          Icon(
-                                            Icons.circle,
-                                            color: const Color.fromRGBO(255, 153, 0, 1),
-                                            size: MediaQuery
-                                                .of(context)
-                                                .copyWith()
-                                                .size
-                                                .height *
-                                                0.02,
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: height*0.01,),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
-                                          style: TextStyle(
-                                              fontSize: height * 0.016,
-                                              fontFamily: "Inter",
-                                              color:
-                                              const Color.fromRGBO(28, 78, 80, 1),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                      SizedBox(height: height*0.01,),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Row(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width : width * 0.7,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                
+                                decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(82, 165, 160, 0.08),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(28, 78, 80, 0.08),
+                                    ),
+                                    borderRadius:
+                                    const BorderRadius.all(Radius.circular(5))
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.02, right: width * 0.02,top: height*0.01,bottom: height*0.01),
+                                  child: SizedBox(
+                                    width: width * 0.7,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                            Text(
+                                              "${assessment.subject} | ${assessment.topic}",
                                               style: TextStyle(
-                                                  fontSize: height * 0.016,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   color:
                                                   const Color.fromRGBO(28, 78, 80, 1),
-                                                  fontWeight: FontWeight.w400),
+                                                  fontWeight: FontWeight.w700),
                                             ),
-                                            Text(getAssessmentModel.assessmentCode!,
-                                              style: TextStyle(
-                                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.015,
+                                            Icon(
+                                              Icons.circle,
+                                              color: const Color.fromRGBO(255, 153, 0, 1),
+                                              size: MediaQuery
+                                                  .of(context)
+                                                  .copyWith()
+                                                  .size
+                                                  .height *
+                                                  0.02,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: height*0.01,),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "${assessment.createAssessmentModelClass} | ${assessment.subTopic ?? ""}",
+                                            style: TextStyle(
+                                                fontSize: height * 0.016,
                                                 fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
+                                                color:
+                                                const Color.fromRGBO(28, 78, 80, 1),
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                        SizedBox(height: height*0.01,),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Row(
+                                            children: [
+                                              Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                                style: TextStyle(
+                                                    fontSize: height * 0.016,
+                                                    fontFamily: "Inter",
+                                                    color:
+                                                    const Color.fromRGBO(28, 78, 80, 1),
+                                                    fontWeight: FontWeight.w400),
                                               ),
+                                              Text(getAssessmentModel.assessmentCode!,
+                                                style: TextStyle(
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.015,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],),
+                                        ),
+                                        const Divider(),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Total Marks: ",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(51, 51, 51, 1),
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  "$totalMarks",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
+                                              ],
                                             ),
-                                          ],),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Total Questions: ",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(51, 51, 51, 1),
+                                                      fontWeight: FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  "${assessment.questions!.length}",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: height * 0.01,),
+                              Container(
+                                height: height * 0.55,
+                                width: width * 0.93,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    //mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          
+                                          width: width,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
+                                                child: Text(
+                                                  "Access Control",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.022,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(28, 78, 80, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
+                                              ),
+                                              category == 'Test' ?
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Number of attempts allowed",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: height * 0.04,
+                                                      width: width * 0.15,
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
+                                                        borderRadius: const BorderRadius.all(
+                                                            Radius.circular(5)),
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap:(){
+                                                              setState(() {
+                                                                if(numberOfAttempts!=1){
+                                                                  numberOfAttempts=numberOfAttempts-1;
+                                                                }
+                                                              });
+                                                            },
+                                                            child: SizedBox(
+                                                              height: height * 0.03,
+                                                              width: width * 0.02,
+                                                              child: Icon(
+                                                                Icons.remove,
+                                                                size: height * 0.02,
+                                                                color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            height: height * 0.03,
+                                                            width: width * 0.05,
+                                                            decoration: BoxDecoration(
+                                                              border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
+                                                              borderRadius: const BorderRadius.all(
+                                                                  Radius.circular(5)),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                '$numberOfAttempts',
+                                                                style: TextStyle(
+                                                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight.w400,
+                                                                    fontSize: height * 0.016),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap: (){
+                                                              setState(() {
+                                                                numberOfAttempts=numberOfAttempts+1;
+                                                              });
+                                                            },
+                                                            child: SizedBox(
+                                                              height: height * 0.03,
+                                                              width: width * 0.02,
+                        
+                                                              child: Icon(
+                                                                Icons.add,
+                                                                size: height * 0.02,
+                                                                color: const Color.fromRGBO(28, 78, 80, 1),),
+                                                            ),
+                                                          ),
+                        
+                                                        ],
+                                                      ),)
+                                                  ],
+                                                ),
+                                              )
+                                              : const SizedBox(),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Allow guest students",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      allowGuestStudent,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          allowGuestStudent =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Show solution sheet",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      showAnswerSheetPractice,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          showAnswerSheetPractice =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              category == 'Test' ?
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      allowPublishPublic,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          allowPublishPublic =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                                  : const SizedBox(),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                      const Divider(),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          
+                                          width: width,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                "Total Marks: ",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(51, 51, 51, 1),
-                                                    fontWeight: FontWeight.w400),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
+                                                child: Text(
+                                                  "Advisor Details",
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.022,
+                                                      fontFamily: "Inter",
+                                                      color:
+                                                      const Color.fromRGBO(28, 78, 80, 1),
+                                                      fontWeight: FontWeight.w700),
+                                                ),
                                               ),
-                                              Text(
-                                                "$totalMarks",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontWeight: FontWeight.w700),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Show my name",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      showName,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          showName =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height* 0.015),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Show my email",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      showEmail,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          showEmail =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              // Padding(
+                                              //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              //   child: Row(
+                                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              //     children: [
+                                              //       Container(
+                                              //         width: width * 0.1,
+                                              //         child: Text(
+                                              //           "Show Whatsapp Group",
+                                              //           style: TextStyle(
+                                              //               fontSize: height * 0.016,
+                                              //               fontFamily: "Inter",
+                                              //               color: const Color.fromRGBO(102, 102, 102, 1),
+                                              //               fontWeight: FontWeight.w700),
+                                              //         ),
+                                              //       ),
+                                              //       FlutterSwitch(
+                                              //         activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                              //         inactiveColor:
+                                              //         const Color
+                                              //             .fromRGBO(
+                                              //             217,
+                                              //             217,
+                                              //             217,
+                                              //             1),
+                                              //         width: 65.0,
+                                              //         height: 35.0,
+                                              //         value:
+                                              //         showWhatsappGroup,
+                                              //         borderRadius: 30.0,
+                                              //         onToggle: (val) {
+                                              //           setState(() {
+                                              //             showWhatsappGroup =
+                                              //                 val;
+                                              //           });
+                                              //         },
+                                              //       ),
+                                              //     ],
+                                              //   ),
+                                              // ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          
+                                          width: width,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(5)),
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.2,
+                                                      child: Text(
+                                                        "Make Assessment Inactive",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      makeAssessmentInactive,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          makeAssessmentInactive =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom: height * 0.015),
+                                                child: Text(
+                                                  "This assessment will not be visible to students and other teachers. ",
+                                                  style: TextStyle(
+                                                      fontStyle: FontStyle.italic,
+                                                      fontSize: height * 0.016,
+                                                      fontFamily: "Inter",
+                                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                                      fontWeight: FontWeight.w400),
+                                                ),
                                               ),
                                             ],
                                           ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Total Questions: ",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(51, 51, 51, 1),
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                              Text(
-                                                "${assessment.questions!.length}",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontWeight: FontWeight.w700),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: height * 0.01,),
-                            Container(
-                              height: height * 0.55,
-                              width: width * 0.93,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(10)),
-                              ),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
+                              SizedBox(height: height * 0.02),
+                              Padding(
+                                padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  //mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: height * 0.4,
-                                        width: width,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(5)),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        AssessmentSettings assessmentSettings = AssessmentSettings();
+                                        assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ?numberOfAttempts:0;
+                                        assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
+                                        assessmentSettings.allowGuestStudent = allowGuestStudent;
+                                        assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
+                                        assessmentSettings.showAnswerSheetDuringPractice = showAnswerSheetPractice;
+                                        assessmentSettings.showAdvisorName = showName;
+                                        assessmentSettings.showAdvisorEmail = showEmail;
+                                        assessmentSettings.notAvailable = false;
+                                        assessmentSettings.avalabilityForPractice = true;
+                                        showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
+                                        showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
+                                        assessment.assessmentSettings = assessmentSettings;
+                                        CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
+                                        finalAssessment.assessmentId=assessment.assessmentId;
+                                        finalAssessment.assessmentSettings=assessment.assessmentSettings;
+                                        //finalAssessment.questions?.addAll(getAssessmentModel.questions as Iterable<Question>);
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return const Center(
+                                                  child:
+                                                  CircularProgressIndicator(
+                                                    color: Color.fromRGBO(
+                                                        48, 145, 139, 1),
+                                                  ));
+                                            });
+                                        ResponseEntity statusCode = ResponseEntity();
+                                        makeAssessmentInactive?
+                                        statusCode = await QnaService
+                                            .makeInactiveAssessmentTeacherService(
+                                          assessment.assessmentSettings!,
+                                          assessment
+                                              .assessmentId!,
+                                          assessment.assessmentType!,
+                                          'inactive',userDetails,
+                                        ):
+                                        statusCode = await QnaService
+                                            .editAssessmentTeacherService(
+                                            finalAssessment, assessment.assessmentId!,userDetails);
+                                        if (statusCode.code == 200) {
+                                          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                          Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
+                                        }
+                                        else{
+                                        }
+                                        Navigator.of(context).pop();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        side: const BorderSide(
+                                          width: 2,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
-                                              child: Text(
-                                                "Access Control",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.022,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(28, 78, 80, 1),
-                                                    fontWeight: FontWeight.w700),
-                                              ),
-                                            ),
-                                            category == 'Test' ?
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.02),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.2,
-                                                    child: Text(
-                                                      "Number of attempts allowed",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: height * 0.04,
-                                                    width: width * 0.15,
-                                                    decoration: BoxDecoration(
-                                                      border: Border.all(color: const Color.fromRGBO(82, 165, 160, 0.5),),
-                                                      borderRadius: const BorderRadius.all(
-                                                          Radius.circular(5)),
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                      children: [
-                                                        GestureDetector(
-                                                          onTap:(){
-                                                            setState(() {
-                                                              if(numberOfAttempts!=1){
-                                                                numberOfAttempts=numberOfAttempts-1;
-                                                              }
-                                                            });
-                                                          },
-                                                          child: SizedBox(
-                                                            height: height * 0.03,
-                                                            width: width * 0.02,
-                                                            child: Icon(
-                                                              Icons.remove,
-                                                              size: height * 0.02,
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                          ),
-                                                        ),
-                                                        Container(
-                                                          height: height * 0.03,
-                                                          width: width * 0.05,
-                                                          decoration: BoxDecoration(
-                                                            border: Border.all(color: const Color.fromRGBO(28, 78, 80, 0.5),),
-                                                            borderRadius: const BorderRadius.all(
-                                                                Radius.circular(5)),
-                                                          ),
-                                                          child: Center(
-                                                            child: Text(
-                                                              '$numberOfAttempts',
-                                                              style: TextStyle(
-                                                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: height * 0.016),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        GestureDetector(
-                                                          onTap: (){
-                                                            setState(() {
-                                                              numberOfAttempts=numberOfAttempts+1;
-                                                            });
-                                                          },
-                                                          child: SizedBox(
-                                                            height: height * 0.03,
-                                                            width: width * 0.02,
-
-                                                            child: Icon(
-                                                              Icons.add,
-                                                              size: height * 0.02,
-                                                              color: const Color.fromRGBO(28, 78, 80, 1),),
-                                                          ),
-                                                        ),
-
-                                                      ],
-                                                    ),)
-                                                ],
-                                              ),
-                                            )
-                                            : const SizedBox(),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.1,
-                                                    child: Text(
-                                                      "Allow guest students",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    allowGuestStudent,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        allowGuestStudent =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.1,
-                                                    child: Text(
-                                                      "Show answer sheet in Practice",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    showAnswerSheetPractice,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        showAnswerSheetPractice =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            category == 'Test' ?
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.1,
-                                                    child: Text(
-                                                      "Allow paper to be published in public LOOQ (Library of Online Questions)",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    allowPublishPublic,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        allowPublishPublic =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                                : const SizedBox(),
-                                          ],
-                                        ),
+                                        shape: const CircleBorder(),
+                                        padding: const EdgeInsets.all(20),
+                                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
                                       ),
+                                      child: const Icon(Icons.check, color: Colors.white),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: height * 0.3,
-                                        width: width,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(5)),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.03),
-                                              child: Text(
-                                                "Advisor Details",
-                                                style: TextStyle(
-                                                    fontSize: height * 0.022,
-                                                    fontFamily: "Inter",
-                                                    color:
-                                                    const Color.fromRGBO(28, 78, 80, 1),
-                                                    fontWeight: FontWeight.w700),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.1,
-                                                    child: Text(
-                                                      "Show my name",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    showName,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        showName =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.1,
-                                                    child: Text(
-                                                      "Show my email",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    showEmail,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        showEmail =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            // Padding(
-                                            //   padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                            //   child: Row(
-                                            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            //     children: [
-                                            //       Container(
-                                            //         width: width * 0.1,
-                                            //         child: Text(
-                                            //           "Show Whatsapp Group",
-                                            //           style: TextStyle(
-                                            //               fontSize: height * 0.016,
-                                            //               fontFamily: "Inter",
-                                            //               color: const Color.fromRGBO(102, 102, 102, 1),
-                                            //               fontWeight: FontWeight.w700),
-                                            //         ),
-                                            //       ),
-                                            //       FlutterSwitch(
-                                            //         activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                            //         inactiveColor:
-                                            //         const Color
-                                            //             .fromRGBO(
-                                            //             217,
-                                            //             217,
-                                            //             217,
-                                            //             1),
-                                            //         width: 65.0,
-                                            //         height: 35.0,
-                                            //         value:
-                                            //         showWhatsappGroup,
-                                            //         borderRadius: 30.0,
-                                            //         onToggle: (val) {
-                                            //           setState(() {
-                                            //             showWhatsappGroup =
-                                            //                 val;
-                                            //           });
-                                            //         },
-                                            //       ),
-                                            //     ],
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        height: height * 0.17,
-                                        width: width,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(5)),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  SizedBox(
-                                                    width: width * 0.2,
-                                                    child: Text(
-                                                      "Make Assessment Inactive",
-                                                      style: TextStyle(
-                                                          fontSize: height * 0.016,
-                                                          fontFamily: "Inter",
-                                                          color: const Color.fromRGBO(102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w700),
-                                                    ),
-                                                  ),
-                                                  FlutterSwitch(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    inactiveColor:
-                                                    const Color
-                                                        .fromRGBO(
-                                                        217,
-                                                        217,
-                                                        217,
-                                                        1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value:
-                                                    makeAssessmentInactive,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        makeAssessmentInactive =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
-                                              child: Text(
-                                                "This assessment will not be visible to students and other teachers. ",
-                                                style: TextStyle(
-                                                    fontStyle: FontStyle.italic,
-                                                    fontSize: height * 0.016,
-                                                    fontFamily: "Inter",
-                                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                    Text(
+                                      //AppLocalizations.of(context)!.subject_topic,
+                                        "Save Changes",
+                                        //textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(28, 78, 80, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.016)),
                                   ],
                                 ),
-                              ),
-                            ),
-                            SizedBox(height: height * 0.02),
-                            Padding(
-                              padding: EdgeInsets.only(right:width * 0.02,left: width * 0.02),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      AssessmentSettings assessmentSettings = AssessmentSettings();
-                                      assessmentSettings.allowedNumberOfTestRetries = category == 'Test' ?numberOfAttempts:0;
-                                      assessmentSettings.numberOfDaysAfterTestAvailableForPractice = 0;
-                                      assessmentSettings.allowGuestStudent = allowGuestStudent;
-                                      assessmentSettings.showSolvedAnswerSheetInAdvisor = false;
-                                      assessmentSettings.showAnswerSheetDuringPractice = showAnswerSheetPractice;
-                                      assessmentSettings.showAdvisorName = showName;
-                                      assessmentSettings.showAdvisorEmail = showEmail;
-                                      assessmentSettings.notAvailable = false;
-                                      assessmentSettings.avalabilityForPractice = true;
-                                      showName?assessmentSettings.advisorName=userDetails.firstName:assessmentSettings.advisorName=null;
-                                      showEmail?assessmentSettings.advisorEmail=userDetails.email:assessmentSettings.advisorEmail=null;
-                                      assessment.assessmentSettings = assessmentSettings;
-                                      CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
-                                      finalAssessment.assessmentId=assessment.assessmentId;
-                                      finalAssessment.assessmentSettings=assessment.assessmentSettings;
-                                      //finalAssessment.questions?.addAll(getAssessmentModel.questions as Iterable<Question>);
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return const Center(
-                                                child:
-                                                CircularProgressIndicator(
-                                                  color: Color.fromRGBO(
-                                                      48, 145, 139, 1),
-                                                ));
-                                          });
-                                      ResponseEntity statusCode = ResponseEntity();
-                                      makeAssessmentInactive?
-                                      statusCode = await QnaService
-                                          .makeInactiveAssessmentTeacherService(
-                                        assessment.assessmentSettings!,
-                                        assessment
-                                            .assessmentId!,
-                                        assessment.assessmentType!,
-                                        'inactive',userDetails,
-                                      ):
-                                      statusCode = await QnaService
-                                          .editAssessmentTeacherService(
-                                          finalAssessment, assessment.assessmentId!,userDetails);
-                                      if (statusCode.code == 200) {
-                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                        Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
-                                      }
-                                      else{
-                                      }
-                                      Navigator.of(context).pop();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      side: const BorderSide(
-                                        width: 2,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      shape: const CircleBorder(),
-                                      padding: const EdgeInsets.all(20),
-                                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),// <-- Button color
-                                    ),
-                                    child: const Icon(Icons.check, color: Colors.white),
-                                  ),
-                                  Text(
-                                    //AppLocalizations.of(context)!.subject_topic,
-                                      "Save Changes",
-                                      //textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: height * 0.016)),
-                                ],
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )));
@@ -2032,7 +2033,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.35,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2191,7 +2192,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Show answer sheet in Practice",
+                                                      "Show solution sheet",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -2225,14 +2226,14 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             ),
                                             category == 'Test' ?
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom: height * 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Allow paper to be published in public LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -2272,7 +2273,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.3,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2335,7 +2336,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom: height * 0.015),
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -2421,7 +2422,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
-                                        height: height * 0.17,
+                                        
                                         width: width,
                                         decoration: BoxDecoration(
                                           border: Border.all(color: const Color.fromRGBO(153, 153, 153, 0.5),),
@@ -2472,7 +2473,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               ),
                                             ),
                                             Padding(
-                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Text(
                                                 "This assessment will not be visible to students and other teachers. ",
                                                 style: TextStyle(

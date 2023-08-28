@@ -150,7 +150,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                     automaticallyImplyLeading: false,
                     toolbarHeight: height * 0.100,
                     iconTheme:
-                        IconThemeData(color: Colors.black, size: width * 0.08),
+                        IconThemeData(color: Colors.black, size: width * 0.06),
                   ),
                   endDrawer: EndDrawerMenuStudent(),
                   body: SingleChildScrollView(
@@ -219,6 +219,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     ),
                                   ])),
                                 ),
+                                SizedBox(
+                                  height: height * 0.01,
+                                ),
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Row(
@@ -237,7 +240,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                             minimumSize: Size(
-                                                width * 0.3, height * 0.003),
+                                                width * 0.3, height * 0.02),
                                             backgroundColor:
                                                 _isAssessmentTextField
                                                     ? const Color.fromRGBO(
@@ -271,7 +274,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                           minimumSize:
-                                              Size(width * 0.3, height * 0.003),
+                                              Size(width * 0.3, height * 0.02),
                                           backgroundColor: _isSearchTextField
                                               ? const Color.fromRGBO(
                                                   82, 165, 160, 1)

@@ -69,7 +69,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     automaticallyImplyLeading: false,
                     toolbarHeight: height * 0.100,
                     iconTheme:
-                        IconThemeData(color: Colors.black, size: width * 0.08),
+                        IconThemeData(color: Colors.black, size: width * 0.06),
                   ),
                   endDrawer: Drawer(
                     backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
