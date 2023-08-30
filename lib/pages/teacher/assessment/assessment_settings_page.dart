@@ -1305,7 +1305,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                               SizedBox(
                                                 width: width * 0.5,
                                                 child: Text(
-                                                  "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                  "Do not make this assessment as practice",
                                                   style: TextStyle(
                                                       fontSize: height * 0.016,
                                                       fontFamily: "Inter",
@@ -2596,7 +2596,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                 SizedBox(
                                                   width: width * 0.2,
                                                   child: Text(
-                                                    "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                    "Do not make this assessment as practice",
                                                     style: TextStyle(
                                                         fontSize: height * 0.016,
                                                         fontFamily: "Inter",
@@ -3962,7 +3962,7 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                     SizedBox(
                                                       width: width * 0.5,
                                                       child: Text(
-                                                        "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                        "Do not make this assessment as practice",
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,
                                                             fontFamily: "Inter",

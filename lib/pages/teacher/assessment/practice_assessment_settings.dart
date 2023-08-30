@@ -782,7 +782,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -984,7 +984,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Text(
-                                                "This assessment will not be visible to students and other teachers. ",
+                                                "This Assessment will be not available  as Test or Practice",
                                                 style: TextStyle(
                                                     fontStyle: FontStyle.italic,
                                                     fontSize: height * 0.016,
@@ -1487,7 +1487,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                     SizedBox(
                                                       width: width * 0.2,
                                                       child: Text(
-                                                        "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                        "Do not make this assessment as practice",
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,
                                                             fontFamily: "Inter",
@@ -1729,7 +1729,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom: height * 0.015),
                                                 child: Text(
-                                                  "This assessment will not be visible to students and other teachers. ",
+                                                  "This Assessment will be not available  as Test or Practice",
                                                   style: TextStyle(
                                                       fontStyle: FontStyle.italic,
                                                       fontSize: height * 0.016,
@@ -2233,7 +2233,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -2475,7 +2475,7 @@ class PracticeAssessmentSettingsState extends State<PracticeAssessmentSettings> 
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Text(
-                                                "This assessment will not be visible to students and other teachers. ",
+                                                "This Assessment will be not available  as Test or Practice",
                                                 style: TextStyle(
                                                     fontStyle: FontStyle.italic,
                                                     fontSize: height * 0.016,

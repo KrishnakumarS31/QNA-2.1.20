@@ -645,7 +645,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -1803,7 +1803,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -3028,7 +3028,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(

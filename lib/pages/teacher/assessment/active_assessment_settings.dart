@@ -350,7 +350,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
     timeLimit=DateTime(2023,5,1,(getAssessmentModel.assessmentDuration!/60).round(),(getAssessmentModel.assessmentDuration!%60).round());
     timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
     endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
-    startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+    startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
   }
 
 
@@ -962,7 +962,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -1339,7 +1339,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   SizedBox(
                                                     width: width * 0.5,
                                                     child: Text(
-                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -1582,7 +1582,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Text(
-                                                "This assessment will not be visible to students and other teachers. ",
+                                                "This Assessment will be not available  as Test or Practice",
                                                 style: TextStyle(
                                                     fontStyle: FontStyle.italic,
                                                     fontSize: height * 0.016,
@@ -2265,7 +2265,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                                     ),
                                                                     //shape: StadiumBorder(),
                                                                     onPressed: () {
-                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+                                                                      startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
                                                                       Navigator.of(context).pop();
                                                                     },
                                                                     child: Text(
@@ -2642,7 +2642,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   SizedBox(
                                                     width: width * 0.2,
                                                     child: Text(
-                                                      "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                      "Do not make this assessment as practice",
                                                       style: TextStyle(
                                                           fontSize: height * 0.016,
                                                           fontFamily: "Inter",
@@ -2884,7 +2884,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                               child: Text(
-                                                "This assessment will not be visible to students and other teachers. ",
+                                                "This Assessment will be not available  as Test or Practice",
                                                 style: TextStyle(
                                                     fontStyle: FontStyle.italic,
                                                     fontSize: height * 0.016,
@@ -4055,7 +4055,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     SizedBox(
                                                       width: width * 0.5,
                                                       child: Text(
-                                                        "Do not make this assessment as practice in LOOQ (Library of Online Questions)",
+                                                        "Do not make this assessment as practice",
                                                         style: TextStyle(
                                                             fontSize: height * 0.016,
                                                             fontFamily: "Inter",
@@ -4298,7 +4298,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
                                                 child: Text(
-                                                  "This assessment will not be visible to students and other teachers. ",
+                                                  "This Assessment will be not available  as Test or Practice",
                                                   style: TextStyle(
                                                     fontStyle: FontStyle.italic,
                                                       fontSize: height * 0.016,

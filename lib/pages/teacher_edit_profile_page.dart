@@ -786,7 +786,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                 ],
                                               ),
                                               SizedBox(
-                                                height: localHeight * 0.03,
+                                                height: localHeight * 0.01,
                                               ),
                                               Center(
                                                   child:
@@ -805,6 +805,37 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                             AppLocalizations.of(
                                                                 context)!
                                                                 .email_id_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    153, 153, 153, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight
+                                                                    .w600,
+                                                                fontSize: localHeight *
+                                                                    0.020),
+                                                          ),),
+                                                      ))),
+                                              SizedBox(
+                                                height: localHeight * 0.01,
+                                              ),
+                                              Center(
+                                                  child:
+                                                  SizedBox(
+                                                      width: localWidth * 0.8,
+                                                      child:
+                                                      TextFormField(
+                                                        enabled: false,
+                                                        controller: teacherEmailController,
+                                                        keyboardType: TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior.always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .user_id,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -916,88 +947,88 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: localWidth * 0.05, right: localWidth * 0.05),
-                                                  child:
-                                                  Column(
-                                                    children: [
-                                                      Row(
-                                                          children:[
-                                                            Text(
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .enable_as_student,
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.0155),
-                                                            ),
-                                                          ]
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "yes",
-                                                            groupValue: enableAsStudent,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                enableAsStudent =
-                                                                value..toString();
-                                                                roleBackup.add('student');
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .yes,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "no",
-                                                            groupValue: enableAsStudent,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                enableAsStudent =
-                                                                    value.toString();
-                                                                roleBackup.remove('student');
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .no,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  )),
+                                              //Padding(
+                                               //   padding: EdgeInsets.only(
+                                                 //     left: localWidth * 0.05, right: localWidth * 0.05),
+                                                  //child:
+                                                  //Column(
+                                                    //children: [
+                                                      //Row(
+                                                        //  children:[
+                                                          //  Text(
+                                                            //  AppLocalizations.of(
+                                                              //    context)!
+                                                                //  .enable_as_student,
+                                                              //style: TextStyle(
+                                                                //  color: const Color
+                                                                  //    .fromRGBO(
+                                                                    //  102, 102, 102, 1),
+                                                                  //fontFamily: 'Inter',
+                                                                  //fontWeight: FontWeight
+                                                                    //  .w600,
+                                                                  // fontSize: localHeight *
+                                                                     // 0.0155),
+                                                    //        ),
+                                                      //    ]
+                                                      //),
+                                                      //Row(
+                                                        //children: [
+                                                          //Radio(
+                                                            //activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                            //value: "yes",
+                                                             //groupValue: enableAsStudent,
+                                                            //onChanged: (value) {
+                                                              //setState(() {
+                                                                //enableAsStudent =
+                                                              //  value..toString();
+                                                                //roleBackup.add('student');
+                                                              //});
+                                                            //},
+                                                          //),
+                                                          //Text(
+                                                            //AppLocalizations.of(
+                                                              //  context)!
+                                                                //.yes,
+                                                            //style: TextStyle(
+                                                              //  color: const Color
+                                                                //    .fromRGBO(
+                                                                //    51, 51, 51, 1),
+                                                                //fontFamily: 'Inter',
+                                                                //fontWeight: FontWeight
+                                                                  //  .w400,
+                                                                //fontSize:
+                                                                //localHeight * 0.016),
+                                                          //),
+                                                          //Radio(
+                                                           // activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                            //value: "no",
+                                                           // groupValue: enableAsStudent,
+                                                            //onChanged: (value) {
+                                                              //setState(() {
+                                                                //enableAsStudent =
+                                                                 //   value.toString();
+                                                               // roleBackup.remove('student');
+                                                             // });
+                                                           // },
+                                                         // ),
+                                                         // Text(
+                                                            //AppLocalizations.of(
+                                                                //context)!
+                                                              //  .no,
+                                                            //style: TextStyle(
+                                                                //color: const Color
+                                                                    //.fromRGBO(
+                                                                  //  51, 51, 51, 1),
+                                                                //fontFamily: 'Inter',
+                                                                //fontWeight: FontWeight
+                                                               //     .w400,
+                                                             //   fontSize:
+                                                           //     localHeight * 0.016),
+                                                         // ),
+                                                       // ],
+                                                     // ),
+                                                   // ],
+                                                 // )),
                                               SizedBox(
                                                 height: localHeight * 0.01,
                                               ),
@@ -1006,7 +1037,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                   style: ElevatedButton.styleFrom(
                                                     backgroundColor:
                                                     const Color.fromRGBO(82, 165, 160, 1),
-                                                    minimumSize: const Size(280, 48),
+                                                    minimumSize: const Size(250, 40),
                                                     shape: RoundedRectangleBorder(
                                                       borderRadius: BorderRadius.circular(39),
                                                     ),
@@ -1509,7 +1540,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                 ],
                                               ),
                                               SizedBox(
-                                                height: localHeight * 0.03,
+                                                height: localHeight * 0.01,
                                               ),
                                               Center(
                                                   child:
@@ -1528,6 +1559,37 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                             AppLocalizations.of(
                                                                 context)!
                                                                 .email_id_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    153, 153, 153, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight
+                                                                    .w600,
+                                                                fontSize: localHeight *
+                                                                    0.020),
+                                                          ),),
+                                                      ))),
+                                              SizedBox(
+                                                height: localHeight * 0.01,
+                                              ),
+                                              Center(
+                                                  child:
+                                                  SizedBox(
+                                                      width: localWidth * 0.8,
+                                                      child:
+                                                      TextFormField(
+                                                        enabled: false,
+                                                        controller: teacherEmailController,
+                                                        keyboardType: TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior.always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .user_id,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -1639,87 +1701,87 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: localWidth * 0.05, right: localWidth * 0.05),
-                                                  child:
-                                                  Column(
-                                                    children: [
-                                                      Row(
-                                                          children:[
-                                                            Text(
-                                                              AppLocalizations.of(
-                                                                  context)!.enable_as_student,
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.0155),
-                                                            ),
-                                                          ]
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "yes",
-                                                            groupValue: enableAsStudent,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                enableAsStudent =
-                                                                value..toString();
-                                                                roleBackup.add('student');
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .yes,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "no",
-                                                            groupValue: enableAsStudent,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                enableAsStudent =
-                                                                    value.toString();
-                                                                roleBackup.remove('student');
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .no,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  )),
+                                             // Padding(
+                                               //   padding: EdgeInsets.only(
+                                                 //     left: localWidth * 0.05, right: localWidth * 0.05),
+                                                  //child:
+                                                  //Column(
+                                                    //children: [
+                                                      //Row(
+                                                        //  children:[
+                                                          //  Text(
+                                                            //  AppLocalizations.of(
+                                                              //    context)!.enable_as_student,
+                                                              //style: TextStyle(
+                                                                //  color: const Color
+                                                                  //    .fromRGBO(
+                                                                    //  102, 102, 102, 1),
+                                                               //   fontFamily: 'Inter',
+                                                                 // fontWeight: FontWeight
+                                                                   //   .w600,
+                                                                  //fontSize: localHeight *
+                                                                    //  0.0155),
+                                                            //),
+                                                          //]
+                                                    //  ),
+                                                      //Row(
+                                                        //children: [
+                                                          //Radio(
+                                                            //activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                            //value: "yes",
+                                                            //groupValue: enableAsStudent,
+                                                            //onChanged: (value) {
+                                                              //setState(() {
+                                                                //enableAsStudent =
+                                                                //value..toString();
+                                                                //roleBackup.add('student');
+                                                              //});
+                                                            //},
+                                                          //),
+                                                          //Text(
+                                                            //AppLocalizations.of(
+                                                              //  context)!
+                                                                //.yes,
+                                                           // style: TextStyle(
+                                                             //   color: const Color
+                                                               //     .fromRGBO(
+                                                                 //   51, 51, 51, 1),
+                                                                //fontFamily: 'Inter',
+                                                                //fontWeight: FontWeight
+                                                                  //  .w400,
+                                                                //fontSize:
+                                                                //localHeight * 0.016),
+                                                          //),
+                                                          //Radio(
+                                                            //activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                            //value: "no",
+                                                            //groupValue: enableAsStudent,
+                                                            //onChanged: (value) {
+                                                            //  setState(() {
+                                                              //  enableAsStudent =
+                                                                //    value.toString();
+                                                               // roleBackup.remove('student');
+                                                              //});
+                                                            //},
+                                                          //),
+                                                          //Text(
+                                                            //AppLocalizations.of(
+                                                              //  context)!
+                                                                //.no,
+                                                           // style: TextStyle(
+                                                             //   color: const Color
+                                                               //     .fromRGBO(
+                                                                 //   51, 51, 51, 1),
+                                                             //   fontFamily: 'Inter',
+                                                               // fontWeight: FontWeight
+                                                                 //   .w400,
+                                                            //    fontSize:
+                                                              //  localHeight * 0.016),
+                                                        //  ),
+                                                        //],
+                                                      //),
+                                                   // ],
+                                                  //)),
                                               SizedBox(
                                                 height: localHeight * 0.01,
                                               ),
@@ -2236,7 +2298,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                 ],
                                               ),
                                               SizedBox(
-                                                height: localHeight * 0.03,
+                                                height: localHeight * 0.01,
                                               ),
                                               Center(
                                                   child:
@@ -2255,6 +2317,37 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                             AppLocalizations.of(
                                                                 context)!
                                                                 .email_id_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    153, 153, 153, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight
+                                                                    .w600,
+                                                                fontSize: localHeight *
+                                                                    0.020),
+                                                          ),),
+                                                      ))),
+                                              SizedBox(
+                                                height: localHeight * 0.01,
+                                              ),
+                                              Center(
+                                                  child:
+                                                  SizedBox(
+                                                      width: localWidth * 0.8,
+                                                      child:
+                                                      TextFormField(
+                                                        enabled: false,
+                                                        controller: teacherEmailController,
+                                                        keyboardType: TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior.always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .user_id,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -2366,87 +2459,87 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: localWidth * 0.05, right: localWidth * 0.05),
-                                                  child:
-                                                  Column(
-                                                    children: [
-                                                      Row(
-                                                          children:[
-                                                            Text(
-                                                              AppLocalizations.of(
-                                                                  context)!.enable_as_student,
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.0155),
-                                                            ),
-                                                          ]
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "yes",
-                                                            groupValue: enableAsStudent,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                enableAsStudent =
-                                                                value..toString();
-                                                                roleBackup.add('student');
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .yes,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "no",
-                                                            groupValue: enableAsStudent,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                enableAsStudent =
-                                                                    value.toString();
-                                                                roleBackup.remove('student');
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .no,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  )),
+                                            //  Padding(
+                                              //    padding: EdgeInsets.only(
+                                                //      left: localWidth * 0.05, right: localWidth * 0.05),
+                                                  //child:
+                                                  //Column(
+                                                    //children: [
+                                                      //Row(
+                                                        //  children:[
+                                                          //  Text(
+                                                            //  AppLocalizations.of(
+                                                              //    context)!.enable_as_student,
+                                                              //style: TextStyle(
+                                                                //  color: const Color
+                                                                  //    .fromRGBO(
+                                                                    //  102, 102, 102, 1),
+                                                               //   fontFamily: 'Inter',
+                                                                 // fontWeight: FontWeight
+                                                                   //   .w600,
+                                                                  //fontSize: localHeight *
+                                                                    //  0.0155),
+                                                   //         ),
+                                                     //     ]
+                                                     // ),
+                                                    //  Row(
+                                                      //  children: [
+                                                        //  Radio(
+                                                          //  activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                            //value: "yes",
+                                                   //         groupValue: enableAsStudent,
+                                                     //       onChanged: (value) {
+                                                       //       setState(() {
+                                                         //       enableAsStudent =
+                                                           //     value..toString();
+                                                             //   roleBackup.add('student');
+                                                             // });
+                                                            //},
+                                                          //),
+                                                         // Text(
+                                                           // AppLocalizations.of(
+                                                           //     context)!
+                                                             //   .yes,
+                                                            //style: TextStyle(
+                                                              //  color: const Color
+                                                                //    .fromRGBO(
+                                                                  //  51, 51, 51, 1),
+                                                                //fontFamily: 'Inter',
+                                                                //fontWeight: FontWeight
+                                                                 //   .w400,
+                                                             //   fontSize:
+                                                               // localHeight * 0.016),
+                                                    //      ),
+                                                      //    Radio(
+                                                        //    activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                          //  value: "no",
+                                                            //groupValue: enableAsStudent,
+                                                           // onChanged: (value) {
+                                                             // setState(() {
+                                                               // enableAsStudent =
+                                                                 //   value.toString();
+                                                    //            roleBackup.remove('student');
+                                                      //        });
+                                                        //    },
+                                                          //),
+                                                         // Text(
+                                                           // AppLocalizations.of(
+                                                             //   context)!
+                                                             //   .no,
+                                                            //style: TextStyle(
+                                                              //  color: const Color
+                                                                //    .fromRGBO(
+                                                                  //  51, 51, 51, 1),
+                                                               // fontFamily: 'Inter',
+                                                               // fontWeight: FontWeight
+                                                                 //   .w400,
+                                                                //fontSize:
+                                                                //localHeight * 0.016),
+                                                         // ),
+                                                     //   ],
+                                                     // ),
+                                                    //],
+                                                  //)),
                                               SizedBox(
                                                 height: localHeight * 0.01,
                                               ),

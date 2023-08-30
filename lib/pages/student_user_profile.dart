@@ -198,7 +198,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Email ID',
+                                AppLocalizations.of(
+                                    context)!
+                                    .email_id_caps,
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -211,6 +213,30 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ),
                               Text(
                                 '${widget.userDataModel.data?.email}',
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.02,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Text(
+                                AppLocalizations.of(
+                                    context)!
+                                    .user_id,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                              Text(
+                                '-',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.02,
@@ -262,29 +288,29 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              SizedBox(height: height * 0.02),
-                              Text(
-                                'Enabled as Teacher',
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              SizedBox(height: height * 0.01),
-                              Text(
-                                widget.userDataModel.data!.role
-                                        .contains("teacher")
-                                    ? "Yes"
-                                    : "No",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
+                            //  SizedBox(height: height * 0.02),
+                            //  Text(
+                            //    'Enabled as Teacher',
+                           //     style: TextStyle(
+                           //       color: const Color.fromRGBO(102, 102, 102, 1),
+                           //       fontSize: height * 0.015,
+                           //       fontFamily: "Inter",
+                           //       fontWeight: FontWeight.w600,
+                           //     ),
+                           //   ),
+                           //   SizedBox(height: height * 0.01),
+                           //   Text(
+                           //     widget.userDataModel.data!.role
+                            //            .contains("teacher")
+                            //        ? "Yes"
+                            //        : "No",
+                            //    style: TextStyle(
+                            //      color: const Color.fromRGBO(102, 102, 102, 1),
+                            //      fontSize: height * 0.02,
+                            //      fontFamily: "Inter",
+                            //      fontWeight: FontWeight.w400,
+                            //    ),
+                            //  ),
                               SizedBox(
                                 height: height * 0.02,
                               ),
@@ -490,7 +516,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             ),
                             SizedBox(height: height * 0.02),
                             Text(
-                              'Email ID',
+                              AppLocalizations.of(
+                                  context)!
+                                  .email_id_caps,
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.015,
@@ -503,6 +531,30 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             ),
                             Text(
                               '${widget.userDataModel.data?.email}',
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: height * 0.02),
+                            Text(
+                              AppLocalizations.of(
+                                  context)!
+                                  .user_id,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Text(
+                              '-',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -554,29 +606,29 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
-                            Text(
-                              'Enabled as Teacher',
-                              style: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(height: height * 0.01),
-                            Text(
-                              widget.userDataModel.data!.role
-                                      .contains("teacher")
-                                  ? "Yes"
-                                  : "No",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: height * 0.02,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
+                         //   SizedBox(height: height * 0.02),
+                         //   Text(
+                        //      'Enabled as Teacher',
+                        //      style: TextStyle(
+                         //       color: const Color.fromRGBO(102, 102, 102, 1),
+                        //        fontSize: height * 0.015,
+                        //        fontFamily: "Inter",
+                       //         fontWeight: FontWeight.w600,
+                       //       ),
+                       //     ),
+                       //     SizedBox(height: height * 0.01),
+                       //     Text(
+                       //       widget.userDataModel.data!.role
+                       //               .contains("teacher")
+                       //           ? "Yes"
+                       //           : "No",
+                       //       style: TextStyle(
+                       //         color: const Color.fromRGBO(102, 102, 102, 1),
+                       //         fontSize: height * 0.02,
+                       //         fontFamily: "Inter",
+                       //         fontWeight: FontWeight.w400,
+                       //       ),
+                       //     ),
                             SizedBox(
                               height: height * 0.02,
                             ),
@@ -784,7 +836,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Email ID',
+                                AppLocalizations.of(
+                                    context)!
+                                    .email_id_caps,
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -797,6 +851,30 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ),
                               Text(
                                 '${widget.userDataModel.data?.email}',
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.02,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(height: height * 0.02),
+                              Text(
+                                AppLocalizations.of(
+                                    context)!
+                                    .user_id,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                              Text(
+                                '-',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.02,
@@ -848,29 +926,29 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              SizedBox(height: height * 0.02),
-                              Text(
-                                'Enabled as Teacher',
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              SizedBox(height: height * 0.01),
-                              Text(
-                                widget.userDataModel.data!.role
-                                        .contains("teacher")
-                                    ? "Yes"
-                                    : "No",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
+                           //   SizedBox(height: height * 0.02),
+                           //   Text(
+                           //     'Enabled as Teacher',
+                           //     style: TextStyle(
+                           //       color: const Color.fromRGBO(102, 102, 102, 1),
+                          //        fontSize: height * 0.015,
+                          //        fontFamily: "Inter",
+                          //        fontWeight: FontWeight.w600,
+                          //      ),
+                          //    ),
+                          //    SizedBox(height: height * 0.01),
+                          //    Text(
+                          //      widget.userDataModel.data!.role
+                         //               .contains("teacher")
+                         //           ? "Yes"
+                         //           : "No",
+                         //       style: TextStyle(
+                        //          color: const Color.fromRGBO(102, 102, 102, 1),
+                         //         fontSize: height * 0.02,
+                         //         fontFamily: "Inter",
+                         //         fontWeight: FontWeight.w400,
+                        //        ),
+                        //      ),
                               SizedBox(
                                 height: height * 0.02,
                               ),

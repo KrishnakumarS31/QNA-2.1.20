@@ -131,6 +131,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               child: TextFormField(
                                                 keyboardType: TextInputType.text,
                                                 controller: nameController,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]'))],
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
                                                 },
@@ -259,17 +260,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 child: Checkbox(
                                   activeColor:
                                   const Color.fromRGBO(82, 165, 160, 1),
-                                  fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                          (states) {
-                                        if (states
-                                            .contains(MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
+                                  // fillColor:
+                                  // MaterialStateProperty.resolveWith<Color>(
+                                  //         (states) {
+                                  //       if (states
+                                  //           .contains(MaterialState.selected)) {
+                                  //         return const Color.fromRGBO(
+                                  //             82, 165, 160, 1);
+                                  //       }
+                                  //       return const Color.fromRGBO(
+                                  //           82, 165, 160, 1);
+                                  //     }),
                                   value: agree,
                                   onChanged: (val) {
                                     setState(() {
@@ -467,6 +468,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               child: TextFormField(
                                                 keyboardType: TextInputType.text,
                                                 controller: nameController,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]'))],
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
                                                 },
@@ -594,17 +596,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 child: Checkbox(
                                   activeColor:
                                   const Color.fromRGBO(82, 165, 160, 1),
-                                  fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                          (states) {
-                                        if (states
-                                            .contains(MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
+                                  // fillColor:
+                                  // MaterialStateProperty.resolveWith<Color>(
+                                  //         (states) {
+                                  //       if (states
+                                  //           .contains(MaterialState.selected)) {
+                                  //         return const Color.fromRGBO(
+                                  //             82, 165, 160, 1);
+                                  //       }
+                                  //       return const Color.fromRGBO(
+                                  //           82, 165, 160, 1);
+                                  //     }),
                                   value: agree,
                                   onChanged: (val) {
                                     setState(() {
@@ -802,6 +804,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               child: TextFormField(
                                                 keyboardType: TextInputType.text,
                                                 controller: nameController,
+                                                inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]'))],
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
                                                 },
@@ -930,17 +933,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 child: Checkbox(
                                   activeColor:
                                   const Color.fromRGBO(82, 165, 160, 1),
-                                  fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                          (states) {
-                                        if (states
-                                            .contains(MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
+                                  // fillColor:
+                                  // MaterialStateProperty.resolveWith<Color>(
+                                  //         (states) {
+                                  //       if (states
+                                  //           .contains(MaterialState.selected)) {
+                                  //         return const Color.fromRGBO(
+                                  //             82, 165, 160, 1);
+                                  //       }
+                                  //       return const Color.fromRGBO(
+                                  //           82, 165, 160, 1);
+                                  //     }),
                                   value: agree,
                                   onChanged: (val) {
                                     setState(() {

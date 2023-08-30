@@ -443,5 +443,6 @@
   "name_userId":"Name or User ID",
   "name_uId_helper" : "Enter your Name or User ID",
   "name_special_restrict": "Enter your Name or User ID in alphanumeric only",
-  "email_uId_helper" : "Enter your Email ID or User ID"
+  "email_uId_helper" : "Enter your Email ID or User ID",
+  "user_id" : "User ID"
 }
