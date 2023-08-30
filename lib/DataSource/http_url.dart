@@ -21,3 +21,4 @@ const version = "2.0.98";
 const double webWidth = 500.0;
 const editEmailOtpUrl='$usersDomain/edit-email-otp';
 const editEmailUrl='$usersDomain/edit-email';
+const getOrganizationNamesUrl = '$usersDomain/organisation/institution';

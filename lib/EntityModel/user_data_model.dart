@@ -82,7 +82,7 @@ class Data {
     countryResident: json["country_resident"],
     email: json["email"],
     rollNumber: json["roll_number"],
-    organisationName: json["organisation_name"],
+    organisationName: json["institution_name"] ?? "",
     role: List<dynamic>.from(json["role"].map((x) => x)),
     password: json["password"],
     createdBy: json["created_by"],

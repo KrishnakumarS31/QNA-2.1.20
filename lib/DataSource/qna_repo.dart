@@ -719,4 +719,20 @@ class QnaRepo {
     return responses;
   }
 
+  static Future<ResponseEntity> getInstitutionNames(
+      String id) async {
+    ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
+    // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    var request = http.Request(
+        'GET', Uri.parse('$getOrganizationNamesUrl?organisation_code=$id'));
+    // request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    print("RESPONSE CODE");
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      resultData = responseEntityFromJson(temp);
+    } else if (response.statusCode == 401) {}
+    return resultData;
+  }
 }

@@ -3,7 +3,9 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Entity/organisation.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../Entity/Teacher/response_entity.dart';
 import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
@@ -20,6 +22,7 @@ class StudentRegistrationPage extends StatefulWidget {
 
 class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   final formKey = GlobalKey<FormState>();
+  final orgFormKey = GlobalKey<FormState>();
   TextEditingController studentFirstNameController = TextEditingController();
   TextEditingController studentLastNameController = TextEditingController();
   TextEditingController studentEmailController = TextEditingController();
@@ -34,6 +37,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   bool pPCheck = false;
   // bool also = false;
   bool error = true;
+  
   String? gender;
   // final studentDobController = TextEditingController();
   late Response userDetails;
@@ -286,6 +290,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
     "Zambia",
     "Zimbabwe"
   ];
+  
+  List<String>? ages =[];
+  Map<String, int> idAndNameMap = {};
+  String selectedValue = ''; // To store the selected dropdown value
+  //TextEditingController textFieldController = TextEditingController();
+  bool valueForDrop = false;
+  OrganisationResponse? questionResponse;
+  bool firstTimecalled = false;
+
   SingleValueDropDownController selectedCountryCitizen =
       SingleValueDropDownController();
   List<String> countryResidentList = [
@@ -299,6 +312,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   int d = 0;
   bool passObscure = true;
   bool confirmPassObscure = true;
+ 
 
   @override
   void initState() {
@@ -309,6 +323,54 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   void dispose() {
     // studentDobController.dispose();
     super.dispose();
+  }
+
+
+  _somefun(String value)
+  {
+
+
+    print("INSIDEEEEE SOME FUNNNNNN");
+
+    _performAsyncWork(value).then((responseEntity){
+
+
+      setState(() {
+        print("Inside Set State");
+        print(responseEntity.code);
+        // organizationId =
+        //     value;
+        List<Institution>? questions;
+        if (responseEntity.code == 200) {
+          questionResponse = OrganisationResponse.fromJson(responseEntity.data);
+          questions = questionResponse?.institutions;
+          ages = questions?.map((e) => e.institutionName).toList();
+          idAndNameMap = {};
+          questions?.forEach((person) {
+            idAndNameMap[person.institutionName] = person.institutionId;
+          });
+          valueForDrop = true;
+          firstTimecalled = true;
+          selectedValue = ages![0];
+          print(ages);
+          print(idAndNameMap);
+        }
+        //   ResponseEntity responseEntity = await QnaService.getQuestionBankService(
+        //       10, pageNumber, search, userDetails);
+        // });
+      });
+
+
+    });
+
+    print(valueForDrop);
+
+  }
+
+  Future<ResponseEntity> _performAsyncWork(String value) async
+  {
+    ResponseEntity responseEntity = await QnaService.getInstitutionNames(value);
+    return responseEntity;
   }
 
   @override
@@ -427,13 +489,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                             return AppLocalizations.of(context)!.org_helper_reg;
                                                           }
                                                           else if (value.startsWith("0")) {
-                                                            return null;
+                                                            firstTimecalled ?"" : _somefun(value);
                                                           }
                                                           else if (value.length < 8) {
                                                             return " ${8- value.length} more characters needed to verify";
                                                           }
                                                           else if (value.length == 8) {
-                                                            return "verifying...";
+                                                            firstTimecalled ?"" : _somefun(value);
                                                           }
                                                           else {
                                                             return null;
@@ -446,58 +508,94 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                       )),
                                                 ),
                                                 SizedBox(
-                                                  height: localHeight * 0.03,
+                                                  height: localHeight * 0.03
+                                                  ,
+                                                ),
+                                                Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 30, right: 30),
+                                                    child:
+                                                    Column(
+                                                        children: [
+                                                          Row(
+                                                              children:[
+                                                                Text(AppLocalizations.of(
+                                                                    context)!
+                                                                    .ins_org_caps,
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight
+                                                          .w600,
+                                                      fontSize: localHeight *
+                                                          0.0155),
+                                                                ),
+                                                              ]
+                                                          ),
+                                                        ])
                                                 ),
                                                 Center(
+                                                  child:
+                                                  SizedBox(
+                                                    width: localWidth * 0.8,
                                                     child:
-                                                    SizedBox(
-                                                      width: localWidth * 0.8,
-                                                      child:TextFormField(
-                                                        controller: studentOrganisationNameController,
-                                                        maxLength: 200,
-                                                        maxLengthEnforcement: MaxLengthEnforcement
-                                                            .truncateAfterCompositionEnds,
-                                                        keyboardType: TextInputType.text,
-                                                        decoration: InputDecoration(
-                                                            labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                            floatingLabelBehavior:
-                                                            FloatingLabelBehavior.always,
-                                                            label: Text(AppLocalizations.of(
-                                                                context)!
-                                                                .ins_org_caps,
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.020),
-                                                            ),
-                                                            hintStyle: TextStyle(
-                                                                color: const Color.fromRGBO(
-                                                                    102, 102, 102, 0.3),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w400,
-                                                                fontSize: localHeight * 0.018),
-                                                            hintText:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .enter_here
-                                                        ),
-                                                        onChanged: (value) {
-                                                          formKey.currentState!.validate();
-                                                        },
-                                                        validator: (value) {
-                                                          if (value!.isEmpty) {
-                                                            return 'Enter Institution Name';
-                                                          } else {
-                                                            return null;
-                                                          }
-                                                        },
-                                                      ),
-                                                    )),
+                                                    // valueForDrop == false ?
+                                                    // TextFormField(
+                                                    //   controller: studentOrganisationNameController,
+                                                    //   maxLength: 200,
+                                                    //   maxLengthEnforcement: MaxLengthEnforcement
+                                                    //       .truncateAfterCompositionEnds,
+                                                    //   keyboardType: TextInputType.text,
+                                                    //   decoration: InputDecoration(
+                                                    //       labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                    //       floatingLabelBehavior:
+                                                    //       FloatingLabelBehavior.always,
+                                                    //       hintStyle: TextStyle(
+                                                    //           color: const Color.fromRGBO(
+                                                    //               102, 102, 102, 0.3),
+                                                    //           fontFamily: 'Inter',
+                                                    //           fontWeight: FontWeight.w400,
+                                                    //           fontSize: localHeight * 0.018),
+                                                    //       hintText:
+                                                    //       AppLocalizations.of(
+                                                    //           context)!
+                                                    //           .enter_here
+                                                    //   ),
+                                                    //   onChanged: (value) {
+                                                    //     formKey.currentState!.validate();
+                                                    //   },
+                                                    //   validator: (value) {
+                                                    //     if (value!.isEmpty) {
+                                                    //       return 'Enter Institution Name Name';
+                                                    //     } else {
+                                                    //       return null;
+                                                    //     }
+                                                    //   },
+                                                    // ) :
+                                                    DropdownButton<String>(
+                                                      value: selectedValue,
+                                                      isExpanded:true,
+                                                      onChanged: (newValue) {
+                                                        setState(() {
+                                                          selectedValue = newValue!;
+                                                        });
+                                                      },
+
+                                                      items: ages!.map<DropdownMenuItem<String>>((String value) {
+                                                        return DropdownMenuItem<String>(
+                                                          value: value,
+                                                          child: Text(value),
+                                                        );
+                                                      }).toList(),
+                                                      hint: Text('Select an option'),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.01,
+                                                ),
                                                 Center(
                                                   child:
                                                       SizedBox(
@@ -1357,7 +1455,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       color: const Color.fromRGBO(82, 165, 160, 1)
                                                     ),
                                                     onPressed: () async {
-                                                      bool valid = formKey.currentState!.validate();
+                                                      print("INSIDE ONPRESSED");
+                                                      print(selectedValue);
+                                                      print(idAndNameMap[selectedValue]);
                                                       StudentRegistrationModel student =
                                                       StudentRegistrationModel(
                                                           firstName: studentFirstNameController.text,
@@ -1371,7 +1471,8 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           rollNumber: studentRollNumberController
                                                               .text,
                                                           organisationName:
-                                                          studentOrganisationNameController.text,
+                                                          selectedValue,
+                                                          institutionId: idAndNameMap[selectedValue],
                                                           countryResident:
                                                           selectedCountryResident
                                                               .dropDownValue?.value,
@@ -1579,17 +1680,19 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               return AppLocalizations.of(context)!.org_helper_reg;
                                                             }
                                                             else if (value.startsWith("0")) {
-                                                              return null;
+                                                              firstTimecalled ?"" : _somefun(value);
                                                             }
                                                             else if (value.length < 8) {
                                                               return " ${8- value.length} more characters needed to verify";
                                                             }
                                                             else if (value.length == 8) {
-                                                              return "verifying...";
+                                                              firstTimecalled ?"" : _somefun(value);
+
                                                             }
-                                                            else {
-                                                              return null;
-                                                            }
+                                                            else
+                                                              {
+
+                                                              }
                                                           },
                                                           onChanged: (value) {
                                                             formKey.currentState!.validate();
@@ -1598,58 +1701,90 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         )),
                                                   ),
                                                   SizedBox(
-                                                    height: localHeight * 0.01,
+                                                    height: localHeight * 0.03
+                                                    ,
+                                                  ),
+                                                  Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 30, right: 30),
+                                                      child:
+                                                      Column(
+                                                          children: [
+                                                            Row(
+                                                                children:[
+                                                                  Text(AppLocalizations.of(
+                                                                      context)!
+                                                                      .ins_org_caps,
+                                                                    style: TextStyle(
+                                                                        color: const Color
+                                                                            .fromRGBO(
+                                                                            102, 102, 102, 1),
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight
+                                                                            .w600,
+                                                                        fontSize: localHeight *
+                                                                            0.0155),
+                                                                  ),
+                                                                ]
+                                                            ),
+                                                          ])
                                                   ),
                                                   Center(
-                                                      child:
-                                                      SizedBox(
-                                                        width: localWidth * 0.65,
-                                                        child:TextFormField(
-                                                          controller: studentOrganisationNameController,
-                                                          maxLength: 200,
-                                                          maxLengthEnforcement: MaxLengthEnforcement
-                                                              .truncateAfterCompositionEnds,
-                                                          keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
-                                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                              floatingLabelBehavior:
-                                                              FloatingLabelBehavior.always,
-                                                              label: Text(AppLocalizations.of(
-                                                                  context)!
-                                                                  .ins_org_caps,
-                                                                style: TextStyle(
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        102, 102, 102, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight
-                                                                        .w600,
-                                                                    fontSize: localHeight *
-                                                                        0.020),
-                                                              ),
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(
-                                                                      102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: localHeight * 0.018),
-                                                              hintText:
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .enter_here
-                                                          ),
-                                                          onChanged: (value) {
-                                                            formKey.currentState!.validate();
-                                                          },
-                                                          validator: (value) {
-                                                            if (value!.isEmpty) {
-                                                              return 'Enter Institution Name';
-                                                            } else {
-                                                              return null;
-                                                            }
-                                                          },
-                                                        ),
-                                                      )),
+                                                    child:
+                                                    SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      // child:valueForDrop == false ?
+                                                      // TextFormField(
+                                                      //   controller: studentOrganisationNameController,
+                                                      //   maxLength: 200,
+                                                      //   maxLengthEnforcement: MaxLengthEnforcement
+                                                      //       .truncateAfterCompositionEnds,
+                                                      //   keyboardType: TextInputType.text,
+                                                      //   decoration: InputDecoration(
+                                                      //       labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                      //       floatingLabelBehavior:
+                                                      //       FloatingLabelBehavior.always,
+                                                      //       hintStyle: TextStyle(
+                                                      //           color: const Color.fromRGBO(
+                                                      //               102, 102, 102, 0.3),
+                                                      //           fontFamily: 'Inter',
+                                                      //           fontWeight: FontWeight.w400,
+                                                      //           fontSize: localHeight * 0.018),
+                                                      //       hintText:
+                                                      //       AppLocalizations.of(
+                                                      //           context)!
+                                                      //           .enter_here
+                                                      //   ),
+                                                      //   onChanged: (value) {
+                                                      //     formKey.currentState!.validate();
+                                                      //   },
+                                                      //   validator: (value) {
+                                                      //     if (value!.isEmpty) {
+                                                      //       return 'Enter Institution Name Name';
+                                                      //     } else {
+                                                      //       return null;
+                                                      //     }
+                                                      //   },
+                                                      // ) :
+                                                      child:DropdownButton<String>(
+                                                        value: selectedValue,
+                                                        isExpanded:true,
+                                                        onChanged: (newValue) {
+                                                          setState(() {
+                                                            selectedValue = newValue!;
+                                                          });
+                                                        },
+
+                                                        items: ages!.map<DropdownMenuItem<String>>((String value) {
+                                                          return DropdownMenuItem<String>(
+                                                            value: value,
+                                                            child: Text(value),
+                                                          );
+                                                        }).toList(),
+                                                        hint: Text('Select an option'),
+                                                      ),
+                                                    ),
+                                                  ),
                                                   SizedBox(
                                                     height: localHeight * 0.01,
                                                   ),
@@ -2408,7 +2543,8 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             rollNumber: studentRollNumberController
                                                                 .text,
                                                             organisationName:
-                                                            studentOrganisationNameController.text,
+                                                            selectedValue,
+                                                            institutionId: idAndNameMap[selectedValue],
                                                             countryResident:
                                                             selectedCountryResident
                                                                 .dropDownValue?.value,
@@ -2553,6 +2689,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                 width: localWidth * 0.9,
                                 child: Form(
                                   key: formKey,
+                                 // autovalidateMode: AutovalidateMode.onUserInteraction,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -2615,14 +2752,17 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               return AppLocalizations.of(context)!.org_helper_reg;
                                                             }
                                                             else if (value.startsWith("0")) {
-                                                              return null;
+                                                              firstTimecalled ?"" : _somefun(value);
                                                             }
                                                             else if (value.length < 8) {
                                                               return " ${8- value.length} more characters needed to verify";
                                                             }
+
                                                             else if (value.length == 8) {
-                                                              return "verifying...";
+                                                             firstTimecalled ?"" : _somefun(value);
                                                             }
+
+
                                                             else {
                                                               return null;
                                                             }
@@ -2634,58 +2774,91 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         )),
                                                   ),
                                                   SizedBox(
-                                                    height: localHeight * 0.01,
+                                                    height: localHeight * 0.03
+                                                    ,
                                                   ),
+                                           Padding(
+                                            padding: EdgeInsets.only(
+                                                left: localWidth * 0.05, right: localWidth * 0.05),
+                                            child:
+                                            Column(
+                                              children: [
+                                                Row(
+                                                    children:[
+                                                      Text(AppLocalizations.of(
+                                                          context)!
+                                                          .ins_org_caps,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w600,
+                                                            fontSize: localHeight *
+                                                                0.020),
+                                                      ),
+                                                    ]
+                                                ),
+                              ])
+                            ),
                                                   Center(
                                                       child:
                                                       SizedBox(
                                                         width: localWidth * 0.8,
-                                                        child:TextFormField(
-                                                          controller: studentOrganisationNameController,
-                                                          maxLength: 200,
-                                                          maxLengthEnforcement: MaxLengthEnforcement
-                                                              .truncateAfterCompositionEnds,
-                                                          keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
-                                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                              floatingLabelBehavior:
-                                                              FloatingLabelBehavior.always,
-                                                              label: Text(AppLocalizations.of(
-                                                                  context)!
-                                                                  .ins_org_caps,
-                                                                style: TextStyle(
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        102, 102, 102, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight
-                                                                        .w600,
-                                                                    fontSize: localHeight *
-                                                                        0.020),
-                                                              ),
-                                                              hintStyle: TextStyle(
-                                                                  color: const Color.fromRGBO(
-                                                                      102, 102, 102, 0.3),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w400,
-                                                                  fontSize: localHeight * 0.018),
-                                                              hintText:
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .enter_here
-                                                          ),
-                                                          onChanged: (value) {
-                                                            formKey.currentState!.validate();
-                                                          },
-                                                          validator: (value) {
-                                                            if (value!.isEmpty) {
-                                                              return 'Enter Institution Name Name';
-                                                            } else {
-                                                              return null;
-                                                            }
-                                                          },
-                                                        ),
-                                                      )),
+                                                        child:
+                                                        // valueForDrop == false ?
+                                                        // TextFormField(
+                                                        //   controller: studentOrganisationNameController,
+                                                        //   maxLength: 200,
+                                                        //   maxLengthEnforcement: MaxLengthEnforcement
+                                                        //       .truncateAfterCompositionEnds,
+                                                        //   keyboardType: TextInputType.text,
+                                                        //   decoration: InputDecoration(
+                                                        //       labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                        //       floatingLabelBehavior:
+                                                        //       FloatingLabelBehavior.always,
+                                                        //       hintStyle: TextStyle(
+                                                        //           color: const Color.fromRGBO(
+                                                        //               102, 102, 102, 0.3),
+                                                        //           fontFamily: 'Inter',
+                                                        //           fontWeight: FontWeight.w400,
+                                                        //           fontSize: localHeight * 0.018),
+                                                        //       hintText:
+                                                        //       AppLocalizations.of(
+                                                        //           context)!
+                                                        //           .enter_here
+                                                        //   ),
+                                                        //   onChanged: (value) {
+                                                        //     formKey.currentState!.validate();
+                                                        //   },
+                                                        //   validator: (value) {
+                                                        //     if (value!.isEmpty) {
+                                                        //       return 'Enter Institution Name Name';
+                                                        //     } else {
+                                                        //       return null;
+                                                        //     }
+                                                        //   },
+                                                        // ) :
+                                                        DropdownButton<String>(
+                                                        value: selectedValue,
+                                                        isExpanded:true,
+                                                        onChanged: (newValue) {
+                                                          setState(() {
+                                                            selectedValue = newValue!;
+                                                          });
+                                                        },
+
+                                                        items: ages!.map<DropdownMenuItem<String>>((String value) {
+                                                          return DropdownMenuItem<String>(
+                                                            value: value,
+                                                            child: Text(value),
+                                                          );
+                                                        }).toList(),
+                                                        hint: Text('Select an option'),
+                                                      ),
+                                                      ),
+                                                  ),
                                                   SizedBox(
                                                     height: localHeight * 0.01,
                                                   ),
@@ -2699,7 +2872,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           maxLengthEnforcement: MaxLengthEnforcement
                                                               .truncateAfterCompositionEnds,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(   
+                                                          decoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             label:
                                                             Text(AppLocalizations.of(
@@ -2727,6 +2900,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior: FloatingLabelBehavior.always,
                                                           ),
                                                           onChanged: (value) {
+                                                            print("INSIDE ONCHANGED");
                                                             formKey.currentState!.validate();
                                                           },
                                                           validator: (value) {
@@ -2738,6 +2912,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           },
                                                         )),
                                                   ),
+
                                                   Center(
                                                       child:
                                                       SizedBox(
@@ -2745,7 +2920,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         child: TextFormField(
                                                           controller: studentLastNameController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(   
+                                                          decoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
@@ -2772,6 +2947,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                 .enter_here,
                                                           ),
                                                           onChanged: (value) {
+                                                            print("INSIDE ONCHENGED LAST NAME");
                                                             formKey.currentState!.validate();
                                                           },
                                                           validator: (value) {
@@ -2830,7 +3006,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   //     child: TextFormField(
                                                   //       controller: studentDobController,
                                                   //       keyboardType: TextInputType.datetime,
-                                                  //       decoration: InputDecoration(   
+                                                  //       decoration: InputDecoration(
                                                   //labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   //         floatingLabelBehavior:
                                                   //             FloatingLabelBehavior.always,
@@ -3012,7 +3188,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           controller: selectedCountryCitizen,
                                                           clearOption: true,
                                                           enableSearch: true,
-                                                          textFieldDecoration: InputDecoration(   
+                                                          textFieldDecoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
@@ -3034,7 +3210,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 0.3)),
-                                                          searchDecoration: InputDecoration(   
+                                                          searchDecoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               hintStyle: TextStyle(
                                                                   color: const Color
@@ -3099,7 +3275,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           controller: selectedCountryResident,
                                                           clearOption: true,
                                                           enableSearch: true,
-                                                          textFieldDecoration: InputDecoration(   
+                                                          textFieldDecoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
@@ -3121,7 +3297,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 0.3)),
-                                                          searchDecoration: InputDecoration(   
+                                                          searchDecoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               hintStyle: TextStyle(
                                                                   color: const Color
@@ -3195,7 +3371,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           TextFormField(
                                                             controller: studentEmailController,
                                                             keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(   
+                                                            decoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
@@ -3259,7 +3435,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             obscureText: passObscure,
                                                             obscuringCharacter: "*",
                                                             keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(   
+                                                            decoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
@@ -3337,7 +3513,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           keyboardType: TextInputType.text,
                                                           obscureText: confirmPassObscure,
                                                           obscuringCharacter: "*",
-                                                          decoration: InputDecoration(   
+                                                          decoration: InputDecoration(
 labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
@@ -3541,6 +3717,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         color: Color.fromRGBO(82, 165, 160, 1)
                                                       ),
                                                       onPressed: () async {
+                                                        print("Nee irundhal enna pirinthal enna kadhal enakku podum amma");
+                                                        print(idAndNameMap[selectedValue]);
+                                                        print(selectedValue);
                                                         bool valid = formKey.currentState!.validate();
                                                         StudentRegistrationModel student =
                                                         StudentRegistrationModel(
@@ -3554,13 +3733,15 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             password: studentPasswordController.text,
                                                             rollNumber: studentRollNumberController
                                                                 .text,
-                                                            organisationName:
-                                                            studentOrganisationNameController.text,
+
                                                             countryResident:
                                                             selectedCountryResident
                                                                 .dropDownValue?.value,
                                                             role: ["student"],
-                                                            userRole: "student"
+                                                            userRole: "student",
+                                                          organisationName:
+                                                          selectedValue,
+                                                          institutionId: idAndNameMap[selectedValue] ?? 0,
                                                           //also == true?
                                                           //["student","teacher"]
                                                           //: ["student"]

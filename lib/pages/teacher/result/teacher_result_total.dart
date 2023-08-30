@@ -147,7 +147,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 scrollDirection: Axis.vertical,
                                 physics: const ClampingScrollPhysics(),
                                 child: Padding(
-                                  padding: EdgeInsets.only(bottom: height * 0.00500, left: height * 0.5,right: height * 0.5),
+                                  padding: EdgeInsets.only(bottom: height * 0.00500, left: width * 0.2,right: width * 0.2),
                                   child: Column(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [

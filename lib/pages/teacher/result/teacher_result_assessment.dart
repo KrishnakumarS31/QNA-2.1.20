@@ -104,7 +104,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                             body: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: height * 0.005, left: height * 0.5,right: height * 0.5),
+                                padding: EdgeInsets.only(bottom: height * 0.005, left: width * 0.2,right: width * 0.2),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [

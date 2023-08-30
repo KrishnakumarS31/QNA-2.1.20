@@ -300,9 +300,6 @@ class TeacherResultIndividualStudentState
                                                 marks: questions[i].marks ?? 0,
                                               ),
                                             )),
-                                        SizedBox(
-                                          height: height * 0.0,
-                                        ),
                                       ],
                                     )
                                 ],
@@ -365,8 +362,7 @@ class TeacherResultIndividualStudentState
                             child: Align(
                               alignment: Alignment.center,
                               child: SizedBox(
-                                    height: height * 0.6,
-                                    width: width * 0.6,
+                                width: width * 0.6,
                                 child: Column(
                                   children: [
                                     Column(
@@ -523,9 +519,6 @@ class TeacherResultIndividualStudentState
                                                             marks: questions[i].marks ?? 0,
                                                           ),
                                                         )),
-                                                    SizedBox(
-                                                      height: height * 0.0,
-                                                    ),
                                                   ],
                                                 )
                                             ],
@@ -772,9 +765,6 @@ class TeacherResultIndividualStudentState
                                                   marks: questions[i].marks ?? 0,
                                                 ),
                                               )),
-                                          SizedBox(
-                                            height: height * 0.0,
-                                          ),
                                         ],
                                       )
                                   ],
@@ -856,9 +846,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                       width: widget.width * 0.9,
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: widget.height * 0.015,
-                          ),
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -1009,7 +997,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
           else if(constraints.maxWidth > 960) {
             return
               Container(
-                  padding:EdgeInsets.only(left: widget.height * 0.3,right: widget.height * 0.3),
+                  padding:EdgeInsets.only(left: widget.width * 0.3,right: widget.width * 0.3),
                   child:
                   Column(
                       children:[
@@ -1022,13 +1010,11 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             width: widget.width * 0.9,
                             child: Column(
                               children: [
-                                SizedBox(
-                                  height: widget.height * 0.015,
-                                ),
+
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SizedBox(width: widget.width * 0.005),
+                                    SizedBox(width: widget.width * 0.02),
                                     Text(
                                       'Q${widget.quesNum + 1}',
                                       style: TextStyle(
@@ -1058,7 +1044,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w500),
                                     ),
-                                    SizedBox(width: widget.width * 0.3),
+                                    SizedBox(width: widget.width * 0.2),
                                     widget.ques.questionType == "MCQ"
                                         ? Container(
                                         decoration: const BoxDecoration(
@@ -1189,9 +1175,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                         width: widget.width * 0.9,
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: widget.height * 0.015,
-                            ),
+
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

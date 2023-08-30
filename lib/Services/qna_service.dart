@@ -155,4 +155,9 @@ class QnaService {
   static Future<StaticResponse> changeEmailService(String email,UserDetails userDetails,String otp) async {
     return await QnaRepo.changeEmail(email,userDetails,otp);
   }
+
+  static Future<ResponseEntity> getInstitutionNames(String id) async {
+    return await QnaRepo.getInstitutionNames(id);
+  }
+
 }
