@@ -59,7 +59,7 @@
   "error_regID": "Enter Email ID",
   "error_password": "Password is required",
   "enter_assId": "ENTER ASSESSMENT ID",
-  "valid_assId": "Assessment ID must be greater than 8 characters",
+  "valid_assId": "Assessment ID must be atleast 8 characters",
   "user_profile": "User Profile",
   "change_password": "Change Password",
   "change_emailId": "Change Email ID",

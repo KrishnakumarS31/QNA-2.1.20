@@ -446,6 +446,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                       child: TextFormField(
                                                         controller: studentRollNumberController,
                                                         keyboardType: TextInputType.text,
+                                                        maxLength: 8,
                                                         inputFormatters: [
                                                           FilteringTextInputFormatter
                                                               .allow(
@@ -491,9 +492,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           else if (value.startsWith("0")) {
                                                             firstTimecalled ?"" : _somefun(value);
                                                           }
-                                                          else if (value.length < 8) {
-                                                            return " ${8- value.length} more characters needed to verify";
-                                                          }
+                                                          // else if (value.length < 8) {
+                                                          //   return " ${8- value.length} more characters needed to verify";
+                                                          // }
                                                           else if (value.length == 8) {
                                                             firstTimecalled ?"" : _somefun(value);
                                                           }
@@ -1636,6 +1637,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         child: TextFormField(
                                                           controller: studentRollNumberController,
                                                           keyboardType: TextInputType.text,
+                                                          maxLength: 8,
                                                           inputFormatters: [
                                                             FilteringTextInputFormatter
                                                                 .allow(
@@ -1682,9 +1684,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             else if (value.startsWith("0")) {
                                                               firstTimecalled ?"" : _somefun(value);
                                                             }
-                                                            else if (value.length < 8) {
-                                                              return " ${8- value.length} more characters needed to verify";
-                                                            }
+                                                            // else if (value.length < 8) {
+                                                            //   return " ${8- value.length} more characters needed to verify";
+                                                            // }
                                                             else if (value.length == 8) {
                                                               firstTimecalled ?"" : _somefun(value);
 
@@ -2709,6 +2711,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         child: TextFormField(
                                                           controller: studentRollNumberController,
                                                           keyboardType: TextInputType.text,
+                                                          maxLength: 8,
                                                           inputFormatters: [
                                                             FilteringTextInputFormatter
                                                                 .allow(
@@ -2754,9 +2757,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             else if (value.startsWith("0")) {
                                                               firstTimecalled ?"" : _somefun(value);
                                                             }
-                                                            else if (value.length < 8) {
-                                                              return " ${8- value.length} more characters needed to verify";
-                                                            }
+                                                            // else if (value.length < 8) {
+                                                            //   return " ${8- value.length} more characters needed to verify";
+                                                            // }
 
                                                             else if (value.length == 8) {
                                                              firstTimecalled ?"" : _somefun(value);

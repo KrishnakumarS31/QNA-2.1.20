@@ -92,7 +92,7 @@ class StudentResultPageState extends State<StudentResultPage> {
 
                 ),
                 body:
-                    widget.totalMarks == 0
+                    widget.givenMark == 0
                         ? Container(
                         padding:EdgeInsets.only(left: localWidth * 0.025,right: localWidth * 0.025),
                         child:
@@ -1289,7 +1289,7 @@ class StudentResultPageState extends State<StudentResultPage> {
 
                 ),
                 body:
-                widget.totalMarks == 0
+                widget.givenMark == 0
                     ? Column(
                   children: [
                     Padding(
@@ -2484,8 +2484,12 @@ class StudentResultPageState extends State<StudentResultPage> {
 
                   ),
                   body:
-                  widget.totalMarks == 0
-                      ? Container(
+                  widget.givenMark == 0
+                      ?
+                  SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child:
+                      Container(
                       padding:EdgeInsets.only(left: localWidth * 0.025,right: localWidth * 0.025),
                       child:
                       Column(
@@ -3060,9 +3064,11 @@ class StudentResultPageState extends State<StudentResultPage> {
                           ),
 
                         ],
-                      ))
+                      )))
                       :
-                  Container(
+                          SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Container(
                     padding:EdgeInsets.only(left: localWidth * 0.025,right: localWidth * 0.025),
                     child:
                     Column(
@@ -3412,6 +3418,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(width:10.0),
                                   ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor:
@@ -3606,7 +3613,7 @@ class StudentResultPageState extends State<StudentResultPage> {
 
                     //   ],
                     // ),
-                  )));
+                  ))));
         }
       },
     );

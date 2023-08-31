@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -17,38 +18,59 @@ import 'Providers/question_prepare_provider_final.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => QuestionNumProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Questions(),
-        ),
-        ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
-        ChangeNotifierProvider(
-          create: (_) => QuestionPrepareProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => QuestionPrepareProviderFinal(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => CreateAssessmentProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => EditAssessmentProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => NewQuestionProvider(),
-        ),
-
-      ],
-      child: const MyApp(),
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then(
+    (value) => runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => QuestionNumProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => Questions(),
+          ),
+          ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
+          ChangeNotifierProvider(
+            create: (_) => QuestionPrepareProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => QuestionPrepareProviderFinal(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => CreateAssessmentProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => EditAssessmentProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => NewQuestionProvider(),
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }
 
+void setOrientation(BuildContext context) {
+  if (MediaQuery.of(context).size.shortestSide < 500) {
+    // Lock to portrait on mobile devices
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+  } else {
+    // Allow both portrait and landscape on tablets
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -69,10 +91,10 @@ class _MyAppState extends State<MyApp> {
 
   getData() async {
     AppUser? user = await AppUserRepo().getUserDetail();
-    if(user?.locale==null){
-    }
-    else{
-      Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(user!.locale);
+    if (user?.locale == null) {
+    } else {
+      Provider.of<LanguageChangeProvider>(context, listen: false)
+          .changeLocale(user!.locale);
       //context.read<LanguageChangeProvider>().changeLocale(user!.locale);
     }
   }
@@ -83,35 +105,41 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
+    setOrientation(context);
     return MaterialApp(
-      title: "QNA Test",
-      locale: Locale(context.watch<LanguageChangeProvider>().currentLocale),
-      onGenerateRoute: MyRoutes.generateRoute,
-      debugShowCheckedModeBanner: false,
+        title: "QNA Test",
+        locale: Locale(context.watch<LanguageChangeProvider>().currentLocale),
+        onGenerateRoute: MyRoutes.generateRoute,
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         ),
         home:
-       // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS || kIsWeb
-           // ? const WelcomePage()
-           // :
-        SplashScreen(setLocale: setLocale)
-      //initialRoute: '/',
-       //  initialRoute: WelcomePage.id,
-       // routes: {
-       //  WelcomePage.id: (context) => WelcomePage(setLocale: setLocale),},
+            // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS || kIsWeb
+            // ? const WelcomePage()
+            // :
+            SplashScreen(setLocale: setLocale)
+        //initialRoute: '/',
+        //  initialRoute: WelcomePage.id,
+        // routes: {
+        //  WelcomePage.id: (context) => WelcomePage(setLocale: setLocale),},
 
-      //  home:
+        //  home:context
         // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
         //     ?
-       // WelcomePage(setLocale: setLocale)
-      //  :
-      // SplashScreen(setLocale: setLocale)
-    );
+        // WelcomePage(setLocale: setLocale)
+        //  :
+        // SplashScreen(setLocale: setLocale)
+        );
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+    super.dispose();
   }
 }

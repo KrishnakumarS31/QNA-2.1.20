@@ -158,459 +158,8 @@ class TeacherLoginState extends State<TeacherLogin> {
                 onWillPop: () async => false,
                 child: OrientationBuilder(
                   builder: (BuildContext context, Orientation orientation) {
-                    return orientation == Orientation.portrait ?
+                    return orientation == Orientation.landscape && constraints.maxHeight <= 500 ?
                      Scaffold(
-                      resizeToAvoidBottomInset: false,
-                      extendBodyBehindAppBar: true,
-                      appBar:AppBar(
-                        iconTheme: IconThemeData(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            size: height * 0.05
-                        ),
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                        leading: IconButton(
-                          icon: Icon(
-                            Icons.chevron_left,
-                            size: height * 0.06,
-                            color: Colors.black,
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        toolbarHeight: height * 0.100,
-                        centerTitle: true,
-                        title: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)!.teacher_caps,
-                                //"Teacher Login",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.025,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ]),
-                        flexibleSpace: Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.white
-                          ),
-                        ),
-                      ),
-                      endDrawer: const EndDrawerMenuPreLogin(),
-                      body:
-                      SingleChildScrollView(
-                          physics: const ClampingScrollPhysics(),
-                          child:
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(height: height * 0.2),
-                                Padding(
-                                    padding: const EdgeInsets.only(left: 50),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.login_loginPage,
-                                      style: TextStyle(
-                                        fontSize: height * 0.02,
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    )),
-                                SizedBox(height: height * 0.02),
-                                Center(
-                                    child:
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                        boxShadow: kElevationToShadow[4],
-                                      ),
-                                      width: width * 0.9,
-                                      child:
-                                      Form(
-                                        key: formKey,
-                                        child:
-                                        Column(
-                                          children: [
-                                            Column(
-                                              children: [
-                                                SizedBox(height: height * 0.05),
-                                                SizedBox(
-                                                    width: width * 0.8,
-                                                    child: TextFormField(
-                                                      keyboardType: TextInputType.text,
-                                                      controller: emailController,
-                                                      inputFormatters: [
-                                                        FilteringTextInputFormatter.deny(
-                                                            ' ')
-                                                      ],
-                                                      onChanged: (val) {
-                                                        formKey.currentState!.validate();
-                                                      },
-                                                      decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                        floatingLabelBehavior:
-                                                        FloatingLabelBehavior.always,
-                                                        helperStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.016),
-                                                        label: Text(
-                                                            AppLocalizations.of(context)!
-                                                                .regId_emailId,
-                                                            style: TextStyle(
-                                                                color: const Color.fromRGBO(
-                                                                    102, 102, 102, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: height * 0.025)
-                                                        ),
-                                                        hintText:
-                                                        AppLocalizations.of(context)!
-                                                            .hint_regId,
-                                                        //Enter here
-                                                        hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: height * 0.02),
-                                                      ),
-                                                      validator: (value) {
-                                                        if (value!.isEmpty) {
-                                                          return AppLocalizations.of(
-                                                              context)!
-                                                              .email_uId_helper;
-                                                        }
-                                                        else if(RegExp(r'^[a-zA-Z0-9]+$')
-                                                            .hasMatch(value)) {
-                                                          return null;
-                                                        }
-                                                        else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                            .hasMatch(value)) {
-                                                          return AppLocalizations.of(context)!
-                                                              .email_uId_helper;
-                                                        }
-                                                        else {
-                                                          return null;
-                                                        }
-                                                      },
-                                                    ))
-                                              ],
-                                            ),
-                                            SizedBox(height: height * 0.06),
-                                            Column(
-                                              children: [
-                                                SizedBox(
-                                                    width: width * 0.8,
-                                                    child: TextFormField(
-                                                      controller: passwordController,
-                                                      obscureText: _isObscure,
-                                                      obscuringCharacter: "*",
-                                                      onChanged: (val) {
-                                                        formKey.currentState!.validate();
-                                                      },
-                                                      keyboardType: TextInputType.text,
-                                                      decoration: InputDecoration( floatingLabelBehavior:
-                                                      FloatingLabelBehavior.always,
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                          label: Text(
-                                                            AppLocalizations.of(context)!
-                                                                .password,
-                                                            style: TextStyle(
-                                                                color: const Color.fromRGBO(
-                                                                    102, 102, 102, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: height * 0.025),
-                                                          ),
-                                                          helperStyle:TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: width * 0.016),
-                                                          hintText:
-                                                          AppLocalizations.of(context)!
-                                                              .your_password,
-                                                          //Enter here
-                                                          hintStyle: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: height * 0.02),
-                                                          suffixIcon:
-                                                          SizedBox(
-                                                              child: Row(
-                                                                  mainAxisSize: MainAxisSize.min,
-                                                                  mainAxisAlignment: MainAxisAlignment.end,
-                                                                  children:[
-                                                                    IconButton(
-                                                                        iconSize: height * 0.028,
-                                                                        icon: Icon(
-                                                                          _isObscure
-                                                                              ? Icons.visibility
-                                                                              : Icons.visibility_off,
-                                                                          color:
-                                                                          const Color.fromRGBO(82, 165, 160, 1),
-
-
-                                                                        ),
-                                                                        onPressed: () {
-                                                                          setState(() {
-                                                                            _isObscure = !_isObscure;
-                                                                          });
-                                                                        }),
-                                                                  ]
-                                                              ))),
-                                                      validator: (value) {
-                                                        if (value!.isEmpty ||
-                                                            value.length < 8) {
-                                                          return AppLocalizations.of(
-                                                              context)!
-                                                              .enter_pass_min;
-                                                          //"Enter password Min 8 Characters";
-                                                        } else {
-                                                          return null;
-                                                        }
-                                                      },
-                                                    ))
-                                              ],
-                                            ),
-                                            SizedBox(height: height * 0.02),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              children: [
-                                                SizedBox(width: width * 0.05),
-                                                MouseRegion(
-                                                    cursor: SystemMouseCursors.click,
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        Navigator.pushNamed(
-                                                            context,
-                                                            '/forgotPasswordEmail',
-                                                            arguments: true
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                          AppLocalizations.of(context)!
-                                                              .forgot_password,
-                                                          style: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  48, 145, 139, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontStyle: FontStyle.italic,
-                                                              fontSize:
-                                                              height * 0.018)),
-                                                    )),
-                                              ],
-                                            ),
-                                            SizedBox(height: height * 0.03),
-                                            Center(
-                                                child: ElevatedButton(
-                                                    style:
-                                                    ElevatedButton.styleFrom(
-                                                      backgroundColor: Color.fromRGBO(82, 165, 160, 1),
-                                                      side: const BorderSide(
-                                                          width: 1, // the thickness
-                                                          color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
-                                                      ),
-                                                      minimumSize:
-                                                     const Size(189, 37),
-                                                      shape: RoundedRectangleBorder(
-                                                        borderRadius:
-                                                        BorderRadius.circular(
-                                                            39),
-                                                      ),
-                                                    ),
-                                                    child: Text(
-                                                        "Login",
-                                                        style: TextStyle(
-                                                            fontFamily: 'Inter',
-                                                            fontSize:
-                                                            height *
-                                                                0.02,
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            color: Colors.white)),
-                                                    onPressed: () async {
-                                                      bool valid = formKey.currentState!.validate();
-                                                      regNumber = emailController.text;
-                                                      passWord = passwordController.text;
-                                                      showDialog(
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return const Center(
-                                                                child: CircularProgressIndicator(
-                                                                  color: Color.fromRGBO(
-                                                                      48, 145, 139, 1),
-                                                                ));
-                                                          });
-                                                      LoginModel loginResponse =
-                                                      await QnaService.logInUser(
-                                                          regNumber, passWord, 'teacher');
-                                                      Navigator.of(context).pop();
-                                                      if (loginResponse.code == 200) {
-                                                        UserDetails userDetails = UserDetails();
-                                                        userDetails.login = false;
-                                                        userDetails.email = regNumber;
-                                                        userDetails.password = passWord;
-                                                        userDetails.role = 'teacher';
-                                                        userDetails.institutionId = loginResponse.data.institutionId;
-                                                        print("USER DETAILS INSTITUTION ID");
-                                                        print(loginResponse.data.institutionId);
-                                                        print(userDetails.institutionId);
-                                                        userDetails.firstName =
-                                                            loginResponse.data.firstName;
-                                                        userDetails.lastName =
-                                                            loginResponse.data.lastName;
-                                                        userDetails.token =
-                                                            loginResponse.data.accessToken;
-                                                        userDetails.userId =
-                                                            loginResponse.data.userId;
-                                                        Provider.of<LanguageChangeProvider>(
-                                                            context, listen: false).updateUserDetails(
-                                                            userDetails);
-                                                        final SharedPreferences loginData = await SharedPreferences
-                                                            .getInstance();
-                                                        loginData.setBool('login', false);
-                                                        loginData.setString('email', regNumber);
-                                                        loginData.setInt('institutionId', loginResponse.data.institutionId);
-                                                        loginData.setString('password', passWord);
-                                                        loginData.setString('role', 'teacher');
-                                                        loginData.setString(
-                                                            'firstName',
-                                                            loginResponse.data.firstName);
-                                                        loginData.setString(
-                                                            'lastName', loginResponse.data.lastName);
-                                                        loginData.setString(
-                                                            'token', loginResponse.data.accessToken);
-                                                        loginData.setInt(
-                                                            'userId', loginResponse.data.userId);
-                                                        UserDataModel userDataModel = UserDataModel();
-                                                        userDataModel =
-                                                        await QnaService.getUserDataService(
-                                                            loginResponse.data.userId, userDetails);
-                                                        if (userDataModel.data!.role
-                                                            .contains("teacher")) {
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              '/teacherSelectionPage',
-                                                              arguments: userDataModel
-                                                          ).then((value) {
-                                                            emailController.clear();
-                                                            passwordController.clear();
-                                                          });
-                                                        }
-                                                      }
-                                                      else if (loginResponse.code ==
-                                                          400 || loginResponse.code == 401) {
-                                                        showDialogSave( context,height,width,loginResponse.code);
-                                                      }
-                                                    }
-                                                )),
-                                            SizedBox(
-                                              height: height * 0.02,
-                                            ),
-                                            SizedBox(height: height * 0.03),
-                                          ],
-                                        ),
-                                      ),
-                                    ) ),
-                                SizedBox(height: height * 0.03),
-                                Center(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          AppLocalizations.of(context)!.no_account,
-                                          //Don’t have an account?
-                                          style: TextStyle(
-                                            fontSize: height * 0.02,
-                                            color: const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(height: height * 0.02),
-                                        ElevatedButton(
-                                          style:
-                                          ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            side: const BorderSide(
-                                                width: 1, // the thickness
-                                                color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
-                                            ),
-                                            minimumSize:
-                                            const Size(189, 37),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  39),
-                                            ),
-                                          ),
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .register,
-                                              style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize:
-                                                  height *
-                                                      0.02,
-                                                  fontWeight: FontWeight
-                                                      .w400,
-                                                  color: const Color.fromRGBO(82, 165, 160, 1))),
-                                          onPressed: () async {
-                                            Navigator.pushNamed(context,
-                                                '/teacherRegistrationPage');
-                                          },
-                                        ),
-                                        SizedBox(height: height * 0.1),
-                                        Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              RichText(
-                                                  text: TextSpan(
-                                                      children: [
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(context)!.product_of,
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  48, 145, 139, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize: height *
-                                                                  0.018),
-                                                        ),
-                                                        TextSpan(
-                                                            text: AppLocalizations.of(context)!.itn_welcome,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    28, 78, 80, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w700,
-                                                                fontSize: height *
-                                                                    0.018)),
-                                                      ]))]),
-                                      ],
-                                    )),
-                              ])),
-                              // *** For Landscape View ***
-                    ):Scaffold(
                       resizeToAvoidBottomInset: false,
                       extendBodyBehindAppBar: true,
                       appBar:AppBar(
@@ -640,7 +189,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 //"Teacher Login",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.045,
+                                  fontSize: height * 0.055,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -1053,7 +602,458 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       ],
                                     )),
                               ])),
-                    );
+                    ):Scaffold(
+resizeToAvoidBottomInset: false,
+extendBodyBehindAppBar: true,
+appBar:AppBar(
+iconTheme: IconThemeData(
+color: const Color.fromRGBO(28, 78, 80, 1),
+size: height * 0.05
+),
+elevation: 0,
+backgroundColor: Colors.transparent,
+leading: IconButton(
+icon: Icon(
+Icons.chevron_left,
+size: height * 0.06,
+color: Colors.black,
+),
+onPressed: () {
+Navigator.of(context).pop();
+},
+),
+toolbarHeight: height * 0.100,
+centerTitle: true,
+title: Column(
+mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+children: [
+Text(
+AppLocalizations.of(context)!.teacher_caps,
+//"Teacher Login",
+style: TextStyle(
+color: const Color.fromRGBO(28, 78, 80, 1),
+fontSize: height * 0.025,
+fontFamily: "Inter",
+fontWeight: FontWeight.w600,
+),
+),
+]),
+flexibleSpace: Container(
+decoration: const BoxDecoration(
+color: Colors.white
+),
+),
+),
+endDrawer: const EndDrawerMenuPreLogin(),
+body:
+SingleChildScrollView(
+physics: const ClampingScrollPhysics(),
+child:
+Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+children: [
+SizedBox(height: height * 0.2),
+Padding(
+padding: const EdgeInsets.only(left: 50),
+child: Text(
+AppLocalizations.of(context)!.login_loginPage,
+style: TextStyle(
+fontSize: height * 0.02,
+color: const Color.fromRGBO(
+102, 102, 102, 1),
+fontFamily: "Inter",
+fontWeight: FontWeight.w600,
+),
+)),
+SizedBox(height: height * 0.02),
+Center(
+child:
+Container(
+decoration: BoxDecoration(
+color: Colors.white,
+borderRadius: BorderRadius.circular(10),
+boxShadow: kElevationToShadow[4],
+),
+width: width * 0.9,
+child:
+Form(
+key: formKey,
+child:
+Column(
+children: [
+Column(
+children: [
+SizedBox(height: height * 0.05),
+SizedBox(
+width: width * 0.8,
+child: TextFormField(
+keyboardType: TextInputType.text,
+controller: emailController,
+inputFormatters: [
+FilteringTextInputFormatter.deny(
+' ')
+],
+onChanged: (val) {
+formKey.currentState!.validate();
+},
+decoration: InputDecoration(
+labelStyle: Theme.of(context).textTheme.headlineMedium,
+floatingLabelBehavior:
+FloatingLabelBehavior.always,
+helperStyle: TextStyle(
+color: const Color.fromRGBO(
+102, 102, 102, 0.3),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+fontSize: height * 0.016),
+label: Text(
+AppLocalizations.of(context)!
+.regId_emailId,
+style: TextStyle(
+color: const Color.fromRGBO(
+102, 102, 102, 1),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w600,
+fontSize: height * 0.025)
+),
+hintText:
+AppLocalizations.of(context)!
+.hint_regId,
+//Enter here
+hintStyle: TextStyle(
+color: const Color.fromRGBO(
+102, 102, 102, 0.3),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+fontSize: height * 0.02),
+),
+validator: (value) {
+if (value!.isEmpty) {
+return AppLocalizations.of(
+context)!
+.email_uId_helper;
+}
+else if(RegExp(r'^[a-zA-Z0-9]+$')
+.hasMatch(value)) {
+return null;
+}
+else if(!RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+.hasMatch(value)) {
+return AppLocalizations.of(context)!
+.email_uId_helper;
+}
+else {
+return null;
+}
+},
+))
+],
+),
+SizedBox(height: height * 0.06),
+Column(
+children: [
+SizedBox(
+width: width * 0.8,
+child: TextFormField(
+controller: passwordController,
+obscureText: _isObscure,
+obscuringCharacter: "*",
+onChanged: (val) {
+formKey.currentState!.validate();
+},
+keyboardType: TextInputType.text,
+decoration: InputDecoration( floatingLabelBehavior:
+FloatingLabelBehavior.always,
+labelStyle: Theme.of(context).textTheme.headlineMedium,
+label: Text(
+AppLocalizations.of(context)!
+.password,
+style: TextStyle(
+color: const Color.fromRGBO(
+102, 102, 102, 1),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w600,
+fontSize: height * 0.025),
+),
+helperStyle:TextStyle(
+color: const Color.fromRGBO(
+102, 102, 102, 0.3),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+fontSize: width * 0.016),
+hintText:
+AppLocalizations.of(context)!
+.your_password,
+//Enter here
+hintStyle: TextStyle(
+color: const Color.fromRGBO(
+102, 102, 102, 0.3),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+fontSize: height * 0.02),
+suffixIcon:
+SizedBox(
+child: Row(
+mainAxisSize: MainAxisSize.min,
+mainAxisAlignment: MainAxisAlignment.end,
+children:[
+IconButton(
+iconSize: height * 0.028,
+icon: Icon(
+_isObscure
+? Icons.visibility
+: Icons.visibility_off,
+color:
+const Color.fromRGBO(82, 165, 160, 1),
+
+),
+onPressed: () {
+setState(() {
+_isObscure = !_isObscure;
+});
+}),
+]
+))),
+validator: (value) {
+if (value!.isEmpty ||
+value.length < 8) {
+return AppLocalizations.of(
+context)!
+.enter_pass_min;
+//"Enter password Min 8 Characters";
+} else {
+return null;
+}
+},
+))
+],
+),
+SizedBox(height: height * 0.02),
+Row(
+mainAxisAlignment: MainAxisAlignment.start,
+children: [
+SizedBox(width: width * 0.05),
+MouseRegion(
+cursor: SystemMouseCursors.click,
+child: GestureDetector(
+onTap: () {
+Navigator.pushNamed(
+context,
+'/forgotPasswordEmail',
+arguments: true
+);
+},
+child: Text(
+AppLocalizations.of(context)!
+.forgot_password,
+style: TextStyle(
+color: const Color.fromRGBO(
+48, 145, 139, 1),
+fontFamily: 'Inter',
+fontWeight: FontWeight.w400,
+fontStyle: FontStyle.italic,
+fontSize:
+height * 0.018)),
+)),
+],
+),
+SizedBox(height: height * 0.03),
+Center(
+child: ElevatedButton(
+style:
+ElevatedButton.styleFrom(
+backgroundColor: Color.fromRGBO(82, 165, 160, 1),
+side: const BorderSide(
+width: 1, // the thickness
+color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+),
+minimumSize:
+const Size(189, 37),
+shape: RoundedRectangleBorder(
+borderRadius:
+BorderRadius.circular(
+39),
+),
+),
+child: Text(
+"Login",
+style: TextStyle(
+fontFamily: 'Inter',
+fontSize:
+height *
+0.02,
+fontWeight: FontWeight
+.w400,
+color: Colors.white)),
+onPressed: () async {
+bool valid = formKey.currentState!.validate();
+regNumber = emailController.text;
+passWord = passwordController.text;
+showDialog(
+context: context,
+builder: (context) {
+return const Center(
+child: CircularProgressIndicator(
+color: Color.fromRGBO(
+48, 145, 139, 1),
+));
+});
+LoginModel loginResponse =
+await QnaService.logInUser(
+regNumber, passWord, 'teacher');
+Navigator.of(context).pop();
+if (loginResponse.code == 200) {
+UserDetails userDetails = UserDetails();
+userDetails.login = false;
+userDetails.email = regNumber;
+userDetails.password = passWord;
+userDetails.role = 'teacher';
+userDetails.institutionId = loginResponse.data.institutionId;
+print("USER DETAILS INSTITUTION ID");
+print(loginResponse.data.institutionId);
+print(userDetails.institutionId);
+userDetails.firstName =
+loginResponse.data.firstName;
+userDetails.lastName =
+loginResponse.data.lastName;
+userDetails.token =
+loginResponse.data.accessToken;
+userDetails.userId =
+loginResponse.data.userId;
+Provider.of<LanguageChangeProvider>(
+context, listen: false).updateUserDetails(
+userDetails);
+final SharedPreferences loginData = await SharedPreferences
+.getInstance();
+loginData.setBool('login', false);
+loginData.setString('email', regNumber);
+loginData.setInt('institutionId', loginResponse.data.institutionId);
+loginData.setString('password', passWord);
+loginData.setString('role', 'teacher');
+loginData.setString(
+'firstName',
+loginResponse.data.firstName);
+loginData.setString(
+'lastName', loginResponse.data.lastName);
+loginData.setString(
+'token', loginResponse.data.accessToken);
+loginData.setInt(
+'userId', loginResponse.data.userId);
+UserDataModel userDataModel = UserDataModel();
+userDataModel =
+await QnaService.getUserDataService(
+loginResponse.data.userId, userDetails);
+if (userDataModel.data!.role
+.contains("teacher")) {
+Navigator.pushNamed(
+context,
+'/teacherSelectionPage',
+arguments: userDataModel
+).then((value) {
+emailController.clear();
+passwordController.clear();
+});
+}
+}
+else if (loginResponse.code ==
+400 || loginResponse.code == 401) {
+showDialogSave( context,height,width,loginResponse.code);
+}
+}
+)),
+SizedBox(
+height: height * 0.02,
+),
+SizedBox(height: height * 0.03),
+],
+),
+),
+) ),
+SizedBox(height: height * 0.03),
+Center(
+child: Column(
+children: [
+Text(
+AppLocalizations.of(context)!.no_account,
+//Don’t have an account?
+style: TextStyle(
+fontSize: height * 0.02,
+color: const Color.fromRGBO(
+102, 102, 102, 1),
+fontFamily: "Inter",
+fontWeight: FontWeight.w600,
+),
+),
+SizedBox(height: height * 0.02),
+ElevatedButton(
+style:
+ElevatedButton.styleFrom(
+backgroundColor: Colors.white,
+side: const BorderSide(
+width: 1, // the thickness
+color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+),
+minimumSize:
+const Size(189, 37),
+shape: RoundedRectangleBorder(
+borderRadius:
+BorderRadius.circular(
+39),
+),
+),
+child: Text(
+AppLocalizations.of(context)!
+.register,
+style: TextStyle(
+fontFamily: 'Inter',
+fontSize:
+height *
+0.02,
+fontWeight: FontWeight
+.w400,
+color: const Color.fromRGBO(82, 165, 160, 1))),
+onPressed: () async {
+Navigator.pushNamed(context,
+'/teacherRegistrationPage');
+},
+),
+SizedBox(height: height * 0.1),
+Row(
+mainAxisAlignment: MainAxisAlignment.center,
+children: [
+RichText(
+text: TextSpan(
+children: [
+TextSpan(
+text: AppLocalizations.of(context)!.product_of,
+style: TextStyle(
+color: const Color
+.fromRGBO(
+48, 145, 139, 1),
+fontFamily: 'Inter',
+fontWeight: FontWeight
+.w400,
+fontSize: height *
+0.018),
+),
+TextSpan(
+text: AppLocalizations.of(context)!.itn_welcome,
+style: TextStyle(
+color: const Color
+.fromRGBO(
+28, 78, 80, 1),
+fontFamily: 'Inter',
+fontWeight: FontWeight
+.w700,
+fontSize: height *
+0.018)),
+]))]),
+],
+)),
+])),
+// *** For Landscape View ***
+)
+;
                   }
                 ));
           }

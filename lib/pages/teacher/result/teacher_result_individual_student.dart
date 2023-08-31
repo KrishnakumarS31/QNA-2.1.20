@@ -402,20 +402,20 @@ class TeacherResultIndividualStudentState
                                                   }),
                                             ],
                                           ),
-                                          // Row(
-                                          //   mainAxisAlignment: MainAxisAlignment.start,
-                                          //   children: [
-                                          //     Text(
-                                          //       "${widget.results!.assessmentResults![widget.index].rollNumber}",
-                                          //       style: TextStyle(
-                                          //           color: const Color.fromRGBO(
-                                          //               102, 102, 102, 1),
-                                          //           fontSize: height * 0.015,
-                                          //           fontFamily: "Inter",
-                                          //           fontWeight: FontWeight.w400),
-                                          //     ),
-                                          //   ],
-                                          // ),
+                                           Row(
+                                             mainAxisAlignment: MainAxisAlignment.start,
+                                             children: [
+                                               Text(
+                                                 "${widget.results!.assessmentResults![widget.index].rollNumber}",
+                                                 style: TextStyle(
+                                                     color: const Color.fromRGBO(
+                                                         102, 102, 102, 1),
+                                                     fontSize: height * 0.015,
+                                                     fontFamily: "Inter",
+                                                     fontWeight: FontWeight.w400),
+                                               ),
+                                             ],
+                                           ),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
@@ -430,20 +430,20 @@ class TeacherResultIndividualStudentState
                                               ),
                                             ],
                                           ),
-                                          // Row(
-                                          //   mainAxisAlignment: MainAxisAlignment.start,
-                                          //   children: [
-                                          //     Text(
-                                          //       "${widget.results!.assessmentResults![widget.index].organizationName}",
-                                          //       style: TextStyle(
-                                          //           color: const Color.fromRGBO(
-                                          //               102, 102, 102, 1),
-                                          //           fontSize: height * 0.015,
-                                          //           fontFamily: "Inter",
-                                          //           fontWeight: FontWeight.w400),
-                                          //     ),
-                                          //   ],
-                                          // ),
+                                           Row(
+                                             mainAxisAlignment: MainAxisAlignment.start,
+                                             children: [
+                                               Text(
+                                                 "${widget.results!.assessmentResults![widget.index].organizationName}",
+                                                 style: TextStyle(
+                                                     color: const Color.fromRGBO(
+                                                         102, 102, 102, 1),
+                                                     fontSize: height * 0.015,
+                                                     fontFamily: "Inter",
+                                                     fontWeight: FontWeight.w400),
+                                               ),
+                                             ],
+                                           ),
                                           const Divider(thickness: 2),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.start,
@@ -648,48 +648,48 @@ class TeacherResultIndividualStudentState
                                         }),
                                   ],
                                 ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.start,
-                                //   children: [
-                                //     Text(
-                                //       "${widget.results!.assessmentResults![widget.index].rollNumber}",
-                                //       style: TextStyle(
-                                //           color: const Color.fromRGBO(
-                                //               102, 102, 102, 1),
-                                //           fontSize: height * 0.015,
-                                //           fontFamily: "Inter",
-                                //           fontWeight: FontWeight.w400),
-                                //     ),
-                                //   ],
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.start,
-                                //   children: [
-                                //     Text(
-                                //       "${widget.result.degree}",
-                                //       style: TextStyle(
-                                //           color: const Color.fromRGBO(
-                                //               102, 102, 102, 1),
-                                //           fontSize: height * 0.015,
-                                //           fontFamily: "Inter",
-                                //           fontWeight: FontWeight.w400),
-                                //     ),
-                                //   ],
-                                // ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.start,
-                                //   children: [
-                                //     Text(
-                                //       "${widget.results!.assessmentResults![widget.index].organizationName}",
-                                //       style: TextStyle(
-                                //           color: const Color.fromRGBO(
-                                //               102, 102, 102, 1),
-                                //           fontSize: height * 0.015,
-                                //           fontFamily: "Inter",
-                                //           fontWeight: FontWeight.w400),
-                                //     ),
-                                //   ],
-                                // ),
+                                 Row(
+                                   mainAxisAlignment: MainAxisAlignment.start,
+                                   children: [
+                                     Text(
+                                       "${widget.results!.assessmentResults![widget.index].rollNumber}",
+                                       style: TextStyle(
+                                           color: const Color.fromRGBO(
+                                               102, 102, 102, 1),
+                                           fontSize: height * 0.015,
+                                           fontFamily: "Inter",
+                                           fontWeight: FontWeight.w400),
+                                     ),
+                                   ],
+                                 ),
+                                 Row(
+                                   mainAxisAlignment: MainAxisAlignment.start,
+                                   children: [
+                                     Text(
+                                       "${widget.result.degree}",
+                                       style: TextStyle(
+                                           color: const Color.fromRGBO(
+                                               102, 102, 102, 1),
+                                           fontSize: height * 0.015,
+                                           fontFamily: "Inter",
+                                           fontWeight: FontWeight.w400),
+                                     ),
+                                   ],
+                                 ),
+                                 Row(
+                                   mainAxisAlignment: MainAxisAlignment.start,
+                                   children: [
+                                     Text(
+                                       "${widget.results!.assessmentResults![widget.index].organizationName}",
+                                       style: TextStyle(
+                                           color: const Color.fromRGBO(
+                                               102, 102, 102, 1),
+                                           fontSize: height * 0.015,
+                                           fontFamily: "Inter",
+                                           fontWeight: FontWeight.w400),
+                                     ),
+                                   ],
+                                 ),
                                 const Divider(thickness: 2),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,

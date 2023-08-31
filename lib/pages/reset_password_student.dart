@@ -25,7 +25,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   TextEditingController reNewPassword = TextEditingController();
   late String password;
   UserDetails userDetails=UserDetails();
-
+  bool passObscure = true;
+  bool confirmPassObscure = true;
   @override
   void initState() {
     super.initState();
@@ -113,6 +114,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                               child: TextFormField(
                                                 controller: oldPassword,
                                                 keyboardType: TextInputType.text,
+                                                obscureText: passObscure,
+                                                obscuringCharacter: "*",
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
                                                 },
@@ -120,6 +123,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                  suffixIcon: SizedBox(
+                                                      child: Row(
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children:[
+                                                            IconButton(
+                                                                iconSize: height * 0.028,
+                                                                icon: Icon(
+                                                                  passObscure
+                                                                      ? Icons.visibility
+                                                                      : Icons.visibility_off,
+                                                                  color:
+                                                                  const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                ),
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    passObscure = !passObscure;
+                                                                  });
+                                                                }),
+                                                          ]
+                                                      )),
                                                   label: Text(AppLocalizations.of(
                                                       context)!
                                                       .old_password,
@@ -128,7 +154,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.02),
 
                                                   ),
                                                   hintText:
@@ -164,6 +190,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                               child: TextFormField(
                                                 controller: newPassword,
                                                 keyboardType: TextInputType.text,
+                                                obscureText: passObscure,
+                                                obscuringCharacter: "*",
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
                                                 },
@@ -171,6 +199,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                  suffixIcon: SizedBox(
+                                                      child: Row(
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children:[
+                                                            IconButton(
+                                                                iconSize: height * 0.028,
+                                                                icon: Icon(
+                                                                  passObscure
+                                                                      ? Icons.visibility
+                                                                      : Icons.visibility_off,
+                                                                  color:
+                                                                  const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                ),
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    passObscure = !passObscure;
+                                                                  });
+                                                                }),
+                                                          ]
+                                                      )),
                                                   label: Text(AppLocalizations.of(
                                                       context)!
                                                       .new_password,
@@ -179,7 +230,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.02),
                                                   ),
                                                   hintText: AppLocalizations.of(context)!
                                                       .enter_here,
@@ -209,6 +260,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                               child: TextFormField(
                                                 controller: reNewPassword,
                                                 keyboardType: TextInputType.text,
+                                                obscureText: passObscure,
+                                                obscuringCharacter: "*",
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
                                                 },
@@ -216,6 +269,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
                                                   labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                  suffixIcon: SizedBox(
+                                                      child: Row(
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children:[
+                                                            IconButton(
+                                                                iconSize: height * 0.028,
+                                                                icon: Icon(
+                                                                  passObscure
+                                                                      ? Icons.visibility
+                                                                      : Icons.visibility_off,
+                                                                  color:
+                                                                  const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                ),
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    passObscure = !passObscure;
+                                                                  });
+                                                                }),
+                                                          ]
+                                                      )),
                                                   label: Text(AppLocalizations.of(
                                                       context)!
                                                       .confirm_new_password,
@@ -224,7 +300,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.02),
                                                   ),
                                                   hintText: AppLocalizations.of(context)!
                                                       .enter_here,
@@ -354,6 +430,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         child: TextFormField(
                                                           controller: oldPassword,
                                                           keyboardType: TextInputType.text,
+                                                          obscureText: passObscure,
+                                                          obscuringCharacter: "*",
                                                           onChanged: (val) {
                                                             formKey.currentState!.validate();
                                                           },
@@ -361,6 +439,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                            suffixIcon: SizedBox(
+                                                                child: Row(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children:[
+                                                                      IconButton(
+                                                                          iconSize: height * 0.028,
+                                                                          icon: Icon(
+                                                                            passObscure
+                                                                                ? Icons.visibility
+                                                                                : Icons.visibility_off,
+                                                                            color:
+                                                                            const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                          ),
+                                                                          onPressed: () {
+                                                                            setState(() {
+                                                                              passObscure = !passObscure;
+                                                                            });
+                                                                          }),
+                                                                    ]
+                                                                )),
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .old_password,
@@ -369,7 +470,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                       102, 102, 102, 1),
                                                                   fontFamily: 'Inter',
                                                                   fontWeight: FontWeight.w600,
-                                                                  fontSize: height * 0.017),
+                                                                  fontSize: height * 0.02),
 
                                                             ),
                                                             hintText:
@@ -405,6 +506,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         child: TextFormField(
                                                           controller: newPassword,
                                                           keyboardType: TextInputType.text,
+                                                          obscureText: passObscure,
+                                                          obscuringCharacter: "*",
                                                           onChanged: (val) {
                                                             formKey.currentState!.validate();
                                                           },
@@ -412,6 +515,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                            suffixIcon: SizedBox(
+                                                                child: Row(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children:[
+                                                                      IconButton(
+                                                                          iconSize: height * 0.028,
+                                                                          icon: Icon(
+                                                                            passObscure
+                                                                                ? Icons.visibility
+                                                                                : Icons.visibility_off,
+                                                                            color:
+                                                                            const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                          ),
+                                                                          onPressed: () {
+                                                                            setState(() {
+                                                                              passObscure = !passObscure;
+                                                                            });
+                                                                          }),
+                                                                    ]
+                                                                )),
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .new_password,
@@ -420,7 +546,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                       102, 102, 102, 1),
                                                                   fontFamily: 'Inter',
                                                                   fontWeight: FontWeight.w600,
-                                                                  fontSize: height * 0.017),
+                                                                  fontSize: height * 0.02),
                                                             ),
                                                             hintText: AppLocalizations.of(context)!
                                                                 .enter_here,
@@ -450,6 +576,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         child: TextFormField(
                                                           controller: reNewPassword,
                                                           keyboardType: TextInputType.text,
+                                                          obscureText: passObscure,
+                                                          obscuringCharacter: "*",
                                                           onChanged: (val) {
                                                             formKey.currentState!.validate();
                                                           },
@@ -457,6 +585,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                                            suffixIcon: SizedBox(
+                                                                child: Row(
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                                    children:[
+                                                                      IconButton(
+                                                                          iconSize: height * 0.028,
+                                                                          icon: Icon(
+                                                                            passObscure
+                                                                                ? Icons.visibility
+                                                                                : Icons.visibility_off,
+                                                                            color:
+                                                                            const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                                          ),
+                                                                          onPressed: () {
+                                                                            setState(() {
+                                                                              passObscure = !passObscure;
+                                                                            });
+                                                                          }),
+                                                                    ]
+                                                                )),
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .confirm_new_password,
@@ -465,7 +616,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                       102, 102, 102, 1),
                                                                   fontFamily: 'Inter',
                                                                   fontWeight: FontWeight.w600,
-                                                                  fontSize: height * 0.017),
+                                                                  fontSize: height * 0.02),
                                                             ),
                                                             hintText: AppLocalizations.of(context)!
                                                                 .enter_here,
@@ -593,6 +744,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     child: TextFormField(
                                       controller: oldPassword,
                                       keyboardType: TextInputType.text,
+                                      obscureText: passObscure,
+                                      obscuringCharacter: "*",
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
                                       },
@@ -600,6 +753,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                         labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                        suffixIcon: SizedBox(
+                                            child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                children:[
+                                                  IconButton(
+                                                      iconSize: height * 0.028,
+                                                      icon: Icon(
+                                                        confirmPassObscure
+                                                            ? Icons.visibility
+                                                            : Icons.visibility_off,
+                                                        color:
+                                                        const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          confirmPassObscure = !confirmPassObscure;
+                                                        });
+                                                      }),
+                                                ]
+                                            )),
                                         label: Text(AppLocalizations.of(
                                                     context)!
                                                     .old_password,
@@ -608,7 +784,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: height * 0.017),
+                                                    fontSize: height * 0.02),
 
                                             ),
                                         hintText:
@@ -644,6 +820,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     child: TextFormField(
                                       controller: newPassword,
                                       keyboardType: TextInputType.text,
+                                      obscureText: passObscure,
+                                      obscuringCharacter: "*",
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
                                       },
@@ -651,6 +829,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                         labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                        suffixIcon: SizedBox(
+                                            child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                children:[
+                                                  IconButton(
+                                                      iconSize: height * 0.028,
+                                                      icon: Icon(
+                                                        confirmPassObscure
+                                                            ? Icons.visibility
+                                                            : Icons.visibility_off,
+                                                        color:
+                                                        const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          confirmPassObscure = !confirmPassObscure;
+                                                        });
+                                                      }),
+                                                ]
+                                            )),
                                         label: Text(AppLocalizations.of(
                                                     context)!
                                                     .new_password,
@@ -659,7 +860,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: height * 0.017),
+                                                    fontSize: height * 0.02),
                                               ),
                                         hintText: AppLocalizations.of(context)!
                                             .enter_here,
@@ -689,6 +890,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     child: TextFormField(
                                       controller: reNewPassword,
                                       keyboardType: TextInputType.text,
+                                      obscureText: passObscure,
+                                      obscuringCharacter: "*",
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
                                       },
@@ -696,6 +899,29 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                         floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                         labelStyle: Theme.of(context).textTheme.headlineSmall,
+                                        suffixIcon: SizedBox(
+                                            child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                children:[
+                                                  IconButton(
+                                                      iconSize: height * 0.028,
+                                                      icon: Icon(
+                                                        confirmPassObscure
+                                                            ? Icons.visibility
+                                                            : Icons.visibility_off,
+                                                        color:
+                                                        const Color.fromRGBO(82, 165, 160, 1),
+
+
+                                                      ),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          confirmPassObscure = !confirmPassObscure;
+                                                        });
+                                                      }),
+                                                ]
+                                            )),
                                         label: Text(AppLocalizations.of(
                                                     context)!
                                                     .confirm_new_password,

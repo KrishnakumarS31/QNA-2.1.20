@@ -23,6 +23,8 @@ class TeacherRegistrationPage extends StatefulWidget {
 
 class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   final formKey = GlobalKey<FormState>();
+  final GlobalKey<FormFieldState> _key = GlobalKey<FormFieldState>();
+
   TextEditingController teacherFirstNameController = TextEditingController();
   TextEditingController teacherLastNameController = TextEditingController();
   TextEditingController teacherEmailController = TextEditingController();
@@ -444,6 +446,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     child: TextFormField(
                                                       controller: teacherRollNumberController,
                                                       keyboardType: TextInputType.text,
+                                                      maxLength: 8,
                                                       inputFormatters: [
                                                         FilteringTextInputFormatter
                                                             .allow(
@@ -496,9 +499,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                         else if (value.startsWith("0")) {
                                                           firstTimecalled ?"" : _somefun(value);
                                                         }
-                                                        else if (value.length < 8) {
-                                                          return " ${8- value.length} more characters needed to verify";
-                                                        }
+                                                        // else if (value.length < 8) {
+                                                        //   return " ${8- value.length} more characters needed to verify";
+                                                        // }
                                                         else if (value.length == 8) {
                                                           firstTimecalled ?"" : _somefun(value);
 
@@ -560,6 +563,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               //         },
                                               //       ),
                                               //     )),
+                                              SizedBox(height: localHeight * 0.02),
                                               Padding(
                                                   padding: EdgeInsets.only(
                                                       left: 30, right: 30),
@@ -585,10 +589,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                         ),
                                                       ])
                                               ),
-                                              Center(
-                                                child:
                                                 SizedBox(
-                                                  width: localWidth * 0.65,
+                                                  width: localWidth * 0.8,
                                                   // child:valueForDrop == false ?
                                                   // TextFormField(
                                                   //   controller: studentOrganisationNameController,
@@ -640,11 +642,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     hint: Text('Select an option'),
                                                   ),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                height: localHeight * 0.01,
-                                              ),
-
+                                              SizedBox(height: localHeight * 0.01),
                                               Center(
                                                 child:
                                                 SizedBox(
@@ -1598,6 +1596,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   child: TextFormField(
                                                     controller: teacherRollNumberController,
                                                     keyboardType: TextInputType.text,
+                                                    maxLength: 8,
                                                     inputFormatters: [
                                                       FilteringTextInputFormatter
                                                           .allow(
@@ -1650,9 +1649,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       else if (value.startsWith("0")) {
                                                         firstTimecalled ?"" : _somefun(value);
                                                       }
-                                                      else if (value.length < 8) {
-                                                        return " ${8- value.length} more characters needed to verify";
-                                                      }
+                                                      // else if (value.length < 8) {
+                                                      //   return " ${8- value.length} more characters needed to verify";
+                                                      // }
                                                       else if (value.length == 8) {
                                                         firstTimecalled ?"" : _somefun(value);
 
@@ -2744,6 +2743,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 child: TextFormField(
                                                   controller: teacherRollNumberController,
                                                   keyboardType: TextInputType.text,
+                                                  maxLength: 8,
                                                   inputFormatters: [
                                                     FilteringTextInputFormatter
                                                         .allow(
@@ -2796,9 +2796,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                     else if (value.startsWith("0")) {
                                                       firstTimecalled ?"" : _somefun(value);
                                                     }
-                                                    else if (value.length < 8) {
-                                                      return " ${8- value.length} more characters needed to verify";
-                                                    }
+                                                    // else if (value.length < 8) {
+                                                    //   return " ${8- value.length} more characters needed to verify";
+                                                    // }
                                                     else if (value.length == 8) {
                                                       firstTimecalled ?"" : _somefun(value);
 
