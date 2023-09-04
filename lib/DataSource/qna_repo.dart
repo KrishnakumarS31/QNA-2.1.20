@@ -543,11 +543,12 @@ class QnaRepo {
   static Future<ResponseEntity> getSearchAssessment(
       int pageLimit, int pageNumber, String searchVal,UserDetails userDetails) async {
     ResponseEntity allAssessment = ResponseEntity();
+    print("INSIDE USER DERTAILS USERid");
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     bool isNumeric = (num.tryParse(searchVal) != null);
 
-    String url = isNumeric ?'$assessmentLooqUrl?page_limit=${10}&page_number=${1}&assessment_code=$searchVal' :'$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal';
+    String url = isNumeric ?'$assessmentLooqUrl?page_limit=${10}&page_number=${1}&assessment_code=$searchVal' :'$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal&user_id=${userDetails.userId}';
     var request = http.Request(
         'GET',
         Uri.parse(

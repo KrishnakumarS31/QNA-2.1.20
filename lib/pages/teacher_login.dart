@@ -146,6 +146,85 @@ class TeacherLoginState extends State<TeacherLogin> {
     );
   }
 
+  forgotPasswordPopup(BuildContext context, double height,double width) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.ok_caps,
+        //'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            "Alert",
+            //'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        "Please contact Admin for password",
+        //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+        //code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            cancelButton,
+            const SizedBox(height:10.0),
+          ],
+        ),
+
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -388,11 +467,19 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                     cursor: SystemMouseCursors.click,
                                                     child: GestureDetector(
                                                       onTap: () {
-                                                        Navigator.pushNamed(
-                                                            context,
-                                                            '/forgotPasswordEmail',
-                                                            arguments: true
-                                                        );
+                                                        final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
+                                                        final regex = RegExp(emailPattern);
+                                                        if(regex.hasMatch(emailController.text)) {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/forgotPasswordEmail',
+                                                              arguments: true
+                                                          );
+                                                        }
+                                                        else if(emailController.text.isNotEmpty){
+                                                          forgotPasswordPopup(context, height,width);
+
+                                                        }
                                                       },
                                                       child: Text(
                                                           AppLocalizations.of(context)!
@@ -564,8 +651,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                       .w400,
                                                   color: const Color.fromRGBO(82, 165, 160, 1))),
                                           onPressed: () async {
-                                            Navigator.pushNamed(context,
-                                                '/teacherRegistrationPage');
+                                            Navigator.pushNamed(context, '/organisationIdEnterPage',arguments: false);
                                           },
                                         ),
                                         SizedBox(height: height * 0.1),
@@ -602,7 +688,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       ],
                                     )),
                               ])),
-                    ):Scaffold(
+                    )
+                        :
+                    Scaffold(
 resizeToAvoidBottomInset: false,
 extendBodyBehindAppBar: true,
 appBar:AppBar(
@@ -837,11 +925,19 @@ MouseRegion(
 cursor: SystemMouseCursors.click,
 child: GestureDetector(
 onTap: () {
-Navigator.pushNamed(
-context,
-'/forgotPasswordEmail',
-arguments: true
-);
+  final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
+  final regex = RegExp(emailPattern);
+  if(regex.hasMatch(emailController.text)) {
+    Navigator.pushNamed(
+        context,
+        '/forgotPasswordEmail',
+        arguments: true
+    );
+  }
+  else if(emailController.text.isNotEmpty){
+    forgotPasswordPopup(context, height,width);
+
+  }
 },
 child: Text(
 AppLocalizations.of(context)!
@@ -1013,8 +1109,7 @@ fontWeight: FontWeight
 .w400,
 color: const Color.fromRGBO(82, 165, 160, 1))),
 onPressed: () async {
-Navigator.pushNamed(context,
-'/teacherRegistrationPage');
+  Navigator.pushNamed(context, '/organisationIdEnterPage',arguments: false);
 },
 ),
 SizedBox(height: height * 0.1),
@@ -1294,11 +1389,19 @@ fontSize: height *
                                                   cursor: SystemMouseCursors.click,
                                                   child: GestureDetector(
                                                     onTap: () {
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          '/forgotPasswordEmail',
-                                                          arguments: true
-                                                      );
+                                                      final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
+                                                      final regex = RegExp(emailPattern);
+                                                      if(regex.hasMatch(emailController.text)) {
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            '/forgotPasswordEmail',
+                                                            arguments: true
+                                                        );
+                                                      }
+                                                      else if(emailController.text.isNotEmpty){
+                                                        forgotPasswordPopup(context, height,width);
+
+                                                      }
                                                     },
                                                     child: Text(
                                                         AppLocalizations.of(context)!
@@ -1466,8 +1569,7 @@ fontSize: height *
                                                       .w400,
                                                   color: const Color.fromRGBO(82, 165, 160, 1))),
                                           onPressed: () async {
-                                            Navigator.pushNamed(context,
-                                                '/teacherRegistrationPage');
+                                            Navigator.pushNamed(context, '/organisationIdEnterPage',arguments: false);
                                           },
                                         ),
                                         SizedBox(height: height * 0.1),
@@ -1743,11 +1845,19 @@ fontSize: height *
                                                 cursor: SystemMouseCursors.click,
                                                 child: GestureDetector(
                                                   onTap: () {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/forgotPasswordEmail',
-                                                        arguments: true
-                                                    );
+                                                    final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
+                                                    final regex = RegExp(emailPattern);
+                                                    if(regex.hasMatch(emailController.text)) {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          '/forgotPasswordEmail',
+                                                          arguments: true
+                                                      );
+                                                    }
+                                                    else if(emailController.text.isNotEmpty){
+                                                      forgotPasswordPopup(context, height,width);
+
+                                                    }
                                                   },
                                                   child: Text(
                                                       AppLocalizations.of(context)!
@@ -1922,8 +2032,7 @@ fontSize: height *
                                                   .w400,
                                               color: const Color.fromRGBO(82, 165, 160, 1))),
                                       onPressed: () async {
-                                        Navigator.pushNamed(context,
-                                            '/teacherRegistrationPage');
+                                        Navigator.pushNamed(context, '/organisationIdEnterPage',arguments: false);
                                       },
                                     ),
                                     SizedBox(height: height * 0.1),

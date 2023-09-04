@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as questions;
 import 'package:qna_test/EntityModel/user_data_model.dart';
+import 'package:qna_test/pages/organization_id_enter_page.dart';
 import 'package:qna_test/pages/welcome_page.dart';
 import 'package:qna_test/pages/about_us.dart';
 import 'package:qna_test/pages/change_email_student.dart';
@@ -108,7 +109,11 @@ class MyRoutes{
       }
 
       case '/teacherRegistrationPage':
-        return SlideRightRoute(widget: const TeacherRegistrationPage(),settings: settings);
+        {
+          final arguments = settings.arguments as List<dynamic>;
+          return SlideRightRoute(
+              widget: TeacherRegistrationPage(organisationId:arguments[0],institutionName:arguments[1],institutionId:arguments[2]), settings: settings);
+        }
 
 
 
@@ -231,7 +236,18 @@ class MyRoutes{
       }
 
       case '/studentRegistrationPage':
-        return SlideRightRoute(widget: const StudentRegistrationPage(),settings: settings);
+        {
+          final arguments = settings.arguments as List<dynamic>;
+          return SlideRightRoute(
+              widget: StudentRegistrationPage(organisationId:arguments[0],institutionName:arguments[1],institutionId:arguments[2]), settings: settings);
+        }
+
+      case '/organisationIdEnterPage':
+        {
+          final isFromStudent = settings.arguments as bool;
+          return SlideRightRoute(
+              widget: OrganisationIdEnterPage(isFromStudent:isFromStudent), settings: settings);
+        }
 
       // case '/studentRegistrationUpdatePage':{
       //   final arguments = settings.arguments as List<dynamic>;

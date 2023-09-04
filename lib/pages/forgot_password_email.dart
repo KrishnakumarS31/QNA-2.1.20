@@ -112,7 +112,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               .headlineMedium,
                                           label: Text(
                                             AppLocalizations.of(context)!
-                                                .regId_emailId,
+                                                .email_id,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
@@ -131,7 +131,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.016),
                                           suffixIconColor:
-                                              Color.fromRGBO(82, 165, 160, 1),
+                                              const Color.fromRGBO(82, 165, 160, 1),
                                           suffixIcon: IconButton(
                                             iconSize: height * 0.05,
                                             icon: const Icon(
@@ -297,7 +297,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                               .headlineMedium,
                                           label: Text(
                                             AppLocalizations.of(context)!
-                                                .regId_emailId,
+                                                .email_id,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
@@ -491,7 +491,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   label: Text(
                                                     AppLocalizations.of(
                                                             context)!
-                                                        .regId_emailId,
+                                                        .email_id,
                                                     style: TextStyle(
                                                         color: const Color
                                                                 .fromRGBO(
