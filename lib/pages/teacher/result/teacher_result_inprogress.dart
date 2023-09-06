@@ -101,9 +101,9 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                     child:  WillPopScope(
                         onWillPop: () async => false,
                         child: Scaffold(
-                            endDrawer: const EndDrawerMenuTeacher(),
                             resizeToAvoidBottomInset: false,
                             backgroundColor: Colors.white,
+                            endDrawer: const EndDrawerMenuTeacher(),
                             appBar: AppBar(
                               iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: height * 0.05),
                               leading: IconButton(
@@ -136,21 +136,19 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                             ),
                             body: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
-                              physics: const ClampingScrollPhysics(),
                               child: Padding(
-                                padding: EdgeInsets.only(bottom: height * 0.005, left: height * 0.5,right: height * 0.5),
+                                padding: EdgeInsets.only(bottom: height * 0.005, left: width * 0.2,right: width * 0.2),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(top:8.0,bottom:8.0),
-                                        // child: CustomCard(
-                                        //   height: height,
-                                        //   width: width,
-                                        //   //subject: results[index].subject,
-                                        //   result: widget.result,
-                                        //   isShowTotal: true,
-                                        // ),
+                                        child: CustomCard(
+                                          height: height,
+                                          width: width,
+                                          result: widget.result,
+                                          isShowTotal: true,
+                                        ),
                                       ),
                                       SizedBox(
                                         height: height * 0.018,
@@ -166,7 +164,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                   borderRadius: const BorderRadius.all(
                                                       Radius.circular(5)
                                                   )),
-                                              // height: height * 0.31,
                                               child:Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -202,7 +199,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                 ),
                                                 borderRadius: const BorderRadius.all(
                                                     Radius.circular(5))),
-                                            // height: height * 0.7812,
                                             child: Column(
                                               children: [
                                                 Container(
@@ -248,7 +244,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         AppLocalizations.of(context)!.time_limit,
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w600),
                                                       ),
@@ -259,7 +254,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                             : "0",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w400),
                                                       ),
@@ -274,7 +268,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         AppLocalizations.of(context)!.start_date_time,
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w600),
                                                       ),
@@ -286,7 +279,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                             : " ",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w400),
                                                       ),
@@ -301,7 +293,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         AppLocalizations.of(context)!.end_date_time,
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w600),
                                                       ),
@@ -313,7 +304,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                             : " ",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w400),
                                                       ),
@@ -329,11 +319,11 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         "${AppLocalizations.of(context)!.category}: ",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w600),
                                                       ),
                                                       Text(
+
                                                         " ${toBeginningOfSentenceCase(widget.result.assessmentType)}",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
@@ -352,7 +342,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         AppLocalizations.of(context)!.number_of_attempts,
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w600),
                                                       ),
@@ -360,7 +349,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                         widget.result.totalAttempts != null ? "${widget.result.totalAttempts} " : "0",
                                                         style: const TextStyle(
                                                             color: Color.fromRGBO(102, 102, 102, 1),
-                                                            // fontSize: widget.height * 0.013,
                                                             fontFamily: "Inter",
                                                             fontWeight: FontWeight.w400),
                                                       ),
@@ -504,13 +492,14 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                                 //             fontFamily: "Inter",
                                                 //             fontWeight: FontWeight.w600),
                                                 //       ),
-                                                //       Text(
-                                                //         "widget.result.url" ?? "" ,
-                                                //         style: const TextStyle(
-                                                //             color: Color.fromRGBO(102, 102, 102, 1),
-                                                //             // fontSize: widget.height * 0.013,
-                                                //             fontFamily: "Inter",
-                                                //             fontWeight: FontWeight.w400),
+                                                //       const Text(
+                                                //         "",
+                                                //         // widget.result.url ?? "" ,
+                                                //         // style: const TextStyle(
+                                                //         //     color: Color.fromRGBO(102, 102, 102, 1),
+                                                //         //     // fontSize: widget.height * 0.013,
+                                                //         //     fontFamily: "Inter",
+                                                //         //     fontWeight: FontWeight.w400),
                                                 //       ),
                                                 //     ],
                                                 //   ),
@@ -525,34 +514,22 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            AppLocalizations.of(context)!
-                                                .in_progress_participants,
-                                            //'Total Participants List(0)',
-                                            style: TextStyle(
-                                                fontSize: height * 0.0187,
-                                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 8.0,right :8),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            AppLocalizations.of(context)!
-                                                .tap_to_student_details,
-                                            //'Tap on respective student for details',
-                                            style: TextStyle(
-                                                fontSize: height * 0.015,
-                                                color: const Color.fromRGBO(148, 148, 148, 1),
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w400),
-                                          ),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                "Not Completed Participants List",
+                                                //'Total Participants List (${widget.submittedArray!.length})',
+                                                style: TextStyle(
+                                                    fontSize: height * 0.0187,
+                                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w700),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                       SizedBox(
@@ -563,26 +540,13 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                           children: [
                                             MouseRegion(
                                                 cursor: SystemMouseCursors.click,
-                                                child: GestureDetector(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .rightToLeft,
-                                                        child: TeacherResultIndividualStudent(
-                                                            result: widget.result,
-                                                            results: results,
-                                                            index: index,
-                                                            status: "in_progress"),
-                                                      ),
-                                                    );
-                                                  },
-                                                  // child: ResultInProgressCard(
-                                                  //     height: height,
-                                                  //     width: width,
-                                                  //     results: allResults,
-                                                  //     index: index),
+                                                child: ResultInProgressCard(
+                                                    height: height,
+                                                    width: width,
+                                                    // submittedArray: widget
+                                                    //     .submittedArray,
+                                                    results: results,
+                                                    index: index
                                                 )),
                                             SizedBox(
                                               height: height * 0.02,
@@ -693,9 +657,9 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
-                    endDrawer: const EndDrawerMenuTeacher(),
                     resizeToAvoidBottomInset: false,
                     backgroundColor: Colors.white,
+                    endDrawer: const EndDrawerMenuTeacher(),
                     appBar: AppBar(
                       iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: height * 0.05),
                       leading: IconButton(
@@ -728,7 +692,6 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                     ),
                     body: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
-                      physics: const ClampingScrollPhysics(),
                       child: Padding(
                         padding: EdgeInsets.only(
                             top: height * 0.023,
@@ -739,13 +702,13 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top:8.0,bottom:8.0),
-                                // child: CustomCard(
-                                //   height: height,
-                                //   width: width,
-                                //   //subject: results[index].subject,
-                                //   result: widget.result,
-                                //   isShowTotal: true,
-                                // ),
+                                child: CustomCard(
+                                  height: height,
+                                  width: width,
+                                  //subject: results[index].subject,
+                                  result: widget.result,
+                                  isShowTotal: true,
+                                ),
                               ),
                               SizedBox(
                                 height: height * 0.018,
@@ -1099,9 +1062,9 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                         //             fontFamily: "Inter",
                                         //             fontWeight: FontWeight.w600),
                                         //       ),
-                                        //       Text(
-                                        //         "widget.result.url" ?? "" ,
-                                        //         style: const TextStyle(
+                                        //       const Text(
+                                        //         "widget.result.url",
+                                        //         style: TextStyle(
                                         //             color: Color.fromRGBO(102, 102, 102, 1),
                                         //             // fontSize: widget.height * 0.013,
                                         //             fontFamily: "Inter",
@@ -1120,18 +1083,22 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .in_progress_participants,
-                                    //'Total Participants List(0)',
-                                    style: TextStyle(
-                                        fontSize: height * 0.0187,
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w700),
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        "Not Completed Participants List",
+                                        //'Total Participants List (${widget.submittedArray!.length})',
+                                        style: TextStyle(
+                                            fontSize: height * 0.0187,
+                                            color: const Color.fromRGBO(28, 78, 80, 1),
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Padding(
@@ -1153,31 +1120,19 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                               SizedBox(
                                 height: height * 0.02,
                               ),
+
                               for (int index=0;index<results.assessmentResults!.length;index++)
                                 Column(
                                   children: [
                                     MouseRegion(
                                         cursor: SystemMouseCursors.click,
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .rightToLeft,
-                                                child: TeacherResultIndividualStudent(
-                                                    result: widget.result,
-                                                    results: results,
-                                                    index: index,
-                                                status: "in_progress"),
-                                              ),
-                                            );
-                                          },
-                                          // child: ResultInProgressCard(
-                                          //     height: height,
-                                          //     width: width,
-                                          //     results: allResults,
-                                          //     index: index),
+                                        child: ResultInProgressCard(
+                                            height: height,
+                                            width: width,
+                                            // submittedArray: widget
+                                            //     .submittedArray,
+                                            results: results,
+                                            index: index
                                         )),
                                     SizedBox(
                                       height: height * 0.02,
@@ -1281,6 +1236,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                 height: height * 0.02,
                               ),
                             ]),
+
                       ),
                     )));
           }}

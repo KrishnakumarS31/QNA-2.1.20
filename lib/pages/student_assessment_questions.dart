@@ -855,7 +855,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                   widget.userId,
                                                   widget.isMember,
                                                   widget.assessmentHeaders,
-                                                  myDuration
+                                                  myDuration,
+                                                  widget.organisationName
                                                 ]);
                                           },
                                           child: Container(
@@ -1547,7 +1548,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                   widget.userId,
                                                   widget.isMember,
                                                   widget.assessmentHeaders,
-                                                  myDuration
+                                                  myDuration,
+                                                  widget.organisationName
                                                 ]);
                                           },
                                           child: Container(
@@ -2103,7 +2105,8 @@ class StudQuestionState extends State<StudQuestion> {
                                     ),
                                   ),
                                 )
-                                    : ElevatedButton(
+                                    :
+                                ElevatedButton(
                                   style:ElevatedButton.styleFrom(
                                     backgroundColor: context
                                         .watch<
@@ -2182,12 +2185,14 @@ class StudQuestionState extends State<StudQuestion> {
                                     cursor: SystemMouseCursors.click,
                                     child: GestureDetector(
                                       onTap: () {
+                                        print("INSIDE TAPPPPPPP");
                                         if (Provider.of<Questions>(context,
                                             listen: false)
                                             .totalQuestion[
                                         '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
                                         [2] ==
                                             true) {
+                                          print("INISDE IFFFF");
                                           context.read<Questions>().selectOption(
                                               Provider.of<QuestionNumProvider>(
                                                   context,
@@ -2199,6 +2204,12 @@ class StudQuestionState extends State<StudQuestion> {
                                               true);
                                         }
                                         else if (selected.isNotEmpty) {
+                                          print("INSIDE ELSE IFFF");
+                                          print(Provider.of<QuestionNumProvider>(
+                                              context,
+                                              listen: false)
+                                              .questionNum);
+                                          print(selected);
                                           context.read<Questions>().selectOption(
                                               Provider.of<QuestionNumProvider>(
                                                   context,
@@ -2208,7 +2219,9 @@ class StudQuestionState extends State<StudQuestion> {
                                               const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               false);
-                                        } else {
+                                        }
+                                        else {
+                                          print("INSIDE ELSEeeee");
                                           context.read<Questions>().selectOption(
                                               Provider.of<QuestionNumProvider>(
                                                   context,
@@ -2235,7 +2248,8 @@ class StudQuestionState extends State<StudQuestion> {
                                               widget.userId,
                                               widget.isMember,
                                               widget.assessmentHeaders,
-                                              myDuration
+                                              myDuration,
+                                              widget.organisationName
                                             ]);
                                       },
                                       child: Container(

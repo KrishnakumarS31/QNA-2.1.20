@@ -112,42 +112,42 @@ class ResultInProgressCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      width: width * 0.1,
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(255, 166, 0, 1),
-                          borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20))),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            '$percent%',
-                            style: TextStyle(
-                                fontSize: height * 0.04,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w700),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 30, left: 20),
-                            child: Divider(
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                              thickness: 2,
-                            ),
-                          ),
-                          Text(
-                            '$securedMark/$totalMark',
-                            style: TextStyle(
-                                fontSize: height * 0.02,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                    )
+                    // Container(
+                    //   width: width * 0.1,
+                    //   decoration: BoxDecoration(
+                    //       color: const Color.fromRGBO(255, 166, 0, 1),
+                    //       borderRadius: const BorderRadius.only(
+                    //           topRight: Radius.circular(20),
+                    //           bottomRight: Radius.circular(20))),
+                    //   // child: Column(
+                    //   //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   //   children: [
+                    //   //     Text(
+                    //   //       '$percent%',
+                    //   //       style: TextStyle(
+                    //   //           fontSize: height * 0.04,
+                    //   //           color: const Color.fromRGBO(255, 255, 255, 1),
+                    //   //           fontFamily: "Inter",
+                    //   //           fontWeight: FontWeight.w700),
+                    //   //     ),
+                    //   //     const Padding(
+                    //   //       padding: EdgeInsets.only(right: 30, left: 20),
+                    //   //       child: Divider(
+                    //   //         color: Color.fromRGBO(255, 255, 255, 1),
+                    //   //         thickness: 2,
+                    //   //       ),
+                    //   //     ),
+                    //   //     Text(
+                    //   //       '$securedMark/$totalMark',
+                    //   //       style: TextStyle(
+                    //   //           fontSize: height * 0.02,
+                    //   //           color: const Color.fromRGBO(255, 255, 255, 1),
+                    //   //           fontFamily: "Inter",
+                    //   //           fontWeight: FontWeight.w700),
+                    //   //     ),
+                    //   //   ],
+                    //   // ),
+                    // )
                   ],
                 ),
 
@@ -166,12 +166,12 @@ class ResultInProgressCard extends StatelessWidget {
                 ),
                 borderRadius: const BorderRadius.all(Radius.circular(20))),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
                   width: width * 0.35,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
@@ -234,42 +234,6 @@ class ResultInProgressCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: width * 0.233,
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(255, 166, 0, 1),
-                      borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        '$percent%',
-                        style: TextStyle(
-                            fontSize: height * 0.04,
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 30, left: 20),
-                        child: Divider(
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                          thickness: 2,
-                        ),
-                      ),
-                      Text(
-                        '$securedMark/$totalMark',
-                        style: TextStyle(
-                            fontSize: height * 0.02,
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                )
               ],
             )),
       );

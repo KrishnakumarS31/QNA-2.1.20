@@ -660,8 +660,10 @@ class QnaRepo {
     print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber');
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    print("URL");
+    print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus');
     var request = http.Request(
-        'GET', Uri.parse('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber'));
+        'GET', Uri.parse('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus'));
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {

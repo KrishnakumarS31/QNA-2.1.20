@@ -3,6 +3,7 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_registration_verify_page.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
@@ -10,6 +11,7 @@ import '../Entity/custom_http_response.dart';
 import '../Entity/organisation.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
@@ -311,6 +313,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   ];
   SingleValueDropDownController selectedCountryResident =
       SingleValueDropDownController();
+
   int d = 0;
   bool passObscure = true;
   bool confirmPassObscure = true;
@@ -386,6 +389,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
+    String st = Provider.of<LanguageChangeProvider>(context, listen: false).currentLocale;
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -3800,6 +3804,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
       }
 
       Future<void> _launchUrlPrivacy() async {
+        Map <String,String> privacyMap =  {
+          "ta":"",
+
+        };
         final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
         if (!await launchUrl(url)) {
           throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
