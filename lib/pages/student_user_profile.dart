@@ -236,7 +236,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 height: height * 0.01,
                               ),
                               Text(
-                                '-',
+                                '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.02,
@@ -258,7 +258,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 height: height * 0.01,
                               ),
                               Text(
-                                '${widget.userDataModel.data?.rollNumber}',
+                                '${widget.userDataModel.data?.organizationId}',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.02,
@@ -554,7 +554,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '-',
+                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -576,7 +576,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.rollNumber}',
+                              '${widget.userDataModel.data?.organizationId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -874,7 +874,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 height: height * 0.01,
                               ),
                               Text(
-                                '-',
+                                '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.02,
@@ -896,7 +896,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 height: height * 0.01,
                               ),
                               Text(
-                                '${widget.userDataModel.data?.rollNumber}',
+                                '${widget.userDataModel.data?.organizationId}',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.02,

@@ -23,6 +23,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
 
   @override
   void initState() {
+
     super.initState();
     // date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
     // formatted = formatter.format(date);
@@ -231,7 +232,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '-',
+                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -253,7 +254,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.rollNumber}',
+                              '${widget.userDataModel.data?.organizationId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -361,7 +362,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                     )
                   ],
                 )));
-      } else if (constraints.maxWidth > 960) {
+      }
+      else if (constraints.maxWidth > 960) {
         return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -558,7 +560,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '-',
+                                '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -580,7 +582,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.rollNumber}',
+                              '${widget.userDataModel.data?.organizationId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -885,7 +887,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '-',
+                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -907,7 +909,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.rollNumber}',
+                              '${widget.userDataModel.data?.organizationId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,

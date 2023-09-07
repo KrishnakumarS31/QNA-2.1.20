@@ -239,8 +239,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              //AppLocalizations.of(context)!.my_qns,
-                              "Question Bank",
+                              AppLocalizations.of(context)!.qn_bank,
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.045,
@@ -265,8 +264,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                //AppLocalizations.of(context)!.lib_online_qn,
-                                "Search Questions ",
+                                AppLocalizations.of(context)!.search_qn,
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.040,
@@ -379,8 +377,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               ),
                               SizedBox(height: height * 0.015),
                               Text(
-                                //AppLocalizations.of(context)!.my_qn_bank,
-                                "Tap the Question to view ",
+                                AppLocalizations.of(context)!.tap_question,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                   color: const Color.fromRGBO(153, 153, 153, 1),
@@ -1039,8 +1036,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          //AppLocalizations.of(context)!.my_qns,
-                          "Question Bank",
+                          AppLocalizations.of(context)!.qn_bank,
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.025,
@@ -1064,8 +1060,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            //AppLocalizations.of(context)!.lib_online_qn,
-                            "Search Questions ",
+                            AppLocalizations.of(context)!.search_qn,
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.0175,
@@ -1178,8 +1173,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           ),
                           SizedBox(height: height * 0.015),
                           Text(
-                            //AppLocalizations.of(context)!.my_qn_bank,
-                            "Tap the Question to view ",
+                            AppLocalizations.of(context)!.tap_question,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: const Color.fromRGBO(153, 153, 153, 1),
@@ -1440,8 +1434,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          //AppLocalizations.of(context)!.my_qns,
-                          "Question Bank",
+                          AppLocalizations.of(context)!.qn_bank,
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.025,
@@ -1466,8 +1459,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            //AppLocalizations.of(context)!.lib_online_qn,
-                            "Search Questions ",
+                            AppLocalizations.of(context)!.search_qn,
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.016,
@@ -1575,8 +1567,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           ),
                           SizedBox(height: height * 0.015),
                           Text(
-                            //AppLocalizations.of(context)!.my_qn_bank,
-                            "Tap the Question to view ",
+                            AppLocalizations.of(context)!.tap_question,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: const Color.fromRGBO(153, 153, 153, 1),

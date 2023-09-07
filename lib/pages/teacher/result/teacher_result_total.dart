@@ -39,6 +39,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   @override
   void initState() {
     Future.delayed(Duration.zero, (){getData();});
+    print("INSIDE INIT");
+    print(results.assessmentResults?.length);
     print(widget.result);
     print(widget.totalAttempts);
     super.initState();
@@ -56,7 +58,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
               ));
         });
     ResponseEntity response =
-    await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"total");
+    await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"");
     //widget.userId
     print("TOTAL COUNT TEACHER RESULT");
     print(widget.totalAttempts);

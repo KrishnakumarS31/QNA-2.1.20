@@ -33,6 +33,10 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
   TextEditingController();
   TextEditingController studentPasswordController = TextEditingController();
   TextEditingController studentconfirmPasswordController = TextEditingController();
+  TextEditingController userIdController =
+  TextEditingController();
+  TextEditingController organizationIdController =
+  TextEditingController();
   // bool tocCheck = false;
   bool pPCheck = false;
   // bool also = false;
@@ -321,6 +325,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
     studentEmailController.text=widget.userDataModel.data?.email ?? "";
     studentRollNumberController.text=widget.userDataModel.data?.rollNumber ?? "";
     studentOrganisationNameController.text=widget.userDataModel.data?.organisationName ?? "";
+    userIdController.text = (widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId)!;
+    organizationIdController.text = widget.userDataModel.data!.organizationId.toString();
     // studentIsTeacherController.text=widget.userDataModel.data?.
     super.initState();
   }
@@ -827,7 +833,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                       child:
                                                       TextFormField(
                                                         enabled: false,
-                                                        controller: studentEmailController,
+                                                        controller: userIdController,
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -856,7 +862,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                 SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: studentRollNumberController,
+                                                      enabled:false,
+                                                      controller: organizationIdController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -900,6 +907,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                   SizedBox(
                                                     width: localWidth * 0.8,
                                                     child:TextFormField(
+                                                      enabled:false,
                                                       controller: studentOrganisationNameController,
                                                       maxLength: 200,
                                                       maxLengthEnforcement: MaxLengthEnforcement
@@ -1055,10 +1063,6 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                             .dropDownValue?.value,
                                                         email: studentEmailController.text,
                                                         password: studentPasswordController.text,
-                                                        rollNumber: studentRollNumberController
-                                                            .text,
-                                                        organisationName:
-                                                        studentOrganisationNameController.text,
                                                         countryResident:
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
@@ -1581,7 +1585,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                       child:
                                                       TextFormField(
                                                         enabled: false,
-                                                        controller: studentEmailController,
+                                                        controller: userIdController,
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -1610,7 +1614,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                 SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: studentRollNumberController,
+                                                      enabled:false,
+                                                      controller: organizationIdController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -1654,6 +1659,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                   SizedBox(
                                                     width: localWidth * 0.8,
                                                     child:TextFormField(
+                                                      enabled:false,
                                                       controller: studentOrganisationNameController,
                                                       maxLength: 200,
                                                       maxLengthEnforcement: MaxLengthEnforcement
@@ -2340,7 +2346,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                       child:
                                                       TextFormField(
                                                         enabled: false,
-                                                        controller: studentEmailController,
+                                                        controller: userIdController,
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -2369,7 +2375,8 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                 SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: studentRollNumberController,
+                                                      enabled: false,
+                                                      controller: organizationIdController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -2413,6 +2420,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
                                                   SizedBox(
                                                     width: localWidth * 0.8,
                                                     child:TextFormField(
+                                                      enabled:false,
                                                       controller: studentOrganisationNameController,
                                                       maxLength: 200,
                                                       maxLengthEnforcement: MaxLengthEnforcement

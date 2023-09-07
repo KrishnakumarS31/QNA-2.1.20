@@ -149,9 +149,13 @@ class TeacherResultIndividualStudentState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                widget.results!.assessmentResults![widget.index]
-                                        .firstName ??
-                                    "",
+                                "${widget.results!.assessmentResults![widget.index]
+                                        .firstName} ${widget
+                                                  .results!
+                                                  .assessmentResults![
+                                                      widget.index]
+                                                  .lastName}"
+                                    ,
                                 style: TextStyle(
                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.025,
@@ -366,12 +370,16 @@ class TeacherResultIndividualStudentState
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          widget
+                                          "${widget
                                                   .results!
                                                   .assessmentResults![
                                                       widget.index]
-                                                  .firstName ??
-                                              "",
+                                                  .firstName} ${widget
+                                                  .results!
+                                                  .assessmentResults![
+                                                      widget.index]
+                                                  .lastName}"
+                                              ,
                                           style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 28, 78, 80, 1),
@@ -625,9 +633,9 @@ class TeacherResultIndividualStudentState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                widget.results!.assessmentResults![widget.index]
-                                        .firstName ??
-                                    "",
+                                "${widget.results!.assessmentResults![widget.index]
+                                        .firstName} ${widget.results!.assessmentResults![widget.index]
+                                        .lastName}",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.025,
@@ -896,7 +904,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                           ),
                         ],
                       ),
-                      SizedBox(width: widget.width * 0.3),
+
                       widget.ques.questionType == "MCQ"
                           ? Container(
                               decoration: const BoxDecoration(
@@ -989,15 +997,22 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             )
                           : Expanded(
                               child: Text(
-                                widget.ques.selectedChoices == null ||
-                                        widget.ques.selectedChoices!.isEmpty ||
-                                        widget.ques.selectedChoices![0] == "" ||
-                                        widget.ques.selectedChoices == []
-                                    ? "Not answered"
-                                    : widget.ques.descriptiveAnswers!.substring(
-                                        1,
+                                widget.ques.descriptiveAnswers!.substring(
+                                         1,
                                         widget.ques.descriptiveAnswers!.length -
-                                            1),
+                                             1).isEmpty?"Not answered":widget.ques.descriptiveAnswers!.substring(
+                                         1,
+                                        widget.ques.descriptiveAnswers!.length -
+                                             1),
+                                // widget.ques.selectedChoices == null ||
+                                //         widget.ques.selectedChoices!.isEmpty ||
+                                //         widget.ques.selectedChoices![0] == "" ||
+                                //         widget.ques.selectedChoices == []
+                                //     ? "Not answered"
+                                //     : widget.ques.descriptiveAnswers!.substring(
+                                //         1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //             1),
                                 style: TextStyle(
                                     fontSize: widget.height * 0.014,
                                     color:
@@ -1051,7 +1066,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w700),
                           ),
-                          SizedBox(width: widget.width * 0.05),
+                          SizedBox(width: widget.width * 0.03),
                           Text(
                             widget.ques.status == "Incorrect"
                                 ? 'Incorrectly Answered'
@@ -1162,15 +1177,22 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             )
                           : Expanded(
                               child: Text(
-                                widget.ques.selectedChoices == null ||
-                                        widget.ques.selectedChoices!.isEmpty ||
-                                        widget.ques.selectedChoices![0] == "" ||
-                                        widget.ques.selectedChoices == []
-                                    ? "Not answered"
-                                    : widget.ques.descriptiveAnswers!.substring(
-                                        1,
+                                widget.ques.descriptiveAnswers!.substring(
+                                         1,
                                         widget.ques.descriptiveAnswers!.length -
-                                            1),
+                                             1).isEmpty?"Not answered":widget.ques.descriptiveAnswers!.substring(
+                                         1,
+                                        widget.ques.descriptiveAnswers!.length -
+                                             1),
+                                // widget.ques.selectedChoices == null ||
+                                //         widget.ques.selectedChoices!.isEmpty ||
+                                //         widget.ques.selectedChoices![0] == "" ||
+                                //         widget.ques.selectedChoices == []
+                                //     ? "Not answered"
+                                //     : widget.ques.descriptiveAnswers!.substring(
+                                //         1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //             1),
                                 style: TextStyle(
                                     fontSize: widget.height * 0.014,
                                     color:
@@ -1204,7 +1226,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     children: [
                       Row(
                         children: [
-                          SizedBox(width: widget.width * 0.02),
+                          SizedBox(width: widget.width * 0.05),
                           Text(
                             'Q${widget.quesNum + 1}',
                             style: TextStyle(
@@ -1213,7 +1235,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w700),
                           ),
-                          SizedBox(width: widget.width * 0.02),
+                          SizedBox(width: widget.width * 0.03),
                           Text(
                             '${widget.ques.questionType}',
                             style: TextStyle(
@@ -1237,7 +1259,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                           ),
                         ],
                       ),
-                      SizedBox(width: widget.width * 0.3),
+
                       widget.ques.questionType == "MCQ"
                           ? Container(
                               decoration: const BoxDecoration(
@@ -1247,7 +1269,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                                 color: Color.fromRGBO(28, 78, 80, 1),
                               ),
                               height: widget.height * 0.04,
-                              width: widget.width * 0.1,
+                              width: widget.width * 0.2,
                               child: Text(
                                 widget.ques.status == "Incorrect"
                                     ? "\t\t\t\t0"
@@ -1329,15 +1351,21 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             )
                           : Expanded(
                               child: Text(
-                                widget.ques.selectedChoices == null ||
-                                        widget.ques.selectedChoices!.isEmpty ||
-                                        widget.ques.selectedChoices![0] == "" ||
-                                        widget.ques.selectedChoices == []
-                                    ? "Not answered"
-                                    : widget.ques.descriptiveAnswers!.substring(
-                                        1,
-                                        widget.ques.descriptiveAnswers!.length -
-                                            1),
+                                  widget.ques
+                                        .descriptiveAnswers!.substring(
+                                        1, widget.ques.descriptiveAnswers!.length - 1).isEmpty ? 'NotAnswered' :widget.ques
+                                        .descriptiveAnswers!.substring(
+                                        1, widget.ques.descriptiveAnswers!.length - 1),
+
+                                // widget.ques.selectedChoices == null ||
+                                //         widget.ques.selectedChoices!.isEmpty ||
+                                //         widget.ques.selectedChoices![0] == "" ||
+                                //         widget.ques.selectedChoices == []
+                                //     ? "Not answered"
+                                //     : widget.ques.descriptiveAnswers!.substring(
+                                //         1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //             1),
                                 style: TextStyle(
                                     fontSize: widget.height * 0.014,
                                     color:

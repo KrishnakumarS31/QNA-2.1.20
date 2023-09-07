@@ -383,5 +383,8 @@
   "read_qna" : "Leer qnatest \t \t",
   "name_uId_helper" : "Ingrese su nombre o ID de usuario",
   "name_userId" : "Nombre o ID de usuario",
-  "user_id" : "ID de Usuario"
+  "user_id" : "ID de Usuario",
+  "continue_as" : "Continuar",
+  "qn_bank" : "Banco de preguntas",
+  "tap_question" : "Toque las preguntas para ver"
 }

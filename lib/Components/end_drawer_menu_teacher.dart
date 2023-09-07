@@ -46,6 +46,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
       email = userDetails.email!;
       userId = userDetails.userId!;
     });
+
   }
 
   @override
@@ -242,8 +243,11 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                           onTap: () async {
                             UserDataModel userDataModel =
                             await QnaService.getUserDataService(userId,userDetails);
+                            print(userDataModel.code);
+                            print(userDataModel.message);
+                            print(userDataModel.data);
                             print("ROLL NUMBER");
-                            print(userDataModel.data!.rollNumber);
+                            print(userDataModel.data!.organizationId);
                             Navigator.push(
                               context,
                               PageTransition(

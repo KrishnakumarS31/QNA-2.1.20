@@ -571,7 +571,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                 ]),
                           ),
                         )))));
-      } else if (constraints.maxWidth > 960) {
+      }
+      else if (constraints.maxWidth > 960) {
         return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -1005,7 +1006,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         ),
                       ]),
                 )));
-      } else {
+      }
+      else {
         return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

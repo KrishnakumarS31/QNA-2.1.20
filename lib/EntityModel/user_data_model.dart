@@ -53,6 +53,8 @@ class Data {
     required this.updatedBy,
     required this.isActive,
     required this.emailVerified,
+    required this.loginId,
+    required this.organizationId
   });
 
   int id;
@@ -71,6 +73,8 @@ class Data {
   String updatedBy;
   bool isActive;
   bool emailVerified;
+  String loginId;
+  int organizationId;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
@@ -82,6 +86,7 @@ class Data {
     countryResident: json["country_resident"],
     email: json["email"],
     rollNumber: json["roll_number"],
+    organizationId: json["organisation_id"] ?? 0,
     organisationName: json["institution_name"] ?? "",
     role: List<dynamic>.from(json["role"].map((x) => x)),
     password: json["password"],
@@ -89,6 +94,7 @@ class Data {
     updatedBy: json["updated_by"],
     isActive: json["is_active"],
     emailVerified: json["email_verified"],
+    loginId: json["login_id"] ?? "0"
   );
 
   Map<String, dynamic> toJson() => {
@@ -108,6 +114,8 @@ class Data {
     "updated_by": updatedBy,
     "is_active": isActive,
     "email_verified": emailVerified,
+    "login_id":loginId,
+    "organisation_id": organizationId
   };
 
   @override

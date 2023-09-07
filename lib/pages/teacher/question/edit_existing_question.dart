@@ -453,7 +453,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                                             showIcon ==
                                                     Icons
                                                         .expand_circle_down_outlined
-                                                ? Column(
+                                                ?
+                                            Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment.start,
                                                     children: [

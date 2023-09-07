@@ -19,12 +19,13 @@ class StudentRegistrationModel {
     required this.countryNationality,
     required this.email,
     required this.password,
-    required this.rollNumber,
-    required this.organisationName,
+     this.rollNumber,
+    this.organisationName,
     required this.countryResident,
     required this.role,
     required this.userRole,
-    this.institutionId
+    this.institutionId,
+    this.organisationId
   });
 
   String firstName;
@@ -34,12 +35,14 @@ class StudentRegistrationModel {
   String countryNationality;
   String email;
   String password;
-  String rollNumber;
-  String organisationName;
+  String? rollNumber;
+  String? organisationName;
   String countryResident;
   List<String> role;
   String userRole;
   int? institutionId;
+  int? organisationId;
+
   factory StudentRegistrationModel.fromJson(Map<String, dynamic> json) =>
       StudentRegistrationModel(
         firstName: json["first_name"],
@@ -51,7 +54,7 @@ class StudentRegistrationModel {
         password: json["password"],
         rollNumber: json["roll_number"],
         organisationName: json["organisation_name"],
-
+        organisationId: json["organisation_id"],
         countryResident: json["country_resident"],
         role: json["role"],
         userRole : json["user_role"],
@@ -71,6 +74,7 @@ class StudentRegistrationModel {
         "country_resident": countryResident,
         "role": role,
         "user_role": userRole,
-    "institution_id":institutionId
+    "institution_id":institutionId,
+    "organisation_id":organisationId
       };
 }

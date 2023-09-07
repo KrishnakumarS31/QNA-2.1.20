@@ -33,6 +33,8 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
   TextEditingController();
   TextEditingController teacherPasswordController = TextEditingController();
   TextEditingController teacherconfirmPasswordController = TextEditingController();
+  TextEditingController organisationIdController = TextEditingController();
+  TextEditingController userIdController = TextEditingController();
   // bool tocCheck = false;
   bool pPCheck = false;
   // bool also = false;
@@ -319,7 +321,11 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
     teacherLastNameController.text=widget.userDataModel.data?.lastName ?? "";
     teacherEmailController.text=widget.userDataModel.data?.email ?? "";
     teacherRollNumberController.text=widget.userDataModel.data?.rollNumber ?? "";
-    teacherOrganisationNameController.text=widget.userDataModel.data?.organisationName ?? "";
+    organisationIdController.text = widget.userDataModel.data?.organizationId.toString() ?? "-";
+    print("WIDGET USERID");
+    print(widget.userDataModel.data!.loginId.isEmpty);
+    userIdController.text = (widget.userDataModel.data!.loginId.isEmpty || widget.userDataModel.data!.loginId == null) ? "-" :  widget.userDataModel.data!.loginId;
+    teacherOrganisationNameController.text=widget.userDataModel.data?.organisationName ?? "-";
     // teacherIsTeacherController.text=widget.userDataModel.data?.
     super.initState();
   }
@@ -826,7 +832,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                       child:
                                                       TextFormField(
                                                         enabled: false,
-                                                        controller: teacherEmailController,
+                                                        controller: userIdController,
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -855,7 +861,8 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                 SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: teacherRollNumberController,
+                                                      enabled:false,
+                                                      controller: organisationIdController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -900,6 +907,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                     width: localWidth * 0.8,
                                                     child:TextFormField(
                                                       controller: teacherOrganisationNameController,
+                                                      enabled: false,
                                                       maxLength: 200,
                                                       maxLengthEnforcement: MaxLengthEnforcement
                                                           .truncateAfterCompositionEnds,
@@ -1054,15 +1062,14 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                             .dropDownValue?.value,
                                                         email: teacherEmailController.text,
                                                         password: teacherPasswordController.text,
-                                                        rollNumber: teacherRollNumberController
-                                                            .text,
-                                                        organisationName:
-                                                        teacherOrganisationNameController.text,
                                                         countryResident:
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
                                                         role: roleBackup,
-                                                        userRole: "teacher"
+                                                        userRole: "teacher",
+                                                      organisationName: widget.userDataModel.data?.organisationName,
+                                                      organisationId: widget.userDataModel.data!.organizationId,
+
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]
@@ -1580,7 +1587,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                       child:
                                                       TextFormField(
                                                         enabled: false,
-                                                        controller: teacherEmailController,
+                                                        controller: userIdController,
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -1607,9 +1614,11 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                               Center(
                                                 child:
                                                 SizedBox(
+
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: teacherRollNumberController,
+                                                      enabled:false,
+                                                      controller: organisationIdController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -1653,6 +1662,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                   SizedBox(
                                                     width: localWidth * 0.8,
                                                     child:TextFormField(
+                                                      enabled:false,
                                                       controller: teacherOrganisationNameController,
                                                       maxLength: 200,
                                                       maxLengthEnforcement: MaxLengthEnforcement
@@ -1807,15 +1817,13 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                             .dropDownValue?.value,
                                                         email: teacherEmailController.text,
                                                         password: teacherPasswordController.text,
-                                                        rollNumber: teacherRollNumberController
-                                                            .text,
-                                                        organisationName:
-                                                        teacherOrganisationNameController.text,
                                                         countryResident:
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
                                                         role: roleBackup,
-                                                        userRole: "teacher"
+                                                        userRole: "teacher",
+                                                      organisationName: widget.userDataModel.data?.organisationName,
+                                                      organisationId: widget.userDataModel.data!.organizationId,
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]
@@ -2338,7 +2346,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                       child:
                                                       TextFormField(
                                                         enabled: false,
-                                                        controller: teacherEmailController,
+                                                        controller: userIdController,
                                                         keyboardType: TextInputType.text,
                                                         decoration: InputDecoration(
                                                           labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -2367,7 +2375,8 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                 SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: teacherRollNumberController,
+                                                      enabled: false,
+                                                      controller: organisationIdController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
                                                         labelStyle: Theme.of(context).textTheme.headlineMedium,
@@ -2411,6 +2420,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                   SizedBox(
                                                     width: localWidth * 0.8,
                                                     child:TextFormField(
+                                                      enabled: false,
                                                       controller: teacherOrganisationNameController,
                                                       maxLength: 200,
                                                       maxLengthEnforcement: MaxLengthEnforcement
@@ -2459,87 +2469,6 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                            //  Padding(
-                                              //    padding: EdgeInsets.only(
-                                                //      left: localWidth * 0.05, right: localWidth * 0.05),
-                                                  //child:
-                                                  //Column(
-                                                    //children: [
-                                                      //Row(
-                                                        //  children:[
-                                                          //  Text(
-                                                            //  AppLocalizations.of(
-                                                              //    context)!.enable_as_student,
-                                                              //style: TextStyle(
-                                                                //  color: const Color
-                                                                  //    .fromRGBO(
-                                                                    //  102, 102, 102, 1),
-                                                               //   fontFamily: 'Inter',
-                                                                 // fontWeight: FontWeight
-                                                                   //   .w600,
-                                                                  //fontSize: localHeight *
-                                                                    //  0.0155),
-                                                   //         ),
-                                                     //     ]
-                                                     // ),
-                                                    //  Row(
-                                                      //  children: [
-                                                        //  Radio(
-                                                          //  activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            //value: "yes",
-                                                   //         groupValue: enableAsStudent,
-                                                     //       onChanged: (value) {
-                                                       //       setState(() {
-                                                         //       enableAsStudent =
-                                                           //     value..toString();
-                                                             //   roleBackup.add('student');
-                                                             // });
-                                                            //},
-                                                          //),
-                                                         // Text(
-                                                           // AppLocalizations.of(
-                                                           //     context)!
-                                                             //   .yes,
-                                                            //style: TextStyle(
-                                                              //  color: const Color
-                                                                //    .fromRGBO(
-                                                                  //  51, 51, 51, 1),
-                                                                //fontFamily: 'Inter',
-                                                                //fontWeight: FontWeight
-                                                                 //   .w400,
-                                                             //   fontSize:
-                                                               // localHeight * 0.016),
-                                                    //      ),
-                                                      //    Radio(
-                                                        //    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                          //  value: "no",
-                                                            //groupValue: enableAsStudent,
-                                                           // onChanged: (value) {
-                                                             // setState(() {
-                                                               // enableAsStudent =
-                                                                 //   value.toString();
-                                                    //            roleBackup.remove('student');
-                                                      //        });
-                                                        //    },
-                                                          //),
-                                                         // Text(
-                                                           // AppLocalizations.of(
-                                                             //   context)!
-                                                             //   .no,
-                                                            //style: TextStyle(
-                                                              //  color: const Color
-                                                                //    .fromRGBO(
-                                                                  //  51, 51, 51, 1),
-                                                               // fontFamily: 'Inter',
-                                                               // fontWeight: FontWeight
-                                                                 //   .w400,
-                                                                //fontSize:
-                                                                //localHeight * 0.016),
-                                                         // ),
-                                                     //   ],
-                                                     // ),
-                                                    //],
-                                                  //)),
                                               SizedBox(
                                                 height: localHeight * 0.01,
                                               ),
@@ -2573,7 +2502,9 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
                                                         selectedCountryResident
                                                             .dropDownValue?.value,
                                                         role: roleBackup,
-                                                        userRole: "teacher"
+                                                        userRole: "teacher",
+                                                      //organisationName: widget.userDataModel.data?.organisationName,
+                                                      organisationId: widget.userDataModel.data!.organizationId,
                                                       //also == true?
                                                       //["student","teacher"]
                                                       //: ["student"]

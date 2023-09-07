@@ -964,8 +964,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "${values.data!.questions![index -
-                                                  1].questionType}",
+                                              "${AppLocalizations.of(context)!.advisor} :",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),
@@ -1113,12 +1112,20 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children:[
-                                Text(AppLocalizations.of(context)!.pls_contact,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: localHeight * 0.02),
+                                Flexible(
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: localWidth * 0.02, right: localWidth * 0.02),
+                                      child: Text(AppLocalizations.of(context)!.pls_contact,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: localHeight * 0.02),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ]
                           ),
