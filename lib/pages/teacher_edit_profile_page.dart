@@ -319,7 +319,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
     gender=widget.userDataModel.data?.gender ?? "";
     teacherFirstNameController.text=widget.userDataModel.data?.firstName ?? "";
     teacherLastNameController.text=widget.userDataModel.data?.lastName ?? "";
-    teacherEmailController.text=widget.userDataModel.data?.email ?? "";
+    teacherEmailController.text=widget.userDataModel.data!.email.isEmpty ? "-" :widget.userDataModel.data!.email;
     teacherRollNumberController.text=widget.userDataModel.data?.rollNumber ?? "";
     organisationIdController.text = widget.userDataModel.data?.organizationId.toString() ?? "-";
     print("WIDGET USERID");

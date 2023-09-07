@@ -345,7 +345,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                       color: Color.fromRGBO(82, 165, 160,
                                           1) // the color of the border
                                       ),
-                                  minimumSize: const Size(181, 58),
+                                  minimumSize: const Size(181, 48),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(39),
                                   ),

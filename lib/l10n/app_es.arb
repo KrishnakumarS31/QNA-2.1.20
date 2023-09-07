@@ -386,5 +386,24 @@
   "user_id" : "ID de Usuario",
   "continue_as" : "Continuar",
   "qn_bank" : "Banco de preguntas",
-  "tap_question" : "Toque las preguntas para ver"
+  "tap_question" : "Toque las preguntas para ver",
+  "no_account": "¿No tienes una cuenta?",
+  "continue_as_guest": "Continuar como invitado",
+  "please_enter":"Por favor escribe",
+  "keywords" : "palabras clave",
+  "subject_topic_degree_semester":"Materia, Tema, Licenciatura, Semestre",
+  "go_to_revise_sheet": "Ir a la hoja de revisión",
+  "revise_all": "Revisar todo",
+  "review_answer_sheet":"Revisar la hoja de respuestas",
+  "semester" : "Semestre",
+  "thank_you" : "Gracias",
+  "for_incorrect_ans" : "Por respuesta incorrecta",
+  "view_advisor" : "Ver asesor",
+  "sure_to_exit_assessment" : "¿Está seguro de que desea salir de esta evaluación?",
+  "view_all_solution": "Ver todas las soluciones",
+  "solution_sheet":"Hoja de solución",
+  "assessment_take_confirmation" : "¿Es esta la evaluación que desea realizar?",
+  "assessment_take_note" : "Tenga en cuenta que una vez que comience una prueba, debe completarla."
+
+
 }

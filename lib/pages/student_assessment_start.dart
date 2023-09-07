@@ -251,7 +251,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   BorderRadius.circular(5),
                                             )),
                                         child: Text(
-                                          "Assessment ID",
+                                          AppLocalizations.of(context)!.assessment_id,
                                           style: TextStyle(
                                               color: _isAssessmentTextField
                                                   ? Colors.white
@@ -284,7 +284,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   BorderRadius.circular(5)),
                                         ),
                                         child: Text(
-                                          "Keywords",
+                                          AppLocalizations.of(context)!.keywords,
                                           style: TextStyle(
                                               color: _isSearchTextField
                                                   ? Colors.white
@@ -495,7 +495,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                       height *
                                                                           0.016),
                                                           hintText:
-                                                              "Subject, Topic, Degree, Semester",
+                                                              AppLocalizations.of(context)!.subject_topic_degree_semester,
                                                           suffixIcon:
                                                               ElevatedButton(
                                                             onPressed:
@@ -796,7 +796,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           SizedBox(
                                                             width: width,
                                                             child: Text(
-                                                              "Is this the assessment you want to take?",
+                                                              AppLocalizations.of(context)!.assessment_take_confirmation,
                                                               style: TextStyle(
                                                                 color: const Color
                                                                         .fromRGBO(
@@ -826,7 +826,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       padding: EdgeInsets.only(
                                                           left: height * 0.01),
                                                       child: Text(
-                                                        "Please note, once you start a test, you must complete it.",
+                                                        AppLocalizations.of(context)!.assessment_take_note,
                                                         style: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(
@@ -1264,7 +1264,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                       .circular(
                                                                           5))),
                                                   child: Text(
-                                                    "Assessment ID",
+                                                    AppLocalizations.of(context)!.assessment_id,
                                                     style: TextStyle(
                                                         color:
                                                             _isAssessmentTextField
@@ -1317,7 +1317,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                       .circular(
                                                                           5))),
                                                   child: Text(
-                                                    "Keywords",
+                                                    AppLocalizations.of(context)!.keywords,
                                                     style: TextStyle(
                                                         color: _isSearchTextField
                                                             ? Colors.white
@@ -1506,7 +1506,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                             fontWeight: FontWeight.w400,
                                                                             fontSize: height * 0.016),
                                                                         hintText:
-                                                                            "Subject, Topic, Degree, Semester",
+                                                                            AppLocalizations.of(context)!.subject_topic_degree_semester,
                                                                         suffixIcon:
                                                                             ElevatedButton(
                                                                           onPressed:
@@ -1816,7 +1816,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               SizedBox(
                                                                 width: width,
                                                                 child: Text(
-                                                                  "Is this the assessment you want to take?",
+                                                                  AppLocalizations.of(context)!.assessment_take_confirmation,
                                                                   style:
                                                                       TextStyle(
                                                                     color: const Color
@@ -1849,7 +1849,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                   left: height *
                                                                       0.01),
                                                           child: Text(
-                                                            "Please note, once you start a test, you must complete it.",
+                                                            AppLocalizations.of(context)!.assessment_take_note,
                                                             style: TextStyle(
                                                               color: const Color
                                                                       .fromRGBO(
@@ -2298,7 +2298,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           BorderRadius.circular(
                                                               5))),
                                               child: Text(
-                                                "Assessment ID",
+                                                AppLocalizations.of(context)!.assessment_id,
                                                 style: TextStyle(
                                                     color:
                                                         _isAssessmentTextField
@@ -2338,7 +2338,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           BorderRadius.circular(
                                                               5))),
                                               child: Text(
-                                                "Keywords",
+                                                AppLocalizations.of(context)!.keywords,
                                                 style: TextStyle(
                                                     color: _isSearchTextField
                                                         ? Colors.white
@@ -2553,7 +2553,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                             height *
                                                                                 0.016),
                                                                 hintText:
-                                                                    "Subject, Topic, Degree, Semester",
+                                                                    AppLocalizations.of(context)!.subject_topic_degree_semester,
                                                                 suffixIcon:
                                                                     ElevatedButton(
                                                                   onPressed:
@@ -2860,7 +2860,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           SizedBox(
                                                             width: width,
                                                             child: Text(
-                                                              "Is this the assessment you want to take?",
+                                                              AppLocalizations.of(context)!.assessment_take_confirmation,
                                                               style: TextStyle(
                                                                 color: const Color
                                                                         .fromRGBO(
@@ -2890,7 +2890,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       padding: EdgeInsets.only(
                                                           left: height * 0.01),
                                                       child: Text(
-                                                        "Please note, once you start a test, you must complete it.",
+                                                        AppLocalizations.of(context)!.assessment_take_note,
                                                         style: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(

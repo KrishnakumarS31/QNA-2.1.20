@@ -1101,22 +1101,22 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0,right :8),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    AppLocalizations.of(context)!
-                                        .tap_to_student_details,
-                                    //'Tap on respective student for details',
-                                    style: TextStyle(
-                                        fontSize: height * 0.015,
-                                        color: const Color.fromRGBO(148, 148, 148, 1),
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ),
-                              ),
+                              //Padding(
+                              //  padding: const EdgeInsets.only(left: 8.0,right :8),
+                              //  child: Align(
+                              //    alignment: Alignment.centerLeft,
+                              //    child: Text(
+                              //      AppLocalizations.of(context)!
+                              //         .tap_to_student_details,
+                              //      //'Tap on respective student for details',
+                              //      style: TextStyle(
+                              //          fontSize: height * 0.015,
+                              //          color: const Color.fromRGBO(148, 148, 148, 1),
+                              //          fontFamily: "Inter",
+                              //          fontWeight: FontWeight.w400),
+                              //    ),
+                                //),
+                             // ),
                               SizedBox(
                                 height: height * 0.02,
                               ),

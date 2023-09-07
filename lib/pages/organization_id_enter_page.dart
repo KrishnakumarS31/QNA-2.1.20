@@ -69,6 +69,16 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
           print(ages);
           print(idAndNameMap);
         }
+        else if(responseEntity.code != 200)
+          {
+            print("WALLLAH");
+            print(responseEntity.message);
+
+            double localWidth = MediaQuery.of(context).size.width;
+            double localHeight = MediaQuery.of(context).size.height;
+            forgotPasswordPopup(context, localHeight, localWidth,responseEntity.message!);
+
+          }
         //   ResponseEntity responseEntity = await QnaService.getQuestionBankService(
         //       10, pageNumber, search, userDetails);
         // });
@@ -85,6 +95,85 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
   {
     ResponseEntity responseEntity = await QnaService.getInstitutionNames(value);
     return responseEntity;
+  }
+
+  forgotPasswordPopup(BuildContext context, double height,double width,String message) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: width>960 ? Size(width * 0.06, height * 0.05): (width <= 960 && width > 500) ? Size(width * 0.15, height * 0.03) : Size(width * 0.2, height * 0.05),
+        shape: RoundedRectangleBorder(      borderRadius:
+        BorderRadius
+            .circular(
+            39),),
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        AppLocalizations.of(context)!.ok_caps,
+        //'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            "Alert",
+            //'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        "No Institution Found for this Organization ID",
+        //AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+        //code == 401 ? 'Please enter the correct password.' : code == 400 ? 'Invalid role. Check your login data': "Server error",
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            cancelButton,
+            const SizedBox(height:10.0),
+          ],
+        ),
+
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -228,6 +317,10 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             if (value!.isEmpty) {
                                                               return 'Enter Organization ID';
                                                             }
+                                                            else if(value.isNotEmpty && value.length<8)
+                                                            {
+                                                              return 'Enter 8 characters';
+                                                            }
                                                             else if (value.startsWith("0")) {
                                                                _somefun(value);
                                                             }
@@ -355,6 +448,10 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                       ),
                                                       onPressed: () async {
                                                         print("INSIDE ");
+                                                        if(selectedValue.isEmpty || selectedValue == null)
+                                                        {
+
+                                                        }
                                                         //bool valid = formKey.currentState!.validate();
                                                         if( studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
                                                           print("INSIDE VIPER");
@@ -511,6 +608,10 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             if (value!.isEmpty) {
                                                               return 'Enter Organization ID';;
                                                             }
+                                                            else if(value.isNotEmpty && value.length<8)
+                                                            {
+                                                              return 'Enter 8 characters';
+                                                            }
                                                             else if (value.startsWith("0")) {
                                                               _somefun(value);
                                                             }
@@ -635,6 +736,10 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                       ),
                                                       onPressed: () async {
                                                         //bool valid = formKey.currentState!.validate();
+                                                        if(selectedValue.isEmpty || selectedValue == null)
+                                                        {
+
+                                                        }
                                                         if(studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
                                                           print("dffb");
                                                           Navigator.pushNamed(
@@ -803,6 +908,10 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             if (value!.isEmpty) {
                                                               return 'Enter Organization ID'; ;
                                                             }
+                                                            else if(value.isNotEmpty && value.length<8)
+                                                              {
+                                                                return 'Enter 8 characters';
+                                                              }
                                                             else if (value.startsWith("0")) {
                                                               print("INSIDE VALUE");
                                                                _somefun(value);
@@ -928,8 +1037,13 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                           color: Color.fromRGBO(82, 165, 160, 1)
                                                       ),
                                                       onPressed: () async {
+                                                          //if(selectedValue == )
                                                         //bool valid = formKey.currentState!.validate();
-                                                        if(studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
+                                                        if(selectedValue.isEmpty || selectedValue == null)
+                                                          {
+
+                                                          }
+                                                        else if(studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
                                                           print("INSIDE FIRST IF");
                                                           Navigator.pushNamed(
                                                               context,

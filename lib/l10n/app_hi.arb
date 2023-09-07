@@ -386,5 +386,24 @@
   "user_id" : "उपयोगकर्ता पहचान",
   "continue_as" : "इस के रूप में जारी रखें",
   "qn_bank" : "प्रश्न बैंक",
-  "tap_question" : "देखने के लिए प्रश्नों को टैप करें"
+  "tap_question" : "देखने के लिए प्रश्नों को टैप करें",
+  "no_account": "कोई खाता नहीं है?",
+  "continue_as_guest": "अतिथि के रूप में जारी रखें",
+  "please_enter":"कृपया दर्ज करें",
+  "keywords" : "कीवर्ड",
+  "subject_topic_degree_semester":"विषय, टॉपिक, डिग्री, सेमेस्टर",
+  "go_to_revise_sheet": "रिवाइज शीट पर जाएं",
+  "revise_all": "सभी को संशोधित करें",
+  "review_answer_sheet":"उत्तर पुस्तिका की समीक्षा करें",
+  "semester" : "सेमेस्टर",
+  "thank_you" : "धन्यवाद",
+  "for_incorrect_ans" : "ग़लत उत्तर के लिए",
+  "view_advisor" : "सलाहकार देखें",
+  "sure_to_exit_assessment" : "क्या आप वाकई इस मूल्यांकन से बाहर निकलना चाहते हैं?",
+  "view_all_solution": "सभी समाधान देखें",
+  "solution_sheet":"समाधान पत्रक",
+  "assessment_take_confirmation" : "क्या यह वह मूल्यांकन है जो आप लेना चाहते हैं?",
+  "assessment_take_note" : "कृपया ध्यान दें, एक बार परीक्षण शुरू करने के बाद आपको उसे पूरा करना होगा।"
+
+
 }

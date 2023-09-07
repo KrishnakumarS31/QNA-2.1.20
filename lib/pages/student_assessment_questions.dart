@@ -861,7 +861,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           },
                                           child: Container(
                                             height: height * 0.0475,
-                                            width: width * 0.4,
+                                            padding: EdgeInsets.symmetric(horizontal: width * 0.03),
                                             decoration: BoxDecoration(
                                               borderRadius:
                                               const BorderRadius.all(

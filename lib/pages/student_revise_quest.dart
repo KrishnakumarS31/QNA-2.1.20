@@ -1805,8 +1805,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
                               assessment.assessmentId = widget.assessmentCode;
                               assessment.assessmentCode = widget.assessmentID;
-                              print("USER ID");
-                              print(widget.userId);
                               assessment.userId = userDetails.userId;
                               assessment.statusId = 2;
                               assessment.attemptStartdate = widget.startTime;
@@ -1836,11 +1834,12 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 List<dynamic> correctAns = [];
                                 if (values.data!.questions![j - 1].questionType ==
                                     "Descriptive") {
+                                  RegExp regExp = RegExp(r'\[|\]');
                                   quesResult.marks = 0;
-                                  quesResult.statusId = 8;
                                   quesResult.descriptiveText = Provider
                                       .of<Questions>(context, listen: false)
-                                      .totalQuestion['$j'][0].toString();
+                                      .totalQuestion['$j'][0].toString().replaceAll(regExp, '');
+                                  quesResult.statusId = (quesResult.descriptiveText == null || quesResult.descriptiveText!.isEmpty ) ? 5 : 8;
                                 }
                                 else if (values.data!.questions![j - 1].questionType ==
                                     "Survey")

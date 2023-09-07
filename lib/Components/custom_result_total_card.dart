@@ -20,7 +20,7 @@ class ResultTotalCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     bool condition = results!.assessmentResults!.isEmpty == false;
-    String? name = condition ? results!.assessmentResults![index].firstName : " ";
+    String? name = condition ? "${results!.assessmentResults![index].firstName} ${results!.assessmentResults![index].lastName}": " ";
     String? assessmentCode = results!.assessmentCode ?? " ";
     int? timeTaken = condition ? results!.assessmentResults![index].attemptDuration : 0;
     int? percent = condition ? results!.assessmentResults![index].attemptPercent : 0;

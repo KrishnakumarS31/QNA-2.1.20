@@ -60,8 +60,10 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
       Navigator.pop(context);
       ResultsModelResponse resultsModelResponse =
           ResultsModelResponse.fromJson(response.data);
-      print(resultsModelResponse);
+      print(resultsModelResponse.totalCount);
       totalCount = resultsModelResponse.totalCount ?? 0;
+      print("TOTAL COUNT AND HIS NAME IS JOHN CENA");
+      print(totalCount);
       allResults = resultsModelResponse.data!;
       setState(() {
         results = allResults;

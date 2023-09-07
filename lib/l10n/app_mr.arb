@@ -378,5 +378,24 @@
   "user_id" : "वापरकर्ता आयडी",
   "continue_as" : "म्हणून सुरू ठेवा",
   "qn_bank" : "प्रश्न बँक",
-  "tap_question" : "पाहण्यासाठी प्रश्न टॅप करा"
+  "tap_question" : "पाहण्यासाठी प्रश्न टॅप करा",
+  "no_account": "खाते नाही?",
+  "continue_as_guest": "अतिथी म्हणून सुरू ठेवा",
+  "please_enter":"कृपया प्रविष्ट करा",
+  "keywords" : "कीवर्ड",
+  "subject_topic_degree_semester":"विषय, विषय, पदवी, सेमिस्टर",
+  "go_to_revise_sheet": "Revise Sheet वर जा",
+  "revise_all": "सर्वांची उजळणी करा",
+  "review_answer_sheet":"उत्तरपत्रिकेचे पुनरावलोकन करा",
+  "semester" : "सेमिस्टर",
+  "thank_you" : "धन्यवाद",
+  "for_incorrect_ans" : "चुकीच्या उत्तरासाठी",
+  "view_advisor" : "सल्लागार पहा",
+  "sure_to_exit_assessment" : "तुम्हाला खात्री आहे की तुम्ही या मूल्यांकनातून बाहेर पडू इच्छिता.",
+  "view_all_solution": "सर्व उपाय पहा",
+  "solution_sheet":"समाधान पत्रक",
+  "assessment_take_confirmation" : "हे मूल्यांकन तुम्हाला घ्यायचे आहे का?",
+  "assessment_take_note" : "कृपया लक्षात ठेवा, एकदा तुम्ही चाचणी सुरू केल्यानंतर, तुम्ही ती पूर्ण करणे आवश्यक आहे."
+
+
 }

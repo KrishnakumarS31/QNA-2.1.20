@@ -208,7 +208,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.email}',
+                              '${widget.userDataModel.data!.email.isEmpty ? "-" : widget.userDataModel.data?.email}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -232,7 +232,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
+                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -536,7 +536,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.email}',
+                              '${widget.userDataModel.data!.email.isEmpty ? "-" : widget.userDataModel.data?.email}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -560,7 +560,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                                '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
+                                '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -863,7 +863,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data?.email}',
+                              '${widget.userDataModel.data!.email.isEmpty ? "-" : widget.userDataModel.data?.email}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,
@@ -887,7 +887,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId.isEmpty}',
+                              '${widget.userDataModel.data!.loginId.isEmpty ? "-" : widget.userDataModel.data?.loginId}',
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.02,

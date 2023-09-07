@@ -276,7 +276,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Assessment ID",
+                                                      AppLocalizations.of(context)!.assessment_id,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -324,7 +324,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Degree",
+                                                      AppLocalizations.of(context)!.degree_small,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -371,7 +371,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Semester",
+                                                      AppLocalizations.of(context)!.semester,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -414,7 +414,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Subject",
+                                                      AppLocalizations.of(context)!.sub_small,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -457,7 +457,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Topic",
+                                                     AppLocalizations.of(context)!.topic_small,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -501,7 +501,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     SizedBox(height: localHeight * 0.03),
                                     Align(
                                         alignment: Alignment.center,
-                                        child: Text("Thank You",
+                                        child: Text(AppLocalizations.of(context)!.thank_you,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -519,7 +519,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   Padding(
                                     padding:
                                     const EdgeInsets.only(left: 10),
-                                    child: Text("For incorrect answers",
+                                    child: Text(AppLocalizations.of(context)!.for_incorrect_ans,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
@@ -548,7 +548,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 padding:
                                                 const EdgeInsets.only(
                                                     left: 25.0),
-                                                child: Text("View Advisor",
+                                                child: Text(AppLocalizations.of(context)!.view_advisor,
                                                     style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .bodyLarge
@@ -697,8 +697,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             padding: EdgeInsets.only(
                                                 left: localHeight * 0.04,
                                                 right: localHeight * 0.04),
-                                            child: const Text(
-                                                "Are you sure you want to exit from this Assessment."),
+                                            child: Text(
+                                                AppLocalizations.of(context)!.sure_to_exit_assessment),
                                           ),
                                           actions: <Widget>[
                                             Padding(
@@ -1071,7 +1071,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Assessment ID",
+                                                      AppLocalizations.of(context)!.assessment_id,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -1119,7 +1119,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Degree",
+                                                      AppLocalizations.of(context)!.degree_small,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -1166,7 +1166,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Semester",
+                                                      AppLocalizations.of(context)!.semester,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -1209,7 +1209,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Subject",
+                                                      AppLocalizations.of(context)!.sub_small,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -1252,7 +1252,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   width: localHeight * 0.15,
                                                   child: Text(
                                                     //"10:26:59",
-                                                      "Topic",
+                                                      AppLocalizations.of(context)!.topic_small,
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(161,
@@ -1296,7 +1296,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     SizedBox(height: localHeight * 0.03),
                                     Align(
                                         alignment: Alignment.center,
-                                        child: Text("Thank You",
+                                        child: Text(
+                                          AppLocalizations.of(context)!.thank_you,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -1314,7 +1315,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   Padding(
                                     padding:
                                     const EdgeInsets.only(left: 10),
-                                    child: Text("For incorrect answers",
+                                    child:Text(AppLocalizations.of(context)!.for_incorrect_ans,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
@@ -1343,7 +1344,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 padding:
                                                 const EdgeInsets.only(
                                                     left: 25.0),
-                                                child: Text("View Advisor",
+                                                child: Text(AppLocalizations.of(context)!.view_advisor,
                                                     style: Theme.of(context)
                                                         .primaryTextTheme
                                                         .bodyLarge
@@ -1492,8 +1493,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             padding: EdgeInsets.only(
                                                 left: localHeight * 0.04,
                                                 right: localHeight * 0.04),
-                                            child: const Text(
-                                                "Are you sure you want to exit from this Assessment."),
+                                            child: Text(
+                                                AppLocalizations.of(context)!.sure_to_exit_assessment),
                                           ),
                                           actions: <Widget>[
                                             Padding(
@@ -1869,7 +1870,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Assessment ID",
+                                                  AppLocalizations.of(context)!.assessment_id,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -1908,7 +1909,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Degree",
+                                                  AppLocalizations.of(context)!.degree_small,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -1950,7 +1951,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Semester",
+                                                  AppLocalizations.of(context)!.semester,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -1990,7 +1991,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Subject",
+                                                  AppLocalizations.of(context)!.sub_small,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2030,7 +2031,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Topic",
+                                                  AppLocalizations.of(context)!.topic_small,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2072,7 +2073,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 SizedBox(height: localHeight * 0.03),
                                 Align(
                                     alignment: Alignment.center,
-                                    child: Text("Thank You",
+                                    child: Text(AppLocalizations.of(context)!.thank_you,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
@@ -2089,7 +2090,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                               //SizedBox(height: localHeight * 0.27),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: Text("For incorrect answers",
+                                child: Text(AppLocalizations.of(context)!.for_incorrect_ans,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -2118,7 +2119,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             padding:
                                             const EdgeInsets.only(
                                                 left: 25.0),
-                                            child: Text("View Advisor",
+                                            child: Text(AppLocalizations.of(context)!.view_advisor,
                                                 style: Theme.of(context)
                                                     .primaryTextTheme
                                                     .bodyLarge
@@ -2260,8 +2261,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         padding: EdgeInsets.only(
                                             left: localHeight * 0.04,
                                             right: localHeight * 0.04),
-                                        child: const Text(
-                                            "Are you sure you want to exit from this Assessment."),
+                                        child: Text(
+                                            AppLocalizations.of(context)!.sure_to_exit_assessment),
                                       ),
                                       actions: <Widget>[
                                         Padding(
@@ -2627,7 +2628,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Assessment ID",
+                                                  AppLocalizations.of(context)!.assessment_id,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2666,7 +2667,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Degree",
+                                                  AppLocalizations.of(context)!.degree_small,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2708,7 +2709,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Semester",
+                                                  AppLocalizations.of(context)!.semester,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2748,7 +2749,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Subject",
+                                                  AppLocalizations.of(context)!.sub_small,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2788,7 +2789,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               width: localHeight * 0.15,
                                               child: Text(
                                                 //"10:26:59",
-                                                  "Topic",
+                                                  AppLocalizations.of(context)!.topic_small,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(161,
@@ -2830,7 +2831,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 SizedBox(height: localHeight * 0.03),
                                 Align(
                                     alignment: Alignment.center,
-                                    child: Text("Thank You",
+                                    child: Text(AppLocalizations.of(context)!.thank_you,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
@@ -2847,7 +2848,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                               //SizedBox(height: localHeight * 0.27),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: Text("For incorrect answers",
+                                child: Text(AppLocalizations.of(context)!.for_incorrect_ans,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -2876,7 +2877,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             padding:
                                             const EdgeInsets.only(
                                                 left: 25.0),
-                                            child: Text("View Advisor",
+                                            child: Text(AppLocalizations.of(context)!.view_advisor,
                                                 style: Theme.of(context)
                                                     .primaryTextTheme
                                                     .bodyLarge
@@ -3018,8 +3019,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         padding: EdgeInsets.only(
                                             left: localHeight * 0.04,
                                             right: localHeight * 0.04),
-                                        child: const Text(
-                                            "Are you sure you want to exit from this Assessment."),
+                                        child: Text(
+                                            AppLocalizations.of(context)!.sure_to_exit_assessment),
                                       ),
                                       actions: <Widget>[
                                         Padding(
@@ -3445,7 +3446,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Assessment ID",
+                                                            AppLocalizations.of(context)!.assessment_id,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -3500,7 +3501,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Degree",
+                                                            AppLocalizations.of(context)!.degree_small,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -3557,7 +3558,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Semester",
+                                                            AppLocalizations.of(context)!.semester,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -3611,7 +3612,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Subject",
+                                                            AppLocalizations.of(context)!.sub_small,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -3665,7 +3666,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Topic",
+                                                            AppLocalizations.of(context)!.topic_small,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -3719,7 +3720,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               height: localHeight * 0.03),
                                           Align(
                                               alignment: Alignment.center,
-                                              child: Text("Thank You",
+                                              child: Text(AppLocalizations.of(context)!.thank_you,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(
@@ -3741,7 +3742,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           padding: const EdgeInsets.only(
                                               left: 10),
                                           child: Text(
-                                              "For incorrect answers",
+                                              AppLocalizations.of(context)!.for_incorrect_ans,
                                               style: TextStyle(
                                                   color:
                                                   const Color.fromRGBO(
@@ -3778,7 +3779,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           .only(
                                                           left: 25.0),
                                                       child: Text(
-                                                          "View Advisor",
+                                                          AppLocalizations.of(context)!.view_advisor,
                                                           style: Theme
                                                               .of(
                                                               context)
@@ -3957,8 +3958,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                               0.04,
                                                           right: localHeight *
                                                               0.04),
-                                                      child: const Text(
-                                                          "Are you sure you want to exit from this Assessment."),
+                                                      child: Text(
+                                                          AppLocalizations.of(context)!.sure_to_exit_assessment),
                                                     ),
                                                     actions: <Widget>[
                                                       Padding(
@@ -4348,7 +4349,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Assessment ID",
+                                                            AppLocalizations.of(context)!.assessment_id,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -4392,7 +4393,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Degree",
+                                                            AppLocalizations.of(context)!.degree_small,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -4439,7 +4440,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Semester",
+                                                            AppLocalizations.of(context)!.semester,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -4486,7 +4487,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Subject",
+                                                            AppLocalizations.of(context)!.sub_small,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -4533,7 +4534,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             0.15,
                                                         child: Text(
                                                           //"10:26:59",
-                                                            "Topic",
+                                                            AppLocalizations.of(context)!.topic_small,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
@@ -4588,7 +4589,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             height: localHeight * 0.01),
                                         Align(
                                           alignment: Alignment.center,
-                                          child: Text("Thank You",
+                                          child: Text(AppLocalizations.of(context)!.thank_you,
                                             style: TextStyle(
                                                 color: const Color
                                                     .fromRGBO(
@@ -4610,7 +4611,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       Padding(
                                         padding:
                                         const EdgeInsets.only(left: 10),
-                                        child: Text("For incorrect answers",
+                                        child: Text(AppLocalizations.of(context)!.for_incorrect_ans,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
@@ -4644,7 +4645,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     const EdgeInsets
                                                         .only(
                                                         left: 25.0),
-                                                    child: Text("View Advisor",
+                                                    child: Text(AppLocalizations.of(context)!.view_advisor,
                                                         style: Theme.of(
                                                             context)
                                                             .primaryTextTheme
@@ -4783,8 +4784,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         localHeight * 0.04,
                                                         right:
                                                         localHeight * 0.04),
-                                                    child: const Text(
-                                                        "Are you sure you want to exit from this Assessment."),
+                                                    child: Text(
+                                                        AppLocalizations.of(context)!.sure_to_exit_assessment),
                                                   ),
                                                   actions: <Widget>[
                                                     Padding(

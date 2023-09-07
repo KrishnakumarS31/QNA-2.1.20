@@ -273,7 +273,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        "Advisor: ",
+                                                        "${AppLocalizations.of(context)!.advisor} :",
                                                         style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(
@@ -569,7 +569,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        "Advisor: ",
+                                                        "${AppLocalizations.of(context)!.advisor} :",
                                                         style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(
@@ -920,7 +920,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        "Advisor: ",
+                                                        "${AppLocalizations.of(context)!.advisor} :",
                                                         style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(

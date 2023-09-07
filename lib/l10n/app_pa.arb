@@ -388,5 +388,22 @@
   "user_id" : "ਯੂਜਰ ਆਈਡੀ",
   "continue_as" : "ਜਾਰੀ ਰੱਖੋ",
   "qn_bank" : "ਪ੍ਰਸ਼ਨ ਬੈਂਕ",
-  "tap_question" : "ਦੇਖਣ ਲਈ ਪ੍ਰਸ਼ਨਾਂ ਨੂੰ ਟੈਪ ਕਰੋ"
+  "tap_question" : "ਦੇਖਣ ਲਈ ਪ੍ਰਸ਼ਨਾਂ ਨੂੰ ਟੈਪ ਕਰੋ",
+  "no_account": "ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਖਾਤਾ ਨਹੀਂ ਹੈ?",
+  "continue_as_guest": "ਮਹਿਮਾਨ ਵਜੋਂ ਜਾਰੀ ਰੱਖੋ",
+  "please_enter":"ਕਿਰਪਾ ਕਰਕੇ ਦਾਖਲ ਕਰੋ",
+  "keywords" : "ਕੀਵਰਡਸ",
+  "subject_topic_degree_semester":"ਵਿਸ਼ਾ, ਵਿਸ਼ਾ, ਡਿਗਰੀ, ਸਮੈਸਟਰ",
+  "go_to_revise_sheet": "ਰੀਵਾਈਜ਼ ਸ਼ੀਟ 'ਤੇ ਜਾਓ",
+  "revise_all": "ਸਭ ਨੂੰ ਸੋਧੋ",
+  "review_answer_sheet":"ਜਵਾਬ ਸ਼ੀਟ ਦੀ ਸਮੀਖਿਆ ਕਰੋ",
+  "semester" : "ਸਮੈਸਟਰ",
+  "thank_you" : "ਤੁਹਾਡਾ ਧੰਨਵਾਦ",
+  "for_incorrect_ans" : "ਗਲਤ ਜਵਾਬ ਲਈ",
+  "view_advisor" : "ਸਲਾਹਕਾਰ ਵੇਖੋ",
+  "sure_to_exit_assessment" : "ਕੀ ਤੁਸੀਂ ਯਕੀਨੀ ਤੌਰ 'ਤੇ ਇਸ ਮੁਲਾਂਕਣ ਤੋਂ ਬਾਹਰ ਜਾਣਾ ਚਾਹੁੰਦੇ ਹੋ।",
+  "view_all_solution": "ਸਾਰੇ ਹੱਲ ਵੇਖੋ",
+  "solution_sheet":"ਹੱਲ ਸ਼ੀਟ",
+  "assessment_take_confirmation" : "ਕੀ ਇਹ ਉਹ ਮੁਲਾਂਕਣ ਹੈ ਜੋ ਤੁਸੀਂ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+  "assessment_take_note" : "ਕਿਰਪਾ ਕਰਕੇ ਨੋਟ ਕਰੋ, ਇੱਕ ਵਾਰ ਜਦੋਂ ਤੁਸੀਂ ਇੱਕ ਟੈਸਟ ਸ਼ੁਰੂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਨੂੰ ਇਸਨੂੰ ਪੂਰਾ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।"
 }
