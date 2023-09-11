@@ -2102,6 +2102,10 @@ class AssessmentSettingsPageState extends State<AssessmentSettingsPage> {
                                                           {
                                                             return "Enter Digits Only";
                                                           }
+                                                        else if(value!=null && int.parse(value) > 59)
+                                                          {
+                                                            return "Enter Valid Minutes";
+                                                          }
                                                         return null;
                                                             },
                                                       //inputFormatters: FilteringTextInputFormatter.digitsOnly,

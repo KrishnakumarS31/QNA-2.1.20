@@ -317,22 +317,27 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             if (value!.isEmpty) {
                                                               return 'Enter Organization ID';
                                                             }
-                                                            else if(value.isNotEmpty && value.length<8)
+                                                            else if(value.isNotEmpty)
                                                             {
-                                                              return 'Enter 8 characters';
+                                                              print("INSIDE ELSE IF");
+                                                              if(value.startsWith("0"))
+                                                              {
+                                                                print("INSIDE IF");
+                                                                _somefun(value);
+                                                              }
+                                                              else if(value.length<8) {
+                                                                return 'Enter 8 characters';
+                                                              }
+                                                              else if(value.length ==8)
+                                                              {
+                                                                _somefun(value);
+                                                              }
+                                                              else {
+                                                                return null;
+                                                              }
                                                             }
-                                                            else if (value.startsWith("0")) {
-                                                               _somefun(value);
-                                                            }
+
                                                             // else if (value.length < 8) {
-                                                            //   return " ${8- value.length} more characters needed to verify";
-                                                            // }
-                                                            else if (value.length == 8) {
-                                                               _somefun(value);
-                                                            }
-                                                            else {
-                                                              return null;
-                                                            }
                                                             return null;
                                                           },
                                                           onChanged: (value) {
@@ -606,29 +611,32 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                           ),
                                                           validator: (value) {
                                                             if (value!.isEmpty) {
-                                                              return 'Enter Organization ID';;
+                                                              return 'Enter Organization ID';
                                                             }
-                                                            else if(value.isNotEmpty && value.length<8)
+                                                            else if(value.isNotEmpty)
                                                             {
-                                                              return 'Enter 8 characters';
+                                                              print("INSIDE ELSE IF");
+                                                              if(value.startsWith("0"))
+                                                              {
+                                                                print("INSIDE IF");
+                                                                _somefun(value);
+                                                              }
+                                                              else if(value.length<8) {
+                                                                return 'Enter 8 characters';
+                                                              }
+                                                              else if(value.length ==8)
+                                                              {
+                                                                _somefun(value);
+                                                              }
+                                                              else {
+                                                                return null;
+                                                              }
                                                             }
-                                                            else if (value.startsWith("0")) {
-                                                              _somefun(value);
-                                                            }
+
                                                             // else if (value.length < 8) {
-                                                            //   return " ${8- value.length} more characters needed to verify";
-                                                            // }
-                                                            else if (value.length == 8) {
-                                                              _somefun(value);
-
-                                                            }
-                                                            else
-                                                            {
-
-                                                            }
                                                             return null;
                                                           },
-                                                          onChanged: (value) {
+                                                     onChanged: (value) {
                                                             formKey.currentState!.validate();
                                                           },
 
@@ -906,28 +914,30 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                           ),
                                                           validator: (value) {
                                                             if (value!.isEmpty) {
-                                                              return 'Enter Organization ID'; ;
+                                                              return 'Enter Organization ID';
                                                             }
-                                                            else if(value.isNotEmpty && value.length<8)
+                                                            else if(value.isNotEmpty)
+                                                            {
+                                                              print("INSIDE ELSE IF");
+                                                              if(value.startsWith("0"))
                                                               {
+                                                                print("INSIDE IF");
+                                                                _somefun(value);
+                                                              }
+                                                              else if(value.length<8) {
                                                                 return 'Enter 8 characters';
                                                               }
-                                                            else if (value.startsWith("0")) {
-                                                              print("INSIDE VALUE");
-                                                               _somefun(value);
+                                                              else if(value.length ==8)
+                                                              {
+                                                                _somefun(value);
+                                                              }
+                                                              else {
+                                                                return null;
+                                                              }
                                                             }
+
                                                             // else if (value.length < 8) {
-                                                            //   return " ${8- value.length} more characters needed to verify";
-                                                            // }
-
-                                                            else if (value.length == 8) {
-                                                               _somefun(value);
-                                                            }
-
-
-                                                            else {
-                                                              return null;
-                                                            }
+                                                            return null;
                                                           },
                                                           onChanged: (value) {
                                                             formKey.currentState!.validate();

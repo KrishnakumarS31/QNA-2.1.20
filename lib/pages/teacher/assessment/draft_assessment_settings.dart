@@ -2075,6 +2075,10 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                             {
                                                               return "Enter Digits Only";
                                                             }
+                                                            else if(value!=null && int.parse(value) > 59)
+                                                            {
+                                                              return "Enter Valid Minutes";
+                                                            }
                                                           },
                                                           //inputFormatters: FilteringTextInputFormatter.digitsOnly,
                                                           enabled: true,

@@ -13,13 +13,19 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
   }
 
   void reSetQuestionList() {
+    print("INSIDE RESET QUESTION LIST");
     //_questionList.clear();
     _questionList=[];
     notifyListeners();
   }
 
   void deleteQuestionList(int index) {
-    _questionList.removeAt(index);
+    print("Veerappu ellam veetuku veilya");
+    print(index);
+    print(_questionList.length);
+    print(_questionList[index]);
+    print(_questionList.length == 1);
+    _questionList.length == 1 ? reSetQuestionList() : _questionList.removeAt(index);
     notifyListeners();
   }
 

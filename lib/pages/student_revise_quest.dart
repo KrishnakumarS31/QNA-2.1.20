@@ -1844,7 +1844,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 else if (values.data!.questions![j - 1].questionType ==
                                     "Survey")
                                 {
-                                  quesResult.statusId = 8;
                                   List<dynamic> selectedAns = Provider
                                       .of<Questions>(context, listen: false)
                                       .totalQuestion['$j'][0];
@@ -1863,7 +1862,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   }
                                   quesResult.selectedQuestionChoice = selectedAnsId;
                                   quesResult.marks = 0;
+                                  quesResult.statusId = selectedAns.isEmpty? 5 :  8;
                                 }
+
                                 else {
                                   for (int i = 0; i < values.data!.questions![j - 1].choices!.length; i++) {
                                     if (values.data!.questions![j - 1].choices![i]

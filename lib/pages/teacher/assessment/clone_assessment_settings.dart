@@ -2041,6 +2041,10 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                                           {
                                                             return "Enter Digits Only";
                                                           }
+                                                          else if(value!=null && int.parse(value) > 59)
+                                                          {
+                                                            return "Enter Valid Minutes";
+                                                          }
                                                         },
                                                         //inputFormatters: FilteringTextInputFormatter.digitsOnly,
                                                         enabled: true,

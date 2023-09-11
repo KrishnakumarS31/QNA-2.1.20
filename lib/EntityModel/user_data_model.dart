@@ -76,6 +76,7 @@ class Data {
   String loginId;
   int organizationId;
 
+
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     id: json["id"],
     firstName: json["first_name"],
@@ -86,7 +87,7 @@ class Data {
     countryResident: json["country_resident"],
     email: json["email"],
     rollNumber: json["roll_number"],
-    organizationId: json["organisation_id"] ?? 0,
+    organizationId: json["organisation_code"] ?? 0,
     organisationName: json["institution_name"] ?? "",
     role: List<dynamic>.from(json["role"].map((x) => x)),
     password: json["password"],
@@ -115,7 +116,7 @@ class Data {
     "is_active": isActive,
     "email_verified": emailVerified,
     "login_id":loginId,
-    "organisation_id": organizationId
+    "organisation_code": organizationId
   };
 
   @override
