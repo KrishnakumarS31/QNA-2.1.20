@@ -728,8 +728,8 @@ class ChangeEmailTeacherVerifyOtpPageState extends State<ChangeEmailTeacherVerif
             fontSize: 15),
       ),
       onPressed: () async {
-        Navigator.pushNamedAndRemoveUntil(context, '/teacherLoginPage',
-            ModalRoute.withName('/teacherSelectionPage'));
+        Navigator.popUntil(context,
+            ModalRoute.withName('/teacherLoginPage'));
       },
     );
     AlertDialog alert = AlertDialog(

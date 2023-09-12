@@ -797,8 +797,8 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
             SharedPreferences preferences = await SharedPreferences.getInstance();
             await preferences.clear();
             if(context.mounted) {
-              Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',
-                  ModalRoute.withName('/studentSelectionPage'));
+              Navigator.popUntil(context,
+                  ModalRoute.withName('/studentMemberLoginPage'));
             }
           },
         )

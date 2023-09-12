@@ -469,7 +469,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                       onTap: () {
                                                         final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
                                                         final regex = RegExp(emailPattern);
-                                                        if(regex.hasMatch(emailController.text)) {
+                                                        if(emailController.text.isEmpty || regex.hasMatch(emailController.text)) {
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/forgotPasswordEmail',
@@ -927,7 +927,7 @@ child: GestureDetector(
 onTap: () {
   final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
   final regex = RegExp(emailPattern);
-  if(regex.hasMatch(emailController.text)) {
+  if(emailController.text.isEmpty || regex.hasMatch(emailController.text)) {
     Navigator.pushNamed(
         context,
         '/forgotPasswordEmail',
@@ -1391,7 +1391,7 @@ fontSize: height *
                                                     onTap: () {
                                                       final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
                                                       final regex = RegExp(emailPattern);
-                                                      if(regex.hasMatch(emailController.text)) {
+                                                      if(emailController.text.isEmpty || regex.hasMatch(emailController.text)) {
                                                         Navigator.pushNamed(
                                                             context,
                                                             '/forgotPasswordEmail',
@@ -1847,7 +1847,7 @@ fontSize: height *
                                                   onTap: () {
                                                     final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
                                                     final regex = RegExp(emailPattern);
-                                                    if(regex.hasMatch(emailController.text)) {
+                                                    if(emailController.text.isEmpty || regex.hasMatch(emailController.text)) {
                                                       Navigator.pushNamed(
                                                           context,
                                                           '/forgotPasswordEmail',

@@ -25,8 +25,10 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   TextEditingController reNewPassword = TextEditingController();
   late String password;
   UserDetails userDetails=UserDetails();
-  bool passObscure = true;
-  bool confirmPassObscure = true;
+  bool oldObscure = true;
+  bool newObscure = true;
+  bool reNewObscure = true;
+
   @override
   void initState() {
     super.initState();
@@ -114,7 +116,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                               child: TextFormField(
                                                 controller: oldPassword,
                                                 keyboardType: TextInputType.text,
-                                                obscureText: passObscure,
+                                                obscureText: oldObscure,
                                                 obscuringCharacter: "*",
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
@@ -131,7 +133,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             IconButton(
                                                                 iconSize: height * 0.028,
                                                                 icon: Icon(
-                                                                  passObscure
+                                                                  oldObscure
                                                                       ? Icons.visibility
                                                                       : Icons.visibility_off,
                                                                   color:
@@ -141,7 +143,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                 ),
                                                                 onPressed: () {
                                                                   setState(() {
-                                                                    passObscure = !passObscure;
+                                                                    oldObscure = !oldObscure;
                                                                   });
                                                                 }),
                                                           ]
@@ -190,7 +192,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                               child: TextFormField(
                                                 controller: newPassword,
                                                 keyboardType: TextInputType.text,
-                                                obscureText: passObscure,
+                                                obscureText: newObscure,
                                                 obscuringCharacter: "*",
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
@@ -207,7 +209,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             IconButton(
                                                                 iconSize: height * 0.028,
                                                                 icon: Icon(
-                                                                  passObscure
+                                                                  newObscure
                                                                       ? Icons.visibility
                                                                       : Icons.visibility_off,
                                                                   color:
@@ -217,7 +219,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                 ),
                                                                 onPressed: () {
                                                                   setState(() {
-                                                                    passObscure = !passObscure;
+                                                                    newObscure = !newObscure;
                                                                   });
                                                                 }),
                                                           ]
@@ -260,7 +262,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                               child: TextFormField(
                                                 controller: reNewPassword,
                                                 keyboardType: TextInputType.text,
-                                                obscureText: passObscure,
+                                                obscureText: reNewObscure,
                                                 obscuringCharacter: "*",
                                                 onChanged: (val) {
                                                   formKey.currentState!.validate();
@@ -277,7 +279,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                             IconButton(
                                                                 iconSize: height * 0.028,
                                                                 icon: Icon(
-                                                                  passObscure
+                                                                  reNewObscure
                                                                       ? Icons.visibility
                                                                       : Icons.visibility_off,
                                                                   color:
@@ -287,7 +289,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                 ),
                                                                 onPressed: () {
                                                                   setState(() {
-                                                                    passObscure = !passObscure;
+                                                                    reNewObscure = !reNewObscure;
                                                                   });
                                                                 }),
                                                           ]
@@ -430,7 +432,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         child: TextFormField(
                                                           controller: oldPassword,
                                                           keyboardType: TextInputType.text,
-                                                          obscureText: passObscure,
+                                                          obscureText: oldObscure,
                                                           obscuringCharacter: "*",
                                                           onChanged: (val) {
                                                             formKey.currentState!.validate();
@@ -447,7 +449,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                       IconButton(
                                                                           iconSize: height * 0.028,
                                                                           icon: Icon(
-                                                                            passObscure
+                                                                            oldObscure
                                                                                 ? Icons.visibility
                                                                                 : Icons.visibility_off,
                                                                             color:
@@ -457,7 +459,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                           ),
                                                                           onPressed: () {
                                                                             setState(() {
-                                                                              passObscure = !passObscure;
+                                                                              oldObscure = !oldObscure;
                                                                             });
                                                                           }),
                                                                     ]
@@ -506,7 +508,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         child: TextFormField(
                                                           controller: newPassword,
                                                           keyboardType: TextInputType.text,
-                                                          obscureText: passObscure,
+                                                          obscureText: newObscure,
                                                           obscuringCharacter: "*",
                                                           onChanged: (val) {
                                                             formKey.currentState!.validate();
@@ -523,7 +525,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                       IconButton(
                                                                           iconSize: height * 0.028,
                                                                           icon: Icon(
-                                                                            passObscure
+                                                                            newObscure
                                                                                 ? Icons.visibility
                                                                                 : Icons.visibility_off,
                                                                             color:
@@ -533,7 +535,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                           ),
                                                                           onPressed: () {
                                                                             setState(() {
-                                                                              passObscure = !passObscure;
+                                                                              newObscure = !newObscure;
                                                                             });
                                                                           }),
                                                                     ]
@@ -576,7 +578,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                         child: TextFormField(
                                                           controller: reNewPassword,
                                                           keyboardType: TextInputType.text,
-                                                          obscureText: passObscure,
+                                                          obscureText: reNewObscure,
                                                           obscuringCharacter: "*",
                                                           onChanged: (val) {
                                                             formKey.currentState!.validate();
@@ -593,7 +595,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                       IconButton(
                                                                           iconSize: height * 0.028,
                                                                           icon: Icon(
-                                                                            passObscure
+                                                                            reNewObscure
                                                                                 ? Icons.visibility
                                                                                 : Icons.visibility_off,
                                                                             color:
@@ -603,7 +605,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                                           ),
                                                                           onPressed: () {
                                                                             setState(() {
-                                                                              passObscure = !passObscure;
+                                                                              reNewObscure = !reNewObscure;
                                                                             });
                                                                           }),
                                                                     ]
@@ -744,7 +746,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     child: TextFormField(
                                       controller: oldPassword,
                                       keyboardType: TextInputType.text,
-                                      obscureText: passObscure,
+                                      obscureText: oldObscure,
                                       obscuringCharacter: "*",
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -761,7 +763,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   IconButton(
                                                       iconSize: height * 0.028,
                                                       icon: Icon(
-                                                        confirmPassObscure
+                                                        oldObscure
                                                             ? Icons.visibility
                                                             : Icons.visibility_off,
                                                         color:
@@ -771,7 +773,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                       ),
                                                       onPressed: () {
                                                         setState(() {
-                                                          confirmPassObscure = !confirmPassObscure;
+                                                          oldObscure = !oldObscure;
                                                         });
                                                       }),
                                                 ]
@@ -820,7 +822,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     child: TextFormField(
                                       controller: newPassword,
                                       keyboardType: TextInputType.text,
-                                      obscureText: passObscure,
+                                      obscureText: newObscure,
                                       obscuringCharacter: "*",
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -837,7 +839,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   IconButton(
                                                       iconSize: height * 0.028,
                                                       icon: Icon(
-                                                        confirmPassObscure
+                                                        newObscure
                                                             ? Icons.visibility
                                                             : Icons.visibility_off,
                                                         color:
@@ -847,7 +849,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                       ),
                                                       onPressed: () {
                                                         setState(() {
-                                                          confirmPassObscure = !confirmPassObscure;
+                                                          newObscure = !newObscure;
                                                         });
                                                       }),
                                                 ]
@@ -890,7 +892,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     child: TextFormField(
                                       controller: reNewPassword,
                                       keyboardType: TextInputType.text,
-                                      obscureText: passObscure,
+                                      obscureText: reNewObscure,
                                       obscuringCharacter: "*",
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -907,7 +909,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                   IconButton(
                                                       iconSize: height * 0.028,
                                                       icon: Icon(
-                                                        confirmPassObscure
+                                                        reNewObscure
                                                             ? Icons.visibility
                                                             : Icons.visibility_off,
                                                         color:
@@ -917,7 +919,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                                       ),
                                                       onPressed: () {
                                                         setState(() {
-                                                          confirmPassObscure = !confirmPassObscure;
+                                                          reNewObscure = !reNewObscure;
                                                         });
                                                       }),
                                                 ]
@@ -1012,8 +1014,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
         if(context.mounted) {
-          Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',
-              ModalRoute.withName('/studentSelectionPage'));
+          Navigator.popUntil(context,
+              ModalRoute.withName('/studentMemberLoginPage'));
         }
       },
     ));

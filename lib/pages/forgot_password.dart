@@ -28,6 +28,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
   final formKey = GlobalKey<FormState>();
   TextEditingController oldPassword = TextEditingController();
   TextEditingController newPassword = TextEditingController();
+  bool _isObscure = true;
+  bool confirmPassObscure = true;
 
   @override
   void initState() {
@@ -99,6 +101,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                       child:
                                       TextFormField(
                                         controller: oldPassword,
+                                        obscureText: _isObscure,
+                                        obscuringCharacter: "*",
                                         keyboardType: TextInputType.text,
                                         onChanged: (val) {
                                           formKey.currentState!.validate();
@@ -124,6 +128,27 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.02),
+                                            suffixIcon:
+                                            Padding(
+                                                padding: const EdgeInsets.only(top: 20),
+                                                child: Row(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    children:[
+                                                      IconButton(
+                                                          icon: Icon(
+                                                            _isObscure
+                                                                ? Icons.visibility_off
+                                                                : Icons.visibility,
+                                                            color: const Color.fromRGBO(
+                                                                82, 165, 160, 1),
+                                                          ),
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              _isObscure = !_isObscure;
+                                                            });
+                                                          }),
+                                                    ]
+                                                ))
                                         ),
                                         validator: (value) {
                                           if (value!.length < 8) {
@@ -140,6 +165,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                     child:
                                     TextFormField(
                                       controller: newPassword,
+                                      obscureText: confirmPassObscure,
+                                      obscuringCharacter: "*",
                                       keyboardType: TextInputType.text,
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -165,6 +192,27 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
+                                          suffixIcon:
+                                          Padding(
+                                              padding: const EdgeInsets.only(top: 20),
+                                              child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children:[
+                                                    IconButton(
+                                                        icon: Icon(
+                                                          confirmPassObscure
+                                                              ? Icons.visibility_off
+                                                              : Icons.visibility,
+                                                          color: const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                        ),
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            confirmPassObscure = !confirmPassObscure;
+                                                          });
+                                                        }),
+                                                  ]
+                                              ))
                                       ),
                                       validator: (value) {
                                         if (newPassword.text != oldPassword.text) {
@@ -280,6 +328,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                     child:
                                     TextFormField(
                                       controller: oldPassword,
+                                      obscureText: _isObscure,
+                                      obscuringCharacter: "*",
                                       keyboardType: TextInputType.text,
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -305,6 +355,27 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
+                                          suffixIcon:
+                                          Padding(
+                                              padding: const EdgeInsets.only(top: 20),
+                                              child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children:[
+                                                    IconButton(
+                                                        icon: Icon(
+                                                          _isObscure
+                                                              ? Icons.visibility_off
+                                                              : Icons.visibility,
+                                                          color: const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                        ),
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            _isObscure = !_isObscure;
+                                                          });
+                                                        }),
+                                                  ]
+                                              ))
                                       ),
                                       validator: (value) {
                                         if (value!.length < 8) {
@@ -321,6 +392,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                     child:
                                     TextFormField(
                                       controller: newPassword,
+                                      obscureText: confirmPassObscure,
+                                      obscuringCharacter: "*",
                                       keyboardType: TextInputType.text,
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -346,6 +419,27 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
+                                          suffixIcon:
+                                          Padding(
+                                              padding: const EdgeInsets.only(top: 20),
+                                              child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children:[
+                                                    IconButton(
+                                                        icon: Icon(
+                                                          confirmPassObscure
+                                                              ? Icons.visibility_off
+                                                              : Icons.visibility,
+                                                          color: const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                        ),
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            confirmPassObscure = !confirmPassObscure;
+                                                          });
+                                                        }),
+                                                  ]
+                                              ))
                                       ),
                                       validator: (value) {
                                         if (newPassword.text != oldPassword.text) {
@@ -462,6 +556,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                     child:
                                     TextFormField(
                                       controller: oldPassword,
+                                      obscureText: _isObscure,
+                                      obscuringCharacter: "*",
                                       keyboardType: TextInputType.text,
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -487,6 +583,27 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
+                                          suffixIcon:
+                                          Padding(
+                                              padding: const EdgeInsets.only(top: 20),
+                                              child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children:[
+                                                    IconButton(
+                                                        icon: Icon(
+                                                          _isObscure
+                                                              ?Icons.visibility_off
+                                                              : Icons.visibility,
+                                                          color: const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                        ),
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            _isObscure = !_isObscure;
+                                                          });
+                                                        }),
+                                                  ]
+                                              ))
                                       ),
                                       validator: (value) {
                                         if (value!.length < 8) {
@@ -503,6 +620,8 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                     child:
                                     TextFormField(
                                       controller: newPassword,
+                                      obscureText: confirmPassObscure,
+                                      obscuringCharacter: "*",
                                       keyboardType: TextInputType.text,
                                       onChanged: (val) {
                                         formKey.currentState!.validate();
@@ -528,6 +647,27 @@ class ForgotPasswordState extends State<ForgotPassword> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
+                                          suffixIcon:
+                                          Padding(
+                                              padding: const EdgeInsets.only(top: 20),
+                                              child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children:[
+                                                    IconButton(
+                                                        icon: Icon(
+                                                          confirmPassObscure
+                                                              ?Icons.visibility_off
+                                                              : Icons.visibility,
+                                                          color: const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                        ),
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            confirmPassObscure = !confirmPassObscure;
+                                                          });
+                                                        }),
+                                                  ]
+                                              ))
                                       ),
                                       validator: (value) {
                                         if (newPassword.text != oldPassword.text) {

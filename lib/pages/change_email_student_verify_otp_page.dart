@@ -728,13 +728,15 @@ class ChangeEmailVerifyOtpPageState extends State<ChangeEmailVerifyOtpPage> {
             fontSize: 15),
       ),
       onPressed: () async {
-        UserDataModel userDataModel =
-            await QnaService
-            .getUserDataService(widget.userDetails.userId,widget.userDetails);
-        Navigator.pushNamed(
-            context,
-            '/studentAssessment',
-            arguments: [userDataModel,null,widget.userDetails.email]);
+        Navigator.popUntil(context,
+            ModalRoute.withName('/studentMemberLoginPage'));
+        // UserDataModel userDataModel =
+        //     await QnaService
+        //     .getUserDataService(widget.userDetails.userId,widget.userDetails);
+        // Navigator.pushNamed(
+        //     context,
+        //     '/studentAssessment',
+        //     arguments: [userDataModel,null,widget.userDetails.email]);
       },
     );
     AlertDialog alert = AlertDialog(

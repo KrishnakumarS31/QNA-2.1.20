@@ -521,7 +521,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 onTap: () {
                                                   final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
                                                   final regex = RegExp(emailPattern);
-                                                  if(regex.hasMatch(regNumberController.text)) {
+                                                  if(regNumberController.text.isEmpty ||  regex.hasMatch(regNumberController.text)) {
                                                     Navigator.pushNamed(
                                                         context,
                                                         '/forgotPasswordEmail',
@@ -1033,7 +1033,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       onTap: () {
                                                         final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
                                                         final regex = RegExp(emailPattern);
-                                                        if(regex.hasMatch(regNumberController.text)) {
+                                                        if(regNumberController.text.isEmpty || regex.hasMatch(regNumberController.text)) {
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/forgotPasswordEmail',
@@ -1543,7 +1543,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   onTap: () {
                                                     final emailPattern = r'^[\w\.-]+@[\w\.-]+\.\w+$';
                                                     final regex = RegExp(emailPattern);
-                                                    if(regex.hasMatch(regNumberController.text)) {
+                                                    if(regNumberController.text.isEmpty || regex.hasMatch(regNumberController.text)) {
                                                       Navigator.pushNamed(
                                                           context,
                                                           '/forgotPasswordEmail',
