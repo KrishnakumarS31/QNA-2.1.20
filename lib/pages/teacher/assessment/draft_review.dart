@@ -1671,6 +1671,8 @@ class DraftReviewState extends State<DraftReview> {
                                                                             setState(() {
                                                                               assessment.subject = subjectController.text;
                                                                               assessment.topic = topicController.text;
+                                                                              assessment.createAssessmentModelClass = degreeController.text;
+                                                                              assessment.subTopic = semesterController.text;
                                                                             });
                                                                             Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                                                             Navigator.of(context).pop();
@@ -2548,10 +2550,10 @@ class DraftReviewState extends State<DraftReview> {
                                                                             print("INSIDE SETSTATE");
                                                                             assessment.subject = subjectController.text;
                                                                             assessment.topic = topicController.text;
+                                                                            assessment.createAssessmentModelClass = degreeController.text;
+                                                                            assessment.subTopic = semesterController.text;
                                                                             Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                                                           });
-                                                                          print("BEfpre provider");
-
                                                                           Navigator.of(context).pop();
                                                                         }
                                                                       },

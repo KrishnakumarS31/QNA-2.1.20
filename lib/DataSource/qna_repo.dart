@@ -217,7 +217,6 @@ class QnaRepo {
     log(request.body);
 
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
@@ -648,8 +647,7 @@ class QnaRepo {
         Uri.parse('$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("Panju Mittai Selai Katti");
-    print(response.statusCode);
+
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       resultData = responseEntityFromJson(temp);
@@ -679,6 +677,7 @@ class QnaRepo {
       int attemptId) async {
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    print('$questionDetails?attempt_id=$attemptId');
     var request = http.Request(
         'GET', Uri.parse('$questionDetails?attempt_id=$attemptId'));
     // request.headers.addAll(headers);

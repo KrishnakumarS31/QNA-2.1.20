@@ -39,6 +39,7 @@ class TeacherResultIndividualStudentState
   @override
   void initState() {
     Future.delayed(Duration.zero, (){getData();});
+
     super.initState();
   }
 
@@ -848,6 +849,13 @@ class QuesAndAns extends StatefulWidget {
 class _QuesAndAnsState extends State<QuesAndAns> {
   @override
   void initState() {
+    print(widget.ques);
+    print(widget.quesNum);
+    print(widget.marks);
+    print( widget.ques.selectedChoices);
+    print(widget.ques.descriptiveAnswers?.isEmpty);
+    print(widget.ques
+        .descriptiveAnswers!);
     super.initState();
   }
 
@@ -979,12 +987,13 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             fontWeight: FontWeight.w400),
                       ),
                       widget.ques.questionType != "Descriptive"
-                          ? Expanded(
+                          ?
+                      Expanded(
                               child: Text(
-                                widget.ques.selectedChoices == null ||
+                                widget.ques.selectedChoices == [] ||
                                         widget.ques.selectedChoices!.isEmpty ||
                                         widget.ques.selectedChoices![0] == "" ||
-                                        widget.ques.selectedChoices == []
+                                        widget.ques.selectedChoices == null
                                     ? "Not Answered"
                                     : widget.ques.selectedChoices![0],
                                 style: TextStyle(
@@ -997,13 +1006,23 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             )
                           : Expanded(
                               child: Text(
-                                widget.ques.descriptiveAnswers!.substring(
-                                         1,
-                                        widget.ques.descriptiveAnswers!.length -
-                                             1).isEmpty?"Not answered":widget.ques.descriptiveAnswers!.substring(
-                                         1,
-                                        widget.ques.descriptiveAnswers!.length -
-                                             1),
+                                widget.ques.descriptiveAnswers!.isEmpty
+                                    ?
+
+                                'Not Answered' :
+                                widget.ques
+                                    .descriptiveAnswers!,
+                                // widget.ques.descriptiveAnswers!.substring(
+                                //          1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //              1).isEmpty
+                                // widget.ques.descriptiveAnswers!.isEmpty
+                                //     ?
+                                // "Not answered":
+                                // widget.ques.descriptiveAnswers!.substring(
+                                //          1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //              1),
                                 // widget.ques.selectedChoices == null ||
                                 //         widget.ques.selectedChoices!.isEmpty ||
                                 //         widget.ques.selectedChoices![0] == "" ||
@@ -1177,13 +1196,19 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             )
                           : Expanded(
                               child: Text(
-                                widget.ques.descriptiveAnswers!.substring(
-                                         1,
-                                        widget.ques.descriptiveAnswers!.length -
-                                             1).isEmpty?"Not answered":widget.ques.descriptiveAnswers!.substring(
-                                         1,
-                                        widget.ques.descriptiveAnswers!.length -
-                                             1),
+                                widget.ques.descriptiveAnswers!.isEmpty
+                                    ?
+
+                                'Not Answered' :
+                                widget.ques
+                                    .descriptiveAnswers!,
+                                // widget.ques.descriptiveAnswers!.substring(
+                                //          1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //              1).isEmpty?"Not answered":widget.ques.descriptiveAnswers!.substring(
+                                //          1,
+                                //         widget.ques.descriptiveAnswers!.length -
+                                //              1),
                                 // widget.ques.selectedChoices == null ||
                                 //         widget.ques.selectedChoices!.isEmpty ||
                                 //         widget.ques.selectedChoices![0] == "" ||
@@ -1351,11 +1376,16 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                             )
                           : Expanded(
                               child: Text(
+                                // widget.ques
+                                //         .descriptiveAnswers!.substring(
+                                //         1, widget.ques.descriptiveAnswers!.length - 1).isEmpty
+
+                                widget.ques.descriptiveAnswers!.isEmpty
+                                    ?
+
+                                  'Not Answered' :
                                   widget.ques
-                                        .descriptiveAnswers!.substring(
-                                        1, widget.ques.descriptiveAnswers!.length - 1).isEmpty ? 'NotAnswered' :widget.ques
-                                        .descriptiveAnswers!.substring(
-                                        1, widget.ques.descriptiveAnswers!.length - 1),
+                                        .descriptiveAnswers!,
 
                                 // widget.ques.selectedChoices == null ||
                                 //         widget.ques.selectedChoices!.isEmpty ||

@@ -1248,8 +1248,7 @@ class AddQuestionState extends State<AddQuestion> {
                                                 listen: false)
                                                 .addQuestion(question);
 
-                                            if (_formKey.currentState!
-                                                .validate() &&
+                                            if (
                                                 questionFormKey.currentState!
                                                     .validate()) {
                                               if (_questionTypeValue == 'MCQ' &&
@@ -2345,8 +2344,7 @@ class AddQuestionState extends State<AddQuestion> {
                                             question.advisorUrl =
                                                 urlController.text;
 
-                                            if (_formKey.currentState!
-                                                .validate() &&
+                                            if (
                                                 questionFormKey.currentState!
                                                     .validate()) {
                                               if (_questionTypeValue == 'MCQ' &&
@@ -3007,7 +3005,8 @@ class AddQuestionState extends State<AddQuestion> {
                                                     ],
                                                   ),
                                                 )
-                                                    : Form(
+                                                    :
+                                                Form(
                                                   key: _formKey,
                                                   child: Column(
                                                     children: [
@@ -3431,8 +3430,7 @@ class AddQuestionState extends State<AddQuestion> {
                                         question.advisorUrl =
                                             urlController.text;
 
-                                        if (_formKey.currentState!
-                                            .validate() &&
+                                        if (
                                             questionFormKey.currentState!
                                                 .validate()) {
                                           if (_questionTypeValue == 'MCQ' &&
@@ -4520,8 +4518,7 @@ class AddQuestionState extends State<AddQuestion> {
                                       question.advisorUrl =
                                           urlController.text;
 
-                                      if (_formKey.currentState!
-                                          .validate() &&
+                                      if (
                                           questionFormKey.currentState!
                                               .validate()) {
                                         if (_questionTypeValue == 'MCQ' &&
@@ -4547,16 +4544,19 @@ class AddQuestionState extends State<AddQuestion> {
                                               ),
                                             ),
                                           );
+                                        }
+                                        else if (_questionTypeValue ==
+                                            'Survey' &&
+                                            tempChoiceList!.length == 0) {
                                         } else {
                                           Provider.of<QuestionPrepareProviderFinal>(
                                               context,
                                               listen: false)
                                               .addQuestion(question);
-                                          Navigator.of(context)
-                                              .pushNamedAndRemoveUntil(
-                                              '/inprogressQuestionBank',
-                                              ModalRoute.withName(
-                                                  '/createNewQuestion'));
+                                          Navigator.pushNamed(
+                                            context,
+                                            '/inprogressQuestionBank',
+                                          );
                                         }
                                       }
                                       // Navigator.pushNamed(

@@ -1834,11 +1834,20 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 List<dynamic> correctAns = [];
                                 if (values.data!.questions![j - 1].questionType ==
                                     "Descriptive") {
+                                  print("INSIDE DESCRIPTIVE");
+                                  print( quesResult.descriptiveText);
                                   RegExp regExp = RegExp(r'\[|\]');
                                   quesResult.marks = 0;
                                   quesResult.descriptiveText = Provider
                                       .of<Questions>(context, listen: false)
                                       .totalQuestion['$j'][0].toString().replaceAll(regExp, '');
+                                  print("KO KO");
+                                  print(Provider
+                                      .of<Questions>(context, listen: false)
+                                      .totalQuestion['$j'][0].toString().replaceAll(regExp, ''));
+                                  print("KING OF KOTHA");
+                                  print(quesResult.descriptiveText);
+
                                   quesResult.statusId = (quesResult.descriptiveText == null || quesResult.descriptiveText!.isEmpty ) ? 5 : 8;
                                 }
                                 else if (values.data!.questions![j - 1].questionType ==
@@ -1957,6 +1966,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
+                                print("bjj");
+                                print(assessment.assessmentResults[0].descriptiveText);
                                 LoginModel loginResponse = await QnaService
                                     .postAssessmentService(assessment, values,userDetails);
 
@@ -2003,182 +2014,184 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         }
     );}
 
-  Future<void> submit() async {
-    String message = '';
-    int ansCorrect = 0;
-    int totalMark = 0;
-    int? givenMark = 0;
-    assessment.assessmentId = widget.assessmentCode;
-    assessment.assessmentCode = widget.assessmentID;
-    assessment.statusId = 2;
-    assessment.attemptStartdate = widget.startTime;
-    assessment.attemptEnddate = DateTime
-        .now()
-        .microsecondsSinceEpoch;
-    var d1 = DateTime.fromMicrosecondsSinceEpoch(
-        widget.startTime);
-    var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime
-        .now()
-        .microsecondsSinceEpoch);
-    int difference = d2
-        .difference(d1)
-        .inMinutes;
-    assessment.attemptDuration = difference == 0 ? 1 : difference;
-    var endTimeTaken = (d2.difference(d1).toString());
-    for (int j = 1; j <= Provider
-        .of<Questions>(context, listen: false)
-        .totalQuestion
-        .length; j++) {
-      List<int> selectedAnsId = [];
-      AssessmentResult quesResult = AssessmentResult();
-      quesResult.questionId =
-          values.data!.questions![j - 1].questionId;
-      quesResult.statusId = 6;
-      quesResult.questionTypeId =
-          values.data!.questions![j - 1].questionTypeId;
-      quesResult.marks = 0;
-      List<dynamic> correctAns = [];
-      if (values.data!.questions![j - 1].questionType ==
-          "Descriptive") {
-        quesResult.statusId = 8;
-        quesResult.marks = 0;
-        quesResult.descriptiveText = Provider
-            .of<Questions>(context, listen: false)
-            .totalQuestion['$j'][0].toString();
-      }
-      else if (values.data!.questions![j - 1].questionType ==
-          "Survey") {
-        quesResult.statusId = 8;
-        List<dynamic> selectedAns = Provider
-            .of<Questions>(context, listen: false)
-            .totalQuestion['$j'][0];
-        selectedAns.sort();
-        List<int> key = [];
-        List<String> value = [];
-        for (int s = 0; s <
-            values.data!.questions![j - 1].choices!.length; s++) {
-          key.add(values.data!.questions![j - 1].choices![s]
-              .choiceId!);
-          value.add(values.data!.questions![j - 1].choices![s]
-              .choiceText!);
-        }
-        for (int f = 0; f < selectedAns.length; f++) {
-          selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
-        }
-        quesResult.selectedQuestionChoice = selectedAnsId;
-        quesResult.marks = 0;
-      }
-      else {
-        for (int i = 0; i <
-            values.data!.questions![j - 1].choices!.length; i++) {
-          if (values.data!.questions![j - 1].choices![i]
-              .rightChoice!) {
-            correctAns.add(values.data!.questions![j - 1]
-                .choices![i].choiceText);
-          }
-        }
-        correctAns.sort();
-        List<dynamic> selectedAns = Provider
-            .of<Questions>(context, listen: false)
-            .totalQuestion['$j'][0];
-        selectedAns.sort();
-        if(selectedAns.isEmpty){
-          quesResult.statusId = 5;
-        }
-        List<int> key = [];
-        List<String> value = [];
-        for (int s = 0; s <
-            values.data!.questions![j - 1].choices!.length; s++) {
-          key.add(values.data!.questions![j - 1].choices![s]
-              .choiceId!);
-          value.add(values.data!.questions![j - 1].choices![s]
-              .choiceText!);
-        }
-        for (int f = 0; f < selectedAns.length; f++) {
-          selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
-        }
-        quesResult.selectedQuestionChoice = selectedAnsId;
-
-        if (listEquals(correctAns, selectedAns)) {
-          quesResult.statusId = 6;
-          quesResult.marks =
-              values.data!.questions![j - 1].questionMarks;
-          totalMark = totalMark +
-              values.data!.questions![j - 1].questionMarks!;
-          ansCorrect++;
-          givenMark = values.data!.totalScore;
-        }
-        else{
-          quesResult.statusId = 7;
-        }
-      }
-
-      assessment.assessmentResults.add(quesResult);
-    }
-    assessment.attemptScore = totalMark;
-    values.data!.totalScore = givenMark;
-    int percent=0;
-    if(ansCorrect==0 || totalMark==0){
-      percent=0;
-    }
-
-    else{
-      double f = 100/givenMark!;
-      double g = totalMark * f;
-      percent = g.round();
-    }
-    assessment.attemptPercentage = percent;
-    assessment.attemptScore=totalMark;
-    if (percent == 100) {
-      assessment.assessmentScoreId =
-          values.data!.assessmentScoreMessage![0]
-              .assessmentScoreId;
-      message = values.data!.assessmentScoreMessage![0]
-          .assessmentScoreStatus;
-    }
-    else {
-      assessment.assessmentScoreId =
-          values.data!.assessmentScoreMessage![1]
-              .assessmentScoreId;
-      message = values.data!.assessmentScoreMessage![1]
-          .assessmentScoreStatus;
-    }
-    final DateTime now = DateTime.now();
-    final DateFormat formatter = DateFormat('dd-MM-yyyy');
-    final DateFormat timeFormatter = DateFormat('hh:mm a');
-    final String formatted = formatter.format(now);
-    final String time = timeFormatter.format(now);
-    LoginModel loginResponse = await QnaService
-        .postAssessmentService(assessment, values,userDetails);
-    print(assessment);
-    print("11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-    print(values);
-    print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-    print(userDetails);
-    print(loginResponse.code);
-    print("message 2");
-    print(loginResponse.message);
-    if (loginResponse.code == 200) {
-      print(widget.userId);
-      print("33333333333333333333333333333333333333333333333333333333333333333333333333333333333");
-      Navigator.pushNamed(
-          context,
-          '/studentResultPage',
-          arguments: [
-            totalMark,
-            formatted,
-            time,
-            values,
-            widget.assessmentID,
-            widget.userName,
-            message,
-            endTimeTaken,
-            givenMark,
-            widget.isMember,
-            widget.assessmentHeaders
-          ]);
-    }
-  }
+  // Future<void> submit() async {
+  //   String message = '';
+  //   int ansCorrect = 0;
+  //   int totalMark = 0;
+  //   int? givenMark = 0;
+  //   assessment.assessmentId = widget.assessmentCode;
+  //   assessment.assessmentCode = widget.assessmentID;
+  //   assessment.statusId = 2;
+  //   assessment.attemptStartdate = widget.startTime;
+  //   assessment.attemptEnddate = DateTime
+  //       .now()
+  //       .microsecondsSinceEpoch;
+  //   var d1 = DateTime.fromMicrosecondsSinceEpoch(
+  //       widget.startTime);
+  //   var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime
+  //       .now()
+  //       .microsecondsSinceEpoch);
+  //   int difference = d2
+  //       .difference(d1)
+  //       .inMinutes;
+  //   assessment.attemptDuration = difference == 0 ? 1 : difference;
+  //   var endTimeTaken = (d2.difference(d1).toString());
+  //   for (int j = 1; j <= Provider
+  //       .of<Questions>(context, listen: false)
+  //       .totalQuestion
+  //       .length; j++) {
+  //     List<int> selectedAnsId = [];
+  //     AssessmentResult quesResult = AssessmentResult();
+  //     quesResult.questionId =
+  //         values.data!.questions![j - 1].questionId;
+  //     quesResult.statusId = 6;
+  //     quesResult.questionTypeId =
+  //         values.data!.questions![j - 1].questionTypeId;
+  //     quesResult.marks = 0;
+  //     List<dynamic> correctAns = [];
+  //     if (values.data!.questions![j - 1].questionType ==
+  //         "Descriptive") {
+  //       quesResult.statusId = 8;
+  //       quesResult.marks = 0;
+  //       quesResult.descriptiveText = Provider
+  //           .of<Questions>(context, listen: false)
+  //           .totalQuestion['$j'][0].toString();
+  //       print("VACHU");
+  //       print(quesResult.descriptiveText);
+  //     }
+  //     else if (values.data!.questions![j - 1].questionType ==
+  //         "Survey") {
+  //       quesResult.statusId = 8;
+  //       List<dynamic> selectedAns = Provider
+  //           .of<Questions>(context, listen: false)
+  //           .totalQuestion['$j'][0];
+  //       selectedAns.sort();
+  //       List<int> key = [];
+  //       List<String> value = [];
+  //       for (int s = 0; s <
+  //           values.data!.questions![j - 1].choices!.length; s++) {
+  //         key.add(values.data!.questions![j - 1].choices![s]
+  //             .choiceId!);
+  //         value.add(values.data!.questions![j - 1].choices![s]
+  //             .choiceText!);
+  //       }
+  //       for (int f = 0; f < selectedAns.length; f++) {
+  //         selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+  //       }
+  //       quesResult.selectedQuestionChoice = selectedAnsId;
+  //       quesResult.marks = 0;
+  //     }
+  //     else {
+  //       for (int i = 0; i <
+  //           values.data!.questions![j - 1].choices!.length; i++) {
+  //         if (values.data!.questions![j - 1].choices![i]
+  //             .rightChoice!) {
+  //           correctAns.add(values.data!.questions![j - 1]
+  //               .choices![i].choiceText);
+  //         }
+  //       }
+  //       correctAns.sort();
+  //       List<dynamic> selectedAns = Provider
+  //           .of<Questions>(context, listen: false)
+  //           .totalQuestion['$j'][0];
+  //       selectedAns.sort();
+  //       if(selectedAns.isEmpty){
+  //         quesResult.statusId = 5;
+  //       }
+  //       List<int> key = [];
+  //       List<String> value = [];
+  //       for (int s = 0; s <
+  //           values.data!.questions![j - 1].choices!.length; s++) {
+  //         key.add(values.data!.questions![j - 1].choices![s]
+  //             .choiceId!);
+  //         value.add(values.data!.questions![j - 1].choices![s]
+  //             .choiceText!);
+  //       }
+  //       for (int f = 0; f < selectedAns.length; f++) {
+  //         selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+  //       }
+  //       quesResult.selectedQuestionChoice = selectedAnsId;
+  //
+  //       if (listEquals(correctAns, selectedAns)) {
+  //         quesResult.statusId = 6;
+  //         quesResult.marks =
+  //             values.data!.questions![j - 1].questionMarks;
+  //         totalMark = totalMark +
+  //             values.data!.questions![j - 1].questionMarks!;
+  //         ansCorrect++;
+  //         givenMark = values.data!.totalScore;
+  //       }
+  //       else{
+  //         quesResult.statusId = 7;
+  //       }
+  //     }
+  //
+  //     assessment.assessmentResults.add(quesResult);
+  //   }
+  //   assessment.attemptScore = totalMark;
+  //   values.data!.totalScore = givenMark;
+  //   int percent=0;
+  //   if(ansCorrect==0 || totalMark==0){
+  //     percent=0;
+  //   }
+  //
+  //   else{
+  //     double f = 100/givenMark!;
+  //     double g = totalMark * f;
+  //     percent = g.round();
+  //   }
+  //   assessment.attemptPercentage = percent;
+  //   assessment.attemptScore=totalMark;
+  //   if (percent == 100) {
+  //     assessment.assessmentScoreId =
+  //         values.data!.assessmentScoreMessage![0]
+  //             .assessmentScoreId;
+  //     message = values.data!.assessmentScoreMessage![0]
+  //         .assessmentScoreStatus;
+  //   }
+  //   else {
+  //     assessment.assessmentScoreId =
+  //         values.data!.assessmentScoreMessage![1]
+  //             .assessmentScoreId;
+  //     message = values.data!.assessmentScoreMessage![1]
+  //         .assessmentScoreStatus;
+  //   }
+  //   final DateTime now = DateTime.now();
+  //   final DateFormat formatter = DateFormat('dd-MM-yyyy');
+  //   final DateFormat timeFormatter = DateFormat('hh:mm a');
+  //   final String formatted = formatter.format(now);
+  //   final String time = timeFormatter.format(now);
+  //   LoginModel loginResponse = await QnaService
+  //       .postAssessmentService(assessment, values,userDetails);
+  //   print(assessment);
+  //   print("11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+  //   print(values);
+  //   print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
+  //   print(userDetails);
+  //   print(loginResponse.code);
+  //   print("message 2");
+  //   print(loginResponse.message);
+  //   if (loginResponse.code == 200) {
+  //     print(widget.userId);
+  //     print("33333333333333333333333333333333333333333333333333333333333333333333333333333333333");
+  //     Navigator.pushNamed(
+  //         context,
+  //         '/studentResultPage',
+  //         arguments: [
+  //           totalMark,
+  //           formatted,
+  //           time,
+  //           values,
+  //           widget.assessmentID,
+  //           widget.userName,
+  //           message,
+  //           endTimeTaken,
+  //           givenMark,
+  //           widget.isMember,
+  //           widget.assessmentHeaders
+  //         ]);
+  //   }
+  // }
 
 
   showDialogBox() => showCupertinoDialog<String>(
