@@ -105,13 +105,11 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
 
     bool isNumeric = (num.tryParse(search) != null);
 
-    print(isNumeric);
     if(isNumeric && endpointCalledLocal)
       {
 
       }
     else {
-      print(search.isNotEmpty);
       ResponseEntity response =
       await QnaService.getAllAssessment(10, pageNumber, search,userDetails);
       List<GetAssessmentModel> assessments = [];
@@ -223,9 +221,6 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
             assessmentList.addAll(assessments);
             pageNumber++;
             endpointCalledGlobal = teacherQuestionBankSearchController.text.isNotEmpty ? true : false;
-            print(endpointCalledGlobal);
-            print(pageNumber);
-            //print(pageNumber++);
             searchVal = teacherQuestionBankSearchController.text;
           });
         }
@@ -1319,16 +1314,12 @@ class AssessmentLandingPageState extends State<AssessmentLandingPage> {
                                   borderRadius: 30.0,
                                   onToggle: (val) {
                                     setState(() {
-                                      print("valllllllllllllllllllllllllllllllllllllllll");
-                                      print(val);
                                       onlyMyAssessments =
                                           val;
                                       assessmentStart = 0;
                                       pageNumber = 1;
                                       assessmentList = [];
                                     });
-                                    print("outside if");
-                                    print(onlyMyAssessments);
                                     onlyMyAssessments ? getData(teacherQuestionBankSearchController.text):searchGlobalQuestion();
                                   },
                                 ),

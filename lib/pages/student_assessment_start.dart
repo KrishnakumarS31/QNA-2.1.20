@@ -56,12 +56,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
     super.initState();
     userDetails =
         Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-    print("USER ID");
-    print(userDetails.userId);
     getData();
-    print("INITIAL STAGE");
-    print(_isAssessmentTextField);
-    print(widget.usedData!.data!.firstName);
     if (widget.assessment?.assessmentCode != null) {
       _isAssessmentTextField = false;
       _isSearchTextField = true;
@@ -90,15 +85,13 @@ class StudentAssessmentState extends State<StudentAssessment> {
         });
     pageLimit = 1;
     ResponseEntity response = await QnaService.getAssessmentsForStudentsLooq(
-        1000, pageLimit, searchVal);
-    print("message${response.data}");
+        1000, pageLimit, searchVal,userDetails.userId);
     if (response.data != null) {
       allAssessment = List<GetAssessmentModel>.from(response.data['assessments']
           .map((x) => GetAssessmentModel.fromJson(x)));
     }
 
     if (allAssessment.isEmpty) {
-      print("if --------------${response.data}");
       Navigator.of(context).pop();
       Navigator.push(
         context,
@@ -116,7 +109,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
         looqSearch = false;
       });
     } else {
-      print("else --------------${response.data}");
       allAssessment = List<GetAssessmentModel>.from(response.data['assessments']
           .map((x) => GetAssessmentModel.fromJson(x)));
       Navigator.of(context).pop();
@@ -138,8 +130,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 960 && constraints.maxWidth >= 500) {
-          print("INSIDE IF");
-          print(width);
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -962,7 +952,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               8) {
                                                             if (values.code ==
                                                                 200) {
-                                                              print(values.data?.questions == null || values.data?.questions == 0  );
                                                               if(values.data?.questions == null || values.data?.questions == 0 )
                                                                 {
                                                                   Navigator.push(
@@ -1291,11 +1280,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       _isAssessmentTextField =
                                                           !_isAssessmentTextField;
                                                     });
-                                                    print("ISSEARCHTEXTfiled");
-                                                    print(_isSearchTextField);
-                                                    print("ISassessmentfiled");
-                                                    print(
-                                                        _isAssessmentTextField);
                                                   },
                                                   style: ElevatedButton.styleFrom(
                                                       minimumSize: Size(
@@ -1997,7 +1981,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                   8) {
                                                                 if (values.code ==
                                                                     200) {
-                                                                  print(values.data?.questions == null || values.data?.questions == 0  );
                                                                   if(values.data?.questions == null || values.data?.questions == 0 )
                                                                   {
                                                                     Navigator.push(

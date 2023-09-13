@@ -321,6 +321,9 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     degreeController.text = widget.question.degreeStudent!;
+    print("widget");
+    print(widget.question.degreeStudent);
+    print(degreeController.text);
     semesterController.text = widget.question.semester!;
     _questionTypeValue = widget.question.questionType!;
     questionController.text = widget.question.question!;
@@ -357,8 +360,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
       setState(() {
         subjectController.text = quesList[0].subject ?? '';
         topicController.text = quesList[0].topic ?? '';
-        degreeController.text = quesList[0].semester ?? '';
-        semesterController.text = quesList[0].degreeStudent ?? '';
+        degreeController.text = quesList[0].degreeStudent ?? '';
+        semesterController.text = quesList[0].semester ?? '';
       });
     }
     setState(() {
@@ -6070,7 +6073,8 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
                       ));
                 }
               ));
-        } else if (constraints.maxWidth > 960) {
+        }
+        else if (constraints.maxWidth > 960) {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(

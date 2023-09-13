@@ -355,6 +355,8 @@ class QnaRepo {
     ResponseEntity responseEntity = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
+    print("THE BOYS");
+    print('$allQuestionUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber&search=$search');
     var request = http.Request(
         'GET',
         Uri.parse(
@@ -611,14 +613,17 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> getSearchAssessmentForStudLooq(
-      int pageLimit, int pageNumber, String searchVal) async {
+      int pageLimit, int pageNumber, String searchVal,int? userId) async {
     ResponseEntity allAssessment = ResponseEntity();
+    pageLimit = 10;
+    pageNumber = 1;
     SharedPreferences loginData = await SharedPreferences.getInstance();
+    print('$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal&user_id=$userId');
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
         'GET',
         Uri.parse(
-            '$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+            '$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal&user_id=$userId'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -632,7 +637,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel = await logInUser(email!, pass!,"student");
-      getSearchAssessmentForStudLooq(pageLimit, pageNumber, searchVal);
+      getSearchAssessmentForStudLooq(pageLimit, pageNumber, searchVal,userId);
     } else {}
     return allAssessment;
   }

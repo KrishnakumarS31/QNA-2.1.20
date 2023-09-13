@@ -186,11 +186,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
             List<dynamic> correctAns = [];
             if (values.data!.questions![j - 1].questionType ==
                 "Descriptive") {
+              RegExp regExp = RegExp(r'\[|\]');
               quesResult.marks = 0;
-              quesResult.statusId = 8;
               quesResult.descriptiveText = Provider
                   .of<Questions>(context, listen: false)
-                  .totalQuestion['$j'][0].toString();
+                  .totalQuestion['$j'][0].toString().replaceAll(regExp, '');
+
+              quesResult.statusId = (quesResult.descriptiveText == null || quesResult.descriptiveText!.isEmpty ) ? 5 : 8;
             }
             else if (values.data!.questions![j - 1].questionType ==
                 "Survey") {
@@ -788,7 +790,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                       ),
                                       onPressed: () {
                                         var result = Connectivity().checkConnectivity();
-                                        if(result == ConnectivityResult.none){
+                                        if(result == ConnectivityResult.none && widget.questions.data?.assessmentType == "test"){
                                           showDialogBox();
                                         }
                                         else {
@@ -1246,7 +1248,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   ),
                                   onPressed: () {
                                     var result = Connectivity().checkConnectivity();
-                                    if(result == ConnectivityResult.none){
+                                    if(result == ConnectivityResult.none && widget.questions.data?.assessmentType == "test"){
                                       showDialogBox();
                                     }
                                     else {
@@ -1687,7 +1689,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   ),
                                   onPressed: () {
                                     var result = Connectivity().checkConnectivity();
-                                    if(result == ConnectivityResult.none){
+                                    if(result == ConnectivityResult.none && widget.questions.data?.assessmentType == "test"){
                                       showDialogBox();
                                     }
                                     else {
@@ -1834,19 +1836,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 List<dynamic> correctAns = [];
                                 if (values.data!.questions![j - 1].questionType ==
                                     "Descriptive") {
-                                  print("INSIDE DESCRIPTIVE");
-                                  print( quesResult.descriptiveText);
                                   RegExp regExp = RegExp(r'\[|\]');
                                   quesResult.marks = 0;
                                   quesResult.descriptiveText = Provider
                                       .of<Questions>(context, listen: false)
                                       .totalQuestion['$j'][0].toString().replaceAll(regExp, '');
-                                  print("KO KO");
-                                  print(Provider
-                                      .of<Questions>(context, listen: false)
-                                      .totalQuestion['$j'][0].toString().replaceAll(regExp, ''));
-                                  print("KING OF KOTHA");
-                                  print(quesResult.descriptiveText);
 
                                   quesResult.statusId = (quesResult.descriptiveText == null || quesResult.descriptiveText!.isEmpty ) ? 5 : 8;
                                 }
@@ -1953,7 +1947,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               final DateFormat timeFormatter = DateFormat('hh:mm a');
                               final String formatted = formatter.format(now);
                               final String time = timeFormatter.format(now);
-                              if(result == ConnectivityResult.none){
+                              if(result == ConnectivityResult.none && widget.questions.data?.assessmentType == "test"){
                                 showDialogBox();
                               }
                               else {
@@ -1966,42 +1960,58 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
-                                print("bjj");
-                                print(assessment.assessmentResults[0].descriptiveText);
-                                LoginModel loginResponse = await QnaService
-                                    .postAssessmentService(assessment, values,userDetails);
 
-                                Navigator.of(context).pop();
-                                print(assessment);
-                                print("11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-                                print(values);
-                                print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-                                print(userDetails);
-                                print(loginResponse.code);
-                                print("message 1st place");
-                                print(widget.organisationName);
-                                print(loginResponse.message);
-                                if (loginResponse.code == 200){
-                                  print(widget.userId);
-                                  print("4444444444444444444444444444444444444444");
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/studentResultPage',
-                                      arguments: [
-                                        totalMark,
-                                        formatted,
-                                        time,
-                                        values,
-                                        widget.assessmentID,
-                                        widget.userName,
-                                        message,
-                                        endTimeTaken,
-                                        givenMark,
-                                        widget.isMember,
-                                        widget.assessmentHeaders,
-                                        widget.organisationName
-                                      ]);
-                                }
+
+                                if(widget.questions.data!.assessmentType !='test' && isOffline)
+                                  {
+
+                                    Navigator.pushNamed(
+                                        context,
+                                        '/studentResultPage',
+                                        arguments: [
+                                          totalMark,
+                                          formatted,
+                                          time,
+                                          values,
+                                          widget.assessmentID,
+                                          widget.userName,
+                                          message,
+                                          endTimeTaken,
+                                          givenMark,
+                                          widget.isMember,
+                                          widget.assessmentHeaders,
+                                          widget.organisationName
+                                        ]);
+
+                                  }
+                                 else
+                                   {
+                                     LoginModel loginResponse = await QnaService
+                                         .postAssessmentService(assessment, values,userDetails);
+
+                                     Navigator.of(context).pop();
+                                     if (loginResponse.code == 200){
+                                       Navigator.pushNamed(
+                                           context,
+                                           '/studentResultPage',
+                                           arguments: [
+                                             totalMark,
+                                             formatted,
+                                             time,
+                                             values,
+                                             widget.assessmentID,
+                                             widget.userName,
+                                             message,
+                                             endTimeTaken,
+                                             givenMark,
+                                             widget.isMember,
+                                             widget.assessmentHeaders,
+                                             widget.organisationName
+                                           ]);
+                                     }
+                                   }
+
+
                               }}
                         ),
                       ],
@@ -2163,17 +2173,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   //   final String time = timeFormatter.format(now);
   //   LoginModel loginResponse = await QnaService
   //       .postAssessmentService(assessment, values,userDetails);
-  //   print(assessment);
-  //   print("11111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-  //   print(values);
-  //   print("22222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-  //   print(userDetails);
-  //   print(loginResponse.code);
-  //   print("message 2");
-  //   print(loginResponse.message);
-  //   if (loginResponse.code == 200) {
-  //     print(widget.userId);
-  //     print("33333333333333333333333333333333333333333333333333333333333333333333333333333333333");
   //     Navigator.pushNamed(
   //         context,
   //         '/studentResultPage',

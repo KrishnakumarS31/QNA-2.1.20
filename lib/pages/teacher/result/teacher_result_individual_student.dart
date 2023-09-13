@@ -164,25 +164,25 @@ class TeacherResultIndividualStudentState
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  IconButton(
-                                      iconSize: height * 0.04,
-                                      icon: const Icon(
-                                        Icons.mail_outline_outlined,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      onPressed: () async {}),
-                                  SizedBox(width: width * 0.005),
-                                  IconButton(
-                                      iconSize: height * 0.04,
-                                      icon: const Icon(
-                                        Icons.print_rounded,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      onPressed: () {}),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     IconButton(
+                              //         iconSize: height * 0.04,
+                              //         icon: const Icon(
+                              //           Icons.mail_outline_outlined,
+                              //           color: Color.fromRGBO(82, 165, 160, 1),
+                              //         ),
+                              //         onPressed: () async {}),
+                              //     SizedBox(width: width * 0.005),
+                              //     IconButton(
+                              //         iconSize: height * 0.04,
+                              //         icon: const Icon(
+                              //           Icons.print_rounded,
+                              //           color: Color.fromRGBO(82, 165, 160, 1),
+                              //         ),
+                              //         onPressed: () {}),
+                              //   ],
+                              // ),
                             ],
                           ),
                           Row(
@@ -310,7 +310,8 @@ class TeacherResultIndividualStudentState
                         ]),
                   ),
                 )));
-      } else if (constraints.maxWidth > 960) {
+      }
+      else if (constraints.maxWidth > 960) {
         return Center(
           child: SizedBox(
             child: WillPopScope(
@@ -389,27 +390,27 @@ class TeacherResultIndividualStudentState
                                             fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        Row(
-                                          children: [
-                                            IconButton(
-                                                iconSize: height * 0.04,
-                                                icon: const Icon(
-                                                  Icons.mail_outline_outlined,
-                                                  color: Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                ),
-                                                onPressed: () async {}),
-                                            SizedBox(width: width * 0.005),
-                                            IconButton(
-                                                iconSize: height * 0.04,
-                                                icon: const Icon(
-                                                  Icons.print_rounded,
-                                                  color: Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                ),
-                                                onPressed: () {}),
-                                          ],
-                                        ),
+                                        // Row(
+                                        //   children: [
+                                        //     IconButton(
+                                        //         iconSize: height * 0.04,
+                                        //         icon: const Icon(
+                                        //           Icons.mail_outline_outlined,
+                                        //           color: Color.fromRGBO(
+                                        //               82, 165, 160, 1),
+                                        //         ),
+                                        //         onPressed: () async {}),
+                                        //     SizedBox(width: width * 0.005),
+                                        //     IconButton(
+                                        //         iconSize: height * 0.04,
+                                        //         icon: const Icon(
+                                        //           Icons.print_rounded,
+                                        //           color: Color.fromRGBO(
+                                        //               82, 165, 160, 1),
+                                        //         ),
+                                        //         onPressed: () {}),
+                                        //   ],
+                                        // ),
                                       ],
                                     ),
                                     Row(
@@ -577,7 +578,8 @@ class TeacherResultIndividualStudentState
                 )),
           ),
         );
-      } else {
+      }
+      else {
         return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -644,25 +646,25 @@ class TeacherResultIndividualStudentState
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  IconButton(
-                                      iconSize: height * 0.04,
-                                      icon: const Icon(
-                                        Icons.mail_outline_outlined,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      onPressed: () async {}),
-                                  SizedBox(width: width * 0.005),
-                                  IconButton(
-                                      iconSize: height * 0.04,
-                                      icon: const Icon(
-                                        Icons.print_rounded,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                      ),
-                                      onPressed: () {}),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     IconButton(
+                              //         iconSize: height * 0.04,
+                              //         icon: const Icon(
+                              //           Icons.mail_outline_outlined,
+                              //           color: Color.fromRGBO(82, 165, 160, 1),
+                              //         ),
+                              //         onPressed: () async {}),
+                              //     SizedBox(width: width * 0.005),
+                              //     IconButton(
+                              //         iconSize: height * 0.04,
+                              //         icon: const Icon(
+                              //           Icons.print_rounded,
+                              //           color: Color.fromRGBO(82, 165, 160, 1),
+                              //         ),
+                              //         onPressed: () {}),
+                              //   ],
+                              // ),
                             ],
                           ),
                           Row(

@@ -164,11 +164,13 @@ class StudQuestionState extends State<StudQuestion> {
             List<dynamic> correctAns = [];
             if (values.data!.questions![j - 1].questionType ==
                 "Descriptive") {
+              RegExp regExp = RegExp(r'\[|\]');
               quesResult.marks = 0;
-              quesResult.statusId = 8;
               quesResult.descriptiveText = Provider
                   .of<Questions>(context, listen: false)
-                  .totalQuestion['$j'][0].toString();
+                  .totalQuestion['$j'][0].toString().replaceAll(regExp, '');
+
+              quesResult.statusId = (quesResult.descriptiveText == null || quesResult.descriptiveText!.isEmpty ) ? 5 : 8;
             }
             else if (values.data!.questions![j - 1].questionType ==
                 "Survey") {
@@ -191,6 +193,7 @@ class StudQuestionState extends State<StudQuestion> {
               }
               quesResult.selectedQuestionChoice = selectedAnsId;
               quesResult.marks = 0;
+              quesResult.statusId = selectedAns.isEmpty? 5 :  8;
             }
             else {
               for (int i = 0; i <
@@ -364,6 +367,13 @@ class StudQuestionState extends State<StudQuestion> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     String strDigits(int n) => n.toString().padLeft(2, '0');
+    // Get the current time
+    DateTime now = DateTime.now();
+
+    // Extract hours, minutes, and seconds
+    int hourss = now.hour;
+    int minutess = now.minute;
+    int secondss = now.second;
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
@@ -705,14 +715,6 @@ class StudQuestionState extends State<StudQuestion> {
                                       ),
 
                                       onPressed: () {
-                                        print(values
-                                            .data!
-                                            .questions![context
-                                            .watch<
-                                            QuestionNumProvider>()
-                                            .questionNum -
-                                            1].question!);
-                                        print("vfdvbfffffffffffffffffffffffffffffffff");
 
                                       },
                                       child: Padding(
@@ -2185,14 +2187,12 @@ class StudQuestionState extends State<StudQuestion> {
                                     cursor: SystemMouseCursors.click,
                                     child: GestureDetector(
                                       onTap: () {
-                                        print("INSIDE TAPPPPPPP");
                                         if (Provider.of<Questions>(context,
                                             listen: false)
                                             .totalQuestion[
                                         '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
                                         [2] ==
                                             true) {
-                                          print("INISDE IFFFF");
                                           context.read<Questions>().selectOption(
                                               Provider.of<QuestionNumProvider>(
                                                   context,
@@ -2204,12 +2204,6 @@ class StudQuestionState extends State<StudQuestion> {
                                               true);
                                         }
                                         else if (selected.isNotEmpty) {
-                                          print("INSIDE ELSE IFFF");
-                                          print(Provider.of<QuestionNumProvider>(
-                                              context,
-                                              listen: false)
-                                              .questionNum);
-                                          print(selected);
                                           context.read<Questions>().selectOption(
                                               Provider.of<QuestionNumProvider>(
                                                   context,
@@ -2221,7 +2215,6 @@ class StudQuestionState extends State<StudQuestion> {
                                               false);
                                         }
                                         else {
-                                          print("INSIDE ELSEeeee");
                                           context.read<Questions>().selectOption(
                                               Provider.of<QuestionNumProvider>(
                                                   context,

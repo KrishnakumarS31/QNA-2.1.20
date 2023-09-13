@@ -219,10 +219,54 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
     await QnaService.getQuestionBankService(10, pageNumber, search,userDetails);
     List<questionModel.Question> questions = [];
     if (responseEntity.code == 200) {
-      questions = List<questionModel.Question>.from(
-          responseEntity.data['questions'].map((x) => questionModel.Question.fromJson(x)));
-      totalQuestionBank=responseEntity.data['total_count'].toString();
+      List<dynamic> ques = responseEntity.data['questions'];
+      if(ques.isEmpty)
+      {
+        print("INSIDE IF");
+        setState(() {
+          print("PAGE NUMBER");
+          print(pageNumber);
+          print("PAGE LIMIT");
+          print(questionStart);
+          pageNumber =pageNumber - 1;
+          questionStart=questionStart-10;
+          print("After Setstate");
+          print(pageNumber);
+        });
+
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title:
+              AppLocalizations.of(context)!.alert_popup,
+              //'Alert',
+              content:
+              "No Questions Found",
+              //'No Questions Found.',
+              button:
+              AppLocalizations.of(context)!.retry,
+              //"Retry",
+            ),
+          ),
+        );
+      }
+      else {
+        print("INSIDE ELSE");
+        questions = List<questionModel.Question>.from(
+            responseEntity.data['questions'].map((x) => questionModel.Question.fromJson(x)));
+        totalQuestionBank=responseEntity.data['total_count'].toString();
+        setState(() {
+          pageNumber++;
+          questionList.addAll(questions);
+          totalQuestionBank;
+          //pageNumber++;
+          //searchVal = search;
+        });
+      }
     }
+
     else{
       Navigator.push(
         context,
@@ -242,13 +286,9 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
         ),
       );
     }
-    setState(() {
-      pageNumber++;
-      questionList.addAll(questions);
-      totalQuestionBank;
-      //pageNumber++;
-      //searchVal = search;
-    });
+
+    print("PAGE NUMBER VALUE");
+    print(pageNumber);
     //Navigator.of(context).pop();
   }
 
@@ -907,7 +947,17 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap:(){
-                                                      if(questionList.length>11){
+                                                      if(questionStart==0){
+
+                                                      }
+                                                      else if(int.parse(totalQuestionBank)  ==questionList.length){
+                                                        setState(() {
+                                                          pageNumber--;
+                                                          questionStart=questionStart-10;
+                                                          questionList.removeRange(questionList.length-(int.parse(totalQuestionBank)%10), questionList.length);
+                                                        });
+                                                      }
+                                                      else if(questionList.length>10){
                                                         setState(() {
                                                           pageNumber--;
                                                           questionStart=questionStart-10;
@@ -1761,7 +1811,17 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                                   children: [
                                                     GestureDetector(
                                                       onTap:(){
-                                                        if(questionList.length>11){
+                                                        if(questionStart==0){
+
+                                                        }
+                                                        else if(int.parse(totalQuestionBank)  ==questionList.length){
+                                                          setState(() {
+                                                            pageNumber--;
+                                                            questionStart=questionStart-10;
+                                                            questionList.removeRange(questionList.length-(int.parse(totalQuestionBank)%10), questionList.length);
+                                                          });
+                                                        }
+                                                        else if(questionList.length>10){
                                                           setState(() {
                                                             pageNumber--;
                                                             questionStart=questionStart-10;
@@ -2626,7 +2686,17 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                                 children: [
                                                   GestureDetector(
                                                     onTap:(){
-                                                      if(questionList.length>11){
+                                                      if(questionStart==0){
+
+                                                      }
+                                                      else if(int.parse(totalQuestionBank)  ==questionList.length){
+                                                        setState(() {
+                                                          pageNumber--;
+                                                          questionStart=questionStart-10;
+                                                          questionList.removeRange(questionList.length-(int.parse(totalQuestionBank)%10), questionList.length);
+                                                        });
+                                                      }
+                                                      else if(questionList.length>10){
                                                         setState(() {
                                                           pageNumber--;
                                                           questionStart=questionStart-10;

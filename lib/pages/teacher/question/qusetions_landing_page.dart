@@ -1837,6 +1837,13 @@ class _Question_CardState extends State<Question_Card> {
   }
 
   @override
+  void initState()
+  {
+    print("Makka Kalangathupa");
+    print(widget.question.degreeStudent);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
