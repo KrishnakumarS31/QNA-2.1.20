@@ -36,10 +36,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   @override
   void initState() {
     super.initState();
-    print("Kalappakara");
-    print(widget.result.totalAttempts);
-    print(widget.result.totalCompletedAttempts);
-    print(widget.result.totalInprogressAttempts);
+
    // print(widget.result.)
 
   }

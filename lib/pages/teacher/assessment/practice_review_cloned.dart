@@ -94,7 +94,6 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
       onPressed: () async {
         questionList.removeAt(index);
         choiceText.removeAt(index);
-        print(questionList.length);
         setState(() {
         });
         Navigator.of(context).pop();
@@ -1102,10 +1101,6 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           // for(questionModel.Question q in ques) {
                                           //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                           // }
-                                          print("provider");
-                                          print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
-                                          print("assessment");
-                                          print(assessment.questions?.length);
                                           Navigator.pushNamed(
                                             context,
                                             '/assessmentSettingsPage',
@@ -1968,10 +1963,6 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                             // for(questionModel.Question q in ques) {
                                             //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             // }
-                                            print("provider");
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
-                                            print("assessment");
-                                            print(assessment.questions?.length);
                                             Navigator.pushNamed(
                                               context,
                                               '/assessmentSettingsPage',
@@ -2785,8 +2776,6 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                             Question tempQues=Question(questionId: questionList[i].questionId,questionMarks: questionList[i].questionMark);
                                             assessment.questions?.add(tempQues);
                                           }
-                                          print("Institution Id");
-                                          print(userDetails.institutionId);
                                           assessment.totalScore=totalMark;
                                           assessment.totalQuestions = questionList.length;
                                           assessment.institutionId = userDetails.institutionId;
@@ -2836,10 +2825,6 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           // for(questionModel.Question q in ques) {
                                           //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                           // }
-                                          print("provider");
-                                          print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
-                                          print("assessment");
-                                          print(assessment.questions?.length);
                                           Navigator.pushNamed(
                                             context,
                                             '/assessmentSettingsPage',
@@ -3190,7 +3175,6 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
           }
           else if(constraints.maxWidth > 960)
           {
-            print("INSIDE POPUP");
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -3872,9 +3856,6 @@ class _QuestionPreviewState extends State<QuestionPreview> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print("--------------------------------------------------");
-        print(widget.quesIndex);
-        print(widget.quesList.length);
         widget.quesList.removeAt(widget.quesIndex);
         //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
         setState(() {

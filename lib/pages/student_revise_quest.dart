@@ -20,7 +20,8 @@ class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
     required this.startTime, required this.assessmentCode,required this.submit,
-    this.userId,required this.isMember,required this.assessmentHeaders,required this.myDuration,required this.organisationName
+    this.userId,required this.isMember,required this.assessmentHeaders,required this.myDuration,required this.organisationName,
+    required this.onlineValue
   }) : super(key: key);
   final QuestionPaperModel questions;
   final Duration myDuration;
@@ -33,6 +34,7 @@ class StudentReviseQuest extends StatefulWidget {
   final bool isMember;
   final GetAssessmentHeaderModel assessmentHeaders;
   final String organisationName;
+  final bool onlineValue;
 
 
   @override
@@ -64,19 +66,26 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   }
   @override
   void initState() {
+
     setTime();
     connection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+
       if(result == ConnectivityResult.none){
+
         setState(() {
           isOffline = true;
         });
       }
       else {
+
         setState(() {
           isOffline = false;
         });
       }
     });
+
+    isOffline = widget.onlineValue ? true : isOffline;
+
     if(widget.questions.data!.assessmentType=='test') {
       countdownTimer =
           Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
@@ -94,13 +103,16 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       List<dynamic> selectedAns = Provider
           .of<Questions>(context, listen: false)
           .totalQuestion['$j'][0];
+
       List<dynamic> selectedAnswers = [];
       for (int t = 0; t < selectedAns.length; t++) {
         if (widget.questions.data!.questions![j - 1].questionType == 'MCQ') {
+
           selectedAnswers.add(
               widget.questions.data!.questions![j - 1].choices![t].choiceText);
         }
         else {
+
           String temp = '';
           temp = Provider
               .of<Questions>(context, listen: false)
@@ -309,12 +321,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           48, 145, 139, 1),
                     ));
               });
-          LoginModel loginResponse = await QnaService
-              .postAssessmentService(assessment, values, userDetails);
-          Navigator.of(context).pop();
-          countdownTimer!.cancel();
-          if (loginResponse.code == 200) {
-
+          if(values.data?.assessmentType!='test' && isOffline)
+          {
             Navigator.pushNamed(
                 context,
                 '/studentResultPage',
@@ -329,9 +337,38 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   endTimeTaken,
                   givenMark,
                   widget.isMember,
-                  widget.assessmentHeaders
+                  widget.assessmentHeaders,
+                  widget.organisationName,
                 ]);
           }
+          else
+          {
+            LoginModel loginResponse = await QnaService
+                .postAssessmentService(assessment, values, userDetails);
+            Navigator.of(context).pop();
+            countdownTimer!.cancel();
+            if (loginResponse.code == 200) {
+
+              Navigator.pushNamed(
+                  context,
+                  '/studentResultPage',
+                  arguments: [
+                    totalMark,
+                    formatted,
+                    time,
+                    values,
+                    widget.assessmentID,
+                    widget.userName,
+                    message,
+                    endTimeTaken,
+                    givenMark,
+                    widget.isMember,
+                    widget.assessmentHeaders,
+                    widget.organisationName,
+                  ]);
+            }
+          }
+
           // Navigator.pushNamed(
           //     context,
           //     '/studentReviseQuest',
@@ -371,7 +408,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
               widget.userId,
               widget.isMember,
               widget.assessmentHeaders,
-              myDuration
+              myDuration,
+              isOffline
             ]);
       }
       myDuration = Duration(seconds: seconds);
@@ -398,6 +436,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
@@ -1433,16 +1473,23 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                                         0.02)),
                                                                           ),
 
+
                                                                           widget.questions
                                                                               .data!
                                                                               .questions![index -
                                                                               1]
-                                                                              .questionType ==
-                                                                              "Survey" || widget.questions
-                                                                              .data!
-                                                                              .questions![index -
-                                                                              1]
-                                                                              .questionType == "Descriptive"?Container():
+                                                                              .questionType == 'MCQ'
+
+                                                                              // ==
+                                                                              // "Survey" || widget.questions
+                                                                              // .data!
+                                                                              // .questions![index -
+                                                                              // 1]
+                                                                              // .questionType == "Descriptive"
+                                                                              //
+                                                                              // ?
+
+                                                                          ?
                                                                           Container(
                                                                             decoration: const BoxDecoration(
                                                                               borderRadius: BorderRadius.only(
@@ -1500,6 +1547,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                               ],
                                                                             ),
                                                                           )
+                                                                          :
+                                                                          Container()
+
+
                                                                           // SizedBox(width: localHeight *
                                                                           //     0.010),
                                                                           // Provider
@@ -1980,12 +2031,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                           givenMark,
                                           widget.isMember,
                                           widget.assessmentHeaders,
-                                          widget.organisationName
+                                          widget.organisationName,
                                         ]);
 
                                   }
                                  else
                                    {
+
                                      LoginModel loginResponse = await QnaService
                                          .postAssessmentService(assessment, values,userDetails);
 
@@ -2006,7 +2058,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                              givenMark,
                                              widget.isMember,
                                              widget.assessmentHeaders,
-                                             widget.organisationName
+                                             widget.organisationName,
                                            ]);
                                      }
                                    }

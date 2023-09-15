@@ -232,11 +232,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
           Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
         }
         else{
-          print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-          print(assessment);
-          print(statusCode.code);
-          print(statusCode.data);
-          print(statusCode.message);
+
         }
       },
       // {
@@ -1156,11 +1152,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2006,11 +1998,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                                               Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                             }
                                             else{
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
-                                              print(statusCode.code);
-                                              print(statusCode.data);
-                                              print(statusCode.message);
+
                                             }
 
                                             // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2848,11 +2836,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2909,8 +2893,7 @@ class DraftAddQuestionState extends State<DraftAddQuestion> {
                                             for(questionModel.Question q in selectedQuestion) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }
-                                            print("INSIDE CONTINUE ONPRESSED");
-                                            print( Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
+
                                             Navigator.of(context).pushNamedAndRemoveUntil('/draftReview', ModalRoute.withName('/draftAssessmentLanding'));
 
                                           }

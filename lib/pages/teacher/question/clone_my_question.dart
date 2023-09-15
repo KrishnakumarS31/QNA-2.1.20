@@ -2715,9 +2715,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                           createQuestionModel.questions = qList;
                                           createQuestionModel.authorId =
                                               userDetails.userId;
-                                          print(
-                                              "---------------------------------------------");
-                                          print(createQuestionModel);
+
                                           ResponseEntity statusCode =
                                               await QnaService
                                                   .createQuestionTeacherService(
@@ -5227,9 +5225,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                           createQuestionModel.questions = qList;
                                           createQuestionModel.authorId =
                                               userDetails.userId;
-                                          print(
-                                              "---------------------------------------------");
-                                          print(createQuestionModel);
+
                                           ResponseEntity statusCode =
                                               await QnaService
                                                   .createQuestionTeacherService(
@@ -7754,9 +7750,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                         createQuestionModel.questions = qList;
                                         createQuestionModel.authorId =
                                             userDetails.userId;
-                                        print(
-                                            "---------------------------------------------");
-                                        print(createQuestionModel);
+
                                         ResponseEntity statusCode =
                                             await QnaService
                                                 .createQuestionTeacherService(
@@ -10173,9 +10167,7 @@ class CloneMyQuestionState extends State<CloneMyQuestion> {
                                       createQuestionModel.questions = qList;
                                       createQuestionModel.authorId =
                                           userDetails.userId;
-                                      print(
-                                          "---------------------------------------------");
-                                      print(createQuestionModel);
+
                                       ResponseEntity statusCode =
                                           await QnaService
                                               .createQuestionTeacherService(

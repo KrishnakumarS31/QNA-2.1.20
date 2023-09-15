@@ -306,7 +306,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
   UserDetails userDetails=UserDetails();
   @override
   void initState() {
-    print('init');
+
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     roleBackup= List.from(widget.userDataModel.data!.role);
     enableAsTeacher= widget.userDataModel.data!=null &&
@@ -339,8 +339,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.userDataModel.data!.role);
-    print('backup$roleBackup');
+
 
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
@@ -2678,7 +2677,7 @@ class StudentEditProfilePageState extends State<StudentEditProfilePage> {
             LoginModel res =
             await QnaService.editUserDetailsService(
                 student,widget.userDataModel.data!.id,userDetails);
-            print(res.code);
+
             if (res.code == 200) {
               if (context.mounted) {
                 showDialog(

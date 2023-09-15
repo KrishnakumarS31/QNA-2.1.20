@@ -10170,7 +10170,7 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
                                         finalQuestion.choices = [];
                                       }
                                       if (_questionTypeValue == 'MCQ') {
-                                        print(_questionTypeValue == 'MCQ');
+
                                         var values = finalQuestion.choices!
                                             .where((element) =>
                                                 element.rightChoice == true);
@@ -10316,12 +10316,12 @@ class CreateNewQuestionState extends State<CreateNewQuestion> {
     if (pramIcon == Icons.arrow_circle_down_outlined) {
       setState(() {
         showIcon = Icons.arrow_circle_up_outlined;
-        print("arrow_circle_up_outlined");
+
       });
     } else {
       setState(() {
         showIcon = Icons.arrow_circle_down_outlined;
-        print("arrow_circle_down_outlined");
+
       });
     }
   }

@@ -321,9 +321,6 @@ class EditExistingQuestionState extends State<EditExistingQuestion> {
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     degreeController.text = widget.question.degreeStudent!;
-    print("widget");
-    print(widget.question.degreeStudent);
-    print(degreeController.text);
     semesterController.text = widget.question.semester!;
     _questionTypeValue = widget.question.questionType!;
     questionController.text = widget.question.question!;

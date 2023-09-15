@@ -322,8 +322,6 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
     teacherEmailController.text=widget.userDataModel.data!.email.isEmpty ? "-" :widget.userDataModel.data!.email;
     teacherRollNumberController.text=widget.userDataModel.data?.rollNumber ?? "";
     organisationIdController.text = widget.userDataModel.data?.organizationId.toString() ?? "-";
-    print("WIDGET USERID");
-    print(widget.userDataModel.data!.loginId.isEmpty);
     userIdController.text = (widget.userDataModel.data!.loginId.isEmpty || widget.userDataModel.data!.loginId == null) ? "-" :  widget.userDataModel.data!.loginId;
     teacherOrganisationNameController.text=widget.userDataModel.data?.organisationName ?? "-";
     // teacherIsTeacherController.text=widget.userDataModel.data?.
@@ -338,8 +336,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.userDataModel.data!.role);
-    print('backup$roleBackup');
+
 
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
@@ -2599,7 +2596,7 @@ class TeacherEditProfilePageState extends State<TeacherEditProfilePage> {
             LoginModel res =
             await QnaService.editUserDetailsService(
                 teacher,widget.userDataModel.data!.id,userDetails);
-            print(res.code);
+
             if (res.code == 200) {
               if (context.mounted) {
                 showDialog(

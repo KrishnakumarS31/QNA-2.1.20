@@ -222,16 +222,9 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
       List<dynamic> ques = responseEntity.data['questions'];
       if(ques.isEmpty)
       {
-        print("INSIDE IF");
         setState(() {
-          print("PAGE NUMBER");
-          print(pageNumber);
-          print("PAGE LIMIT");
-          print(questionStart);
           pageNumber =pageNumber - 1;
           questionStart=questionStart-10;
-          print("After Setstate");
-          print(pageNumber);
         });
 
         Navigator.push(
@@ -253,7 +246,6 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
         );
       }
       else {
-        print("INSIDE ELSE");
         questions = List<questionModel.Question>.from(
             responseEntity.data['questions'].map((x) => questionModel.Question.fromJson(x)));
         totalQuestionBank=responseEntity.data['total_count'].toString();
@@ -286,9 +278,6 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
         ),
       );
     }
-
-    print("PAGE NUMBER VALUE");
-    print(pageNumber);
     //Navigator.of(context).pop();
   }
 
@@ -331,7 +320,6 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
 
   @override
   void initState() {
-    print("Inside New Create Assessment");
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
@@ -1101,17 +1089,12 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                             ResponseEntity statusCode = ResponseEntity();
                                             statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                             if (statusCode.code == 200) {
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
+
                                               Navigator.of(context).pop();
                                               Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                             }
                                             else{
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
-                                              print(statusCode.code);
-                                              print(statusCode.data);
-                                              print(statusCode.message);
+
                                             }
 
                                             // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -1965,17 +1948,12 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                               ResponseEntity statusCode = ResponseEntity();
                                               statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                               if (statusCode.code == 200) {
-                                                print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                                print(assessment);
+
                                                 Navigator.of(context).pop();
                                                 Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                               }
                                               else{
-                                                print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                                print(assessment);
-                                                print(statusCode.code);
-                                                print(statusCode.data);
-                                                print(statusCode.message);
+
                                               }
 
                                                 // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2811,7 +2789,6 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                       children: [
                                         ElevatedButton(
                                           onPressed: () async {
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
                                             assessment.userId=userDetails.userId;
                                             assessment.institutionId = userDetails.institutionId;
                                             assessment.totalQuestions=questionList.length;
@@ -2837,17 +2814,12 @@ class CreateNewAssessmentState extends State<CreateNewAssessment> {
                                             ResponseEntity statusCode = ResponseEntity();
                                             statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
                                             if (statusCode.code == 200) {
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
+
                                               Navigator.of(context).pop();
                                               Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                             }
                                             else{
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
-                                              print(statusCode.code);
-                                              print(statusCode.data);
-                                              print(statusCode.message);
+
                                             }
 
                                             // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();

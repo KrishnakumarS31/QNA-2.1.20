@@ -225,11 +225,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
           Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
         }
         else{
-          print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-          print(assessment);
-          print(statusCode.code);
-          print(statusCode.data);
-          print(statusCode.message);
+
         }
       },
       // {
@@ -1139,11 +1135,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -1196,10 +1188,9 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                             );
                                           }
                                           else{
-                                            print(assessment.questions?.length);
+
                                             Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                            print("privider length after reset ");
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
+
                                             for(questionModel.Question q in selectedQuestion) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }
@@ -1990,11 +1981,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                               Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                             }
                                             else{
-                                              print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                              print(assessment);
-                                              print(statusCode.code);
-                                              print(statusCode.data);
-                                              print(statusCode.message);
+
                                             }
 
                                             // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2047,10 +2034,9 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                               );
                                             }
                                             else{
-                                              print(assessment.questions?.length);
+
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                              print("privider length after reset ");
-                                              print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
+
                                               for(questionModel.Question q in selectedQuestion) {
                                                 Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                               }
@@ -2833,11 +2819,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2890,10 +2872,7 @@ class PracticeAddQuestionState extends State<PracticeAddQuestion> {
                                             );
                                           }
                                           else{
-                                            print(assessment.questions?.length);
                                             Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
-                                            print("privider length after reset ");
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
                                             for(questionModel.Question q in selectedQuestion) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }

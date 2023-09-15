@@ -3244,7 +3244,7 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
           }
           else if(constraints.maxWidth > 960)
           {
-            print("INSIDE POPUP");
+
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

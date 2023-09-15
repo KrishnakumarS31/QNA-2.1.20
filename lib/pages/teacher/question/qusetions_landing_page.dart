@@ -92,7 +92,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
         10, pageNumber, search, userDetails);
     QuestionResponse questionResponses;
     questionResponses = QuestionResponse.fromJson(responseEntity.data);
-    print(responseEntity.toString());
+
     if (questionResponses.total_count == 0) {
       Navigator.push(
         context,
@@ -143,14 +143,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   }
 
   searchGlobalQuestion() async {
-    print("inside global search");
+
     List<Question>? questions = [];
     ResponseEntity response = await QnaService.getSearchQuestion(
         10, pageNumber, teacherQuestionBankSearchController.text, userDetails);
     questionResponse = QuestionResponse.fromJson(response.data);
-    print("QUESTION RESPONSE");
-    print(questionResponse!.questions);
-    print(questionResponse!.total_count);
+
     if (questionResponse!.total_count == 0) {
       Navigator.push(
         context,
@@ -196,7 +194,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
       //globalPageLimit +=10;
       pageNumber++;
       searchVal = teacherQuestionBankSearchController.text;
-      print(questionList.length);
+
     });
     //Navigator.of(context).pop();
   }
@@ -1839,8 +1837,7 @@ class _Question_CardState extends State<Question_Card> {
   @override
   void initState()
   {
-    print("Makka Kalangathupa");
-    print(widget.question.degreeStudent);
+
   }
 
   @override

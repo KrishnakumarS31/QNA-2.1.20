@@ -25,7 +25,8 @@ class StudentResultPage extends StatefulWidget {
         required this.givenMark,
         required this.isMember,
         required this.assessmentHeaders,
-        required this.organisationName})
+        required this.organisationName
+      })
       : super(key: key);
   final int totalMarks;
   final QuestionPaperModel questions;
@@ -53,6 +54,7 @@ class StudentResultPageState extends State<StudentResultPage> {
 
   @override
   void initState() {
+
     super.initState();
     userdata =
         Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
@@ -2842,7 +2844,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                               ]),
                             ),
                           ),
-                          SizedBox(height: localHeight * 0.07),
+                          SizedBox(height: localHeight * 0.03),
                           Column(
                             children: [
                               //SizedBox(height: localHeight * 0.27),
@@ -2944,12 +2946,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                               //           arguments: [values,widget.assessmentCode]
                               //       );
                               //     }),
-                              SizedBox(height: localHeight * 0.05),
+                              SizedBox(height: localHeight * 0.03),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color.fromRGBO(
                                       82, 165, 160, 1),
-                                  // minimumSize: Size(localWidth * 0.7, localHeight * 0.04),
+                                  minimumSize: const Size(150, 48),
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
                                     BorderRadius.circular(39),

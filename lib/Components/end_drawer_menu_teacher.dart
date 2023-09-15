@@ -243,11 +243,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                           onTap: () async {
                             UserDataModel userDataModel =
                             await QnaService.getUserDataService(userId,userDetails);
-                            print(userDataModel.code);
-                            print(userDataModel.message);
-                            print(userDataModel.data);
-                            print("ROLL NUMBER");
-                            print(userDataModel.data!.organizationId);
+
                             Navigator.push(
                               context,
                               PageTransition(

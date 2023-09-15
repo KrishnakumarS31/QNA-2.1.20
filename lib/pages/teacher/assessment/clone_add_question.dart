@@ -225,11 +225,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
           Navigator.of(context).pushNamedAndRemoveUntil('/createNewQuestion', ModalRoute.withName('/teacherSelectionPage'));
         }
         else{
-          print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-          print(assessment);
-          print(statusCode.code);
-          print(statusCode.data);
-          print(statusCode.message);
+
         }
       },
       // {
@@ -1134,11 +1130,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -1197,8 +1189,6 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             for(questionModel.Question q in tempQ) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }
-                                            print("-----------------------------------------------------");
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                             Navigator.pushNamed(
                                               context,
                                               '/cloneReviewQuestion',
@@ -1985,11 +1975,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2048,8 +2034,6 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             for(questionModel.Question q in tempQ) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }
-                                            print("-----------------------------------------------------");
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                             Navigator.pushNamed(
                                               context,
                                               '/cloneReviewQuestion',
@@ -2827,11 +2811,7 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
                                           else{
-                                            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-                                            print(assessment);
-                                            print(statusCode.code);
-                                            print(statusCode.data);
-                                            print(statusCode.message);
+
                                           }
 
                                           // Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
@@ -2890,8 +2870,6 @@ class CloneAddQuestionState extends State<CloneAddQuestion> {
                                             for(questionModel.Question q in tempQ) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             }
-                                            print("-----------------------------------------------------");
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                             Navigator.pushNamed(
                                               context,
                                               '/cloneReviewQuestion',

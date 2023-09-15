@@ -93,7 +93,6 @@ class TeacherLoginState extends State<TeacherLogin> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        print("INSIDE RETRY ONPRESSED");
         Navigator.of(context).pop();
       },
     );
@@ -547,9 +546,6 @@ class TeacherLoginState extends State<TeacherLogin> {
                                                         userDetails.password = passWord;
                                                         userDetails.role = 'teacher';
                                                         userDetails.institutionId = loginResponse.data.institutionId;
-                                                        print("USER DETAILS INSTITUTION ID");
-                                                        print(loginResponse.data.institutionId);
-                                                        print(userDetails.institutionId);
                                                         userDetails.firstName =
                                                             loginResponse.data.firstName;
                                                         userDetails.lastName =
@@ -1005,9 +1001,7 @@ userDetails.email = regNumber;
 userDetails.password = passWord;
 userDetails.role = 'teacher';
 userDetails.institutionId = loginResponse.data.institutionId;
-print("USER DETAILS INSTITUTION ID");
-print(loginResponse.data.institutionId);
-print(userDetails.institutionId);
+
 userDetails.firstName =
 loginResponse.data.firstName;
 userDetails.lastName =
@@ -1468,9 +1462,7 @@ fontSize: height *
                                                         userDetails.password = passWord;
                                                         userDetails.role = 'teacher';
                                                         userDetails.institutionId = loginResponse.data.institutionId;
-                                                        print("USER DETAILS INSTITUTION ID");
-                                                        print(loginResponse.data.institutionId);
-                                                        print(userDetails.institutionId);
+
                                                         userDetails.firstName =
                                                             loginResponse.data.firstName;
                                                         userDetails.lastName =
@@ -1927,9 +1919,6 @@ fontSize: height *
                                                     userDetails.password = passWord;
                                                     userDetails.role = 'teacher';
                                                     userDetails.institutionId = loginResponse.data.institutionId;
-                                                    print("USER DETAILS INSTITUTION ID");
-                                                    print(loginResponse.data.institutionId);
-                                                    print(userDetails.institutionId);
                                                     userDetails.firstName =
                                                         loginResponse.data.firstName;
                                                     userDetails.lastName =

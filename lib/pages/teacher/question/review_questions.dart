@@ -91,8 +91,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
+
         questionList.removeAt(index);
         choiceText.removeAt(index);
         setState(() {
@@ -276,7 +275,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     for(int i=0;i<questionList.length;i++){
-      print("INSIDE FOR");
+
       selectedQuesIndex.add(i);
       totalMark=totalMark+questionList[i].questionMark!;
       if(questionList[i].questionType=='MCQ'){
@@ -287,11 +286,10 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
           }
           choiceText[i].add(questionList[i].choices![j].choiceText!);
         }
-        print("RIGHT CHOICES");
-        print(rightChoices);
+
       }
       else{
-        print("Inside Else");
+
         choiceText.add(['']);
         rightChoices.add("");
       }
@@ -2618,7 +2616,7 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                       onTap:(){
                                                                         if(questionList[i].questionMark!=null || questionList[i].questionMark!=0){
                                                                           questionList[i].questionMark=questionList[i].questionMark!-1;
-                                                                          print(questionList[i].questionMark);
+
                                                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                           setState(() {
                                                                             totalMark--;
@@ -2660,9 +2658,6 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                                                       onTap: (){
                                                                         if(questionList[i].questionMark!=null){
                                                                           questionList[i].questionMark=questionList[i].questionMark!+1;
-                                                                          print("ADD ONTAP QUESTION MARK");
-                                                                          print(questionList[i].questionMark);
-                                                                          print(totalMark);
                                                                           Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(questionList[i].questionMark!, i);
                                                                           setState(() {
                                                                             totalMark++;
@@ -2806,14 +2801,13 @@ class ReviewQuestionsState extends State<ReviewQuestions> {
                                           assessment.totalScore=questionList.length;
 
                                           statusCode = await QnaService.createAssessmentTeacherService(assessment,userDetails);
-                                          print("STATUS CODE");
-                                          print(statusCode.code);
+
                                           if (statusCode.code == 200) {
                                             assessmentCode = statusCode.data.toString().substring(18, statusCode.data
                                                 .toString()
                                                 .length -
                                                 1);
-                                          print(assessmentCode);
+
                                             Navigator.of(context).pushNamedAndRemoveUntil('/assessmentLandingPage', ModalRoute.withName('/teacherSelectionPage'));
                                           }
 
@@ -3204,7 +3198,7 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
           }
           else if(constraints.maxWidth > 960)
           {
-            print("INSIDE POPUP");
+
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -3890,9 +3884,6 @@ class _QuestionPreviewState extends State<QuestionPreview> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print("--------------------------------------------------");
-        print(widget.quesIndex);
-        print(widget.quesList.length);
         widget.quesList.removeAt(widget.quesIndex);
         //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.quesIndex);
         setState(() {

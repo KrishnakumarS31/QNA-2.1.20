@@ -93,15 +93,7 @@ class _CustomCardState extends State<CustomCard> {
       ),
     );
 
-    print(now);
-    print(start);
-    print(end);
-    print("Completed");
-    print(now.isAfter(end));
-    print("NotStarted");
-    print(now.isBefore(start));
-    print("Live");
-    print(now.isBefore(end));
+
 
 
     return Container(

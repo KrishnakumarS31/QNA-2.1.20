@@ -268,7 +268,7 @@ class MyRoutes{
           givenMark: arguments[8],
           isMember: arguments[9],
           assessmentHeaders: arguments[10],
-          organisationName: arguments[11],
+          organisationName: arguments[11]
         ),settings: settings,);
       }
 
@@ -286,6 +286,7 @@ class MyRoutes{
           assessmentHeaders: arguments[8],
           myDuration: arguments[9],
           organisationName: arguments[10],
+          onlineValue: arguments[11]
         ),settings: settings);
       }
 

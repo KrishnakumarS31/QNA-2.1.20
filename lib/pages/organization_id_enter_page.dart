@@ -29,8 +29,6 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
 
   @override
   void initState() {
-    print("widget isfrom student");
-    print(widget.isFromStudent);
     super.initState();
   }
 
@@ -44,15 +42,10 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
   _somefun(String value)
   {
 
-
-    print("INSIDEEEEE SOME FUNNNNNN");
-
     _performAsyncWork(value).then((responseEntity){
 
 
       setState(() {
-        print("Inside Set State");
-        print(responseEntity.code);
         // organizationId =
         //     value;
         List<Institution>? questions;
@@ -66,13 +59,9 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
           });
           valueForDrop = true;
           selectedValue = ages![0];
-          print(ages);
-          print(idAndNameMap);
         }
         else if(responseEntity.code != 200)
           {
-            print("WALLLAH");
-            print(responseEntity.message);
 
             double localWidth = MediaQuery.of(context).size.width;
             double localHeight = MediaQuery.of(context).size.height;
@@ -87,7 +76,6 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
 
     });
 
-    print(valueForDrop);
 
   }
 
@@ -319,10 +307,8 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             }
                                                             else if(value.isNotEmpty)
                                                             {
-                                                              print("INSIDE ELSE IF");
                                                               if(value.startsWith("0"))
                                                               {
-                                                                print("INSIDE IF");
                                                                 _somefun(value);
                                                               }
                                                               else if(value.length<8) {
@@ -452,14 +438,13 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                           color: const Color.fromRGBO(82, 165, 160, 1)
                                                       ),
                                                       onPressed: () async {
-                                                        print("INSIDE ");
                                                         if(selectedValue.isEmpty || selectedValue == null)
                                                         {
 
                                                         }
                                                         //bool valid = formKey.currentState!.validate();
                                                         if( studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
-                                                          print("INSIDE VIPER");
+
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentRegistrationPage',
@@ -615,10 +600,8 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             }
                                                             else if(value.isNotEmpty)
                                                             {
-                                                              print("INSIDE ELSE IF");
                                                               if(value.startsWith("0"))
                                                               {
-                                                                print("INSIDE IF");
                                                                 _somefun(value);
                                                               }
                                                               else if(value.length<8) {
@@ -749,7 +732,7 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
 
                                                         }
                                                         if(studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
-                                                          print("dffb");
+
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentRegistrationPage',
@@ -918,10 +901,8 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             }
                                                             else if(value.isNotEmpty)
                                                             {
-                                                              print("INSIDE ELSE IF");
                                                               if(value.startsWith("0"))
                                                               {
-                                                                print("INSIDE IF");
                                                                 _somefun(value);
                                                               }
                                                               else if(value.length<8) {
@@ -1054,7 +1035,7 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
 
                                                           }
                                                         else if(studentRollNumberController.text.isNotEmpty && widget.isFromStudent) {
-                                                          print("INSIDE FIRST IF");
+
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentRegistrationPage',

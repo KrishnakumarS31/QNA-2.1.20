@@ -1089,7 +1089,6 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
           //       ));
           // }
           if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
-            print("INSIDE TABLET");
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -3129,7 +3128,6 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                 ));
           }
           else {
-            print("INSIDE MOBILE");
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

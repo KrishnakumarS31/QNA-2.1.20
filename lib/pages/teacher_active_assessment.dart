@@ -1222,8 +1222,6 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
         // }
         if(constraints.maxWidth > 500)
         {
-          print("INSIDE TABLET");
-          print(constraints.maxWidth);
           return
 
             Center(
@@ -2387,8 +2385,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
             );
         }
         else {
-          print("INSIDE MOBILE");
-          print(constraints.maxWidth);
+
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(

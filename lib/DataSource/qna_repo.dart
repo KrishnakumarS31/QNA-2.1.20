@@ -63,7 +63,7 @@ class QnaRepo {
 
   static editUserDetails(StudentRegistrationModel student, int id,UserDetails userDetails) async {
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
-    print(studentRegistrationModelToJson(student));
+
     var headers = {
       'Authorization': 'Bearer ${userDetails.token}',
       'Content-Type': 'application/json'
@@ -73,10 +73,10 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-    print(response.statusCode);
+
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
-      print(temp);
+
       loginModel = loginModelFromJson(temp);
     }
     else {
@@ -206,7 +206,7 @@ class QnaRepo {
       assessment!.userId = questionPaper.data!.accessTokenDetails!.userId!;
       token = questionPaper.data!.accessTokenDetails!.accessToken!;
     }
-    print(token);
+
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer $token',
@@ -333,7 +333,6 @@ class QnaRepo {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print("INSIDE IF");
       String value = await response.stream.bytesToString();
 
       allAssessment = responseEntityFromJson(value);
@@ -355,8 +354,7 @@ class QnaRepo {
     ResponseEntity responseEntity = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
-    print("THE BOYS");
-    print('$allQuestionUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber&search=$search');
+
     var request = http.Request(
         'GET',
         Uri.parse(
@@ -544,7 +542,7 @@ class QnaRepo {
   static Future<ResponseEntity> getSearchAssessment(
       int pageLimit, int pageNumber, String searchVal,UserDetails userDetails) async {
     ResponseEntity allAssessment = ResponseEntity();
-    print("INSIDE USER DERTAILS USERid");
+
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     bool isNumeric = (num.tryParse(searchVal) != null);
@@ -590,7 +588,7 @@ class QnaRepo {
       int pageLimit, int pageNumber, String searchVal,UserDetails userDetails) async {
     ResponseEntity allAssessment = ResponseEntity();
     //SharedPreferences loginData = await SharedPreferences.getInstance();
-  print('$assessmentDomain/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal');
+
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
     var request = http.Request(
         'GET',
@@ -618,7 +616,7 @@ class QnaRepo {
     pageLimit = 10;
     pageNumber = 1;
     SharedPreferences loginData = await SharedPreferences.getInstance();
-    print('$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal&user_id=$userId');
+
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
         'GET',
@@ -646,7 +644,7 @@ class QnaRepo {
       int? userId, int pageLimit, int pageNumber,UserDetails userDetails) async {
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     var headers = {'Authorization': 'Bearer ${userDetails.token}'};
-    print('$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber');
+
     var request = http.Request(
         'GET',
         Uri.parse('$resultsUrl/${userDetails.userId}?page_limit=$pageLimit&page_number=$pageNumber'));
@@ -662,11 +660,8 @@ class QnaRepo {
 
   static Future<ResponseEntity> getResultDetails(
       int assessmentId,int pageLimit, int pageNumber, String attemptStatus) async {
-    print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber');
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
-    print("URL");
-    print('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus');
     var request = http.Request(
         'GET', Uri.parse('$resultDetails/$assessmentId?page_limit=$pageLimit&page_number=$pageNumber&attempt_status=$attemptStatus'));
     // request.headers.addAll(headers);
@@ -682,7 +677,7 @@ class QnaRepo {
       int attemptId) async {
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
     // var headers = {'Authorization': 'Bearer ${userDetails.token}'};
-    print('$questionDetails?attempt_id=$attemptId');
+
     var request = http.Request(
         'GET', Uri.parse('$questionDetails?attempt_id=$attemptId'));
     // request.headers.addAll(headers);
@@ -736,8 +731,7 @@ class QnaRepo {
         'GET', Uri.parse('$getOrganizationNamesUrl?organisation_code=$id'));
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("RESPONSE CODE");
-    print(response.statusCode);
+
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       resultData = responseEntityFromJson(temp);

@@ -329,15 +329,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   _somefun(String value)
   {
 
-
-    print("INSIDEEEEE SOME FUNNNNNN");
-
     _performAsyncWork(value).then((responseEntity){
 
 
       setState(() {
-        print("Inside Set State");
-        print(responseEntity.code);
         // organizationId =
         //     value;
         List<Institution>? questions;
@@ -352,8 +347,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
           valueForDrop = true;
           firstTimecalled = true;
           selectedValue = ages![0];
-          print(ages);
-          print(idAndNameMap);
         }
         //   ResponseEntity responseEntity = await QnaService.getQuestionBankService(
         //       10, pageNumber, search, userDetails);
@@ -362,8 +355,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
 
 
     });
-
-    print(valueForDrop);
 
   }
 

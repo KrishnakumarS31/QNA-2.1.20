@@ -1354,7 +1354,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       color: const Color.fromRGBO(82, 165, 160, 1)
                                                     ),
                                                     onPressed: () async {
-                                                      print("INSIDE ONPRESSED");
+
                                                       StudentRegistrationModel student =
                                                       StudentRegistrationModel(
                                                           firstName: studentFirstNameController.text,
@@ -2410,8 +2410,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             LoginModel res =
                                                             await QnaService.postUserDetailsService(
                                                                 student);
-                                                            print("RESPONSE CODE");
-                                                            print(res.code);
+
                                                             if (res.code == 200) {
                                                               if (context.mounted) {
                                                                 Navigator.pushNamed(
@@ -2681,7 +2680,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior: FloatingLabelBehavior.always,
                                                           ),
                                                           onChanged: (value) {
-                                                            print("INSIDE ONCHANGED");
+
                                                             formKey.currentState!.validate();
                                                           },
                                                           validator: (value) {
@@ -2728,7 +2727,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                 .enter_here,
                                                           ),
                                                           onChanged: (value) {
-                                                            print("INSIDE ONCHENGED LAST NAME");
+
                                                             formKey.currentState!.validate();
                                                           },
                                                           validator: (value) {

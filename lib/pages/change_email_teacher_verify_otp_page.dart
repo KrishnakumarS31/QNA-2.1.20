@@ -598,7 +598,7 @@ class ChangeEmailTeacherVerifyOtpPageState extends State<ChangeEmailTeacherVerif
                                                           StaticResponse res = await QnaService
                                                               .changeEmailService(
                                                               widget.email,widget.userDetails, otp);
-                                                          print(res.message);
+
                                                           if (res.code == 200) {
                                                             showAlertDialog(context, res.message);
                                                           }

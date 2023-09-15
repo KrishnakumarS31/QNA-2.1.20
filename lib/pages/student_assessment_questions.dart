@@ -13,6 +13,8 @@ import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 class StudQuestion extends StatefulWidget {
   StudQuestion(
       {Key? key,
@@ -50,10 +52,12 @@ class StudQuestionState extends State<StudQuestion> {
   IconData notSureIcon = Icons.mode_comment_outlined;
   final DateFormat formatter = DateFormat('HH:mm');
   final DateTime now = DateTime.now();
-
+  bool onlineValue = false;
   dynamic select;
   late Map tempQuesAns = {};
   List<int> tilecount = [1];
+  StreamSubscription? connection;
+  bool isOffline = false;
   Color colorCode = const Color.fromRGBO(179, 179, 179, 1);
   setTime(){
     myDuration = Duration(minutes: widget.ques.data!.assessmentDuration!);
@@ -84,6 +88,18 @@ class StudQuestionState extends State<StudQuestion> {
     context.read<Questions>().createQuesAns(values.data!.questions!.length);
     context.read<QuestionNumProvider>().reset();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+    connection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      if(result == ConnectivityResult.none){
+        setState(() {
+          isOffline = true;
+        });
+      }
+      else {
+        setState(() {
+          isOffline = false;
+        });
+      }
+    });
 
     if(widget.ques.data!.assessmentType=='test') {
       countdownTimer =
@@ -234,7 +250,7 @@ class StudQuestionState extends State<StudQuestion> {
                   totalMark = totalMark +
                       values.data!.questions![j - 1].questionMarks!;
                   ansCorrect++;
-                  givenMark = values.data!.totalScore;
+                  givenMark = values.data!.totalScore ?? 0;
                 }
                 else {
                   quesResult.statusId = 7;
@@ -288,11 +304,7 @@ class StudQuestionState extends State<StudQuestion> {
                           48, 145, 139, 1),
                     ));
               });
-          LoginModel loginResponse = await QnaService
-              .postAssessmentService(assessment, values, userDetails);
-          Navigator.of(context).pop();
-          countdownTimer!.cancel();
-          if (loginResponse.code == 200) {
+          if(widget.ques.data?.assessmentType !='test' && isOffline) {
             Navigator.pushNamed(
                 context,
                 '/studentResultPage',
@@ -301,16 +313,43 @@ class StudQuestionState extends State<StudQuestion> {
                   formatted,
                   time,
                   values,
-                  widget.organisationName,
                   widget.assessmentId,
                   widget.userName,
                   message,
                   endTimeTaken,
                   givenMark,
                   widget.isMember,
-                  widget.assessmentHeaders
+                  widget.assessmentHeaders,
+                  widget.organisationName,
                 ]);
           }
+          else
+          {
+            LoginModel loginResponse = await QnaService
+                .postAssessmentService(assessment, values, userDetails);
+            Navigator.of(context).pop();
+            countdownTimer!.cancel();
+            if (loginResponse.code == 200) {
+              Navigator.pushNamed(
+                  context,
+                  '/studentResultPage',
+                  arguments: [
+                    totalMark,
+                    formatted,
+                    time,
+                    values,
+                    widget.assessmentId,
+                    widget.userName,
+                    message,
+                    endTimeTaken,
+                    givenMark,
+                    widget.isMember,
+                    widget.assessmentHeaders,
+                    widget.organisationName,
+                  ]);
+            }
+          }
+
           // Navigator.pushNamed(
           //     context,
           //     '/studentReviseQuest',
@@ -350,7 +389,8 @@ class StudQuestionState extends State<StudQuestion> {
               widget.userId,
               widget.isMember,
               widget.assessmentHeaders,
-              myDuration
+              myDuration,
+              isOffline
             ]);
       }
       myDuration = Duration(seconds: seconds);
@@ -377,6 +417,8 @@ class StudQuestionState extends State<StudQuestion> {
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+
+
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -844,22 +886,48 @@ class StudQuestionState extends State<StudQuestion> {
                                             // if(widget.ques.data!.assessmentType=='test') {
                                             //   countdownTimer!.cancel();
                                             // }
-                                            Navigator.pushNamed(
-                                                context,
-                                                '/studentReviseQuest',
-                                                arguments: [
-                                                  values,
-                                                  widget.userName,
-                                                  widget.assessmentId,
-                                                  now.microsecondsSinceEpoch,
-                                                  values.data!.assessmentId!,
-                                                  false,
-                                                  widget.userId,
-                                                  widget.isMember,
-                                                  widget.assessmentHeaders,
-                                                  myDuration,
-                                                  widget.organisationName
-                                                ]);
+
+                                            if(widget.ques.data?.assessmentType !='test' && isOffline)
+                                            {
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  '/studentReviseQuest',
+                                                  arguments: [
+                                                    values,
+                                                    widget.userName,
+                                                    widget.assessmentId,
+                                                    now.microsecondsSinceEpoch,
+                                                    values.data!.assessmentId!,
+                                                    false,
+                                                    widget.userId,
+                                                    widget.isMember,
+                                                    widget.assessmentHeaders,
+                                                    myDuration,
+                                                    widget.organisationName,
+                                                    isOffline
+                                                  ]);
+                                            }
+                                            else
+                                              {
+                                                Navigator.pushNamed(
+                                                    context,
+                                                    '/studentReviseQuest',
+                                                    arguments: [
+                                                      values,
+                                                      widget.userName,
+                                                      widget.assessmentId,
+                                                      now.microsecondsSinceEpoch,
+                                                      values.data!.assessmentId!,
+                                                      false,
+                                                      widget.userId,
+                                                      widget.isMember,
+                                                      widget.assessmentHeaders,
+                                                      myDuration,
+                                                      widget.organisationName,
+                                                      isOffline
+                                                    ]);
+                                              }
+
                                           },
                                           child: Container(
                                             height: height * 0.0475,
@@ -961,22 +1029,46 @@ class StudQuestionState extends State<StudQuestion> {
                                         // if(widget.ques.data!.assessmentType=='test') {
                                         //   countdownTimer!.cancel();
                                         // }
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/studentReviseQuest',
-                                            arguments: [
-                                              values,
-                                              widget.userName,
-                                              widget.assessmentId,
-                                              now.microsecondsSinceEpoch,
-                                              values.data!.assessmentId!,
-                                              false,
-                                              widget.userId,
-                                              widget.isMember,
-                                              widget.assessmentHeaders,
-                                              myDuration,
-                                              widget.organisationName
-                                            ]);
+                                        if(widget.ques.data?.assessmentType !='test' && isOffline) {
+
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                                false,
+                                                widget.userId,
+                                                widget.isMember,
+                                                widget.assessmentHeaders,
+                                                myDuration,
+                                                widget.organisationName,
+                                                isOffline
+                                              ]);
+                                        }
+                                        else
+                                        {
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                                false,
+                                                widget.userId,
+                                                widget.isMember,
+                                                widget.assessmentHeaders,
+                                                myDuration,
+                                                widget.organisationName,
+                                                isOffline
+                                              ]);
+                                        }
                                       },
                                     )
                                         : ElevatedButton(
@@ -1537,22 +1629,46 @@ class StudQuestionState extends State<StudQuestion> {
                                             // if(widget.ques.data!.assessmentType=='test') {
                                             //   countdownTimer!.cancel();
                                             // }
-                                            Navigator.pushNamed(
-                                                context,
-                                                '/studentReviseQuest',
-                                                arguments: [
-                                                  values,
-                                                  widget.userName,
-                                                  widget.assessmentId,
-                                                  now.microsecondsSinceEpoch,
-                                                  values.data!.assessmentId!,
-                                                  false,
-                                                  widget.userId,
-                                                  widget.isMember,
-                                                  widget.assessmentHeaders,
-                                                  myDuration,
-                                                  widget.organisationName
-                                                ]);
+                                            if(widget.ques.data?.assessmentType !='test' && isOffline) {
+
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  '/studentReviseQuest',
+                                                  arguments: [
+                                                    values,
+                                                    widget.userName,
+                                                    widget.assessmentId,
+                                                    now.microsecondsSinceEpoch,
+                                                    values.data!.assessmentId!,
+                                                    false,
+                                                    widget.userId,
+                                                    widget.isMember,
+                                                    widget.assessmentHeaders,
+                                                    myDuration,
+                                                    widget.organisationName,
+                                                    isOffline
+                                                  ]);
+                                            }
+                                            else
+                                            {
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  '/studentReviseQuest',
+                                                  arguments: [
+                                                    values,
+                                                    widget.userName,
+                                                    widget.assessmentId,
+                                                    now.microsecondsSinceEpoch,
+                                                    values.data!.assessmentId!,
+                                                    false,
+                                                    widget.userId,
+                                                    widget.isMember,
+                                                    widget.assessmentHeaders,
+                                                    myDuration,
+                                                    widget.organisationName,
+                                                    isOffline
+                                                  ]);
+                                            }
                                           },
                                           child: Container(
                                             margin: EdgeInsets.only(bottom: height * 0.005),
@@ -1657,22 +1773,46 @@ class StudQuestionState extends State<StudQuestion> {
                                         // if(widget.ques.data!.assessmentType=='test') {
                                         //   countdownTimer!.cancel();
                                         // }
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/studentReviseQuest',
-                                            arguments: [
-                                              values,
-                                              widget.userName,
-                                              widget.assessmentId,
-                                              now.microsecondsSinceEpoch,
-                                              values.data!.assessmentId!,
-                                              false,
-                                              widget.userId,
-                                              widget.isMember,
-                                              widget.assessmentHeaders,
-                                              myDuration,
-                                              widget.organisationName
-                                            ]);
+                                        if(widget.ques.data?.assessmentType !='test' && isOffline) {
+
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                                false,
+                                                widget.userId,
+                                                widget.isMember,
+                                                widget.assessmentHeaders,
+                                                myDuration,
+                                                widget.organisationName,
+                                                isOffline
+                                              ]);
+                                        }
+                                        else
+                                        {
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                                false,
+                                                widget.userId,
+                                                widget.isMember,
+                                                widget.assessmentHeaders,
+                                                myDuration,
+                                                widget.organisationName,
+                                                isOffline
+                                              ]);
+                                        }
                                       },
                                     )
                                         : ElevatedButton(
@@ -2228,22 +2368,46 @@ class StudQuestionState extends State<StudQuestion> {
                                         // if(widget.ques.data!.assessmentType=='test') {
                                         //   countdownTimer!.cancel();
                                         // }
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/studentReviseQuest',
-                                            arguments: [
-                                              values,
-                                              widget.userName,
-                                              widget.assessmentId,
-                                              now.microsecondsSinceEpoch,
-                                              values.data!.assessmentId!,
-                                              false,
-                                              widget.userId,
-                                              widget.isMember,
-                                              widget.assessmentHeaders,
-                                              myDuration,
-                                              widget.organisationName
-                                            ]);
+                                        if(widget.ques.data?.assessmentType !='test' && isOffline) {
+
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                                false,
+                                                widget.userId,
+                                                widget.isMember,
+                                                widget.assessmentHeaders,
+                                                myDuration,
+                                                widget.organisationName,
+                                                isOffline
+                                              ]);
+                                        }
+                                        else
+                                        {
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                                false,
+                                                widget.userId,
+                                                widget.isMember,
+                                                widget.assessmentHeaders,
+                                                myDuration,
+                                                widget.organisationName,
+                                                isOffline
+                                              ]);
+                                        }
                                       },
                                       child: Container(
                                         margin: EdgeInsets.only(bottom: height * 0.004),
@@ -2352,22 +2516,47 @@ class StudQuestionState extends State<StudQuestion> {
                                     // if(widget.ques.data!.assessmentType=='test') {
                                     //   countdownTimer!.cancel();
                                     // }
-                                    Navigator.pushNamed(
-                                        context,
-                                        '/studentReviseQuest',
-                                        arguments: [
-                                          values,
-                                          widget.userName,
-                                          widget.assessmentId,
-                                          now.microsecondsSinceEpoch,
-                                          values.data!.assessmentId!,
-                                          false,
-                                          widget.userId,
-                                          widget.isMember,
-                                          widget.assessmentHeaders,
-                                          myDuration,
-                                          widget.organisationName
-                                        ]);
+                                    if(widget.ques.data?.assessmentType !='test' && isOffline) {
+
+
+                                      Navigator.pushNamed(
+                                          context,
+                                          '/studentReviseQuest',
+                                          arguments: [
+                                            values,
+                                            widget.userName,
+                                            widget.assessmentId,
+                                            now.microsecondsSinceEpoch,
+                                            values.data!.assessmentId!,
+                                            false,
+                                            widget.userId,
+                                            widget.isMember,
+                                            widget.assessmentHeaders,
+                                            myDuration,
+                                            widget.organisationName,
+                                            isOffline
+                                          ]);
+                                    }
+                                    else
+                                    {
+                                      Navigator.pushNamed(
+                                          context,
+                                          '/studentReviseQuest',
+                                          arguments: [
+                                            values,
+                                            widget.userName,
+                                            widget.assessmentId,
+                                            now.microsecondsSinceEpoch,
+                                            values.data!.assessmentId!,
+                                            false,
+                                            widget.userId,
+                                            widget.isMember,
+                                            widget.assessmentHeaders,
+                                            myDuration,
+                                            widget.organisationName,
+                                            isOffline
+                                          ]);
+                                    }
                                   },
                                 )
                                     :

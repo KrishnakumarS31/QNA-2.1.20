@@ -111,8 +111,6 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
         questionList.removeAt(index);
         setState(() {
         });

@@ -59,7 +59,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
     await QnaService.getUserDataService(widget.userId,widget.userDetails);
     ResponseEntity response =
     await QnaService.getResultDetailsService(widget.result.assessmentId, 10, pageLimit,"completed");
-    print(response.code);
     if(response.code == 200) {
       Navigator.pop(context);
       GetResultDetailsModel  resultsModelResponse=GetResultDetailsModel.fromJson(response.data);

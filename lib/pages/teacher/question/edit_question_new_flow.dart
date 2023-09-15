@@ -2424,8 +2424,6 @@ class EditQuestionNewFlowState extends State<EditQuestionNewFlow> {
                                   ElevatedButton(
                                     onPressed: ()
                                     {
-                                      print("INSIDE INPROGRESS QUESTION BANK DELETE");
-                                      print(widget.questionIndex);
                                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.questionIndex);
                                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
                                           .getAllQuestion.isEmpty

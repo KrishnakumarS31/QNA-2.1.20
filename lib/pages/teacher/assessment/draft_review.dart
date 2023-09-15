@@ -322,39 +322,32 @@ class DraftReviewState extends State<DraftReview> {
 
   @override
   void initState() {
-    print("INSIDE DRAFT REVIEW");
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     assessment =Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-    print(assessment.subject);
-    print(assessment.topic);
+
     assessment.removeQuestions=[];
     getAssessment =Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
-    print("Get Assessment Questions Length");
-    print(getAssessment.questions!.length);
+
     questionList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
-    print("QUESTION LIST");
-    print(questionList);
-    print("AFTER QUESTION LIST");
+
     for(int i=0;i<questionList.length;i++){
       selectedQuesIndex.add(i);
     }
     for(int i=0;i<questionList.length;i++){
       getAssessmentQuestionId.add(questionList[i].questionId);
-      print("Get Assessment Question Id");
-      print(getAssessmentQuestionId);
+
       totalMarks=totalMarks+questionList[i].questionMark!;
       if(questionList[i].questionType=='MCQ'){
         choiceText.add([]);
         for(int j=0;j<questionList![i].choices!.length;j++){
-          print("INSIDE J LOOP");
-          print(questionList![i].choices![j].choiceText!);
+
           choiceText[i].add(questionList![i].choices![j].choiceText!);
           if (questionList[i].choices![j].rightChoice!) {
             rightChoices.add(questionList[i].choices![j].choiceText!);
           }
           //rightChoices.add(questionList[i].choices![j].choiceText!);
-          print(choiceText);
+
         }
       }else{
         choiceText.add(['']);
@@ -766,7 +759,7 @@ class DraftReviewState extends State<DraftReview> {
                                                                         ),
                                                                       ),
                                                                       onPressed: () async {
-                                                                        print("INSIDE SAVE");
+
                                                                         bool valid = formKey
                                                                             .currentState!
                                                                             .validate();
@@ -1176,11 +1169,10 @@ class DraftReviewState extends State<DraftReview> {
                                             totalMark=totalMark+selectedQuestion[i].questionMark!;
                                           }
                                           assessment.totalScore=totalMark;
-                                          print("---------------------------------------------------------------");
+
                                           debugPrint(assessment.toString());
                                           statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                           if (statusCode.code == 200) {
-                                            print(statusCode.message);
                                             // assessmentCode = statusCode.data.toString().substring(18, statusCode.data
                                             //     .toString()
                                             //     .length -
@@ -1663,7 +1655,7 @@ class DraftReviewState extends State<DraftReview> {
                                                                           ),
                                                                         ),
                                                                         onPressed: () async {
-                                                                          print("INSIDE SAVE");
+
                                                                           bool valid = formKey
                                                                               .currentState!
                                                                               .validate();
@@ -2055,11 +2047,11 @@ class DraftReviewState extends State<DraftReview> {
                                               totalMark=totalMark+selectedQuestion[i].questionMark!;
                                             }
                                             assessment.totalScore=totalMark;
-                                            print("---------------------------------------------------------------");
+
                                             debugPrint(assessment.toString());
                                             statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                             if (statusCode.code == 200) {
-                                              print(statusCode.message);
+
                                               // assessmentCode = statusCode.data.toString().substring(18, statusCode.data
                                               //     .toString()
                                               //     .length -
@@ -2541,13 +2533,13 @@ class DraftReviewState extends State<DraftReview> {
                                                                         ),
                                                                       ),
                                                                       onPressed: () async {
-                                                                        print("INSIDE SAVE");
+
                                                                         bool valid = formKey
                                                                             .currentState!
                                                                             .validate();
                                                                         if (valid) {
                                                                           setState(() {
-                                                                            print("INSIDE SETSTATE");
+
                                                                             assessment.subject = subjectController.text;
                                                                             assessment.topic = topicController.text;
                                                                             assessment.createAssessmentModelClass = degreeController.text;
@@ -2935,11 +2927,10 @@ class DraftReviewState extends State<DraftReview> {
                                             totalMark=totalMark+selectedQuestion[i].questionMark!;
                                           }
                                           assessment.totalScore=totalMark;
-                                          print("---------------------------------------------------------------");
+
                                           debugPrint(assessment.toString());
                                           statusCode = await QnaService.editAssessmentTeacherService(assessment, assessment.assessmentId!,userDetails);
                                           if (statusCode.code == 200) {
-                                            print(statusCode.message);
                                             // assessmentCode = statusCode.data.toString().substring(18, statusCode.data
                                             //     .toString()
                                             //     .length -
@@ -3354,7 +3345,6 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
           }
           else if(constraints.maxWidth > 960)
           {
-            print("INSIDE POPUP");
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

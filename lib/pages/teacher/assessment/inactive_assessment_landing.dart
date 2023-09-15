@@ -111,8 +111,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        print(questionList.length);
-        print(index);
+        
         questionList.removeAt(index);
         setState(() {
         });

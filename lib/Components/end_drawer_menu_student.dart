@@ -55,8 +55,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    print(localHeight);
-    print(width);
+
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {

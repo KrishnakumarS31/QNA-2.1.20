@@ -1102,7 +1102,6 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           for(int i=assessment.questions!.length;i<questionList.length;i++) {
                                             Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(questionList[i]);
                                           }
-                                          print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                           Navigator.pushNamed(
                                             context,
                                             '/assessmentSettingsPage',
@@ -1669,7 +1668,6 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                               GestureDetector(
                                                 onTap: ()
                                                 {
-                                                  print("Inside ONTAP");
                                                   showDialog(
                                                       context: context,
                                                       builder: (BuildContext context) {
@@ -1980,7 +1978,6 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                             for(int i=assessment.questions!.length;i<questionList.length;i++) {
                                               Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(questionList[i]);
                                             }
-                                            print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
                                             Navigator.pushNamed(
                                               context,
                                               '/assessmentSettingsPage',
@@ -2841,7 +2838,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                           for(int i=assessment.questions!.length;i<questionList.length;i++) {
                                             Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(questionList[i]);
                                           }
-                                          print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.length);
+
                                           Navigator.pushNamed(
                                             context,
                                             '/assessmentSettingsPage',
@@ -3192,7 +3189,7 @@ class EditQuestionPopUpReviewQuestionsState extends State<EditQuestionPopUpRevie
           }
           else if(constraints.maxWidth > 960)
           {
-            print("INSIDE POPUP");
+
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

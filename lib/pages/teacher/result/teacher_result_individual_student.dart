@@ -851,13 +851,7 @@ class QuesAndAns extends StatefulWidget {
 class _QuesAndAnsState extends State<QuesAndAns> {
   @override
   void initState() {
-    print(widget.ques);
-    print(widget.quesNum);
-    print(widget.marks);
-    print( widget.ques.selectedChoices);
-    print(widget.ques.descriptiveAnswers?.isEmpty);
-    print(widget.ques
-        .descriptiveAnswers!);
+
     super.initState();
   }
 
