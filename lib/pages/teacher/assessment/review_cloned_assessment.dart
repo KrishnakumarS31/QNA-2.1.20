@@ -537,7 +537,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                   Alignment.centerLeft,
                                                   child: Text(
                                                   //AppLocalizations.of(context)!.my_qn_bank,
-                                                  "Degree",
+                                                  "Degree/Class",
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                   color: const Color.fromRGBO(28, 78, 80, 1),
@@ -578,7 +578,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                   if (value!
                                                       .isEmpty) {
                                                   return
-                                                  'Enter Degree';
+                                                  'Enter Degree/Class';
                                                   } else {
                                                   return null;
                                                   }
@@ -1397,7 +1397,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                                       Alignment.centerLeft,
                                                                       child: Text(
                                                                         //AppLocalizations.of(context)!.my_qn_bank,
-                                                                        "Degree",
+                                                                        "Degree/Class",
                                                                         textAlign: TextAlign.left,
                                                                         style: TextStyle(
                                                                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1438,7 +1438,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                                         if (value!
                                                                             .isEmpty) {
                                                                           return
-                                                                            'Enter Degree';
+                                                                            'Enter Degree/Class';
                                                                         } else {
                                                                           return null;
                                                                         }
@@ -2274,7 +2274,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                   Alignment.centerLeft,
                                                   child: Text(
                                                   //AppLocalizations.of(context)!.my_qn_bank,
-                                                  "Degree",
+                                                  "Degree/Class",
                                                   textAlign: TextAlign.left,
                                                   style: TextStyle(
                                                   color: const Color.fromRGBO(28, 78, 80, 1),
@@ -2315,7 +2315,7 @@ class ReviewClonedAssessmentState extends State<ReviewClonedAssessment> {
                                                   if (value!
                                                       .isEmpty) {
                                                   return
-                                                  'Enter Degree';
+                                                  'Enter Degree/Class';
                                                   } else {
                                                   return null;
                                                   }

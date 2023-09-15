@@ -618,6 +618,8 @@ class QnaRepo {
     SharedPreferences loginData = await SharedPreferences.getInstance();
 
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    print("URL");
+    print('$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal&user_id=$userId');
     var request = http.Request(
         'GET',
         Uri.parse(

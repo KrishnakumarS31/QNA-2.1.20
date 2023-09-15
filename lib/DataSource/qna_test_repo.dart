@@ -32,6 +32,8 @@ class QnaTestRepo {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     QuestionPaperModel questionPaperModel;
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    print("URL");
+    print('$assessmentDomain?code=$assessmentId&user_id=$userId');
     var request = http.Request(
         'GET',
         Uri.parse(

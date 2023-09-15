@@ -111,7 +111,7 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        
+
         questionList.removeAt(index);
         setState(() {
         });
@@ -211,8 +211,8 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
       onPressed: () async {
 
         Navigator.pushNamed(
-            context,
-            '/inactiveAssessmentSettings',
+          context,
+          '/inactiveAssessmentSettings',
         );
 
       },
@@ -1277,56 +1277,56 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                     )));
           }
           else if(constraints.maxWidth > 960)
-            {
-              return WillPopScope(
-                  onWillPop: () async => false,
-                  child: Scaffold(
-                      resizeToAvoidBottomInset: true,
-                      endDrawer: const EndDrawerMenuTeacher(),
-                      backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-                      appBar: AppBar(
-                        iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
-                        elevation: 0,
-                        backgroundColor: Colors.transparent,
-                        leading: IconButton(
-                          icon: Icon(
-                            Icons.chevron_left,
-                            size: height * 0.06,
-                            color: Colors.black,
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
+          {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    resizeToAvoidBottomInset: true,
+                    endDrawer: const EndDrawerMenuTeacher(),
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+                    appBar: AppBar(
+                      iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                      leading: IconButton(
+                        icon: Icon(
+                          Icons.chevron_left,
+                          size: height * 0.06,
+                          color: Colors.black,
                         ),
-                        //automaticallyImplyLeading: false,
-                        toolbarHeight: height * 0.100,
-                        centerTitle: true,
-                        title: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                //AppLocalizations.of(context)!.my_qns,
-                                "Inactive Assessment",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.025,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      //automaticallyImplyLeading: false,
+                      toolbarHeight: height * 0.100,
+                      centerTitle: true,
+                      title: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              //AppLocalizations.of(context)!.my_qns,
+                              "Inactive Assessment",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.025,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
                               ),
-                            ]),
-                        flexibleSpace: Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.white
-                          ),
+                            ),
+                          ]),
+                      flexibleSpace: Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.white
                         ),
                       ),
-                      body: Container(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: height * 0.5,
-                              right: height * 0.5),
+                    ),
+                    body: Container(
+                      color: Colors.white,
+                      child: Align(
+                        alignment:Alignment.center,
+                        child: SizedBox(
+                          width: width * 0.7,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -2095,8 +2095,9 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                             ],
                           ),
                         ),
-                      )));
-            }
+                      ),
+                    )));
+          }
           else{
             return WillPopScope(
                 onWillPop: () async => false,
@@ -3033,7 +3034,7 @@ class _QuestionCardState extends State<QuestionCard> {
             ),
             SizedBox(height: widget.height * 0.01),
             widget.question.questionType == 'MCQ'
-            ?
+                ?
             Padding(
               padding: EdgeInsets.only( left : widget.width * 0.03),
               child: Text(
@@ -3048,7 +3049,7 @@ class _QuestionCardState extends State<QuestionCard> {
                 ),
               ),
             )
-            :
+                :
             SizedBox(height: widget.height * 0.01),
             Padding(
               padding: EdgeInsets.only( left : widget.width * 0.03),

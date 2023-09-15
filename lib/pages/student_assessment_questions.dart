@@ -59,8 +59,19 @@ class StudQuestionState extends State<StudQuestion> {
   StreamSubscription? connection;
   bool isOffline = false;
   Color colorCode = const Color.fromRGBO(179, 179, 179, 1);
+
   setTime(){
-    myDuration = Duration(minutes: widget.ques.data!.assessmentDuration!);
+    final DateTime dateTime = DateTime.fromMicrosecondsSinceEpoch(widget.ques.data!.assessmentEndDate!);
+    final String formattedTime = DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
+    print("formatted time");
+    print(dateTime);
+    DateTime now = DateTime.now();
+    Duration difference = dateTime.difference(now);
+    int hours = difference.inHours;
+    int minutes = (difference.inMinutes % 60);
+    int seconds = (difference.inSeconds % 60);
+    int totalMinutes = (hours * 60) + minutes + (seconds ~/ 60);
+    myDuration = Duration(minutes: totalMinutes>widget.ques.data!.assessmentDuration! ?  widget.ques.data!.assessmentDuration! : totalMinutes);
   }
   @override
   void didChangeDependencies() {
@@ -85,6 +96,10 @@ class StudQuestionState extends State<StudQuestion> {
     // ansController.selection = TextSelection.fromPosition(TextPosition(offset: ansController.text.length,));
     setTime();
     values = widget.ques;
+    print("INSIDE INIT STATE");
+    print(widget.ques.data?.assessmentEndDate);
+
+
     context.read<Questions>().createQuesAns(values.data!.questions!.length);
     context.read<QuestionNumProvider>().reset();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
@@ -414,6 +429,7 @@ class StudQuestionState extends State<StudQuestion> {
     int hourss = now.hour;
     int minutess = now.minute;
     int secondss = now.second;
+    print(myDuration);
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
