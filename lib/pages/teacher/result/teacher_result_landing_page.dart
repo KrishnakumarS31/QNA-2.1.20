@@ -236,7 +236,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                         Text(
                                                           AppLocalizations.of(
                                                                   context)!
-                                                              .completed,
+                                                              .over,
                                                           style: TextStyle(
                                                               color: const Color
                                                                       .fromRGBO(
@@ -708,7 +708,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                   Text(
                                                     AppLocalizations.of(
                                                             context)!
-                                                        .completed,
+                                                        .over,
                                                     style: TextStyle(
                                                         color: const Color
                                                                 .fromRGBO(
@@ -1142,7 +1142,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                                 ),
                                                 Text(
                                                   AppLocalizations.of(context)!
-                                                      .completed,
+                                                      .over,
                                                   style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(

@@ -677,7 +677,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               SizedBox(
-                                                width:localWidth * 0.8,
+                                                width: localWidth * 0.8,
                                                 child: Column(
                                                   children: [
                                                     Row(children: [
@@ -692,17 +692,17 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             fontFamily: 'Inter',
                                                             fontWeight:
                                                             FontWeight.w600,
-                                                            fontSize:
-                                                            localHeight *
+                                                            fontSize: localHeight *
                                                                 0.0155),
                                                       ),
                                                     ]),
-                                                    SizedBox(height : localHeight * 0.01),
+                                                    SizedBox(
+                                                        height: localHeight * 0.01),
                                                     Row(
                                                       children: [
                                                         Radio(
-                                                          activeColor: const Color
-                                                              .fromRGBO(
+                                                          activeColor:
+                                                          const Color.fromRGBO(
                                                               82, 165, 160, 1),
                                                           value: "male",
                                                           groupValue: gender,
@@ -729,15 +729,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                   0.016),
                                                         ),
                                                         Radio(
-                                                          activeColor: const Color
-                                                              .fromRGBO(
+                                                          activeColor:
+                                                          const Color.fromRGBO(
                                                               82, 165, 160, 1),
                                                           value: "female",
                                                           groupValue: gender,
                                                           onChanged: (value) {
                                                             setState(() {
-                                                              gender = value
-                                                                  .toString();
+                                                              gender =
+                                                                  value.toString();
                                                             });
                                                           },
                                                         ),
@@ -757,15 +757,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                   0.016),
                                                         ),
                                                         Radio(
-                                                          activeColor: const Color
-                                                              .fromRGBO(
+                                                          activeColor:
+                                                          const Color.fromRGBO(
                                                               82, 165, 160, 1),
                                                           value: "others",
                                                           groupValue: gender,
                                                           onChanged: (value) {
                                                             setState(() {
-                                                              gender = value
-                                                                  .toString();
+                                                              gender =
+                                                                  value.toString();
                                                             });
                                                           },
                                                         ),
@@ -793,9 +793,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               SizedBox(
-                                                width:localWidth * 0.8,
+                                                width: localWidth * 0.8,
                                                 child: Column(
-                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       AppLocalizations.of(context)!
@@ -838,10 +839,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               fontSize:
                                                               localHeight *
                                                                   0.018),
-                                                          hintText:
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .enter_here),
+                                                          hintText: 'Select'),
                                                       clearIconProperty:
                                                       IconProperty(
                                                           color: const Color
@@ -890,7 +888,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       ],
                                                       onChanged: (value) {},
                                                     ),
-
                                                   ],
                                                 ),
                                               ),
@@ -898,11 +895,11 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               SizedBox(
-                                                width : localWidth * 0.8,
+                                                width: localWidth * 0.8,
                                                 child: Column(
-                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                                   children: [
-
                                                     Container(
                                                       color: Colors.white,
                                                       child: Text(
@@ -922,7 +919,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       ),
                                                     ),
                                                     SizedBox(
-
                                                       child: DropDownTextField(
                                                         controller:
                                                         selectedCountryResident,
@@ -937,23 +933,16 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             FloatingLabelBehavior
                                                                 .always,
                                                             hintStyle: TextStyle(
-                                                                color:
-                                                                const Color
-                                                                    .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    0.3),
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight:
                                                                 FontWeight.w400,
                                                                 fontSize:
                                                                 localHeight *
                                                                     0.018),
-                                                            hintText:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .enter_here),
+                                                            hintText: 'Select'),
                                                         clearIconProperty:
                                                         IconProperty(
                                                             color: const Color
@@ -965,13 +954,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 .textTheme
                                                                 .headlineMedium,
                                                             hintStyle: TextStyle(
-                                                                color:
-                                                                const Color
-                                                                    .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    0.3),
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight:
                                                                 FontWeight.w400,
@@ -2112,10 +2097,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 fontSize:
                                                                 localHeight *
                                                                     0.018),
-                                                            hintText:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .enter_here),
+                                                            hintText: 'Select'),
                                                         clearIconProperty:
                                                         IconProperty(
                                                             color: const Color
@@ -2211,10 +2193,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 fontSize:
                                                                 localHeight *
                                                                     0.018),
-                                                            hintText:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .enter_here),
+                                                            hintText: 'Select'),
                                                         clearIconProperty:
                                                         IconProperty(
                                                             color: const Color
@@ -3194,25 +3173,28 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               SizedBox(
-                                                width:localWidth * 0.8,
+                                                width: localWidth * 0.8,
                                                 child: Column(
                                                   children: [
                                                     Row(children: [
                                                       Text(
-                                                        AppLocalizations.of(context)!
+                                                        AppLocalizations.of(
+                                                            context)!
                                                             .gender,
                                                         style: TextStyle(
-                                                            color:
-                                                            const Color.fromRGBO(
+                                                            color: const Color
+                                                                .fromRGBO(
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight:
                                                             FontWeight.w600,
-                                                            fontSize:
-                                                            localHeight * 0.0155),
+                                                            fontSize: localHeight *
+                                                                0.0155),
                                                       ),
                                                     ]),
-                                                    SizedBox(height:localHeight *0.005 ),
+                                                    SizedBox(
+                                                        height:
+                                                        localHeight * 0.005),
                                                     Row(
                                                       children: [
                                                         Radio(
@@ -3239,7 +3221,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               fontFamily: 'Inter',
                                                               fontWeight:
                                                               FontWeight.w400,
-                                                              fontSize: localHeight *
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.016),
                                                         ),
                                                         Radio(
@@ -3266,7 +3249,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               fontFamily: 'Inter',
                                                               fontWeight:
                                                               FontWeight.w400,
-                                                              fontSize: localHeight *
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.016),
                                                         ),
                                                         Radio(
@@ -3293,7 +3277,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               fontFamily: 'Inter',
                                                               fontWeight:
                                                               FontWeight.w400,
-                                                              fontSize: localHeight *
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.016),
                                                         ),
                                                       ],
@@ -3305,19 +3290,22 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               SizedBox(
-                                                width:localWidth * 0.8,
+                                                width: localWidth * 0.8,
                                                 child: Column(
-                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       AppLocalizations.of(context)!
                                                           .country_citizen,
                                                       //"Citizen of Country",
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(
+                                                          color:
+                                                          const Color.fromRGBO(
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
+                                                          fontWeight:
+                                                          FontWeight.w600,
                                                           fontSize:
                                                           localHeight * 0.0155),
                                                     ),
@@ -3349,9 +3337,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               localHeight *
                                                                   0.018),
                                                           hintText:
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .enter_here),
+                                                          'Select'),
                                                       clearIconProperty:
                                                       IconProperty(
                                                           color: const Color
@@ -3400,7 +3386,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       ],
                                                       onChanged: (value) {},
                                                     ),
-
                                                   ],
                                                 ),
                                               ),
@@ -3408,25 +3393,27 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               SizedBox(
-                                                width:localWidth * 0.8,
+                                                width: localWidth * 0.8,
                                                 child: Column(
-                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
                                                       color: Colors.white,
                                                       child: Text(
-                                                        AppLocalizations.of(context)!
+                                                        AppLocalizations.of(
+                                                            context)!
                                                             .country_resident,
                                                         //Resident of Country
                                                         style: TextStyle(
-                                                            color:
-                                                            const Color.fromRGBO(
+                                                            color: const Color
+                                                                .fromRGBO(
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight:
                                                             FontWeight.w600,
-                                                            fontSize:
-                                                            localHeight * 0.0155),
+                                                            fontSize: localHeight *
+                                                                0.0155),
                                                       ),
                                                     ),
                                                     DropDownTextField(
@@ -3457,9 +3444,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               localHeight *
                                                                   0.018),
                                                           hintText:
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .enter_here),
+                                                          'Select'),
                                                       clearIconProperty:
                                                       IconProperty(
                                                           color: const Color
@@ -3528,7 +3513,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       ],
                                                       onChanged: (value) {},
                                                     ),
-
                                                   ],
                                                 ),
                                               ),

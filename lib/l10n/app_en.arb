@@ -454,5 +454,7 @@
   "view_advisor" : "View Advisor",
   "sure_to_exit_assessment" : "Are you sure you want to exit from this Assessment.",
   "assessment_take_confirmation" : "Is this the assessment you want to take?",
-  "assessment_take_note" : "Please note, once you start a test, you must complete it."
+  "assessment_take_note" : "Please note, once you start a test, you must complete it.",
+  "over": "Over",
+  "stu_library": "Library"
 }

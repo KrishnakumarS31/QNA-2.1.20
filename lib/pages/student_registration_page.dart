@@ -850,9 +850,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                           .w400,
                                                                       fontSize:
                                                                       localHeight * 0.018),
-                                                                  hintText: AppLocalizations.of(
-                                                                      context)!
-                                                                      .enter_here),
+                                                                  hintText: 'Select'),
                                                               clearIconProperty: IconProperty(
                                                                   color: const Color
                                                                       .fromRGBO(
@@ -937,9 +935,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                           .w400,
                                                                       fontSize:
                                                                       localHeight * 0.018),
-                                                                  hintText: AppLocalizations.of(
-                                                                      context)!
-                                                                      .enter_here),
+                                                                  hintText:'Select'),
                                                               clearIconProperty: IconProperty(
                                                                   color: const Color
                                                                       .fromRGBO(
@@ -1879,9 +1875,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       .w400,
                                                                   fontSize:
                                                                   localHeight * 0.018),
-                                                              hintText: AppLocalizations.of(
-                                                                  context)!
-                                                                  .enter_here),
+                                                              hintText:'Select'),
                                                           clearIconProperty: IconProperty(
                                                               color: const Color
                                                                   .fromRGBO(
@@ -1965,9 +1959,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       .w400,
                                                                   fontSize:
                                                                   localHeight * 0.018),
-                                                              hintText: AppLocalizations.of(
-                                                                  context)!
-                                                                  .enter_here),
+                                                              hintText: 'Select'),
                                                           clearIconProperty: IconProperty(
                                                               color: const Color
                                                                   .fromRGBO(
@@ -2976,9 +2968,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       .w400,
                                                                   fontSize:
                                                                   localHeight * 0.018),
-                                                              hintText: AppLocalizations.of(
-                                                                  context)!
-                                                                  .enter_here),
+                                                              hintText: 'Select'),
                                                           clearIconProperty: IconProperty(
                                                               color: const Color
                                                                   .fromRGBO(
@@ -3063,9 +3053,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       .w400,
                                                                   fontSize:
                                                                   localHeight * 0.018),
-                                                              hintText: AppLocalizations.of(
-                                                                  context)!
-                                                                  .enter_here),
+                                                              hintText: 'Select'),
                                                           clearIconProperty: IconProperty(
                                                               color: const Color
                                                                   .fromRGBO(

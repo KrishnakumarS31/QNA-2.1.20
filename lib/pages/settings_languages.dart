@@ -45,15 +45,18 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
       setState(() {
         selected = 'வணக்கம் (Tamil)';
       });
-    } else if (st == 'hi') {
+    }
+    else if (st == 'hi') {
       setState(() {
         selected = 'नमस्ते (Hindi)';
       });
-    } else if (st == 'kn') {
+    }
+    else if (st == 'kn') {
       setState(() {
         selected = 'ಕನ್ನಡ (Kannada)';
       });
-    } else if (st == 'mr') {
+    }
+    else if (st == 'mr') {
       setState(() {
         selected = 'नमस्कार Marathi';
       });

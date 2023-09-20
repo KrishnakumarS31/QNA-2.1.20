@@ -403,7 +403,7 @@
   "view_all_solution": "Ver todas las soluciones",
   "solution_sheet":"Hoja de solución",
   "assessment_take_confirmation" : "¿Es esta la evaluación que desea realizar?",
-  "assessment_take_note" : "Tenga en cuenta que una vez que comience una prueba, debe completarla."
-
+  "assessment_take_note" : "Tenga en cuenta que una vez que comience una prueba, debe completarla.",
+  "over": "encima"
 
 }

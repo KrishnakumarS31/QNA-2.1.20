@@ -60,8 +60,13 @@ class StudentAssessmentState extends State<StudentAssessment> {
     if (widget.assessment?.assessmentCode != null) {
       _isAssessmentTextField = false;
       _isSearchTextField = true;
+      //looqSearch = true;
       _searchPressed = true;
       assessmentIdController.text = widget.assessment!.assessmentCode!;
+      assessmentHeaderValues.subTopic = widget.assessment?.subTopic;
+      assessmentHeaderValues.subject = widget.assessment?.subject;
+      assessmentHeaderValues.getAssessmentModelClass = widget.assessment?.getAssessmentModelClass;
+
     }
   }
 
@@ -147,7 +152,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                       physics: const ClampingScrollPhysics(),
                       child: Padding(
                           padding: EdgeInsets.only(
-                              left: height * 0.040, right: height * 0.040),
+                              left: width * 0.040, right: width * 0.040),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -230,7 +235,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                             minimumSize: Size(
-                                                width * 0.3, height * 0.02),
+                                                width * 0.2, height * 0.02),
                                             backgroundColor:
                                                 _isAssessmentTextField
                                                     ? const Color.fromRGBO(
@@ -252,7 +257,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               fontSize: height * 0.023),
                                         ),
                                       ),
-                                      SizedBox(width: width * 0.1),
+                                      SizedBox(width: width * 0.07),
                                       ElevatedButton(
                                         onPressed: () {
                                           setState(() {
@@ -264,7 +269,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                           minimumSize:
-                                              Size(width * 0.3, height * 0.02),
+                                              Size(width * 0.2, height * 0.02),
                                           backgroundColor: _isSearchTextField
                                               ? const Color.fromRGBO(
                                                   82, 165, 160, 1)
@@ -274,12 +279,41 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   BorderRadius.circular(5)),
                                         ),
                                         child: Text(
-                                          AppLocalizations.of(context)!.keywords,
+                                          AppLocalizations.of(context)!.stu_library,
                                           style: TextStyle(
                                               color: _isSearchTextField
                                                   ? Colors.white
                                                   : const Color.fromRGBO(
                                                       82, 165, 160, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.023),
+                                        ),
+                                      ),
+                                      SizedBox(width: width * 0.07),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          setState(() {
+                                          });
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          minimumSize:
+                                          Size(width * 0.2, height * 0.02),
+                                          backgroundColor: _isSearchTextField
+                                              ? const Color.fromRGBO(
+                                              82, 165, 160, 1)
+                                              : Colors.white,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(5)),
+                                        ),
+                                        child: Text(
+                                          AppLocalizations.of(context)!.results_camelcase,
+                                          style: TextStyle(
+                                              color: _isSearchTextField
+                                                  ? Colors.white
+                                                  : const Color.fromRGBO(
+                                                  82, 165, 160, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.023),
@@ -1235,8 +1269,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   },
                                                   style: ElevatedButton.styleFrom(
                                                       minimumSize: Size(
-                                                          width * 0.15,
-                                                          height * 0.0015),
+                                                          width * 0.1,
+                                                          height * 0.002),
                                                       backgroundColor:
                                                           _isAssessmentTextField
                                                               ? const Color
@@ -1283,8 +1317,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   },
                                                   style: ElevatedButton.styleFrom(
                                                       minimumSize: Size(
-                                                          width * 0.15,
-                                                          height * 0.0015),
+                                                          width * 0.1,
+                                                          height * 0.002),
                                                       backgroundColor:
                                                           _isSearchTextField
                                                               ? const Color
@@ -1301,7 +1335,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                       .circular(
                                                                           5))),
                                                   child: Text(
-                                                    AppLocalizations.of(context)!.keywords,
+                                                    AppLocalizations.of(context)!.stu_library,
                                                     style: TextStyle(
                                                         color: _isSearchTextField
                                                             ? Colors.white
@@ -1316,6 +1350,49 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                             FontWeight.w400,
                                                         fontSize:
                                                             height * 0.023),
+                                                  ),
+                                                ),
+                                                SizedBox(width: width * 0.03),
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                      });
+                                                    },
+                                                  style: ElevatedButton.styleFrom(
+                                                      minimumSize: Size(
+                                                          width * 0.1,
+                                                          height * 0.002),
+                                                      backgroundColor:
+                                                      _isSearchTextField
+                                                          ? const Color
+                                                          .fromRGBO(
+                                                          82,
+                                                          165,
+                                                          160,
+                                                          1)
+                                                          : Colors.white,
+                                                      shape:
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              5))),
+                                                  child: Text(
+                                                    AppLocalizations.of(context)!.results_camelcase,
+                                                    style: TextStyle(
+                                                        color: _isSearchTextField
+                                                            ? Colors.white
+                                                            : const Color
+                                                            .fromRGBO(
+                                                            82,
+                                                            165,
+                                                            160,
+                                                            1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight:
+                                                        FontWeight.w400,
+                                                        fontSize:
+                                                        height * 0.023),
                                                   ),
                                                 ),
                                               ],
@@ -1334,106 +1411,101 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                         padding:
                                                             EdgeInsets.only(
                                                                 right: height *
-                                                                    0.045),
+                                                                    0.03),
                                                         child: Form(
                                                             key: formKey,
                                                             autovalidateMode:
                                                                 AutovalidateMode
                                                                     .disabled,
-                                                            child: SizedBox(
-                                                              width:
-                                                                  width * 0.9,
-                                                              child:
-                                                                  TextFormField(
-                                                                      validator:
-                                                                          (value) {
-                                                                        return value!.length <
-                                                                                8
-                                                                            ? AppLocalizations.of(context)!.valid_assId
-                                                                            : null;
-                                                                      },
-                                                                      controller:
-                                                                          assessmentIdController,
-                                                                      onChanged:
-                                                                          (val) {
-                                                                        formKey
-                                                                            .currentState!
-                                                                            .validate();
-                                                                      },
-                                                                      // inputFormatters: [
-                                                                      //   FilteringTextInputFormatter
-                                                                      //       .allow(
-                                                                      //       RegExp('[a-zA-Z0-9]')),
-                                                                      // ],
-                                                                      keyboardType:
-                                                                          TextInputType
-                                                                              .text,
-                                                                      decoration:
-                                                                          InputDecoration(
-                                                                        helperStyle: TextStyle(
-                                                                            color: Colors.blue,
-                                                                            // Color.fromRGBO(
-                                                                            //     102, 102, 102, 0.3),
-                                                                            fontFamily: 'Inter',
-                                                                            fontWeight: FontWeight.w400,
-                                                                            fontSize: height * 0.016),
-                                                                        hintText:
-                                                                            AppLocalizations.of(context)!.assessment_id,
-                                                                        suffixIcon:
-                                                                            ElevatedButton(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            assessmentvalues =
-                                                                                await QnaService.getAssessmentHeader(assessmentIdController.text, userDetails);
-                                                                            if (assessmentvalues.code ==
-                                                                                200) {
-                                                                              setState(() {
-                                                                                assessmentHeaderValues = GetAssessmentHeaderModel.fromJson(assessmentvalues.data);
-                                                                                _searchPressed = true;
-                                                                              });
-                                                                            } else if (assessmentvalues.code ==
-                                                                                400) {
-                                                                              Navigator.push(
-                                                                                context,
-                                                                                PageTransition(
-                                                                                  type: PageTransitionType.rightToLeft,
-                                                                                  child: CustomDialog(
-                                                                                    title: AppLocalizations.of(context)!.alert_popup,
-                                                                                    content: '${assessmentvalues.message}',
-                                                                                    button: AppLocalizations.of(context)!.retry,
-                                                                                  ),
-                                                                                ),
-                                                                              );
-                                                                            }
-                                                                          },
-                                                                          child: const Icon(
-                                                                              Icons.search_outlined,
-                                                                              color: Colors.white),
-                                                                          style:
-                                                                              ElevatedButton.styleFrom(
-                                                                            fixedSize:
-                                                                                const Size(10, 10),
-                                                                            side:
-                                                                                const BorderSide(
-                                                                              width: 1,
-                                                                              color: Color.fromRGBO(82, 165, 160, 1),
+                                                            child: TextFormField(
+                                                                validator:
+                                                                    (value) {
+                                                                  return value!.length <
+                                                                          8
+                                                                      ? AppLocalizations.of(context)!.valid_assId
+                                                                      : null;
+                                                                },
+                                                                controller:
+                                                                    assessmentIdController,
+                                                                onChanged:
+                                                                    (val) {
+                                                                  formKey
+                                                                      .currentState!
+                                                                      .validate();
+                                                                },
+                                                                // inputFormatters: [
+                                                                //   FilteringTextInputFormatter
+                                                                //       .allow(
+                                                                //       RegExp('[a-zA-Z0-9]')),
+                                                                // ],
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .text,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  helperStyle: TextStyle(
+                                                                      color: Colors.blue,
+                                                                      // Color.fromRGBO(
+                                                                      //     102, 102, 102, 0.3),
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontSize: height * 0.016),
+                                                                  hintText:
+                                                                      AppLocalizations.of(context)!.assessment_id,
+                                                                  suffixIcon:
+                                                                      ElevatedButton(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      assessmentvalues =
+                                                                          await QnaService.getAssessmentHeader(assessmentIdController.text, userDetails);
+                                                                      if (assessmentvalues.code ==
+                                                                          200) {
+                                                                        setState(() {
+                                                                          assessmentHeaderValues = GetAssessmentHeaderModel.fromJson(assessmentvalues.data);
+                                                                          _searchPressed = true;
+                                                                        });
+                                                                      } else if (assessmentvalues.code ==
+                                                                          400) {
+                                                                        Navigator.push(
+                                                                          context,
+                                                                          PageTransition(
+                                                                            type: PageTransitionType.rightToLeft,
+                                                                            child: CustomDialog(
+                                                                              title: AppLocalizations.of(context)!.alert_popup,
+                                                                              content: '${assessmentvalues.message}',
+                                                                              button: AppLocalizations.of(context)!.retry,
                                                                             ),
-                                                                            shape:
-                                                                                const CircleBorder(),
-                                                                            backgroundColor: const Color.fromRGBO(
-                                                                                82,
-                                                                                165,
-                                                                                160,
-                                                                                1), // <-- Button color
                                                                           ),
-                                                                        ),
-                                                                        // prefixIcon:
-                                                                        // const Icon(
-                                                                        //     Icons.event_note_outlined,
-                                                                        //     color: Color.fromRGBO(
-                                                                        //         82, 165, 160, 1)),
-                                                                      )),
-                                                            )),
+                                                                        );
+                                                                      }
+                                                                    },
+                                                                    child: const Icon(
+                                                                        Icons.search_outlined,
+                                                                        color: Colors.white),
+                                                                    style:
+                                                                        ElevatedButton.styleFrom(
+                                                                      fixedSize:
+                                                                          const Size(10, 10),
+                                                                      side:
+                                                                          const BorderSide(
+                                                                        width: 1,
+                                                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                                                      ),
+                                                                      shape:
+                                                                          const CircleBorder(),
+                                                                      backgroundColor: const Color.fromRGBO(
+                                                                          82,
+                                                                          165,
+                                                                          160,
+                                                                          1), // <-- Button color
+                                                                    ),
+                                                                  ),
+                                                                  // prefixIcon:
+                                                                  // const Icon(
+                                                                  //     Icons.event_note_outlined,
+                                                                  //     color: Color.fromRGBO(
+                                                                  //         82, 165, 160, 1)),
+                                                                ))),
                                                       ),
                                                     )
                                                   ],
@@ -2249,7 +2321,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         ])),
                                       ),
                                       SizedBox(
-                                        height: height * 0.0016,
+                                        height: height * 0.01,
                                       ),
                                       Align(
                                         alignment: Alignment.centerLeft,
@@ -2268,7 +2340,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                 });
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                  minimumSize: Size(width * 0.3,
+                                                  minimumSize: Size(width * 0.2,
                                                       height * 0.003),
                                                   backgroundColor:
                                                       _isAssessmentTextField
@@ -2297,7 +2369,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                     fontSize: height * 0.023),
                                               ),
                                             ),
-                                            SizedBox(width: width * 0.1),
+                                            SizedBox(width: width * 0.025),
                                             ElevatedButton(
                                               onPressed: () {
                                                 setState(() {
@@ -2308,7 +2380,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                 });
                                               },
                                               style: ElevatedButton.styleFrom(
-                                                  minimumSize: Size(width * 0.3,
+                                                  minimumSize: Size(width * 0.2,
                                                       height * 0.003),
                                                   backgroundColor:
                                                       _isSearchTextField
@@ -2321,12 +2393,43 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                           BorderRadius.circular(
                                                               5))),
                                               child: Text(
-                                                AppLocalizations.of(context)!.keywords,
+                                                AppLocalizations.of(context)!.stu_library,
                                                 style: TextStyle(
                                                     color: _isSearchTextField
                                                         ? Colors.white
                                                         : const Color.fromRGBO(
                                                             82, 165, 160, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: height * 0.023),
+                                              ),
+                                            ),
+                                            SizedBox(width: width * 0.025),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                });
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  minimumSize: Size(width * 0.2,
+                                                      height * 0.003),
+                                                  backgroundColor:
+                                                  _isSearchTextField
+                                                      ? const Color
+                                                      .fromRGBO(
+                                                      82, 165, 160, 1)
+                                                      : Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          5))),
+                                              child: Text(
+                                                AppLocalizations.of(context)!.results_camelcase,
+                                                style: TextStyle(
+                                                    color: _isSearchTextField
+                                                        ? Colors.white
+                                                        : const Color.fromRGBO(
+                                                        82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: height * 0.023),
@@ -3219,13 +3322,17 @@ class CardInfo extends StatelessWidget {
                             ),
                           ],
                         ),
+                        assessment.assessmentType == 'practice'
+                            ? Text("Practice",style: TextStyle(
+                          color: Colors.orange, // Set the text color to orange
+                          fontSize: height * 0.022, // Adjust the font size if needed
+                        ),)
+                            :
                         Icon(
                           Icons.circle_rounded,
                           color: assessment.assessmentStatus == 'inprogress'
                               ? const Color.fromRGBO(255, 166, 0, 1)
-                              : assessment.assessmentType == 'practice'
-                                  ? const Color.fromRGBO(42, 36, 186, 1)
-                                  : assessment.assessmentStatus == 'active' &&
+                              :  assessment.assessmentStatus == 'active' &&
                                           assessment.assessmentType == 'test'
                                       ? const Color.fromRGBO(60, 176, 0, 1)
                                       : assessment.assessmentStatus ==
