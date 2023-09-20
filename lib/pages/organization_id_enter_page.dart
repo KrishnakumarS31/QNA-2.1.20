@@ -230,31 +230,7 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                   SizedBox(
                                                     height: localHeight * 0.05,
                                                   ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 40, right: 30),
-                                                      child:
-                                                      Column(
-                                                          children: [
-                                                            Row(
-                                                                children:[
-                                                                  Text(AppLocalizations.of(
-                                                                      context)!
-                                                                      .reg_roll_caps,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            102, 102, 102, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w600,
-                                                                        fontSize: localHeight *
-                                                                            0.0155),
-                                                                  ),
-                                                                ]
-                                                            ),
-                                                          ])
-                                                  ),
+
                                                   Center(
                                                     child:
                                                     SizedBox(
@@ -272,19 +248,21 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                             //labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
-                                                            // label: Text(AppLocalizations.of(
-                                                            //     context)!
-                                                            //     .reg_roll_caps,
-                                                            //   style: TextStyle(
-                                                            //       color: const Color
-                                                            //           .fromRGBO(
-                                                            //           102, 102, 102, 1),
-                                                            //       fontFamily: 'Inter',
-                                                            //       fontWeight: FontWeight
-                                                            //           .w600,
-                                                            //       fontSize: localHeight *
-                                                            //           0.020),
-                                                            // ),
+                                                            labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                            label: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .reg_roll_caps,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      102, 102, 102, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight
+                                                                      .w600,
+                                                                  fontSize: localHeight *
+                                                                      0.020),
+                                                            ),
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -336,30 +314,25 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                     height: localHeight * 0.03
                                                     ,
                                                   ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 40, right: 30),
-                                                      child:
-                                                      Column(
-                                                          children: [
-                                                            Row(
-                                                                children:[
-                                                                  Text(AppLocalizations.of(
-                                                                      context)!
-                                                                      .ins_org_caps,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            102, 102, 102, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w600,
-                                                                        fontSize: localHeight *
-                                                                            0.0155),
-                                                                  ),
-                                                                ]
-                                                            ),
-                                                          ])
+                                                  SizedBox(
+                                                    width:localWidth * 0.8,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(AppLocalizations.of(
+                                                              context)!
+                                                              .ins_org_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    102, 102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight
+                                                                    .w600,
+                                                                fontSize: localHeight *
+                                                                    0.0155),
+                                                          ),
+                                                        ]),
                                                   ),
                                                   Center(
                                                     child:
@@ -629,30 +602,25 @@ class OrganisationIdEnterPageState extends State<OrganisationIdEnterPage> {
                                                     height: localHeight * 0.03
                                                     ,
                                                   ),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 30, right: 30),
-                                                      child:
-                                                      Column(
-                                                          children: [
-                                                            Row(
-                                                                children:[
-                                                                  Text(AppLocalizations.of(
-                                                                      context)!
-                                                                      .ins_org_caps,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                            .fromRGBO(
-                                                                            102, 102, 102, 1),
-                                                                        fontFamily: 'Inter',
-                                                                        fontWeight: FontWeight
-                                                                            .w600,
-                                                                        fontSize: localHeight *
-                                                                            0.0155),
-                                                                  ),
-                                                                ]
-                                                            ),
-                                                          ])
+                                                  SizedBox(
+                                                    width: localWidth * 0.65,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(AppLocalizations.of(
+                                                              context)!
+                                                              .ins_org_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    102, 102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight: FontWeight
+                                                                    .w600,
+                                                                fontSize: localHeight *
+                                                                    0.0155),
+                                                          ),
+                                                        ]),
                                                   ),
                                                   Center(
                                                     child:

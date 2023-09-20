@@ -190,7 +190,7 @@ class MyRoutes{
 
       case '/studMemAdvisor':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudMemAdvisor(questions: question[0], assessmentId: question[1],),settings: settings);
+        return SlideRightRoute(widget: StudMemAdvisor(questions: question[0], assessmentId: question[1],givenMark: question[2],totalMark: question[3],),settings: settings);
       }
 
       case '/studentMemAnswerSheet':{

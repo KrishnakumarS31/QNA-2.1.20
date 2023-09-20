@@ -701,119 +701,137 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                 // SizedBox(
                                                 //   height: localHeight * 0.03,
                                                 // ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 30, right: 30),
-                                    child:
-                                                Column(
-                                                  children: [
-                                                    Row(
-                                                      children:[
-                                                        Text(AppLocalizations.of(
+                                  SizedBox(
+                                    width: localWidth * 0.8,
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children:[
+                                            Text(AppLocalizations.of(
+                                                context)!
+                                                .gender,
+                                              style: TextStyle(
+                                                  color: const Color
+                                                      .fromRGBO(
+                                                      102, 102, 102, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight
+                                                      .w600,
+                                                  fontSize: localHeight *
+                                                      0.0155),),
+                                            ]
+                                        ),
+                                        SizedBox(height: localHeight * 0.01),
+                                        SizedBox(
+                                          width: localWidth * 0.8,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                                    children: [
+                                                      Radio(
+                                                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                        value: "male",
+                                                        groupValue: gender,
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            gender =
+                                                            value..toString();
+                                                          });
+                                                        },
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations.of(
                                                             context)!
-                                                            .gender,
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  102, 102, 102, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
-                                                                  0.0155),),
-                                          ]
-                                                    ),
-                                                    Row(
-                                                              children: [
-                                                                Radio(
-                                                                  activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                  value: "male",
-                                                                  groupValue: gender,
-                                                                  onChanged: (value) {
-                                                                    setState(() {
-                                                                      gender =
-                                                                      value..toString();
-                                                                    });
-                                                                  },
-                                                                ),
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                      context)!
-                                                                      .male,
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          51, 51, 51, 1),
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight
-                                                                          .w400,
-                                                                      fontSize:
-                                                                      localHeight * 0.016),
-                                                                ),
-                                                                Radio(
-                                                                  activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                  value: "female",
-                                                                  groupValue: gender,
-                                                                  onChanged: (value) {
-                                                                    setState(() {
-                                                                      gender =
-                                                                          value.toString();
-                                                                    });
-                                                                  },
-                                                                ),
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                      context)!
-                                                                      .female,
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          51, 51, 51, 1),
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight
-                                                                          .w400,
-                                                                      fontSize:
-                                                                      localHeight * 0.016),
-                                                                ),
-                                                                Radio(
-                                                                  activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                  value: "others",
-                                                                  groupValue: gender,
-                                                                  onChanged: (value) {
-                                                                    setState(() {
-                                                                      gender =
-                                                                          value.toString();
-                                                                    });
-                                                                  },
-                                                                ),
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                      context)!
-                                                                      .others,
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          51, 51, 51, 1),
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight
-                                                                          .w400,
-                                                                      fontSize:
-                                                                      localHeight * 0.016),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                  ],
-                                                )),
+                                                            .male,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51, 51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            localHeight * 0.016),
+                                                      ),
+                                                      Radio(
+                                                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                        value: "female",
+                                                        groupValue: gender,
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            gender =
+                                                                value.toString();
+                                                          });
+                                                        },
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .female,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51, 51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            localHeight * 0.016),
+                                                      ),
+                                                      Radio(
+                                                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                        value: "others",
+                                                        groupValue: gender,
+                                                        onChanged: (value) {
+                                                          setState(() {
+                                                            gender =
+                                                                value.toString();
+                                                          });
+                                                        },
+                                                      ),
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .others,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51, 51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            localHeight * 0.016),
+                                                      ),
+                                                    ],
+                                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                                 SizedBox(
                                                   height: localHeight * 0.03,
                                                 ),
-                                                Stack(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                      const EdgeInsets.only(
-                                                          left: 30, right: 30, top: 13),
-                                                      child: DropDownTextField(
+                                                SizedBox(
+                                                  width: localWidth * 0.8,
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                       Text(
+                                                        AppLocalizations.of(
+                                                                  context)!
+                                                                  .country_citizen,
+                                                              //"Citizen of Country",
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      102, 102, 102, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight
+                                                                      .w600,
+                                                                  fontSize: localHeight *
+                                                                      0.0155),
+                                                            ),
+                                                      DropDownTextField(
                                                               controller: selectedCountryCitizen,
                                                               clearOption: true,
                                                               enableSearch: true,
@@ -840,7 +858,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       .fromRGBO(
                                                                       102, 102, 102, 0.3)),
                                                               searchDecoration: InputDecoration(   
-labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   hintStyle: TextStyle(
                                                                       color: const Color
                                                                           .fromRGBO(
@@ -870,42 +888,42 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               ],
                                                               onChanged: (value) {},
                                                             ),
-                                                      ),
-                                                    Positioned(
-                                                      left: localWidth * 0.05,
-                                                      child: Text(
-                                                        AppLocalizations.of(
-                                                                  context)!
-                                                                  .country_citizen,
-                                                              //"Citizen of Country",
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.016),
-                                                            ),
-                                                    )
-                                                  ],
+
+                                                    ],
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: localHeight * 0.03,
                                                 ),
-                                                Stack(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                      const EdgeInsets.only(
-                                                          left: 30, right: 30, top: 25),
-                                                      child: DropDownTextField(
+                                                SizedBox(
+                                                  width:localWidth * 0.8,
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                       Container(
+                                                        color: Colors.white,
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                                    context)!
+                                                                    .country_resident,
+                                                            //Resident of Country
+                                                        style: TextStyle(
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        102, 102, 102, 1),
+                                                                    fontFamily: 'Inter',
+                                                                    fontWeight: FontWeight
+                                                                        .w600,
+                                                                    fontSize: localHeight *
+                                                                        0.0155),
+                                                              ),
+                                                      ),
+                                                      DropDownTextField(
                                                               controller: selectedCountryResident,
                                                               clearOption: true,
                                                               enableSearch: true,
                                                               textFieldDecoration: InputDecoration(   
-labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   floatingLabelBehavior:
                                                                   FloatingLabelBehavior
                                                                       .always,
@@ -927,7 +945,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       .fromRGBO(
                                                                       102, 102, 102, 0.3)),
                                                               searchDecoration: InputDecoration(   
-labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   hintStyle: TextStyle(
                                                                       color: const Color
                                                                           .fromRGBO(
@@ -965,29 +983,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               ],
                                                               onChanged: (value) {},
                                                             ),
-                                                      ),
-                                                    Positioned(
-                                                      left: localWidth * 0.05,
-                                                      child: Container(
-                                                        color: Colors.white,
-                                                        child: Text(
-                                                          AppLocalizations.of(
-                                                                    context)!
-                                                                    .country_resident,
-                                                            //Resident of Country
-                                                        style: TextStyle(
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        102, 102, 102, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight
-                                                                        .w600,
-                                                                    fontSize: localHeight *
-                                                                        0.016),
-                                                              ),
-                                                      ),
-                                                    )
-                                                  ],
+
+                                                    ],
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: localHeight * 0.03,
@@ -1735,121 +1733,135 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   SizedBox(
                                                     height: localHeight * 0.03,
                                                   ),
-                                                  Padding(
-                                                      padding: const EdgeInsets.only(
-                                                          left: 30, right: 30),
-                                                      child:
-                                                      Column(
-                                                        children: [
-                                                          Row(
-                                                              children:[
-                                                                Text(
-                                                                  AppLocalizations.of(
-                                                                      context)!
-                                                                      .gender,
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                          .fromRGBO(
-                                                                          102, 102, 102, 1),
-                                                                      fontFamily: 'Inter',
-                                                                      fontWeight: FontWeight
-                                                                          .w600,
-                                                                      fontSize: localHeight *
-                                                                          0.0155),
-                                                                ),
-                                                              ]
-                                                          ),
-                                                          Row(
-                                                            children: [
-                                                              Radio(
-                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                value: "male",
-                                                                groupValue: gender,
-                                                                onChanged: (value) {
-                                                                  setState(() {
-                                                                    gender =
-                                                                    value..toString();
-                                                                  });
-                                                                },
-                                                              ),
+                                                  SizedBox(
+                                                    width: localWidth * 0.65,
+                                                    child: Column(
+                                                      children: [
+                                                        Row(
+                                                            children:[
                                                               Text(
                                                                 AppLocalizations.of(
                                                                     context)!
-                                                                    .male,
+                                                                    .gender,
                                                                 style: TextStyle(
                                                                     color: const Color
                                                                         .fromRGBO(
-                                                                        51, 51, 51, 1),
+                                                                        102, 102, 102, 1),
                                                                     fontFamily: 'Inter',
                                                                     fontWeight: FontWeight
-                                                                        .w400,
-                                                                    fontSize:
-                                                                    localHeight * 0.016),
+                                                                        .w600,
+                                                                    fontSize: localHeight *
+                                                                        0.0155),
                                                               ),
-                                                              Radio(
-                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                value: "female",
-                                                                groupValue: gender,
-                                                                onChanged: (value) {
-                                                                  setState(() {
-                                                                    gender =
-                                                                        value.toString();
-                                                                  });
-                                                                },
-                                                              ),
-                                                              Text(
-                                                                AppLocalizations.of(
-                                                                    context)!
-                                                                    .female,
-                                                                style: TextStyle(
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        51, 51, 51, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight
-                                                                        .w400,
-                                                                    fontSize:
-                                                                    localHeight * 0.016),
-                                                              ),
-                                                              Radio(
-                                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                                value: "others",
-                                                                groupValue: gender,
-                                                                onChanged: (value) {
-                                                                  setState(() {
-                                                                    gender =
-                                                                        value.toString();
-                                                                  });
-                                                                },
-                                                              ),
-                                                              Text(
-                                                                AppLocalizations.of(
-                                                                    context)!
-                                                                    .others,
-                                                                style: TextStyle(
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        51, 51, 51, 1),
-                                                                    fontFamily: 'Inter',
-                                                                    fontWeight: FontWeight
-                                                                        .w400,
-                                                                    fontSize:
-                                                                    localHeight * 0.016),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ],
-                                                      )),
+                                                            ]
+                                                        ),
+                                                        SizedBox(height : localHeight * 0.01),
+                                                        Row(
+                                                          children: [
+                                                            Radio(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                              value: "male",
+                                                              groupValue: gender,
+                                                              onChanged: (value) {
+                                                                setState(() {
+                                                                  gender =
+                                                                  value..toString();
+                                                                });
+                                                              },
+                                                            ),
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .male,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51, 51, 51, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight
+                                                                      .w400,
+                                                                  fontSize:
+                                                                  localHeight * 0.016),
+                                                            ),
+                                                            Radio(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                              value: "female",
+                                                              groupValue: gender,
+                                                              onChanged: (value) {
+                                                                setState(() {
+                                                                  gender =
+                                                                      value.toString();
+                                                                });
+                                                              },
+                                                            ),
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .female,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51, 51, 51, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight
+                                                                      .w400,
+                                                                  fontSize:
+                                                                  localHeight * 0.016),
+                                                            ),
+                                                            Radio(
+                                                              activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                              value: "others",
+                                                              groupValue: gender,
+                                                              onChanged: (value) {
+                                                                setState(() {
+                                                                  gender =
+                                                                      value.toString();
+                                                                });
+                                                              },
+                                                            ),
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .others,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51, 51, 51, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight
+                                                                      .w400,
+                                                                  fontSize:
+                                                                  localHeight * 0.016),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
                                                   SizedBox(
                                                     height: localHeight * 0.03,
                                                   ),
-                                                  Stack(
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                        const EdgeInsets.only(
-                                                            left: 30, right: 30, top: 15),
-                                                        child: DropDownTextField(
+                                                  SizedBox(
+                                                    width:localWidth * 0.65,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .country_citizen,
+                                                        //"Citizen of Country",
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w600,
+                                                            fontSize: localHeight *
+                                                                0.0155),
+                                                      ),
+                                                        DropDownTextField(
                                                           controller: selectedCountryCitizen,
                                                           clearOption: true,
                                                           enableSearch: true,
@@ -1904,14 +1916,25 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           ],
                                                           onChanged: (value) {},
                                                         ),
-                                                      ),
-                                                      Positioned(
-                                                        left: localWidth * 0.021,
+
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: localHeight * 0.03,
+                                                  ),
+                                                  SizedBox(
+                                                    width:localWidth * 0.65,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Container(
+                                                        color: Colors.white,
                                                         child: Text(
                                                           AppLocalizations.of(
                                                               context)!
-                                                              .country_citizen,
-                                                          //"Citizen of Country",
+                                                              .country_resident,
+                                                          //Resident of Country
                                                           style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
@@ -1920,26 +1943,15 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               fontWeight: FontWeight
                                                                   .w600,
                                                               fontSize: localHeight *
-                                                                  0.016),
+                                                                  0.0155),
                                                         ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: localHeight * 0.03,
-                                                  ),
-                                                  Stack(
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                        const EdgeInsets.only(
-                                                            left: 30, right: 30, top: 15),
-                                                        child: DropDownTextField(
+                                                      ),
+                                                        DropDownTextField(
                                                           controller: selectedCountryResident,
                                                           clearOption: true,
                                                           enableSearch: true,
                                                           textFieldDecoration: InputDecoration(   
-labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
                                                                   .always,
@@ -1998,29 +2010,9 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                           ],
                                                           onChanged: (value) {},
                                                         ),
-                                                      ),
-                                                      Positioned(
-                                                        left: localWidth * 0.021,
-                                                        child: Container(
-                                                          color: Colors.white,
-                                                          child: Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .country_resident,
-                                                            //Resident of Country
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    102, 102, 102, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w600,
-                                                                fontSize: localHeight *
-                                                                    0.016),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
+
+                                                      ],
+                                                    ),
                                                   ),
                                                   SizedBox(
                                                     height: localHeight * 0.03,
@@ -2874,6 +2866,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                 ),
                                                               ]
                                                           ),
+                                                          SizedBox(height:localHeight * 0.01),
                                                           Row(
                                                             children: [
                                                               Radio(
@@ -2956,7 +2949,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         ],
                                                       )),
                                                   SizedBox(
-                                                    height: localHeight * 0.01,
+                                                    height: localHeight * 0.03,
                                                   ),
                                                   Stack(
                                                     children: [

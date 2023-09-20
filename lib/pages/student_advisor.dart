@@ -9,10 +9,12 @@ import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 class StudMemAdvisor extends StatefulWidget {
   const StudMemAdvisor(
-      {Key? key, required this.questions, required this.assessmentId})
+      {Key? key, required this.questions, required this.assessmentId,required this.givenMark,required this.totalMark})
       : super(key: key);
   final QuestionPaperModel questions;
   final String assessmentId;
+  final int givenMark;
+  final int totalMark;
 
   @override
   StudMemAdvisorState createState() => StudMemAdvisorState();
@@ -22,6 +24,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
   late Future<QuestionPaperModel> questionPaperModel;
   late QuestionPaperModel values;
   List<int> inCorrectAns = [];
+
 
   @override
   void initState() {
@@ -66,6 +69,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
         .of(context)
         .size
         .height;
+    bool condition = (widget.givenMark >= 1 && widget.totalMark >=1) && (widget.givenMark == widget.totalMark);
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -114,6 +118,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                         ],
                       ),
                       SizedBox(height: localHeight * 0.020),
+              condition == false ?
               Container(
                 height: localHeight * 0.6,
                       decoration: BoxDecoration(
@@ -318,7 +323,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 )
                             )
                         ]),
-                      )),
+                      ))
+              :
                 SizedBox(height: localHeight * 0.015),
                 ElevatedButton(
                   style:
@@ -478,6 +484,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                     ],
                   ),
                   SizedBox(height: localHeight * 0.020),
+                  condition == false ?
                   Container(
                       height: localHeight * 0.6,
                       decoration: BoxDecoration(
@@ -689,7 +696,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 )
                             )
                         ]),
-                      )),
+                      ))
+                  :
                   SizedBox(height: localHeight * 0.015),
                   ElevatedButton(
                       style:
@@ -842,6 +850,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                   ],
                 ),
                 SizedBox(height: localHeight * 0.020),
+                condition == false ?
                 Container(
                     height: localHeight * 0.6,
                     decoration: BoxDecoration(
@@ -1049,7 +1058,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               )
                           )
                       ]),
-                    )),
+                    ))
+                :
                 SizedBox(height: localHeight * 0.01),
                 ElevatedButton(
                     style:

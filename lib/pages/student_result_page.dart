@@ -59,6 +59,7 @@ class StudentResultPageState extends State<StudentResultPage> {
     userdata =
         Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     values = widget.questions;
+    //print(values.data.totalScore);
   }
 
   @override
@@ -543,7 +544,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     '/studMemAdvisor',
                                                     arguments: [
                                                       values,
-                                                      widget.assessmentCode
+                                                      widget.assessmentCode,
+                                                      widget.givenMark,
+                                                      widget.totalMarks
                                                     ]);
                                               },
                                               child: Padding(
@@ -582,7 +585,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               context, '/studMemAdvisor',
                                               arguments: [
                                                 values,
-                                                widget.assessmentCode
+                                                widget.assessmentCode,
+                                                widget.givenMark,
+                                                widget.totalMarks
                                               ]);
                                         },
                                       ),
@@ -1339,7 +1344,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     '/studMemAdvisor',
                                                     arguments: [
                                                       values,
-                                                      widget.assessmentCode
+                                                      widget.assessmentCode,
+                                                      widget.givenMark,
+                                                      widget.totalMarks
                                                     ]);
                                               },
                                               child: Padding(
@@ -1378,7 +1385,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               context, '/studMemAdvisor',
                                               arguments: [
                                                 values,
-                                                widget.assessmentCode
+                                                widget.assessmentCode,
+                                                widget.givenMark,
+                                                widget.totalMarks
                                               ]);
                                         },
                                       ),
@@ -1665,7 +1674,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                 //   ],
                 // ),
               ));
-        } else if (constraints.maxWidth > 960) {
+        }
+        else if (constraints.maxWidth > 960) {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -2114,7 +2124,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 '/studMemAdvisor',
                                                 arguments: [
                                                   values,
-                                                  widget.assessmentCode
+                                                  widget.assessmentCode,
+                                                  widget.givenMark,
+                                                  widget.totalMarks
                                                 ]);
                                           },
                                           child: Padding(
@@ -2150,7 +2162,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           context, '/studMemAdvisor',
                                           arguments: [
                                             values,
-                                            widget.assessmentCode
+                                            widget.assessmentCode,
+                                            widget.givenMark,
+                                            widget.totalMarks
                                           ]);
                                     },
                                   ),
@@ -2872,7 +2886,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 '/studMemAdvisor',
                                                 arguments: [
                                                   values,
-                                                  widget.assessmentCode
+                                                  widget.assessmentCode,
+                                                  widget.givenMark,
+                                                  widget.totalMarks
                                                 ]);
                                           },
                                           child: Padding(
@@ -2908,7 +2924,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           context, '/studMemAdvisor',
                                           arguments: [
                                             values,
-                                            widget.assessmentCode
+                                            widget.assessmentCode,
+                                            widget.givenMark,
+                                            widget.totalMarks
                                           ]);
                                     },
                                   ),
@@ -3188,7 +3206,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                 //   ],
                 // ),
               ));
-        } else {
+        }
+        else {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -3212,7 +3231,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                     ),
                   ),
                   body: widget.givenMark == 0
-                      ? SingleChildScrollView(
+                      ?
+                  SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Container(
                           padding: EdgeInsets.only(
@@ -3772,7 +3792,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           arguments: [
                                                             values,
                                                             widget
-                                                                .assessmentCode
+                                                                .assessmentCode,
+                                                            widget.givenMark,
+                                                            widget.totalMarks
                                                           ]);
                                                     },
                                                     child: Padding(
@@ -3816,7 +3838,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     '/studMemAdvisor',
                                                     arguments: [
                                                       values,
-                                                      widget.assessmentCode
+                                                      widget.assessmentCode,
+                                                      widget.givenMark,
+                                                      widget.totalMarks
                                                     ]);
                                               },
                                             ),
@@ -4639,7 +4663,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         arguments: [
                                                           values,
                                                           widget
-                                                              .assessmentCode
+                                                              .assessmentCode,
+                                                          widget.givenMark,
+                                                          widget.totalMarks
                                                         ]);
                                                   },
                                                   child: Padding(
@@ -4680,7 +4706,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   '/studMemAdvisor',
                                                   arguments: [
                                                     values,
-                                                    widget.assessmentCode
+                                                    widget.assessmentCode,
+                                                    widget.givenMark,
+                                                    widget.totalMarks
                                                   ]);
                                             },
                                           ),

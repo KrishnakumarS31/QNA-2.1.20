@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_registration_verify_page.dart';
+import 'package:qna_test/pages/teacher_registration_verify_page.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/custom_http_response.dart';
@@ -17,17 +17,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
 
 class TeacherRegistrationPage extends StatefulWidget {
-  TeacherRegistrationPage({super.key,
+  TeacherRegistrationPage({
+    super.key,
     required this.organisationId,
     required this.institutionName,
-    required this.institutionId,});
-
+    required this.institutionId,
+  });
 
   int organisationId;
   String institutionName;
   String institutionId;
-
-
 
   @override
   TeacherRegistrationPageState createState() => TeacherRegistrationPageState();
@@ -42,11 +41,11 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   TextEditingController teacherEmailController = TextEditingController();
   TextEditingController teacherRollNumberController = TextEditingController();
   TextEditingController teacherOrganisationNameController =
-      TextEditingController();
+  TextEditingController();
   TextEditingController teacherIsTeacherController = TextEditingController();
   TextEditingController teacherPasswordController = TextEditingController();
   TextEditingController teacherconfirmPasswordController =
-      TextEditingController();
+  TextEditingController();
   // bool tocCheck = false;
   // bool also = false;
   bool pPCheck = false;
@@ -304,7 +303,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
     "Zimbabwe"
   ];
   SingleValueDropDownController selectedCountryCitizen =
-      SingleValueDropDownController();
+  SingleValueDropDownController();
   List<String> countryResidentList = [
     "India",
     "United States",
@@ -312,13 +311,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
     "Rest of World"
   ];
   SingleValueDropDownController selectedCountryResident =
-      SingleValueDropDownController();
+  SingleValueDropDownController();
 
   int d = 0;
   bool passObscure = true;
   bool confirmPassObscure = true;
 
-  List<String>? ages =[];
+  List<String>? ages = [];
   Map<String, int> idAndNameMap = {};
   String selectedValue = ''; // To store the selected dropdown value
   //TextEditingController textFieldController = TextEditingController();
@@ -326,12 +325,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   OrganisationResponse? questionResponse;
   bool firstTimecalled = false;
 
-  _somefun(String value)
-  {
-
-    _performAsyncWork(value).then((responseEntity){
-
-
+  _somefun(String value) {
+    _performAsyncWork(value).then((responseEntity) {
       setState(() {
         // organizationId =
         //     value;
@@ -352,18 +347,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
         //       10, pageNumber, search, userDetails);
         // });
       });
-
-
     });
-
   }
 
-  Future<ResponseEntity> _performAsyncWork(String value) async
-  {
+  Future<ResponseEntity> _performAsyncWork(String value) async {
     ResponseEntity responseEntity = await QnaService.getInstitutionNames(value);
     return responseEntity;
   }
-
 
   @override
   void initState() {
@@ -380,47 +370,45 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-    String st = Provider.of<LanguageChangeProvider>(context, listen: false).currentLocale;
+    String st = Provider.of<LanguageChangeProvider>(context, listen: false)
+        .currentLocale;
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth <= 960 && constraints.maxWidth >= 500) {
-        return WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-                appBar:
-                AppBar(
-                  elevation: 0,
-                  backgroundColor: Colors.transparent,
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.chevron_left,
-                      size: 40.0,
-                      color: Color.fromRGBO(28, 78, 80, 1),
+          if (constraints.maxWidth <= 960 && constraints.maxWidth >= 500) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    appBar: AppBar(
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                      leading: IconButton(
+                        icon: const Icon(
+                          Icons.chevron_left,
+                          size: 40.0,
+                          color: Color.fromRGBO(28, 78, 80, 1),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      centerTitle: true,
+                      title: Text(
+                        AppLocalizations.of(context)!.teacher_reg_caps,
+                        style: const TextStyle(
+                          color: Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: 18.0,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      flexibleSpace: Container(
+                        color: Colors.white,
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  centerTitle: true,
-                  title: Text(
-                    AppLocalizations.of(context)!.teacher_reg_caps,
-                    style: const TextStyle(
-                      color: Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: 18.0,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  flexibleSpace: Container(
-                    color: Colors.white,
-                  ),
-                ),
-                body: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child:
-                  Column(
-                      children:[
+                    body: SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child: Column(children: [
                         SizedBox(height: localHeight * 0.05),
                         Center(
                           child: Container(
@@ -437,7 +425,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 children: [
                                   SizedBox(
                                     child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Column(
                                             children: [
@@ -445,50 +434,67 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.05,
                                               ),
                                               Center(
-                                                child:
-                                                SizedBox(
+                                                child: SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                        initialValue: widget.institutionId,
+                                                        initialValue:
+                                                        widget.institutionId,
                                                         decoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
                                                           floatingLabelBehavior:
-                                                          FloatingLabelBehavior.always,
-                                                          label: Text(AppLocalizations.of(
-                                                              context)!
-                                                              .reg_roll_caps,
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .reg_roll_caps,
                                                             style: TextStyle(
                                                                 color: const Color
-                                                                    .fromRGBO(
-                                                                    102, 102, 102, 1),
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
                                                                 fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w600,
-                                                                fontSize: localHeight *
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
                                                                     0.020),
                                                           ),
                                                           helperStyle: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontStyle: FontStyle.italic,
-                                                              fontSize: localHeight * 0.016),
-                                                          helperText: AppLocalizations.of(context)!.org_helper_reg,
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontStyle:
+                                                              FontStyle.italic,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                          helperText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .org_helper_reg,
                                                           hintStyle: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: localHeight * 0.018),
-                                                          hintText: "Enter 8-Digit ID",
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          "Enter 8-Digit ID",
                                                         ),
-                                                        enabled:false
-                                                    )),
+                                                        enabled: false)),
                                               ),
                                               SizedBox(
-                                                height: localHeight * 0.03
-                                                ,
+                                                height: localHeight * 0.03,
                                               ),
                                               // Padding(
                                               //     padding: EdgeInsets.only(
@@ -516,27 +522,33 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               //         ])
                                               // ),
                                               Center(
-                                                child:
-                                                SizedBox(
+                                                child: SizedBox(
                                                     width: localWidth * 0.8,
                                                     child:
                                                     // valueForDrop == false ?
                                                     TextFormField(
-                                                      initialValue: widget.institutionName,
+                                                      initialValue:
+                                                      widget.institutionName,
                                                       enabled: false,
                                                       decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
                                                         floatingLabelBehavior:
-                                                        FloatingLabelBehavior.always,
-                                                        label: Text("Institution Name",
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        label: Text(
+                                                          "Institution Name",
                                                           style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.020),
                                                         ),
                                                       ),
@@ -548,44 +560,57 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.03,
                                               ),
                                               Center(
-                                                child:
-                                                SizedBox(
+                                                child: SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: teacherFirstNameController,
+                                                      controller:
+                                                      teacherFirstNameController,
                                                       maxLength: 100,
-                                                      maxLengthEnforcement: MaxLengthEnforcement
+                                                      maxLengthEnforcement:
+                                                      MaxLengthEnforcement
                                                           .truncateAfterCompositionEnds,
-                                                      keyboardType: TextInputType.text,
+                                                      keyboardType:
+                                                      TextInputType.text,
                                                       decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                        label:
-                                                        Text(AppLocalizations.of(
-                                                            context)!
-                                                            .first_name_caps,
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
+                                                        label: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .first_name_caps,
                                                           style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.020),
                                                         ),
                                                         hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
+                                                            color: const Color
+                                                                .fromRGBO(
                                                                 102, 102, 102, 0.3),
                                                             fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize: localHeight *
+                                                                0.018),
+                                                        hintText:
+                                                        AppLocalizations.of(
                                                             context)!
                                                             .enter_here,
-                                                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
                                                       ),
                                                       onChanged: (value) {
-                                                        formKey.currentState!.validate();
+                                                        formKey.currentState!
+                                                            .validate();
                                                       },
                                                       validator: (value) {
                                                         if (value!.isEmpty) {
@@ -598,40 +623,46 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               ),
 
                                               Center(
-                                                  child:
-                                                  SizedBox(
+                                                  child: SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: teacherLastNameController,
+                                                      controller:
+                                                      teacherLastNameController,
                                                       keyboardType: TextInputType.text,
                                                       decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                        label: Text(AppLocalizations.of(
-                                                            context)!
-                                                            .last_name_caps,
+                                                        labelStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
+                                                        label: Text(
+                                                          AppLocalizations.of(context)!
+                                                              .last_name_caps,
                                                           style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
+                                                              color:
+                                                              const Color.fromRGBO(
                                                                   102, 102, 102, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
-                                                                  0.020),),
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight * 0.020),
+                                                        ),
                                                         floatingLabelBehavior:
-                                                        FloatingLabelBehavior.always,
+                                                        FloatingLabelBehavior
+                                                            .always,
                                                         hintStyle: TextStyle(
                                                             color: const Color.fromRGBO(
                                                                 102, 102, 102, 0.3),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.018),
+                                                            fontSize:
+                                                            localHeight * 0.018),
                                                         hintText: AppLocalizations.of(
                                                             context)!
                                                             .enter_here,
                                                       ),
                                                       onChanged: (value) {
-                                                        formKey.currentState!.validate();
+                                                        formKey.currentState!
+                                                            .validate();
                                                       },
                                                       validator: (value) {
                                                         if (value!.isEmpty) {
@@ -645,157 +676,198 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 30, right: 30),
-                                                  child:
-                                                  Column(
-                                                    children: [
-                                                      Row(
-                                                          children:[
-                                                            Text(AppLocalizations.of(
-                                                                context)!
-                                                                .gender,
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      102, 102, 102, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.0155),),
-                                                          ]
+                                              SizedBox(
+                                                width:localWidth * 0.8,
+                                                child: Column(
+                                                  children: [
+                                                    Row(children: [
+                                                      Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .gender,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w600,
+                                                            fontSize:
+                                                            localHeight *
+                                                                0.0155),
                                                       ),
-                                                      Row(
-                                                        children: [
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "male",
-                                                            groupValue: gender,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                gender =
-                                                                value..toString();
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .male,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "female",
-                                                            groupValue: gender,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                gender =
-                                                                    value.toString();
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .female,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                          Radio(
-                                                            activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                            value: "others",
-                                                            groupValue: gender,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                gender =
-                                                                    value.toString();
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .others,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                fontSize:
-                                                                localHeight * 0.016),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  )),
+                                                    ]),
+                                                    SizedBox(height : localHeight * 0.01),
+                                                    Row(
+                                                      children: [
+                                                        Radio(
+                                                          activeColor: const Color
+                                                              .fromRGBO(
+                                                              82, 165, 160, 1),
+                                                          value: "male",
+                                                          groupValue: gender,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              gender = value
+                                                                ..toString();
+                                                            });
+                                                          },
+                                                        ),
+                                                        Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .male,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51, 51, 51, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                        ),
+                                                        Radio(
+                                                          activeColor: const Color
+                                                              .fromRGBO(
+                                                              82, 165, 160, 1),
+                                                          value: "female",
+                                                          groupValue: gender,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              gender = value
+                                                                  .toString();
+                                                            });
+                                                          },
+                                                        ),
+                                                        Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .female,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51, 51, 51, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                        ),
+                                                        Radio(
+                                                          activeColor: const Color
+                                                              .fromRGBO(
+                                                              82, 165, 160, 1),
+                                                          value: "others",
+                                                          groupValue: gender,
+                                                          onChanged: (value) {
+                                                            setState(() {
+                                                              gender = value
+                                                                  .toString();
+                                                            });
+                                                          },
+                                                        ),
+                                                        Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .others,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51, 51, 51, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                    const EdgeInsets.only(
-                                                        left: 30, right: 30, top: 13),
-                                                    child: DropDownTextField(
-                                                      controller: selectedCountryCitizen,
+                                              SizedBox(
+                                                width:localWidth * 0.8,
+                                                child: Column(
+                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      AppLocalizations.of(context)!
+                                                          .country_citizen,
+                                                      //"Citizen of Country",
+                                                      style: TextStyle(
+                                                          color:
+                                                          const Color.fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                          FontWeight.w600,
+                                                          fontSize:
+                                                          localHeight * 0.0155),
+                                                    ),
+                                                    DropDownTextField(
+                                                      controller:
+                                                      selectedCountryCitizen,
                                                       clearOption: true,
                                                       enableSearch: true,
                                                       textFieldDecoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
                                                           floatingLabelBehavior:
                                                           FloatingLabelBehavior
                                                               .always,
                                                           hintStyle: TextStyle(
-                                                              color: const Color
+                                                              color:
+                                                              const Color
                                                                   .fromRGBO(
-                                                                  102, 102, 102,
+                                                                  102,
+                                                                  102,
+                                                                  102,
                                                                   0.3),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
+                                                              fontWeight:
+                                                              FontWeight.w400,
                                                               fontSize:
-                                                              localHeight * 0.018),
-                                                          hintText: AppLocalizations.of(
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .enter_here),
-                                                      clearIconProperty: IconProperty(
+                                                      clearIconProperty:
+                                                      IconProperty(
                                                           color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 0.3)),
+                                                              .fromRGBO(102,
+                                                              102, 102, 0.3)),
                                                       searchDecoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
                                                           hintStyle: TextStyle(
-                                                              color: const Color
+                                                              color:
+                                                              const Color
                                                                   .fromRGBO(
-                                                                  102, 102, 102,
+                                                                  102,
+                                                                  102,
+                                                                  102,
                                                                   0.3),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
+                                                              fontWeight:
+                                                              FontWeight.w400,
                                                               fontSize:
-                                                              localHeight * 0.016),
-                                                          hintText: AppLocalizations.of(
+                                                              localHeight *
+                                                                  0.016),
+                                                          hintText:
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .enter_here),
                                                       validator: (value) {
@@ -809,110 +881,29 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                       dropDownList: [
                                                         for (int i = 0; i <= n; i++)
                                                           DropDownValueModel(
-                                                              name: countryCitizenList[i],
-                                                              value: countryCitizenList[i])
+                                                              name:
+                                                              countryCitizenList[
+                                                              i],
+                                                              value:
+                                                              countryCitizenList[
+                                                              i])
                                                       ],
                                                       onChanged: (value) {},
                                                     ),
-                                                  ),
-                                                  Positioned(
-                                                    left: localWidth * 0.05,
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .country_citizen,
-                                                      //"Citizen of Country",
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight
-                                                              .w600,
-                                                          fontSize: localHeight *
-                                                              0.016),
-                                                    ),
-                                                  )
-                                                ],
+
+                                                  ],
+                                                ),
                                               ),
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                    const EdgeInsets.only(
-                                                        left: 30, right: 30, top: 25),
-                                                    child: DropDownTextField(
-                                                      controller: selectedCountryResident,
-                                                      clearOption: true,
-                                                      enableSearch: true,
-                                                      textFieldDecoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                          floatingLabelBehavior:
-                                                          FloatingLabelBehavior
-                                                              .always,
-                                                          hintStyle: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  102, 102, 102,
-                                                                  0.3),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize:
-                                                              localHeight * 0.018),
-                                                          hintText: AppLocalizations.of(
-                                                              context)!
-                                                              .enter_here),
-                                                      clearIconProperty: IconProperty(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 0.3)),
-                                                      searchDecoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                          hintStyle: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  102, 102, 102,
-                                                                  0.3),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize:
-                                                              localHeight * 0.018),
-                                                          hintText: AppLocalizations.of(
-                                                              context)!
-                                                              .enter_here),
-                                                      validator: (value) {
-                                                        if (value == null) {
-                                                          return "Required field";
-                                                        } else {
-                                                          return null;
-                                                        }
-                                                      },
-                                                      dropDownItemCount: 5,
-                                                      dropDownList: [
-                                                        DropDownValueModel(
-                                                            name: countryResidentList[0],
-                                                            value: countryResidentList[0]),
-                                                        DropDownValueModel(
-                                                            name: countryResidentList[1],
-                                                            value: countryResidentList[1]),
-                                                        DropDownValueModel(
-                                                            name: countryResidentList[2],
-                                                            value: countryResidentList[2]),
-                                                        DropDownValueModel(
-                                                            name: countryResidentList[3],
-                                                            value: countryResidentList[3])
-                                                      ],
-                                                      onChanged: (value) {},
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    left: localWidth * 0.05,
-                                                    child: Container(
+                                              SizedBox(
+                                                width : localWidth * 0.8,
+                                                child: Column(
+                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  children: [
+
+                                                    Container(
                                                       color: Colors.white,
                                                       child: Text(
                                                         AppLocalizations.of(
@@ -924,47 +915,156 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 .fromRGBO(
                                                                 102, 102, 102, 1),
                                                             fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
+                                                            fontWeight:
+                                                            FontWeight.w600,
                                                             fontSize: localHeight *
-                                                                0.016),
+                                                                0.0155),
                                                       ),
                                                     ),
-                                                  )
-                                                ],
+                                                    SizedBox(
+
+                                                      child: DropDownTextField(
+                                                        controller:
+                                                        selectedCountryResident,
+                                                        clearOption: true,
+                                                        enableSearch: true,
+                                                        textFieldDecoration: InputDecoration(
+                                                            labelStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headlineMedium,
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            hintStyle: TextStyle(
+                                                                color:
+                                                                const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here),
+                                                        clearIconProperty:
+                                                        IconProperty(
+                                                            color: const Color
+                                                                .fromRGBO(102,
+                                                                102, 102, 0.3)),
+                                                        searchDecoration: InputDecoration(
+                                                            labelStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headlineMedium,
+                                                            hintStyle: TextStyle(
+                                                                color:
+                                                                const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here),
+                                                        validator: (value) {
+                                                          if (value == null) {
+                                                            return "Required field";
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                        dropDownItemCount: 5,
+                                                        dropDownList: [
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              0],
+                                                              value:
+                                                              countryResidentList[
+                                                              0]),
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              1],
+                                                              value:
+                                                              countryResidentList[
+                                                              1]),
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              2],
+                                                              value:
+                                                              countryResidentList[
+                                                              2]),
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              3],
+                                                              value:
+                                                              countryResidentList[
+                                                              3])
+                                                        ],
+                                                        onChanged: (value) {},
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
+
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
                                               Center(
-                                                  child:
-                                                  SizedBox(
+                                                  child: SizedBox(
                                                       width: localWidth * 0.8,
-                                                      child:
-                                                      TextFormField(
-                                                        controller: teacherEmailController,
-                                                        keyboardType: TextInputType.text,
+                                                      child: TextFormField(
+                                                        controller:
+                                                        teacherEmailController,
+                                                        keyboardType:
+                                                        TextInputType.text,
                                                         decoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
                                                           floatingLabelBehavior:
-                                                          FloatingLabelBehavior.always,
+                                                          FloatingLabelBehavior
+                                                              .always,
                                                           label: Text(
                                                             AppLocalizations.of(
                                                                 context)!
                                                                 .email_id_caps,
                                                             style: TextStyle(
                                                                 color: const Color
-                                                                    .fromRGBO(
-                                                                    102, 102, 102, 1),
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
                                                                 fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w600,
-                                                                fontSize: localHeight *
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
                                                                     0.020),
                                                           ),
                                                           helperText:
                                                           AppLocalizations.of(
-                                                              context)!.email_helper_text,
+                                                              context)!
+                                                              .email_helper_text,
                                                           //'an OTP will be sent to Email ID',
                                                           // labelStyle: TextStyle(
                                                           //     color:
@@ -974,30 +1074,41 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                           //     fontWeight: FontWeight.w600,
                                                           //     fontSize: localHeight * 0.016),
                                                           helperStyle: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
                                                               fontFamily: 'Inter',
-                                                              fontStyle: FontStyle.italic,
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: localHeight * 0.016),
+                                                              fontStyle:
+                                                              FontStyle.italic,
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
                                                           hintStyle: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: localHeight * 0.018),
-                                                          hintText: AppLocalizations.of(
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .enter_here,
                                                         ),
                                                         onChanged: (value) {
-                                                          formKey.currentState!.validate();
+                                                          formKey.currentState!
+                                                              .validate();
                                                         },
                                                         validator: (value) {
                                                           if (value!.isEmpty ||
-                                                              !RegExp(
-                                                                  r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                                  .hasMatch(value)) {
+                                                              !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                                  .hasMatch(
+                                                                  value)) {
                                                             return 'Enter Valid Email';
                                                           } else {
                                                             return null;
@@ -1008,69 +1119,93 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 height: localHeight * 0.01,
                                               ),
                                               Center(
-                                                  child:
-                                                  SizedBox(
+                                                  child: SizedBox(
                                                       width: localWidth * 0.8,
                                                       child: TextFormField(
-                                                        controller: teacherPasswordController,
+                                                        controller:
+                                                        teacherPasswordController,
                                                         obscureText: passObscure,
                                                         obscuringCharacter: "*",
-                                                        keyboardType: TextInputType.text,
+                                                        keyboardType:
+                                                        TextInputType.text,
                                                         decoration: InputDecoration(
-                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
                                                           floatingLabelBehavior:
-                                                          FloatingLabelBehavior.always,
+                                                          FloatingLabelBehavior
+                                                              .always,
                                                           suffixIcon: SizedBox(
-                                                                child: Row(
-                                                                    mainAxisSize: MainAxisSize.min,
-                                                                    mainAxisAlignment: MainAxisAlignment.end,
-                                                                    children:[
-                                                                      IconButton(
-                                                                          iconSize: localHeight * 0.028,
-                                                                          icon: Icon(
-                                                                            passObscure
-                                                                                ? Icons.visibility
-                                                                                : Icons.visibility_off,
-                                                                            color:
-                                                                            const Color.fromRGBO(82, 165, 160, 1),
-
-
-                                                                          ),
-                                                                          onPressed: () {
-                                                                            setState(() {
-                                                                              passObscure = !passObscure;
-                                                                            });
-                                                                          }),
-                                                                    ]
-                                                                )),
-                                                          label: Text(AppLocalizations.of(
-                                                              context)!
-                                                              .password_caps,
+                                                              child: Row(
+                                                                  mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                                  mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .end,
+                                                                  children: [
+                                                                    IconButton(
+                                                                        iconSize:
+                                                                        localHeight *
+                                                                            0.028,
+                                                                        icon: Icon(
+                                                                          passObscure
+                                                                              ? Icons
+                                                                              .visibility
+                                                                              : Icons
+                                                                              .visibility_off,
+                                                                          color: const Color
+                                                                              .fromRGBO(
+                                                                              82,
+                                                                              165,
+                                                                              160,
+                                                                              1),
+                                                                        ),
+                                                                        onPressed: () {
+                                                                          setState(() {
+                                                                            passObscure =
+                                                                            !passObscure;
+                                                                          });
+                                                                        }),
+                                                                  ])),
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .password_caps,
                                                             style: TextStyle(
                                                                 color: const Color
-                                                                    .fromRGBO(
-                                                                    102, 102, 102, 1),
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
                                                                 fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w600,
-                                                                fontSize: localHeight *
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
                                                                     0.020),
                                                           ),
                                                           hintStyle: TextStyle(
-                                                              color: const Color.fromRGBO(
-                                                                  102, 102, 102, 0.3),
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight.w400,
-                                                              fontSize: localHeight * 0.018),
-                                                          hintText: AppLocalizations.of(
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .enter_here,
                                                         ),
                                                         inputFormatters: [
-                                                          FilteringTextInputFormatter.deny(' ')
+                                                          FilteringTextInputFormatter
+                                                              .deny(' ')
                                                         ],
                                                         onChanged: (val) {
-                                                          formKey.currentState!.validate();
+                                                          formKey.currentState!
+                                                              .validate();
                                                         },
                                                         validator: (value) {
                                                           if (value!.length < 8) {
@@ -1079,76 +1214,98 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             return null;
                                                           }
                                                         },
-
-                                                      ))
-                                              ),
+                                                      ))),
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
                                               Center(
-                                                child:
-                                                SizedBox(
+                                                child: SizedBox(
                                                     width: localWidth * 0.8,
                                                     child: TextFormField(
-                                                      controller: teacherconfirmPasswordController,
-                                                      keyboardType: TextInputType.text,
-                                                      obscureText: confirmPassObscure,
+                                                      controller:
+                                                      teacherconfirmPasswordController,
+                                                      keyboardType:
+                                                      TextInputType.text,
+                                                      obscureText:
+                                                      confirmPassObscure,
                                                       obscuringCharacter: "*",
                                                       decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
                                                         floatingLabelBehavior:
-                                                        FloatingLabelBehavior.always,
+                                                        FloatingLabelBehavior
+                                                            .always,
                                                         suffixIcon: SizedBox(
                                                             child: Row(
-                                                                mainAxisSize: MainAxisSize.min,
-                                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                                children:[
+                                                                mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                                children: [
                                                                   IconButton(
-                                                                      iconSize: localHeight * 0.028,
+                                                                      iconSize:
+                                                                      localHeight *
+                                                                          0.028,
                                                                       icon: Icon(
                                                                         confirmPassObscure
-                                                                            ? Icons.visibility
-                                                                            : Icons.visibility_off,
-                                                                        color:
-                                                                        const Color.fromRGBO(82, 165, 160, 1),
-
-
+                                                                            ? Icons
+                                                                            .visibility
+                                                                            : Icons
+                                                                            .visibility_off,
+                                                                        color: const Color
+                                                                            .fromRGBO(
+                                                                            82,
+                                                                            165,
+                                                                            160,
+                                                                            1),
                                                                       ),
                                                                       onPressed: () {
                                                                         setState(() {
-                                                                          confirmPassObscure = !confirmPassObscure;
+                                                                          confirmPassObscure =
+                                                                          !confirmPassObscure;
                                                                         });
                                                                       }),
-                                                                ]
-                                                            )),
-                                                        label: Text(AppLocalizations.of(
-                                                            context)!
-                                                            .confirm_password,
+                                                                ])),
+                                                        label: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .confirm_password,
                                                           style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.020),
                                                         ),
                                                         hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
+                                                            color: const Color
+                                                                .fromRGBO(
                                                                 102, 102, 102, 0.3),
                                                             fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize: localHeight *
+                                                                0.018),
+                                                        hintText:
+                                                        AppLocalizations.of(
                                                             context)!
                                                             .enter_here,
                                                       ),
                                                       onChanged: (value) {
-                                                        formKey.currentState!.validate();
+                                                        formKey.currentState!
+                                                            .validate();
                                                       },
                                                       validator: (value) {
-                                                        if (teacherPasswordController.text !=
+                                                        if (teacherPasswordController
+                                                            .text !=
                                                             teacherconfirmPasswordController
                                                                 .text) {
                                                           return 'Re-enter exact same password';
@@ -1163,36 +1320,42 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               SizedBox(
                                                 height: localHeight * 0.03,
                                               ),
-                                              Row(
-                                                  children:[
-                                                    SizedBox(width: localWidth * 0.05),
-                                                    Text(
-                                                      AppLocalizations.of(context)!
-                                                          .pri_terms,
-                                                      style: TextStyle(
-                                                          fontSize: localHeight * 0.018,
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontWeight: FontWeight.w600,
-                                                          fontFamily: "Inter"),
-                                                    )
-                                                  ]),
+                                              Row(children: [
+                                                SizedBox(width: localWidth * 0.05),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .pri_terms,
+                                                  style: TextStyle(
+                                                      fontSize: localHeight * 0.018,
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontWeight: FontWeight.w600,
+                                                      fontFamily: "Inter"),
+                                                )
+                                              ]),
                                               SizedBox(
                                                 height: localHeight * 0.02,
                                               ),
                                               Row(
-                                                  crossAxisAlignment: CrossAxisAlignment
-                                                      .center,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                                   children: [
-                                                    SizedBox(width: localWidth * 0.03),
+                                                    SizedBox(
+                                                        width: localWidth * 0.03),
                                                     Transform.scale(
-                                                        filterQuality: FilterQuality.high,
+                                                        filterQuality:
+                                                        FilterQuality.high,
                                                         scale: 1.5,
                                                         child: Checkbox(
-                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius
-                                                                  .circular(1)),
+                                                          activeColor:
+                                                          const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                          shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  1)),
                                                           value: pPCheck,
                                                           onChanged: (val) {
                                                             setState(() {
@@ -1201,7 +1364,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                             });
                                                           },
                                                         )),
-                                                    SizedBox(width: localWidth * 0.01),
+                                                    SizedBox(
+                                                        width: localWidth * 0.01),
                                                     Flexible(
                                                       child: RichText(
                                                           text: TextSpan(children: [
@@ -1210,10 +1374,11 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                   context)!
                                                                   .agree_msg,
                                                               style: TextStyle(
-                                                                  fontSize: localHeight *
+                                                                  fontSize:
+                                                                  localHeight *
                                                                       0.018,
-                                                                  fontWeight: FontWeight
-                                                                      .w400,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
                                                                   color: const Color
                                                                       .fromRGBO(
                                                                       51, 51, 51, 1),
@@ -1223,47 +1388,58 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               text: AppLocalizations.of(
                                                                   context)!
                                                                   .privacy_Policy,
-                                                              recognizer: TapGestureRecognizer()
-                                                                ..onTap = _launchUrlPrivacy,
+                                                              recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    _launchUrlPrivacy,
                                                               style: TextStyle(
-                                                                  fontSize: localHeight *
+                                                                  fontSize:
+                                                                  localHeight *
                                                                       0.018,
-                                                                  fontWeight: FontWeight
-                                                                      .w400,
-                                                                  decoration: TextDecoration
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  decoration:
+                                                                  TextDecoration
                                                                       .underline,
-                                                                  color:
-                                                                  const Color.fromRGBO(
+                                                                  color: const Color
+                                                                      .fromRGBO(
                                                                       82, 165, 160, 1),
                                                                   fontFamily: "Inter"),
                                                             ),
                                                             TextSpan(
                                                               text: AppLocalizations.of(
-                                                                  context)!.and,
+                                                                  context)!
+                                                                  .and,
                                                               style: TextStyle(
-                                                                  fontSize: localHeight *
+                                                                  fontSize:
+                                                                  localHeight *
                                                                       0.018,
-                                                                  fontWeight: FontWeight
-                                                                      .w400,
-                                                                  color:
-                                                                  const Color.fromRGBO(
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  color: const Color
+                                                                      .fromRGBO(
                                                                       51, 51, 51, 1),
                                                                   fontFamily: "Inter"),
                                                             ),
                                                             TextSpan(
                                                               text: AppLocalizations.of(
-                                                                  context)!.terms,
-                                                              recognizer: TapGestureRecognizer()
-                                                                ..onTap = _launchUrlTerms,
+                                                                  context)!
+                                                                  .terms,
+                                                              recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    _launchUrlTerms,
                                                               style: TextStyle(
-                                                                  fontSize: localHeight *
+                                                                  fontSize:
+                                                                  localHeight *
                                                                       0.018,
-                                                                  fontWeight: FontWeight
-                                                                      .w400,
-                                                                  decoration: TextDecoration
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  decoration:
+                                                                  TextDecoration
                                                                       .underline,
-                                                                  color:
-                                                                  const Color.fromRGBO(
+                                                                  color: const Color
+                                                                      .fromRGBO(
                                                                       82, 165, 160, 1),
                                                                   fontFamily: "Inter"),
                                                             ),
@@ -1271,17 +1447,21 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                               text: AppLocalizations.of(
                                                                   context)!
                                                                   .services,
-                                                              recognizer: TapGestureRecognizer()
-                                                                ..onTap = _launchUrlTerms,
+                                                              recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    _launchUrlTerms,
                                                               style: TextStyle(
-                                                                  fontSize: localHeight *
+                                                                  fontSize:
+                                                                  localHeight *
                                                                       0.018,
-                                                                  fontWeight: FontWeight
-                                                                      .w400,
-                                                                  decoration: TextDecoration
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  decoration:
+                                                                  TextDecoration
                                                                       .underline,
-                                                                  color:
-                                                                  const Color.fromRGBO(
+                                                                  color: const Color
+                                                                      .fromRGBO(
                                                                       82, 165, 160, 1),
                                                                   fontFamily: "Inter"),
                                                             ),
@@ -1294,30 +1474,50 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               Center(
                                                 child: IconButton(
                                                   iconSize: localHeight * 0.06,
-                                                  icon: const Icon(Icons.arrow_circle_right,
-                                                    color: Color.fromRGBO(82, 165, 160, 1)
-                                                  ),
+                                                  icon: const Icon(
+                                                      Icons.arrow_circle_right,
+                                                      color: Color.fromRGBO(
+                                                          82, 165, 160, 1)),
                                                   onPressed: () async {
                                                     bool valid = formKey
                                                         .currentState!
                                                         .validate();
-                                                    StudentRegistrationModel student = StudentRegistrationModel(
+                                                    StudentRegistrationModel student =
+                                                    StudentRegistrationModel(
                                                         firstName:
                                                         teacherFirstNameController
                                                             .text,
-                                                        lastName: teacherLastNameController.text,
-                                                        institutionId: widget.organisationId,
-                                                        organisationName:
-                                                        widget.institutionName,
+                                                        lastName:
+                                                        teacherLastNameController
+                                                            .text,
+                                                        institutionId: widget
+                                                            .organisationId,
+                                                        organisationName: widget
+                                                            .institutionName,
                                                         dob: 01010001,
                                                         gender: gender,
-                                                        countryNationality: selectedCountryCitizen.dropDownValue?.value,
-                                                        email: teacherEmailController.text,
-                                                        password: teacherPasswordController.text,
-                                                        rollNumber: teacherRollNumberController.text,
+                                                        countryNationality:
+                                                        selectedCountryCitizen
+                                                            .dropDownValue
+                                                            ?.value,
+                                                        email:
+                                                        teacherEmailController
+                                                            .text,
+                                                        password:
+                                                        teacherPasswordController
+                                                            .text,
+                                                        rollNumber:
+                                                        teacherRollNumberController
+                                                            .text,
                                                         //organisationName: teacherOrganisationNameController.text,
-                                                        countryResident: selectedCountryResident.dropDownValue?.value,
-                                                        role: ["teacher","student"],
+                                                        countryResident:
+                                                        selectedCountryResident
+                                                            .dropDownValue
+                                                            ?.value,
+                                                        role: [
+                                                          "teacher",
+                                                          "student"
+                                                        ],
                                                         userRole: "teacher"
                                                       //also == true?
                                                       //["student","teacher"]
@@ -1421,7 +1621,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               ),
                                               //SizedBox(height:localHeight * 0.05),
                                             ],
-                                          )]),
+                                          )
+                                        ]),
                                   ),
                                 ],
                               ),
@@ -1432,310 +1633,1598 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                         SizedBox(
                           height: localHeight * 0.05,
                         ),
-                      ]
-                  ),
-                )));
-      }
-      else if (constraints.maxWidth > 960) {
-        return WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-                appBar: AppBar(
-                  elevation: 0,
-                  backgroundColor: Colors.transparent,
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.chevron_left,
-                      size: 40.0,
-                      color: Color.fromRGBO(28, 78, 80, 1),
+                      ]),
+                    )));
+          } else if (constraints.maxWidth > 960) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    appBar: AppBar(
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                      leading: IconButton(
+                        icon: const Icon(
+                          Icons.chevron_left,
+                          size: 40.0,
+                          color: Color.fromRGBO(28, 78, 80, 1),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      centerTitle: true,
+                      title: Text(
+                        AppLocalizations.of(context)!.teacher_reg_caps,
+                        style: const TextStyle(
+                          color: Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: 18.0,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      flexibleSpace: Container(
+                        color: Colors.white,
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  centerTitle: true,
-                  title: Text(
-                    AppLocalizations.of(context)!.teacher_reg_caps,
-                    style: const TextStyle(
-                      color: Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: 18.0,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  flexibleSpace: Container(
-                    color: Colors.white,
-                  ),
-                ),
-                body: SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: Column(children: [
-                      SizedBox(height: localHeight * 0.05),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: kElevationToShadow[4],
-                          ),
-                          width: localWidth * 0.7,
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Column(
+                    body: SingleChildScrollView(
+                        physics: const ClampingScrollPhysics(),
+                        child: Column(children: [
+                          SizedBox(height: localHeight * 0.05),
+                          Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: kElevationToShadow[4],
+                              ),
+                              width: localWidth * 0.7,
+                              child: Form(
+                                key: formKey,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                           children: [
-                                            SizedBox(
-                                              height: localHeight * 0.05,
-                                            ),
-                                            Center(
-                                              child:
-                                              SizedBox(
-                                                  width: localWidth * 0.65,
-                                                  child: TextFormField(
-                                                    initialValue: widget.institutionId,
-                                                    decoration: InputDecoration(
-                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior.always,
-                                                      label: Text(AppLocalizations.of(
-                                                          context)!
-                                                          .reg_roll_caps,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
-                                                            fontSize: localHeight *
-                                                                0.020),
-                                                      ),
-                                                      helperStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontStyle: FontStyle.italic,
-                                                          fontSize: localHeight * 0.016),
-                                                      helperText: AppLocalizations.of(context)!.org_helper_reg,
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: localHeight * 0.018),
-                                                      hintText: "Enter 8-Digit ID",
-                                                    ),
-                                                    enabled: false,
-                                                  )),
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.03
-                                              ,
-                                            ),
-                                            // Padding(
-                                            //     padding: EdgeInsets.only(
-                                            //         left: localWidth * 0.05, right: localWidth * 0.05),
-                                            //     child:
-                                            //     Column(
-                                            //         children: [
-                                            //           Row(
-                                            //               children:[
-                                            //                 Text(AppLocalizations.of(
-                                            //                     context)!
-                                            //                     .ins_org_caps,
-                                            //                   style: TextStyle(
-                                            //                       color: const Color
-                                            //                           .fromRGBO(
-                                            //                           102, 102, 102, 1),
-                                            //                       fontFamily: 'Inter',
-                                            //                       fontWeight: FontWeight
-                                            //                           .w600,
-                                            //                       fontSize: localHeight *
-                                            //                           0.020),
-                                            //                 ),
-                                            //               ]
-                                            //           ),
-                                            //         ])
-                                            // ),
-                                            Center(
-                                              child:
-                                              SizedBox(
-                                                  width: localWidth * 0.65,
-
-                                                  // valueForDrop == false ?
-                                                  child: TextFormField(
-                                                    initialValue: widget.institutionName,
-                                                    decoration: InputDecoration(
-                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior.always,
-                                                      label: Text(AppLocalizations.of(
-                                                          context)!
-                                                          .ins_org_caps,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
-                                                            fontSize: localHeight *
-                                                                0.020),
-                                                      ),
-                                                      helperStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontStyle: FontStyle.italic,
-                                                          fontSize: localHeight * 0.016),
-                                                    ),
-                                                    enabled: false,
-                                                  )
-                                                // :
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.01,
-                                            ),
-                                            Center(
-                                              child:
-                                              SizedBox(
-                                                  width: localWidth * 0.65,
-                                                  child: TextFormField(
-                                                    controller: teacherFirstNameController,
-                                                    maxLength: 100,
-                                                    maxLengthEnforcement: MaxLengthEnforcement
-                                                        .truncateAfterCompositionEnds,
-                                                    keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
-                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                      label:
-                                                      Text(AppLocalizations.of(
-                                                          context)!
-                                                          .first_name_caps,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
-                                                            fontSize: localHeight *
-                                                                0.020),
-                                                      ),
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: localHeight * 0.018),
-                                                      hintText: AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here,
-                                                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                                                    ),
-                                                    onChanged: (value) {
-                                                      formKey.currentState!.validate();
-                                                    },
-                                                    validator: (value) {
-                                                      if (value!.isEmpty) {
-                                                        return 'Enter First Name';
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                  )),
-                                            ),
-                                            Center(
-                                                child:
+                                            Column(
+                                              children: [
                                                 SizedBox(
-                                                  width: localWidth * 0.65,
-                                                  child: TextFormField(
-                                                    controller: teacherLastNameController,
-                                                    keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
-                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                      label: Text(AppLocalizations.of(
-                                                          context)!
-                                                          .last_name_caps,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
-                                                            fontSize: localHeight *
-                                                                0.020),),
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior.always,
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: localHeight * 0.018),
-                                                      hintText: AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here,
-                                                    ),
-                                                    onChanged: (value) {
-                                                      formKey.currentState!.validate();
-                                                    },
-                                                    validator: (value) {
-                                                      if (value!.isEmpty) {
-                                                        return 'Enter Last Name';
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                  ),
-                                                )),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 30, right: 30),
-                                                child:
-                                                Column(
-                                                  children: [
-                                                    Row(
-                                                        children:[
-                                                          Text(
+                                                  height: localHeight * 0.05,
+                                                ),
+                                                Center(
+                                                  child: SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      child: TextFormField(
+                                                        initialValue:
+                                                        widget.institutionId,
+                                                        decoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          label: Text(
                                                             AppLocalizations.of(
                                                                 context)!
-                                                                .gender,
+                                                                .reg_roll_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.020),
+                                                          ),
+                                                          helperStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontStyle:
+                                                              FontStyle.italic,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                          helperText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .org_helper_reg,
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          "Enter 8-Digit ID",
+                                                        ),
+                                                        enabled: false,
+                                                      )),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                // Padding(
+                                                //     padding: EdgeInsets.only(
+                                                //         left: localWidth * 0.05, right: localWidth * 0.05),
+                                                //     child:
+                                                //     Column(
+                                                //         children: [
+                                                //           Row(
+                                                //               children:[
+                                                //                 Text(AppLocalizations.of(
+                                                //                     context)!
+                                                //                     .ins_org_caps,
+                                                //                   style: TextStyle(
+                                                //                       color: const Color
+                                                //                           .fromRGBO(
+                                                //                           102, 102, 102, 1),
+                                                //                       fontFamily: 'Inter',
+                                                //                       fontWeight: FontWeight
+                                                //                           .w600,
+                                                //                       fontSize: localHeight *
+                                                //                           0.020),
+                                                //                 ),
+                                                //               ]
+                                                //           ),
+                                                //         ])
+                                                // ),
+                                                Center(
+                                                  child: SizedBox(
+                                                      width: localWidth * 0.65,
+
+                                                      // valueForDrop == false ?
+                                                      child: TextFormField(
+                                                        initialValue:
+                                                        widget.institutionName,
+                                                        decoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .ins_org_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.020),
+                                                          ),
+                                                          helperStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontStyle:
+                                                              FontStyle.italic,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                        ),
+                                                        enabled: false,
+                                                      )
+                                                    // :
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.01,
+                                                ),
+                                                Center(
+                                                  child: SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      child: TextFormField(
+                                                        controller:
+                                                        teacherFirstNameController,
+                                                        maxLength: 100,
+                                                        maxLengthEnforcement:
+                                                        MaxLengthEnforcement
+                                                            .truncateAfterCompositionEnds,
+                                                        keyboardType:
+                                                        TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .first_name_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.020),
+                                                          ),
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                        ),
+                                                        onChanged: (value) {
+                                                          formKey.currentState!
+                                                              .validate();
+                                                        },
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return 'Enter First Name';
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                      )),
+                                                ),
+                                                Center(
+                                                    child: SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      child: TextFormField(
+                                                        controller:
+                                                        teacherLastNameController,
+                                                        keyboardType:
+                                                        TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle: Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .last_name_caps,
                                                             style: TextStyle(
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     102, 102, 102, 1),
                                                                 fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w600,
+                                                                fontWeight:
+                                                                FontWeight.w600,
                                                                 fontSize: localHeight *
-                                                                    0.0155),
+                                                                    0.020),
                                                           ),
-                                                        ]
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  102, 102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight * 0.018),
+                                                          hintText: AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here,
+                                                        ),
+                                                        onChanged: (value) {
+                                                          formKey.currentState!
+                                                              .validate();
+                                                        },
+                                                        validator: (value) {
+                                                          if (value!.isEmpty) {
+                                                            return 'Enter Last Name';
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                      ),
+                                                    )),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                SizedBox(
+                                                  width: localWidth * 0.65,
+                                                  child: Column(
+                                                    children: [
+                                                      Row(children: [
+                                                        Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .gender,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.0155),
+                                                        ),
+                                                      ]),
+                                                      SizedBox(
+                                                          height:
+                                                          localHeight * 0.01),
+                                                      Row(
+                                                        children: [
+                                                          Radio(
+                                                            activeColor: const Color
+                                                                .fromRGBO(
+                                                                82, 165, 160, 1),
+                                                            value: "male",
+                                                            groupValue: gender,
+                                                            onChanged: (value) {
+                                                              setState(() {
+                                                                gender = value
+                                                                  ..toString();
+                                                              });
+                                                            },
+                                                          ),
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .male,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51, 51, 51, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.016),
+                                                          ),
+                                                          Radio(
+                                                            activeColor: const Color
+                                                                .fromRGBO(
+                                                                82, 165, 160, 1),
+                                                            value: "female",
+                                                            groupValue: gender,
+                                                            onChanged: (value) {
+                                                              setState(() {
+                                                                gender = value
+                                                                    .toString();
+                                                              });
+                                                            },
+                                                          ),
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .female,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51, 51, 51, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.016),
+                                                          ),
+                                                          Radio(
+                                                            activeColor: const Color
+                                                                .fromRGBO(
+                                                                82, 165, 160, 1),
+                                                            value: "others",
+                                                            groupValue: gender,
+                                                            onChanged: (value) {
+                                                              setState(() {
+                                                                gender = value
+                                                                    .toString();
+                                                              });
+                                                            },
+                                                          ),
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .others,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51, 51, 51, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.016),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      AppLocalizations.of(context)!
+                                                          .country_citizen,
+                                                      //"Citizen of Country",
+                                                      style: TextStyle(
+                                                          color:
+                                                          const Color.fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                          FontWeight.w600,
+                                                          fontSize:
+                                                          localHeight * 0.0155),
                                                     ),
+                                                    SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      child: DropDownTextField(
+                                                        controller:
+                                                        selectedCountryCitizen,
+                                                        clearOption: true,
+                                                        enableSearch: true,
+                                                        textFieldDecoration: InputDecoration(
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here),
+                                                        clearIconProperty:
+                                                        IconProperty(
+                                                            color: const Color
+                                                                .fromRGBO(102,
+                                                                102, 102, 0.3)),
+                                                        searchDecoration: InputDecoration(
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.016),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here),
+                                                        validator: (value) {
+                                                          if (value == null) {
+                                                            return "Required field";
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                        dropDownItemCount: 5,
+                                                        dropDownList: [
+                                                          for (int i = 0;
+                                                          i <= n;
+                                                          i++)
+                                                            DropDownValueModel(
+                                                                name:
+                                                                countryCitizenList[
+                                                                i],
+                                                                value:
+                                                                countryCitizenList[
+                                                                i])
+                                                        ],
+                                                        onChanged: (value) {},
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      color: Colors.white,
+                                                      child: Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .country_resident,
+                                                        //Resident of Country
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w600,
+                                                            fontSize: localHeight *
+                                                                0.0155),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      child: DropDownTextField(
+                                                        controller:
+                                                        selectedCountryResident,
+                                                        clearOption: true,
+                                                        enableSearch: true,
+                                                        textFieldDecoration: InputDecoration(
+                                                            labelStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headlineMedium,
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here),
+                                                        clearIconProperty:
+                                                        IconProperty(
+                                                            color: const Color
+                                                                .fromRGBO(102,
+                                                                102, 102, 0.3)),
+                                                        searchDecoration: InputDecoration(
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here),
+                                                        validator: (value) {
+                                                          if (value == null) {
+                                                            return "Required field";
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                        dropDownItemCount: 5,
+                                                        dropDownList: [
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              0],
+                                                              value:
+                                                              countryResidentList[
+                                                              0]),
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              1],
+                                                              value:
+                                                              countryResidentList[
+                                                              1]),
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              2],
+                                                              value:
+                                                              countryResidentList[
+                                                              2]),
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryResidentList[
+                                                              3],
+                                                              value:
+                                                              countryResidentList[
+                                                              3])
+                                                        ],
+                                                        onChanged: (value) {},
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                Center(
+                                                    child: SizedBox(
+                                                        width: localWidth * 0.65,
+                                                        child: TextFormField(
+                                                          controller:
+                                                          teacherEmailController,
+                                                          keyboardType:
+                                                          TextInputType.text,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            labelStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headlineMedium,
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            label: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .email_id_caps,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(102,
+                                                                      102, 102, 1),
+                                                                  fontFamily:
+                                                                  'Inter',
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.020),
+                                                            ),
+                                                            helperText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .email_helper_text,
+                                                            //'an OTP will be sent to Email ID',
+                                                            helperStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontStyle: FontStyle
+                                                                    .italic,
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.016),
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here,
+                                                          ),
+                                                          onChanged: (value) {
+                                                            formKey.currentState!
+                                                                .validate();
+                                                          },
+                                                          validator: (value) {
+                                                            if (value!.isEmpty ||
+                                                                !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                                    .hasMatch(
+                                                                    value)) {
+                                                              return 'Enter Valid Email';
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          },
+                                                        ))),
+                                                SizedBox(
+                                                  height: localHeight * 0.01,
+                                                ),
+                                                Center(
+                                                    child: SizedBox(
+                                                        width: localWidth * 0.65,
+                                                        child: TextFormField(
+                                                          controller:
+                                                          teacherPasswordController,
+                                                          obscureText: passObscure,
+                                                          obscuringCharacter: "*",
+                                                          keyboardType:
+                                                          TextInputType.text,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            labelStyle:
+                                                            Theme.of(context)
+                                                                .textTheme
+                                                                .headlineMedium,
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            suffixIcon: SizedBox(
+                                                                child: Row(
+                                                                    mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                    mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .end,
+                                                                    children: [
+                                                                      IconButton(
+                                                                          iconSize:
+                                                                          localHeight *
+                                                                              0.028,
+                                                                          icon: Icon(
+                                                                            passObscure
+                                                                                ? Icons
+                                                                                .visibility
+                                                                                : Icons
+                                                                                .visibility_off,
+                                                                            color: const Color
+                                                                                .fromRGBO(
+                                                                                82,
+                                                                                165,
+                                                                                160,
+                                                                                1),
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            setState(
+                                                                                    () {
+                                                                                  passObscure =
+                                                                                  !passObscure;
+                                                                                });
+                                                                          }),
+                                                                    ])),
+                                                            label: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .password_caps,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(102,
+                                                                      102, 102, 1),
+                                                                  fontFamily:
+                                                                  'Inter',
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.020),
+                                                            ),
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.018),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .enter_here,
+                                                          ),
+                                                          inputFormatters: [
+                                                            FilteringTextInputFormatter
+                                                                .deny(' ')
+                                                          ],
+                                                          onChanged: (val) {
+                                                            formKey.currentState!
+                                                                .validate();
+                                                          },
+                                                          validator: (value) {
+                                                            if (value!.length < 8) {
+                                                              return "Enter Minimum 8 Characters";
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          },
+                                                        ))),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                Center(
+                                                  child: SizedBox(
+                                                      width: localWidth * 0.65,
+                                                      child: TextFormField(
+                                                        controller:
+                                                        teacherconfirmPasswordController,
+                                                        keyboardType:
+                                                        TextInputType.text,
+                                                        obscureText:
+                                                        confirmPassObscure,
+                                                        obscuringCharacter: "*",
+                                                        decoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          suffixIcon: SizedBox(
+                                                              child: Row(
+                                                                  mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                                  mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .end,
+                                                                  children: [
+                                                                    IconButton(
+                                                                        iconSize:
+                                                                        localHeight *
+                                                                            0.028,
+                                                                        icon: Icon(
+                                                                          confirmPassObscure
+                                                                              ? Icons
+                                                                              .visibility
+                                                                              : Icons
+                                                                              .visibility_off,
+                                                                          color: const Color
+                                                                              .fromRGBO(
+                                                                              82,
+                                                                              165,
+                                                                              160,
+                                                                              1),
+                                                                        ),
+                                                                        onPressed: () {
+                                                                          setState(() {
+                                                                            confirmPassObscure =
+                                                                            !confirmPassObscure;
+                                                                          });
+                                                                        }),
+                                                                  ])),
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .confirm_password,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.020),
+                                                          ),
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here,
+                                                        ),
+                                                        onChanged: (value) {
+                                                          formKey.currentState!
+                                                              .validate();
+                                                        },
+                                                        validator: (value) {
+                                                          if (teacherPasswordController
+                                                              .text !=
+                                                              teacherconfirmPasswordController
+                                                                  .text) {
+                                                            return 'Re-enter exact same password';
+                                                          } else if (value!
+                                                              .isEmpty) {
+                                                            return 'Re-enter exact same password';
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                      )),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                Row(children: [
+                                                  SizedBox(
+                                                      width: localWidth * 0.025),
+                                                  Text(
+                                                    AppLocalizations.of(context)!
+                                                        .pri_terms,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                        localHeight * 0.018,
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontWeight: FontWeight.w600,
+                                                        fontFamily: "Inter"),
+                                                  )
+                                                ]),
+                                                SizedBox(
+                                                  height: localHeight * 0.02,
+                                                ),
+                                                Row(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                    children: [
+                                                      SizedBox(
+                                                          width: localWidth * 0.03),
+                                                      Transform.scale(
+                                                          filterQuality:
+                                                          FilterQuality.high,
+                                                          scale: 1.5,
+                                                          child: Checkbox(
+                                                            activeColor: const Color
+                                                                .fromRGBO(
+                                                                82, 165, 160, 1),
+                                                            shape:
+                                                            RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    1)),
+                                                            value: pPCheck,
+                                                            onChanged: (val) {
+                                                              setState(() {
+                                                                pPCheck = val!;
+                                                                if (pPCheck) {}
+                                                              });
+                                                            },
+                                                          )),
+                                                      SizedBox(
+                                                          width: localWidth * 0.01),
+                                                      Flexible(
+                                                        child: RichText(
+                                                            text:
+                                                            TextSpan(children: [
+                                                              TextSpan(
+                                                                text:
+                                                                AppLocalizations.of(
+                                                                    context)!
+                                                                    .agree_msg,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.018,
+                                                                    fontWeight:
+                                                                    FontWeight.w400,
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        51, 51, 51, 1),
+                                                                    fontFamily:
+                                                                    "Inter"),
+                                                              ),
+                                                              TextSpan(
+                                                                text:
+                                                                AppLocalizations.of(
+                                                                    context)!
+                                                                    .privacy_Policy,
+                                                                recognizer:
+                                                                TapGestureRecognizer()
+                                                                  ..onTap =
+                                                                      _launchUrlPrivacy,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.018,
+                                                                    fontWeight:
+                                                                    FontWeight.w400,
+                                                                    decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                                    color: const Color
+                                                                        .fromRGBO(82,
+                                                                        165, 160, 1),
+                                                                    fontFamily:
+                                                                    "Inter"),
+                                                              ),
+                                                              TextSpan(
+                                                                text:
+                                                                AppLocalizations.of(
+                                                                    context)!
+                                                                    .and,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.018,
+                                                                    fontWeight:
+                                                                    FontWeight.w400,
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        51, 51, 51, 1),
+                                                                    fontFamily:
+                                                                    "Inter"),
+                                                              ),
+                                                              TextSpan(
+                                                                text:
+                                                                AppLocalizations.of(
+                                                                    context)!
+                                                                    .terms,
+                                                                recognizer:
+                                                                TapGestureRecognizer()
+                                                                  ..onTap =
+                                                                      _launchUrlTerms,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.018,
+                                                                    fontWeight:
+                                                                    FontWeight.w400,
+                                                                    decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                                    color: const Color
+                                                                        .fromRGBO(82,
+                                                                        165, 160, 1),
+                                                                    fontFamily:
+                                                                    "Inter"),
+                                                              ),
+                                                              TextSpan(
+                                                                text:
+                                                                AppLocalizations.of(
+                                                                    context)!
+                                                                    .services,
+                                                                recognizer:
+                                                                TapGestureRecognizer()
+                                                                  ..onTap =
+                                                                      _launchUrlTerms,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.018,
+                                                                    fontWeight:
+                                                                    FontWeight.w400,
+                                                                    decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                                    color: const Color
+                                                                        .fromRGBO(82,
+                                                                        165, 160, 1),
+                                                                    fontFamily:
+                                                                    "Inter"),
+                                                              ),
+                                                            ])),
+                                                      ),
+                                                    ]),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                Center(
+                                                  child: IconButton(
+                                                    iconSize: localHeight * 0.06,
+                                                    icon: const Icon(
+                                                        Icons.arrow_circle_right,
+                                                        color: Color.fromRGBO(
+                                                            82, 165, 160, 1)),
+                                                    onPressed: () async {
+                                                      bool valid = formKey
+                                                          .currentState!
+                                                          .validate();
+                                                      StudentRegistrationModel student = StudentRegistrationModel(
+                                                          firstName:
+                                                          teacherFirstNameController
+                                                              .text,
+                                                          lastName: teacherLastNameController
+                                                              .text,
+                                                          dob: 01010001,
+                                                          gender: gender,
+                                                          countryNationality:
+                                                          selectedCountryCitizen
+                                                              .dropDownValue
+                                                              ?.value,
+                                                          email: teacherEmailController
+                                                              .text,
+                                                          password:
+                                                          teacherPasswordController
+                                                              .text,
+                                                          rollNumber:
+                                                          teacherRollNumberController
+                                                              .text,
+                                                          institutionId:
+                                                          widget.organisationId,
+                                                          organisationName: widget
+                                                              .institutionName,
+                                                          countryResident:
+                                                          selectedCountryResident
+                                                              .dropDownValue
+                                                              ?.value,
+                                                          role: [
+                                                            "teacher",
+                                                            "student"
+                                                          ],
+                                                          userRole: "teacher"
+                                                        //also == true?
+                                                        //["student","teacher"]
+                                                        //: ["student"]
+                                                      );
+                                                      if (pPCheck) {
+                                                        bool valid = formKey
+                                                            .currentState!
+                                                            .validate();
+                                                        if (valid) {
+                                                          LoginModel res =
+                                                          await QnaService
+                                                              .postUserDetailsService(
+                                                              student);
+                                                          if (res.code == 200) {
+                                                            if (context.mounted) {
+                                                              Navigator.push(
+                                                                context,
+                                                                PageTransition(
+                                                                    type:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                    child:
+                                                                    TeacherRegistrationOtpPage(
+                                                                      student:
+                                                                      student,
+                                                                    )),
+                                                              );
+                                                            } else if (res.code ==
+                                                                409) {
+                                                              Navigator.push(
+                                                                context,
+                                                                PageTransition(
+                                                                  type: PageTransitionType
+                                                                      .rightToLeft,
+                                                                  child:
+                                                                  CustomDialog(
+                                                                    title: AppLocalizations.of(
+                                                                        context)!
+                                                                        .alert_popup,
+                                                                    //'Incorrect Data',
+                                                                    content: AppLocalizations.of(
+                                                                        context)!
+                                                                        .already_registered_user,
+                                                                    button: AppLocalizations.of(
+                                                                        context)!
+                                                                        .ok_caps,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                          } else {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                PageTransitionType
+                                                                    .rightToLeft,
+                                                                child: CustomDialog(
+                                                                  title: AppLocalizations
+                                                                      .of(context)!
+                                                                      .alert_popup,
+                                                                  //'Alert',
+                                                                  content:
+                                                                  '${res.message}',
+                                                                  button:
+                                                                  AppLocalizations.of(
+                                                                      context)!
+                                                                      .retry,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                        }
+                                                      } else {
+                                                        Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type: PageTransitionType
+                                                                .rightToLeft,
+                                                            child: CustomDialog(
+                                                                title: AppLocalizations
+                                                                    .of(
+                                                                    context)!
+                                                                    .alert_popup,
+                                                                content: AppLocalizations
+                                                                    .of(
+                                                                    context)!
+                                                                    .agree_privacy_terms,
+                                                                button:
+                                                                AppLocalizations.of(
+                                                                    context)!
+                                                                    .retry),
+                                                          ),
+                                                        );
+                                                      }
+                                                    },
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.03,
+                                                ),
+                                                //SizedBox(height:localHeight * 0.05),
+                                              ],
+                                            )
+                                          ]),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            //)
+                          )
+                        ]))));
+          } else {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    appBar: AppBar(
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                      leading: IconButton(
+                        icon: const Icon(
+                          Icons.chevron_left,
+                          size: 40.0,
+                          color: Color.fromRGBO(28, 78, 80, 1),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      centerTitle: true,
+                      title: Text(
+                        AppLocalizations.of(context)!.teacher_reg_caps,
+                        style: const TextStyle(
+                          color: Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: 18.0,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      flexibleSpace: Container(
+                        color: Colors.white,
+                      ),
+                    ),
+                    body: SingleChildScrollView(
+                        physics: const ClampingScrollPhysics(),
+                        child: Column(children: [
+                          SizedBox(height: localHeight * 0.05),
+                          Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: kElevationToShadow[4],
+                              ),
+                              width: localWidth * 0.9,
+                              child: Form(
+                                key: formKey,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      width: localWidth * 0.8,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              SizedBox(
+                                                height: localHeight * 0.05,
+                                              ),
+                                              Center(
+                                                child: SizedBox(
+                                                    width: localWidth * 0.8,
+                                                    child: TextFormField(
+                                                      initialValue:
+                                                      widget.institutionId,
+                                                      decoration: InputDecoration(
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        label: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .reg_roll_caps,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.020),
+                                                        ),
+                                                        helperStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontStyle:
+                                                            FontStyle.italic,
+                                                            fontSize: localHeight *
+                                                                0.016),
+                                                        helperText:
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .org_helper_reg,
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize: localHeight *
+                                                                0.018),
+                                                        hintText:
+                                                        "Enter 8-Digit ID",
+                                                      ),
+                                                      enabled: false,
+                                                    )),
+                                              ),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              Center(
+                                                child: SizedBox(
+                                                    width: localWidth * 0.8,
+                                                    child: TextFormField(
+                                                      initialValue:
+                                                      widget.institutionName,
+                                                      decoration: InputDecoration(
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        label: Text(
+                                                          "Institution Name",
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.020),
+                                                        ),
+                                                        helperStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontStyle:
+                                                            FontStyle.italic,
+                                                            fontSize: localHeight *
+                                                                0.016),
+                                                        helperText:
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .org_helper_reg,
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize: localHeight *
+                                                                0.018),
+                                                        hintText:
+                                                        "Enter 8-Digit ID",
+                                                      ),
+                                                      enabled: false,
+                                                    )),
+                                              ),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              Center(
+                                                child: SizedBox(
+                                                    width: localWidth * 0.8,
+                                                    child: TextFormField(
+                                                      controller:
+                                                      teacherFirstNameController,
+                                                      maxLength: 100,
+                                                      maxLengthEnforcement:
+                                                      MaxLengthEnforcement
+                                                          .truncateAfterCompositionEnds,
+                                                      keyboardType:
+                                                      TextInputType.text,
+                                                      decoration: InputDecoration(
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
+                                                        label: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .first_name_caps,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.020),
+                                                        ),
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize: localHeight *
+                                                                0.018),
+                                                        hintText:
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .enter_here,
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                      ),
+                                                      onChanged: (value) {
+                                                        formKey.currentState!
+                                                            .validate();
+                                                      },
+                                                      validator: (value) {
+                                                        if (value!.isEmpty) {
+                                                          return 'Enter First Name';
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                    )),
+                                              ),
+                                              Center(
+                                                  child: SizedBox(
+                                                    width: localWidth * 0.8,
+                                                    child: TextFormField(
+                                                      controller:
+                                                      teacherLastNameController,
+                                                      keyboardType: TextInputType.text,
+                                                      decoration: InputDecoration(
+                                                        labelStyle: Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
+                                                        label: Text(
+                                                          AppLocalizations.of(context)!
+                                                              .last_name_caps,
+                                                          style: TextStyle(
+                                                              color:
+                                                              const Color.fromRGBO(
+                                                                  102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight * 0.020),
+                                                        ),
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        hintStyle: TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                102, 102, 102, 0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w400,
+                                                            fontSize:
+                                                            localHeight * 0.018),
+                                                        hintText: AppLocalizations.of(
+                                                            context)!
+                                                            .enter_here,
+                                                      ),
+                                                      onChanged: (value) {
+                                                        formKey.currentState!
+                                                            .validate();
+                                                      },
+                                                      validator: (value) {
+                                                        if (value!.isEmpty) {
+                                                          return 'Enter Last Name';
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                    ),
+                                                  )),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              SizedBox(
+                                                width:localWidth * 0.8,
+                                                child: Column(
+                                                  children: [
+                                                    Row(children: [
+                                                      Text(
+                                                        AppLocalizations.of(context)!
+                                                            .gender,
+                                                        style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w600,
+                                                            fontSize:
+                                                            localHeight * 0.0155),
+                                                      ),
+                                                    ]),
+                                                    SizedBox(height:localHeight *0.005 ),
                                                     Row(
                                                       children: [
                                                         Radio(
-                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                          activeColor:
+                                                          const Color.fromRGBO(
+                                                              82, 165, 160, 1),
                                                           value: "male",
                                                           groupValue: gender,
                                                           onChanged: (value) {
                                                             setState(() {
-                                                              gender =
-                                                              value..toString();
+                                                              gender = value
+                                                                ..toString();
                                                             });
                                                           },
                                                         ),
@@ -1748,13 +3237,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                   .fromRGBO(
                                                                   51, 51, 51, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize:
-                                                              localHeight * 0.016),
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize: localHeight *
+                                                                  0.016),
                                                         ),
                                                         Radio(
-                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                          activeColor:
+                                                          const Color.fromRGBO(
+                                                              82, 165, 160, 1),
                                                           value: "female",
                                                           groupValue: gender,
                                                           onChanged: (value) {
@@ -1773,13 +3264,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                   .fromRGBO(
                                                                   51, 51, 51, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize:
-                                                              localHeight * 0.016),
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize: localHeight *
+                                                                  0.016),
                                                         ),
                                                         Radio(
-                                                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                          activeColor:
+                                                          const Color.fromRGBO(
+                                                              82, 165, 160, 1),
                                                           value: "others",
                                                           groupValue: gender,
                                                           onChanged: (value) {
@@ -1798,603 +3291,709 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                   .fromRGBO(
                                                                   51, 51, 51, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize:
-                                                              localHeight * 0.016),
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize: localHeight *
+                                                                  0.016),
                                                         ),
                                                       ],
                                                     ),
                                                   ],
-                                                )),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Stack(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                  const EdgeInsets.only(
-                                                      left: 30, right: 30, top: 15),
-                                                  child: DropDownTextField(
-                                                    controller: selectedCountryCitizen,
-                                                    clearOption: true,
-                                                    enableSearch: true,
-                                                    textFieldDecoration: InputDecoration(
-                                                        floatingLabelBehavior:
-                                                        FloatingLabelBehavior
-                                                            .always,
-                                                        hintStyle: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102,
-                                                                0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            fontSize:
-                                                            localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
-                                                            context)!
-                                                            .enter_here),
-                                                    clearIconProperty: IconProperty(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            102, 102, 102, 0.3)),
-                                                    searchDecoration: InputDecoration(
-                                                        hintStyle: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102,
-                                                                0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            fontSize:
-                                                            localHeight * 0.016),
-                                                        hintText: AppLocalizations.of(
-                                                            context)!
-                                                            .enter_here),
-                                                    validator: (value) {
-                                                      if (value == null) {
-                                                        return "Required field";
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                    dropDownItemCount: 5,
-                                                    dropDownList: [
-                                                      for (int i = 0; i <= n; i++)
-                                                        DropDownValueModel(
-                                                            name: countryCitizenList[i],
-                                                            value: countryCitizenList[i])
-                                                    ],
-                                                    onChanged: (value) {},
-                                                  ),
                                                 ),
-                                                Positioned(
-                                                  left: localWidth * 0.021,
-                                                  child: Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .country_citizen,
-                                                    //"Citizen of Country",
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight
-                                                            .w600,
-                                                        fontSize: localHeight *
-                                                            0.016),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Stack(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                  const EdgeInsets.only(
-                                                      left: 30, right: 30, top: 15),
-                                                  child: DropDownTextField(
-                                                    controller: selectedCountryResident,
-                                                    clearOption: true,
-                                                    enableSearch: true,
-                                                    textFieldDecoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                        floatingLabelBehavior:
-                                                        FloatingLabelBehavior
-                                                            .always,
-                                                        hintStyle: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102,
-                                                                0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            fontSize:
-                                                            localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
-                                                            context)!
-                                                            .enter_here),
-                                                    clearIconProperty: IconProperty(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            102, 102, 102, 0.3)),
-                                                    searchDecoration: InputDecoration(
-                                                        hintStyle: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102,
-                                                                0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w400,
-                                                            fontSize:
-                                                            localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
-                                                            context)!
-                                                            .enter_here),
-                                                    validator: (value) {
-                                                      if (value == null) {
-                                                        return "Required field";
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                    dropDownItemCount: 5,
-                                                    dropDownList: [
-                                                      DropDownValueModel(
-                                                          name: countryResidentList[0],
-                                                          value: countryResidentList[0]),
-                                                      DropDownValueModel(
-                                                          name: countryResidentList[1],
-                                                          value: countryResidentList[1]),
-                                                      DropDownValueModel(
-                                                          name: countryResidentList[2],
-                                                          value: countryResidentList[2]),
-                                                      DropDownValueModel(
-                                                          name: countryResidentList[3],
-                                                          value: countryResidentList[3])
-                                                    ],
-                                                    onChanged: (value) {},
-                                                  ),
-                                                ),
-                                                Positioned(
-                                                  left: localWidth * 0.021,
-                                                  child: Container(
-                                                    color: Colors.white,
-                                                    child: Text(
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .country_resident,
-                                                      //Resident of Country
+                                              ),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              SizedBox(
+                                                width:localWidth * 0.8,
+                                                child: Column(
+                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      AppLocalizations.of(context)!
+                                                          .country_citizen,
+                                                      //"Citizen of Country",
                                                       style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
+                                                          color: const Color.fromRGBO(
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight
-                                                              .w600,
-                                                          fontSize: localHeight *
-                                                              0.016),
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize:
+                                                          localHeight * 0.0155),
                                                     ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Center(
-                                                child:
-                                                SizedBox(
-                                                    width: localWidth * 0.65,
-                                                    child:
-                                                    TextFormField(
-                                                      controller: teacherEmailController,
-                                                      keyboardType: TextInputType.text,
+                                                    DropDownTextField(
+                                                      controller:
+                                                      selectedCountryCitizen,
+                                                      clearOption: true,
+                                                      enableSearch: true,
+                                                      textFieldDecoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          hintStyle: TextStyle(
+                                                              color:
+                                                              const Color
+                                                                  .fromRGBO(
+                                                                  102,
+                                                                  102,
+                                                                  102,
+                                                                  0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here),
+                                                      clearIconProperty:
+                                                      IconProperty(
+                                                          color: const Color
+                                                              .fromRGBO(102,
+                                                              102, 102, 0.3)),
+                                                      searchDecoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          hintStyle: TextStyle(
+                                                              color:
+                                                              const Color
+                                                                  .fromRGBO(
+                                                                  102,
+                                                                  102,
+                                                                  102,
+                                                                  0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here),
+                                                      validator: (value) {
+                                                        if (value == null) {
+                                                          return "Required field";
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                      dropDownItemCount: 5,
+                                                      dropDownList: [
+                                                        for (int i = 0; i <= n; i++)
+                                                          DropDownValueModel(
+                                                              name:
+                                                              countryCitizenList[
+                                                              i],
+                                                              value:
+                                                              countryCitizenList[
+                                                              i])
+                                                      ],
+                                                      onChanged: (value) {},
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              SizedBox(
+                                                width:localWidth * 0.8,
+                                                child: Column(
+                                                  crossAxisAlignment:CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      color: Colors.white,
+                                                      child: Text(
+                                                        AppLocalizations.of(context)!
+                                                            .country_resident,
+                                                        //Resident of Country
+                                                        style: TextStyle(
+                                                            color:
+                                                            const Color.fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w600,
+                                                            fontSize:
+                                                            localHeight * 0.0155),
+                                                      ),
+                                                    ),
+                                                    DropDownTextField(
+                                                      controller:
+                                                      selectedCountryResident,
+                                                      clearOption: true,
+                                                      enableSearch: true,
+                                                      textFieldDecoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          hintStyle: TextStyle(
+                                                              color:
+                                                              const Color
+                                                                  .fromRGBO(
+                                                                  102,
+                                                                  102,
+                                                                  102,
+                                                                  0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here),
+                                                      clearIconProperty:
+                                                      IconProperty(
+                                                          color: const Color
+                                                              .fromRGBO(102,
+                                                              102, 102, 0.3)),
+                                                      searchDecoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          hintStyle: TextStyle(
+                                                              color:
+                                                              const Color
+                                                                  .fromRGBO(
+                                                                  102,
+                                                                  102,
+                                                                  102,
+                                                                  0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here),
+                                                      validator: (value) {
+                                                        if (value == null) {
+                                                          return "Required field";
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                      dropDownItemCount: 5,
+                                                      dropDownList: [
+                                                        DropDownValueModel(
+                                                            name:
+                                                            countryResidentList[
+                                                            0],
+                                                            value:
+                                                            countryResidentList[
+                                                            0]),
+                                                        DropDownValueModel(
+                                                            name:
+                                                            countryResidentList[
+                                                            1],
+                                                            value:
+                                                            countryResidentList[
+                                                            1]),
+                                                        DropDownValueModel(
+                                                            name:
+                                                            countryResidentList[
+                                                            2],
+                                                            value:
+                                                            countryResidentList[
+                                                            2]),
+                                                        DropDownValueModel(
+                                                            name:
+                                                            countryResidentList[
+                                                            3],
+                                                            value:
+                                                            countryResidentList[
+                                                            3])
+                                                      ],
+                                                      onChanged: (value) {},
+                                                    ),
+
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              Center(
+                                                  child: SizedBox(
+                                                      width: localWidth * 0.8,
+                                                      child: TextFormField(
+                                                        controller:
+                                                        teacherEmailController,
+                                                        keyboardType:
+                                                        TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .email_id_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.020),
+                                                          ),
+                                                          helperText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .email_helper_text,
+                                                          helperStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontStyle:
+                                                              FontStyle.italic,
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.016),
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here,
+                                                        ),
+                                                        onChanged: (value) {
+                                                          formKey.currentState!
+                                                              .validate();
+                                                        },
+                                                        validator: (value) {
+                                                          if (value!.isEmpty ||
+                                                              !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                                  .hasMatch(
+                                                                  value)) {
+                                                            return 'Enter Valid Email';
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                      ))),
+                                              SizedBox(
+                                                height: localHeight * 0.01,
+                                              ),
+                                              Center(
+                                                  child: SizedBox(
+                                                      width: localWidth * 0.8,
+                                                      child: TextFormField(
+                                                        controller:
+                                                        teacherPasswordController,
+                                                        keyboardType:
+                                                        TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          labelStyle:
+                                                          Theme.of(context)
+                                                              .textTheme
+                                                              .headlineMedium,
+                                                          floatingLabelBehavior:
+                                                          FloatingLabelBehavior
+                                                              .always,
+                                                          label: Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .password_caps,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(102,
+                                                                    102, 102, 1),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.020),
+                                                          ),
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(102,
+                                                                  102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight:
+                                                              FontWeight.w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.018),
+                                                          hintText:
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .enter_here,
+                                                        ),
+                                                        inputFormatters: [
+                                                          FilteringTextInputFormatter
+                                                              .deny(' ')
+                                                        ],
+                                                        onChanged: (val) {
+                                                          formKey.currentState!
+                                                              .validate();
+                                                        },
+                                                        validator: (value) {
+                                                          if (value!.length < 8) {
+                                                            return "Enter Minimum 8 Characters";
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        },
+                                                      ))),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              Center(
+                                                child: SizedBox(
+                                                    width: localWidth * 0.8,
+                                                    child: TextFormField(
+                                                      controller:
+                                                      teacherconfirmPasswordController,
+                                                      keyboardType:
+                                                      TextInputType.text,
                                                       decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                        labelStyle:
+                                                        Theme.of(context)
+                                                            .textTheme
+                                                            .headlineMedium,
                                                         floatingLabelBehavior:
-                                                        FloatingLabelBehavior.always,
+                                                        FloatingLabelBehavior
+                                                            .always,
                                                         label: Text(
                                                           AppLocalizations.of(
                                                               context)!
-                                                              .email_id_caps,
+                                                              .confirm_password,
                                                           style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 1),
                                                               fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                              fontSize:
+                                                              localHeight *
                                                                   0.020),
                                                         ),
-                                                        helperText: AppLocalizations.of(
-                                                            context)!.email_helper_text,
-                                                        //'an OTP will be sent to Email ID',
-                                                        helperStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontStyle: FontStyle.italic,
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.016),
                                                         hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
+                                                            color: const Color
+                                                                .fromRGBO(
                                                                 102, 102, 102, 0.3),
                                                             fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize: localHeight *
+                                                                0.018),
+                                                        hintText:
+                                                        AppLocalizations.of(
                                                             context)!
                                                             .enter_here,
                                                       ),
                                                       onChanged: (value) {
-                                                        formKey.currentState!.validate();
+                                                        formKey.currentState!
+                                                            .validate();
                                                       },
                                                       validator: (value) {
-                                                        if (value!.isEmpty ||
-                                                            !RegExp(
-                                                                r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                                .hasMatch(value)) {
-                                                          return 'Enter Valid Email';
+                                                        if (teacherPasswordController
+                                                            .text !=
+                                                            teacherconfirmPasswordController
+                                                                .text) {
+                                                          return 'Re-enter exact same password';
+                                                        } else if (value!.isEmpty) {
+                                                          return 'Re-enter exact same password';
                                                         } else {
                                                           return null;
                                                         }
                                                       },
-                                                    ))),
-                                            SizedBox(
-                                              height: localHeight * 0.01,
-                                            ),
-                                            Center(
-                                                child:
-                                                SizedBox(
-                                                    width: localWidth * 0.65,
-                                                    child: TextFormField(
-                                                      controller: teacherPasswordController,
-                                                      obscureText: passObscure,
-                                                      obscuringCharacter: "*",
-                                                      keyboardType: TextInputType.text,
-                                                      decoration: InputDecoration(
-                                                        labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                        floatingLabelBehavior:
-                                                        FloatingLabelBehavior.always,
-                                                        suffixIcon: SizedBox(
-                                                            child: Row(
-                                                                mainAxisSize: MainAxisSize.min,
-                                                                mainAxisAlignment: MainAxisAlignment.end,
-                                                                children:[
-                                                                  IconButton(
-                                                                      iconSize: localHeight * 0.028,
-                                                                      icon: Icon(
-                                                                        passObscure
-                                                                            ? Icons.visibility
-                                                                            : Icons.visibility_off,
-                                                                        color:
-                                                                        const Color.fromRGBO(82, 165, 160, 1),
-
-
-                                                                      ),
-                                                                      onPressed: () {
-                                                                        setState(() {
-                                                                          passObscure = !passObscure;
-                                                                        });
-                                                                      }),
-                                                                ]
-                                                            )),
-                                                        label: Text(AppLocalizations.of(
-                                                            context)!
-                                                            .password_caps,
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  102, 102, 102, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w600,
-                                                              fontSize: localHeight *
-                                                                  0.020),
-                                                        ),
-                                                        hintStyle: TextStyle(
-                                                            color: const Color.fromRGBO(
-                                                                102, 102, 102, 0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight.w400,
-                                                            fontSize: localHeight * 0.018),
-                                                        hintText: AppLocalizations.of(
-                                                            context)!
-                                                            .enter_here,
-                                                      ),
-                                                      inputFormatters: [
-                                                        FilteringTextInputFormatter.deny(' ')
-                                                      ],
-                                                      onChanged: (val) {
-                                                        formKey.currentState!.validate();
-                                                      },
-                                                      validator: (value) {
-                                                        if (value!.length < 8) {
-                                                          return "Enter Minimum 8 Characters";
-                                                        } else {
-                                                          return null;
-                                                        }
-                                                      },
-
-                                                    ))
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Center(
-                                              child:
+                                                    )),
+                                              ),
                                               SizedBox(
-                                                  width: localWidth * 0.65,
-                                                  child: TextFormField(
-                                                    controller: teacherconfirmPasswordController,
-                                                    keyboardType: TextInputType.text,
-                                                    obscureText: confirmPassObscure,
-                                                    obscuringCharacter: "*",
-                                                    decoration: InputDecoration(
-                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior.always,
-                                                      suffixIcon: SizedBox(
-                                                          child: Row(
-                                                              mainAxisSize: MainAxisSize.min,
-                                                              mainAxisAlignment: MainAxisAlignment.end,
-                                                              children:[
-                                                                IconButton(
-                                                                    iconSize: localHeight * 0.028,
-                                                                    icon: Icon(
-                                                                      confirmPassObscure
-                                                                          ? Icons.visibility
-                                                                          : Icons.visibility_off,
-                                                                      color:
-                                                                      const Color.fromRGBO(82, 165, 160, 1),
-
-
-                                                                    ),
-                                                                    onPressed: () {
-                                                                      setState(() {
-                                                                        confirmPassObscure = !confirmPassObscure;
-                                                                      });
-                                                                    }),
-                                                              ]
-                                                          )),
-                                                      label: Text(AppLocalizations.of(
-                                                          context)!
-                                                          .confirm_password,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
-                                                            fontSize: localHeight *
-                                                                0.020),
-                                                      ),
-                                                      hintStyle: TextStyle(
-                                                          color: const Color.fromRGBO(
-                                                              102, 102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: localHeight * 0.018),
-                                                      hintText: AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here,
+                                                height: localHeight * 0.03,
+                                              ),
+                                              Row(children: [
+                                                SizedBox(width: localWidth * 0.05),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .pri_terms,
+                                                  style: TextStyle(
+                                                      fontSize: localHeight * 0.018,
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontWeight: FontWeight.w600,
+                                                      fontFamily: "Inter"),
+                                                )
+                                              ]),
+                                              SizedBox(
+                                                height: localHeight * 0.02,
+                                              ),
+                                              Row(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                                  children: [
+                                                    SizedBox(
+                                                        width: localWidth * 0.01),
+                                                    Transform.scale(
+                                                        filterQuality:
+                                                        FilterQuality.high,
+                                                        scale: 1.5,
+                                                        child: Checkbox(
+                                                          activeColor:
+                                                          const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                          shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  1)),
+                                                          value: pPCheck,
+                                                          onChanged: (val) {
+                                                            setState(() {
+                                                              pPCheck = val!;
+                                                              if (pPCheck) {}
+                                                            });
+                                                          },
+                                                        )),
+                                                    SizedBox(
+                                                        width: localWidth * 0.01),
+                                                    Flexible(
+                                                      child: RichText(
+                                                          text: TextSpan(children: [
+                                                            TextSpan(
+                                                              text: AppLocalizations.of(
+                                                                  context)!
+                                                                  .agree_msg,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.018,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51, 51, 51, 1),
+                                                                  fontFamily: "Inter"),
+                                                            ),
+                                                            TextSpan(
+                                                              text: AppLocalizations.of(
+                                                                  context)!
+                                                                  .privacy_Policy,
+                                                              recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    _launchUrlPrivacy,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.018,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      82, 165, 160, 1),
+                                                                  fontFamily: "Inter"),
+                                                            ),
+                                                            TextSpan(
+                                                              text: AppLocalizations.of(
+                                                                  context)!
+                                                                  .and,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.018,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51, 51, 51, 1),
+                                                                  fontFamily: "Inter"),
+                                                            ),
+                                                            TextSpan(
+                                                              text: AppLocalizations.of(
+                                                                  context)!
+                                                                  .terms,
+                                                              recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    _launchUrlTerms,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.018,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      82, 165, 160, 1),
+                                                                  fontFamily: "Inter"),
+                                                            ),
+                                                            TextSpan(
+                                                              text: AppLocalizations.of(
+                                                                  context)!
+                                                                  .services,
+                                                              recognizer:
+                                                              TapGestureRecognizer()
+                                                                ..onTap =
+                                                                    _launchUrlTerms,
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  localHeight *
+                                                                      0.018,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      82, 165, 160, 1),
+                                                                  fontFamily: "Inter"),
+                                                            ),
+                                                          ])),
                                                     ),
-                                                    onChanged: (value) {
-                                                      formKey.currentState!.validate();
-                                                    },
-                                                    validator: (value) {
-                                                      if (teacherPasswordController.text !=
-                                                          teacherconfirmPasswordController
-                                                              .text) {
-                                                        return 'Re-enter exact same password';
-                                                      } else if (value!.isEmpty) {
-                                                        return 'Re-enter exact same password';
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                  )),
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Row(
-                                                children:[
-                                                  SizedBox(width: localWidth * 0.025),
-                                                  Text(
-                                                    AppLocalizations.of(context)!
-                                                        .pri_terms,
-                                                    style: TextStyle(
-                                                        fontSize: localHeight * 0.018,
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontWeight: FontWeight.w600,
-                                                        fontFamily: "Inter"),
-                                                  )
-                                                ]),
-                                            SizedBox(
-                                              height: localHeight * 0.02,
-                                            ),
-                                            Row(
-                                                crossAxisAlignment: CrossAxisAlignment
-                                                    .center,
-                                                children: [
-                                                  SizedBox(width: localWidth * 0.03),
-                                                  Transform.scale(
-                                                      filterQuality: FilterQuality.high,
-                                                      scale: 1.5,
-                                                      child: Checkbox(
-                                                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius
-                                                                .circular(1)),
-                                                        value: pPCheck,
-                                                        onChanged: (val) {
-                                                          setState(() {
-                                                            pPCheck = val!;
-                                                            if (pPCheck) {}
-                                                          });
-                                                        },
-                                                      )),
-                                                  SizedBox(width: localWidth * 0.01),
-                                                  Flexible(
-                                                    child: RichText(
-                                                        text: TextSpan(children: [
-                                                          TextSpan(
-                                                            text: AppLocalizations.of(
-                                                                context)!
-                                                                .agree_msg,
-                                                            style: TextStyle(
-                                                                fontSize: localHeight *
-                                                                    0.018,
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: "Inter"),
-                                                          ),
-                                                          TextSpan(
-                                                            text: AppLocalizations.of(
-                                                                context)!
-                                                                .privacy_Policy,
-                                                            recognizer: TapGestureRecognizer()
-                                                              ..onTap = _launchUrlPrivacy,
-                                                            style: TextStyle(
-                                                                fontSize: localHeight *
-                                                                    0.018,
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                decoration: TextDecoration
-                                                                    .underline,
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    82, 165, 160, 1),
-                                                                fontFamily: "Inter"),
-                                                          ),
-                                                          TextSpan(
-                                                            text: AppLocalizations.of(
-                                                                context)!.and,
-                                                            style: TextStyle(
-                                                                fontSize: localHeight *
-                                                                    0.018,
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: "Inter"),
-                                                          ),
-                                                          TextSpan(
-                                                            text: AppLocalizations.of(
-                                                                context)!.terms,
-                                                            recognizer: TapGestureRecognizer()
-                                                              ..onTap = _launchUrlTerms,
-                                                            style: TextStyle(
-                                                                fontSize: localHeight *
-                                                                    0.018,
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                decoration: TextDecoration
-                                                                    .underline,
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    82, 165, 160, 1),
-                                                                fontFamily: "Inter"),
-                                                          ),
-                                                          TextSpan(
-                                                            text: AppLocalizations.of(
-                                                                context)!
-                                                                .services,
-                                                            recognizer: TapGestureRecognizer()
-                                                              ..onTap = _launchUrlTerms,
-                                                            style: TextStyle(
-                                                                fontSize: localHeight *
-                                                                    0.018,
-                                                                fontWeight: FontWeight
-                                                                    .w400,
-                                                                decoration: TextDecoration
-                                                                    .underline,
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    82, 165, 160, 1),
-                                                                fontFamily: "Inter"),
-                                                          ),
-                                                        ])),
-                                                  ),
-                                                ]),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            Center(
-                                              child: IconButton(
-                                                iconSize: localHeight * 0.06,
-                                                icon: const Icon(Icons.arrow_circle_right,
-                                                  color: Color.fromRGBO(82, 165, 160, 1)
-                                                ),
-                                                onPressed: () async {
-                                                  bool valid = formKey
-                                                      .currentState!
-                                                      .validate();
-                                                  StudentRegistrationModel student = StudentRegistrationModel(
-                                                      firstName:
-                                                      teacherFirstNameController
-                                                          .text,
-                                                      lastName: teacherLastNameController.text,
-                                                      dob: 01010001,
-                                                      gender: gender,
-                                                      countryNationality: selectedCountryCitizen.dropDownValue?.value,
-                                                      email: teacherEmailController.text,
-                                                      password: teacherPasswordController.text,
-                                                      rollNumber: teacherRollNumberController.text,
-                                                      institutionId: widget.organisationId,
-                                                      organisationName:
-                                                      widget.institutionName,
-                                                      countryResident: selectedCountryResident.dropDownValue?.value,
-                                                      role: ["teacher","student"],
-                                                      userRole: "teacher"
-                                                    //also == true?
-                                                    //["student","teacher"]
-                                                    //: ["student"]
-                                                  );
-                                                  if (pPCheck) {
+                                                  ]),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              Center(
+                                                child: IconButton(
+                                                  iconSize: localHeight * 0.06,
+                                                  icon: const Icon(
+                                                      Icons.arrow_circle_right,
+                                                      color: Color.fromRGBO(
+                                                          82, 165, 160, 1)),
+                                                  onPressed: () async {
                                                     bool valid = formKey
                                                         .currentState!
                                                         .validate();
-                                                    if (valid) {
-                                                      LoginModel res =
-                                                      await QnaService
-                                                          .postUserDetailsService(
-                                                          student);
-                                                      if (res.code == 200) {
-                                                        if (context.mounted) {
-                                                          Navigator.push(
-                                                            context,
-                                                            PageTransition(
+                                                    StudentRegistrationModel student = StudentRegistrationModel(
+                                                        firstName:
+                                                        teacherFirstNameController
+                                                            .text,
+                                                        lastName:
+                                                        teacherLastNameController
+                                                            .text,
+                                                        dob: 01010001,
+                                                        gender: gender,
+                                                        countryNationality:
+                                                        selectedCountryCitizen
+                                                            .dropDownValue
+                                                            ?.value,
+                                                        email: teacherEmailController
+                                                            .text,
+                                                        password:
+                                                        teacherPasswordController
+                                                            .text,
+                                                        rollNumber:
+                                                        teacherRollNumberController
+                                                            .text,
+                                                        organisationName:
+                                                        widget.institutionName,
+                                                        institutionId:
+                                                        widget.organisationId,
+                                                        countryResident:
+                                                        selectedCountryResident
+                                                            .dropDownValue
+                                                            ?.value,
+                                                        role: [
+                                                          "teacher",
+                                                          "student"
+                                                        ],
+                                                        userRole: "teacher"
+                                                      //also == true?
+                                                      //["student","teacher"]
+                                                      //: ["student"]
+                                                    );
+                                                    if (pPCheck) {
+                                                      bool valid = formKey
+                                                          .currentState!
+                                                          .validate();
+                                                      if (valid) {
+                                                        LoginModel res =
+                                                        await QnaService
+                                                            .postUserDetailsService(
+                                                            student);
+                                                        if (res.code == 200) {
+                                                          if (context.mounted) {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
+                                                                  type:
+                                                                  PageTransitionType
+                                                                      .fade,
+                                                                  child:
+                                                                  TeacherRegistrationOtpPage(
+                                                                    student:
+                                                                    student,
+                                                                  )),
+                                                            );
+                                                          } else if (res.code ==
+                                                              409) {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
                                                                 type:
                                                                 PageTransitionType
-                                                                    .fade,
-                                                                child:
-                                                                TeacherRegistrationOtpPage(
-                                                                  student:
-                                                                  student,
-                                                                )),
-                                                          );
-                                                        } else if (res.code ==
-                                                            409) {
+                                                                    .rightToLeft,
+                                                                child: CustomDialog(
+                                                                  title: AppLocalizations
+                                                                      .of(context)!
+                                                                      .alert_popup,
+                                                                  //'Incorrect Data',
+                                                                  content: AppLocalizations
+                                                                      .of(context)!
+                                                                      .already_registered_user,
+                                                                  button:
+                                                                  AppLocalizations.of(
+                                                                      context)!
+                                                                      .ok_caps,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                        } else {
                                                           Navigator.push(
                                                             context,
                                                             PageTransition(
@@ -2405,1405 +4004,293 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                                 title: AppLocalizations
                                                                     .of(context)!
                                                                     .alert_popup,
-                                                                //'Incorrect Data',
-                                                                content: AppLocalizations
-                                                                    .of(context)!
-                                                                    .already_registered_user,
+                                                                //'Alert',
+                                                                content:
+                                                                '${res.message}',
                                                                 button:
                                                                 AppLocalizations.of(
                                                                     context)!
-                                                                    .ok_caps,
+                                                                    .retry,
                                                               ),
                                                             ),
                                                           );
                                                         }
-                                                      } else {
-                                                        Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                            PageTransitionType
-                                                                .rightToLeft,
-                                                            child: CustomDialog(
-                                                              title: AppLocalizations
-                                                                  .of(context)!
-                                                                  .alert_popup,
-                                                              //'Alert',
-                                                              content:
-                                                              '${res.message}',
-                                                              button:
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .retry,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                    }
-                                                  } else {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .rightToLeft,
-                                                        child: CustomDialog(
-                                                            title: AppLocalizations
-                                                                .of(context)!
-                                                                .alert_popup,
-                                                            content: AppLocalizations
-                                                                .of(context)!
-                                                                .agree_privacy_terms,
-                                                            button:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .retry),
-                                                      ),
-                                                    );
-                                                  }
-                                                },
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: localHeight * 0.03,
-                                            ),
-                                            //SizedBox(height:localHeight * 0.05),
-                                          ],
-                                        )]),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        //)
-                      )
-                    ]))));
-      }
-      else {
-        return WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-                appBar: AppBar(
-                  elevation: 0,
-                  backgroundColor: Colors.transparent,
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.chevron_left,
-                      size: 40.0,
-                      color: Color.fromRGBO(28, 78, 80, 1),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  centerTitle: true,
-                  title: Text(
-                    AppLocalizations.of(context)!.teacher_reg_caps,
-                    style: const TextStyle(
-                      color: Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: 18.0,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  flexibleSpace: Container(
-                    color: Colors.white,
-                  ),
-                ),
-                body: SingleChildScrollView(
-                    physics: const ClampingScrollPhysics(),
-                    child: Column(children: [
-                      SizedBox(height: localHeight * 0.05),
-                      Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: kElevationToShadow[4],
-                          ),
-                          width: localWidth * 0.9,
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: localWidth * 0.8,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          SizedBox(
-                                            height: localHeight * 0.05,
-                                          ),
-                                          Center(
-                                            child:
-                                            SizedBox(
-                                                width: localWidth * 0.8,
-                                                child: TextFormField(
-                                                  initialValue: widget.institutionId,
-                                                  decoration: InputDecoration(
-                                                    labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                    floatingLabelBehavior:
-                                                    FloatingLabelBehavior.always,
-                                                    label: Text(AppLocalizations.of(
-                                                        context)!
-                                                        .reg_roll_caps,
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight
-                                                              .w600,
-                                                          fontSize: localHeight *
-                                                              0.020),
-                                                    ),
-                                                    helperStyle: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontStyle: FontStyle.italic,
-                                                        fontSize: localHeight * 0.016),
-                                                    helperText: AppLocalizations.of(context)!.org_helper_reg,
-                                                    hintStyle: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.018),
-                                                    hintText: "Enter 8-Digit ID",
-                                                  ),
-                                                  enabled: false,
-                                                )),
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.03
-                                            ,
-                                          ),
-                                          Center(
-                                            child:
-                                            SizedBox(
-                                                width: localWidth * 0.8,
-                                                child: TextFormField(
-                                                  initialValue: widget.institutionName,
-                                                  decoration: InputDecoration(
-                                                    labelStyle: Theme.of(context).textTheme.headlineMedium,
-                                                    floatingLabelBehavior:
-                                                    FloatingLabelBehavior.always,
-                                                    label: Text("Institution Name",
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight
-                                                              .w600,
-                                                          fontSize: localHeight *
-                                                              0.020),
-                                                    ),
-                                                    helperStyle: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontStyle: FontStyle.italic,
-                                                        fontSize: localHeight * 0.016),
-                                                    helperText: AppLocalizations.of(context)!.org_helper_reg,
-                                                    hintStyle: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.018),
-                                                    hintText: "Enter 8-Digit ID",
-                                                  ),
-                                                  enabled: false,
-                                                )),
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Center(
-                                            child: SizedBox(
-                                                width: localWidth * 0.8,
-                                                child: TextFormField(
-                                                  controller:
-                                                  teacherFirstNameController,
-                                                  maxLength: 100,
-                                                  maxLengthEnforcement:
-                                                  MaxLengthEnforcement
-                                                      .truncateAfterCompositionEnds,
-                                                  keyboardType:
-                                                  TextInputType.text,
-                                                  decoration: InputDecoration(
-                                                    labelStyle:
-                                                    Theme.of(context)
-                                                        .textTheme
-                                                        .headlineMedium,
-                                                    label: Text(
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .first_name_caps,
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w600,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.020),
-                                                    ),
-                                                    hintStyle: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize: localHeight *
-                                                            0.018),
-                                                    hintText:
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .enter_here,
-                                                    floatingLabelBehavior:
-                                                    FloatingLabelBehavior
-                                                        .always,
-                                                  ),
-                                                  onChanged: (value) {
-                                                    formKey.currentState!
-                                                        .validate();
-                                                  },
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return 'Enter First Name';
-                                                    } else {
-                                                      return null;
-                                                    }
-                                                  },
-                                                )),
-                                          ),
-                                          Center(
-                                              child: SizedBox(
-                                                width: localWidth * 0.8,
-                                                child: TextFormField(
-                                                  controller:
-                                                  teacherLastNameController,
-                                                  keyboardType: TextInputType.text,
-                                                  decoration: InputDecoration(
-                                                    labelStyle: Theme.of(context)
-                                                        .textTheme
-                                                        .headlineMedium,
-                                                    label: Text(
-                                                      AppLocalizations.of(context)!
-                                                          .last_name_caps,
-                                                      style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w600,
-                                                          fontSize:
-                                                          localHeight * 0.020),
-                                                    ),
-                                                    floatingLabelBehavior:
-                                                    FloatingLabelBehavior
-                                                        .always,
-                                                    hintStyle: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize:
-                                                        localHeight * 0.018),
-                                                    hintText: AppLocalizations.of(
-                                                        context)!
-                                                        .enter_here,
-                                                  ),
-                                                  onChanged: (value) {
-                                                    formKey.currentState!
-                                                        .validate();
-                                                  },
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return 'Enter Last Name';
-                                                    } else {
-                                                      return null;
-                                                    }
-                                                  },
-                                                ),
-                                              )),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Column(
-                                            children: [
-                                              Row(children: [
-                                                Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .gender,
-                                                  style: TextStyle(
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      fontSize:
-                                                      localHeight *
-                                                          0.0155),
-                                                ),
-                                              ]),
-                                              Row(
-                                                children: [
-                                                  Radio(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    value: "male",
-                                                    groupValue: gender,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        gender = value
-                                                          ..toString();
-                                                      });
-                                                    },
-                                                  ),
-                                                  Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .male,
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            51, 51, 51, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize:
-                                                        localHeight *
-                                                            0.016),
-                                                  ),
-                                                  Radio(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    value: "female",
-                                                    groupValue: gender,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        gender = value
-                                                            .toString();
-                                                      });
-                                                    },
-                                                  ),
-                                                  Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .female,
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            51, 51, 51, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize:
-                                                        localHeight *
-                                                            0.016),
-                                                  ),
-                                                  Radio(
-                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                    value: "others",
-                                                    groupValue: gender,
-                                                    onChanged: (value) {
-                                                      setState(() {
-                                                        gender = value
-                                                            .toString();
-                                                      });
-                                                    },
-                                                  ),
-                                                  Text(
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .others,
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            51, 51, 51, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize:
-                                                        localHeight *
-                                                            0.016),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.01,
-                                          ),
-                                          Stack(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(left: localWidth * 0.01, right: localWidth * 0.01 , top: localHeight * 0.02),
-                                                child: DropDownTextField(
-                                                  controller:
-                                                  selectedCountryCitizen,
-                                                  clearOption: true,
-                                                  enableSearch: true,
-                                                  textFieldDecoration: InputDecoration(
-                                                      labelStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior
-                                                          .always,
-                                                      hintStyle: TextStyle(
-                                                          color:
-                                                          const Color
-                                                              .fromRGBO(
-                                                              102,
-                                                              102,
-                                                              102,
-                                                              0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.018),
-                                                      hintText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here),
-                                                  clearIconProperty:
-                                                  IconProperty(
-                                                      color: const Color
-                                                          .fromRGBO(102,
-                                                          102, 102, 0.3)),
-                                                  searchDecoration: InputDecoration(
-                                                      labelStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .headlineMedium,
-                                                      hintStyle: TextStyle(
-                                                          color:
-                                                          const Color
-                                                              .fromRGBO(
-                                                              102,
-                                                              102,
-                                                              102,
-                                                              0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.016),
-                                                      hintText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here),
-                                                  validator: (value) {
-                                                    if (value == null) {
-                                                      return "Required field";
-                                                    } else {
-                                                      return null;
-                                                    }
-                                                  },
-                                                  dropDownItemCount: 5,
-                                                  dropDownList: [
-                                                    for (int i = 0; i <= n; i++)
-                                                      DropDownValueModel(
-                                                          name:
-                                                          countryCitizenList[
-                                                          i],
-                                                          value:
-                                                          countryCitizenList[
-                                                          i])
-                                                  ],
-                                                  onChanged: (value) {},
-                                                ),
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .country_citizen,
-                                                //"Citizen of Country",
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    fontSize:
-                                                    localHeight * 0.016),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Stack(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                EdgeInsets.only(
-                                                    left: localWidth * 0.01, right: localWidth * 0.01, top: localHeight * 0.02),
-                                                child: DropDownTextField(
-                                                  controller:
-                                                  selectedCountryResident,
-                                                  clearOption: true,
-                                                  enableSearch: true,
-                                                  textFieldDecoration: InputDecoration(
-                                                      labelStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior
-                                                          .always,
-                                                      hintStyle: TextStyle(
-                                                          color:
-                                                          const Color
-                                                              .fromRGBO(
-                                                              102,
-                                                              102,
-                                                              102,
-                                                              0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.018),
-                                                      hintText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here),
-                                                  clearIconProperty:
-                                                  IconProperty(
-                                                      color: const Color
-                                                          .fromRGBO(102,
-                                                          102, 102, 0.3)),
-                                                  searchDecoration: InputDecoration(
-                                                      labelStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .headlineMedium,
-                                                      hintStyle: TextStyle(
-                                                          color:
-                                                          const Color
-                                                              .fromRGBO(
-                                                              102,
-                                                              102,
-                                                              102,
-                                                              0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.018),
-                                                      hintText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here),
-                                                  validator: (value) {
-                                                    if (value == null) {
-                                                      return "Required field";
-                                                    } else {
-                                                      return null;
-                                                    }
-                                                  },
-                                                  dropDownItemCount: 5,
-                                                  dropDownList: [
-                                                    DropDownValueModel(
-                                                        name:
-                                                        countryResidentList[
-                                                        0],
-                                                        value:
-                                                        countryResidentList[
-                                                        0]),
-                                                    DropDownValueModel(
-                                                        name:
-                                                        countryResidentList[
-                                                        1],
-                                                        value:
-                                                        countryResidentList[
-                                                        1]),
-                                                    DropDownValueModel(
-                                                        name:
-                                                        countryResidentList[
-                                                        2],
-                                                        value:
-                                                        countryResidentList[
-                                                        2]),
-                                                    DropDownValueModel(
-                                                        name:
-                                                        countryResidentList[
-                                                        3],
-                                                        value:
-                                                        countryResidentList[
-                                                        3])
-                                                  ],
-                                                  onChanged: (value) {},
-                                                ),
-                                              ),
-                                              Container(
-                                                color: Colors.white,
-                                                child: Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .country_resident,
-                                                  //Resident of Country
-                                                  style: TextStyle(
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          102, 102, 102, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      fontSize: localHeight *
-                                                          0.016),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Center(
-                                              child: SizedBox(
-                                                  width: localWidth * 0.8,
-                                                  child: TextFormField(
-                                                    controller:
-                                                    teacherEmailController,
-                                                    keyboardType:
-                                                    TextInputType.text,
-                                                    decoration: InputDecoration(
-                                                      labelStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior
-                                                          .always,
-                                                      label: Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .email_id_caps,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102,
-                                                                102,
-                                                                102,
-                                                                1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                            FontWeight.w600,
-                                                            fontSize:
-                                                            localHeight *
-                                                                0.020),
-                                                      ),
-                                                      helperText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .email_helper_text,
-                                                      helperStyle: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(102,
-                                                              102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontStyle:
-                                                          FontStyle.italic,
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.016),
-                                                      hintStyle: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(102,
-                                                              102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.018),
-                                                      hintText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here,
-                                                    ),
-                                                    onChanged: (value) {
-                                                      formKey.currentState!
-                                                          .validate();
-                                                    },
-                                                    validator: (value) {
-                                                      if (value!.isEmpty ||
-                                                          !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                              .hasMatch(
-                                                              value)) {
-                                                        return 'Enter Valid Email';
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                  ))),
-                                          SizedBox(
-                                            height: localHeight * 0.01,
-                                          ),
-                                          Center(
-                                              child: SizedBox(
-                                                  width: localWidth * 0.8,
-                                                  child: TextFormField(
-                                                    controller:
-                                                    teacherPasswordController,
-                                                    keyboardType:
-                                                    TextInputType.text,
-                                                    decoration: InputDecoration(
-                                                      labelStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .headlineMedium,
-                                                      floatingLabelBehavior:
-                                                      FloatingLabelBehavior
-                                                          .always,
-                                                      label: Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .password_caps,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102,
-                                                                102,
-                                                                102,
-                                                                1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                            FontWeight.w600,
-                                                            fontSize:
-                                                            localHeight *
-                                                                0.020),
-                                                      ),
-                                                      hintStyle: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(102,
-                                                              102, 102, 0.3),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.018),
-                                                      hintText:
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .enter_here,
-                                                    ),
-                                                    inputFormatters: [
-                                                      FilteringTextInputFormatter
-                                                          .deny(' ')
-                                                    ],
-                                                    onChanged: (val) {
-                                                      formKey.currentState!
-                                                          .validate();
-                                                    },
-                                                    validator: (value) {
-                                                      if (value!.length < 8) {
-                                                        return "Enter Minimum 8 Characters";
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                  ))),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Center(
-                                            child: SizedBox(
-                                                width: localWidth * 0.8,
-                                                child: TextFormField(
-                                                  controller:
-                                                  teacherconfirmPasswordController,
-                                                  keyboardType:
-                                                  TextInputType.text,
-                                                  decoration: InputDecoration(
-                                                    labelStyle:
-                                                    Theme.of(context)
-                                                        .textTheme
-                                                        .headlineMedium,
-                                                    floatingLabelBehavior:
-                                                    FloatingLabelBehavior
-                                                        .always,
-                                                    label: Text(
-                                                      AppLocalizations.of(
-                                                          context)!
-                                                          .confirm_password,
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              102, 102, 102, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                          FontWeight.w600,
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.020),
-                                                    ),
-                                                    hintStyle: TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
-                                                            102, 102, 102, 0.3),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize: localHeight *
-                                                            0.018),
-                                                    hintText:
-                                                    AppLocalizations.of(
-                                                        context)!
-                                                        .enter_here,
-                                                  ),
-                                                  onChanged: (value) {
-                                                    formKey.currentState!
-                                                        .validate();
-                                                  },
-                                                  validator: (value) {
-                                                    if (teacherPasswordController
-                                                        .text !=
-                                                        teacherconfirmPasswordController
-                                                            .text) {
-                                                      return 'Re-enter exact same password';
-                                                    } else if (value!.isEmpty) {
-                                                      return 'Re-enter exact same password';
-                                                    } else {
-                                                      return null;
-                                                    }
-                                                  },
-                                                )),
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Row(children: [
-                                            SizedBox(width: localWidth * 0.05),
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .pri_terms,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.018,
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 1),
-                                                  fontWeight: FontWeight.w600,
-                                                  fontFamily: "Inter"),
-                                            )
-                                          ]),
-                                          SizedBox(
-                                            height: localHeight * 0.02,
-                                          ),
-                                          Row(
-                                              crossAxisAlignment: CrossAxisAlignment
-                                                  .center,
-                                              children: [
-                                                SizedBox(width: localWidth * 0.01),
-                                                Transform.scale(
-                                                    filterQuality: FilterQuality.high,
-                                                    scale: 1.5,
-                                                    child: Checkbox(
-                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                      shape: RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .circular(1)),
-                                                      value: pPCheck,
-                                                      onChanged: (val) {
-                                                        setState(() {
-                                                          pPCheck = val!;
-                                                          if (pPCheck) {}
-                                                        });
-                                                      },
-                                                    )),
-                                                SizedBox(width: localWidth * 0.01),
-                                                Flexible(
-                                                  child: RichText(
-                                                      text: TextSpan(children: [
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(
-                                                              context)!
-                                                              .agree_msg,
-                                                          style: TextStyle(
-                                                              fontSize: localHeight *
-                                                                  0.018,
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  51, 51, 51, 1),
-                                                              fontFamily: "Inter"),
-                                                        ),
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(
-                                                              context)!
-                                                              .privacy_Policy,
-                                                          recognizer: TapGestureRecognizer()
-                                                            ..onTap = _launchUrlPrivacy,
-                                                          style: TextStyle(
-                                                              fontSize: localHeight *
-                                                                  0.018,
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              decoration: TextDecoration
-                                                                  .underline,
-                                                              color:
-                                                              const Color.fromRGBO(
-                                                                  82, 165, 160, 1),
-                                                              fontFamily: "Inter"),
-                                                        ),
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(
-                                                              context)!.and,
-                                                          style: TextStyle(
-                                                              fontSize: localHeight *
-                                                                  0.018,
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              color:
-                                                              const Color.fromRGBO(
-                                                                  51, 51, 51, 1),
-                                                              fontFamily: "Inter"),
-                                                        ),
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(
-                                                              context)!.terms,
-                                                          recognizer: TapGestureRecognizer()
-                                                            ..onTap = _launchUrlTerms,
-                                                          style: TextStyle(
-                                                              fontSize: localHeight *
-                                                                  0.018,
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              decoration: TextDecoration
-                                                                  .underline,
-                                                              color:
-                                                              const Color.fromRGBO(
-                                                                  82, 165, 160, 1),
-                                                              fontFamily: "Inter"),
-                                                        ),
-                                                        TextSpan(
-                                                          text: AppLocalizations.of(
-                                                              context)!
-                                                              .services,
-                                                          recognizer: TapGestureRecognizer()
-                                                            ..onTap = _launchUrlTerms,
-                                                          style: TextStyle(
-                                                              fontSize: localHeight *
-                                                                  0.018,
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              decoration: TextDecoration
-                                                                  .underline,
-                                                              color:
-                                                              const Color.fromRGBO(
-                                                                  82, 165, 160, 1),
-                                                              fontFamily: "Inter"),
-                                                        ),
-                                                      ])),
-                                                ),
-                                              ]),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          Center(
-                                            child: IconButton(
-                                              iconSize: localHeight * 0.06,
-                                              icon: const Icon(
-                                                  Icons.arrow_circle_right,
-                                                  color: Color.fromRGBO(82, 165, 160, 1)
-                                              ),
-                                              onPressed: () async {
-                                                bool valid = formKey
-                                                    .currentState!
-                                                    .validate();
-                                                StudentRegistrationModel student = StudentRegistrationModel(
-                                                    firstName:
-                                                    teacherFirstNameController
-                                                        .text,
-                                                    lastName: teacherLastNameController.text,
-                                                    dob: 01010001,
-                                                    gender: gender,
-                                                    countryNationality: selectedCountryCitizen.dropDownValue?.value,
-                                                    email: teacherEmailController.text,
-                                                    password: teacherPasswordController.text,
-                                                    rollNumber: teacherRollNumberController.text,
-
-                                                    organisationName:
-                                                    widget.institutionName,
-                                                    institutionId: widget.organisationId,
-                                                    countryResident: selectedCountryResident.dropDownValue?.value,
-                                                    role: ["teacher","student"],
-                                                    userRole: "teacher"
-                                                  //also == true?
-                                                  //["student","teacher"]
-                                                  //: ["student"]
-                                                );
-                                                if (pPCheck) {
-                                                  bool valid = formKey
-                                                      .currentState!
-                                                      .validate();
-                                                  if (valid) {
-                                                    LoginModel res =
-                                                    await QnaService
-                                                        .postUserDetailsService(
-                                                        student);
-                                                    if (res.code == 200) {
-                                                      if (context.mounted) {
-                                                        Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                              type:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                              child:
-                                                              TeacherRegistrationOtpPage(
-                                                                student:
-                                                                student,
-                                                              )),
-                                                        );
-                                                      } else if (res.code ==
-                                                          409) {
-                                                        Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                            PageTransitionType
-                                                                .rightToLeft,
-                                                            child: CustomDialog(
-                                                              title: AppLocalizations
-                                                                  .of(context)!
-                                                                  .alert_popup,
-                                                              //'Incorrect Data',
-                                                              content: AppLocalizations
-                                                                  .of(context)!
-                                                                  .already_registered_user,
-                                                              button:
-                                                              AppLocalizations.of(
-                                                                  context)!
-                                                                  .ok_caps,
-                                                            ),
-                                                          ),
-                                                        );
                                                       }
                                                     } else {
                                                       Navigator.push(
                                                         context,
                                                         PageTransition(
-                                                          type:
-                                                          PageTransitionType
+                                                          type: PageTransitionType
                                                               .rightToLeft,
                                                           child: CustomDialog(
-                                                            title: AppLocalizations
-                                                                .of(context)!
-                                                                .alert_popup,
-                                                            //'Alert',
-                                                            content:
-                                                            '${res.message}',
-                                                            button:
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .retry,
-                                                          ),
+                                                              title: AppLocalizations
+                                                                  .of(context)!
+                                                                  .alert_popup,
+                                                              content: AppLocalizations
+                                                                  .of(context)!
+                                                                  .agree_privacy_terms,
+                                                              button:
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .retry),
                                                         ),
                                                       );
                                                     }
-                                                  }
-                                                } else {
-                                                  Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .rightToLeft,
-                                                      child: CustomDialog(
-                                                          title: AppLocalizations
-                                                              .of(context)!
-                                                              .alert_popup,
-                                                          content: AppLocalizations
-                                                              .of(context)!
-                                                              .agree_privacy_terms,
-                                                          button:
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .retry),
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: localHeight * 0.03,
-                                          ),
-                                          //SizedBox(height:localHeight * 0.05),
+                                                  },
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: localHeight * 0.03,
+                                              ),
+                                              //SizedBox(height:localHeight * 0.05),
+                                            ],
+                                          )
                                         ],
-                                      )
-                                    ],
-                                  ),
+                                      ),
+                                    ),
+                                    //  SizedBox(
+                                    //    height: localHeight * 0.03,
+                                    //  ),
+                                    //  Align(
+                                    //        alignment: Alignment.topLeft,
+                                    //        child: Text(
+                                    //          AppLocalizations.of(context)!.pri_terms,
+                                    //          style: const TextStyle(
+                                    //              fontSize: 17.0,
+                                    //              color: Color.fromRGBO(102, 102, 102, 1),
+                                    //              fontWeight: FontWeight.w600,
+                                    //              fontFamily: "Inter"),
+                                    //        ),
+                                    //  ),
+                                    //  SizedBox(
+                                    //    height: localHeight * 0.02,
+                                    //  ),
+                                    // Row(
+                                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                                    //        children: [
+                                    //          Checkbox(
+                                    //            shape: RoundedRectangleBorder(
+                                    //                borderRadius: BorderRadius.circular(1)),
+                                    //            value: pPCheck,
+                                    //            onChanged: (val) {
+                                    //              setState(() {
+                                    //                pPCheck = val!;
+                                    //                if (pPCheck) {}
+                                    //              });
+                                    //            },
+                                    //          ),
+                                    //          Flexible(
+                                    //            child: RichText(
+                                    //                text: TextSpan(children: [
+                                    //                  TextSpan(
+                                    //                    text: AppLocalizations.of(context)!
+                                    //                        .agree_msg,
+                                    //                    style: TextStyle(
+                                    //                        fontSize: localHeight * 0.02,
+                                    //                        fontWeight: FontWeight.w400,
+                                    //                        color: const Color.fromRGBO(
+                                    //                            51, 51, 51, 1),
+                                    //                        fontFamily: "Inter"),
+                                    //                  ),
+                                    //                  TextSpan(
+                                    //                    text:
+                                    //                    AppLocalizations.of(context)!
+                                    //                        .privacy_Policy,
+                                    //                    recognizer: TapGestureRecognizer()
+                                    //                      ..onTap = _launchUrlPrivacy,
+                                    //                    style: TextStyle(
+                                    //                        fontSize: localHeight * 0.02,
+                                    //                        fontWeight: FontWeight.w400,
+                                    //                        decoration: TextDecoration
+                                    //                            .underline,
+                                    //                        color: const Color.fromRGBO(
+                                    //                            82, 165, 160, 1),
+                                    //                        fontFamily: "Inter"),
+                                    //                  ),
+                                    //                  TextSpan(
+                                    //                    text: AppLocalizations.of(context)!
+                                    //                        .and,
+                                    //                    style: TextStyle(
+                                    //                        fontSize: localHeight * 0.02,
+                                    //                        fontWeight: FontWeight.w400,
+                                    //                        color: const Color.fromRGBO(
+                                    //                            51, 51, 51, 1),
+                                    //                        fontFamily: "Inter"),
+                                    //                  ),
+                                    //                  TextSpan(
+                                    //                    text: AppLocalizations.of(context)!
+                                    //                        .terms,
+                                    //                    recognizer: TapGestureRecognizer()
+                                    //                      ..onTap = _launchUrlTerms,
+                                    //                    style: TextStyle(
+                                    //                        fontSize: localHeight * 0.02,
+                                    //                        fontWeight: FontWeight.w400,
+                                    //                        decoration: TextDecoration
+                                    //                            .underline,
+                                    //                        color: const Color.fromRGBO(
+                                    //                            82, 165, 160, 1),
+                                    //                        fontFamily: "Inter"),
+                                    //                  ),
+                                    //                  TextSpan(
+                                    //                    text: AppLocalizations.of(context)!
+                                    //                        .services,
+                                    //                    recognizer: TapGestureRecognizer()
+                                    //                      ..onTap = _launchUrlTerms,
+                                    //                    style: TextStyle(
+                                    //                        fontSize: localHeight * 0.02,
+                                    //                        fontWeight: FontWeight.w400,
+                                    //                        decoration: TextDecoration
+                                    //                            .underline,
+                                    //                        color: const Color.fromRGBO(
+                                    //                            82, 165, 160, 1),
+                                    //                        fontFamily: "Inter"),
+                                    //                  ),
+                                    //                ])),
+                                    //          ),
+                                    //        ]),
+                                    //  SizedBox(
+                                    //    height: localHeight * 0.05,
+                                    //  ),
+                                    //  Center(
+                                    //    child: ElevatedButton(
+                                    //      style: ElevatedButton.styleFrom(
+                                    //        backgroundColor: const Color.fromRGBO(
+                                    //            82, 165, 160, 1),
+                                    //        minimumSize: const Size(280, 48),
+                                    //        shape: RoundedRectangleBorder(
+                                    //          borderRadius: BorderRadius.circular(39),
+                                    //        ),
+                                    //      ),
+                                    //      onPressed: () async {
+                                    //        bool valid = formKey.currentState!.validate();
+                                    //        StudentRegistrationModel student =
+                                    //        StudentRegistrationModel(
+                                    //            firstName: teacherFirstNameController.text,
+                                    //            lastName: teacherLastNameController.text,
+                                    //            dob: 01010001,
+                                    //            gender: gender,
+                                    //            countryNationality: selectedCountryCitizen
+                                    //                .dropDownValue?.value,
+                                    //            email: teacherEmailController.text,
+                                    //            password: teacherPasswordController.text,
+                                    //            rollNumber: teacherRollNumberController
+                                    //                .text,
+                                    //            organisationName:
+                                    //            teacherOrganisationNameController.text,
+                                    //            countryResident:
+                                    //            selectedCountryResident
+                                    //                .dropDownValue?.value,
+                                    //            role: ["teacher"]
+                                    //          //also == true ?
+                                    //          //["teacher","student"]
+                                    //          // : ["teacher"]
+                                    //        );
+                                    //        if (pPCheck) {
+                                    //          bool valid = formKey.currentState!.validate();
+                                    //          if (valid) {
+                                    //            LoginModel res =
+                                    //            await QnaService.postUserDetailsService(
+                                    //                student);
+                                    //            if (res.code == 200) {
+                                    //              Navigator.push(
+                                    //                context,
+                                    //                PageTransition(
+                                    //                    type: PageTransitionType.fade,
+                                    //                    child: TeacherRegistrationOtpPage(
+                                    //                      student: student,
+                                    //                    )),
+                                    //              );
+                                    //            }
+                                    //            else if (res.code == 409) {
+                                    //              Navigator.push(
+                                    //                context,
+                                    //                PageTransition(
+                                    //                  type: PageTransitionType.rightToLeft,
+                                    //                  child: CustomDialog(
+                                    //                    title: AppLocalizations.of(context)!
+                                    //                        .alert_popup,
+                                    //                    //'Incorrect Data',
+                                    //                    content: AppLocalizations.of(
+                                    //                        context)!
+                                    //                        .already_registered_user,
+                                    //                    button: AppLocalizations.of(
+                                    //                        context)!.ok_caps,
+                                    //                  ),
+                                    //                ),
+                                    //              );
+                                    //            }
+                                    //            else {
+                                    //              Navigator.push(
+                                    //                context,
+                                    //                PageTransition(
+                                    //                  type: PageTransitionType.rightToLeft,
+                                    //                  child: CustomDialog(
+                                    //                    title: AppLocalizations.of(context)!
+                                    //                        .alert_popup,
+                                    //                    //'Incorrect Data',
+                                    //                    content: '${res.message}',
+                                    //                    button: AppLocalizations.of(
+                                    //                        context)!.retry,
+                                    //                  ),
+                                    //                ),
+                                    //              );
+                                    //            }
+                                    //          }
+                                    //        }
+                                    //        else {
+                                    //          Navigator.push(
+                                    //            context,
+                                    //            PageTransition(
+                                    //              type: PageTransitionType.rightToLeft,
+                                    //              child: CustomDialog(
+                                    //                  title: AppLocalizations.of(context)!
+                                    //                      .agree_privacy_terms,
+                                    //                  content: AppLocalizations.of(context)!
+                                    //                      .error,
+                                    //                  button: AppLocalizations.of(context)!
+                                    //                      .retry),
+                                    //            ),
+                                    //          );
+                                    //        }
+                                    //      },
+                                    //      child: Text(
+                                    //        AppLocalizations.of(context)!.send_otp,
+                                    //        //'Send OTP',
+                                    //        style: TextStyle(
+                                    //            fontSize: localHeight * 0.024,
+                                    //            fontFamily: "Inter",
+                                    //            fontWeight: FontWeight.w600),
+                                    //      ),
+                                    //    ),
+                                    //  ),
+                                    SizedBox(
+                                      height: localHeight * 0.05,
+                                    ),
+                                  ],
                                 ),
-                                //  SizedBox(
-                                //    height: localHeight * 0.03,
-                                //  ),
-                                //  Align(
-                                //        alignment: Alignment.topLeft,
-                                //        child: Text(
-                                //          AppLocalizations.of(context)!.pri_terms,
-                                //          style: const TextStyle(
-                                //              fontSize: 17.0,
-                                //              color: Color.fromRGBO(102, 102, 102, 1),
-                                //              fontWeight: FontWeight.w600,
-                                //              fontFamily: "Inter"),
-                                //        ),
-                                //  ),
-                                //  SizedBox(
-                                //    height: localHeight * 0.02,
-                                //  ),
-                                // Row(
-                                //     crossAxisAlignment: CrossAxisAlignment.center,
-                                //        children: [
-                                //          Checkbox(
-                                //            shape: RoundedRectangleBorder(
-                                //                borderRadius: BorderRadius.circular(1)),
-                                //            value: pPCheck,
-                                //            onChanged: (val) {
-                                //              setState(() {
-                                //                pPCheck = val!;
-                                //                if (pPCheck) {}
-                                //              });
-                                //            },
-                                //          ),
-                                //          Flexible(
-                                //            child: RichText(
-                                //                text: TextSpan(children: [
-                                //                  TextSpan(
-                                //                    text: AppLocalizations.of(context)!
-                                //                        .agree_msg,
-                                //                    style: TextStyle(
-                                //                        fontSize: localHeight * 0.02,
-                                //                        fontWeight: FontWeight.w400,
-                                //                        color: const Color.fromRGBO(
-                                //                            51, 51, 51, 1),
-                                //                        fontFamily: "Inter"),
-                                //                  ),
-                                //                  TextSpan(
-                                //                    text:
-                                //                    AppLocalizations.of(context)!
-                                //                        .privacy_Policy,
-                                //                    recognizer: TapGestureRecognizer()
-                                //                      ..onTap = _launchUrlPrivacy,
-                                //                    style: TextStyle(
-                                //                        fontSize: localHeight * 0.02,
-                                //                        fontWeight: FontWeight.w400,
-                                //                        decoration: TextDecoration
-                                //                            .underline,
-                                //                        color: const Color.fromRGBO(
-                                //                            82, 165, 160, 1),
-                                //                        fontFamily: "Inter"),
-                                //                  ),
-                                //                  TextSpan(
-                                //                    text: AppLocalizations.of(context)!
-                                //                        .and,
-                                //                    style: TextStyle(
-                                //                        fontSize: localHeight * 0.02,
-                                //                        fontWeight: FontWeight.w400,
-                                //                        color: const Color.fromRGBO(
-                                //                            51, 51, 51, 1),
-                                //                        fontFamily: "Inter"),
-                                //                  ),
-                                //                  TextSpan(
-                                //                    text: AppLocalizations.of(context)!
-                                //                        .terms,
-                                //                    recognizer: TapGestureRecognizer()
-                                //                      ..onTap = _launchUrlTerms,
-                                //                    style: TextStyle(
-                                //                        fontSize: localHeight * 0.02,
-                                //                        fontWeight: FontWeight.w400,
-                                //                        decoration: TextDecoration
-                                //                            .underline,
-                                //                        color: const Color.fromRGBO(
-                                //                            82, 165, 160, 1),
-                                //                        fontFamily: "Inter"),
-                                //                  ),
-                                //                  TextSpan(
-                                //                    text: AppLocalizations.of(context)!
-                                //                        .services,
-                                //                    recognizer: TapGestureRecognizer()
-                                //                      ..onTap = _launchUrlTerms,
-                                //                    style: TextStyle(
-                                //                        fontSize: localHeight * 0.02,
-                                //                        fontWeight: FontWeight.w400,
-                                //                        decoration: TextDecoration
-                                //                            .underline,
-                                //                        color: const Color.fromRGBO(
-                                //                            82, 165, 160, 1),
-                                //                        fontFamily: "Inter"),
-                                //                  ),
-                                //                ])),
-                                //          ),
-                                //        ]),
-                                //  SizedBox(
-                                //    height: localHeight * 0.05,
-                                //  ),
-                                //  Center(
-                                //    child: ElevatedButton(
-                                //      style: ElevatedButton.styleFrom(
-                                //        backgroundColor: const Color.fromRGBO(
-                                //            82, 165, 160, 1),
-                                //        minimumSize: const Size(280, 48),
-                                //        shape: RoundedRectangleBorder(
-                                //          borderRadius: BorderRadius.circular(39),
-                                //        ),
-                                //      ),
-                                //      onPressed: () async {
-                                //        bool valid = formKey.currentState!.validate();
-                                //        StudentRegistrationModel student =
-                                //        StudentRegistrationModel(
-                                //            firstName: teacherFirstNameController.text,
-                                //            lastName: teacherLastNameController.text,
-                                //            dob: 01010001,
-                                //            gender: gender,
-                                //            countryNationality: selectedCountryCitizen
-                                //                .dropDownValue?.value,
-                                //            email: teacherEmailController.text,
-                                //            password: teacherPasswordController.text,
-                                //            rollNumber: teacherRollNumberController
-                                //                .text,
-                                //            organisationName:
-                                //            teacherOrganisationNameController.text,
-                                //            countryResident:
-                                //            selectedCountryResident
-                                //                .dropDownValue?.value,
-                                //            role: ["teacher"]
-                                //          //also == true ?
-                                //          //["teacher","student"]
-                                //          // : ["teacher"]
-                                //        );
-                                //        if (pPCheck) {
-                                //          bool valid = formKey.currentState!.validate();
-                                //          if (valid) {
-                                //            LoginModel res =
-                                //            await QnaService.postUserDetailsService(
-                                //                student);
-                                //            if (res.code == 200) {
-                                //              Navigator.push(
-                                //                context,
-                                //                PageTransition(
-                                //                    type: PageTransitionType.fade,
-                                //                    child: TeacherRegistrationOtpPage(
-                                //                      student: student,
-                                //                    )),
-                                //              );
-                                //            }
-                                //            else if (res.code == 409) {
-                                //              Navigator.push(
-                                //                context,
-                                //                PageTransition(
-                                //                  type: PageTransitionType.rightToLeft,
-                                //                  child: CustomDialog(
-                                //                    title: AppLocalizations.of(context)!
-                                //                        .alert_popup,
-                                //                    //'Incorrect Data',
-                                //                    content: AppLocalizations.of(
-                                //                        context)!
-                                //                        .already_registered_user,
-                                //                    button: AppLocalizations.of(
-                                //                        context)!.ok_caps,
-                                //                  ),
-                                //                ),
-                                //              );
-                                //            }
-                                //            else {
-                                //              Navigator.push(
-                                //                context,
-                                //                PageTransition(
-                                //                  type: PageTransitionType.rightToLeft,
-                                //                  child: CustomDialog(
-                                //                    title: AppLocalizations.of(context)!
-                                //                        .alert_popup,
-                                //                    //'Incorrect Data',
-                                //                    content: '${res.message}',
-                                //                    button: AppLocalizations.of(
-                                //                        context)!.retry,
-                                //                  ),
-                                //                ),
-                                //              );
-                                //            }
-                                //          }
-                                //        }
-                                //        else {
-                                //          Navigator.push(
-                                //            context,
-                                //            PageTransition(
-                                //              type: PageTransitionType.rightToLeft,
-                                //              child: CustomDialog(
-                                //                  title: AppLocalizations.of(context)!
-                                //                      .agree_privacy_terms,
-                                //                  content: AppLocalizations.of(context)!
-                                //                      .error,
-                                //                  button: AppLocalizations.of(context)!
-                                //                      .retry),
-                                //            ),
-                                //          );
-                                //        }
-                                //      },
-                                //      child: Text(
-                                //        AppLocalizations.of(context)!.send_otp,
-                                //        //'Send OTP',
-                                //        style: TextStyle(
-                                //            fontSize: localHeight * 0.024,
-                                //            fontFamily: "Inter",
-                                //            fontWeight: FontWeight.w600),
-                                //      ),
-                                //    ),
-                                //  ),
-                                SizedBox(
-                                  height: localHeight * 0.05,
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                        //)
-                      )
-                    ]))));
-      }
+                            //)
+                          )
+                        ]))));
+          }
         });
   }
-      Future<void> _launchUrlTerms() async {
-        final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
-        if (!await launchUrl(url)) {
-          throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
-        }
-      }
 
-      Future<void> _launchUrlPrivacy() async {
-        Map <String,String> privacyMap =  {
-          "ta":"",
+  Future<void> _launchUrlTerms() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
+    if (!await launchUrl(url)) {
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
+    }
+  }
 
-        };
-        final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
-        if (!await launchUrl(url)) {
-          throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
-        }
-      }
-
-
+  Future<void> _launchUrlPrivacy() async {
+    Map<String, String> privacyMap = {
+      "ta": "",
+    };
+    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
+    if (!await launchUrl(url)) {
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
+    }
+  }
 }
