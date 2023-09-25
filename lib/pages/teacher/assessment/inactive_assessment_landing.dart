@@ -539,16 +539,55 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                                 const Color.fromRGBO(28, 78, 80, 1),
                                                 fontWeight: FontWeight.w700),
                                           ),
-                                          Icon(
-                                            Icons.circle_outlined,
-                                            color: Colors.black,
-                                            size: MediaQuery
-                                                .of(context)
-                                                .copyWith()
-                                                .size
-                                                .height *
-                                                0.02,
-                                          )
+                                          Container(
+                                height: height * 0.04,
+                                width: width > 960
+                                    ?width * 0.07
+                                    : width > 500?
+                                    width * 0.16
+                                    : width *0.2,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(153, 153, 153, 1),
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      //AppLocalizations.of(context)!.active,
+                                      "  Inactive ",
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .bodyLarge
+                                          ?.merge(TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  153, 153, 153, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: MediaQuery.of(context)
+                                                      .copyWith()
+                                                      .size
+                                                      .height *
+                                                  0.016)),
+                                    ),
+                                  ],
+                                ),
+                              )
+                                          // Icon(
+                                          //   Icons.circle_outlined,
+                                          //   color: Colors.black,
+                                          //   size: MediaQuery
+                                          //       .of(context)
+                                          //       .copyWith()
+                                          //       .size
+                                          //       .height *
+                                          //       0.02,
+                                          // )
                                         ],
                                       ),
                                       Align(
@@ -1360,16 +1399,45 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                                   const Color.fromRGBO(28, 78, 80, 1),
                                                   fontWeight: FontWeight.w700),
                                             ),
-                                            Icon(
-                                              Icons.circle_outlined,
-                                              color: Colors.black,
-                                              size: MediaQuery
-                                                  .of(context)
-                                                  .copyWith()
-                                                  .size
-                                                  .height *
-                                                  0.02,
-                                            )
+                                           Container(
+                                height: height * 0.04,
+                                width: width > 960
+                                    ?width * 0.07
+                                    : width > 500?
+                                    width * 0.16
+                                    : width *0.2,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(153, 153, 153, 1),
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      //AppLocalizations.of(context)!.active,
+                                      "  Inactive ",
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .bodyLarge
+                                          ?.merge(TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  153, 153, 153, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: MediaQuery.of(context)
+                                                      .copyWith()
+                                                      .size
+                                                      .height *
+                                                  0.016)),
+                                    ),
+                                  ],
+                                ),
+                              )
                                           ],
                                         ),
                                         Align(
@@ -2179,16 +2247,55 @@ class InactiveAssessmentLandingState extends State<InactiveAssessmentLanding> {
                                                 const Color.fromRGBO(28, 78, 80, 1),
                                                 fontWeight: FontWeight.w700),
                                           ),
-                                          Icon(
-                                            Icons.circle_outlined,
-                                            color: Colors.black,
-                                            size: MediaQuery
-                                                .of(context)
-                                                .copyWith()
-                                                .size
-                                                .height *
-                                                0.02,
-                                          )
+                                          Container(
+                                height: height * 0.04,
+                                width: width > 960
+                                    ?width * 0.07
+                                    : width > 500?
+                                    width * 0.16
+                                    : width *0.2,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color:
+                                        const Color.fromRGBO(153, 153, 153, 1),
+                                  ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      //AppLocalizations.of(context)!.active,
+                                      "  Inactive ",
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .bodyLarge
+                                          ?.merge(TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  153, 153, 153, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: MediaQuery.of(context)
+                                                      .copyWith()
+                                                      .size
+                                                      .height *
+                                                  0.016)),
+                                    ),
+                                  ],
+                                ),
+                              )
+                                          // Icon(
+                                          //   Icons.circle_outlined,
+                                          //   color: Colors.black,
+                                          //   size: MediaQuery
+                                          //       .of(context)
+                                          //       .copyWith()
+                                          //       .size
+                                          //       .height *
+                                          //       0.02,
+                                          // )
                                         ],
                                       ),
                                       Align(

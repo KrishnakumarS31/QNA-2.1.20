@@ -66,6 +66,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
   bool showEmail = false;
   bool showWhatsappGroup = false;
   bool makeAssessmentInactive = false;
+  bool showAdvisorPage = false;
   String startDateTime = '';
   String endDateTime = '';
   int totalMarks = 0;
@@ -336,7 +337,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
     endDateTime =
     "${teDate.day}/${teDate.month}/${teDate.year} ${teDate.hour > 12 ? teDate.hour - 12 : teDate.hour}:${teDate.minute} ${teDate.hour > 12 ? "PM" : "AM"}";
     endDate = teDate;
-    for (int i = 0; i < questionList!.length; i++) {
+    for (   int i = 0; i < questionList!.length; i++) {
       totalMarks = totalMarks + questionList![i].questionMark!;
     }
     category =
@@ -576,7 +577,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                     fontWeight: FontWeight.w400),
                                               ),
                                               Text(
-                                                "$totalMarks",
+                                                "${getAssessmentModel.totalScore}",
                                                 style: TextStyle(
                                                     fontSize: height * 0.016,
                                                     fontFamily: "Inter",
@@ -2434,7 +2435,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                         FontWeight.w400),
                                                   ),
                                                   Text(
-                                                    "$totalMarks",
+                                                    "${getAssessmentModel.totalScore}",
                                                     style: TextStyle(
                                                         fontSize: height * 0.016,
                                                         fontFamily: "Inter",
@@ -4350,7 +4351,7 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                       fontWeight: FontWeight.w400),
                                                 ),
                                                 Text(
-                                                  "$totalMarks",
+                                                  "${getAssessmentModel.totalScore}",
                                                   style: TextStyle(
                                                       fontSize: height * 0.016,
                                                       fontFamily: "Inter",
@@ -5627,6 +5628,57 @@ class ActiveAssessmentSettingsState extends State<ActiveAssessmentSettings> {
                                                   ],
                                                 ),
                                               ),
+                                              category == 'Test'
+                                                  ? Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: width * 0.03,
+                                                    right: width * 0.03,
+                                                    bottom: height * 0.015),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.5,
+                                                      child: Text(
+                                                        "Show advisor page",
+                                                        style: TextStyle(
+                                                            fontSize: height *
+                                                                0.016,
+                                                            fontFamily:
+                                                            "Inter",
+                                                            color: const Color
+                                                                .fromRGBO(102,
+                                                                102, 102, 1),
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color
+                                                          .fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(217,
+                                                          217, 217, 1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value: showAdvisorPage,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          showAdvisorPage =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                                  : const SizedBox(),
                                               category == 'Test'
                                                   ? Padding(
                                                 padding: EdgeInsets.only(

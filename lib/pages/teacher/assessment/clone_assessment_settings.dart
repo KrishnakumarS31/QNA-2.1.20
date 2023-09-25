@@ -449,7 +449,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                                     fontWeight: FontWeight.w400),
                                               ),
                                               Text(
-                                                "45",
+                                                "${getAssessment.totalScore}",
                                                 style: TextStyle(
                                                     fontSize: height * 0.016,
                                                     fontFamily: "Inter",
@@ -2304,7 +2304,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                                       fontWeight: FontWeight.w400),
                                                 ),
                                                 Text(
-                                                  "45",
+                                                  "${getAssessment.totalScore}",
                                                   style: TextStyle(
                                                       fontSize: height * 0.016,
                                                       fontFamily: "Inter",
@@ -4154,7 +4154,7 @@ class CloneAssessmentSettingsState extends State<CloneAssessmentSettings> {
                                                     fontWeight: FontWeight.w400),
                                               ),
                                               Text(
-                                                "45",
+                                                "${getAssessment.totalScore}",
                                                 style: TextStyle(
                                                     fontSize: height * 0.016,
                                                     fontFamily: "Inter",
