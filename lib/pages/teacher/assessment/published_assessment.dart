@@ -221,30 +221,27 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                   .assessmentStatus ==
                                                   "active")
                                               ? Container(
-                                            height: height * 0.04,
-                                            width: width * 0.16,
+                                            height:height * 0.03,
+                                            width: width > 960
+                                                ? 90
+                                                :width > 500
+                                                ? 80
+                                                : 70,
                                             decoration: BoxDecoration(
+                                              color: Colors.white,
                                               border: Border.all(
-                                                color: Color.fromRGBO(
-                                                    219, 35, 35, 1),
+                                                color: Color.fromRGBO(219, 35, 35, 1),
                                               ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(5)),
                                             ),
                                             child: Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceEvenly,
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 Icon(
                                                   Icons.circle,
-                                                  color: const Color.fromRGBO(
-                                                      219, 35, 35, 1),
-                                                  size: MediaQuery.of(context)
-                                                      .copyWith()
-                                                      .size
-                                                      .height *
-                                                      0.02,
+                                                  color: const Color.fromRGBO(219, 35, 35, 1),
+                                                  size:height * 0.02,
                                                 ),
                                                 Text(
                                                   //AppLocalizations.of(context)!.active,
@@ -253,14 +250,11 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                       .primaryTextTheme
                                                       .bodyLarge
                                                       ?.merge(TextStyle(
-                                                      color: const Color
-                                                          .fromRGBO(
+                                                      color: const Color.fromRGBO(
                                                           51, 51, 51, 1),
                                                       fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w400,
-                                                      fontSize: MediaQuery.of(
-                                                          context)
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: MediaQuery.of(context)
                                                           .copyWith()
                                                           .size
                                                           .height *
@@ -296,17 +290,20 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                 0.02,
                                           )
                                               : Container(
-                                            height: height * 0.04,
+                                            height: height * 0.03,
                                             width: width > 960
-                                                ? width * 0.07
-                                                : width * 0.2,
+                                                ? 90
+                                                : width > 500
+                                                ? 80
+                                                : 70,
                                             decoration: BoxDecoration(
+                                              color: Colors.white,
                                               border: Border.all(
                                                 color: const Color.fromRGBO(
                                                     255, 153, 0, 1),
                                               ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
+                                              borderRadius:
+                                              BorderRadius.all(Radius.circular(5)),
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
@@ -319,14 +316,12 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                       .primaryTextTheme
                                                       .bodyLarge
                                                       ?.merge(TextStyle(
-                                                      color: const Color
-                                                          .fromRGBO(
+                                                      color: const Color.fromRGBO(
                                                           255, 153, 0, 1),
                                                       fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w400,
-                                                      fontSize: MediaQuery.of(
-                                                          context)
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize:
+                                                      MediaQuery.of(context)
                                                           .copyWith()
                                                           .size
                                                           .height *
@@ -1259,33 +1254,27 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                     .assessmentStatus ==
                                                     "active")
                                                 ? Container(
-                                              height: height * 0.04,
-                                              width: width * 0.05,
+                                              height: height * 0.03,
+                                              width:width > 960
+                                                  ? 90
+                                                  :width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
-                                                  color: Color.fromRGBO(
-                                                      219, 35, 35, 1),
+                                                  color: Color.fromRGBO(219, 35, 35, 1),
                                                 ),
                                                 borderRadius:
-                                                BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                BorderRadius.all(Radius.circular(5)),
                                               ),
                                               child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceEvenly,
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Icon(
                                                     Icons.circle,
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        219, 35, 35, 1),
-                                                    size:
-                                                    MediaQuery.of(context)
-                                                        .copyWith()
-                                                        .size
-                                                        .height *
-                                                        0.02,
+                                                    color: const Color.fromRGBO(219, 35, 35, 1),
+                                                    size: height * 0.02,
                                                   ),
                                                   Text(
                                                     //AppLocalizations.of(context)!.active,
@@ -1294,16 +1283,11 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                         .primaryTextTheme
                                                         .bodyLarge
                                                         ?.merge(TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(51,
-                                                            51, 51, 1),
-                                                        fontFamily:
-                                                        'Inter',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w400,
-                                                        fontSize: MediaQuery.of(
-                                                            context)
+                                                        color: const Color.fromRGBO(
+                                                            51, 51, 51, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: MediaQuery.of(context)
                                                             .copyWith()
                                                             .size
                                                             .height *
@@ -1339,18 +1323,21 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                   .height *
                                                   0.02,
                                             )
-                                                :Container(
-                                              height: height * 0.04,
+                                                : Container(
+                                              height: height * 0.03,
                                               width: width > 960
-                                                  ? width * 0.07
-                                                  : width * 0.16,
+                                                  ? 90
+                                                  : width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: const Color.fromRGBO(
                                                       255, 153, 0, 1),
                                                 ),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                borderRadius:
+                                                BorderRadius.all(Radius.circular(5)),
                                               ),
                                               child: Row(
                                                 mainAxisAlignment:
@@ -1363,14 +1350,12 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                         .primaryTextTheme
                                                         .bodyLarge
                                                         ?.merge(TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
+                                                        color: const Color.fromRGBO(
                                                             255, 153, 0, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize: MediaQuery.of(
-                                                            context)
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize:
+                                                        MediaQuery.of(context)
                                                             .copyWith()
                                                             .size
                                                             .height *
@@ -2330,33 +2315,27 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                     .assessmentStatus ==
                                                     "active")
                                                 ? Container(
-                                              height: height * 0.04,
-                                              width: width * 0.16,
+                                              height:height * 0.03,
+                                              width: width > 960
+                                                  ? 90
+                                                  :width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
-                                                  color: Color.fromRGBO(
-                                                      219, 35, 35, 1),
+                                                  color: Color.fromRGBO(219, 35, 35, 1),
                                                 ),
                                                 borderRadius:
-                                                BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                BorderRadius.all(Radius.circular(5)),
                                               ),
                                               child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceEvenly,
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Icon(
                                                     Icons.circle,
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        219, 35, 35, 1),
-                                                    size:
-                                                    MediaQuery.of(context)
-                                                        .copyWith()
-                                                        .size
-                                                        .height *
-                                                        0.02,
+                                                    color: const Color.fromRGBO(219, 35, 35, 1),
+                                                    size:height * 0.02,
                                                   ),
                                                   Text(
                                                     //AppLocalizations.of(context)!.active,
@@ -2365,16 +2344,11 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                         .primaryTextTheme
                                                         .bodyLarge
                                                         ?.merge(TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(51,
-                                                            51, 51, 1),
-                                                        fontFamily:
-                                                        'Inter',
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w400,
-                                                        fontSize: MediaQuery.of(
-                                                            context)
+                                                        color: const Color.fromRGBO(
+                                                            51, 51, 51, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: MediaQuery.of(context)
                                                             .copyWith()
                                                             .size
                                                             .height *
@@ -2410,18 +2384,21 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                   .height *
                                                   0.02,
                                             )
-                                                :Container(
-                                              height: height * 0.04,
+                                                : Container(
+                                              height: height * 0.03,
                                               width: width > 960
-                                                  ? width * 0.07
-                                                  : width * 0.16,
+                                                  ? 90
+                                                  : width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: const Color.fromRGBO(
                                                       255, 153, 0, 1),
                                                 ),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                borderRadius:
+                                                BorderRadius.all(Radius.circular(5)),
                                               ),
                                               child: Row(
                                                 mainAxisAlignment:
@@ -2434,14 +2411,12 @@ class PublishedAssessmentState extends State<PublishedAssessment> {
                                                         .primaryTextTheme
                                                         .bodyLarge
                                                         ?.merge(TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
+                                                        color: const Color.fromRGBO(
                                                             255, 153, 0, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize: MediaQuery.of(
-                                                            context)
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize:
+                                                        MediaQuery.of(context)
                                                             .copyWith()
                                                             .size
                                                             .height *

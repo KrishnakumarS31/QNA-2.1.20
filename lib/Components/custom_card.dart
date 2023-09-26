@@ -65,8 +65,10 @@ class _CustomCardState extends State<CustomCard> {
     bool notStarted = now.isBefore(start);
     bool live = now.isBefore(end);
     Widget completedIcon = Container(
+      width: 67,
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
         border: Border.all(color: const Color.fromRGBO(42, 36, 186, 1)),
       ),
@@ -88,24 +90,28 @@ class _CustomCardState extends State<CustomCard> {
       ),
     );
     Widget notStartedIcon = Container(
+      width: 67,
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
-        border: Border.all(color: const Color.fromRGBO(153, 153, 153, 1)),
+        border: Border.all(color:const Color.fromARGB(255, 52, 52, 52),),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text(
-            //AppLocalizations.of(context)!.active,
-            "YET TO START",
-            style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                TextStyle(
-                    color: const Color.fromRGBO(153, 153, 153, 1),
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
-                    fontSize:
-                        MediaQuery.of(context).copyWith().size.height * 0.016)),
+          SizedBox(
+            child: Text(
+              //AppLocalizations.of(context)!.active,
+              "YET TO\nSTART",
+              style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                  TextStyle(
+                      color:const Color.fromARGB(255, 52, 52, 52),
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      fontSize:
+                          MediaQuery.of(context).copyWith().size.height * 0.01)),
+            ),
           ),
         ],
       ),
@@ -114,6 +120,7 @@ class _CustomCardState extends State<CustomCard> {
     Widget liveIcon = Container(
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(5)),
         border: Border.all(color: const Color.fromRGBO(219, 35, 35, 1)),
       ),

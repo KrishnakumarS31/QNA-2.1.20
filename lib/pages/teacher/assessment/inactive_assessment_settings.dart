@@ -100,6 +100,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
     timeLimitController.text="${timeLimit.hour}:${timeLimit.minute}";
     endTimeController.text="${endDate.day}/${endDate.month}/${endDate.year} ${endDate.hour>12?endDate.hour-12:endDate.hour}:${endDate.minute} ${endDate.hour>12?"PM":"AM"}";
     startTimeController.text="${startDate.day}/${startDate.month}/${startDate.year} ${startDate.hour>12?startDate.hour-12:startDate.hour}:${startDate.minute} ${startDate.hour>12?"PM":"AM"}";
+
   }
 
 
@@ -655,7 +656,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                           });
                                                                         },
                                                                         use24hFormat: true,
-                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!),
+                                                                        initialValue: DateTime.now(),
                                                                         initialEntryMode: DatePickerEntryMode.calendarOnly,
                                                                         mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
@@ -774,7 +775,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                           });
                                                                         },
                                                                         use24hFormat: true,
-                                                                        initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
+                                                                        initialValue: DateTime.now(),
                                                                         initialEntryMode: DatePickerEntryMode.calendarOnly,
                                                                         mode: DateTimeFieldPickerMode.dateAndTime
                                                                     ),
@@ -1848,7 +1849,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                             });
                                                                           },
                                                                           use24hFormat: true,
-                                                                          initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!),
+                                                                          initialValue: DateTime.now(),
                                                                           initialEntryMode: DatePickerEntryMode.calendarOnly,
                                                                           mode: DateTimeFieldPickerMode.dateAndTime
                                                                       ),
@@ -1967,7 +1968,7 @@ class InactiveAssessmentSettingsState extends State<InactiveAssessmentSettings> 
                                                                             });
                                                                           },
                                                                           use24hFormat: true,
-                                                                          initialValue: DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!),
+                                                                          initialValue: DateTime.now(),
                                                                           initialEntryMode: DatePickerEntryMode.calendarOnly,
                                                                           mode: DateTimeFieldPickerMode.dateAndTime
                                                                       ),

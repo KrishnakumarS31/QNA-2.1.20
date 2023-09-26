@@ -4213,18 +4213,19 @@ class _AssessmentCardState extends State<AssessmentCard> {
                     (widget.assessment.assessmentStatus == "active" &&
                         widget.assessment.assessmentType == 'test')
                         ? Container(
-                      height: widget.height * 0.04,
+                      height: widget.height * 0.03,
                       width: widget.width > 960
-                          ? widget.width * 0.07
-                          : widget.width > 500?
-                      widget.width * 0.16
-                          : widget.width *0.2,
+                          ? 90
+                          : widget.width > 500
+                          ? 80
+                          : 70,
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         border: Border.all(
                           color: Color.fromRGBO(219, 35, 35, 1),
                         ),
                         borderRadius:
-                        BorderRadius.all(Radius.circular(10)),
+                        BorderRadius.all(Radius.circular(5)),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -4256,19 +4257,20 @@ class _AssessmentCardState extends State<AssessmentCard> {
                     )
                         : widget.assessment.assessmentStatus == "inactive"
                         ? Container(
-                      height: widget.height * 0.04,
+                      height: widget.height * 0.03,
                       width: widget.width > 960
-                          ? widget.width * 0.07
-                          : widget.width > 500?
-                      widget.width * 0.16
-                          : widget.width *0.2,
+                          ? 90
+                          : widget.width > 500
+                          ? 80
+                          : 70,
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         border: Border.all(
                           color:
                           const Color.fromRGBO(153, 153, 153, 1),
                         ),
                         borderRadius:
-                        BorderRadius.all(Radius.circular(10)),
+                        BorderRadius.all(Radius.circular(5)),
                       ),
                       child: Row(
                         mainAxisAlignment:
@@ -4306,19 +4308,19 @@ class _AssessmentCardState extends State<AssessmentCard> {
                     // )
                         : widget.assessment.assessmentStatus == "inprogress"
                         ? Container(
-                      height: widget.height * 0.04,
+                      height: widget.height * 0.03,
                       width: widget.width > 960
-                          ? widget.width * 0.07
-                          : widget.width > 500?
-                      widget.width * 0.16
-                          : widget.width *0.2,
+                          ? 90
+                          : widget.width > 500
+                          ? 80
+                          : 70,
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         border: Border.all(
-                          color: const Color.fromRGBO(
-                              153, 153, 153, 1),
+                          color: Color.fromARGB(255, 52, 52, 52),
                         ),
                         borderRadius:
-                        BorderRadius.all(Radius.circular(10)),
+                        BorderRadius.all(Radius.circular(5)),
                       ),
                       child: Row(
                         mainAxisAlignment:
@@ -4331,8 +4333,7 @@ class _AssessmentCardState extends State<AssessmentCard> {
                                 .primaryTextTheme
                                 .bodyLarge
                                 ?.merge(TextStyle(
-                                color: const Color.fromRGBO(
-                                    153, 153, 153, 1),
+                                color: Color.fromARGB(255, 52, 52, 52),
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
                                 fontSize:
@@ -4346,19 +4347,20 @@ class _AssessmentCardState extends State<AssessmentCard> {
                       ),
                     )
                         : Container(
-                      height: widget.height * 0.04,
+                      height: widget.height * 0.03,
                       width: widget.width > 960
-                          ? widget.width * 0.07
-                          : widget.width > 500?
-                      widget.width * 0.16
-                          : widget.width *0.2,
+                          ? 90
+                          : widget.width > 500
+                          ? 80
+                          : 70,
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         border: Border.all(
                           color: const Color.fromRGBO(
                               255, 153, 0, 1),
                         ),
                         borderRadius:
-                        BorderRadius.all(Radius.circular(10)),
+                        BorderRadius.all(Radius.circular(5)),
                       ),
                       child: Row(
                         mainAxisAlignment:

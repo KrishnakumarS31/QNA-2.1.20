@@ -443,17 +443,20 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Container(
-                                            height: height * 0.04,
+                                            height: height * 0.03,
                                             width: width > 960
-                                                ? width * 0.07
-                                                : width * 0.16,
+                                                ? 90
+                                                : width > 500
+                                                ? 80
+                                                : 70,
                                             decoration: BoxDecoration(
+                                              color: Colors.white,
                                               border: Border.all(
                                                 color: const Color.fromRGBO(
                                                     255, 153, 0, 1),
                                               ),
                                               borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
+                                                  Radius.circular(5)),
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
@@ -1240,17 +1243,20 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                                   fontWeight: FontWeight.w700),
                                             ),
                                             Container(
-                                              height: height * 0.04,
+                                              height: height * 0.03,
                                               width: width > 960
-                                                  ? width * 0.07
-                                                  : width * 0.16,
+                                                  ? 90
+                                                  : width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: const Color.fromRGBO(
                                                       255, 153, 0, 1),
                                                 ),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                borderRadius:
+                                                BorderRadius.all(Radius.circular(5)),
                                               ),
                                               child: Row(
                                                 mainAxisAlignment:
@@ -1263,14 +1269,12 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                                         .primaryTextTheme
                                                         .bodyLarge
                                                         ?.merge(TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
+                                                        color: const Color.fromRGBO(
                                                             255, 153, 0, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize: MediaQuery.of(
-                                                            context)
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize:
+                                                        MediaQuery.of(context)
                                                             .copyWith()
                                                             .size
                                                             .height *
@@ -2045,17 +2049,20 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                                   fontWeight: FontWeight.w700),
                                             ),
                                             Container(
-                                              height: height * 0.04,
+                                              height: height * 0.03,
                                               width: width > 960
-                                                  ? width * 0.07
-                                                  : width * 0.2,
+                                                  ? 90
+                                                  : width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: const Color.fromRGBO(
                                                       255, 153, 0, 1),
                                                 ),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                borderRadius:
+                                                BorderRadius.all(Radius.circular(5)),
                                               ),
                                               child: Row(
                                                 mainAxisAlignment:
@@ -2068,14 +2075,12 @@ class PracticeAssessmentLandingState extends State<PracticeAssessmentLanding> {
                                                         .primaryTextTheme
                                                         .bodyLarge
                                                         ?.merge(TextStyle(
-                                                        color: const Color
-                                                            .fromRGBO(
+                                                        color: const Color.fromRGBO(
                                                             255, 153, 0, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight:
-                                                        FontWeight.w400,
-                                                        fontSize: MediaQuery.of(
-                                                            context)
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize:
+                                                        MediaQuery.of(context)
                                                             .copyWith()
                                                             .size
                                                             .height *

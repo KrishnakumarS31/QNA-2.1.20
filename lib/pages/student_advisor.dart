@@ -326,6 +326,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       ))
               :
                 SizedBox(height: localHeight * 0.015),
+                SizedBox(height: localHeight * 0.02),
                 ElevatedButton(
                   style:
                   ElevatedButton.styleFrom(
@@ -414,7 +415,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           IconButton(
                               iconSize: localHeight * 0.06,
                               icon: const Icon(
-                                Icons.mail_outline_outlined,
+                                Icons.account_circle_outlined,
                                 color: Color.fromRGBO(
                                     82, 165, 160, 1),
                               ),
@@ -699,6 +700,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       ))
                   :
                   SizedBox(height: localHeight * 0.015),
+                  SizedBox(height: localHeight * 0.02),
                   ElevatedButton(
                       style:
                       ElevatedButton.styleFrom(
@@ -708,7 +710,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                         ),
                         minimumSize:
-                        Size(localWidth * 0.1,localWidth * 0.04),
+                        const Size(144, 48),
                         shape: RoundedRectangleBorder(
                           borderRadius:
                           BorderRadius.circular(
@@ -782,7 +784,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   IconButton(
                                       iconSize: localHeight * 0.04,
                                       icon: const Icon(
-                                        Icons.mail_outline_outlined,
+                                        Icons.account_circle_outlined,
                                         color: Color.fromRGBO(
                                             82, 165, 160, 1),
                                       ),
@@ -1061,6 +1063,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                     ))
                 :
                 SizedBox(height: localHeight * 0.01),
+                SizedBox(height: localHeight * 0.02),
                 ElevatedButton(
                     style:
                     ElevatedButton.styleFrom(
@@ -1151,7 +1154,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 IconButton(
                                     iconSize: localHeight * 0.04,
                                     icon: const Icon(
-                                      Icons.mail_outline_outlined,
+                                      Icons.account_circle_outlined,
                                       color: Color.fromRGBO(
                                           82, 165, 160, 1),
                                     ),

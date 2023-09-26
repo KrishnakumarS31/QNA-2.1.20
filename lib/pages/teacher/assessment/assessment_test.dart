@@ -465,15 +465,20 @@ class AssessmentTestState extends State<AssessmentTest> {
                                           ),
                                           assessment.assessmentStatus == "active"
                                               ? Container(
-                                            height: height * 0.04,
-                                            width: width * 0.16,
+                                            height: height * 0.03,
+                                            width: width > 960
+                                                ? 90
+                                                : width > 500
+                                                ? 80
+                                                : 70,
                                             decoration: BoxDecoration(
+                                              color: Colors.white,
                                               border: Border.all(
                                                 color: Color.fromRGBO(
                                                     219, 35, 35, 1),
                                               ),
                                               borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
+                                                  Radius.circular(5)),
                                             ),
                                             child: Row(
                                               mainAxisAlignment:
@@ -484,11 +489,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                                                   Icons.circle,
                                                   color: const Color.fromRGBO(
                                                       219, 35, 35, 1),
-                                                  size: MediaQuery.of(context)
-                                                      .copyWith()
-                                                      .size
-                                                      .height *
-                                                      0.02,
+                                                  size: height * 0.02,
                                                 ),
                                                 Text(
                                                   //AppLocalizations.of(context)!.active,
@@ -1438,16 +1439,21 @@ class AssessmentTestState extends State<AssessmentTest> {
                                             ),
                                             assessment.assessmentStatus == "active"
                                                 ? Container(
-                                              height: height * 0.04,
-                                              width: width * 0.07,
+                                              height: height * 0.03,
+                                              width: width > 960
+                                                  ? 90
+                                                  : width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: Color.fromRGBO(
                                                       219, 35, 35, 1),
                                                 ),
                                                 borderRadius:
                                                 BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                    Radius.circular(5)),
                                               ),
                                               child: Row(
                                                 mainAxisAlignment:
@@ -1459,12 +1465,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                                                     color:
                                                     const Color.fromRGBO(
                                                         219, 35, 35, 1),
-                                                    size:
-                                                    MediaQuery.of(context)
-                                                        .copyWith()
-                                                        .size
-                                                        .height *
-                                                        0.02,
+                                                    size: height * 0.02,
                                                   ),
                                                   Text(
                                                     //AppLocalizations.of(context)!.active,
@@ -1606,13 +1607,12 @@ class AssessmentTestState extends State<AssessmentTest> {
                                                       //     '/studentMemberLoginPage');
                                                     },
                                                   ),
-
                                                 ],
                                               ),
                                               IconButton(
                                                 onPressed: _sendMail,
-                                                icon: const Icon(
-                                                    Icons.mail_outlined),
+                                                icon:
+                                                const Icon(Icons.mail_outlined),
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
                                               )
@@ -2438,16 +2438,21 @@ class AssessmentTestState extends State<AssessmentTest> {
                                             ),
                                             assessment.assessmentStatus == "active"
                                                 ? Container(
-                                              height: height * 0.04,
-                                              width: width * 0.16,
+                                              height: height * 0.03,
+                                              width: width > 960
+                                                  ? 90
+                                                  : width > 500
+                                                  ? 80
+                                                  : 70,
                                               decoration: BoxDecoration(
+                                                color: Colors.white,
                                                 border: Border.all(
                                                   color: Color.fromRGBO(
                                                       219, 35, 35, 1),
                                                 ),
                                                 borderRadius:
                                                 BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                    Radius.circular(5)),
                                               ),
                                               child: Row(
                                                 mainAxisAlignment:
@@ -2459,12 +2464,7 @@ class AssessmentTestState extends State<AssessmentTest> {
                                                     color:
                                                     const Color.fromRGBO(
                                                         219, 35, 35, 1),
-                                                    size:
-                                                    MediaQuery.of(context)
-                                                        .copyWith()
-                                                        .size
-                                                        .height *
-                                                        0.02,
+                                                    size: height * 0.02,
                                                   ),
                                                   Text(
                                                     //AppLocalizations.of(context)!.active,
