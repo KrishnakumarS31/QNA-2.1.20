@@ -10,7 +10,7 @@ import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 import '../DataSource/http_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Pages/welcome_page.dart';
+import '../pages/welcome_page.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 

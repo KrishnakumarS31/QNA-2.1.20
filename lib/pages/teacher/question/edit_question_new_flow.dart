@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/DataSource/design.dart';
-import 'package:qna_test/Pages/teacher_qn_preview.dart';
+import 'package:qna_test/pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher/question/question_preview.dart';
 import '../../../Components/custom_incorrect_popup.dart';
 import '../../../Components/custom_radio_option.dart';

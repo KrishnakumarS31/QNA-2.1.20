@@ -931,18 +931,20 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       Padding(
                         padding: EdgeInsets.only(left: widget.height * 0.05),
                         child: SizedBox(
-                            width: widget.width * 0.02,
+                            
                             child: Text("${String.fromCharCode(97+j)}.",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
-                                  fontSize: widget.height * 0.040),
+                                  fontSize: widget.height * 0.02),
                             )),
                       ),
+                      const SizedBox(width: 10,),
                       Container(
+
                           width: widget.width > 960 ? widget.width * 0.2 :widget.width * 0.6,
-                          height: widget.height * 0.09,
+                          height: widget.height * 0.04,
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(5)),
                             border: Border.all(
@@ -967,9 +969,9 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                                       ((widget.finalQuestion?.questionType == "Survey") ? false : widget.finalQuestion!.choices![j].rightChoice!)
                                           ? const Color.fromRGBO(255, 255, 255, 1)
                                           : const Color.fromRGBO(102, 102, 102, 1),
-                                      fontSize: widget.height * 0.035,
+                                      fontSize: widget.height * 0.02,
                                       fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),

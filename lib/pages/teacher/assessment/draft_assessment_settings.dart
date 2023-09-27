@@ -65,6 +65,7 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
   bool allowGuestStudent=false;
   bool showAnswerSheetPractice=false;
   bool allowPublishPublic=false;
+  bool showAdvisorPage=false;
   bool showName=false;
   bool showEmail=false;
   bool showWhatsappGroup=false;
@@ -1241,6 +1242,50 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test'
+                                                ?
+                                            Padding(
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  SizedBox(
+                                                    width: width * 0.5,
+                                                    child: Text(
+                                                      "Show Advisor Page",
+                                                      style: TextStyle(
+                                                          fontSize: height * 0.016,
+                                                          fontFamily: "Inter",
+                                                          color: const Color.fromRGBO(102, 102, 102, 1),
+                                                          fontWeight: FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                  FlutterSwitch(
+                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                    inactiveColor:
+                                                    const Color
+                                                        .fromRGBO(
+                                                        217,
+                                                        217,
+                                                        217,
+                                                        1),
+                                                    width: 65.0,
+                                                    height: 35.0,
+                                                    value:
+                                                    showAdvisorPage,
+                                                    borderRadius: 30.0,
+                                                    onToggle: (val) {
+                                                      setState(() {
+                                                        showAdvisorPage =
+                                                            val;
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                                :
+                                            SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                               child: Row(
@@ -2499,6 +2544,50 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                   ],
                                                 ),
                                               ),
+                                              category == 'Test'
+                                                  ?
+                                              Padding(
+                                                padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    SizedBox(
+                                                      width: width * 0.5,
+                                                      child: Text(
+                                                        "Show Advisor Page",
+                                                        style: TextStyle(
+                                                            fontSize: height * 0.016,
+                                                            fontFamily: "Inter",
+                                                            color: const Color.fromRGBO(102, 102, 102, 1),
+                                                            fontWeight: FontWeight.w700),
+                                                      ),
+                                                    ),
+                                                    FlutterSwitch(
+                                                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                      inactiveColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          217,
+                                                          217,
+                                                          217,
+                                                          1),
+                                                      width: 65.0,
+                                                      height: 35.0,
+                                                      value:
+                                                      showAdvisorPage,
+                                                      borderRadius: 30.0,
+                                                      onToggle: (val) {
+                                                        setState(() {
+                                                          showAdvisorPage =
+                                                              val;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                                  :
+                                              SizedBox(),
                                               Padding(
                                                 padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom:height * 0.015),
                                                 child: Row(
@@ -3874,6 +3963,50 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
                                                 ],
                                               ),
                                             ),
+                                            category == 'Test'
+                                                ?
+                                            Padding(
+                                              padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  SizedBox(
+                                                    width: width * 0.5,
+                                                    child: Text(
+                                                      "Show Advisor Page",
+                                                      style: TextStyle(
+                                                          fontSize: height * 0.016,
+                                                          fontFamily: "Inter",
+                                                          color: const Color.fromRGBO(102, 102, 102, 1),
+                                                          fontWeight: FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                  FlutterSwitch(
+                                                    activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                    inactiveColor:
+                                                    const Color
+                                                        .fromRGBO(
+                                                        217,
+                                                        217,
+                                                        217,
+                                                        1),
+                                                    width: 65.0,
+                                                    height: 35.0,
+                                                    value:
+                                                    showAdvisorPage,
+                                                    borderRadius: 30.0,
+                                                    onToggle: (val) {
+                                                      setState(() {
+                                                        showAdvisorPage =
+                                                            val;
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                                :
+                                            SizedBox(),
                                             Padding(
                                               padding:  EdgeInsets.only(left : width * 0.03,top: height * 0.015,right:width*0.03,bottom: height * 0.015),
                                               child: Row(
@@ -4328,4 +4461,3 @@ class DraftAssessmentSettingsState extends State<DraftAssessmentSettings> {
     );
   }
 }
-

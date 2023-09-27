@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qna_test/Pages/welcome_page.dart';
+import 'package:qna_test/pages/welcome_page.dart';
 import '../DataSource/app_user_repo.dart';
 import '../DataSource/http_url.dart';
 import '../Entity/app_user.dart';

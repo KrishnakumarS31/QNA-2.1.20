@@ -1101,10 +1101,46 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           // for(questionModel.Question q in ques) {
                                           //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                           // }
-                                          Navigator.pushNamed(
+                                         if (questionList.isEmpty) {
+                                          Navigator.push(
                                             context,
-                                            '/assessmentSettingsPage',
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(
+                                                        context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content:
+                                                    //AppLocalizations.of(context)!.invalid_role,
+                                                    "Please select a question",
+                                                button: AppLocalizations.of(
+                                                        context)!
+                                                    .ok_caps,
+                                              ),
+                                            ),
                                           );
+                                        } else {
+                                          
+                                        
+                                      // List<questionModel.Question> ques = [];
+                                      // ques.addAll(questionList);
+                                      // Provider.of<QuestionPrepareProviderFinal>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .reSetQuestionList();
+                                      // for (questionModel.Question q in ques) {
+                                      //   Provider.of<QuestionPrepareProviderFinal>(
+                                      //           context,
+                                      //           listen: false)
+                                      //       .addQuestion(q);
+                                      // }
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/assessmentSettingsPage',
+                                      );
+                                    }
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
@@ -1963,10 +1999,50 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                             // for(questionModel.Question q in ques) {
                                             //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                             // }
-                                            Navigator.pushNamed(
-                                              context,
-                                              '/assessmentSettingsPage',
-                                            );
+                                            if (questionList.isEmpty) {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(
+                                                        context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content:
+                                                    //AppLocalizations.of(context)!.invalid_role,
+                                                    "Please select a question",
+                                                button: AppLocalizations.of(
+                                                        context)!
+                                                    .ok_caps,
+                                              ),
+                                            ),
+                                          );
+                                        } else {
+                                          
+                                        
+                                      // List<questionModel.Question> ques = [];
+                                      // ques.addAll(questionList);
+                                      // Provider.of<QuestionPrepareProviderFinal>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .reSetQuestionList();
+                                      // for (questionModel.Question q in ques) {
+                                      //   Provider.of<QuestionPrepareProviderFinal>(
+                                      //           context,
+                                      //           listen: false)
+                                      //       .addQuestion(q);
+                                      // }
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/assessmentSettingsPage',
+                                      );
+                                    }
+
+                                            
+
+                                           
                                           },
                                           child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                           style: ElevatedButton.styleFrom(
@@ -2825,10 +2901,46 @@ class PracticeReviewClonedState extends State<PracticeReviewCloned> {
                                           // for(questionModel.Question q in ques) {
                                           //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(q);
                                           // }
-                                          Navigator.pushNamed(
+                                          if (questionList.isEmpty) {
+                                          Navigator.push(
                                             context,
-                                            '/assessmentSettingsPage',
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(
+                                                        context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content:
+                                                    //AppLocalizations.of(context)!.invalid_role,
+                                                    "Please select a question",
+                                                button: AppLocalizations.of(
+                                                        context)!
+                                                    .ok_caps,
+                                              ),
+                                            ),
                                           );
+                                        } else {
+                                          
+                                        
+                                      // List<questionModel.Question> ques = [];
+                                      // ques.addAll(questionList);
+                                      // Provider.of<QuestionPrepareProviderFinal>(
+                                      //         context,
+                                      //         listen: false)
+                                      //     .reSetQuestionList();
+                                      // for (questionModel.Question q in ques) {
+                                      //   Provider.of<QuestionPrepareProviderFinal>(
+                                      //           context,
+                                      //           listen: false)
+                                      //       .addQuestion(q);
+                                      // }
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/assessmentSettingsPage',
+                                      );
+                                    }
                                         },
                                         child: Icon(Icons.arrow_forward_outlined, color: Colors.white),
                                         style: ElevatedButton.styleFrom(
